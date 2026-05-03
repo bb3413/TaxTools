@@ -12,7 +12,7 @@
  * In addition to inserting the version number in the paragraph, this code makes the version
  * number a clickable link so that when it is clicked, the version log is displayed.
  */
-const tax_tools_version		= "2025.08";
+const tax_tools_version		= "2025.09.000@";
 
 function Initialize() {
 	// Find the version number by its ID.
