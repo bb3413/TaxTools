@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="../Library/TaxTools/TaxTools.css" />
+        <link rel="stylesheet" href="../Library/TaxTools/HelpFields.css" />
+        <script src="../Library/Utilities/IncludeFile.js"></script>
+		<title>California Estimated Tax Calculator Help</title>
+	</head>
+
+	<body>
+		<h1 class="title">California Estimated Tax Calculator Help</h1>
+        
+        <p>This is a tool for estimating California income tax. It is intended to help you
+        determine how much California state income tax you would owe given the data you provide.
+        The California income tax is based on the results of the federal tax computation, so the
+        value for many of the fields can be found on the federal return.</p>
+		
+		<p>The California income tax calculation starts with the federal adjusted gross income (AGI).
+		Then, for each difference between the federal and California tax law an adjustment is either
+		added or subtracted from the federal AGI. On the California tax return form 540, these
+		adjustments are aggregated into Subtractions on line 14 and Additions on line 16.</p>
+		
+		<p>In the input fields in this tool, items that need to be added or subtracted from the
+		federal AGI will be listed in the corresponding section "Subtractions from Federal AGI" or
+		"Additions to Federal AGI". However, in the actual calculation of the California tax return,
+		these items may not end up in the Subtractions on line 14 or Additions on line 16 that you
+		expect.</p>
+
+		<p>While income items always go to the Addition or Subtractions based on whether they will
+		be added or subtracted from the federal AGI, adjustments to income do not. For example,
+		an adjustment that will increase the federal AGI, may be subtracted from the subtractions rather
+		than added to the additions. And the reverse may be true as well.</p>
+		
+		<p>In this tool, the fields where you enter data are organized by their effect on the federal
+		AGI, but the Subtractions and Additions categories shown in the estimated tax calculation will
+		be calculated as they are on the California tax return.</p>
+	
+		<p>The tax formula for calculating the California income tax is also provided to show, at a
+		high level, how the tax is calculated. The value of each item in the tax formula is shown in
+		the "Estimated Tax Calculation" section.</p>
+        
+        <!-- Generic tax tools help information. -->
+        <div include-file="../Library/TaxTools/TaxTools-Help.html"></div>
+  
+        <h2>Description of Input Fields</h2>
+        <p>The remainder of this document describes the fields that are computed (blue) and the
+        fields where you can enter data (green). The fields are listed in the same order as they
+        appear in the tool. This is also the same information that is displayed in the tool
+        tips.</p>
+        
+        <div include-file="EstimatedTax_CA-HelpInput.html"></div>
+    </body>
+</html>

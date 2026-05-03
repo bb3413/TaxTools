@@ -1,0 +1,16 @@
+# DreamWeaver status files
+_notes/
+
+# Editor temporary files
+~*
+*.swp
+
+# Modules loaded with NPM
+nodes_modules/
+
+# NPM status files
+package.json
+package-lock.json
+
+# ESLint configuration file
+eslint.config.mjs

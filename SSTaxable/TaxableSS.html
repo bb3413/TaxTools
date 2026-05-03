@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="../Library/Debug/Debug.css" />
+		<link rel="stylesheet" href="../Library/TaxTools/TaxTools.css" />
+		<link rel="stylesheet" href="../Library/Tooltips/Tooltips.css" />
+		<link rel="stylesheet" href="TaxableSS.css" />
+
+        <script defer src="../Library/IncomeTax/IncomeTax.js"></script>
+		<script defer src="../Library/Debug/Debug.js"></script>
+		<script defer src="../Library/SelfEmploymentTax/SelfEmploymentTax.js"></script>
+		<script defer src="../Library/SocialSecurity/SocialSecurity.js"></script>
+		<script defer src="../Library/TaxTables/TaxTables.js"></script>
+		<script defer src="../Library/TaxTables/TaxTables_TY24.js"></script>
+		<script defer src="../Library/TaxTables/TaxTables_TY25.js"></script>
+		<script defer src="../Library/TaxTables/TaxTables_TY26.js"></script>
+		<script defer src="../Library/Tooltips/Tooltips.js"></script>
+		<script defer src="../Library/Utilities/EvalExpression.js"></script>
+        <script defer src="../Library/Utilities/HTML.js"></script>
+		<script defer src="../Library/Utilities/IncludeFile.js"></script>
+		<script defer src="../Library/Utilities/util-Dates.js"></script>
+		<script defer src="../Library/Utilities/util-Numbers.js"></script>
+		<script defer src="../Library/Utilities/util-Strings.js"></script>
+		<script defer src="../Version/Version.js"></script>
+		<script defer src="TaxableSS.js"></script>
+
+		<title>Taxable Social Security Calculator</title>
+	</head>
+
+	<body>
+		<p class="version-number">Version: <a href="../Version/Version.html">
+			<span id="TaxToolsVersion"></span></a></p>
+
+		<h1 class="title">Taxable Social Security Calculator</h1>
+        
+        <p>This tool calculates the amount of Social Security that is taxable.
+        Click <a href="TaxableSS-Help.html">this link</a> for more help with this tool.</p>
+
+    	<div class="table-3x">
+        	<p class="description-field-right">Filing Status</p>
+			<select class="trigger input-field" id="FilingStatus" tooltipid="#FilingStatusTT">
+				<option value="Single">Single</option>
+				<option value="HoH">HoH</option>
+				<option value="MFJ">MFJ</option>
+				<option value="QSS">QSS</option>
+                <option value="MFS">MFS</option>
+			</select>
+            <p>&nbsp;</p>
+		</div>
+		<div class="table-3x" id="LivedWithSpouseContainer">
+			<p>Lived with Spouse</p>
+			<input class="trigger checkbox" type="checkbox" id="LivedWithSpouse"
+				tooltipid="#LivedWithSpouseTT" />
+			<p>&nbsp;</p>
+		</div>
+		<div class="table-3x">
+           	<p>Social Security</p>
+			<input  class="trigger input-field" type="text" autofocus id="SocialSecurity"
+            	tooltipid="#SocialSecurityTT" size="10" />
+            <p>&nbsp;</p>
+            
+			<p>Income</p>
+			<input class="trigger input-field" type="text" id="Income" tooltipid="#IncomeTT"
+            	size="10" />
+            <p>&nbsp;</p>
+                        
+            <p>Tax-Exempt Interest</p>
+			<input class="trigger input-field" type="text" id="TaxExemptInterest"
+            	tooltipid="#TaxExemptInterestTT" size="10" />
+            <p>&nbsp;</p>
+            
+            <p>Adjustments</p>
+			<input class="trigger input-field" type="text" id="Adjustments"
+            	tooltipid="#AdjustmentsTT" size="10" />
+            <p>&nbsp;</p>
+            
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            
+            <p>Taxable Social Security</p>
+            <p class="trigger output-field" id="TaxableSocialSecurity"
+            	tooltipid="#TaxableSocialSecurityTT">0</p>
+            <p class="trigger output-field percent-field" id="TaxablePercent"
+            	tooltipid="#TaxablePercentTT">0%</p>
+        </div>
+         
+		<h3>Income Fields</h3>
+		<p>Rather than entering taxable income in the Income field above, you can enter individual
+        income values here. The sum of the fields entered here will replace the Income field above.</p>
+
+    	<div class="table-2x">
+			<p class="description-field">Wages</p>
+			<input class="trigger input-field" type="text" id="Wages"
+            	tooltipid="#WagesTT" size="10" />
+ 
+			<p class="description-field">Taxable Interest</p>
+			<input class="trigger input-field" type="text" id="TaxableInterest"
+            	tooltipid="#TaxableInterestTT" size="10" />
+
+			<p class="description-field">Ordinary Dividends</p>
+			<input class="trigger input-field" type="text" id="OrdinaryDividends"
+            	tooltipid="#OrdinaryDividendsTT" size="10" />
+
+			<p class="description-field">Retirement Accounts (taxable amount only)</p>
+			<input class="trigger input-field" type="text" id="RetirementAccounts"
+            	tooltipid="#RetirementAccountsTT" size="10" />
+
+			<p class="description-field">Pensions, Annuities (taxable amount only)</p>
+			<input class="trigger input-field" type="text" id="PensionsAndAnnuities"
+            	tooltipid="#PensionsAndAnnuitiesTT" size="10" />
+
+			<p class="description-field">Capital Gains</p>
+			<input class="trigger input-field" type="text" id="CapitalGains"
+            	tooltipid="#CapitalGainsTT" size="10" />
+            
+			<p class="description-field">Self-employment Income</p>
+			<input class="trigger input-field" type="text" id="SelfEmploymentIncome"
+               	size="10" tooltipid="#SelfEmploymentIncomeTT" />
+                    
+			<p class="description-field">Other Income</p>
+			<input class="trigger input-field" type="text" id="OtherIncome"
+               	size="10" tooltipid="#OtherIncomeTT" />
+		</div>
+        
+        <h3>Adjustments Fields</h3>
+		<p>Rather than entering total adjustments in the Adjustments field above, you can enter
+        individual adjustment values here. The sum of the fields entered here will replace the
+        Adjustments field above.</p>
+        
+    	<div class="table-2x">
+			<p class="description-field">Educator Expenses</p>
+			<input class="trigger input-field" type="text" id="EducatorExpenses"
+               	size="10" tooltipid="#EducatorExpensesTT" />
+
+			<p class="description-field">Health Savings Account Contributions</p>
+			<input class="trigger input-field" type="text" id="HealthSavingsAccount"
+               	size="10" tooltipid="#HealthSavingsAccountTT" />
+
+			<p class="description-field">Self-Employment Tax Adjustment</p>
+			<input class="trigger input-field" type="text" id="SelfEmploymentTaxAdjustment"
+               	size="10" tooltipid="#SelfEmploymentTaxAdjustmentTT" />
+
+			<p class="description-field">Self-Employed Health Insurance</p>
+			<input class="trigger input-field" type="text" id="SelfEmployedHealthInsurance"
+               	size="10" tooltipid="#SelfEmployedHealthInsuranceTT" />
+
+			<p class="description-field">Early Withdrawal Penalty</p>
+			<input class="trigger input-field" type="text" id="EarlyWithdrawalPenalty"
+               	size="10" tooltipid="#EarlyWithdrawalPenaltyTT" />
+
+			<p class="description-field">Alimony Paid</p>
+			<input class="trigger input-field" type="text" id="AlimonyPaid"
+               	size="10" tooltipid="#AlimonyPaidTT" />
+
+			<p class="description-field">IRA Contributions</p>
+			<input class="trigger input-field" type="text" id="IRAContributions"
+               	size="10" tooltipid="#IRAContributionsTT" />
+
+			<p class="description-field">Student Loan Interest</p>
+			<input class="trigger input-field" type="text" id="StudentLoanInterest"
+               	size="10" tooltipid="#StudentLoanInterestTT" />
+
+			<p class="description-field">Other Adjustments</p>
+			<input class="trigger input-field" type="text" id="OtherAdjustments"
+               	size="10" tooltipid="#OtherAdjustmentsTT" />
+		</div>
+       
+		<!-- Debugging Fields -->
+        <div include-file="TaxableSS-Debug.html"></div>
+        <div include-file="../Library/SocialSecurity/SocialSecurity-Debug.html"></div>
+
+		<!-- Tooltips -->
+        <div include-file="TaxableSS-HelpInput.html"></div>
+	</body>
+</html>

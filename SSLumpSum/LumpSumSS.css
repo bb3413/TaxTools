@@ -1,0 +1,46 @@
+
+.table-3x {
+	width:					35rem;
+	display:				grid;
+	grid-template-columns:	25rem 7rem 4rem;
+	margin-left:			2rem;
+}
+			
+.table-3x p {
+	/* text-align:			right; */
+	padding-right:			6px;
+	margin-top:				0;
+	margin-bottom:			0;
+}
+
+.table-3x input {
+	margin-top:				0;	
+	margin-bottom:			0;
+}
+
+.table-2x {
+	width:					30rem;
+	display:				grid;
+	grid-template-columns:	25rem 8rem;
+	margin-left:			2rem;
+}
+
+.table-2x p {
+	/* text-align:			right; */
+	padding-right:			6px;
+	margin-top:				0;
+	margin-bottom:			0;
+}
+			
+.table-2x input {
+	margin-top:				0;	
+	margin-bottom:			0;
+}
+
+.percent-field {
+	margin-left:			10px;
+}
+
+.help-fields h3 {
+	display: none;
+}
