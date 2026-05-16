@@ -11,14 +11,15 @@
 	 *
 	 *			background-color: var(--background-color);
 	 */
-	--background-color:		LightCyan;
-	--text-color:			Navy;
-	--light-text-color:		MediumBlue;
-	--input-color:			#d9fddd;	/* #9FC; */
-	--output-color:			#DEF;
-	--border-color:			var(--text-color);
-	--shadow-color:			#AAAAAA;	/* Gray */
-	--tooltip-bg-color:		Beige;
+	--background-color:			LightCyan;
+	--tool-background-color:	White;
+	--text-color:				Navy;
+	--light-text-color:			MediumBlue;
+	--input-color:				#d9fddd;	/* #9FC; */
+	--output-color:				#DEF;
+	--border-color:				var(--text-color);
+	--shadow-color:				#AAAAAA;	/* Gray */
+	--tooltip-bg-color:			Beige;
 
 	/* Testing	
 	--background-color:		white;

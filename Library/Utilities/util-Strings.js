@@ -7,6 +7,11 @@ function strCaseEqual(s1, s2) {
 	return s1.toLowerCase() === s2.toLowerCase();
 }
 
+function strClean(s) {
+	// Remove leading, training, and consecutive whitespace characters.
+	return s.trim().replace(/\s+/g, " ");
+}
+
 function strDownshift(s) {
 	return s.toLowerCase();
 }

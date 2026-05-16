@@ -1,0 +1,68 @@
+
+body {
+	display:				flex;
+	justify-content:		center;
+	padding:				40px;
+}
+
+.tool-container {
+	background:				var(--tool-background-color);
+	padding-top:			1rem;
+	padding-bottom:			2rem;
+	padding-left:			2rem;
+	padding-right:			2rem;
+	border-radius:			8px;
+	box-shadow:				0 4px 6px var(--shadow-color);
+	width:					100%;
+	max-width:				450px;
+}
+
+.table {
+	width:					25rem;
+	display:				grid;
+	grid-template-columns:	1fr 2fr;
+}
+
+.input-label {
+	margin-top:				0;	
+	margin-bottom:			0;
+	text-align:				right;
+	padding-right:			6px;
+}
+
+.output-label {
+	text-align:				right;
+	padding-right:			6px;
+}
+
+.button-container {
+	display:				flex;
+	justify-content:		center;		/* Align the div block to the right. */
+	align-items:			flex-end;	/* Align buttons on bottom edge. */
+	gap:					5px;		/* Optional: adds space between buttons */
+	margin-bottom:			3px;
+	margin-top:				10px;
+}
+
+.lookup-button {
+	background:				var(--input-color);
+}
+
+.output-container {
+	width:					25rem;
+	display:				grid;
+	grid-template-columns:	1fr 2fr;
+}
+
+/* If the addres, city, or zip code fields are autofilled by the browser, the browser
+ * automatically changes the background color to a blue tint. The following code uses a
+ * large, solid box-shadow inside the input box to cover up the browser's blue tint.
+ *
+ * Target the autofill state in Chrome, Edge, Safari, and Firefox. */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px var(--input-color) inset !important;
+    box-shadow: 0 0 0px 1000px var(--input-color) inset !important;
+    -webkit-text-fill-color: var(--text-color) !important;
+}
