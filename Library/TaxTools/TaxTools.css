@@ -3,7 +3,6 @@
  * a consistant look and feel.
  */
  
-
 :root {
 	/* Global variables
 	 *
@@ -42,6 +41,11 @@ a:link {
 
 a:visited {
 	color:					var(--light-text-color);
+}
+
+input::placeholder {
+    /* color:				red; */
+    opacity:				0.5;
 }
 
 body {
@@ -85,8 +89,8 @@ body {
 
 .input-field {
 	border:					1px solid var(--border-color);
-	padding-left:			2px;
-	padding-right:			2px;
+	padding-left:			4px;
+	padding-right:			4px;
 	background:				var(--input-color);
 	color:					var(--text-color);
 	text-align:				right;
