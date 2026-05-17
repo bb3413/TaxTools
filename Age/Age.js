@@ -2,6 +2,8 @@
 let start			= "";
 let end				= "";
 let age				= 0;
+let input_color		= "";
+let output_color	= "";
 
 function CalculateEndDate(start, age) {
 	const start_date	= new Date(start);
@@ -11,6 +13,10 @@ function CalculateEndDate(start, age) {
 	end_date.setYear(start_year + age);
 	end = end_date.toLocaleDateString();
 	putUserOutput("End", end);
+
+	changeBackgroundColor("Start",	input_color);
+	changeBackgroundColor("End",		output_color);
+	changeBackgroundColor("Age",		input_color);
 }
 
 function CalculateStartDate(end, age) {
@@ -21,6 +27,10 @@ function CalculateStartDate(end, age) {
 	start_date.setYear(end_year - age);
 	start = start_date.toLocaleDateString();
 	putUserOutput("Start", start);
+	
+	changeBackgroundColor("Start",	output_color);
+	changeBackgroundColor("End",		input_color);
+	changeBackgroundColor("Age",		input_color);
 }
 
 function StartHandler(event) {
@@ -37,6 +47,10 @@ function StartHandler(event) {
 	if (end) {
 		age = Age(start, end);
 		putUserOutput("Age", age);
+
+		changeBackgroundColor("Start",	input_color);
+		changeBackgroundColor("End",		input_color);
+		changeBackgroundColor("Age",		output_color);
 	} else if (age) {
 		CalculateEndDate(start, age);
 	}
@@ -76,6 +90,11 @@ function AgeHandler(event) {
 
 document.addEventListener("DOMContentLoaded", () => {
 	// Wait for the DOM to be fully loaded before trying to access any elements.
+
+	// Read the CSS variable from the root (or from a specific element)
+	const rootStyles	= getComputedStyle(document.documentElement);
+	output_color		= rootStyles.getPropertyValue('--output-color').trim();
+	input_color			= rootStyles.getPropertyValue('--input-color').trim();
 
 	addListener("Start",	"change",	StartHandler);
 	addListener("End",		"change",	EndHandler);

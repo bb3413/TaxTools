@@ -8,6 +8,14 @@ function addListener(elementID, event, handler) {
 	}
 }
 
+function changeBackgroundColor(elementID, color) {
+	document.getElementById(elementID).style.background = color;
+}
+
+function changeTextColor(elementID, color) {
+	document.getElementById(elementID).style.color = color;
+}
+
 function getUserInput(elementID, type = "number") {
 	
 	let value = getElementValue(elementID);
