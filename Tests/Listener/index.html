@@ -2,12 +2,12 @@
   <input type="text" name="username" placeholder="Enter name">
   
   <select name="role">
-    <option value="user">User</option>
-    <option value="admin">Admin</option>
+	<option value="user">User</option>
+	<option value="admin">Admin</option>
   </select>
 
   <label>
-    <input type="checkbox" name="newsletter"> Subscribe
+	<input type="checkbox" name="newsletter"> Subscribe
   </label>
 </div>
 
@@ -15,23 +15,23 @@
 const container = document.querySelector('#form-container');
 
 container.addEventListener('input', () => {
-    // 1. Create a FormData object from all inputs inside the div
-    // Note: This works best if your inputs are inside a <form>, 
-    // but we can simulate it by querySelecting all inputs.
-    const inputs = container.querySelectorAll('input, select, textarea');
-    const data = {};
+	// 1. Create a FormData object from all inputs inside the div
+	// Note: This works best if your inputs are inside a <form>, 
+	// but we can simulate it by querySelecting all inputs.
+	const inputs = container.querySelectorAll('input, select, textarea');
+	const data = {};
 
-    inputs.forEach(input => {
-        // Handle checkboxes/radios vs standard text/select
-        if (input.type === 'checkbox') {
-            data[input.name] = input.checked;
-        } else if (input.type === 'radio') {
-            if (input.checked) data[input.name] = input.value;
-        } else {
-            data[input.name] = input.value;
-        }
-    });
+	inputs.forEach(input => {
+		// Handle checkboxes/radios vs standard text/select
+		if (input.type === 'checkbox') {
+			data[input.name] = input.checked;
+		} else if (input.type === 'radio') {
+			if (input.checked) data[input.name] = input.value;
+		} else {
+			data[input.name] = input.value;
+		}
+	});
 
-    console.log('Current State Object:', data);
+	console.log('Current State Object:', data);
 });
 </script>

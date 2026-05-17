@@ -55,6 +55,22 @@ body {
 	/* background-image: linear-gradient(to bottom, var(--background-color), white); */
 	background-color:		var(--background-color);
 	color:					var(--text-color);
+	display:				flex;
+	justify-content:		center;
+	padding:				0.2in;
+	max-width:				8.5in;
+}
+
+.tool-container {
+	background:				var(--tool-background-color);
+	padding-top:			1rem;
+	padding-bottom:			2rem;
+	padding-left:			2rem;
+	padding-right:			2rem;
+	border-radius:			8px;
+	box-shadow:				0 4px 6px var(--shadow-color);
+	width:					100%;
+	max-width:				7.5in;
 }
 
 .title {
@@ -106,7 +122,7 @@ body {
 }
 
 .button {
-	background:				var(--background-color);
+	background:				var(--input-color);
 	color:					var(--text-color);
 	border:					1px solid var(--border-color);
 	box-shadow: 			0px 1px 4px var(--shadow-color);
@@ -114,25 +130,25 @@ body {
 }
 
 .checkbox {
-    appearance:				none;	/* Resets the default browser styling. */
+	appearance:				none;	/* Resets the default browser styling. */
 	margin-left:			0;
-    /* Sizing and shape of checkbox. */
-    width:					20px;
-    height:					20px;
+	/* Sizing and shape of checkbox. */
+	width:					20px;
+	height:					20px;
 	border:					1px solid var(--border-color);
-    background-color:		var(--input-color);
-    position:				relative;
+	background-color:		var(--input-color);
+	position:				relative;
 }
 
 .checkbox:checked::after {
 	/* Create the checkmark using a pseudo-element. */
-    content:				"";
-    position:				absolute;
-    left:					6px;
-    top:					2px;
-    width:					5px;
-    height:					10px;
-    border:					solid var(--text-color);	/* Color of checkmark */
-    border-width:			0 1px 1px 0;
-    transform:				rotate(45deg);
+	content:				"";
+	position:				absolute;
+	left:					6px;
+	top:					2px;
+	width:					5px;
+	height:					10px;
+	border:					solid var(--text-color);	/* Color of checkmark */
+	border-width:			0 1px 1px 0;
+	transform:				rotate(45deg);
 }

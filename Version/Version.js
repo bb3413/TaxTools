@@ -12,16 +12,16 @@
  * In addition to inserting the version number in the paragraph, this code makes the version
  * number a clickable link so that when it is clicked, the version log is displayed.
  */
-const tax_tools_version		= "2025.09.001@";
+const tax_tools_version		= "2025.09.002@";
 
 function Initialize() {
 	// Find the version number by its ID.
 	 const TaxToolsVersion = document.getElementById("TaxToolsVersion");
 
-    // If it exist on the current page, update the version text.
-    if (TaxToolsVersion) {
-        TaxToolsVersion.textContent = tax_tools_version;
-    }
+	// If it exist on the current page, update the version text.
+	if (TaxToolsVersion) {
+		TaxToolsVersion.textContent = tax_tools_version;
+	}
 }
 
 // Startup code

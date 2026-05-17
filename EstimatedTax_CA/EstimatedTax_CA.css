@@ -4,7 +4,7 @@ h1, h2, h3 {
 }
 
 #TaxYear {
-	background:				var(--background-color);
+	background:				var(--input-color);
 	color:					var(--text-color);
 	box-shadow: 			0px 1px 4px var(--shadow-color);
 	border-radius:			3px;

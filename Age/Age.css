@@ -1,19 +1,9 @@
 
 body {
-	display: flex;
-	justify-content: center;
 	padding: 40px;
 }
 
 .tool-container {
-	background:				white;
-	padding-top:			1rem;
-	padding-bottom:			2rem;
-	padding-left:			2rem;
-	padding-right:			2rem;
-	border-radius:			8px;
-	box-shadow:				0 4px 6px var(--shadow-color);
-	width:					100%;
 	max-width:				450px;
 }
 

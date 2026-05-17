@@ -9,7 +9,7 @@ body {
 	height:					100vh;
 }
 
-.calculator {
+.tool-container {
 	width:					320px;
 	background:				#333;	/* Color behind buttons; dark gray. */
 	padding:				20px;

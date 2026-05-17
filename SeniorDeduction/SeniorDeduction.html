@@ -1,36 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="stylesheet" href="../Library/Debug/Debug.css" />
-		<link rel="stylesheet" href="../Library/TaxTools/TaxTools.css" />
-		<link rel="stylesheet" href="../Library/Tooltips/Tooltips.css" />
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="../Library/Debug/Debug.css" />
+	<link rel="stylesheet" href="../Library/TaxTools/TaxTools.css" />
+	<link rel="stylesheet" href="../Library/Tooltips/Tooltips.css" />
 
-		<link rel="stylesheet" href="../Library/TaxTools/HelpFields.css" />
-		<link rel="stylesheet" href="SeniorDeduction.css" />
+	<link rel="stylesheet" href="../Library/TaxTools/HelpFields.css" />
+	<link rel="stylesheet" href="SeniorDeduction.css" />
 
-        <script defer src="../Library/IncomeTax/IncomeTax.js"></script>
-		<script defer src="../Library/Debug/Debug.js"></script>
-		<script defer src="../Library/SelfEmploymentTax/SelfEmploymentTax.js"></script>
-		<script defer src="../Library/SocialSecurity/SocialSecurity.js"></script>
-		<script defer src="../Library/TaxTables/TaxTables.js"></script>
-		<script defer src="../Library/TaxTables/TaxTables_TY24.js"></script>
-		<script defer src="../Library/TaxTables/TaxTables_TY25.js"></script>
-		<script defer src="../Library/TaxTables/TaxTables_TY26.js"></script>
-		<script defer src="../Library/Tooltips/Tooltips.js"></script>
-		<script defer src="../Library/Utilities/EvalExpression.js"></script>
-        <script defer src="../Library/Utilities/HTML.js"></script>
-		<script defer src="../Library/Utilities/IncludeFile.js"></script>
-		<script defer src="../Library/Utilities/util-Dates.js"></script>
-		<script defer src="../Library/Utilities/util-Numbers.js"></script>
-		<script defer src="../Library/Utilities/util-Strings.js"></script>
-		<script defer src="../Version/Version.js"></script>
-		<script defer src="SeniorDeduction.js"></script>
+	<script defer src="../Library/IncomeTax/IncomeTax.js"></script>
+	<script defer src="../Library/Debug/Debug.js"></script>
+	<script defer src="../Library/SelfEmploymentTax/SelfEmploymentTax.js"></script>
+	<script defer src="../Library/SocialSecurity/SocialSecurity.js"></script>
+	<script defer src="../Library/TaxTables/TaxTables.js"></script>
+	<script defer src="../Library/TaxTables/TaxTables_TY24.js"></script>
+	<script defer src="../Library/TaxTables/TaxTables_TY25.js"></script>
+	<script defer src="../Library/TaxTables/TaxTables_TY26.js"></script>
+	<script defer src="../Library/Tooltips/Tooltips.js"></script>
+	<script defer src="../Library/Utilities/EvalExpression.js"></script>
+	<script defer src="../Library/Utilities/HTML.js"></script>
+	<script defer src="../Library/Utilities/IncludeFile.js"></script>
+	<script defer src="../Library/Utilities/util-Dates.js"></script>
+	<script defer src="../Library/Utilities/util-Numbers.js"></script>
+	<script defer src="../Library/Utilities/util-Strings.js"></script>
+	<script defer src="../Version/Version.js"></script>
+	<script defer src="SeniorDeduction.js"></script>
 
-		<title>Enhanced Deduction for Seniors Calculator</title>
-	</head>
+	<title>Enhanced Deduction for Seniors Calculator</title>
+</head>
 
-	<body>
+<body>
+	<div class="tool-container">
 		<p class="version-number">Version: <a href="../Version/Version.html">
 			<span id="TaxToolsVersion"></span></a></p>
 			
@@ -93,7 +94,7 @@
 			<h4>Filing Status</h4>
 			<p>This is your filing status. If the filing status is married filking jointly (MFJ), then
 			the spouse, if over 65, will also be elegible for the senior deduction.</p>
-            		
+					
 			<h4>Adjusted Gross Income (AGI)</h4>
 			<p>Adjusted gross income is taxable income minus adjustments. It is on the federal tax form
 			1040, line 11b.</p>
@@ -122,5 +123,6 @@
 		</div>
 
 		<div include-file="SeniorDeduction-Debug.html"></div>		<!-- Debugging Fields -->
-	</body>
+	</div>
+</body>
 </html>

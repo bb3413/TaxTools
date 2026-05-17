@@ -1,6 +1,6 @@
 
 function CalculategetTaxableSocialSecurity() {
-    const filing_status				= getUserInput("FilingStatus", "text");
+	const filing_status				= getUserInput("FilingStatus", "text");
 	const lived_with_spouse			= getUserInput("LivedWithSpouse");
 	const social_security			= getUserInput("SocialSecurity");
 	const income					= getUserInput("Income");

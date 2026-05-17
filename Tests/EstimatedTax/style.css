@@ -1,37 +1,37 @@
 :root {
-    --primary: #2563eb;
-    --primary-hover: #1d4ed8;
-    --bg-gray: #f8fafc;
-    --border: #e2e8f0;
-    --text-main: #1e293b;
-    --text-muted: #64748b;
-    --green: #15803d;
-    --red: #be123c;
+	--primary: #2563eb;
+	--primary-hover: #1d4ed8;
+	--bg-gray: #f8fafc;
+	--border: #e2e8f0;
+	--text-main: #1e293b;
+	--text-muted: #64748b;
+	--green: #15803d;
+	--red: #be123c;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f1f5f9;
-    color: var(--text-main);
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-    margin: 0;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	background-color: #f1f5f9;
+	color: var(--text-main);
+	display: flex;
+	justify-content: center;
+	padding: 20px;
+	margin: 0;
 }
 
 .calculator-card {
-    background: white;
-    max-width: 650px;
-    width: 100%;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    overflow: hidden;
+	background: white;
+	max-width: 650px;
+	width: 100%;
+	border-radius: 12px;
+	box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+	overflow: hidden;
 }
 
 .header {
-    background: var(--primary);
-    color: white;
-    padding: 24px;
+	background: var(--primary);
+	color: white;
+	padding: 24px;
 }
 
 .header h1 { margin: 0; font-size: 1.4rem; }
@@ -40,46 +40,46 @@ body {
 .content { padding: 24px; }
 
 .input-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 20px;
 }
 
 .form-group label {
-    display: block;
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin-bottom: 6px;
+	display: block;
+	font-size: 0.85rem;
+	font-weight: 600;
+	margin-bottom: 6px;
 }
 
 input, select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    box-sizing: border-box;
+	width: 100%;
+	padding: 10px;
+	border: 1px solid var(--border);
+	border-radius: 6px;
+	box-sizing: border-box;
 }
 
 .button-group {
-    margin-top: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+	margin-top: 24px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
 
 .file-actions {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 10px;
 }
 
 button {
-    cursor: pointer;
-    font-weight: 600;
-    padding: 12px;
-    border-radius: 6px;
-    border: none;
-    transition: all 0.2s;
+	cursor: pointer;
+	font-weight: 600;
+	padding: 12px;
+	border-radius: 6px;
+	border: none;
+	transition: all 0.2s;
 }
 
 .btn-primary { background: var(--primary); color: white; }
@@ -91,10 +91,10 @@ button {
 .hidden { display: none; }
 
 .summary-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 6px 0;
-    font-size: 0.95rem;
+	display: flex;
+	justify-content: space-between;
+	padding: 6px 0;
+	font-size: 0.95rem;
 }
 
 .highlight { background: var(--bg-gray); padding: 10px; border-radius: 6px; font-weight: bold; margin: 10px 0; }
@@ -103,11 +103,11 @@ button {
 .border-top { border-top: 1px solid var(--border); padding-top: 10px; }
 
 .final-box {
-    text-align: center;
-    border: 2px dashed var(--border);
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 20px;
+	text-align: center;
+	border: 2px dashed var(--border);
+	padding: 20px;
+	border-radius: 10px;
+	margin-top: 20px;
 }
 
 .final-box .amount { font-size: 2.2rem; font-weight: 800; margin: 4px 0; }
@@ -122,10 +122,10 @@ td { padding: 10px; border-top: 1px solid var(--border); }
 .disclaimer { font-size: 0.7rem; color: var(--text-muted); text-align: center; margin-top: 40px; }
 
 @media print {
-    .no-print { display: none !important; }
-    body { background: white; padding: 0; }
-    .calculator-card { box-shadow: none; max-width: 100%; }
-    .results-area { display: block !important; }
+	.no-print { display: none !important; }
+	body { background: white; padding: 0; }
+	.calculator-card { box-shadow: none; max-width: 100%; }
+	.results-area { display: block !important; }
 }
 
 @media (max-width: 500px) { .input-grid { grid-template-columns: 1fr; } }

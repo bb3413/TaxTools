@@ -11,7 +11,7 @@ function CalculategetTaxableSocialSecurity(event) {
 	let ss_taxable_alt				= 0;
 
 	// Previous year 1
-    const filing_status_1			= getUserInput("FilingStatus-1", "text");
+	const filing_status_1			= getUserInput("FilingStatus-1", "text");
 	const lump_sum_1				= getUserInput("LumpSum-1");
 	const agi_1						= getUserInput("AGI-1");
 	const tax_exempt_interest_1		= getUserInput("TaxExemptInterest-1");
@@ -20,7 +20,7 @@ function CalculategetTaxableSocialSecurity(event) {
 	let ss_taxable_new_1			= 0;
 	
 	// Previous year 2
-    const filing_status_2			= getUserInput("FilingStatus-2", "text");
+	const filing_status_2			= getUserInput("FilingStatus-2", "text");
 	const lump_sum_2				= getUserInput("LumpSum-2");
 	const agi_2						= getUserInput("AGI-2");
 	const tax_exempt_interest_2		= getUserInput("TaxExemptInterest-2");

@@ -1,57 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="stylesheet" href="../Library/Debug/Debug.css" />
-		<link rel="stylesheet" href="../Library/TaxTools/TaxTools.css" />
-		<link rel="stylesheet" href="../Library/Tooltips/Tooltips.css" />
-		<link rel="stylesheet" href="AMT.css" />
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="../Library/Debug/Debug.css" />
+	<link rel="stylesheet" href="../Library/TaxTools/TaxTools.css" />
+	<link rel="stylesheet" href="../Library/Tooltips/Tooltips.css" />
+	<link rel="stylesheet" href="AMT.css" />
 
-        <script defer src="../Library/IncomeTax/IncomeTax.js"></script>
-		<script defer src="../Library/Debug/Debug.js"></script>
-		<script defer src="../Library/SelfEmploymentTax/SelfEmploymentTax.js"></script>
-		<script defer src="../Library/SocialSecurity/SocialSecurity.js"></script>
-		<script defer src="../Library/TaxTables/TaxTables.js"></script>
-		<script defer src="../Library/TaxTables/TaxTables_TY24.js"></script>
-		<script defer src="../Library/TaxTables/TaxTables_TY25.js"></script>
-		<script defer src="../Library/TaxTables/TaxTables_TY26.js"></script>
-		<script defer src="../Library/Tooltips/Tooltips.js"></script>
-		<script defer src="../Library/Utilities/EvalExpression.js"></script>
-        <script defer src="../Library/Utilities/HTML.js"></script>
-		<script defer src="../Library/Utilities/IncludeFile.js"></script>
-		<script defer src="../Library/Utilities/util-Dates.js"></script>
-		<script defer src="../Library/Utilities/util-Numbers.js"></script>
-		<script defer src="../Library/Utilities/util-Strings.js"></script>
-		<script defer src="../Version/Version.js"></script>
-		<script defer src="AMT.js"></script>
+	<script defer src="../Library/IncomeTax/IncomeTax.js"></script>
+	<script defer src="../Library/Debug/Debug.js"></script>
+	<script defer src="../Library/SelfEmploymentTax/SelfEmploymentTax.js"></script>
+	<script defer src="../Library/SocialSecurity/SocialSecurity.js"></script>
+	<script defer src="../Library/TaxTables/TaxTables.js"></script>
+	<script defer src="../Library/TaxTables/TaxTables_TY24.js"></script>
+	<script defer src="../Library/TaxTables/TaxTables_TY25.js"></script>
+	<script defer src="../Library/TaxTables/TaxTables_TY26.js"></script>
+	<script defer src="../Library/Tooltips/Tooltips.js"></script>
+	<script defer src="../Library/Utilities/EvalExpression.js"></script>
+	<script defer src="../Library/Utilities/HTML.js"></script>
+	<script defer src="../Library/Utilities/IncludeFile.js"></script>
+	<script defer src="../Library/Utilities/util-Dates.js"></script>
+	<script defer src="../Library/Utilities/util-Numbers.js"></script>
+	<script defer src="../Library/Utilities/util-Strings.js"></script>
+	<script defer src="../Version/Version.js"></script>
+	<script defer src="AMT.js"></script>
 		
-        <title>Alternative Minimum Tax Calculator</title>
-	</head>
+	<title>Alternative Minimum Tax Calculator</title>
+</head>
 
-	<body>
+<body>
+	<div class="tool-container">
 		<p class="version-number">Version: <a href="../Version/Version.html">
 			<span id="TaxToolsVersion"></span></a></p>
-            
+			
 		<h1 class="title">Alternative Minimum Tax Calculator</h1>
-     
-        <p>The Alternative Minimum Tax (AMT) is a separate tax calculation that is intended to prevent
+	 
+		<p>The Alternative Minimum Tax (AMT) is a separate tax calculation that is intended to prevent
 		high-income taxpayers from not paying their fair share of taxes through an excess use of deductions
 		and credits. Taxpayers with an AGI greater than the AMT exemption are required to calculate
 		their income tax using both the standard income tax calculation and the AMT calculation and pay
-        the higher amount.</p>
+		the higher amount.</p>
 		
 		<p>The AMT is calculated by starting with the adjusted gross income (AGI) from form 1040, line
 		11b, then adding back certain deductions and including additional income. This is the amount of
 		AMT income. Then, an AMT exemption amount is determined based on the AMT income and the AMT
-        income is reduced by that amount. The remaining AMT income is taxed at 26% or 28% depending on
-        the level of income.</p>
-                
+		income is reduced by that amount. The remaining AMT income is taxed at 26% or 28% depending on
+		the level of income.</p>
+				
 		<p>To determine the AMT, enter information from the federal tax return in the green fields. The
-        amount of the AMT, if any, will be in the blue field at the bottom. Click <a href="AMT-Help.html">
-        this link</a> for more help with this tool.</p>
-        
-    	<div class="table-1">
-        	<p>Tax Year</p>
+		amount of the AMT, if any, will be in the blue field at the bottom. Click <a href="AMT-Help.html">
+		this link</a> for more help with this tool.</p>
+		
+		<div class="table-1">
+			<p>Tax Year</p>
 			<select class="trigger input-field" id="TaxYear" tooltipid="#TaxYearTT">
 				<option value="2026">			2026</option>
 				<option value="2025" selected>	2025</option>
@@ -89,173 +90,174 @@
 				tooltipid="#SpouseIsBlindTT" />
 			<p>&nbsp;</p>
 		</div>
-        
+		
 		<h2>Tax Information</h2>
-        <div class="table-1">
+		<div class="table-1">
 			<p>Adjusted Gross Income (AGI)</p>
-        	<input class="trigger input-field" type="text" id="AGI"
-            	tooltipid="#AGITT" />
+			<input class="trigger input-field" type="text" id="AGI"
+				tooltipid="#AGITT" />
 			<p class="location">1040, line 11b</p>
 			
 			<p>Qualified Dividends</p>
-        	<input class="trigger input-field" type="text" id="QualifiedDividends"
-            	tooltipid="#QualifiedDividendsTT" />
+			<input class="trigger input-field" type="text" id="QualifiedDividends"
+				tooltipid="#QualifiedDividendsTT" />
 			<p class="location">1040, line 3a</p>
 
 			<p>Capital Gains</p>
 			<input class="trigger input-field" type="text" id="CapitalGains"
-            	tooltipid="#CapitalGainsTT" />
+				tooltipid="#CapitalGainsTT" />
 			<p class="location">1040, line 7a</p>
 
 			<p>Taxable Income</p>
-        	<input class="trigger input-field" type="text" id="TaxableIncome"
-            	tooltipid="#TaxableIncomeTT" />
+			<input class="trigger input-field" type="text" id="TaxableIncome"
+				tooltipid="#TaxableIncomeTT" />
 			<p class="location">1040, line 15</p>
 
 			<p>Income Tax</p>
-        	<input class="trigger input-field" type="text" id="IncomeTax"
-            	tooltipid="#IncomeTaxTT" />
+			<input class="trigger input-field" type="text" id="IncomeTax"
+				tooltipid="#IncomeTaxTT" />
 			<p class="location">1040, line 16</p>
 
 			<p>&nbsp;</p>
-            <p>&nbsp;</p>
+			<p>&nbsp;</p>
 			<p>&nbsp;</p>
 
 			<p>Itemized Deduction</p>
-        	<input class="trigger input-field" type="text" id="ItemizedDeduction"
-            	tooltipid="#ItemizedDeductionTT" />
+			<input class="trigger input-field" type="text" id="ItemizedDeduction"
+				tooltipid="#ItemizedDeductionTT" />
 			<p class="location">1040 SA, line 17</p>
 
 			<p>Taxes Paid Deduction</p>
-        	<input class="trigger input-field" type="text" id="TaxesPaidDeduction"
-            	tooltipid="#TaxesPaidDeductionTT" />
+			<input class="trigger input-field" type="text" id="TaxesPaidDeduction"
+				tooltipid="#TaxesPaidDeductionTT" />
 			<p class="location">1040 SA, line 7</p>			
 
 			<p>QBI Deduction</p>
-        	<input class="trigger input-field" type="text" id="QBIDeduction"
-            	tooltipid="#QBIDeductionTT" />
+			<input class="trigger input-field" type="text" id="QBIDeduction"
+				tooltipid="#QBIDeductionTT" />
 			<p class="location">1040, line 13a</p>
 			
 
 			<h3 class="span-three">Additions to AMT Income</h3>
 
 			<p>Tax Refunds (subtraction)</p>
-        	<input class="trigger input-field" type="text" id="StateTaxRefund"
-            	tooltipid="#StateTaxRefundTT" />
+			<input class="trigger input-field" type="text" id="StateTaxRefund"
+				tooltipid="#StateTaxRefundTT" />
 			<p class="location">1040 S1, line 1</p>
 
 			<p>Investment Interest Expense</p>
-        	<input class="trigger input-field" type="text" id="InvestmentInterestExpense"
-            	tooltipid="#InvestmentInterestExpenseTT" />
+			<input class="trigger input-field" type="text" id="InvestmentInterestExpense"
+				tooltipid="#InvestmentInterestExpenseTT" />
 			<p class="location"></p>
 			
 			<p>Depletion</p>
-        	<input class="trigger input-field" type="text" id="Depletion"
-            	tooltipid="#DepletionTT" />
+			<input class="trigger input-field" type="text" id="Depletion"
+				tooltipid="#DepletionTT" />
 			<p class="location"></p>
 			
 			<p>Net Operating Loss</p>
-        	<input class="trigger input-field" type="text" id="NetOperatingLoss"
-            	tooltipid="#NetOperatingLossTT" />
+			<input class="trigger input-field" type="text" id="NetOperatingLoss"
+				tooltipid="#NetOperatingLossTT" />
 			<p class="location"></p>
 			
 			<p>Alternate Net Operating Loss (subtraction)</p>
-        	<input class="trigger input-field" type="text" id="AlternateNetOperatingLoss"
-            	tooltipid="#AlternateNetOperatingLossTT" />
+			<input class="trigger input-field" type="text" id="AlternateNetOperatingLoss"
+				tooltipid="#AlternateNetOperatingLossTT" />
 			<p class="location"></p>
 			
 			<p>Private Activity Bonds Interest</p>
-        	<input class="trigger input-field" type="text" id="PrivateActivityBondsInterest"
-            	tooltipid="#PrivateActivityBondsInterestTT" />
+			<input class="trigger input-field" type="text" id="PrivateActivityBondsInterest"
+				tooltipid="#PrivateActivityBondsInterestTT" />
 			<p class="location"></p>
 			
 			<p>Qualified Small Business Stock</p>
-        	<input class="trigger input-field" type="text" id="QualifiedSmallBusinessStock"
-            	tooltipid="#QualifiedSmallBusinessStockTT" />
+			<input class="trigger input-field" type="text" id="QualifiedSmallBusinessStock"
+				tooltipid="#QualifiedSmallBusinessStockTT" />
 			<p class="location"></p>
 			
 			<p>Incentive Stock Options</p>
-        	<input class="trigger input-field" type="text" id="IncentiveStockOptions"
-            	tooltipid="#IncentiveStockOptionsTT" />
+			<input class="trigger input-field" type="text" id="IncentiveStockOptions"
+				tooltipid="#IncentiveStockOptionsTT" />
 			<p class="location"></p>
 			
 			<p>Estates and Trusts</p>
-        	<input class="trigger input-field" type="text" id="EstatesAndTrusts"
-            	tooltipid="#EstatesAndTrustsTT" />
+			<input class="trigger input-field" type="text" id="EstatesAndTrusts"
+				tooltipid="#EstatesAndTrustsTT" />
 			<p class="location"></p>
 			
 			<p>Disposition of Property</p>
-        	<input class="trigger input-field" type="text" id="DispositionOfProperty"
-            	tooltipid="#DispositionOfPropertyTT" />
+			<input class="trigger input-field" type="text" id="DispositionOfProperty"
+				tooltipid="#DispositionOfPropertyTT" />
 			<p class="location"></p>
 			
 			<p>Post 1986 Depreciation</p>
-        	<input class="trigger input-field" type="text" id="Post1986Depreciation"
-            	tooltipid="#Post1986DepreciationTT" />
+			<input class="trigger input-field" type="text" id="Post1986Depreciation"
+				tooltipid="#Post1986DepreciationTT" />
 			<p class="location"></p>
 			
 			<p>Passive Activities</p>
-        	<input class="trigger input-field" type="text" id="PassiveActivities"
-            	tooltipid="#PassiveActivitiesTT" />
+			<input class="trigger input-field" type="text" id="PassiveActivities"
+				tooltipid="#PassiveActivitiesTT" />
 			<p class="location"></p>
 			
 			<p>Loss Limitations</p>
-        	<input class="trigger input-field" type="text" id="LossLimitations"
-            	tooltipid="#LossLimitationsTT" />
+			<input class="trigger input-field" type="text" id="LossLimitations"
+				tooltipid="#LossLimitationsTT" />
 			<p class="location"></p>
 			
 			<p>Circulation Costs</p>
-        	<input class="trigger input-field" type="text" id="CirculationCosts"
-            	tooltipid="#CirculationCostsTT" />
+			<input class="trigger input-field" type="text" id="CirculationCosts"
+				tooltipid="#CirculationCostsTT" />
 			<p class="location"></p>
 			
 			<p>Long-term Contracts</p>
-        	<input class="trigger input-field" type="text" id="LongTermContracts"
-            	tooltipid="#LongTermContractsTT" />
+			<input class="trigger input-field" type="text" id="LongTermContracts"
+				tooltipid="#LongTermContractsTT" />
 			<p class="location"></p>
 			
 			<p>Mining Costs</p>
-        	<input class="trigger input-field" type="text" id="MiningCosts"
-            	tooltipid="#MiningCostsTT" />
+			<input class="trigger input-field" type="text" id="MiningCosts"
+				tooltipid="#MiningCostsTT" />
 			<p class="location"></p>
 			 
 			<p>Reseach Costs</p>
-        	<input class="trigger input-field" type="text" id="ReseachCosts"
-            	tooltipid="#ReseachCostsTT" />
+			<input class="trigger input-field" type="text" id="ReseachCosts"
+				tooltipid="#ReseachCostsTT" />
 			<p class="location"></p>
 			
 			<p>Installment Sales (subtraction)</p>
-        	<input class="trigger input-field" type="text" id="InstallmentSales"
-            	tooltipid="#InstallmentSalesTT" />
+			<input class="trigger input-field" type="text" id="InstallmentSales"
+				tooltipid="#InstallmentSalesTT" />
 			<p class="location"></p>
 			
 			<p>Intangible Drilling Costs</p>
-        	<input class="trigger input-field" type="text" id="IntangibleDrillingCosts"
-            	tooltipid="#IntangibleDrillingCostsTT" />
+			<input class="trigger input-field" type="text" id="IntangibleDrillingCosts"
+				tooltipid="#IntangibleDrillingCostsTT" />
 			<p class="location"></p>
 			
 			<p>Other Income</p>
-        	<input class="trigger input-field" type="text" id="OtherIncome"
-            	tooltipid="#OtherIncomeTT" />
+			<input class="trigger input-field" type="text" id="OtherIncome"
+				tooltipid="#OtherIncomeTT" />
 			<p class="location"></p>
 			
 			<p class="span-three">&nbsp;</p>
 			<p class="span-three">&nbsp;</p>
 			
-            <p>AMT Income</p>
+			<p>AMT Income</p>
 			<p class="trigger output-field" id="AMTIncome" tooltipid="#AMTIncomeTT">0</p>
 			<p class="location">&nbsp;</p>
-            
-            <p>AMT Exemption</p>
+			
+			<p>AMT Exemption</p>
 			<p class="trigger output-field" id="AMTExemption" tooltipid="#AMTExemptionTT">0</p>
 			<p class="location">&nbsp;</p>
-            
+			
 			<p>Alternative Minimum Tax (AMT)</p>
 			<p class="trigger output-field" id="AMT" tooltipid="#AMTTT">0</p>
 			<p class="location">&nbsp;</p>
 		</div>
-        
+		
 		<div include-file="AMT-Debug.html"></div>		<!-- Debugging Fields -->
 		<div include-file="AMT-HelpInput.html"></div>	<!-- Tooltips -->
-	</body>
+	</div>
+</body>
 </html>

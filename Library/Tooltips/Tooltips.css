@@ -6,8 +6,8 @@
 	opacity: 0;
 	z-index: 1000;
 	transition: opacity 0.2s ease-in-out, transform 0.2s ease-out;
-    transform: translateY(5px);		/* Small slide effect */
-    pointer-events: none;			/* Prevents the tooltip from flickering if the mouse hits it */
+	transform: translateY(5px);		/* Small slide effect */
+	pointer-events: none;			/* Prevents the tooltip from flickering if the mouse hits it */
 	
 	width:				400px;
 	padding:			8px;

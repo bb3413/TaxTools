@@ -1,35 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="stylesheet" href="../Library/Debug/Debug.css" />
-		<link rel="stylesheet" href="../Library/TaxTools/TaxTools.css" />
-		<link rel="stylesheet" href="../Library/Tooltips/Tooltips.css" />
-		<link rel="stylesheet" href="EstimatedTax.css" />
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="../Library/Debug/Debug.css" />
+	<link rel="stylesheet" href="../Library/TaxTools/TaxTools.css" />
+	<link rel="stylesheet" href="../Library/Tooltips/Tooltips.css" />
+	<link rel="stylesheet" href="EstimatedTax.css" />
 
-        <script defer src="../Library/IncomeTax/IncomeTax.js"></script>
-		<script defer src="../Library/Debug/Debug.js"></script>
-		<script defer src="../Library/SelfEmploymentTax/SelfEmploymentTax.js"></script>
-		<script defer src="../Library/SocialSecurity/SocialSecurity.js"></script>
-		<script defer src="../Library/TaxTables/TaxTables.js"></script>
-		<script defer src="../Library/TaxTables/TaxTables_TY24.js"></script>
-		<script defer src="../Library/TaxTables/TaxTables_TY25.js"></script>
-		<script defer src="../Library/TaxTables/TaxTables_TY26.js"></script>
-		<script defer src="../Library/Tooltips/Tooltips.js"></script>
-		<script defer src="../Library/Utilities/EvalExpression.js"></script>
-        <script defer src="../Library/Utilities/HTML.js"></script>
-		<script defer src="../Library/Utilities/IncludeFile.js"></script>
-		<script defer src="../Library/Utilities/util-Dates.js"></script>
-		<script defer src="../Library/Utilities/util-Numbers.js"></script>
-		<script defer src="../Library/Utilities/util-Strings.js"></script>
-		<script defer src="../Version/Version.js"></script>
-		<script defer src="SaveRestore.js"></script>
-		<script defer src="EstimatedTax.js"></script>
+	<script defer src="../Library/IncomeTax/IncomeTax.js"></script>
+	<script defer src="../Library/Debug/Debug.js"></script>
+	<script defer src="../Library/SelfEmploymentTax/SelfEmploymentTax.js"></script>
+	<script defer src="../Library/SocialSecurity/SocialSecurity.js"></script>
+	<script defer src="../Library/TaxTables/TaxTables.js"></script>
+	<script defer src="../Library/TaxTables/TaxTables_TY24.js"></script>
+	<script defer src="../Library/TaxTables/TaxTables_TY25.js"></script>
+	<script defer src="../Library/TaxTables/TaxTables_TY26.js"></script>
+	<script defer src="../Library/Tooltips/Tooltips.js"></script>
+	<script defer src="../Library/Utilities/EvalExpression.js"></script>
+	<script defer src="../Library/Utilities/HTML.js"></script>
+	<script defer src="../Library/Utilities/IncludeFile.js"></script>
+	<script defer src="../Library/Utilities/util-Dates.js"></script>
+	<script defer src="../Library/Utilities/util-Numbers.js"></script>
+	<script defer src="../Library/Utilities/util-Strings.js"></script>
+	<script defer src="../Version/Version.js"></script>
+	<script defer src="SaveRestore.js"></script>
+	<script defer src="EstimatedTax.js"></script>
 		
-		<title>Federal Estimated Tax Calculator</title>
-	</head>
+	<title>Federal Estimated Tax Calculator</title>
+</head>
 
-	<body>
+<body>
+	<div class="tool-container">
 		<h1 class="title">Federal Estimated Tax Calculator</h1>
 		<h2 class="title">for the Tax Year
 			<select id="TaxYear" class="trigger" tooltipid="#TaxYearTT">
@@ -46,15 +47,15 @@
 		and get an immediate answer.</p>
 
 		<p>The blue fields are computed from the information you provide. The green fields are
-        where you enter information. The first column shows where the information can be found
-        in the tax return. Click <a href="EstimatedTax-Help.html	">this link</a> for more help
-        with this tool.</p>
+		where you enter information. The first column shows where the information can be found
+		in the tax return. Click <a href="EstimatedTax-Help.html	">this link</a> for more help
+		with this tool.</p>
 
 		<h3>Tax Formula</h3>
 		<p>The tax formula below describes, at a high level, how the tax is calculated. The value of
-        each item in the tax formula is shown in the Estimated Tax Calculation. You can see a brief
-        description of any of the items by moving the mouse over the calculated value in the
-        Estimated Tax Calculation.</p>
+		each item in the tax formula is shown in the Estimated Tax Calculation. You can see a brief
+		description of any of the items by moving the mouse over the calculated value in the
+		Estimated Tax Calculation.</p>
 
 		<div class="tax-formula-container">
 			<p>Total Income</p>
@@ -492,12 +493,13 @@
 				size="10" tooltipid="#EstimatedTaxPaidTT" />
 		</div>
 
-        <!-- Debugging Fields -->
+		<!-- Debugging Fields -->
 		<div include-file="EstimatedTax-Debug.html"></div>
 		<div include-file="../Library/IncomeTax/IncomeTax-Debug.html"></div>
 		<div include-file="../Library/SocialSecurity/SocialSecurity-Debug.html"></div>
 
 		<!-- Tooltips -->
 		<div include-file="EstimatedTax-HelpInput.html"></div>
-	</body>
+	</div>
+</body>
 </html>

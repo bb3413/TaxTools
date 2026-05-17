@@ -1,39 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="stylesheet" href="../Library/Debug/Debug.css" />
-		<link rel="stylesheet" href="../Library/TaxTools/TaxTools.css" />
-		<link rel="stylesheet" href="../Library/Tooltips/Tooltips.css" />
-		<link rel="stylesheet" href="LumpSumSS.css" />
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="../Library/Debug/Debug.css" />
+	<link rel="stylesheet" href="../Library/TaxTools/TaxTools.css" />
+	<link rel="stylesheet" href="../Library/Tooltips/Tooltips.css" />
+	<link rel="stylesheet" href="LumpSumSS.css" />
 
-        <script defer src="../Library/IncomeTax/IncomeTax.js"></script>
-		<script defer src="../Library/Debug/Debug.js"></script>
-		<script defer src="../Library/SelfEmploymentTax/SelfEmploymentTax.js"></script>
-		<script defer src="../Library/SocialSecurity/SocialSecurity.js"></script>
-		<script defer src="../Library/TaxTables/TaxTables.js"></script>
-		<script defer src="../Library/TaxTables/TaxTables_TY24.js"></script>
-		<script defer src="../Library/TaxTables/TaxTables_TY25.js"></script>
-		<script defer src="../Library/TaxTables/TaxTables_TY26.js"></script>
-		<script defer src="../Library/Tooltips/Tooltips.js"></script>
-		<script defer src="../Library/Utilities/EvalExpression.js"></script>
-        <script defer src="../Library/Utilities/HTML.js"></script>
-		<script defer src="../Library/Utilities/IncludeFile.js"></script>
-		<script defer src="../Library/Utilities/util-Dates.js"></script>
-		<script defer src="../Library/Utilities/util-Numbers.js"></script>
-		<script defer src="../Library/Utilities/util-Strings.js"></script>
-		<script defer src="../Version/Version.js"></script>
-		<script defer src="LumpSumSS.js"></script>
+	<script defer src="../Library/IncomeTax/IncomeTax.js"></script>
+	<script defer src="../Library/Debug/Debug.js"></script>
+	<script defer src="../Library/SelfEmploymentTax/SelfEmploymentTax.js"></script>
+	<script defer src="../Library/SocialSecurity/SocialSecurity.js"></script>
+	<script defer src="../Library/TaxTables/TaxTables.js"></script>
+	<script defer src="../Library/TaxTables/TaxTables_TY24.js"></script>
+	<script defer src="../Library/TaxTables/TaxTables_TY25.js"></script>
+	<script defer src="../Library/TaxTables/TaxTables_TY26.js"></script>
+	<script defer src="../Library/Tooltips/Tooltips.js"></script>
+	<script defer src="../Library/Utilities/EvalExpression.js"></script>
+	<script defer src="../Library/Utilities/HTML.js"></script>
+	<script defer src="../Library/Utilities/IncludeFile.js"></script>
+	<script defer src="../Library/Utilities/util-Dates.js"></script>
+	<script defer src="../Library/Utilities/util-Numbers.js"></script>
+	<script defer src="../Library/Utilities/util-Strings.js"></script>
+	<script defer src="../Version/Version.js"></script>
+	<script defer src="LumpSumSS.js"></script>
 
-		<title>Social Security Lump Sum Calculator</title>
-	</head>
+	<title>Social Security Lump Sum Calculator</title>
+</head>
 
-	<body>
+<body>
+	<div class="tool-container">
 		<p class="version-number">Version: <a href="../Version/Version.html">
 			<span id="TaxToolsVersion"></span></a></p>
 
 		<h1 class="title">Social Security Lump Sum Calculator</h1>
-        
+		
 		<p>This tool calculates the amount of Social Security that is taxable when the
 		taxpayer receives a lump sum (retroactive) payment. There are two methods for
 		calculating the taxable amount of a lump sum payment. The payment can either be left as
@@ -41,7 +42,7 @@
 		in a previous year, you may be able to reduce the taxable amount by determining how
 		much of the payment would have been taxable if you had received it in the year it was
 		intended.</p>
-                
+				
 		<p>Click <a href="LumpSumSS-Help.html">this link</a> for more help with this tool.</p>
 
 		<div class="calculations">
@@ -170,20 +171,21 @@
 				<input class="trigger input-field" type="text" id="SocialSecurityTaxableReported-2"
 					tooltipid="#SocialSecurityTaxableReported-1-TT" size="10" />
 				<p>&nbsp;</p>
-                    
-                <p>Taxable Social Security</p>
+					
+				<p>Taxable Social Security</p>
 				<p class="trigger output-field" id="TaxableSocialSecurityNew-2"
 					tooltipid="#TaxableSocialSecurityNew-1-TT">0</p>
 				<p class="trigger output-field percent-field" id="TaxablePercent-2"
 					tooltipid="#TaxablePercent-1-TT">0%</p>
 			</div>
 		</div>
-        
-        <!-- Debugging Fields -->
-        <div include-file="LumpSumSS-Debug.html"></div>
-        <div include-file="../Library/SocialSecurity/SocialSecurity-Debug.html"></div>
+		
+		<!-- Debugging Fields -->
+		<div include-file="LumpSumSS-Debug.html"></div>
+		<div include-file="../Library/SocialSecurity/SocialSecurity-Debug.html"></div>
 
 		<!-- Tooltips -->
-        <div include-file="LumpSumSS-HelpInput.html"></div>
-	</body>
+		<div include-file="LumpSumSS-HelpInput.html"></div>
+	</div>
+</body>
 </html>

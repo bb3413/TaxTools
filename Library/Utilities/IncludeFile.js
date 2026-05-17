@@ -93,7 +93,7 @@ async function loadIncludes(container = document, depth = 0) {
 			bubbles: true,
 			cancelable: true
 		});
-    
+	
 		// Most shared scripts listen to document, but some listen to window
 		document.dispatchEvent(DOMReadyEvent);
 		window.dispatchEvent(DOMReadyEvent);

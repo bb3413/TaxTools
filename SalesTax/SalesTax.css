@@ -1,4 +1,12 @@
 
+body {
+	padding: 40px;
+}
+
+.tool-container {
+	max-width:				450px;
+}
+
 .table-1 {
 	width:					28rem;
 	display:				grid;

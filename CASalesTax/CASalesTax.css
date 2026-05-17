@@ -1,19 +1,9 @@
 
 body {
-	display:				flex;
-	justify-content:		center;
-	padding:				40px;
+	padding: 40px;
 }
 
 .tool-container {
-	background:				var(--tool-background-color);
-	padding-top:			1rem;
-	padding-bottom:			2rem;
-	padding-left:			2rem;
-	padding-right:			2rem;
-	border-radius:			8px;
-	box-shadow:				0 4px 6px var(--shadow-color);
-	width:					100%;
 	max-width:				450px;
 }
 
@@ -62,7 +52,7 @@ body {
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus {
-    -webkit-box-shadow: 0 0 0px 1000px var(--input-color) inset !important;
-    box-shadow: 0 0 0px 1000px var(--input-color) inset !important;
-    -webkit-text-fill-color: var(--text-color) !important;
+	-webkit-box-shadow: 0 0 0px 1000px var(--input-color) inset !important;
+	box-shadow: 0 0 0px 1000px var(--input-color) inset !important;
+	-webkit-text-fill-color: var(--text-color) !important;
 }
