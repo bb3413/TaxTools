@@ -70,10 +70,7 @@ function ChangeHandler(event) {
 document.addEventListener("DOMContentLoaded", () => {
 	// Wait for the DOM to be fully loaded before trying to access any elements.
 
-	addListener("TaxYear",					"change", ChangeHandler);
-	addListener("AdjustedGrossIncome",		"change", ChangeHandler);
-	addListener("FamilySize",				"change", ChangeHandler);
-	addListener("ZipCode",					"change", ChangeHandler);
+	// addListener("TaxYear",					"change", ChangeHandler);
 
-	ChangeHandler();
+	// ChangeHandler();
 });

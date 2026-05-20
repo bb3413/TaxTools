@@ -2,8 +2,7 @@
 .table-1 {
 	width:					28rem;
 	display:				grid;
-	grid-template-columns:	1fr 7rem;
-	margin-left:			2rem;
+	grid-template-columns:	9rem 7rem 20rem;
 	margin-bottom:			0;
 }
 			
@@ -14,6 +13,22 @@
 }
 
 .table-1 input {
+	margin-top:				0;	
+	margin-bottom:			0;
+}
+
+.table-2 {
+	display:				grid;
+	grid-template-columns:	.6fr 2fr .5fr;
+}
+			
+.table-2 p {
+	padding-right:			6px;
+	margin-top:				0;
+	margin-bottom:			0;
+}
+
+.table-2 input {
 	margin-top:				0;	
 	margin-bottom:			0;
 }

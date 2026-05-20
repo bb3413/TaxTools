@@ -156,3 +156,16 @@ body {
 	border-width:			0 1px 1px 0;
 	transform:				rotate(45deg);
 }
+
+/* If fields are autofilled by the browser, the browser automatically changes the background
+ * color of the field to a blue tint. The following code uses a large, solid box-shadow inside
+ * the input box to cover up the browser's blue tint. This should work in Chrome, Edge, Safari,
+ * and Firefox.
+ */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus {
+	-webkit-box-shadow: 0 0 0px 1000px var(--input-color) inset !important;
+	box-shadow: 0 0 0px 1000px var(--input-color) inset !important;
+	-webkit-text-fill-color: var(--text-color) !important;
+}
