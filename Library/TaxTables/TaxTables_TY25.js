@@ -1,10 +1,21 @@
 
+//
 // Tax Tables for the Tax Year 2025
 //
 // This file contain tax information that is specific to the tax year 2025. Symbolic
 // names in this file begin with "TY25" so the names do not conflict with corresponding
 // symbols used for other tax years.
-
+//
+// This file contains the following tax tables. They are listed in the order they are
+// declared in this file:
+//
+//	TYxx_values					Table of miscellaneous constant values
+//	TYxx_amt_tax				AMT tax brackets
+//	TYxx_income_tax_table		Income tax brackets
+//	TYxx_ltc_table				LTCinsurance deduction amounts
+//	TYxx_sales_tax_table		Sales tax deduction amounts
+//	TYxx_ca_income_tax_table	California income tax brackets
+//
 
 //
 // This table contains constant tax values.
@@ -21,13 +32,14 @@ const TY25_values = [
 	[ "MaxSALT",						40000,		40000,		40000,		40000,		20000		],
 	[ "MaxStudentLoanInterest",			2500,		2500,		2500,		2500,		0			],
 
-	// OBBA Deductions
+	// OBBA deductions
 	[ "MaxCarLoanInterestDeduction",	99999999,	99999999,	99999999,	99999999,	99999999	],
 	[ "MaxOvertimeDeduction",			99999999,	99999999,	99999999,	99999999,	0			],
 	[ "MaxTipsDeduction",				99999999,	99999999,	99999999,	99999999,	0			],
 	[ "MaxSeniorDeduction",				6000,		6000,		6000,		6000,		0			],
+	[ "SeniorDeductionPhaseOut",		75000,		75000,		150000,		75000,		75000		],
 
-	// Non-refundable Credits
+	// Non-refundable credits
 	[ "MaxAmericanOppCreditNoRefund",	99999999,	99999999,	99999999,	99999999,	0			],
 	[ "MaxChildAndDependentCareCredit",	99999999,	99999999,	99999999,	99999999,	0			],
 	[ "MaxChildTaxCredit",				99999999,	99999999,	99999999,	99999999,	99999999	],
@@ -36,26 +48,39 @@ const TY25_values = [
 	[ "MaxResidentialEnergyCredit",		99999999,	99999999,	99999999,	99999999,	99999999	],
 	[ "MaxRetirementSavingsCredit",		1000,		1000,		2000,		1000,		1000		],
 
-	// Refundable Credits
+	// Refundable credits
 	[ "MaxAmericanOppCreditRefundable",	99999999,	99999999,	99999999,	99999999,	0			],
 	[ "MaxCreditForOtherDependents",	99999999,	99999999,	99999999,	99999999,	99999999	],
 	[ "MaxEarnedIncomeCredit",			61555,		61555,		68675,		61555,		0			],
 	[ "MaxPremiumTaxCredit",			99999999,	99999999,	99999999,	99999999,	0			],
+
+	// AMT
+	[ "AMT_Exemption",					88100,		88100,		137000,		137000,		68650		],
+	[ "AMT_ExemptionPhaseOut",			626350,		626350,		1252700,	1252700,	609350		],
+
+	// Capital gains ranges
+	[ "CG_15PercentRangeStart",			48350,		64750,		96700,		96700,		48350		],
+	[ "CG_20PercentRangestart",			533400,		566700,		600050,		600050,		300000		],
+	
+	// Social Security 50% taxable range
+	[ "SS_50PercentRangeStart",			25000,		25000,		32000,		25000,		25000		],
+	[ "SS_50PercentRangeEnd",			34000,		34000,		44000,		34000,		34000		],
+	[ "SS_50PercentRangeLength",		9000,		9000,		12000,		9000,		9000		],
+
+	// Standard deduction and extra for 65 or blind
+	[ "StandardDeduction",				15750,		23625,		31500,		31500,		15750		],
+	[ "StandardDeductionExtra",			2000,		2000,		1600,		1600,		1600		],
+
+	// California constants
+	[ "CA_PersonalExemption",			153,		153,		153,		153,		153			],
+	[ "CA_DependentExemption",			475,		475,		475,		475,		475			],
+	[ "CA_StandardDeduction",			5706,		11412,		11412,		11412,		5706		],
+	[ "CA_BaseSalesTax",				7.25,		7.25,		7.25,		7.25,		7.25		],
 ];
 
+//
 // Alternative Minimum Tax (AMT)
 //
-// This table only applies if AMT income is less than $626,350 ($1,252,700 for MFJ or QSS).
-//
-const TY25_amt_exemption = [ 
-	//				Exemption	Phase Out
-	[ "Single",		88100,		626350	],
-	[ "HoH",		88100,		626350	],
-	[ "MFJ",		137000,		1252700	],
-	[ "QSS",		137000,		1252700	],
-	[ "MFS",		68500,		626350	],
-];
-
 const TY25_amt_tax = [
 	//				Start of	End of		Subtract	Rate
 	//				Bracket		Bracket					Percent
@@ -65,42 +90,28 @@ const TY25_amt_tax = [
 	[ "HoH",		0,			239100,		0,			26	],
 	[ "HoH",		239100,		99999999,	4782,		28	],
 
-	[ "MFJ",		0,			239100,		0,			26	],
-	[ "MFJ",		239100,		99999999,	4782,		28	],
+	[ "MFJ",		0,			232600,		0,			26	],
+	[ "MFJ",		232600,		99999999,	4782,		28	],
 
-	[ "QSS",		0,			239100,		0,			26	],
-	[ "QSS",		239100,		99999999,	4782,		28	],
+	[ "QSS",		0,			232600,		0,			26	],
+	[ "QSS",		232600,		99999999,	4782,		28	],
 
 	[ "MFS",		0,			119550,		0,			26	],
 	[ "MFS",		119550,		99999999,	2391,		28	],
 ];
 
-/* Capital Gains Table
- *
- * This table specifies the income at the start of the 15% and 20%
- * capital gains brackets.
- */
-const TY25_capital_gains_table = [
-	// Filing		Start		Start
-	// Status		15%			20%
-	[ "Single",		48350,		533400 ],
-	[ "HoH",		64750,		566700 ],
-	[ "MFJ",		96700,		600050 ],
-	[ "QSS",		96700,		600050 ],
-	[ "MFS",		48350,		300000 ],
-];
-
-/* Income Tax Table
- *
- * The income tax is computed by finding the bracket where the filing status
- * matches and the income is within the bracket. The tax is computed by
- * subtracting the start of the bracket from the income to determine the amount
- * of income within the bracket. Multiply that amount by the tax rate and add
- * the cumlative tax.
- *
- * The cumulative tax is the cumulative amount of tax from each of the previous
- * brackets.
- */
+//
+// Income Tax Table
+//
+// The income tax is computed by finding the bracket where the filing status
+// matches and the income is within the bracket. The tax is computed by
+// subtracting the start of the bracket from the income to determine the amount
+// of income within the bracket. Multiply that amount by the tax rate and add
+// the cumlative tax.
+//
+// The cumulative tax is the cumulative amount of tax from each of the previous
+// brackets.
+//
 const TY25_income_tax_table = [
 	// Filing		Start of	End of		Rate
 	// Status		Bracket		Bracket		Percent
@@ -145,11 +156,12 @@ const TY25_income_tax_table = [
 	[ "MFS",		375800,		99999999,	37 ],
 ];
 
-/* Long Term Care Premiums
- *
- * The amount of the deduction for long term care (LTC) insurance premiums
- * is limited by the age of the person.
- */
+//
+// Long Term Care Premiums
+//
+// The amount of the deduction for long term care (LTC) insurance premiums
+// is limited by the age of the person.
+//
 const TY25_ltc_table = [
 	// 			Mximum
 	// Age		Premium
@@ -168,7 +180,6 @@ const TY25_ltc_table = [
 // The informaton in this table comes from the instructions for schedule A at
 // https://www.irs.gov/pub/irs-pdf/i1040sca.pdf.
 //
-
 const TY25_sales_tax_table = [
 	//										Family Size
 	// Income Range			1		2		3		4		5		>5
@@ -193,65 +204,11 @@ const TY25_sales_tax_table = [
 	[ 300000,	99999999,	1619,	1867,	2034,	2164,	2272,	2423	],
 ];
 
-/* Social Security Table
- *
- * This table specifies the range of Social Security income that is
- * taxed at 50%. Below that range, it is not taxed. Above that range
- * is is taxed at 85%.
- */
-const TY25_social_security_table = [
-	// Filing		Base of		Length of	Top of
-	// Status		Range		Range		Range
-	[ "Single",		25000,		9000,		34000 ],
-	[ "HoH",		25000,		9000,		34000 ],
-	[ "MFJ",		32000,		12000,		44000 ],
-	[ "QSS",		25000,		9000,		34000 ],
-	[ "MFS",		25000,		9000,		34000 ],
-];
-
-/* Standard Deduction Table
- *
- * This table specifies the standard deduction for each filing status plus the
- * additional amount that is added if the taxpayer or spouse is 65 or blind.
- */
-const TY25_std_deduction_table = [
-	// Filing		Std			Blind or
-	// Status		Deduction	65
-	[ "Single",		15750,		2000 ],
-	[ "HoH",		23625,		2000 ],
-	[ "MFJ",		31500,		1600 ],
-	[ "QSS",		31500,		1600 ],
-	[ "MFS",		15750,		1600 ],
-];
-
-//-----------------------------------------------------------------------------
 //
-//			California Tax tables
+// California Income Tax Table
 //
-//-----------------------------------------------------------------------------
-
-const TT25_ca_personal_exemption	= 153;
-const TT25_ca_dependent_exemption	= 475;
-
-/* California Standard Deduction Table
- *
- * This table specifies the standard deduction for each filing status plus the
- * additional amount that is added if the taxpayer or spouse is 65 or blind.
- */
-const TY25_ca_std_deduction_table = [
-	// Filing		Standard
-	// Status		Deduction
-	[ "Single",		5706	],
-	[ "HoH",		11412	],
-	[ "MFJ",		11412	],
-	[ "QSS",		11412	],
-	[ "MFS",		5706	],
-];
-
-/* California Income Tax Table
- *
- * Single and MFS are the same. MFJ and QSS are the same.
- */
+// Single and MFS are the same. MFJ and QSS are the same.
+//
 const TY25_ca_income_tax_table = [
 	// Filing		Start of	End of		Rate
 	// Status		Bracket		Bracket		Percent

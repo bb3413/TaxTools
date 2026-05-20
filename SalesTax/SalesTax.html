@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="SalesTax.css" />
 
 	<script defer src="../Library/IncomeTax/IncomeTax.js"></script>
+	<script defer src="../Library/SalesTax/SalesTaxFromCDTFA.js"></script>
 	<script defer src="../Library/Debug/Debug.js"></script>
 	<script defer src="../Library/SelfEmploymentTax/SelfEmploymentTax.js"></script>
 	<script defer src="../Library/SocialSecurity/SocialSecurity.js"></script>
@@ -45,17 +46,22 @@
 				<option value="2024">			2024</option>
 			</select>
 
-			<p>Adjusted Gross Income</p>
-			<input class="trigger input-field" type="text" id="AdjustedGrossIncome"
-				tooltipid="#AdjustedGrossIncomeTT" />
-				
+	   		<p class="input-label">Street Address</p>
+			<input class="input-field left" type="text" autofocus id="StreetAddress" />
+
+			<p class="input-label">City</p>
+			<input class="input-field left" type="text" id="City" />
+
+			<p class="input-label">Zip Code</p>
+			<input class="input-field left" type="text" id="ZipCode"  />
+
 			<p>Family Size</p>
 			<input class="trigger input-field" type="text" id="FamilySize"
 				tooltipid="#FamilySizeTT" />
-				
-			<p>Zip Code</p>		  
-			<input class="trigger input-field" type="text" id="ZipCode" 
-				tooltipid="#ZipCodeTT" />
+
+			<p>Total Income</p>
+			<p class="trigger output-field" type="text" id="TotalIncome"
+				tooltipid="#TotalIncomeTT" />
 
 			<p>&nbsp;</p>
 			<p>&nbsp;</p>

@@ -2,30 +2,15 @@
 // Tax Tables Access
 //
 // This file provides a tax year indenendent way to access the information in
-// the tax year specific version of this file.
+// the tax year specific tax tables.
 //
-// This script accesses functions and variables in the following scripts; therefore,
-// they must also be loaded by yor HTML file in order to use this file.
-//
-//		TY26_TaxTables.js
-//		TY25_TaxTables.js
-//		TY24_TaxTables.js
 
 let TT_values					= [];
-let TT_capital_gains_table		= [];
+let TT_amt_tax					= [];
 let TT_income_tax_table			= [];
 let TT_ltc_table				= [];
-let TT_social_security_table	= [];
-let TT_std_deduction_table		= [];
 let TT_sales_tax_table			= [];
-
-let TT_ca_personal_exemption	= 0;
-let TT_ca_dependent_exemption	= 0;
 let TT_ca_income_tax_table		= [];
-let TT_ca_std_deduction_table	= [];
-
-let TT_amt_exemption			= [];
-let TT_amt_tax					= [];
 
 // Provide dummy functions in case the debugging code is not included.
 globalThis.dbgEnter ??= () => {};
@@ -39,48 +24,29 @@ function InitializeTaxTables(filing_status="single", tax_year=2025) {
 	switch (Number(tax_year)) {
 		case 2026:
 			TT_values					= TY26_values;
-			TT_capital_gains_table		= TY26_capital_gains_table;
+			TT_amt_tax					= TY26_amt_tax;
 			TT_income_tax_table			= TY26_income_tax_table;
 			TT_ltc_table				= TY26_ltc_table;
-			TT_social_security_table	= TY26_social_security_table;
-			TT_std_deduction_table		= TY26_std_deduction_table;
-			
-			TT_ca_personal_exemption	= TT26_ca_personal_exemption;
-			TT_ca_dependent_exemption	= TT26_ca_dependent_exemption;
+			TT_sales_tax_table			= TY26_sales_tax_table;
 			TT_ca_income_tax_table		= TY26_ca_income_tax_table;
-			TT_ca_std_deduction_table	= TY26_ca_std_deduction_table;
 			break;
 
 		case 2025:
 			TT_values					= TY25_values;
-			TT_capital_gains_table		= TY25_capital_gains_table;
+			TT_amt_tax					= TY25_amt_tax;
 			TT_income_tax_table			= TY25_income_tax_table;
 			TT_ltc_table				= TY25_ltc_table;
-			TT_social_security_table	= TY25_social_security_table;
-			TT_std_deduction_table		= TY25_std_deduction_table;
 			TT_sales_tax_table			= TY25_sales_tax_table;
-
-			TT_ca_personal_exemption	= TT25_ca_personal_exemption;
-			TT_ca_dependent_exemption	= TT25_ca_dependent_exemption;
 			TT_ca_income_tax_table		= TY25_ca_income_tax_table;
-			TT_ca_std_deduction_table	= TY25_ca_std_deduction_table;
-			
-			TT_amt_exemption			= TY25_amt_exemption;
-			TT_amt_tax					= TY25_amt_tax;
 			break;
 
 		case 2024:
 			TT_values					= TY24_values;
-			TT_capital_gains_table		= TY24_capital_gains_table;
+			TT_amt_tax					= TY24_amt_tax;
 			TT_income_tax_table			= TY24_income_tax_table;
 			TT_ltc_table				= TY24_ltc_table;
-			TT_social_security_table	= TY24_social_security_table;
-			TT_std_deduction_table		= TY24_std_deduction_table;
-			
-			TT_ca_personal_exemption	= TT24_ca_personal_exemption;
-			TT_ca_dependent_exemption	= TT24_ca_dependent_exemption;
+			TT_sales_tax_table			= TY24_sales_tax_table;
 			TT_ca_income_tax_table		= TY24_ca_income_tax_table;
-			TT_ca_std_deduction_table	= TY24_ca_std_deduction_table;
 			break;
 			
 		default:
@@ -172,15 +138,10 @@ function getSeniorDeduction(
 	let deduction				= 0
 	let limit					= 0;
 	let excess					= 0;
-	let max_senior_deduction	= getTaxValue("MaxSeniorDeduction", filing_status);
+	const max_senior_deduction	= getTaxValue("MaxSeniorDeduction", filing_status);
+	const phase_out_start		= getTaxValue("SeniorDeductionPhaseOut", filing_status);
 
 	dbgEnter("getSeniorDeduction");
-
-	// Phase out amount
-	if (strCaseEqual(filing_status, "MFJ"))
-		phase_out_start = 150000;
-	else
-		phase_out_start = 75000;
 		
 	excess = Max(0, agi - phase_out_start);
 	deduction = Round(Max(0, max_senior_deduction - (excess * 0.06)));
@@ -208,8 +169,8 @@ function getStandardDeduction(
 {
 	dbgEnter("getStandardDeduction");
 
-	let std_deduction		= TT_stdDeduction(filing_status);
-	let std_deduction_extra	= TT_stdDeductionExtra(filing_status);
+	let std_deduction		= getTaxValue("StandardDeduction", filing_status)
+	let std_deduction_extra	= getTaxValue("StandardDeductionEXtra", filing_status)
 	
 	if (taxpayers_age >= 65)
 		std_deduction += std_deduction_extra;
@@ -259,21 +220,12 @@ function getTaxValue(name, filing_status = "Single") {
 }
 
 function get_AMT_Exemption(filing_status, amt_income) {
-	let exemption	= 0;
-	let phase_out	= 0;
-	let excess		= 0;
-	
 	dbgEnter("get_AMT_Exemption");
 	
-	// Find the AMT exemption.
-	for (let row = 0; row < TT_amt_exemption.length; row++) {
-		if (strCaseEqual(filing_status, TT_amt_exemption[row][0])) {
-			exemption = TT_amt_exemption[row][1];
-			phase_out = TT_amt_exemption[row][2];
-			break;
-		}
-	}
-
+	let exemption	= getTaxValue("AMT_Exemption", filing_status);
+	let phase_out	= getTaxValue("AMT_ExemptionPhaseOut", filing_status);;
+	let excess		= 0;
+	
 	if (amt_income > phase_out) {
 		excess = Round((amt_income - phase_out) * 0.25);
 	}
@@ -313,21 +265,24 @@ function get_CA_Exemption(
 {
 	dbgEnter("get_CA_Exemption");
 	
-	const exemption = TT_ca_personal_exemption;		// One exemption for the taxpayer.
+	const personal_exemption	= getTaxValue("CA_PersonalExemption");
+	const dependent_exemption	= getTaxValue("CA_DependentExemption");
+	
+	const exemption = personal_exemption;		// One exemption for the taxpayer.
 	if (taxpayers_age >= 65)
-		exemption += TT_ca_personal_exemption;
+		exemption += personal_exemption;
 	if (taxpayer_is_blind)
-		exemption += TT_ca_personal_exemption;
+		exemption += personal_exemption;
 		
 	if (strCaseEqual(filing_status, "MFJ")) {
-		exemption += TT_ca_personal_exemption;		// One exemption for the spouse.
+		exemption += personal_exemption;		// One exemption for the spouse.
 		if (spouses_age >= 65)
-			exemption += TT_ca_personal_exemption;
+			exemption += personal_exemption;
 		if (spouse_is_blind)
-			exemption += TT_ca_personal_exemption;
+			exemption += personal_exemption;
 	}
 	
- 	exemption += num_dependents * TT_ca_dependent_exemption;
+ 	exemption += num_dependents * dependent_exemption;
 
 	dbgExit("get_CA_Exemption");
 	return exemption;
@@ -372,89 +327,24 @@ function get_CA_IncomeTax(filing_status, income) {
 	return Round(tax);
 }
 
-function get_CA_StandardDeduction(filing_status = "Single") {
-	dbgEnter("get_CA_StandardDeduction");
-	
-	let standard_deduction  = 0;
-	for (let row = 0; row < TT_ca_std_deduction_table.length; row++) {
-		if (strCaseEqual(filing_status, TT_ca_std_deduction_table[row][0])) {
-			standard_deduction = TT_ca_std_deduction_table[row][1];
-			break;
-		}
-	}
-
-	dbgExit("get_CA_StandardDeduction");
-	return standard_deduction;
+function get_CA_StandardDeduction(filing_status) {
+	return getTaxValue("CA_StandardDeduction", filing_status);
 }
 
 function get_CapGains_15_Start(filing_status) {
-	// Find the capital gains tax baracket for the filing status, then return
-	// the start of the 15% bracket (column 1).
-
-	dbgEnter("get_CapGains_15_Start");
-
-	let start = 0;
-	for (let row = 0; row < TT_capital_gains_table.length; row++) {
-		if (strCaseEqual(filing_status, TT_capital_gains_table[row][0])) {
-			start = TT_capital_gains_table[row][1];
-			break;
-		}
-	}
-
-	dbgExit("get_CapGains_15_Start");
-	return start;
+	return getTaxValue("CG_15PercentRangeStart", filing_status);
 }
 
 function get_CapGains_20_Start(filing_status) {
-	// Find the capital gains tax baracket for the filing status, then return
-	// the start of the 20% bracket (column 2).
-
-	dbgEnter("get_CapGains_20_Start");
-
-	let start = 0;
-	for (let row = 0; row < TT_capital_gains_table.length; row++) {
-		if (strCaseEqual(filing_status, TT_capital_gains_table[row][0])) {
-			start = TT_capital_gains_table[row][2];
-			break;
-		}
-	}
-
-	dbgExit("get_CapGains_20_Start");
-	return start;
+	return getTaxValue("CG_20PercentRangeStart", filing_status);
 }
 
 function get_SS_Start50(filing_status) {
-	// Given the filing status, find the entry in the Social Security table for
-	// 50% bracket for that filing status and return the starting income.
-
-	dbgEnter("get_SS_Start50");
-
-	let start = 0;
-	for (let row = 0; row < TT_social_security_table.length; row++) {
-		if (strCaseEqual(filing_status, TT_social_security_table[row][0])) {
-			dbgExit("get_SS_Start50");
-			return TT_social_security_table[row][1];
-		}
-	}
-
-	dbgExit("get_SS_Start50");
+	return getTaxValue("SS_50PercentRangeStart", filing_status);
 }
 
 function get_SS_Start50Range(filing_status) {
-	// Given the filing status, find the entry in the Social Security table for
-	// 50% bracket for that filing status and return the length of the bracket.
-
-	dbgEnter("get_SS_Start50Range");
-
-	let start = 0;
-	for (let row = 0; row < TT_social_security_table.length; row++) {
-		if (strCaseEqual(filing_status, TT_social_security_table[row][0])) {
-			dbgExit("get_SS_Start50Range");
-			return TT_social_security_table[row][2];
-		}
-	}
-
-	dbgExit("get_SS_Start50Range");
+	return getTaxValue("SS_50PercentRangeLength", filing_status);
 }
 
 function isValidTaxYear(tax_year) {
@@ -499,43 +389,3 @@ function TT_cumulativeTax(table, curr_row) {
 	dbgExit("TT_cumulativeTax");
 	return total;
 }
-
-function TT_stdDeduction(filing_status) {
-	// Find the standard deduction for the filing status.
-
-	dbgEnter("TT_stdDeduction");
-
-	let standard_deduction = 0;
-	for (let row = 0; row < TT_std_deduction_table.length; row++) {
-		if (strCaseEqual(filing_status, TT_std_deduction_table[row][0])) {
-			standard_deduction = TT_std_deduction_table[row][1];
-			break;
-		}
-	}
-
-	dbgExit("TT_stdDeduction");
-	return standard_deduction;
-}
-
-function TT_stdDeductionExtra(filing_status, age=65) {
-	// Determin if the taxpayer is elegible for an additional amount added to
-	// their standard deduction (based on age; this tool does not consider
-	// blindness). Return the extra amount allowed.
-
-	dbgEnter("TT_stdDeductionExtra");
-
-	if (Number(age) < 65)
-		return 0;
-
-	let extra = 0;
-	for (let row = 0; row < TT_std_deduction_table.length; row++) {
-		if (strCaseEqual(filing_status, TT_std_deduction_table[row][0])) {
-			extra = TT_std_deduction_table[row][2];
-			break;
-		}
-	}
-
-	dbgExit("TT_stdDeductionExtra");
-	return extra;
-}
-

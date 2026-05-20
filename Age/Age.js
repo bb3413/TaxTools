@@ -5,7 +5,16 @@ let age				= 0;
 let input_color		= "";
 let output_color	= "";
 
-function CalculateEndDate(start, age) {
+function calculateAge(start, end) {
+	age = Age(start, end);
+	putUserOutput("Age", age);
+		
+	changeBackgroundColor("Start",	input_color);
+	changeBackgroundColor("End",	input_color);
+	changeBackgroundColor("Age",	output_color);
+}
+
+function calculateEndDate(start, age) {
 	const start_date	= new Date(start);
 	const end_date		= new Date(start);
 	const start_year	= start_date.getFullYear();
@@ -15,11 +24,11 @@ function CalculateEndDate(start, age) {
 	putUserOutput("End", end);
 
 	changeBackgroundColor("Start",	input_color);
-	changeBackgroundColor("End",		output_color);
-	changeBackgroundColor("Age",		input_color);
+	changeBackgroundColor("End",	output_color);
+	changeBackgroundColor("Age",	input_color);
 }
 
-function CalculateStartDate(end, age) {
+function calculateStartDate(end, age) {
 	const end_date		= new Date(end);
 	const start_date	= new Date(end);
 	const end_year		= end_date.getFullYear();
@@ -29,52 +38,43 @@ function CalculateStartDate(end, age) {
 	putUserOutput("Start", start);
 	
 	changeBackgroundColor("Start",	output_color);
-	changeBackgroundColor("End",		input_color);
-	changeBackgroundColor("Age",		input_color);
+	changeBackgroundColor("End",	input_color);
+	changeBackgroundColor("Age",	input_color);
 }
 
-function StartHandler(event) {
+function startHandler(event) {
 	start = getUserInput("Start", "text");
 	if (!getDateObject(start)) {
-		if (start)
+		if (start) {
 			alert("Invalid date: " + start);
-		// start = "";
-		// putUserOutput("Start", "");
-		
+		}
 		return 0;
 	}
 	
 	if (end) {
-		age = Age(start, end);
-		putUserOutput("Age", age);
-
-		changeBackgroundColor("Start",	input_color);
-		changeBackgroundColor("End",		input_color);
-		changeBackgroundColor("Age",		output_color);
+		calculateAge(start, end);
 	} else if (age) {
-		CalculateEndDate(start, age);
+		calculateEndDate(start, age);
 	}
 }
 
-function EndHandler(event) {
+function endHandler(event) {
 	end = getUserInput("End", "text");
 	if (!getDateObject(end)) {
-		if (end)
+		if (end) {
 			alert("Invalid date: " + end);
-		// end = "";
-		// putUserOutput("End", "");
+		}
 		return 0;
 	}
 	
 	if (start) {
-		age = Age(start, end);
-		putUserOutput("Age", age);
+		calculateAge(start, end);
 	} else if (age) {
-		CalculateStartDate(end, age);
+		calculateStartDate(end, age);
 	}
 }
 
-function AgeHandler(event) {
+function ageHandler(event) {
 	age = getUserInput("Age", "text");
 	if (age == "")
 		return 0;
@@ -82,9 +82,9 @@ function AgeHandler(event) {
 	age = toInteger(age);
 	
 	if (start) {
-		CalculateEndDate(start, age);
+		calculateEndDate(start, age);
 	} else if (end) {
-		CalculateStartDate(end, age);
+		calculateStartDate(end, age);
 	}
 }
 
@@ -96,9 +96,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	output_color		= rootStyles.getPropertyValue('--output-color').trim();
 	input_color			= rootStyles.getPropertyValue('--input-color').trim();
 
-	addListener("Start",	"change",	StartHandler);
-	addListener("End",		"change",	EndHandler);
-	addListener("Age",		"change",	AgeHandler);
+	addListener("Start",	"change",	startHandler);
+	addListener("End",		"change",	endHandler);
+	addListener("Age",		"change",	ageHandler);
 	
 	end = new Date().toLocaleDateString();	// Today
 	putUserOutput("End", end);

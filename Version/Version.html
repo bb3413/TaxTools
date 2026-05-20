@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link href="../Library/TaxTools/TaxTools.css" rel="stylesheet" />
-		<link href="Version.css" rel="stylesheet" />
-		<script src="Version.js"></script>
-		<title>Tax Tools Version Information</title>
-	</head>
+<head>
+	<meta charset="utf-8" />
+	<link href="../Library/TaxTools/TaxTools.css" rel="stylesheet" />
+	<link href="Version.css" rel="stylesheet" />
+	<script src="Version.js"></script>
+	<title>Tax Tools Version Information</title>
+</head>
 	
-	<body>
+<body>
+	<div class="tool-container">
 		<h1 class="title">Tax Tools Version Information</h1>
 
 		<div class="header">
@@ -31,6 +32,8 @@
 		<h2>Version Log</h2>
 		<div class="version-block">
 			<ul>
+            	<li>5/19/2026 - 005 - Clean up tax tables. Make AMT calculator look like the others. Clean up age
+                calculator.</li>
             	<li>5/17/2026 - 004 - Add placeholder values to input fields.</li>
                 <li>5/17/2026 - 003 - Set input/output field color in Age calculator.</li>
 				<li>5/16/2026 - 002 - Put a border around the tools. Convert spaces to tabs.</li>
@@ -224,14 +227,18 @@
 				<li>More tools
 					<ul>
 						<li>CTC, EIC, and CalEITC Calculators</li>
+                        <li>Foreign Tax Credit Calculator</li>
 						<li>Sales Tax Calculator</li>
 						<li>Currency Exchange Rate Calculator</li>
 					</ul>
 				</li>
-				 <li>Add checks to fields that have known limits so the input values do not exceed
-				 those limits.</li>
+
+				<li>Add checks to fields that have known limits so the input values do not exceed
+				those limits.</li>
+
 				<li>If an input field is modified internally, should the input field be updated so the
 				user can see that the corrected value?</li>
+
 				<li>I could merge the small business tax calculation into the estimated tax calculation,
 				but it would calculate values that are currently entered by the user. If more and more
 				fields are calculated then the tool becomes more of a tax program than a tool for
@@ -255,5 +262,6 @@
 			them.</p>
 		</div>
 		<p>&nbsp;</p>
-	</body>
+	</div>
+</body>
 </html>
