@@ -107,17 +107,17 @@ function getMedicalMileageDeduction(miles) {
 	return Round(miles * getTaxValue("MedicalMileage"));
 }
 
-function getSalesTaxDeduction(agi, familySize) {
+function getSalesTaxDeduction(income, family_size) {
 	dbgEnter("getSalesTaxDeduction");
 	
-	familySize = Limit(familySize, 1, 6);
+	family_size = Limit(family_size, 1, 6);
 	
 	let deduction	= 0;
-	let col			= familySize + 1;
+	let col			= family_size + 1;
 	
 	for (let row = 0; row < TT_sales_tax_table.length; row++) {
-		if (agi > TT_sales_tax_table[row][0] &&
-			agi <= TT_sales_tax_table[row][1]) {
+		if (income > TT_sales_tax_table[row][0] &&
+			income <= TT_sales_tax_table[row][1]) {
 			
 			deduction = TT_sales_tax_table[row][col];
 			break;
@@ -193,7 +193,7 @@ function getTaxValue(name, filing_status = "Single") {
 	
 	let value = -1;
 	
-	// Limit table columns
+	// Table columns
 	let fs = 1;
 	switch (strDownshift(filing_status)) {
 		case "single":	fs = 1; break;

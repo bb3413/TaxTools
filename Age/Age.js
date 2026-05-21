@@ -48,7 +48,7 @@ function startHandler(event) {
 		if (start) {
 			alert("Invalid date: " + start);
 		}
-		return 0;
+		return;
 	}
 	
 	if (end) {
@@ -64,7 +64,7 @@ function endHandler(event) {
 		if (end) {
 			alert("Invalid date: " + end);
 		}
-		return 0;
+		return;
 	}
 	
 	if (start) {
@@ -77,7 +77,7 @@ function endHandler(event) {
 function ageHandler(event) {
 	age = getUserInput("Age", "text");
 	if (age == "")
-		return 0;
+		return;
 		
 	age = toInteger(age);
 	
@@ -91,15 +91,13 @@ function ageHandler(event) {
 document.addEventListener("DOMContentLoaded", () => {
 	// Wait for the DOM to be fully loaded before trying to access any elements.
 
-	// Read the CSS variable from the root (or from a specific element)
-	const rootStyles	= getComputedStyle(document.documentElement);
-	output_color		= rootStyles.getPropertyValue('--output-color').trim();
-	input_color			= rootStyles.getPropertyValue('--input-color').trim();
-
 	addListener("Start",	"change",	startHandler);
 	addListener("End",		"change",	endHandler);
 	addListener("Age",		"change",	ageHandler);
+
+	output_color	= getCSSGlobalVariable("--output-color");
+	input_color		= getCSSGlobalVariable("--input-color");
 	
-	end = new Date().toLocaleDateString();	// Today
+	end = new Date().toLocaleDateString();	// Today's date
 	putUserOutput("End", end);
 });

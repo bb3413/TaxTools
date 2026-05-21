@@ -8,6 +8,24 @@ function addListener(elementID, event, handler) {
 	}
 }
 
+function getCSSGlobalVariable(variableName) {
+	//
+	// if you define a global variable in CSS, for example:
+	//		:root {
+	//			--background-color:			#AAAAAA;	// Gray
+	//		}
+	// 
+	// Then, if you pass "--background-color" to this function, it will
+	// look up the variable and return "#AAAAAA".
+	//
+	
+	// Read the CSS variable from the root (or from a specific element)
+	const rootStyles	= getComputedStyle(document.documentElement);
+	const value			= rootStyles.getPropertyValue(variableName).trim();
+	
+	return value;
+}
+
 function changeBackgroundColor(elementID, color) {
 	document.getElementById(elementID).style.background = color;
 }

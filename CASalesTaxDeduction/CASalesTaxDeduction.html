@@ -5,7 +5,7 @@
 	<link rel="stylesheet" href="../Library/Debug/Debug.css" />
 	<link rel="stylesheet" href="../Library/TaxTools/TaxTools.css" />
 	<link rel="stylesheet" href="../Library/Tooltips/Tooltips.css" />
-	<link rel="stylesheet" href="SalesTax.css" />
+	<link rel="stylesheet" href="CASalesTaxDeduction.css" />
 
 	<script defer src="../Library/IncomeTax/IncomeTax.js"></script>
 	<script defer src="../Library/SalesTax/SalesTaxFromCDTFA.js"></script>
@@ -24,7 +24,7 @@
 	<script defer src="../Library/Utilities/util-Numbers.js"></script>
 	<script defer src="../Library/Utilities/util-Strings.js"></script>
 	<script defer src="../Version/Version.js"></script>
-	<script defer src="SalesTax.js"></script>
+	<script defer src="CASalesTaxDeduction.js"></script>
 
 	<title>California Sales Tax Deduction Calculator</title>
 </head>
@@ -150,14 +150,13 @@
 				tooltipid="#TotalSpendableIncomeTT">0</p>
 
 			<p class="span-three">&nbsp;</p>
-			<p>&nbsp;</p>
 			<p>Sales Tax Deduction</p>
+            <p>&nbsp;</p>
 			<p class="trigger output-field" id="SalesTaxDeduction"
 				tooltipid="#SalesTaxDeductionTT">0</p>
 		</div>
 
-		<div include-file="SalesTax-Debug.html"></div>		<!-- Debugging Fields -->
-		<div include-file="SalesTax-HelpInput.html"></div>	<!-- Tooltips -->
+        <div include-file="CASalesTaxDeduction-Debug.html"></div>		<!-- Debugging Fields -->
 	</div>
 </body>
 </html>
