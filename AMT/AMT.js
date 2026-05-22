@@ -189,10 +189,10 @@ function AMT_TaxWithCapGains() {
 	line_30	= Min(line_24, line_29);
 	line_31	= Round(line_30 * 0.15);				// 15%
 	line_32	= line_23 + line_30;
-	if (line_12 != line_32) {
+	if (line_12 !== line_32) {
 		line_33	= line_22 - line_32;
 		line_34	= Round(line_33 * 0.20);			// 20%
-		if (line_14 != 0) {
+		if (line_14 !== 0) {
 			line_35	= line_17 + line_32 + line_33;
 			line_36	= line_12 - line_35;
 			line_37	= Round(line_36 * 0.25);		// 25%

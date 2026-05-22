@@ -66,7 +66,7 @@ function putUserOutput(elementID, value, type = "number") {
 		// Add commas.
 		putElementValue(elementID, FormatNum(value));
 
-	} else {	// tpye == "text"
+	} else {	// tpye === "text"
 		// Put the value as is.
 		putElementValue(elementID, value);
 	}

@@ -25,7 +25,7 @@ function CalculategetTaxableSocialSecurity() {
 					adjustments,
 					lived_with_spouse);
 	
-	taxable_percent = (social_security == 0) ? 0 : Round(taxable_ss / social_security * 100);
+	taxable_percent = (social_security === 0) ? 0 : Round(taxable_ss / social_security * 100);
 	
 	putUserOutput("TaxableSocialSecurity",	taxable_ss);
 	putUserOutput("TaxablePercent",			taxable_percent + "%", "text");

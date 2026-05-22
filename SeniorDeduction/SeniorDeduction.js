@@ -18,18 +18,18 @@ function CalculateSeniorDeduction() {
 		HideSpouse();
 	}
 	
-	if (tax_year == 0) {
+	if (tax_year === 0) {
 		tax_year = getTaxYear();
 		putUserOutput("TaxYear", tax_year, "text");
 	}
 
 	InitializeTaxTables(filing_status, tax_year);
 
-	if (taxpayers_birthday != "") {
+	if (taxpayers_birthday !== "") {
 		taxpayers_age = Age(taxpayers_birthday, end_of_year);
 	}
 	
-	if (spouses_birthday != "") {
+	if (spouses_birthday !== "") {
 		spouses_age = Age(taxpayers_birthday, end_of_year);
 	}
 
@@ -66,7 +66,7 @@ function ShowSpouse() {
 
 function ChangeSpousesAge(event) {
 	const spouses_age = getUserInput("SpousesAge");
-	if (spouses_age != 0)
+	if (spouses_age !== 0)
 		putUserOutput("SpousesBirthday", "");
 		
 	ChangeHandler(event);
@@ -74,7 +74,7 @@ function ChangeSpousesAge(event) {
 
 function ChangeTaxpayersAge(event) {
 	const taxpayers_age = getUserInput("TaxpayersAge");
-	if (taxpayers_age != 0)
+	if (taxpayers_age !== 0)
 		putUserOutput("TaxpayersBirthday", "");
 		
 	ChangeHandler(event);

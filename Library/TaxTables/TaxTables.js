@@ -375,7 +375,7 @@ function TT_cumulativeTax(table, curr_row) {
 	dbgEnter("TT_cumulativeTax");
 
 	// Scan for the bracket that starts at $0.
-	while ((start_row > 0) && (table[start_row][1] != 0)) {
+	while ((start_row > 0) && (table[start_row][1] !== 0)) {
 		--start_row;
 	}
 

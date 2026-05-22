@@ -17,7 +17,7 @@ function CalculateTax() {
 	InitializeTaxTables();
 
 	car_and_truck = getUserInput("CarAndTruck");
-	if (car_and_truck == 0) {
+	if (car_and_truck === 0) {
 		car_and_truck = getBusinessMileageDeduction(getUserInput("CarAndTruckMiles"));
 	}
 		

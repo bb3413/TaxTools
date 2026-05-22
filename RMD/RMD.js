@@ -63,12 +63,12 @@ function CalculateRMD() {
 	let end_of_year				= "";
 	let period					= 0;
 
-	if (tax_year == 0) {
+	if (tax_year === 0) {
 		tax_year = getTaxYear();
 		putUserOutput("TaxYear", tax_year, "text");
 	}
 	
-	if (taxpayers_birthday != "") {
+	if (taxpayers_birthday !== "") {
 		end_of_year				= new Date("12/31/" + tax_year).toLocaleDateString();
 		taxpayers_age			= Age(taxpayers_birthday, end_of_year);
 	}
@@ -80,7 +80,7 @@ function CalculateRMD() {
 			period = 2;
 		} else {
 			for (let row = 0; row < RMD_Table_III.length; row++) {
-				if (taxpayers_age == RMD_Table_III[row][0]) {
+				if (taxpayers_age === RMD_Table_III[row][0]) {
 					period = RMD_Table_III[row][1];
 					break;
 				}
@@ -107,7 +107,7 @@ function GetInput() {
 
 function ChangedAge(event) {
 	const age = getUserInput("TaxpayersAge");
-	if (age != 0)
+	if (age !== 0)
 		putUserOutput("TaxpayersBirthday", "");
 		
 	ChangeHandler(event);

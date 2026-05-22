@@ -76,7 +76,7 @@ function endHandler(event) {
 
 function ageHandler(event) {
 	age = getUserInput("Age", "text");
-	if (age == "")
+	if (age === "")
 		return;
 		
 	age = toInteger(age);
