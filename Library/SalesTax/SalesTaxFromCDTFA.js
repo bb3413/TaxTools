@@ -8,8 +8,8 @@ async function fetchSalesTaxRate(address, city, zip) {
 
 	// Accessing the cdtfa.ca.gov server from the client results in a security error. The
 	// proxy.php script accesses the server for us, but from the our server.	
-	const url = 'https://www.bruceblinn.com/6-OtherStuff/Taxes/TaxToolsDev/Library/SalesTax/' + 
-		`CDTFA-Proxy.php?address=${cleanAddress}&city=${cleanCity}&zip=${cleanZip}`; // BCB change "TaxToolsDev" to "TaxTools"
+	const url = 'https://www.bruceblinn.com/6-OtherStuff/Taxes/TaxTools/Library/SalesTax/' + 
+		`CDTFA-Proxy.php?address=${cleanAddress}&city=${cleanCity}&zip=${cleanZip}`;
 
 	try {
 		const response = await fetch(url);
