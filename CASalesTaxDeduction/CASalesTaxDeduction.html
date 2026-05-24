@@ -37,11 +37,11 @@
 			
 		<h1 class="title">California Sales Tax Deduction Calculator</h1>
 	 
-		<p>This tool will provide an estimate of the about of a deduction you will be ablre to take. On Schedule A,
+		<p>This tool calculate the amount of the sales tax deduction you are allowed. On Schedule A,
 		Itemized Deduction, you have a choice of taking a deduction for the state and local taxes you paid (for
-		example, state income tax withheld from wages) or the general sales tax you paid, whichever is greater.</p>
+		example, state income tax withheld from wages) or the sales tax you paid, whichever is greater.</p>
 
-		<p>The amount of the deduction you are allowed to take is based on the following four factors.</p>
+		<p>The amount of the sales tax deduction is based on the following four factors.</p>
 		<ul>
 			<li>Where you live</li>
 			<li>Spendable income</li>
@@ -49,26 +49,29 @@
 			<li>Sales tax paid on large purchases</li>
 		</ul>
 		
-		<p>The abount of sales tax you pay is different depending upon where you live. Some states to not have any
-		sales tax at all, while others have close to 10% sales tax. In addition, many counties and cities add an
-		additional amount to the sales tax you pay. This tools can only calculate the sales tax deduction for
-		taxpayers living in California.</p>
+		<p>The amount of sales tax you pay is different depending upon where you live.
+		Some states do not have any sales tax, while others have as much as 10%. In
+		addition, many counties and cities add an additional amount to the sales tax.
+        This tools can only calculate the sales tax deduction for taxpayers living in
+		California.</p>
 		
-		<p>Your spendable income is based on your total income, not just your taxable income. The more spendable
-		income you have, the more you are likely to spend. Therefore, the IRS created a table with the allowable
-		sales tax deduction based on spendable income and family size.</p>
+		<p>Your spendable income is based on your total income, not just your taxable income.
+		The more spendable income you have, the more you are likely to spend. Therefore, the
+		IRS created a table with the allowable sales tax deduction based on spendable income
+		and family size.</p>
 
-		<p>Finally, the IRS tables cannot take into account the sales tax you pay on large purchases that do not
-		occur very often (for example, buying a car). If you make a large purchase, you can add the sales tax from
-		that purchase into the calculation for the sales tax deduction.</p>
+		<p>Finally, the IRS table cannot take into account the sales tax you pay on large
+		purchases that do not occur very often (for example, buying a car). If you make a
+		large purchase, you can add the sales tax from that purchase into the calculation for
+		the sales tax deduction.</p>
 
 		<p>&nbsp;</p>
 		<div class="table-1">
 			<p>Tax Year</p>
 			<select class="trigger input-field left" id="TaxYear" tooltipid="#TaxYearTT">
-				<option value="2026">			2026</option>
-				<option value="2025">			2025</option>
-				<option value="2024">			2024</option>
+				<option value="2026">2026</option>
+				<option value="2025">2025</option>
+				<option value="2024">2024</option>
 			</select>
 			<p>&nbsp;</p>
 
@@ -89,7 +92,7 @@
 
 			<p>Extra Sales Tax</p>
 			<input class="trigger input-field left" type="text" id="ExtraSalesTax"
-				tooltipid="#SalesTaxTT" />
+				tooltipid="#ExtraSalesTaxTT" />
 			<p>&nbsp;</p>
 		</div>
 	
@@ -152,12 +155,12 @@
 
 			<p class="span-three">&nbsp;</p>
 			<p>Sales Tax Deduction</p>
-            <p>&nbsp;</p>
+			<p>&nbsp;</p>
 			<p class="trigger output-field" id="SalesTaxDeduction"
 				tooltipid="#SalesTaxDeductionTT">0</p>
 		</div>
 
-        <div include-file="CASalesTaxDeduction-Debug.html"></div>		<!-- Debugging Fields -->
+		<div include-file="CASalesTaxDeduction-Debug.html"></div>		<!-- Debugging Fields -->
 	</div>
 </body>
 </html>

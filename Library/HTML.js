@@ -1,38 +1,24 @@
 
-function addListener(elementID, event, handler) {
-	const element = document.getElementById(elementID);
-	if (!element) {
-		alert("addListener: Element not found: " + elementID);
-	} else {
-		element.addEventListener(event, handler);
-	}
+//-----  Show/hide element  ---------------------------------
+
+function showElement(elementID) {
+	elementID.classList.remove('hidden');
+}
+function hideElement(elementID) {
+	elementID.classList.add('hidden');
 }
 
-function getCSSGlobalVariable(variableName) {
-	//
-	// if you define a global variable in CSS, for example:
-	//		:root {
-	//			--background-color:			#AAAAAA;	// Gray
-	//		}
-	// 
-	// Then, if you pass "--background-color" to this function, it will
-	// look up the variable and return "#AAAAAA".
-	//
-	
-	// Read the CSS variable from the root (or from a specific element)
-	const rootStyles	= getComputedStyle(document.documentElement);
-	const value			= rootStyles.getPropertyValue(variableName).trim();
-	
-	return value;
-}
+//---- Change background/foreground color  ----------------------------------
 
 function changeBackgroundColor(elementID, color) {
 	document.getElementById(elementID).style.background = color;
 }
-
 function changeTextColor(elementID, color) {
 	document.getElementById(elementID).style.color = color;
 }
+
+
+//-----  Get/put user input/output---------------------------------
 
 function getUserInput(elementID, type = "number") {
 	
@@ -71,6 +57,8 @@ function putUserOutput(elementID, value, type = "number") {
 		putElementValue(elementID, value);
 	}
 }
+
+//-----  Get/put element value  ---------------------------------
 
 //
 // Elements designed for user input, <inout>, <select> (drop down lists), and
@@ -137,3 +125,35 @@ function putElementValue(elementID, value) {
 		return;
 	}
 }
+
+//-----  Miscellaneous utility functions  ---------------------------------
+
+function addListener(elementID, event, handler) {
+	const element = document.getElementById(elementID);
+	if (!element) {
+		alert("addListener: Element not found: " + elementID);
+	} else {
+		element.addEventListener(event, handler);
+	}
+}
+
+function getCSSGlobalVariable(variableName) {
+	//
+	// if you define a global variable in CSS, for example:
+	//		:root {
+	//			--background-color:			#AAAAAA;	// Gray
+	//		}
+	// 
+	// Then, if you pass "--background-color" to this function, it will
+	// look up the variable and return "#AAAAAA".
+	//
+	
+	// Read the CSS variable from the root (or from a specific element)
+	const rootStyles	= getComputedStyle(document.documentElement);
+	const value			= rootStyles.getPropertyValue(variableName).trim();
+	
+	return value;
+}
+
+
+
