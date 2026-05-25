@@ -22,11 +22,11 @@
 //
 const TY26_values = [
 	// 	Name							Single		HoH			MFJ			QSS			MFS
-	[ "BusinessMileage",				0.70,		0.70,		0.70,		0.70,		0.70		],		// TY25
-	[ "CharityMileage",					0.14,		0.14,		0.14,		0.14,		0.14		],		// TY25
-	[ "MedicalMileage",					0.21,		0.21,		0.21,		0.21,		0.21		],		// TY25
+	[ "BusinessMileage",				0.725,		0.725,		0.725,		0.725,		0.725		],
+	[ "CharityMileage",					0.14,		0.14,		0.14,		0.14,		0.14		],
+	[ "MedicalMileage",					0.205,		0.205,		0.205,		0.205,		0.21		],
 
-	[ "MaxCapitalLoss",					-3000,		-3000,		-3000,		-3000,		-1500		],		// TY25
+	[ "MaxCapitalLoss",					-3000,		-3000,		-3000,		-3000,		-1500		],
 	[ "MaxEducatorExpenses",			300,		300,		600,		300,		300			],		// TY25
 	[ "MaxTaxedSS",						176100,		176100,		176100,		176100,		176100		],		// TY25
 	[ "MaxSALT",						40000,		40000,		40000,		40000,		20000		],		// TY25
