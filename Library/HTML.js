@@ -1,29 +1,44 @@
 
 //-----  Show/hide element  ---------------------------------
-
 function showElement(elementID) {
-	document.getElementById(elementID).classList.remove('hidden');
+	const element = document.getElementById(elementID);
+	if (!element) {
+		alert("getElementValue: Element not found: " + elementID);
+	} else {
+		element.classList.remove('hidden');
+	}
 }
 function hideElement(elementID) {
-	document.getElementById(elementID).classList.add('hidden');
+	const element = document.getElementById(elementID);
+	if (!element) {
+		alert("getElementValue: Element not found: " + elementID);
+	} else {
+		element.classList.add('hidden');
+	}
 }
 
 //---- Change background/foreground color  ----------------------------------
-
 function changeBackgroundColor(elementID, color) {
-	document.getElementById(elementID).style.background = color;
+	const element = document.getElementById(elementID);
+	if (!element) {
+		alert("getElementValue: Element not found: " + elementID);
+	} else {
+		element.style.background = color;
+	}
 }
 function changeTextColor(elementID, color) {
-	document.getElementById(elementID).style.color = color;
+	const element = document.getElementById(elementID);
+	if (!element) {
+		alert("getElementValue: Element not found: " + elementID);
+	} else {
+		element.style.color = color;
+	}
 }
 
 
 //-----  Get/put user input/output---------------------------------
-
 function getUserInput(elementID, type = "number") {
-	
 	let value = getElementValue(elementID);
-	
 	if (typeof value === "boolean") {
 		return value;
 	}
@@ -43,7 +58,6 @@ function getUserInput(elementID, type = "number") {
 }
 
 function putUserOutput(elementID, value, type = "number") {
-	
 	if (strCaseEqual(type, "dollars")) {
 		// Add commas and prepend with dollar sign.
 		putElementValue(elementID, "$" + FormatNum(value));
@@ -59,7 +73,6 @@ function putUserOutput(elementID, value, type = "number") {
 }
 
 //-----  Get/put element value  ---------------------------------
-
 //
 // Elements designed for user input, <inout>, <select> (drop down lists), and
 //	<textarea>, have their content in the "value" attribute. Check boxes and radio
@@ -70,7 +83,6 @@ function putUserOutput(elementID, value, type = "number") {
 // it returns the content as it is displayed. If the elemenet is hidden, it won"t
 // return the content. 
 //
-
 function getElementValue(elementID) {
 	const element = document.getElementById(elementID);
 	if (!element) {
@@ -127,7 +139,6 @@ function putElementValue(elementID, value) {
 }
 
 //-----  Miscellaneous utility functions  ---------------------------------
-
 function addListener(elementID, event, handler) {
 	const element = document.getElementById(elementID);
 	if (!element) {

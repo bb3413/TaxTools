@@ -12,29 +12,21 @@ let tracing			= 0;
 let	indentation		= 0;
 
 //
-// Debug Fields
-//
 // Debug Fields are HTML fields that display additional information when debugging is enabled.
-//
-// Showing or hiding debugging information is controlled by adding or removing the CSS class named
-// "debug-hide" on an element with the ID="XXX-DebugFields".
-//
-//		<div id="XXX-DebugFields">
-//		</div>
 //
 function HideDebugFields(name) {
 	const debug_fields = document.getElementById(name);
 	if (debug_fields) {
-		// debug_fields.style.display = "none";
-		debug_fields.classList.add("debug-hide");
+		// Only hide if element exists; non-existant element is not an error.
+		hideElement(name);
 	}
 }
 
 function ShowDebugFields(name) {
 	const debug_fields = document.getElementById(name);
 	if (debug_fields) {
-		// debug_fields.style.display = "block";
-		debug_fields.classList.remove("debug-hide");
+		// Only show if element exists; non-existant element is not an error.
+		showElement(name);
 	}
 }
 
