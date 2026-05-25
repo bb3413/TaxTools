@@ -6,6 +6,8 @@ let taxpayers_age			= 0;
 let spouses_birthday		= "";
 let spouses_age				= 0;
 let senior_deduction		= 0;
+let input_color				= "";
+let output_color			= "";
 
 
 function CalculateSeniorDeduction() {
@@ -13,9 +15,9 @@ function CalculateSeniorDeduction() {
 	let period					= 0;
 
 	if (strCaseEqual(filing_status, "MFJ")) {
-		ShowSpouse();
+		showElement("SpouseContainer");
 	} else {
-		HideSpouse();
+		hideElement("SpouseContainer");
 	}
 	
 	if (tax_year === 0) {
@@ -27,10 +29,16 @@ function CalculateSeniorDeduction() {
 
 	if (taxpayers_birthday !== "") {
 		taxpayers_age = Age(taxpayers_birthday, end_of_year);
+		changeBackgroundColor("TaxpayersAge", output_color);
+	} else {
+		changeBackgroundColor("TaxpayersAge", input_color);
 	}
 	
 	if (spouses_birthday !== "") {
 		spouses_age = Age(taxpayers_birthday, end_of_year);
+		changeBackgroundColor("SpousesAge", output_color);
+	} else {
+		changeBackgroundColor("SpousesAge", input_color);
 	}
 
 	senior_deduction = getSeniorDeduction(filing_status, adjusted_gross_income, taxpayers_age, spouses_age);
@@ -52,16 +60,6 @@ function GetInput() {
 	tspouses_age			= getUserInput("SpousesAge");
 	
 	senior_deduction		= 0;
-}
-
-function HideSpouse() {
-	const container = document.getElementById("SpouseContainer");
-	container.classList.add("hide");
-}
-
-function ShowSpouse() {
-	const container = document.getElementById("SpouseContainer");
-	container.classList.remove("hide");
 }
 
 function ChangeSpousesAge(event) {
@@ -99,6 +97,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	addListener("TaxpayersAge",			"change", ChangeTaxpayersAge);
 	addListener("SpousesBirthday",		"change", ChangeHandler);
 	addListener("SpousesAge",			"change", ChangeSpousesAge);
+
+	output_color	= getCSSGlobalVariable("--output-color");
+	input_color		= getCSSGlobalVariable("--input-color");
 
 	ChangeHandler();
 });

@@ -40,7 +40,13 @@ function CalculateTaxableAmount() {
 	let taxpayers_age			= 0;
 	let spouses_age				= 0;
 	let max_salt				= 0;
-	
+
+	if (strCaseEqual(filing_status, "MFJ")) {
+		showElement("SpouseContainer");
+	} else {
+		hideElement("SpouseContainer");
+	}
+
 	InitializeTaxTables(filing_status, previous_tax_year);
 	
 	end_of_year				= new Date("12/31/" + previous_tax_year);

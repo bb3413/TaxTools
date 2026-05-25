@@ -268,7 +268,7 @@ function get_CA_Exemption(
 	const personal_exemption	= getTaxValue("CA_PersonalExemption");
 	const dependent_exemption	= getTaxValue("CA_DependentExemption");
 	
-	const exemption = personal_exemption;		// One exemption for the taxpayer.
+	let exemption = personal_exemption;		// One exemption for the taxpayer.
 	if (taxpayers_age >= 65)
 		exemption += personal_exemption;
 	if (taxpayer_is_blind)

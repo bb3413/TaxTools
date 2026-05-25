@@ -2,29 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<link rel="stylesheet" href="../Library/Debug/Debug.css" />
-	<link rel="stylesheet" href="../Library/TaxTools/TaxTools.css" />
-	<link rel="stylesheet" href="../Library/Tooltips/Tooltips.css" />
+	<?php include "../Library/TaxToolsIncludeFiles.html"; ?>
 	<link rel="stylesheet" href="TaxableSS.css" />
-
-	<script defer src="../Library/Debug/Debug.js"></script>
-	<script defer src="../Library/IncomeTax/IncomeTax.js"></script>
-	<script defer src="../Library/SalesTax/SalesTaxFromCDTFA.js"></script>
-	<script defer src="../Library/SelfEmploymentTax/SelfEmploymentTax.js"></script>
-	<script defer src="../Library/SocialSecurity/SocialSecurity.js"></script>
-	<script defer src="../Library/TaxTables/TaxTables.js"></script>
-	<script defer src="../Library/TaxTables/TaxTables_TY24.js"></script>
-	<script defer src="../Library/TaxTables/TaxTables_TY25.js"></script>
-	<script defer src="../Library/TaxTables/TaxTables_TY26.js"></script>
-	<script defer src="../Library/Tooltips/Tooltips.js"></script>
-	<script defer src="../Library/Alert.js"></script>
-	<script defer src="../Library/Dates.js"></script>
-	<script defer src="../Library/EvalExpression.js"></script>
-	<script defer src="../Library/HTML.js"></script>
-	<script defer src="../Library/IncludeFile.js"></script>
-	<script defer src="../Library/Numbers.js"></script>
-	<script defer src="../Library/Strings.js"></script>
-	<script defer src="../Version/Version.js"></script>
 	<script defer src="TaxableSS.js"></script>
 
 	<title>Taxable Social Security Calculator</title>
@@ -169,13 +148,11 @@
 			<input class="trigger input-field" type="text" id="OtherAdjustments"
 			   	placeholder="0" tooltipid="#OtherAdjustmentsTT" size="10" />
 		</div>
-	   
-		<!-- Debugging Fields -->
-		<div include-file="TaxableSS-Debug.html"></div>
-		<div include-file="../Library/SocialSecurity/SocialSecurity-Debug.html"></div>
 
-		<!-- Tooltips -->
-		<div include-file="TaxableSS-HelpInput.html"></div>
+        <?php include "TaxableSS-Debug.html"; ?> 									<!-- Debugging Fields -->
+		<?php include "../Library/SocialSecurity/SocialSecurity-Debug.html"; ?> 	<!-- Debugging Fields -->
+		<?php include "TaxableSS-HelpInput.html"; ?> 								<!-- Tooltips -->
+
 	</div>
 </body>
 </html>

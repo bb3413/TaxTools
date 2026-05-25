@@ -206,6 +206,11 @@ function AMT_TaxWithCapGains() {
 }
 
 function CalculateAMT() {
+	if (strCaseEqual(filing_status, "MFJ")) {
+		showElement("SpouseContainer");
+	} else {
+		hideElement("SpouseContainer");
+	}
 	
 	InitializeTaxTables(filing_status, tax_year);
 	

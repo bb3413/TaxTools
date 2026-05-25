@@ -2,10 +2,10 @@
 //-----  Show/hide element  ---------------------------------
 
 function showElement(elementID) {
-	elementID.classList.remove('hidden');
+	document.getElementById(elementID).classList.remove('hidden');
 }
 function hideElement(elementID) {
-	elementID.classList.add('hidden');
+	document.getElementById(elementID).classList.add('hidden');
 }
 
 //---- Change background/foreground color  ----------------------------------

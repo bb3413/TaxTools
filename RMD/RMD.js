@@ -4,6 +4,8 @@ let ira_total				= 0;
 let taxpayers_birthday		= "";
 let taxpayers_age			= 0;
 let rmd						= 0;
+let input_color				= "";
+let output_color			= "";
 
 const RMD_Table_III = [	// Uniform Lifetime Table
 	//			Distribution
@@ -71,6 +73,9 @@ function CalculateRMD() {
 	if (taxpayers_birthday !== "") {
 		end_of_year				= new Date("12/31/" + tax_year).toLocaleDateString();
 		taxpayers_age			= Age(taxpayers_birthday, end_of_year);
+		changeBackgroundColor("TaxpayersAge", output_color);
+	} else {
+		changeBackgroundColor("TaxpayersAge", input_color);
 	}
 
 	if (taxpayers_age < 73) {
@@ -129,6 +134,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	addListener("IRATotal",				"change", ChangeHandler);
 	addListener("TaxpayersBirthday",	"change", ChangeHandler);
 	addListener("TaxpayersAge",			"change", ChangedAge);
+
+	output_color	= getCSSGlobalVariable("--output-color");
+	input_color		= getCSSGlobalVariable("--input-color");
 
 	ChangeHandler();
 });
