@@ -1,7 +1,7 @@
 
 	<h2>Tax Tools</h2>
-	<p>This sections contains information that applies to all of the tax tools. The current set of
-	tax tools are:</p>
+	<p>TaxTools is a collection of web-based tools for calculating income tax information. This sections
+    contains information that applies to all of the tax tools. The current set of tax tools is:</p>
 	<ul>
 		<li>Age Calculator</li>
 		<li>Alternative Minimum Tax (AMT) Calculator</li>
@@ -19,23 +19,31 @@
 		<li>Social Security - Lump Sum Calculator</li>
 		<li>State Income Tax Refund Calculator</li>
 	</ul>
+		
+	<p>You can access the latest version of tools on the web using the following URL: 
+    <a href="bruceblinn.com/6-OtherStuff/Taxes/index.html"></p>
+    
+	<h2>Interface</h2>
+    <p>Each tool contains a brief description of its purpose and how to use it. The more complicated tools
+    have a link to a separate page with more detailed information about the tool.</p>
 
-	<p>All of the tax tools use a common set of colors, and when it does not get in the way of
-	the functionality, they have a similar look and feel. The input fields, where you enter data,
-	are always green. And, the output fields, where the results are displayed, are always blue.</p>
-	
-	<h3>Tooltips</h3>
-	<p>Many of the tools provide tooltips. These are small popup displays that show up when you
-	move the mouse over one of the fields. They provide a short explanation of the purpose of the
-	fields. When available, tooltips are provided for both input fields to help you enter the
-	correct information, and for output fields to explain what the information means.</p>
-	
+	<p>There is a lot of shared code between the tools, which gives them a similar appearance and behavior.
+    For example, green fields are for input in all the tools, and blue fields display the values that are
+    calculated by the tools. The tools are intended to be used in a browser (e.g., not on a phone). The
+    display of each tool is restricted to 7.5 inches to make it easier to print the pages.</p>
+    
+	<h2>Tooltips</h2>
+	<p>Most of the tools provide tooltips. These are small popup displays that show up when you move the
+    mouse over one of the fields. They provide a short explanation of the purpose of the fields. When
+    available, tooltips are provided for input fields to help you enter the correct information and for
+    output fields to explain what the information means.</p>
+
 	<h3>Numeric Input</h3>
-	<p>For any input field where a numeric value is expected, dollar signs($) and commas(,) are
-	ignored. This allows you to enter a number as, for example, "$40,000", "$40000", or "40000".
-	In addition, numeric fields can contain simple arithmetic expressions. For example, you can
-	enter "($40,000 + 4,000) * 0.075" to enter 7.5% of 44000. All numeric input will be rounded
-	to the nearest whole number. The expression evaluator supports the following functionality:</p>
+	<p>For any input field where a numeric value is expected, dollar signs ($) and commas (,) are ignored.
+    This allows you to enter a number as, for example, "$40,000", "$40000", or "40000". In addition, numeric
+    fields can contain simple arithmetic expressions. For example, you can enter "($40,000 + 4,000) * 0.075"
+    to enter 7.5% of 44000. All numeric input will be rounded to the nearest whole number. The expression
+    evaluator supports the following operators:</p>
 	<ul>
 		<li>Numbers with decimal points</li>
 		<li>Operators for addition (+), subtraction (-), multiplication (*), and division (/)</li>
@@ -60,19 +68,36 @@
 	</ul>
 
 	<h3>Version Number</h3>
-	<p>Each of the tax tools displays the version number, which is the same for all tax tools. The
-	version number is always displayed as a link; if you click on it, it will take you to the version
-	information log. There is only one version number and one version log for all the tax tools. This
-	simplifies tracking changes since there is so much commonality and code sharing in the tools.</p>
-	
-	<p>The version number consists of two or three numbers separated by dots (.). The first part is the
-	most significant part and is set to the current tax year. It is incremented in the fall after the
-	tax tables have been updated for the current tax year. The second part of the version number is
-	initially set to 0 and is incremented each time a new version is released.</p>
-	
-	<p>The third part of the version number is not present on released version of the tools. It is
-	incremented when there is a change that can be seen by the user or that affect the behavior
-	of one of the tools, or an internal change that may affect the reliability of the tools. Minor
-	changes, such as cosmetic changes and changes to the wording in messages, may or may not be logged.
-	When the third part of the version number is present, it is appended with an at sign(@), which
-	indicates that that version is under development; it is not ready to be used.</p>
+	<p>There is a single version number for all of the tax tools because there so much shared code
+    between the tools. The version number is a 3-part number, but only the first two parts are usually
+    present in released versions of TaxTools.</p>
+    
+    <p>The first part of the version number corresponds to the current tax year. Sometime between
+    April 15 and early Fall, the first part of the version number is changed to the current year, and
+    it will not be changed again until after the end of the tax season. When the first part of the
+    version number is incremented, the other parts are reset.</p>
+    
+    <p>The second part of the version number is the incremented each time a new version of TaxTools is
+    released. There are always two versions of TaxTools: the released version and a development version.
+    The second part of the version number starts at 00 for the released version and 01 for the
+    development version. Whenever the development version is merged into the released version, the
+    second part of the version number is incremented by two in both versions. Thus, the second part of
+    the version number in a released version is always and even number, and in the development version,
+    it is an odd number that is one greater than the released version.</p>
+    
+    <p>The third part of the version number starts at 000 and is incremented for each change. This part
+    of the version number is rarely used in the released version of TaxTools.</p>
+    
+    <p>In summary:</p>
+    <ul>
+    	<li>The first part of the version number is incremented each tax year.</li>
+        <li>The second part of the version number is incremented whenever the development version is
+        merged into the released version.</li>
+        <li>And, the third part is incremented whenever the source code is changed.</li>
+    </ul>
+    
+    <p>The version number of the development version is always appended with an at sign (@) to call attention
+    to the fact that that version is under development and not ready to be used.</p>
+    
+    <p>Whenever the version number is shown in one of the tools, it is a link that you can click on to
+    show the version history information.</p>
