@@ -40,7 +40,13 @@ function CalculateTaxableAmount() {
 	let taxpayers_age			= 0;
 	let spouses_age				= 0;
 	let max_salt				= 0;
-	
+
+	if (strCaseEqual(filing_status, "MFJ")) {
+		showElement("SpouseContainer");
+	} else {
+		hideElement("SpouseContainer");
+	}
+
 	InitializeTaxTables(filing_status, previous_tax_year);
 	
 	end_of_year				= new Date("12/31/" + previous_tax_year);
@@ -53,13 +59,13 @@ function CalculateTaxableAmount() {
 									taxpayers_age, spouses_age,
 									taxpayer_is_blind, spouse_is_blind);
 
-	if (state_tax_refund == 0) {
+	if (state_tax_refund === 0) {
 		taxable_amount		= 0;
 		explanation			= "Tax refund is $0.";
 		return;
 	}
 
-	if (state_income_tax == 0) {
+	if (state_income_tax === 0) {
 		taxable_amount		= 0;
 		explanation			= "State income tax is $0; state income tax was not used as a deduction.";
 		return;

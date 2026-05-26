@@ -2,27 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<link rel="stylesheet" href="../Library/Debug/Debug.css" />
-	<link rel="stylesheet" href="../Library/TaxTools/TaxTools.css" />
-	<link rel="stylesheet" href="../Library/Tooltips/Tooltips.css" />
+    <?php include "../Library/TaxToolsIncludeFiles.html"; ?>
 	<link rel="stylesheet" href="EstimatedTax.css" />
-
-	<script defer src="../Library/IncomeTax/IncomeTax.js"></script>
-	<script defer src="../Library/Debug/Debug.js"></script>
-	<script defer src="../Library/SelfEmploymentTax/SelfEmploymentTax.js"></script>
-	<script defer src="../Library/SocialSecurity/SocialSecurity.js"></script>
-	<script defer src="../Library/TaxTables/TaxTables.js"></script>
-	<script defer src="../Library/TaxTables/TaxTables_TY24.js"></script>
-	<script defer src="../Library/TaxTables/TaxTables_TY25.js"></script>
-	<script defer src="../Library/TaxTables/TaxTables_TY26.js"></script>
-	<script defer src="../Library/Tooltips/Tooltips.js"></script>
-	<script defer src="../Library/Utilities/EvalExpression.js"></script>
-	<script defer src="../Library/Utilities/HTML.js"></script>
-	<script defer src="../Library/Utilities/IncludeFile.js"></script>
-	<script defer src="../Library/Utilities/util-Dates.js"></script>
-	<script defer src="../Library/Utilities/util-Numbers.js"></script>
-	<script defer src="../Library/Utilities/util-Strings.js"></script>
-	<script defer src="../Version/Version.js"></script>
 	<script defer src="SaveRestore.js"></script>
 	<script defer src="EstimatedTax.js"></script>
 		
@@ -34,9 +15,9 @@
 		<h1 class="title">Federal Estimated Tax Calculator</h1>
 		<h2 class="title">for the Tax Year
 			<select id="TaxYear" class="trigger" tooltipid="#TaxYearTT">
-				<option value="2026">			2026</option>
-				<option value="2025" selected>	2025</option>
-				<option value="2024">			2024</option>
+				<option value="2026">2026</option>
+				<option value="2025">2025</option>
+				<option value="2024">2024</option>
 			</select>
 		</h2>
 		<p>This tool is intended to help you determine how much federal income tax you
@@ -494,12 +475,12 @@
 		</div>
 
 		<!-- Debugging Fields -->
-		<div include-file="EstimatedTax-Debug.html"></div>
-		<div include-file="../Library/IncomeTax/IncomeTax-Debug.html"></div>
-		<div include-file="../Library/SocialSecurity/SocialSecurity-Debug.html"></div>
+        <?php include "EstimatedTax-Debug.html"; ?>
+        <?php include "../Library/IncomeTax/IncomeTax-Debug.html"; ?>
+        <?php include "../Library/SocialSecurity/SocialSecurity-Debug.html"; ?>
 
 		<!-- Tooltips -->
-		<div include-file="EstimatedTax-HelpInput.html"></div>
+        <?php include "EstimatedTax-HelpInput.html"; ?>
 	</div>
 </body>
 </html>

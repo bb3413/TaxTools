@@ -1,9 +1,9 @@
 
-let tax_year						= 0;
-let family_size						= 0;
-let extra_sales_tax					= 0;
-let total_sales_tax					= 0;	// Lookup on web.
-let sales_tax_deduction				= 0;
+let tax_year				= 0;
+let family_size				= 0;
+let extra_sales_tax			= 0;
+let total_sales_tax			= 0;	// Lookup on web.
+let sales_tax_deduction		= 0;
 
 async function calculateAmount() {
 	let base_sales_tax		= 0;

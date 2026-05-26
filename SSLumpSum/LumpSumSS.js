@@ -38,7 +38,7 @@ function CalculategetTaxableSocialSecurity(event) {
 	putUserOutput("TaxablePercent-1",			"0%", "text");
 	putUserOutput("TaxableSocialSecurityNew-2",	0);
 	putUserOutput("TaxablePercent-2",			"0%", "text");
-	if (ss_received_0 == 0) {
+	if (ss_received_0 === 0) {
 		return;
 	}
 	
@@ -60,7 +60,7 @@ function CalculategetTaxableSocialSecurity(event) {
 
 	// Current year - Alternate Method
 	ss_received_alt = ss_received_0 - lump_sum_1 - lump_sum_2;
-	if (ss_received_alt != 0) {
+	if (ss_received_alt !== 0) {
 		ss_taxable_alt		= getTaxableSocialSecurity(
 								filing_status_0,
 								ss_received_alt,
@@ -70,7 +70,7 @@ function CalculategetTaxableSocialSecurity(event) {
 	}
 
 	// Previous Year 1
-	if (lump_sum_1 != 0) {
+	if (lump_sum_1 !== 0) {
 		ss_taxable_new_1	= getTaxableSocialSecurity(
 								filing_status_1,
 								ss_received_reported_1 + lump_sum_1,
@@ -80,14 +80,14 @@ function CalculategetTaxableSocialSecurity(event) {
 	
 		ss_taxable_new_1	-= ss_taxable_reported_1;
 	}
-	taxable_percent	= (lump_sum_1 == 0) ? 0 : Round(ss_taxable_new_1 / lump_sum_1 * 100);
+	taxable_percent	= (lump_sum_1 === 0) ? 0 : Round(ss_taxable_new_1 / lump_sum_1 * 100);
 	ss_taxable_alt							+= ss_taxable_new_1;
 	putUserOutput("TaxableSocialSecurityNew-1",		ss_taxable_new_1);
 	putUserOutput("TaxablePercent-1",				taxable_percent + "%", "text");
 
 
 	// Previous Year 2
-	if (lump_sum_2 != 0) {
+	if (lump_sum_2 !== 0) {
 		ss_taxable_new_2	= getTaxableSocialSecurity(
 								filing_status_2,
 								ss_received_reported_2 + lump_sum_2,
@@ -97,7 +97,7 @@ function CalculategetTaxableSocialSecurity(event) {
 	
 		ss_taxable_new_2	-= ss_taxable_reported_2;
 	}
-	taxable_percent	= (lump_sum_2 == 0) ? 0 : Round(ss_taxable_new_2 / lump_sum_2 * 100);
+	taxable_percent	= (lump_sum_2 === 0) ? 0 : Round(ss_taxable_new_2 / lump_sum_2 * 100);
 	ss_taxable_alt							+= ss_taxable_new_2;
 	putUserOutput("TaxableSocialSecurityNew-2",		ss_taxable_new_2);
 	putUserOutput("TaxablePercent-2",				taxable_percent + "%", "text");

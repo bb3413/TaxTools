@@ -18,10 +18,10 @@
 			<p>This file contains the version information for the all the tax tools. Since there is so much shared
 			code between the tools, there is only one version number and one version log for all the tools.</p>
 			
-			<p> The version number is a 3-part number. Only the first two parts are present in released versions of
+			<p>The version number is a 3-part number. Only the first two parts are present in released versions of
 			the tax tools. The first part is the tax year and the second is incremented each time a new version is
-			released. The third part of the version number is only present in version of the tax tools that have not
-			been released. This part is incremented each time a change is made to the source code and a entry is made
+			released. The third part of the version number is only present in versions of the tax tools that have not
+			been released. This part is incremented each time a change is made to the source code and an entry is made
 			in the version log file.</p>
 			
 			<p>If the version number has an at sign (@) appended to it, that version is under development; it is not
@@ -29,6 +29,16 @@
 		</div>
 
 		<h2>Version Log</h2>
+        	<p>Version 2025.12, Released 5/26/2026</p>
+			<div class="version-block">
+			<ul>
+				<li>5/25/2026 - 002 - Use PHP to include common CSS and JavaScript files. Use a common function in
+				HTML.js to show and hide elements.</li>
+                <li>5/22/2026 - 001 - Change == to ===, and reorganize Library directory.</li>
+				<li>5/21/2026 - 000 - New prototype version: 2025.11.000</li>
+			</ul>
+		</div>
+
 		<div class="version-block">
         	<p>Version 2025.10, Released 5/21/2026</p>
 			<ul>
@@ -189,12 +199,7 @@
 		</div>
 
 		<h2>Issues</h2>
-		<div class="issues-block">
-			<h3>Alternative Minimum Tax (AMT) Calculator</h3>
-			<ul>
-				<li>Only supports the tax year 2025.</li>   
-			</ul>
-			
+		<div class="issues-block">		
 			<h3>Estimated Tax Calculator (Federal)</h3>
 			<ul>
 				<li>Does not support blind taxpayer or spouse.</li>
@@ -203,15 +208,10 @@
 				<li>Allows you to enter the amount of credits, but does not calculate CTC or EIC,
 				or any other credit.</li>		
 			</ul>
-				
-			<h3>Estimated Tax Calculator (California)</h3>
-			<ul>
-				<li>Tax tables for 2026 are the same as 2025.</li>	   
-			</ul>
 			
 			<h3>Social Security - Taxable Benefits Calculator</h3>
 			<ul>
-				<li>See the description for the Adjustments field in help file. There are a few
+				<li>See the description for the Adjustments field in the help file. There are a few
 				adjustments that may not be handled correctly by this tool.</li>
 				<li>If you are a non-resident alien, do not use this tool; the taxable percentage
 				of your Social Security is 85%.</li>
@@ -220,50 +220,10 @@
 			<h3>State Tax Refund Calculator</h3>
 			<ul>
 			   	<li>Does not take into account that MFS may be required to itemize deductions.</li>
+                <li>Non-resident aliens should not use this tool; the taxable percentage of Social Security
+                for a non-resident alien is 85%.</li>
 			</ul>
 		</div>
-
-		<h2>Changes I'm Thinking About</h2>
-		<div class="thinking-block">
-			<ul>
-				<li>More tools
-					<ul>
-						<li>CTC, EIC, and CalEITC Calculators</li>
-						<li>Foreign Tax Credit Calculator</li>
-						<li>Sales Tax Calculator</li>
-						<li>Currency Exchange Rate Calculator</li>
-					</ul>
-				</li>
-
-				<li>Add checks to fields that have known limits so the input values do not exceed
-				those limits.</li>
-
-				<li>If an input field is modified internally, should the input field be updated so the
-				user can see that the corrected value?</li>
-
-				<li>I could merge the small business tax calculation into the estimated tax calculation,
-				but it would calculate values that are currently entered by the user. If more and more
-				fields are calculated then the tool becomes more of a tax program than a tool for
-				estimating the tax from the numbers that you enter. Where should the dividing line
-				be?</li>
-			
-				<li>Should the tools be implemented as Excel spreadsheets. It would allow the user to
-				see the actual computations that are being made. Users could review the formulas for
-				accuracy and provide feedback. They could also make changes to their copy of the
-				spreadsheet to prototype new ideas. However, since each spreadsheet contains all the
-				code that it uses, once it is copied, it would be difficult to know how it differs
-				from another version. It would be impossible to update all the copies when a change
-				needs to be made. Version control could be a nightmare.</li>
-			</ul>
-		</div>
-
-		<h2>Feedback</h2>
-		<div class="feedback-block">
-			<p>If you have any feedback on the tax tools, send it to bruce_blinn@yahoo.com. I would
-			welcome any information about problems with the tools or suggestion on how to improve
-			them.</p>
-		</div>
-		<p>&nbsp;</p>
 	</div>
 </body>
 </html>

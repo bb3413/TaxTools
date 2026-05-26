@@ -1,43 +1,44 @@
 
-function addListener(elementID, event, handler) {
+//-----  Show/hide element  ---------------------------------
+function showElement(elementID) {
 	const element = document.getElementById(elementID);
 	if (!element) {
-		alert("addListener: Element not found: " + elementID);
+		alert("getElementValue: Element not found: " + elementID);
 	} else {
-		element.addEventListener(event, handler);
+		element.classList.remove('hidden');
+	}
+}
+function hideElement(elementID) {
+	const element = document.getElementById(elementID);
+	if (!element) {
+		alert("getElementValue: Element not found: " + elementID);
+	} else {
+		element.classList.add('hidden');
 	}
 }
 
-function getCSSGlobalVariable(variableName) {
-	//
-	// if you define a global variable in CSS, for example:
-	//		:root {
-	//			--background-color:			#AAAAAA;	// Gray
-	//		}
-	// 
-	// Then, if you pass "--background-color" to this function, it will
-	// look up the variable and return "#AAAAAA".
-	//
-	
-	// Read the CSS variable from the root (or from a specific element)
-	const rootStyles	= getComputedStyle(document.documentElement);
-	const value			= rootStyles.getPropertyValue(variableName).trim();
-	
-	return value;
-}
-
+//---- Change background/foreground color  ----------------------------------
 function changeBackgroundColor(elementID, color) {
-	document.getElementById(elementID).style.background = color;
+	const element = document.getElementById(elementID);
+	if (!element) {
+		alert("getElementValue: Element not found: " + elementID);
+	} else {
+		element.style.background = color;
+	}
 }
-
 function changeTextColor(elementID, color) {
-	document.getElementById(elementID).style.color = color;
+	const element = document.getElementById(elementID);
+	if (!element) {
+		alert("getElementValue: Element not found: " + elementID);
+	} else {
+		element.style.color = color;
+	}
 }
 
+
+//-----  Get/put user input/output---------------------------------
 function getUserInput(elementID, type = "number") {
-	
 	let value = getElementValue(elementID);
-	
 	if (typeof value === "boolean") {
 		return value;
 	}
@@ -57,7 +58,6 @@ function getUserInput(elementID, type = "number") {
 }
 
 function putUserOutput(elementID, value, type = "number") {
-	
 	if (strCaseEqual(type, "dollars")) {
 		// Add commas and prepend with dollar sign.
 		putElementValue(elementID, "$" + FormatNum(value));
@@ -66,12 +66,13 @@ function putUserOutput(elementID, value, type = "number") {
 		// Add commas.
 		putElementValue(elementID, FormatNum(value));
 
-	} else {	// tpye == "text"
+	} else {	// tpye === "text"
 		// Put the value as is.
 		putElementValue(elementID, value);
 	}
 }
 
+//-----  Get/put element value  ---------------------------------
 //
 // Elements designed for user input, <inout>, <select> (drop down lists), and
 //	<textarea>, have their content in the "value" attribute. Check boxes and radio
@@ -82,7 +83,6 @@ function putUserOutput(elementID, value, type = "number") {
 // it returns the content as it is displayed. If the elemenet is hidden, it won"t
 // return the content. 
 //
-
 function getElementValue(elementID) {
 	const element = document.getElementById(elementID);
 	if (!element) {
@@ -137,3 +137,34 @@ function putElementValue(elementID, value) {
 		return;
 	}
 }
+
+//-----  Miscellaneous utility functions  ---------------------------------
+function addListener(elementID, event, handler) {
+	const element = document.getElementById(elementID);
+	if (!element) {
+		alert("addListener: Element not found: " + elementID);
+	} else {
+		element.addEventListener(event, handler);
+	}
+}
+
+function getCSSGlobalVariable(variableName) {
+	//
+	// if you define a global variable in CSS, for example:
+	//		:root {
+	//			--background-color:			#AAAAAA;	// Gray
+	//		}
+	// 
+	// Then, if you pass "--background-color" to this function, it will
+	// look up the variable and return "#AAAAAA".
+	//
+	
+	// Read the CSS variable from the root (or from a specific element)
+	const rootStyles	= getComputedStyle(document.documentElement);
+	const value			= rootStyles.getPropertyValue(variableName).trim();
+	
+	return value;
+}
+
+
+

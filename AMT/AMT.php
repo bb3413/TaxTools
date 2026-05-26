@@ -2,27 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<link rel="stylesheet" href="../Library/Debug/Debug.css" />
-	<link rel="stylesheet" href="../Library/TaxTools/TaxTools.css" />
-	<link rel="stylesheet" href="../Library/Tooltips/Tooltips.css" />
+	<?php include "../Library/TaxToolsIncludeFiles.html"; ?>
 	<link rel="stylesheet" href="AMT.css" />
-
-	<script defer src="../Library/IncomeTax/IncomeTax.js"></script>
-	<script defer src="../Library/Debug/Debug.js"></script>
-	<script defer src="../Library/SelfEmploymentTax/SelfEmploymentTax.js"></script>
-	<script defer src="../Library/SocialSecurity/SocialSecurity.js"></script>
-	<script defer src="../Library/TaxTables/TaxTables.js"></script>
-	<script defer src="../Library/TaxTables/TaxTables_TY24.js"></script>
-	<script defer src="../Library/TaxTables/TaxTables_TY25.js"></script>
-	<script defer src="../Library/TaxTables/TaxTables_TY26.js"></script>
-	<script defer src="../Library/Tooltips/Tooltips.js"></script>
-	<script defer src="../Library/Utilities/EvalExpression.js"></script>
-	<script defer src="../Library/Utilities/HTML.js"></script>
-	<script defer src="../Library/Utilities/IncludeFile.js"></script>
-	<script defer src="../Library/Utilities/util-Dates.js"></script>
-	<script defer src="../Library/Utilities/util-Numbers.js"></script>
-	<script defer src="../Library/Utilities/util-Strings.js"></script>
-	<script defer src="../Version/Version.js"></script>
 	<script defer src="AMT.js"></script>
 		
 	<title>Alternative Minimum Tax Calculator</title>
@@ -54,9 +35,9 @@
 		<div class="table-3">
 			<p>Tax Year</p>
 			<select class="trigger input-field" id="TaxYear" tooltipid="#TaxYearTT">
-				<option value="2026">			2026</option>
-				<option value="2025" selected>	2025</option>
-				<option value="2024">			2024</option>
+				<option value="2026">2026</option>
+				<option value="2025">2025</option>
+				<option value="2024">2024</option>
 			</select>
 			
 			<p>Filing Status</p>
@@ -72,14 +53,15 @@
 			<input class="trigger input-field" type="text" autofocus id="TaxpayersBirthday"
 				placeholder="mm/dd/yyyy" tooltipid="#TaxpayersBirthdayTT" />
 			
-			<p>Spouse's Birthday</p>
-			<input class="trigger input-field" type="text" id="SpousesBirthday"
-				placeholder="mm/dd/yyyy" tooltipid="#SpousesBirthdayTT" />
-			
 			<p>Taxpayer Is Blind</p>
 			<input class="trigger checkbox" type="checkbox" id="TaxpayerIsBlind"
 				tooltipid="#TaxpayerIsBlindTT" />
-			
+		</div>
+        <div class="table-3" id="SpouseContainer">
+			<p>Spouse's Birthday</p>
+			<input class="trigger input-field" type="text" id="SpousesBirthday"
+				 placeholder="mm/dd/yyyy" tooltipid="#SpousesBirthdayTT" />
+
 			<p>Spouse Is Blind</p>
 			<input class="trigger checkbox" type="checkbox" id="SpouseIsBlind"
 				tooltipid="#SpouseIsBlindTT" />
@@ -225,8 +207,8 @@
 			<p class="trigger output-field" id="AMT" tooltipid="#AMTTT">0</p>
 		</div>
 		
-		<div include-file="AMT-Debug.html"></div>		<!-- Debugging Fields -->
-		<div include-file="AMT-HelpInput.html"></div>	<!-- Tooltips -->
+        <?php include "AMT-Debug.html"; ?>				<!-- Debugging Fields -->
+        <?php include "AMT-HelpInput.html"; ?>			<!-- Tooltips -->
 	</div>
 </body>
 </html>

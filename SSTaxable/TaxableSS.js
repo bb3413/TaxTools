@@ -10,13 +10,13 @@ function CalculategetTaxableSocialSecurity() {
 	let taxable_percent				= 0;
 	
 	InitializeTaxTables(filing_status);
-	
+
 	if (strCaseEqual(filing_status, "MFS")) {
-		ShowLivedWithSpouse();
+		showElement("LivedWithSpouseContainer");
 	} else {
-		HideLivedWithSpouse();
+		hideElement("LivedWithSpouseContainer");
 	}
-		
+
 	taxable_ss = getTaxableSocialSecurity(
 					filing_status,
 					social_security,
@@ -25,20 +25,10 @@ function CalculategetTaxableSocialSecurity() {
 					adjustments,
 					lived_with_spouse);
 	
-	taxable_percent = (social_security == 0) ? 0 : Round(taxable_ss / social_security * 100);
+	taxable_percent = (social_security === 0) ? 0 : Round(taxable_ss / social_security * 100);
 	
 	putUserOutput("TaxableSocialSecurity",	taxable_ss);
 	putUserOutput("TaxablePercent",			taxable_percent + "%", "text");
-}
-
-function HideLivedWithSpouse() {
-	const container = document.getElementById("LivedWithSpouseContainer");
-	container.classList.add("hide");
-}
-
-function ShowLivedWithSpouse() {
-	const container = document.getElementById("LivedWithSpouseContainer");
-	container.classList.remove("hide");
 }
 
 function ChangeIncomeHandler(event) {
@@ -153,7 +143,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	addListener("IRAContributions",				"change", ChangeAdjustmentComponentHandler);		
 	addListener("StudentLoanInterest",			"change", ChangeAdjustmentComponentHandler);;			
 	addListener("OtherAdjustments",				"change", ChangeAdjustmentComponentHandler);
-	
-	HideLivedWithSpouse();
+
 	ChangeHandler();
 });

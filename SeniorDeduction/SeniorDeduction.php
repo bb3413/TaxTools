@@ -2,29 +2,9 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<link rel="stylesheet" href="../Library/Debug/Debug.css" />
-	<link rel="stylesheet" href="../Library/TaxTools/TaxTools.css" />
-	<link rel="stylesheet" href="../Library/Tooltips/Tooltips.css" />
-
+	<?php include "../Library/TaxToolsIncludeFiles.html"; ?>
 	<link rel="stylesheet" href="../Library/TaxTools/HelpFields.css" />
 	<link rel="stylesheet" href="SeniorDeduction.css" />
-
-	<script defer src="../Library/IncomeTax/IncomeTax.js"></script>
-	<script defer src="../Library/Debug/Debug.js"></script>
-	<script defer src="../Library/SelfEmploymentTax/SelfEmploymentTax.js"></script>
-	<script defer src="../Library/SocialSecurity/SocialSecurity.js"></script>
-	<script defer src="../Library/TaxTables/TaxTables.js"></script>
-	<script defer src="../Library/TaxTables/TaxTables_TY24.js"></script>
-	<script defer src="../Library/TaxTables/TaxTables_TY25.js"></script>
-	<script defer src="../Library/TaxTables/TaxTables_TY26.js"></script>
-	<script defer src="../Library/Tooltips/Tooltips.js"></script>
-	<script defer src="../Library/Utilities/EvalExpression.js"></script>
-	<script defer src="../Library/Utilities/HTML.js"></script>
-	<script defer src="../Library/Utilities/IncludeFile.js"></script>
-	<script defer src="../Library/Utilities/util-Dates.js"></script>
-	<script defer src="../Library/Utilities/util-Numbers.js"></script>
-	<script defer src="../Library/Utilities/util-Strings.js"></script>
-	<script defer src="../Version/Version.js"></script>
 	<script defer src="SeniorDeduction.js"></script>
 
 	<title>Enhanced Deduction for Seniors Calculator</title>
@@ -64,15 +44,15 @@
 			<input class="input-field" type="text" id="TaxpayersBirthday" placeholder="mm/dd/yyyy" />
 			
 			<p>Taxpayer's Age</p>
-			<input class="input-field" type="text" id="TaxpayersAge" />
+			<input class="input-field" type="text" id="TaxpayersAge" placeholder="0" />
 		</div>
 		
 		<div  class="table" id="SpouseContainer">
 		   	<p>Spouse's Birthday</p>
-			<input class="input-field" type="text" id="SpousesBirthday" />
+			<input class="input-field" type="text" id="SpousesBirthday" placeholder="mm/dd/yyyy" />
 			
 		   	<p>Spouse's Age</p>
-		   	<input class="input-field" type="text" id="SpousesAge" />
+		   	<input class="input-field" type="text" id="SpousesAge" placeholder="0" />
 		</div>
 
 		<div class="table">  
@@ -121,7 +101,7 @@
 			<p>This field is only shown if the filing status is MFJ (married filing jointly).</p>
 		</div>
 
-		<div include-file="SeniorDeduction-Debug.html"></div>		<!-- Debugging Fields -->
+        <?php include "SeniorDeduction-Debug.html"; ?> 		<!-- Debugging Fields -->
 	</div>
 </body>
 </html>

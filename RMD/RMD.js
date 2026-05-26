@@ -4,6 +4,8 @@ let ira_total				= 0;
 let taxpayers_birthday		= "";
 let taxpayers_age			= 0;
 let rmd						= 0;
+let input_color				= "";
+let output_color			= "";
 
 const RMD_Table_III = [	// Uniform Lifetime Table
 	//			Distribution
@@ -63,14 +65,17 @@ function CalculateRMD() {
 	let end_of_year				= "";
 	let period					= 0;
 
-	if (tax_year == 0) {
+	if (tax_year === 0) {
 		tax_year = getTaxYear();
 		putUserOutput("TaxYear", tax_year, "text");
 	}
 	
-	if (taxpayers_birthday != "") {
+	if (taxpayers_birthday !== "") {
 		end_of_year				= new Date("12/31/" + tax_year).toLocaleDateString();
 		taxpayers_age			= Age(taxpayers_birthday, end_of_year);
+		changeBackgroundColor("TaxpayersAge", output_color);
+	} else {
+		changeBackgroundColor("TaxpayersAge", input_color);
 	}
 
 	if (taxpayers_age < 73) {
@@ -80,7 +85,7 @@ function CalculateRMD() {
 			period = 2;
 		} else {
 			for (let row = 0; row < RMD_Table_III.length; row++) {
-				if (taxpayers_age == RMD_Table_III[row][0]) {
+				if (taxpayers_age === RMD_Table_III[row][0]) {
 					period = RMD_Table_III[row][1];
 					break;
 				}
@@ -107,7 +112,7 @@ function GetInput() {
 
 function ChangedAge(event) {
 	const age = getUserInput("TaxpayersAge");
-	if (age != 0)
+	if (age !== 0)
 		putUserOutput("TaxpayersBirthday", "");
 		
 	ChangeHandler(event);
@@ -129,6 +134,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	addListener("IRATotal",				"change", ChangeHandler);
 	addListener("TaxpayersBirthday",	"change", ChangeHandler);
 	addListener("TaxpayersAge",			"change", ChangedAge);
+
+	output_color	= getCSSGlobalVariable("--output-color");
+	input_color		= getCSSGlobalVariable("--input-color");
 
 	ChangeHandler();
 });

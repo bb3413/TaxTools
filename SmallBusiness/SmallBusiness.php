@@ -2,27 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<link rel="stylesheet" href="../Library/Debug/Debug.css" />
-	<link rel="stylesheet" href="../Library/TaxTools/TaxTools.css" />
-	<link rel="stylesheet" href="../Library/Tooltips/Tooltips.css" />
+	<?php include "../Library/TaxToolsIncludeFiles.html"; ?>
 	<link rel="stylesheet" href="SmallBusiness.css" />
-
-	<script defer src="../Library/IncomeTax/IncomeTax.js"></script>
-	<script defer src="../Library/Debug/Debug.js"></script>
-	<script defer src="../Library/SelfEmploymentTax/SelfEmploymentTax.js"></script>
-	<script defer src="../Library/SocialSecurity/SocialSecurity.js"></script>
-	<script defer src="../Library/TaxTables/TaxTables.js"></script>
-	<script defer src="../Library/TaxTables/TaxTables_TY24.js"></script>
-	<script defer src="../Library/TaxTables/TaxTables_TY25.js"></script>
-	<script defer src="../Library/TaxTables/TaxTables_TY26.js"></script>
-	<script defer src="../Library/Tooltips/Tooltips.js"></script>
-	<script defer src="../Library/Utilities/EvalExpression.js"></script>
-	<script defer src="../Library/Utilities/HTML.js"></script>
-	<script defer src="../Library/Utilities/IncludeFile.js"></script>
-	<script defer src="../Library/Utilities/util-Dates.js"></script>
-	<script defer src="../Library/Utilities/util-Numbers.js"></script>
-	<script defer src="../Library/Utilities/util-Strings.js"></script>
-	<script defer src="../Version/Version.js"></script>
 	<script defer src="SmallBusiness.js"></script>
 
 	<title>Small Business Tax Calculator</title>
@@ -242,13 +223,11 @@
 			<p class="label-field">Total Expenses</p>
 			<p class="trigger output-field" id="TotalExpenses" tooltipid="#TotalExpensesTT">0</p>
 		</div>
-				
-		<!-- Debugging Fields -->
-		<div include-file="SmallBusiness-Debug.html"></div>
-		<div include-file="../Library/SelfEmploymentTax/SelfEmploymentTax-Debug.html"></div>
 
-		<!-- Tooltips -->
-		<div include-file="SmallBusiness-HelpInput.html"></div>
+        <?php include "SmallBusiness-Debug.html"; ?> 									<!-- Debugging Fields -->
+        <?php include "../Library/SelfEmploymentTax/SelfEmploymentTax-Debug.html"; ?> 	<!-- Debugging Fields -->
+        <?php include "SmallBusiness-HelpInput.html"; ?>								<!-- Tooltips -->
+
 	</div>
 </body>
 </html>
