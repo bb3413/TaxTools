@@ -16,12 +16,10 @@
 
 		<h1 class="title">Small Business Tax Calculator</h1>
 		
-		<p>This tool calculates the taxes for a small business.</p>
-		
-		<p>The blue fields are computed from the information you provide. The green fields are
-		where you enter information. The first column shows where the information can be found
-		in the tax return. Click <a href="SmallBusiness-Help.html">this link</a> for more help
-		with this tool.</p>
+		<p>This tool calculates the taxes for a small business. The blue fields are computed
+		from the information you provide. The green fields are where you enter information.
+		The first column shows where the information can be found in the tax return. Click
+		<a href="SmallBusiness-Help.html">this link</a> for more help with this tool.</p>
 		
 		<h3 class="tight">Tax Formula for Small Business</h3>
 		<p class="tight">The net profit for a small business is calculated on Schedule C as shown in the
@@ -37,44 +35,48 @@
 			<p>= Gross Profit + Other Income</p>
 			<p>Net Profit</p>
 			<p>= Gross Income - Total Expenses - Business Use of Home Expenses</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
 		</div>
 
-		<h3>Tax Calculation</h3>
-		<div class="table-3x">
-			<p class="loction-field">1040 S1, line 3</p>
-		   	<p class="label-field">Net Profit from Business</p>
-			<p class="trigger output-field" id="NetProfit" tooltipid="#NetProfitTT">0</p>
+		<div class="tax-calculation-box">
+			<h3>Tax Calculation</h3>
+			<div class="table-3x">
+				<p class="loction-field">1040 S1, line 3</p>
+			   	<p class="label-field">Net Profit from Business</p>
+				<p class="trigger output-field" id="NetProfit" tooltipid="#NetProfitTT">0</p>
 
-			<p class="loction-field">1040 S2, line 4</p>
-			<p class="label-field">Self-employment Tax</p>
-			<p class="trigger output-field" id="SelfEmploymentTax" tooltipid="#SelfEmploymentTaxTT">0</p>
+				<p class="loction-field">1040 S2, line 4</p>
+				<p class="label-field">Self-employment Tax</p>
+				<p class="trigger output-field" id="SelfEmploymentTax" tooltipid="#SelfEmploymentTaxTT">0</p>
 
-			<p class="loction-field">1040, line 13a</p>
-			<p class="label-field">Qualified Business Income Deduction</p>
-			<p class="trigger output-field" id="QBI_Deduction" tooltipid="#QBI_DeductionTT">0</p>
+				<p class="loction-field">1040, line 13a</p>
+				<p class="label-field">Qualified Business Income Deduction</p>
+				<p class="trigger output-field" id="QBI_Deduction" tooltipid="#QBI_DeductionTT">0</p>
 			
-			<p class="loction-field">1040 S1, line 15</p>
-			<p class="label-field">Self-employment Tax Adjustment</p>
-			<p class="trigger output-field" id="SelfEmploymentTaxAdjustment"
-				tooltipid="#SelfEmploymentTaxAdjustmentTT">0</p>
+				<p class="loction-field">1040 S1, line 15</p>
+				<p class="label-field">Self-employment Tax Adjustment</p>
+				<p class="trigger output-field" id="SelfEmploymentTaxAdjustment"
+					tooltipid="#SelfEmploymentTaxAdjustmentTT">0</p>
 
-			<p>&nbsp;</p>
-			<p>&nbsp;</p>
-			<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
 
-			<p class="loction-field">Not Used</p>
-			<p class="label-field">Net profit after SEHI</p>
-			<p class="trigger output-field" id="NetProfitAfterSEHI" tooltipid="#NetProfitAfterSEHI_TT">0</p>
+				<p class="loction-field">Not Used</p>
+				<p class="label-field">Net profit after SEHI</p>
+				<p class="trigger output-field" id="NetProfitAfterSEHI" tooltipid="#NetProfitAfterSEHI_TT">0</p>
 			
-			<p class="loction-field">1040 S1, line 17</p>
-			<p class="label-field">Self-employed Health Insurance Adjustment</p>
-			<p class="trigger output-field" id="SEHI_Adjustment" tooltipid="#SEHI_AdjustmentTT">0</p>
+				<p class="loction-field">1040 S1, line 17</p>
+				<p class="label-field">Self-employed Health Insurance Adjustment</p>
+				<p class="trigger output-field" id="SEHI_Adjustment" tooltipid="#SEHI_AdjustmentTT">0</p>
 
-			<p class="loction-field">Sched a, line 1</p>
-			<p class="label-field">Medical Insurance Itemized Deduction</p>
-			<p class="trigger output-field" id="MedicalDeduction" tooltipid="#MedicalDeductionTT">0</p>
+				<p class="loction-field">Sched A, line 1</p>
+				<p class="label-field">Medical Insurance Itemized Deduction</p>
+				<p class="trigger output-field" id="MedicalDeduction" tooltipid="#MedicalDeductionTT">0</p>
+			</div>
 		</div>
-		 
+ 
 		<h3>Income Fields</h3>
 		<div class="table-3x">
 			<p class="loction-field">Sched C, line 1</p>
@@ -224,9 +226,9 @@
 			<p class="trigger output-field" id="TotalExpenses" tooltipid="#TotalExpensesTT">0</p>
 		</div>
 
-        <?php include "SmallBusiness-Debug.html"; ?> 									<!-- Debugging Fields -->
-        <?php include "../Library/SelfEmploymentTax/SelfEmploymentTax-Debug.html"; ?> 	<!-- Debugging Fields -->
-        <?php include "SmallBusiness-HelpInput.html"; ?>								<!-- Tooltips -->
+		<?php include "SmallBusiness-Debug.html"; ?> 									<!-- Debugging Fields -->
+		<?php include "../Library/SelfEmploymentTax/SelfEmploymentTax-Debug.html"; ?> 	<!-- Debugging Fields -->
+		<?php include "SmallBusiness-HelpInput.html"; ?>								<!-- Tooltips -->
 
 	</div>
 </body>
