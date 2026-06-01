@@ -35,7 +35,7 @@ function CalculateSeniorDeduction() {
 	}
 	
 	if (spouses_birthday !== "") {
-		spouses_age = Age(taxpayers_birthday, end_of_year);
+		spouses_age = Age(spouses_birthday, end_of_year);
 		changeBackgroundColor("SpousesAge", output_color);
 	} else {
 		changeBackgroundColor("SpousesAge", input_color);
@@ -57,7 +57,7 @@ function GetInput() {
 	taxpayers_birthday		= getUserInput("TaxpayersBirthday",	"text");
 	taxpayers_age			= getUserInput("TaxpayersAge");
 	spouses_birthday		= getUserInput("SpousesBirthday",	"text");
-	tspouses_age			= getUserInput("SpousesAge");
+	spouses_age				= getUserInput("SpousesAge");
 	
 	senior_deduction		= 0;
 }
