@@ -72,127 +72,127 @@
 			<p>1040, line 11b</p>
 			<p>Adjusted Gross Income (AGI)</p>
 			<input class="trigger input-field" type="text" id="AGI"
-				placeholder="0" tooltipid="#AGITT" />
+				value="0" tooltipid="#AGITT" />
 
 			<p>1040, line 3a</p>
 			<p>Qualified Dividends</p>
 			<input class="trigger input-field" type="text" id="QualifiedDividends"
-				placeholder="0" tooltipid="#QualifiedDividendsTT" />
+				value="0" tooltipid="#QualifiedDividendsTT" />
 
 			<p>1040, line 7a</p>
 			<p>Capital Gains</p>
 			<input class="trigger input-field" type="text" id="CapitalGains"
-				placeholder="0" tooltipid="#CapitalGainsTT" />
+				value="0" tooltipid="#CapitalGainsTT" />
 
 			<p>1040, line 15</p>
 			<p>Taxable Income</p>
 			<input class="trigger input-field" type="text" id="TaxableIncome"
-				placeholder="0" tooltipid="#TaxableIncomeTT" />
+				value="0" tooltipid="#TaxableIncomeTT" />
 
 			<p>1040, line 16</p>
 			<p>Income Tax</p>
 			<input class="trigger input-field" type="text" id="IncomeTax"
-				placeholder="0" tooltipid="#IncomeTaxTT" />
+				value="0" tooltipid="#IncomeTaxTT" />
 
 			<p class="span-three">&nbsp;</p>
 
 			<p>1040 SA, line 17</p>
 			<p>Itemized Deduction</p>
 			<input class="trigger input-field" type="text" id="ItemizedDeduction"
-				placeholder="0" tooltipid="#ItemizedDeductionTT" />
+				value="0" tooltipid="#ItemizedDeductionTT" />
 
 			<p>1040 SA, line 7</p>
 			<p>Taxes Paid Deduction</p>
 			<input class="trigger input-field" type="text" id="TaxesPaidDeduction"
-				placeholder="0" tooltipid="#TaxesPaidDeductionTT" />
+				value="0" tooltipid="#TaxesPaidDeductionTT" />
 			
 			<p>1040, line 13a</p>
 			<p>QBI Deduction</p>
 			<input class="trigger input-field" type="text" id="QBIDeduction"
-				placeholder="0" tooltipid="#QBIDeductionTT" />
+				value="0" tooltipid="#QBIDeductionTT" />
 		</div>
         
 		<h3>Additions to AMT Income</h3>
 		<div  class="table-2">
 			<p>Tax Refunds (subtraction)</p>
 			<input class="trigger input-field" type="text" id="StateTaxRefund"
-				placeholder="0" tooltipid="#StateTaxRefundTT" />
+				value="0" tooltipid="#StateTaxRefundTT" />
 
 			<p>Investment Interest Expense</p>
 			<input class="trigger input-field" type="text" id="InvestmentInterestExpense"
-				placeholder="0" tooltipid="#InvestmentInterestExpenseTT" />
+				value="0" tooltipid="#InvestmentInterestExpenseTT" />
 
 			<p>Depletion</p>
 			<input class="trigger input-field" type="text" id="Depletion"
-				placeholder="0" tooltipid="#DepletionTT" />
+				value="0" tooltipid="#DepletionTT" />
 
 			<p>Net Operating Loss</p>
 			<input class="trigger input-field" type="text" id="NetOperatingLoss"
-				placeholder="0" tooltipid="#NetOperatingLossTT" />
+				value="0" tooltipid="#NetOperatingLossTT" />
 
 			<p>Alternate Net Operating Loss (subtraction)</p>
 			<input class="trigger input-field" type="text" id="AlternateNetOperatingLoss"
-				placeholder="0" tooltipid="#AlternateNetOperatingLossTT" />
+				value="0" tooltipid="#AlternateNetOperatingLossTT" />
 
 			<p>Private Activity Bonds Interest</p>
 			<input class="trigger input-field" type="text" id="PrivateActivityBondsInterest"
-				placeholder="0" tooltipid="#PrivateActivityBondsInterestTT" />
+				value="0" tooltipid="#PrivateActivityBondsInterestTT" />
 
 			<p>Qualified Small Business Stock</p>
 			<input class="trigger input-field" type="text" id="QualifiedSmallBusinessStock"
-				placeholder="0" tooltipid="#QualifiedSmallBusinessStockTT" />
+				value="0" tooltipid="#QualifiedSmallBusinessStockTT" />
 
 			<p>Incentive Stock Options</p>
 			<input class="trigger input-field" type="text" id="IncentiveStockOptions"
-				placeholder="0" tooltipid="#IncentiveStockOptionsTT" />
+				value="0" tooltipid="#IncentiveStockOptionsTT" />
 
 			<p>Estates and Trusts</p>
 			<input class="trigger input-field" type="text" id="EstatesAndTrusts"
-				placeholder="0" tooltipid="#EstatesAndTrustsTT" />
+				value="0" tooltipid="#EstatesAndTrustsTT" />
 
 			<p>Disposition of Property</p>
 			<input class="trigger input-field" type="text" id="DispositionOfProperty"
-				placeholder="0" tooltipid="#DispositionOfPropertyTT" />
+				value="0" tooltipid="#DispositionOfPropertyTT" />
 
 			<p>Post 1986 Depreciation</p>
 			<input class="trigger input-field" type="text" id="Post1986Depreciation"
-				placeholder="0" tooltipid="#Post1986DepreciationTT" />
+				value="0" tooltipid="#Post1986DepreciationTT" />
 
 			<p>Passive Activities</p>
 			<input class="trigger input-field" type="text" id="PassiveActivities"
-				placeholder="0" tooltipid="#PassiveActivitiesTT" />
+				value="0" tooltipid="#PassiveActivitiesTT" />
 
 			<p>Loss Limitations</p>
 			<input class="trigger input-field" type="text" id="LossLimitations"
-				placeholder="0" tooltipid="#LossLimitationsTT" />
+				value="0" tooltipid="#LossLimitationsTT" />
 
 			<p>Circulation Costs</p>
 			<input class="trigger input-field" type="text" id="CirculationCosts"
-				placeholder="0" tooltipid="#CirculationCostsTT" />
+				value="0" tooltipid="#CirculationCostsTT" />
 
 			<p>Long-term Contracts</p>
 			<input class="trigger input-field" type="text" id="LongTermContracts"
-				placeholder="0" tooltipid="#LongTermContractsTT" />
+				value="0" tooltipid="#LongTermContractsTT" />
 
 			<p>Mining Costs</p>
 			<input class="trigger input-field" type="text" id="MiningCosts"
-				placeholder="0" tooltipid="#MiningCostsTT" />
+				value="0" tooltipid="#MiningCostsTT" />
 
 			<p>Reseach Costs</p>
 			<input class="trigger input-field" type="text" id="ReseachCosts"
-				placeholder="0" tooltipid="#ReseachCostsTT" />
+				value="0" tooltipid="#ReseachCostsTT" />
 
 			<p>Installment Sales (subtraction)</p>
 			<input class="trigger input-field" type="text" id="InstallmentSales"
-				placeholder="0" tooltipid="#InstallmentSalesTT" />
+				value="0" tooltipid="#InstallmentSalesTT" />
 
 			<p>Intangible Drilling Costs</p>
 			<input class="trigger input-field" type="text" id="IntangibleDrillingCosts"
-				placeholder="0" tooltipid="#IntangibleDrillingCostsTT" />
+				value="0" tooltipid="#IntangibleDrillingCostsTT" />
 
 			<p>Other Income</p>
 			<input class="trigger input-field" type="text" id="OtherIncome"
-				placeholder="0" tooltipid="#OtherIncomeTT" />
+				value="0" tooltipid="#OtherIncomeTT" />
 
 			<p class="span-two">&nbsp;</p>
 			<p class="span-two">&nbsp;</p>

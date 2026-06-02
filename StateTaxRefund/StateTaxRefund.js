@@ -273,6 +273,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	addListener("RealEstateTaxes",			"change", ChangeHandler);
 	addListener("PersonalPropertyTaxes",	"change", ChangeHandler);
 	addListener("ItemizedDeductions",		"change", ChangeHandler);
+
+	previous_tax_year = getTaxYear() - 1;	// Default tax year.
+	putUserOutput("PreviousTaxYear", previous_tax_year, "text");
 	
 	ChangeHandler();
 });

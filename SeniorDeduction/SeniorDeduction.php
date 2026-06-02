@@ -38,13 +38,13 @@
 			</select>
 				
 		   	<p>Adjusted Gross Income (AGI)</p>
-			<input class="input-field" type="text" autofocus id="AdjustedGrossIncome" placeholder="0" />
+			<input class="input-field" type="text" autofocus id="AdjustedGrossIncome" value="0" />
 			
 			<p>Taxpayer's Birthday</p>
 			<input class="input-field" type="text" id="TaxpayersBirthday" placeholder="mm/dd/yyyy" />
 			
 			<p>Taxpayer's Age</p>
-			<input class="input-field" type="text" id="TaxpayersAge" placeholder="0" />
+			<input class="input-field" type="text" id="TaxpayersAge" value="0" />
 		</div>
 		
 		<div  class="table" id="SpouseContainer">
@@ -52,7 +52,7 @@
 			<input class="input-field" type="text" id="SpousesBirthday" placeholder="mm/dd/yyyy" />
 			
 		   	<p>Spouse's Age</p>
-		   	<input class="input-field" type="text" id="SpousesAge" placeholder="0" />
+		   	<input class="input-field" type="text" id="SpousesAge" value="0" />
 		</div>
 
 		<div class="table">  

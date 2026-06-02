@@ -16,8 +16,8 @@
  
 		<h1 class="title">California Sales Tax Calculator</h1>
 			
-		<p>This tool will return the sales tax percentage for the address. You must enter
-		a value in all three fields.</p>
+		<p>This tool will show the sales tax percentage for the address. You must enter
+		a valid value in all three address fields.</p>
 
 		<p>&nbsp;</p>
 		<div class="table">

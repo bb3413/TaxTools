@@ -17,22 +17,22 @@
 		<h1 class="title">California Sales Tax Deduction Calculator</h1>
 	 
 		<p>This tool calculate the amount of the sales tax deduction you are allowed. On Schedule A,
-		Itemized Deduction, you have a choice of taking a deduction for the state and local taxes you paid (for
-		example, state income tax withheld from wages) or the sales tax you paid, whichever is greater.</p>
+		Itemized Deduction, you have a choice of taking a deduction for the state and local taxes you
+		paid (for example, state income tax withheld from wages) or an estimate of the total sales tax
+		you paid throughout the year, whichever is greater.</p>
 
-		<p>The amount of the sales tax deduction is based on the following four factors.</p>
+		<p>The following four values are used to calculate the amount of the sales tax deduction.</p>
 		<ul>
 			<li>Where you live</li>
-			<li>Spendable income</li>
+			<li>Amount of spendable income</li>
 			<li>Number of people in your family</li>
 			<li>Sales tax paid on large purchases</li>
 		</ul>
 		
-		<p>The amount of sales tax you pay is different depending upon where you live.
-		Some states do not have any sales tax, while others have as much as 10%. In
-		addition, many counties and cities add an additional amount to the sales tax.
-        This tools can only calculate the sales tax deduction for taxpayers living in
-		California.</p>
+		<p>Where you live determines the sales tax rate that you pay. Some states do not have any
+        sales tax, while others have as much as 10%. In addition, many counties and cities add an
+        additional amount to the sales tax. Note: this tool can only calculate the sales tax
+        deduction for taxpayers living in California.</p>
 		
 		<p>Your spendable income is based on your total income, not just your taxable income.
 		The more spendable income you have, the more you are likely to spend. Therefore, the
@@ -44,8 +44,9 @@
 		large purchase, you can add the sales tax from that purchase into the calculation for
 		the sales tax deduction.</p>
 
-		<p>&nbsp;</p>
 		<div class="table-1">
+        	<p class="span-three">&nbsp;</p>
+            
 			<p>Tax Year</p>
 			<select class="trigger input-field left" id="TaxYear" tooltipid="#TaxYearTT">
 				<option value="2026">2026</option>
@@ -80,52 +81,52 @@
 			<p>1040, line 1z</p>
 			<p>Wages</p>
 			<input class="trigger input-field" type="text" id="Wages"
-				placeholder="0" size="10" tooltipid="#WagesTT" />
+				value="0" size="10" tooltipid="#WagesTT" />
 
 			<p>1040, line 2a</p>
 			<p>Tax-exempt Interest</p>
 			<input class="trigger input-field" type="text" id="TaxExemptInterest"
-				placeholder="0" size="10" tooltipid="#TaxExemptInterestTT" />
+				value="0" size="10" tooltipid="#TaxExemptInterestTT" />
 
 			<p>1040, line 2b</p>
 			<p>Taxable Interest</p>
 			<input class="trigger input-field" type="text" id="TaxableInterest"
-				placeholder="0" size="10" tooltipid="#TaxableInterestTT" />
+				value="0" size="10" tooltipid="#TaxableInterestTT" />
 
 			<p>1040, line 3a</p>
 			<p>Qualified Dividends</p>
 			<input class="trigger input-field" type="text" id="QualifiedDividends"
-				placeholder="0" size="10" tooltipid="#QualifiedDividendsTT" />
+				value="0" size="10" tooltipid="#QualifiedDividendsTT" />
 
 			<p>1040, line 3b</p>
 			<p>Ordinary Dividends</p>
 			<input class="trigger input-field" type="text" id="OrdinaryDividends"
-				placeholder="0" size="10" tooltipid="#OrdinaryDividendsTT" />
+				value="0" size="10" tooltipid="#OrdinaryDividendsTT" />
 
 			<p>1040, line 4a, 5a</p>
 			<p>Retirement Accounts (total amount received: 1099-R, box 1)</p>
 			<input class="trigger input-field" type="text" id="RetirementAccounts"
-				placeholder="0" size="10" tooltipid="#RetirementAccountsTT" />
+				value="0" size="10" tooltipid="#RetirementAccountsTT" />
 
 			<p>1040, line 6a</p>
 			<p>Social Security (total amount received: SSA-1099, box 5)</p>
 			<input class="trigger input-field" type="text" id="SocialSecurity"
-				placeholder="0" size="10" tooltipid="#SocialSecurityTT" />
+				value="0" size="10" tooltipid="#SocialSecurityTT" />
 
 			<p>1040, line 7a</p>
 			<p>Capital Gains</p>
 			<input class="trigger input-field" type="text" id="CapitalGains"
-				placeholder="0" size="10" tooltipid="#CapitalGainsTT" />
+				value="0" size="10" tooltipid="#CapitalGainsTT" />
 
 			<p>1040, line 7</p>
 			<p>Self-employment Income</p>
 			<input class="trigger input-field" type="text" id="SelfEmploymentIncome"
-				placeholder="0" size="10" tooltipid="#SelfEmploymentIncomeTT" />
+				value="0" size="10" tooltipid="#SelfEmploymentIncomeTT" />
 
 			<p>1040, line 8</p>
 			<p>Other Income</p>
 			<input class="trigger input-field" type="text" id="OtherIncome"
-				placeholder="0" size="10" tooltipid="#OtherIncomeTT" />
+				value="0" size="10" tooltipid="#OtherIncomeTT" />
 
 			<p>&nbsp;</p>
 			<p>Total Spendable Income</p>
@@ -139,7 +140,7 @@
 				tooltipid="#SalesTaxDeductionTT">0</p>
 		</div>
 
-        <?php include "CASalesTaxDeduction-Debug.html"; ?>		<!-- Debugging Fields -->
+		<?php include "CASalesTaxDeduction-Debug.html"; ?>		<!-- Debugging Fields -->
 	</div>
 </body>
 </html>
