@@ -69,7 +69,7 @@ function CalculateRMD() {
 		tax_year = getTaxYear();
 		putUserOutput("TaxYear", tax_year, "text");
 	}
-	
+
 	if (taxpayers_birthday !== "") {
 		end_of_year				= new Date("12/31/" + tax_year).toLocaleDateString();
 		taxpayers_age			= Age(taxpayers_birthday, end_of_year);
@@ -91,7 +91,7 @@ function CalculateRMD() {
 				}
 			}
 		}
-		
+
 		rmd = Math.round(ira_total / period);
 	}
 }
@@ -106,7 +106,7 @@ function GetInput() {
 	ira_total				= getUserInput("IRATotal");
 	taxpayers_birthday		= getUserInput("TaxpayersBirthday",	"text");
 	taxpayers_age			= getUserInput("TaxpayersAge");
-	
+
 	rmd						= 0;
 }
 
@@ -114,7 +114,7 @@ function ChangedAge(event) {
 	const age = getUserInput("TaxpayersAge");
 	if (age !== 0)
 		putUserOutput("TaxpayersBirthday", "");
-		
+
 	ChangeHandler(event);
 }
 
@@ -129,7 +129,7 @@ function ChangeHandler(event) {
 
 document.addEventListener("DOMContentLoaded", () => {
 	// Wait for the DOM to be fully loaded before trying to access any elements.
-	
+
 	addListener("TaxYear",				"change", ChangeHandler);
 	addListener("IRATotal",				"change", ChangeHandler);
 	addListener("TaxpayersBirthday",	"change", ChangeHandler);

@@ -2,7 +2,7 @@
 /*
  * This file contains generic functions for working with dates.
  */
- 
+
 function Age(start_date, end_date) {
 	// Determine the number of years between the start date and end date.
 	const startday	= getDateObject(start_date);
@@ -33,7 +33,7 @@ function getLastYear() {
 function getTaxYear() {
 	const today		= new Date();
 	const tax_day	= new Date("04/15/" + getThisYear());
-	
+
 	if (today < tax_day) {
 		return getLastYear();
 	} else {
@@ -52,9 +52,9 @@ function getToday() {
 
 function getDateObject(date) {
 	// If date is a Date object, return it; otherwise, create a date object.
-	
+
 	const d = date instanceof Date ? date : new Date(date);
-	
+
 	return Number.isNaN(d.getTime()) ? null : d;
 
 }
@@ -66,7 +66,7 @@ function isBefore(date1, date2) {
 
 function isValidDate(date) {
 	const d = date instanceof Date ? date : new Date(date);
-	
+
 	return Number.isNaN(d.getTime());
 
 }

@@ -37,7 +37,7 @@ function TurnOffDebug() {
 	dbg_inctax	= 0;
 	dbg_setax	= 0;
 	dbg_sstax	= 0;
-	
+
 	// Tools
 	HideDebugFields("DebugFields");				// Tax tool debug fields
 
@@ -45,16 +45,16 @@ function TurnOffDebug() {
 	HideDebugFields("IncTax-DebugFields");		// Federal income tax worksheet
 	HideDebugFields("SETax-DebugFields");		// Self-employment tax worksheet
 	HideDebugFields("SSTax-DebugFields");		// Taxable Social Secirity worksheet
-	
+
 	dbgExit("TurnOffDebug");
 }
 
 function TurnOnDebug() {
 	dbgEnter("TurnOnDebug");
-	
+
 	// Tools - These are all turned on with the "debug" keyword.
 	if (debug)		ShowDebugFields("DebugFields");			// Tax tool debug fields
-	
+
 	// Libraries - These are all turned on with individual keywords.
 	if (dbg_inctax)	ShowDebugFields("IncTax-DebugFields");	// Federal income tax worksheet
 	if (dbg_setax)	ShowDebugFields("SETax-DebugFields");	// Self-employment tax worksheet
@@ -90,17 +90,17 @@ function getDebugKeywords(input_string) {
 		input_string	= input_string.replace(/\bDebug\b/ig, "");
 		debug			+= 1;
 	}
-	
+
 	if (input_string.match(/\bIncTax\b/i)) {
 		input_string	= input_string.replace(/\bIncTax\b/ig, "");
 		dbg_inctax		+= 1;
 	}
-	
+
 	if (input_string.match(/SSTax/i)) {
 		input_string	= input_string.replace(/\bSSTax\b/ig, "");
 		dbg_sstax		+= 1;
 	}
-	
+
 	if (input_string.match(/SETax/i)) {
 		input_string	= input_string.replace(/\bSETax\b/ig, "");
 		dbg_setax		+= 1;
@@ -123,7 +123,7 @@ function getDebugKeywords(input_string) {
 // This function is used for copying the value of a variable to a HTML debugging entry.
 //
 function putDebugOutput(basename, value, label1 = null, label2 = null) {
-	
+
 	// Do not call alert() if element is missing; debug code is included and may be present when
 	// not executed from a server.
 
@@ -138,7 +138,7 @@ function putDebugOutput(basename, value, label1 = null, label2 = null) {
 			element.textContent = FormatNum(label1);
 		}
 	}
-	
+
 	if (label2) {
 		element = document.getElementById(basename + "-label2");
 		if (element) {

@@ -95,7 +95,7 @@ let credit_for_other_dependents				= 0;
 let earned_income_credit					= 0;
 let premium_tax_credit						= 0;
 let other_refundable_credits				= 0;
-	
+
 // Payments
 let withholding								= 0;
 let estimated_tax_paid						= 0;
@@ -105,10 +105,10 @@ function CheckInputValues() {
 	// Correct input values that have a limit. No error is reported if a correction is made.
 	//
 	const fs = filing_status;
-	
+
 	ltc_taxpayer					= Min(ltc_taxpayer,					getMaxLTC(taxpayers_age));
 	ltc_spouse						= Min(ltc_spouse,					getMaxLTC(spouses_age));
-	
+
 	educator_expenses				= Min(educator_expenses,			getTaxValue("MaxEducatorExpenses",				fs));
 	capital_gains					= Max(capital_gains,				getTaxValue("MaxCapitalLoss",					fs));
 	student_loan_interest			= Min(student_loan_interest,		getTaxValue("MaxStudentLoanInterest",			fs));
@@ -118,7 +118,7 @@ function CheckInputValues() {
 	qualified_overtime_deduction	= Min(qualified_overtime_deduction,	getTaxValue("MaxOvertimeDeduction",				fs));
 	car_loan_interest_deduction		= Min(car_loan_interest_deduction,	getTaxValue("MaxCarLoanInterestDeduction",		fs));
 	senior_deduction				= Min(senior_deduction,				getTaxValue("MaxSeniorDeduction",				fs));
-	
+
 	// Non-refundable Credits
 	american_opp_credit_no_refund	= Min(american_opp_credit_no_refund,getTaxValue("MaxAmericanOppCreditNoRefund",		fs));
 	child_care_credit				= Min(child_care_credit,			getTaxValue("MaxChildAndDependentCareCredit",	fs));
@@ -159,7 +159,7 @@ function CalculateTax() {
 
 	CheckInputValues();
 	medical_mileage_deduction		= getMedicalMileageDeduction(medical_miles);	// Convert miles to dollars
-	
+
 	// Income
 	retirement_accounts				= Max(0, retirement_accounts - qualified_charitable_distribution);
 	total_income_wo_taxable_ss		= wages +
@@ -169,7 +169,7 @@ function CalculateTax() {
 										capital_gains +
 										self_employment_income +
 										other_income;
-	
+
 	non_itemized_deductions			= qualified_business_income_deduction +
 										qualified_tips_deduction +
 										qualified_overtime_deduction +
@@ -185,7 +185,7 @@ function CalculateTax() {
 										ira_contributions +
 										student_loan_interest +
 										other_adjustments;
-										
+
 	taxable_ss						= getTaxableSocialSecurity(
 										filing_status,
 										social_security,
@@ -196,7 +196,7 @@ function CalculateTax() {
 	total_income					= total_income_wo_taxable_ss + taxable_ss;
 
 	adjusted_gross_income			= Max(total_income - adjustments, 0);
-	
+
 	// Deductions
 	total_medical_deductions		= medical_insurance +
 										doctor_visits +
@@ -225,7 +225,7 @@ function CalculateTax() {
 	deductions						= Max(itemized_deductions, std_deduction) + non_itemized_deductions;
 
 	taxable_income					= Max(adjusted_gross_income - deductions, 0);
-	
+
 	// Credits
 	nonrefundable_credits			= american_opp_credit_no_refund +
 										child_care_credit +
@@ -249,13 +249,13 @@ function CalculateTax() {
 	total_other_taxes				= self_employment_tax +
 										early_withdrawal_tax +
 										other_taxes;
-										
+
 	tax_on_taxable_income			= getIncomeTax(
 											filing_status,
 											taxable_income,
 											qualified_dividends,
 											capital_gains);
-	
+
 	total_tax						= Max(tax_on_taxable_income +
 										total_other_taxes -
 										nonrefundable_credits, 0);
@@ -269,19 +269,19 @@ function CalculateTax() {
 	putDebugOutput("Debug03", student_loan_interest,		"Limited Student Loan Interest");
 	putDebugOutput("Debug04", ltc_taxpayer,					"Limited Taxpayer LTC");
 	putDebugOutput("Debug05", ltc_spouse,					"Limited Spouse LTC");
-	
+
 	putDebugOutput("Debug06", foreign_tax_credit,			"Limited Foreign Tax Credit");
 	putDebugOutput("Debug07", qualified_tips_deduction,		"Limited Tips Deduction");
 	putDebugOutput("Debug08", qualified_overtime_deduction,	"Limited Overtime Deduction");
 	putDebugOutput("Debug09", car_loan_interest_deduction,	"Limited Car Loan Interest Deduction");
 	putDebugOutput("Debug10", senior_deduction,				"Limited Senior Deduction");
-	
+
 	putDebugOutput("Debug11", total_income_wo_taxable_ss,	"Total Income w/o SS");
 	putDebugOutput("Debug12", taxable_ss,					"Taxable SS");
 	putDebugOutput("Debug13", agi_7_percent,				"7.5% of AGI");
 	putDebugOutput("Debug14", total_medical_deductions,		"Total Medical Deductions");
 	putDebugOutput("Debug15", medical_mileage_deduction,	"Medical Mileage Deduction");
-	
+
 	putDebugOutput("Debug16", medical_deductions,			"Medical Deductions less 7.5% AGI");
 	putDebugOutput("Debug17", salt_taxes,					"SALT Taxes");
 	putDebugOutput("Debug18", itemized_deductions,			"Itemized Dedbuctions");
@@ -292,7 +292,7 @@ function CalculateTax() {
 function GetInputValues() {
 	// Copy input data from web page to local variables.
 	tax_year							= getUserInput("TaxYear");
-	
+
 	// Taxpayer Information
 	taxpayers_name						= getUserInput("TaxpayersName",		"text");
 	filing_status						= getUserInput("FilingStatus",		"text");
@@ -392,7 +392,7 @@ function GetInputValues() {
 function PutResults() {
 
 	putUserOutput("TodaysDate",				todays_date, "text");
-	
+
 	// Update the estimated tax on the web page.
 	putUserOutput("TaxpayersAge",			taxpayers_age);
 	putUserOutput("SpousesAge",				spouses_age);
@@ -422,14 +422,14 @@ function ChangeHandler(event) {
 
 document.addEventListener("DOMContentLoaded", () => {
 	dbgEnter("ContentLoaded");
-	
+
 	// Wait for the DOM to be fully loaded before trying to access any elements.
 
 	// Listen for changes to the input data.
 	addListener("TaxYear",							"change", ChangeHandler);
 	addListener("SaveButton",						"click",  SaveUserData);
 	addListener("InputFile",						"change", RestoreUserData);
-	
+
 	// Taxpayer information
 	addListener("TaxpayersName",					"change", ChangeHandler);
 	addListener("FilingStatus",						"change", ChangeHandler);

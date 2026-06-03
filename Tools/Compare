@@ -18,20 +18,20 @@ fi
 
 cd "$TAXTOOLS/.."
 DirCmp "TaxToolsNew" "TaxToolsDev"		|
-	grep -v "~"				|
-	grep -v ".docx$"			|
-	grep -v ".swp$"				|
+	grep -v "~"							|
+	grep -v ".docx$"					|
+	grep -v ".swp$"						|
 	grep -v "eslint.comfig.mjs$"		|
-	grep -v ".gitignore$"			|
-	grep -v "package.json$"			|
+	grep -v ".gitignore$"				|
+	grep -v "package.json$"				|
 	grep -v "package-lock.json$"		|
-	grep -v ".git/"				|
-	grep -v "_notes/"			|
-	grep -v "AI-Version/"			|
-	grep -v "EITC/"				|
+	grep -v ".git/"						|
+	grep -v "_notes/"					|
+	grep -v "AI-Version/"				|
+	grep -v "EITC/"						|
 	grep -v "EstimatedTax-Excel/"		|
-	grep -v "nodes_modules/"		|
-	grep -v "Tools/"			|
-	grep -v "Tests/"			|
+	grep -v "nodes_modules/"			|
+	grep -v "Tools/"					|
+	grep -v "Tests/"					|
 	cat -
 exit

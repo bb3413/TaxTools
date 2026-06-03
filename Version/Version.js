@@ -13,7 +13,7 @@
  * number a clickable link so that when it is clicked, the version log is displayed.
  */
 
-const tax_tools_version		= "2025.13.003@";
+const tax_tools_version		= "2025.13.004@";
 
 function Initialize() {
 	// Find the version number by its ID.

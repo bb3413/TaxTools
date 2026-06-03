@@ -13,7 +13,7 @@ p {
 	grid-template-columns:	.95fr 7rem 4rem;
 	margin-left:			2rem;
 }
-			
+
 .table-3x p {
 	/* text-align:			right; */
 	padding-right:			4px;
@@ -22,7 +22,7 @@ p {
 }
 
 .table-3x input {
-	margin-top:				0;	
+	margin-top:				0;
 	margin-bottom:			0;
 }
 
@@ -39,9 +39,9 @@ p {
 	margin-top:				0;
 	margin-bottom:			0;
 }
-			
+
 .table-2x input {
-	margin-top:				0;	
+	margin-top:				0;
 	margin-bottom:			0;
 }
 

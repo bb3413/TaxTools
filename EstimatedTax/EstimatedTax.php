@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-    <?php include "../Library/TaxTools/IncludeFiles.html"; ?>
+	<?php include "../Library/TaxTools/IncludeFiles.html"; ?>
 	<link rel="stylesheet" href="EstimatedTax.css" />
 	<script defer src="SaveRestore.js"></script>
 	<script defer src="EstimatedTax.js"></script>
-		
+
 	<title>Federal Estimated Tax Calculator</title>
 </head>
 
@@ -59,7 +59,7 @@
 			<!-- Save Button -->
 			<input type="button" id="SaveButton" class="trigger button save-button"
 				value="Save" tooltipid="#SaveButtonTT" />
-				
+
 			<!-- Restore Button -->
 			<input type="file" id="InputFile" accept=".txt" style="display: none;" />
 			<label for="InputFile" class="trigger button restore-button" tooltipid="#RestoreButtonTT">Restore</label>
@@ -443,7 +443,7 @@
 			<p>1040, line 19</p>
 			<p>Credit for Other Dependents</p>
 			<input class="trigger input-field" type="text" id="CreditForOtherDependents"
-				value="0" size="10" tooltipid="#CreditForOtherDependentsTT" />		
+				value="0" size="10" tooltipid="#CreditForOtherDependentsTT" />
 
 			<p>1040, line 27</p>
 			<p>Earned Income Credit</p>
@@ -475,12 +475,12 @@
 		</div>
 
 		<!-- Debugging Fields -->
-        <?php include "EstimatedTax-Debug.html"; ?>
-        <?php include "../Library/IncomeTax/IncomeTax-Debug.html"; ?>
-        <?php include "../Library/SocialSecurity/SocialSecurity-Debug.html"; ?>
+		<?php include "EstimatedTax-Debug.html"; ?>
+		<?php include "../Library/IncomeTax/IncomeTax-Debug.html"; ?>
+		<?php include "../Library/SocialSecurity/SocialSecurity-Debug.html"; ?>
 
 		<!-- Tooltips -->
-        <?php include "EstimatedTax-HelpInput.html"; ?>
+		<?php include "EstimatedTax-HelpInput.html"; ?>
 	</div>
 </body>
 </html>

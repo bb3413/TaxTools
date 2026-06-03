@@ -24,7 +24,7 @@ function strEmpty(s) {
 	//		Contains only whitespace
 	//
 	// The "s?" expression stops early and returns undefined.
-	
+
 	return !s?.trim();
 }
 

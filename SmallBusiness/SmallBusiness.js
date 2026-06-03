@@ -13,14 +13,14 @@ function CalculateTax() {
 	let medical_insurance				= 0;
 	let medical_deduction				= 0;
 	const retirement_plan_contributions	= getUserInput("PensionPlan");
-	
+
 	InitializeTaxTables();
 
 	car_and_truck = getUserInput("CarAndTruck");
 	if (car_and_truck === 0) {
 		car_and_truck = getBusinessMileageDeduction(getUserInput("CarAndTruckMiles"));
 	}
-		
+
 	// Expenses
 	total_expenses =
 		getUserInput("Advertising") +
@@ -43,7 +43,7 @@ function CalculateTax() {
 		getUserInput("Utilities") +
 		getUserInput("Wages") +
 		getUserInput("OtherExpenses");
-	
+
 	// Calculate new profit
 	gross_profit	= getUserInput("Sales") - getUserInput("Returns") - getUserInput("Cost");
 	gross_income	= gross_profit + getUserInput("OtherIncome");
@@ -52,7 +52,7 @@ function CalculateTax() {
 	// Calculate self-employemnt tax
 	self_employment_tax				= SE_Tax(net_profit, 0);
 	self_employment_tax_adjustment	= Round(self_employment_tax / 2);
-	
+
 	// Calculate SEHI adjustment
 	maximum_sehi_adjustment			= net_profit - self_employment_tax_adjustment - retirement_plan_contributions;
 	medical_insurance				= getUserInput("MedicalInsurance");
@@ -72,7 +72,7 @@ function CalculateTax() {
 										self_employment_tax_adjustment -
 										retirement_plan_contributions -
 										sehi_adjustment) * 0.20);
-							   
+
 	putUserOutput("NetProfit",						net_profit);
 	putUserOutput("SelfEmploymentTax",				self_employment_tax);
 	putUserOutput("QBI_Deduction",					qbi_deduction);
@@ -81,7 +81,7 @@ function CalculateTax() {
 	putUserOutput("NetProfitAfterSEHI",				net_profit_after_sehi);
 	putUserOutput("SEHI_Adjustment",				sehi_adjustment);
 	putUserOutput("MedicalDeduction",				medical_deduction);
-	
+
 	putUserOutput("GrossIncome",					gross_income);
 	putUserOutput("TotalExpenses",					total_expenses);
 }

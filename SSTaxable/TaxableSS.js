@@ -8,7 +8,7 @@ function CalculategetTaxableSocialSecurity() {
 	const adjustments				= getUserInput("Adjustments");
 	let taxable_ss					= 0;
 	let taxable_percent				= 0;
-	
+
 	InitializeTaxTables(filing_status);
 
 	if (strCaseEqual(filing_status, "MFS")) {
@@ -24,9 +24,9 @@ function CalculategetTaxableSocialSecurity() {
 					tax_exempt_interest,
 					adjustments,
 					lived_with_spouse);
-	
+
 	taxable_percent = (social_security === 0) ? 0 : Round(taxable_ss / social_security * 100);
-	
+
 	putUserOutput("TaxableSocialSecurity",	taxable_ss);
 	putUserOutput("TaxablePercent",			taxable_percent + "%", "text");
 }
@@ -40,7 +40,7 @@ function ChangeIncomeHandler(event) {
 	CapitalGains.value			= 0;
 	SelfEmploymentIncome.value	= 0;
 	OtherIncome.value			= 0;
-	
+
 	ChangeHandler(event);
 }
 
@@ -53,7 +53,7 @@ function ChangeIncomeComponentHandler(event) {
 	const capital_gains			= getUserInput("CapitalGains");
 	const self_employment_income= getUserInput("SelfEmploymentIncome");
 	const other_income			= getUserInput("OtherIncome");
-	
+
 	const total_income				= wages +
 										taxable_interest +
 										ordinary_dividends +
@@ -62,7 +62,7 @@ function ChangeIncomeComponentHandler(event) {
 										capital_gains +
 										self_employment_income +
 										other_income;
-									
+
 	putUserOutput("Income", total_income);
 	ChangeHandler(event);
 }
@@ -77,7 +77,7 @@ function ChangeAdjustmentsHandler(event) {
 	IRAContributions.value				= 0;
 	StudentLoanInterest.value			= 0;
 	OtherAdjustments.value				= 0;
-	
+
 	ChangeHandler(event);
 }
 
@@ -91,7 +91,7 @@ function ChangeAdjustmentComponentHandler(event) {
 	const ira_contributions				= getUserInput("IRAContributions");
 	const student_loan_interest			= getUserInput("StudentLoanInterest");
 	const other_adjustments				= getUserInput("OtherAdjustments");
-	
+
 	const total_adjustments				= educator_expenses +
 											health_savings_account +
 											self_employment_tax_adjustment +
@@ -101,7 +101,7 @@ function ChangeAdjustmentComponentHandler(event) {
 											ira_contributions +
 											// student_loan_interest +
 											other_adjustments;
-											
+
 	putUserOutput("Adjustments", total_adjustmentsw);
 	ChangeHandler(event);
 }
@@ -114,7 +114,7 @@ function ChangeHandler(event) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-	// Wait for the DOM to be fully loaded before trying to access any elements.	
+	// Wait for the DOM to be fully loaded before trying to access any elements.
 
 	addListener("FilingStatus",					"change", ChangeHandler);
 	addListener("LivedWithSpouse",				"change", ChangeHandler);
@@ -132,16 +132,16 @@ document.addEventListener("DOMContentLoaded", () => {
 	addListener("CapitalGains",					"change", ChangeIncomeComponentHandler);
 	addListener("SelfEmploymentIncome",			"change", ChangeIncomeComponentHandler);
 	addListener("OtherIncome",					"change", ChangeIncomeComponentHandler);
-	
+
 	// Adjustments
-	addListener("EducatorExpenses",				"change", ChangeAdjustmentComponentHandler);			
-	addListener("HealthSavingsAccount",			"change", ChangeAdjustmentComponentHandler);			
-	addListener("SelfEmploymentTaxAdjustment",	"change", ChangeAdjustmentComponentHandler);		
-	addListener("SelfEmployedHealthInsurance",	"change", ChangeAdjustmentComponentHandler);			
-	addListener("EarlyWithdrawalPenalty",		"change", ChangeAdjustmentComponentHandler);			
-	addListener("AlimonyPaid",					"change", ChangeAdjustmentComponentHandler);		
-	addListener("IRAContributions",				"change", ChangeAdjustmentComponentHandler);		
-	addListener("StudentLoanInterest",			"change", ChangeAdjustmentComponentHandler);;			
+	addListener("EducatorExpenses",				"change", ChangeAdjustmentComponentHandler);
+	addListener("HealthSavingsAccount",			"change", ChangeAdjustmentComponentHandler);
+	addListener("SelfEmploymentTaxAdjustment",	"change", ChangeAdjustmentComponentHandler);
+	addListener("SelfEmployedHealthInsurance",	"change", ChangeAdjustmentComponentHandler);
+	addListener("EarlyWithdrawalPenalty",		"change", ChangeAdjustmentComponentHandler);
+	addListener("AlimonyPaid",					"change", ChangeAdjustmentComponentHandler);
+	addListener("IRAContributions",				"change", ChangeAdjustmentComponentHandler);
+	addListener("StudentLoanInterest",			"change", ChangeAdjustmentComponentHandler);;
 	addListener("OtherAdjustments",				"change", ChangeAdjustmentComponentHandler);
 
 	ChangeHandler();

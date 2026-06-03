@@ -91,7 +91,7 @@ let ud = {
 
 	// Contributions
 	contributions:						0,
-		
+
 	// Debug Informstion
 	standard_deduction:					0,
 	itemized_deductions:				0,
@@ -113,7 +113,7 @@ function GetItemizedDeductions() {
 	const additions			= ud.salt_limit_excess +
 								ud.home_mortgage_interest_limit +
 								misc_deductions;
-	
+
 	return Max(0, ud.federal_itemized_deductions - subtractions + additions);
 }
 
@@ -123,7 +123,7 @@ function GetMiscellaneousDeductions() {
 			ud.tax_preparation_fee +
 			ud.safe_deposit_box +
 			ud.investment_fee;
-			
+
 	return Max(0, misc_deductions - agi_percent);
 }
 
@@ -134,7 +134,7 @@ function GetSubtractions() {
 	// federal AGI, as you would expect. Then, it adds together the federal adjustments (above the
 	// line deductions, form CA 540, section 1C) that are not allowed by California. These are then
 	// subtracted from the subtractions (rather than adding them as additions to the federal AGI).
-			
+
 	const subtractions =
 		ud.us_treasury_obligations +
 		ud.military_retirement_income +
@@ -144,12 +144,12 @@ function GetSubtractions() {
 		ud.california_lottery_winnings +
 		ud.nonqualified_hsa_distributions +
 		ud.other_subtractions;
-		
-	const adjustments_to_subtractions =	
+
+	const adjustments_to_subtractions =
 		ud.educator_expenses +
 		ud.hsa_contributions +
 		ud.ira_contributions;
-	
+
 	return subtractions - adjustments_to_subtractions;
 }
 
@@ -170,8 +170,8 @@ function GetAdditions() {
 
 	const adjustments_to_additions =
 		ud.alimony_paid;
-		
-	
+
+
 	return additions - adjustments_to_additions;
 }
 
@@ -222,40 +222,40 @@ function CalculateTax() {
 	ud.refundable_credits		= GetRefundableCredits();
 	ud.other_taxes				= GetOtherTaxes();
 	ud.payments					= GetPayments();
-	
+
 	ud.state_agi				= Max(0, ud.federal_agi - ud.subtractions + ud.additions);
 	ud.taxable_income			= Max(0, ud.state_agi - ud.deductions);
 	ud.income_tax				= get_CA_IncomeTax(ud.filing_status, ud.taxable_income);
-	
+
 	ud.total_tax				= Max(0, ud.income_tax - ud.exemptions);
 	ud.total_tax				= Max(0, ud.total_tax - ud.nonrefundable_credits);
 	ud.total_tax				+= ud.other_taxes;
-	
+
 	if (ud.payments > ud.use_tax)
 		ud.payment_balance = ud.payments - ud.use_tax;
 
 	if (ud.use_tax > ud.Payments)
 		ud.use_tax_balance = ud.use_tax - ud.payments;
-		
+
 	if (ud.payment_balance > ud.shared_responsibility_penalty)
 		ud.payments_after_srp = ud.payment_balance - ud.shared_responsibility_penalty;
-		
+
 	if (ud.shared_responsibility_penalty > ud.payment_balance)
 		ud.srp_balance = ud.shared_responsibility_penalty - ud.payment_balance;
-		
+
 	if (ud.payments_after_srp > ud.total_tax)
 		ud.overpaid_tax = ud.payments_after_srp - ud.total_tax
-		
+
 	if (ud.payments_after_srp < ud.total_tax)
 		ud.tax_due = ud.total_tax - ud.payments_after_srp;
-	
+
 	if (ud.overpaid_tax > 0) {
 		ud.refund = ud.overpaid_tax -
 			(ud.contributions + ud.interest_and_penalties + ud.underepayment_of_estimated_tax);
 		ud.refund_amount_due = ud.refund;
 	} else {
 		ud.amount_you_owe = ud.use_tax_balance + ud.srp_balance + ud.tax_due + ud.contributions;
-		ud.refund_amount_due = -ud.amount_you_owe;	
+		ud.refund_amount_due = -ud.amount_you_owe;
 	}
 
 	const estimated_taxes = Max(0, ud.estimated_payments - ud.refund_amount_due);
@@ -268,7 +268,7 @@ function CalculateTax() {
 function GetInputValues() {
 	// Copy input data from web page to local variables.
 	ud.tax_year								= getUserInput("TaxYear");
-	
+
 	// Taxpayer information
 	ud.taxpayers_name						= getUserInput("TaxpayersName",		"text");
 	ud.filing_status						= getUserInput("FilingStatus",		"text");
@@ -331,7 +331,7 @@ function GetInputValues() {
 	ud.other_deductions						= getUserInput("OtherDeductions");
 
 	// Other Taxes, Interest, and Penalties
-	
+
 	ud.shared_responsibility_penalty		= getUserInput("SharedResponsibilityPenalty");
 	ud.interest_and_penalties				= getUserInput("InterestAndPenalties");
 	ud.underepayment_of_estimated_tax		= getUserInput("UnderepaymentOfEstimatedTax");
@@ -356,7 +356,7 @@ function GetInputValues() {
 
 	// Contributions
 	ud.contributions						= getUserInput("Contributions");
-	
+
 	// Debug Informstion
 	ud.standard_deduction					= 0;
 	ud.itemized_deductions					= 0;
@@ -396,7 +396,7 @@ function PutResults() {
 	putUserOutput("JunePayment",			ud.june_payment);
 	putUserOutput("SeptemberPayment",		ud.september_payment);
 	putUserOutput("JanuaryPayment",			ud.january_payment);
-	
+
 	putDebugOutput("Debug01", ud.standard_deduction,	" ",					"Standard Deduction");
 	putDebugOutput("Debug02", ud.itemized_deductions,	"CA 540 p2, line 30",	"Itemized Deductions");
 	putDebugOutput("Debug03", ud.payment_balance,		"540, line 93",			"Payment Balance");
@@ -420,7 +420,7 @@ function ChangeHandler(event) {
 
 document.addEventListener("DOMContentLoaded", () => {
 	// Wait for the DOM to be fully loaded before trying to access any elements.
-	
+
 	addListener("TaxYear",						"change", ChangeHandler);
 	addListener("SaveButton",					"click", SaveUserData);
 	addListener("InputFile",					"change", RestoreUserData);
@@ -504,4 +504,4 @@ document.addEventListener("DOMContentLoaded", () => {
 	putUserOutput("TaxYear", tax_year, "text");
 	ChangeHandler();
 });
-	
+

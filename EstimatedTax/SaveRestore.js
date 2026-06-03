@@ -38,7 +38,7 @@ let ud = {
 	capital_gains:							0,
 	self_employment_income:					0,
 	other_income:							0,
-	
+
 	// Other Taxes
 	self_employment_tax:					0,
 	early_withdrawal_tax:					0,
@@ -79,23 +79,23 @@ let ud = {
 	cash_gifts_to_charity:					0,
 	noncash_gifts_to_charity:				0,
 	qualified_charitable_distribution:		0,
-	
+
 	// Non-redundable Credits
-	american_opp_credit_no_refund:			0,		
-	child_care_credit:						0,		
-	child_tax_credit:						0,		
-	foreign_tax_credit:						0,		
-	lifetime_learning_credit:				0,		
-	residential_energy_credit:				0,		
-	retirement_savings_credit:				0,		
-	other_nonrefundable_credits:			0,		
+	american_opp_credit_no_refund:			0,
+	child_care_credit:						0,
+	child_tax_credit:						0,
+	foreign_tax_credit:						0,
+	lifetime_learning_credit:				0,
+	residential_energy_credit:				0,
+	retirement_savings_credit:				0,
+	other_nonrefundable_credits:			0,
 
 	// Refundable Credits
-	american_opp_credit_refundable:			0,		
-	credit_for_other_dependents:			0,		
-	earned_income_credit:					0,		
-	premium_tax_credit:						0,		
-	other_refundable_credits:				0,		
+	american_opp_credit_refundable:			0,
+	credit_for_other_dependents:			0,
+	earned_income_credit:					0,
+	premium_tax_credit:						0,
+	other_refundable_credits:				0,
 
 	// Payments
 	withholding:							0,
@@ -103,13 +103,13 @@ let ud = {
 };
 
 function SaveVariables() {
-	
+
 	// Save the outpout fields.
 	ud.todays_date							= todays_date;
 	ud.tax_tools_version					= tax_tools_version;
 	ud.taxpayers_age						= taxpayers_age;
 	ud.spouses_age							= spouses_age;
-	
+
 	// Estimated Tax
 	ud.total_income							= total_income;
 	ud.adjustments							= adjustments;
@@ -124,7 +124,7 @@ function SaveVariables() {
 	ud.payments								= payments;
 	ud.amount_due							= amount_due;
 	ud.estimated_tax						= estimated_tax;
-	
+
 	// Save the input fields.
 	ud.tax_year								= tax_year;
 
@@ -145,12 +145,12 @@ function SaveVariables() {
 	ud.capital_gains						= capital_gains;
 	ud.self_employment_income				= self_employment_income;
 	ud.other_income							= other_income;
-	
+
 	// Other Taxes
 	ud.self_employment_tax					= self_employment_tax;
 	ud.early_withdrawal_tax					= early_withdrawal_tax;
 	ud.other_taxes							= other_taxes;
-	
+
 	// Adjustments
 	ud.educator_expenses					= educator_expenses;
 	ud.health_savings_account				= health_savings_account;
@@ -210,7 +210,7 @@ function SaveVariables() {
 }
 
 function SaveInputFields() {
-	
+
 	// Save the outpout fields.
 	ud.todays_date							= getElementValue("TodaysDate");
 	ud.tax_tools_version					= getElementValue("TaxToolsVersion");
@@ -231,8 +231,8 @@ function SaveInputFields() {
 	ud.payments								= getElementValue("Payments");
 	ud.amount_due							= getElementValue("AmountDue");
 	ud.estimated_tax						= getElementValue("EstimatedTax");
-	
-	
+
+
 	// Save the input fields.
 	ud.tax_year								= getElementValue("TaxYear");
 
@@ -254,12 +254,12 @@ function SaveInputFields() {
 	ud.capital_gains						= getElementValue("CapitalGains");
 	ud.self_employment_income				= getElementValue("SelfEmploymentIncome");
 	ud.other_income							= getElementValue("OtherIncome");
-	
+
 	// Other Taxes
 	ud.self_employment_tax					= getElementValue("SelfEmploymentTax");
 	ud.early_withdrawal_tax					= getElementValue("EarlyWithdrawalTax");
 	ud.other_taxes							= getElementValue("OtherTaxes");
-	
+
 	// Adjustments
 	ud.educator_expenses					= getElementValue("EducatorExpenses");
 	ud.health_savings_account				= getElementValue("HealthSavingsAccount");
@@ -312,14 +312,14 @@ function SaveInputFields() {
 	ud.earned_income_credit					= getElementValue("EarnedIncomeCredit");
 	ud.premium_tax_credit					= getElementValue("PremiumTaxCredit");
 	ud.other_refundable_credits				= getElementValue("OtherRefundableCredits");
-	
+
 	// Payments
 	ud.withholding							= getElementValue("Withholding");
 	ud.estimated_tax_paid					= getElementValue("EstimatedTaxPaid");
 }
 
 function RestoreInputFields() {
-	
+
 	// Restore the output fields.
 	// putElementValue("TodaysDate",					ud.todays_date);
 	// putElementValue("TaxToolsVersion",				ud.tax_tools_version);
@@ -340,8 +340,8 @@ function RestoreInputFields() {
 	// putElementValue("Payments",						ud.payments);
 	// putElementValue("AmountDue",						ud.amount_due);
 	// putElementValue("EstimatedTax",					ud.estimated_tax);
-	
-	
+
+
 	// Restore the input fields
 	putElementValue("TaxYear",							ud.tax_year);
 
@@ -362,12 +362,12 @@ function RestoreInputFields() {
 	putElementValue("CapitalGains",						ud.capital_gains);
 	putElementValue("SelfEmploymentIncome",				ud.self_employment_income);
 	putElementValue("OtherIncome",						ud.other_income);
-	
+
 	// Other Taxes
 	putElementValue("SelfEmploymentTax",				ud.self_employment_tax);
 	putElementValue("EarlyWithdrawalTax",				ud.early_withdrawal_tax);
 	putElementValue("OtherTaxes",						ud.other_taxes);
-	
+
 	// Adjustments
 	putElementValue("EducatorExpenses",					ud.educator_expenses);
 	putElementValue("HealthSavingsAccount",				ud.health_savings_account);
@@ -420,7 +420,7 @@ function RestoreInputFields() {
 	putElementValue("EarnedIncomeCredit",				ud.earned_income_credit);
 	putElementValue("PremiumTaxCredit",					ud.premium_tax_credit);
 	putElementValue("OtherRefundableCredits",			ud.other_refundable_credits);
-	
+
 	// Payments
 	putElementValue("Withholding",						ud.withholding);
 	putElementValue("EstimatedTaxPaid",					ud.estimated_tax_paid);

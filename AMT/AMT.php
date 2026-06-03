@@ -5,7 +5,7 @@
 	<?php include "../Library/TaxTools/IncludeFiles.html"; ?>
 	<link rel="stylesheet" href="AMT.css" />
 	<script defer src="AMT.js"></script>
-		
+
 	<title>Alternative Minimum Tax Calculator</title>
 </head>
 
@@ -13,25 +13,25 @@
 	<div class="tool-container">
 		<p class="version-number">Version: <a href="../Version/Version.html">
 			<span id="TaxToolsVersion"></span></a></p>
-			
+
 		<h1 class="title">Alternative Minimum Tax Calculator</h1>
-	 
+
 		<p>The Alternative Minimum Tax (AMT) is a separate tax calculation that is intended to prevent
 		high-income taxpayers from not paying their fair share of taxes through an excess use of deductions
 		and credits. Taxpayers with an AGI greater than the AMT exemption are required to calculate
 		their income tax using both the standard income tax calculation and the AMT calculation and pay
 		the higher amount.</p>
-		
+
 		<p>The AMT is calculated by starting with the adjusted gross income (AGI) from form 1040, line
 		11b, then adding back certain deductions and including additional income. This is the amount of
 		AMT income. Then, an AMT exemption amount is determined based on the AMT income and the AMT
 		income is reduced by that amount. The remaining AMT income is taxed at 26% or 28% depending on
 		the level of income.</p>
-				
+
 		<p>To determine the AMT, enter information from the federal tax return in the green fields. The
 		amount of the AMT, if any, will be in the blue field at the bottom. Click <a href="AMT-Help.html">
 		this link</a> for more help with this tool.</p>
-		
+
 		<div class="table-3">
 			<p>Tax Year</p>
 			<select class="trigger input-field" id="TaxYear" tooltipid="#TaxYearTT">
@@ -39,7 +39,7 @@
 				<option value="2025">2025</option>
 				<option value="2024">2024</option>
 			</select>
-			
+
 			<p>Filing Status</p>
 			<select class="trigger input-field" id="FilingStatus" tooltipid="#FilingStatusTT">
 				<option value="Single">Single</option>
@@ -48,16 +48,16 @@
 				<option value="QSS">QSS</option>
 				<option value="MFS">MFS</option>
 			</select>
-			
+
 			<p>Taxpayer's Birthday</p>
 			<input class="trigger input-field" type="text" autofocus id="TaxpayersBirthday"
 				placeholder="mm/dd/yyyy" tooltipid="#TaxpayersBirthdayTT" />
-			
+
 			<p>Taxpayer Is Blind</p>
 			<input class="trigger checkbox" type="checkbox" id="TaxpayerIsBlind"
 				tooltipid="#TaxpayerIsBlindTT" />
 		</div>
-        <div class="table-3" id="SpouseContainer">
+		<div class="table-3" id="SpouseContainer">
 			<p>Spouse's Birthday</p>
 			<input class="trigger input-field" type="text" id="SpousesBirthday"
 				 placeholder="mm/dd/yyyy" tooltipid="#SpousesBirthdayTT" />
@@ -66,7 +66,7 @@
 			<input class="trigger checkbox" type="checkbox" id="SpouseIsBlind"
 				tooltipid="#SpouseIsBlindTT" />
 		</div>
-		
+
 		<h2>Tax Information</h2>
 		<div class="table-1">
 			<p>1040, line 11b</p>
@@ -105,13 +105,13 @@
 			<p>Taxes Paid Deduction</p>
 			<input class="trigger input-field" type="text" id="TaxesPaidDeduction"
 				value="0" tooltipid="#TaxesPaidDeductionTT" />
-			
+
 			<p>1040, line 13a</p>
 			<p>QBI Deduction</p>
 			<input class="trigger input-field" type="text" id="QBIDeduction"
 				value="0" tooltipid="#QBIDeductionTT" />
 		</div>
-        
+
 		<h3>Additions to AMT Income</h3>
 		<div  class="table-2">
 			<p>Tax Refunds (subtraction)</p>
@@ -206,9 +206,9 @@
 			<p>Alternative Minimum Tax (AMT)</p>
 			<p class="trigger output-field" id="AMT" tooltipid="#AMTTT">0</p>
 		</div>
-		
-        <?php include "AMT-Debug.html"; ?>				<!-- Debugging Fields -->
-        <?php include "AMT-HelpInput.html"; ?>			<!-- Tooltips -->
+
+		<?php include "AMT-Debug.html"; ?>				<!-- Debugging Fields -->
+		<?php include "AMT-HelpInput.html"; ?>			<!-- Tooltips -->
 	</div>
 </body>
 </html>

@@ -15,17 +15,17 @@
 			<span id="TaxToolsVersion"></span></a></p>
 
 		<h1 class="title">Small Business Tax Calculator</h1>
-		
+
 		<p>This tool calculates the taxes for a small business. The blue fields are computed
 		from the information you provide. The green fields are where you enter information.
 		The first column shows where the information can be found on the tax return. Click
 		<a href="SmallBusiness-Help.html">this link</a> for more help with this tool.</p>
-		
+
 		<h3 class="tight">Tax Formula for Small Business</h3>
 		<p class="tight">The net profit for a small business is calculated on Schedule C as shown in the
 		formula below. This, in turn, shows the infomation that is needed to calculate the taxes for the
 		small business.</p>
-		  
+
 		<div class="tax-formula-container">
 			<p>&nbsp;</p>
 			<p>&nbsp;</p>
@@ -53,7 +53,7 @@
 				<p class="loction-field">1040, line 13a</p>
 				<p class="label-field">Qualified Business Income Deduction</p>
 				<p class="trigger output-field" id="QBI_Deduction" tooltipid="#QBI_DeductionTT">0</p>
-			
+
 				<p class="loction-field">1040 S1, line 15</p>
 				<p class="label-field">Self-employment Tax Adjustment</p>
 				<p class="trigger output-field" id="SelfEmploymentTaxAdjustment"
@@ -66,7 +66,7 @@
 				<p class="loction-field">Not Used</p>
 				<p class="label-field">Net profit after SEHI</p>
 				<p class="trigger output-field" id="NetProfitAfterSEHI" tooltipid="#NetProfitAfterSEHI_TT">0</p>
-			
+
 				<p class="loction-field">1040 S1, line 17</p>
 				<p class="label-field">Self-employed Health Insurance Adjustment</p>
 				<p class="trigger output-field" id="SEHI_Adjustment" tooltipid="#SEHI_AdjustmentTT">0</p>
@@ -76,7 +76,7 @@
 				<p class="trigger output-field" id="MedicalDeduction" tooltipid="#MedicalDeductionTT">0</p>
 			</div>
 		</div>
- 
+
 		<h3>Income Fields</h3>
 		<div class="table-3x">
 			<p class="loction-field">Sched C, line 1</p>
@@ -99,7 +99,7 @@
 			<input class="trigger input-field" type="text" id="OtherIncome"
 				value="0" tooltipid="#OtherIncomeTT" size="10" />
 			<p class="loction-field">Sched C, line 30</p>
-			
+
 			<p class="label-field">Business Use of Home Expenses</p>
 			<input class="trigger input-field" type="text" id="HomeOfficeExpense"
 			   	value="0" tooltipid="#HomeOfficeExpenseTT" size="10" />
@@ -108,8 +108,8 @@
 			<p class="label-field">Gross Income</p>
 			<p class="trigger output-field" id="GrossIncome" tooltipid="#GrossIncomeTT">0</p>
 		</div>
-		
-		<h3>Expense Fields</h3>	   
+
+		<h3>Expense Fields</h3>
 		<div class="table-3x">
 			<p class="loction-field">Sched C, line 8</p>
 			<p class="label-field">Advertising</p>
@@ -170,7 +170,7 @@
 			<p class="label-field">Medical Insurance</p>
 			<input class="trigger input-field" type="text" id="MedicalInsurance" size="10"
 			   	value="0" tooltipid="#MedicalInsuranceTT" />
-				
+
 			<p class="loction-field">Sched C, line 18</p>
 			<p class="label-field">Office Expenses</p>
 			<input class="trigger input-field" type="text" id="OfficeExpenses" size="10"

@@ -15,7 +15,7 @@
 			<span id="TaxToolsVersion"></span></a></p>
 
 		<h1 class="title">Taxable Social Security Calculator</h1>
-		
+
 		<p>This tool calculates the amount of Social Security that is taxable.
 		Click <a href="TaxableSS-Help.html">this link</a> for more help with this tool.</p>
 
@@ -41,33 +41,33 @@
 			<input class="trigger input-field" type="text" autofocus id="SocialSecurity"
 				value="0" tooltipid="#SocialSecurityTT" size="10" />
 			<p>&nbsp;</p>
-			
+
 			<p>Income</p>
 			<input class="trigger input-field" type="text" id="Income"
 				value="0" tooltipid="#IncomeTT" size="10" />
 			<p>&nbsp;</p>
-						
+
 			<p>Tax-Exempt Interest</p>
 			<input class="trigger input-field" type="text" id="TaxExemptInterest"
 				value="0" tooltipid="#TaxExemptInterestTT" size="10" />
 			<p>&nbsp;</p>
-			
+
 			<p>Adjustments</p>
 			<input class="trigger input-field" type="text" id="Adjustments"
 				value="0" tooltipid="#AdjustmentsTT" size="10" />
 			<p>&nbsp;</p>
-			
+
 			<p>&nbsp;</p>
 			<p>&nbsp;</p>
 			<p>&nbsp;</p>
-			
+
 			<p>Taxable Social Security</p>
 			<p class="trigger output-field" id="TaxableSocialSecurity"
 				tooltipid="#TaxableSocialSecurityTT">0</p>
 			<p class="trigger output-field percent-field" id="TaxablePercent"
 				tooltipid="#TaxablePercentTT">0%</p>
 		</div>
-		 
+
 		<h3>Income Fields</h3>
 		<p>Rather than entering taxable income in the Income field above, you can enter individual
 		income values here. The sum of the fields entered here will replace the Income field above.</p>
@@ -76,7 +76,7 @@
 			<p class="description-field">Wages</p>
 			<input class="trigger input-field" type="text" id="Wages"
 				value="0" tooltipid="#WagesTT" size="10" />
- 
+
 			<p class="description-field">Taxable Interest</p>
 			<input class="trigger input-field" type="text" id="TaxableInterest"
 				value="0" tooltipid="#TaxableInterestTT" size="10" />
@@ -96,21 +96,21 @@
 			<p class="description-field">Capital Gains</p>
 			<input class="trigger input-field" type="text" id="CapitalGains"
 				value="0" tooltipid="#CapitalGainsTT" size="10" />
-			
+
 			<p class="description-field">Self-employment Income</p>
 			<input class="trigger input-field" type="text" id="SelfEmploymentIncome"
 			   	value="0" tooltipid="#SelfEmploymentIncomeTT" size="10" />
-					
+
 			<p class="description-field">Other Income</p>
 			<input class="trigger input-field" type="text" id="OtherIncome"
 			   	value="0" tooltipid="#OtherIncomeTT" size="10" />
 		</div>
-		
+
 		<h3>Adjustments Fields</h3>
 		<p>Rather than entering total adjustments in the Adjustments field above, you can enter
 		individual adjustment values here. The sum of the fields entered here will replace the
 		Adjustments field above.</p>
-		
+
 		<div class="table-2x">
 			<p class="description-field">Educator Expenses</p>
 			<input class="trigger input-field" type="text" id="EducatorExpenses"
@@ -149,7 +149,7 @@
 			   	value="0" tooltipid="#OtherAdjustmentsTT" size="10" />
 		</div>
 
-        <?php include "TaxableSS-Debug.html"; ?> 									<!-- Debugging Fields -->
+		<?php include "TaxableSS-Debug.html"; ?> 									<!-- Debugging Fields -->
 		<?php include "../Library/SocialSecurity/SocialSecurity-Debug.html"; ?> 	<!-- Debugging Fields -->
 		<?php include "TaxableSS-HelpInput.html"; ?> 								<!-- Tooltips -->
 

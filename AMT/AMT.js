@@ -140,7 +140,7 @@ function calculateAMT_Income() {
 	line_2s	= installment_sales;				// Subtraction
 	line_2t	= intangible_drilling_costs;
 	line_3	= other_income;
-	
+
 	line_4	=	line_1b
 				+ line_2a
 				- line_2b
@@ -167,7 +167,7 @@ function calculateAMT_Income() {
 
 function AMT_TaxWithCapGains() {
 	// This funtion performs the calculations in form 6251, part III.
-	
+
 	line_12	= line_6;			// line 6 = AMT income - AMT exemption
 	line_13	= capital_gains + qualified_dividends;
 	line_14	= 0;				// Leave blank for now.
@@ -211,9 +211,9 @@ function CalculateAMT() {
 	} else {
 		hideElement("SpouseContainer");
 	}
-	
+
 	InitializeTaxTables(filing_status, tax_year);
-	
+
 	let end_of_year				= new Date("12/31/" + tax_year);
 	let taxpayers_age			= Age(taxpayers_birthday, end_of_year);
 	let spouses_age				= Age(spouses_birthday, end_of_year);
@@ -271,7 +271,7 @@ function GetInput() {
 	itemized_deduction				= getUserInput("ItemizedDeduction");
 	taxes_paid_deduction			= getUserInput("TaxesPaidDeduction");
 	qbi_deduction					= getUserInput("QBIDeduction");
-	
+
 	state_tax_refund				= getUserInput("StateTaxRefund");
 	investment_interest				= getUserInput("InvestmentInterestExpense");
 	depletion						= getUserInput("Depletion");
@@ -292,7 +292,7 @@ function GetInput() {
 	installment_sales				= getUserInput("InstallmentSales");
 	intangible_drilling_costs		= getUserInput("IntangibleDrillingCosts");
 	other_income					= getUserInput("OtherIncome");
-	
+
 	amt_income						= 0;
 	amt_exemption					= 0;
 	amt								= 0;
@@ -318,7 +318,7 @@ function GetInput() {
 	line_2j							= 0;
 	line_2k							= 0;
 	line_2l							= 0;
-	line_2m							= 0;	
+	line_2m							= 0;
 	line_2n							= 0;
 	line_2o							= 0;
 	line_2p							= 0;
@@ -371,11 +371,11 @@ function GetInput() {
 }
 
 function PutOutput() {
-	
+
 	putUserOutput("AMTIncome",		line_4);
 	putUserOutput("AMTExemption",	line_5);
 	putUserOutput("AMT",			line_11);
-	
+
 	// Debug fields
 	putDebugOutput("Debug01", standard_deduction,		"Standard Deduction");
 	putDebugOutput("Debug02", senior_deduction,			"Senior Deduction");
@@ -499,6 +499,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	addListener("InstallmentSales",				"change", ChangeHandler);
 	addListener("IntangibleDrillingCosts",		"change", ChangeHandler);
 	addListener("OtherIncome",					"change", ChangeHandler);
-	
+
 	ChangeHandler();
 });
