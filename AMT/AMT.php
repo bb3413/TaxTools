@@ -32,6 +32,7 @@
 		amount of the AMT, if any, will be in the blue field at the bottom. Click <a href="AMT-Help.html">
 		this link</a> for more help with this tool.</p>
 
+		<h2>Taxpayer Information</h2>
 		<div class="table-3">
 			<p>Tax Year</p>
 			<select class="trigger input-field" id="TaxYear" tooltipid="#TaxYearTT">
@@ -112,8 +113,8 @@
 				value="0" tooltipid="#QBIDeductionTT" />
 		</div>
 
-		<h3>Additions to AMT Income</h3>
-		<div  class="table-2">
+		<h2>Additions to AMT Income</h2>
+		<div class="table-2">
 			<p>Tax Refunds (subtraction)</p>
 			<input class="trigger input-field" type="text" id="StateTaxRefund"
 				value="0" tooltipid="#StateTaxRefundTT" />
@@ -193,10 +194,10 @@
 			<p>Other Income</p>
 			<input class="trigger input-field" type="text" id="OtherIncome"
 				value="0" tooltipid="#OtherIncomeTT" />
+		</div>
 
-			<p class="span-two">&nbsp;</p>
-			<p class="span-two">&nbsp;</p>
-
+		<h2>Alternative Mimimum Tax</h2>
+		<div class="table-2">
 			<p>AMT Income</p>
 			<p class="trigger output-field" id="AMTIncome" tooltipid="#AMTIncomeTT">0</p>
 
