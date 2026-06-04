@@ -205,7 +205,8 @@ function GetPayments() {
 function CalculateTax() {
 	InitializeTaxTables(ud.filing_status, ud.tax_year);
 
-	const end_of_year				= new Date("12/31/" + ud.tax_year);
+	todays_date					= new Date().toLocaleDateString();
+	const end_of_year			= new Date("12/31/" + ud.tax_year);
 	ud.taxpayers_age			= Age(ud.taxpayers_birthday, end_of_year);
 	if (strCaseEqual(ud.filing_status, "MFJ")) {
 		ud.spouses_age			= Age(ud.spouses_birthday, end_of_year);
@@ -373,8 +374,8 @@ function GetInputValues() {
 }
 
 function PutResults() {
-	// Update the estimated tax on the web page.
-
+	
+	putUserOutput("TodaysDate",				todays_date, "text");
 	putUserOutput("TaxpayersAge",			ud.taxpayers_age);
 	putUserOutput("SpousesAge",				ud.spouses_age);
 

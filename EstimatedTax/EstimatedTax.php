@@ -32,29 +32,6 @@
 		in the tax return. Click <a href="EstimatedTax-Help.html	">this link</a> for more help
 		with this tool.</p>
 
-		<h3>Tax Formula</h3>
-		<p>The tax formula below describes, at a high level, how the tax is calculated. The value of
-		each item in the tax formula is shown in the Estimated Tax Calculation. You can see a brief
-		description of any of the items by moving the mouse over the calculated value in the
-		Estimated Tax Calculation.</p>
-
-		<div class="tax-formula-container">
-			<p>Total Income</p>
-			<p>= Income from all sources - Non-taxable Income</p>
-			<p>Adjusted Gross Income</p>
-			<p>= Total Income - Adjustments</p>
-			<p>Taxable Income</p>
-			<p>= Adjusted Gross Income - Deductions</p>
-			<p>Total Tax</p>
-			<p>= Tax on Taxable Income + Other Taxes - Non-refundable Credits</p>
-			<p>Refund / Amount Due</p>
-			<p>= Payments + Refundable Credits - Total Tax</p>
-			<p>Estimated Quarterly Tax Payments</p>
-			<p>= (Estimated Payments - Amount Due) / 4</p>
-			<p>&nbsp;</p>
-			<p>&nbsp;</p>
-		</div>
-
 		<div class="save-restore">
 			<!-- Save Button -->
 			<input type="button" id="SaveButton" class="trigger button save-button"
@@ -100,6 +77,27 @@
 
 				<p class="label-field right">Spouse's Age</p>
 				<p class="trigger output-field" id="SpousesAge" tooltipid="#SpousesAgeTT">0</p>
+			</div>
+
+			<h3>Tax Formula</h3>
+			<p>The tax formula below describes, at a high level, how the tax is calculated. The value of
+			each item in the tax formula is shown in the Estimated Tax Calculation. You can see a brief
+			description of any of the items by moving the mouse over the calculated value in the
+			Estimated Tax Calculation.</p>
+
+			<div class="tax-formula-container">
+				<p>Total Income</p>
+				<p>= Income from all sources - Non-taxable Income</p>
+				<p>Adjusted Gross Income</p>
+				<p>= Total Income - Adjustments</p>
+				<p>Taxable Income</p>
+				<p>= Adjusted Gross Income - Deductions</p>
+				<p>Total Tax</p>
+				<p>= Tax on Taxable Income + Other Taxes - Non-refundable Credits</p>
+				<p>Refund / Amount Due</p>
+				<p>= Payments + Refundable Credits - Total Tax</p>
+				<p>Estimated Quarterly Tax Payments</p>
+				<p>= (Estimated Payments - Amount Due) / 4</p>
 			</div>
 
 			<h3>Estimated Tax Calculation</h3>

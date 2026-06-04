@@ -31,22 +31,6 @@
 		in the tax return. Click <a href="EstimatedTax_CA-Help.html">this link</a> for more help
 		with this tool.</p>
 
-		<h3>Tax Formula</h3>
-		<p>The tax formula below describes, at a high level, how the tax is calculated. The value of
-		each item in the tax formula is shown in the Estimated Tax Calculation. You can see a brief
-		description of any of the items by moving the mouse over the calculated value in the
-		Estimated Tax Calculation.</p>
-
-		<div class="tax-formula-container">
-			<p>540, line 17, State AGI</p>				<p>= Federal AGI - Subtractions + Additions</p>
-			<p>540, line 19, Taxable Income</p>			<p>= State AGI - Deductions</p>
-			<p>540, line 31, Income Tax</p>				<p>= Tax on Taxable Income</p>
-			<p>540, line 35, Total Tax</p>				<p>= Income Tax - Exemptions - Non-refundable Credits + Other Taxes</p>
-			<p>540, line 111, Refund / Amount Due</p>	<p>= Payments + Refundable Credits - Total Tax</p>
-			<p>&nbsp;</p>
-			<p>&nbsp;</p>
-		</div>
-
 		<div class="save-restore">
 			<!-- Save Button -->
 			<input type="button" id="SaveButton" class="trigger button save-button"
@@ -54,7 +38,8 @@
 
 			<!-- Restore Button -->
 			<input type="file" id="InputFile" accept=".txt" style="display: none;" />
-			<label for="InputFile" class="trigger button restore-button" tooltipid="#RestoreButtonTT">Restore</label>
+			<label for="InputFile" class="trigger button restore-button"
+				tooltipid="#RestoreButtonTT">Restore</label>
 		</div>
 
 		<div class="taxpayer-info-box">
@@ -92,9 +77,25 @@
 
 				<p class="label-field right">Spouse's Age</p>
 				<p class="trigger output-field" id="SpousesAge" tooltipid="#SpousesAgeTT">0</p>
+			</div>
 
-				<p>&nbsp;</p>
-				<p>&nbsp;</p>
+			<h3>Tax Formula</h3>
+			<p>The tax formula below describes, at a high level, how the tax is calculated. The value of
+			each item in the tax formula is shown in the Estimated Tax Calculation. You can see a brief
+			description of any of the items by moving the mouse over the calculated value in the
+			Estimated Tax Calculation.</p>
+
+			<div class="tax-formula-container">
+				<p>540, line 17, State AGI</p>
+				<p>= Federal AGI - Subtractions + Additions</p>
+				<p>540, line 19, Taxable Income</p>
+				<p>= State AGI - Deductions</p>
+				<p>540, line 31, Income Tax</p>
+				<p>= Tax on Taxable Income</p>
+				<p>540, line 35, Total Tax</p>
+				<p>= Income Tax - Exemptions - Non-refundable Credits + Other Taxes</p>
+				<p>540, line 111, Refund / Amount Due</p>
+				<p>= Payments + Refundable Credits - Total Tax</p>
 			</div>
 
 			<h3>Estimated Tax Calculation</h3>
