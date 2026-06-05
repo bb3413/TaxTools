@@ -24,12 +24,11 @@
 		would owe given the data you provide. Unlike a program for doing your taxes, which
 		performs many more calculations, this tool just computes the amount of the tax
 		given the values you enter. This allows you to experiment with different values to
-		see the effect on your taxes. In addition, this makes it very easy to enter information
-		and get an immediate answer.</p>
+		see the effect on your taxes.</p>
 
 		<p>The blue fields are computed from the information you provide. The green fields are
 		where you enter information. The first column shows where the information can be found
-		in the tax return. Click <a href="EstimatedTax-Help.html	">this link</a> for more help
+		in the tax return. Click <a href="EstimatedTax-Help.html">this link</a> for more help
 		with this tool.</p>
 
 		<div class="save-restore">
