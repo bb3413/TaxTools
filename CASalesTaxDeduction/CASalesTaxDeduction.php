@@ -16,12 +16,13 @@
 
 		<h1 class="title">California Sales Tax Deduction Calculator</h1>
 
-		<p>This tool calculate the amount of the sales tax deduction you are allowed. On Schedule A,
+		<p>This tool calculates the amount of the sales tax deduction you are allowed. On Schedule A,
 		Itemized Deduction, you have a choice of taking a deduction for the state and local taxes you
 		paid (for example, state income tax withheld from wages) or an estimate of the total sales tax
 		you paid throughout the year, whichever is greater.</p>
 
-		<p>The following four values are used to calculate the amount of the sales tax deduction.</p>
+		<p>The amount of the sales tax deduction you are allowed is estimated based on the following
+		four values.</p>
 		<ul>
 			<li>Where you live</li>
 			<li>Amount of spendable income</li>
@@ -81,52 +82,52 @@
 			<p>1040, line 1z</p>
 			<p>Wages</p>
 			<input class="trigger input-field" type="text" id="Wages"
-				value="0" size="10" tooltipid="#WagesTT" />
+				placeholder="0" size="10" tooltipid="#WagesTT" />
 
 			<p>1040, line 2a</p>
 			<p>Tax-exempt Interest</p>
 			<input class="trigger input-field" type="text" id="TaxExemptInterest"
-				value="0" size="10" tooltipid="#TaxExemptInterestTT" />
+				placeholder="0" size="10" tooltipid="#TaxExemptInterestTT" />
 
 			<p>1040, line 2b</p>
 			<p>Taxable Interest</p>
 			<input class="trigger input-field" type="text" id="TaxableInterest"
-				value="0" size="10" tooltipid="#TaxableInterestTT" />
+				placeholder="0" size="10" tooltipid="#TaxableInterestTT" />
 
 			<p>1040, line 3a</p>
 			<p>Qualified Dividends</p>
 			<input class="trigger input-field" type="text" id="QualifiedDividends"
-				value="0" size="10" tooltipid="#QualifiedDividendsTT" />
+				placeholder="0" size="10" tooltipid="#QualifiedDividendsTT" />
 
 			<p>1040, line 3b</p>
 			<p>Ordinary Dividends</p>
 			<input class="trigger input-field" type="text" id="OrdinaryDividends"
-				value="0" size="10" tooltipid="#OrdinaryDividendsTT" />
+				placeholder="0" size="10" tooltipid="#OrdinaryDividendsTT" />
 
 			<p>1040, line 4a, 5a</p>
 			<p>Retirement Accounts (total amount received: 1099-R, box 1)</p>
 			<input class="trigger input-field" type="text" id="RetirementAccounts"
-				value="0" size="10" tooltipid="#RetirementAccountsTT" />
+				placeholder="0" size="10" tooltipid="#RetirementAccountsTT" />
 
 			<p>1040, line 6a</p>
 			<p>Social Security (total amount received: SSA-1099, box 5)</p>
 			<input class="trigger input-field" type="text" id="SocialSecurity"
-				value="0" size="10" tooltipid="#SocialSecurityTT" />
+				placeholder="0" size="10" tooltipid="#SocialSecurityTT" />
 
 			<p>1040, line 7a</p>
 			<p>Capital Gains</p>
 			<input class="trigger input-field" type="text" id="CapitalGains"
-				value="0" size="10" tooltipid="#CapitalGainsTT" />
+				placeholder="0" size="10" tooltipid="#CapitalGainsTT" />
 
 			<p>1040, line 7</p>
 			<p>Self-employment Income</p>
 			<input class="trigger input-field" type="text" id="SelfEmploymentIncome"
-				value="0" size="10" tooltipid="#SelfEmploymentIncomeTT" />
+				placeholder="0" size="10" tooltipid="#SelfEmploymentIncomeTT" />
 
 			<p>1040, line 8</p>
 			<p>Other Income</p>
 			<input class="trigger input-field" type="text" id="OtherIncome"
-				value="0" size="10" tooltipid="#OtherIncomeTT" />
+				placeholder="0" size="10" tooltipid="#OtherIncomeTT" />
 
 			<p>&nbsp;</p>
 			<p>Total Spendable Income</p>

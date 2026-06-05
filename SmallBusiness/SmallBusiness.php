@@ -21,29 +21,37 @@
 		The first column shows where the information can be found on the tax return. Click
 		<a href="SmallBusiness-Help.html">this link</a> for more help with this tool.</p>
 
-		<h3 class="tight">Tax Formula for Small Business</h3>
-		<p class="tight">The net profit for a small business is calculated on Schedule C as shown in the
-		formula below. This, in turn, shows the infomation that is needed to calculate the taxes for the
-		small business.</p>
-
-		<div class="tax-formula-container">
-			<p>&nbsp;</p>
-			<p>&nbsp;</p>
-			<p>Gross Profit</p>
-			<p>= Sales or Reciepts - Returns and Allowances - Cost of Goods Sold</p>
-			<p>Gross Income</p>
-			<p>= Gross Profit + Other Income</p>
-			<p>Net Profit</p>
-			<p>= Gross Income - Total Expenses - Business Use of Home Expenses</p>
-			<p>&nbsp;</p>
-			<p>&nbsp;</p>
-		</div>
-
 		<div class="tax-calculation-box">
+			<h3 class="tight">Tax Formula for Small Business</h3>
+			<p class="tight">The net profit for a small business is calculated on Schedule C as shown in the
+			formula below. This, in turn, shows the infomation that is needed to calculate the taxes for the
+			small business.</p>
+		
+			<div class="tax-formula-container">
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>Gross Profit</p>
+				<p>= Sales or Reciepts - Returns and Allowances - Cost of Goods Sold</p>
+				<p>Gross Income</p>
+				<p>= Gross Profit + Other Income</p>
+				<p>Net Profit</p>
+				<p>= Gross Income - Total Expenses - Business Use of Home Expenses</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+			</div>
+		
 			<h3>Tax Calculation</h3>
 			<div class="table-3x">
+				<p class="loction-field">Sched C, line 5</p>
+			   	<p class="label-field">Gross Profit</p>
+				<p class="trigger output-field" id="GrossProfit" tooltipid="#GrossProfitTT">0</p>
+
+				<p class="loction-field">Sched C, line 7</p>
+			   	<p class="label-field">Gross Income</p>
+				<p class="trigger output-field" id="GrossIncome" tooltipid="#GrossIncomeTT">0</p>
+
 				<p class="loction-field">1040 S1, line 3</p>
-			   	<p class="label-field">Net Profit from Business</p>
+			   	<p class="label-field">Net Profit</p>
 				<p class="trigger output-field" id="NetProfit" tooltipid="#NetProfitTT">0</p>
 
 				<p class="loction-field">1040 S2, line 4</p>
@@ -82,144 +90,140 @@
 			<p class="loction-field">Sched C, line 1</p>
 			<p class="label-field">Sales or Reciepts</p>
 			<input class="trigger input-field" type="text" id="Sales"
-				value="0" tooltipid="#SalesTT" size="10" />
+				placeholder="0" tooltipid="#SalesTT" size="10" />
 
 			<p class="loction-field">Sched C, line 2</p>
 			<p class="label-field">Returns and Allowances</p>
 			<input class="trigger input-field" type="text" id="Returns"
-				value="0" tooltipid="#ReturnsTT" size="10" />
+				placeholder="0" tooltipid="#ReturnsTT" size="10" />
 
 			<p class="loction-field">Sched C, line 4</p>
 			<p class="label-field">Cost of Goods Sold</p>
 			<input class="trigger input-field" type="text" id="Cost"
-				value="0" tooltipid="#CostTT" size="10" />
+				placeholder="0" tooltipid="#CostTT" size="10" />
 
 			<p class="loction-field">Sched C, line 6</p>
 			<p class="label-field">Other Income</p>
 			<input class="trigger input-field" type="text" id="OtherIncome"
-				value="0" tooltipid="#OtherIncomeTT" size="10" />
+				placeholder="0" tooltipid="#OtherIncomeTT" size="10" />
 			<p class="loction-field">Sched C, line 30</p>
 
 			<p class="label-field">Business Use of Home Expenses</p>
 			<input class="trigger input-field" type="text" id="HomeOfficeExpense"
-			   	value="0" tooltipid="#HomeOfficeExpenseTT" size="10" />
-
-			<p class="loction-field">Sched C, line 7</p>
-			<p class="label-field">Gross Income</p>
-			<p class="trigger output-field" id="GrossIncome" tooltipid="#GrossIncomeTT">0</p>
+			   	placeholder="0" tooltipid="#HomeOfficeExpenseTT" size="10" />
 		</div>
 
 		<h3>Expense Fields</h3>
 		<div class="table-3x">
+			<p class="loction-field"></p>
+			<p class="label-field">Medical Insurance</p>
+			<input class="trigger input-field" type="text" id="MedicalInsurance" size="10"
+			   	placeholder="0" tooltipid="#MedicalInsuranceTT" />
+
 			<p class="loction-field">Sched C, line 8</p>
 			<p class="label-field">Advertising</p>
 			<input class="trigger input-field" type="text" id="Advertising" size="10"
-			   	value="0" tooltipid="#AdvertisingTT" />
+			   	placeholder="0" tooltipid="#AdvertisingTT" />
 
 			<p class="loction-field">Sched C, line 9</p>
 			<p class="label-field">Car and Truck</p>
 			<input class="trigger input-field" type="text" id="CarAndTruck" size="10"
-			   	value="0" tooltipid="#CarAndTruckTT" />
+			   	placeholder="0" tooltipid="#CarAndTruckTT" />
 
 			<p class="loction-field">Sched C, line 9</p>
 			<p class="label-field">Car and Truck Miles</p>
 			<input class="trigger input-field" type="text" id="CarAndTruckMiles" size="10"
-			   	value="0" tooltipid="#CarAndTruckMilesTT" />
+			   	placeholder="0" tooltipid="#CarAndTruckMilesTT" />
 
 			<p class="loction-field">Sched C, line 10</p>
 			<p class="label-field">Commissions and Fees</p>
 			<input class="trigger input-field" type="text" id="CommissionsAndFees" size="10"
-			   	value="0" tooltipid="#CommissionsAndFeesTT" />
+			   	placeholder="0" tooltipid="#CommissionsAndFeesTT" />
 
 			<p class="loction-field">Sched C, line 11</p>
 			<p class="label-field">Contract Labor</p>
 			<input class="trigger input-field" type="text" id="ContractLabor" size="10"
-			   	value="0" tooltipid="#ContractLaborTT" />
+			   	placeholder="0" tooltipid="#ContractLaborTT" />
 
 			<p class="loction-field">Sched C, line 12</p>
 			<p class="label-field">Depletion</p>
 			<input class="trigger input-field" type="text" id="Depletion" size="10"
-			   	value="0" tooltipid="#DepletionTT" />
+			   	placeholder="0" tooltipid="#DepletionTT" />
 
 			<p class="loction-field">Sched C, line 13</p>
 			<p class="label-field">Depreciation</p>
 			<input class="trigger input-field" type="text" id="Depreciation" size="10"
-			   	value="0" tooltipid="#DepreciationTT" />
+			   	placeholder="0" tooltipid="#DepreciationTT" />
 
 			<p class="loction-field">Sched C, line 14</p>
 			<p class="label-field">Employee Benefit Programs</p>
 			<input class="trigger input-field" type="text" id="EmployeeBenefitPrograms" size="10"
-			   	value="0" tooltipid="#EmployeeBenefitProgramsTT" />
+			   	placeholder="0" tooltipid="#EmployeeBenefitProgramsTT" />
 
 			<p class="loction-field">Sched C, line 15</p>
 			<p class="label-field">Insurance</p>
 			<input class="trigger input-field" type="text" id="Insurance" size="10"
-			   	value="0" tooltipid="#InsuranceTT" />
+			   	placeholder="0" tooltipid="#InsuranceTT" />
 
 			<p class="loction-field">Sched C, line 16</p>
 			<p class="label-field">Interest</p>
 			<input class="trigger input-field" type="text" id="Interest" size="10"
-			   	value="0" tooltipid="#InterestTT" />
+			   	placeholder="0" tooltipid="#InterestTT" />
 
 			<p class="loction-field">Sched C, line 17</p>
 			<p class="label-field">Legal and Professional Services</p>
 			<input class="trigger input-field" type="text" id="ProfessionalServices" size="10"
-			   	value="0" tooltipid="#ProfessionalServicesTT" />
-
-			<p class="loction-field"></p>
-			<p class="label-field">Medical Insurance</p>
-			<input class="trigger input-field" type="text" id="MedicalInsurance" size="10"
-			   	value="0" tooltipid="#MedicalInsuranceTT" />
+			   	placeholder="0" tooltipid="#ProfessionalServicesTT" />
 
 			<p class="loction-field">Sched C, line 18</p>
 			<p class="label-field">Office Expenses</p>
 			<input class="trigger input-field" type="text" id="OfficeExpenses" size="10"
-			   	value="0" tooltipid="#OfficeExpensesTT" />
+			   	placeholder="0" tooltipid="#OfficeExpensesTT" />
 
 			<p class="loction-field">Sched C, line 19</p>
 			<p class="label-field">Pension and Profit Sharing Plans</p>
 			<input class="trigger input-field" type="text" id="PensionPlan" size="10"
-			   	value="0" tooltipid="#PensionPlanTT" />
+			   	placeholder="0" tooltipid="#PensionPlanTT" />
 
 			<p class="loction-field">Sched C, line 20</p>
 			<p class="label-field">Rent or Lease</p>
 			<input class="trigger input-field" type="text" id="Rent" size="10"
-			   	value="0" tooltipid="#RentTT" />
+			   	placeholder="0" tooltipid="#RentTT" />
 
 			<p class="loction-field">Sched C, line 21</p>
 			<p class="label-field">Repairs and Maintenance</p>
 			<input class="trigger input-field" type="text" id="Repairs" size="10"
-			   	value="0" tooltipid="#RepairsTT" />
+			   	placeholder="0" tooltipid="#RepairsTT" />
 
 			<p class="loction-field">Sched C, line 22</p>
 			<p class="label-field">Supplies</p>
 			<input class="trigger input-field" type="text" id="Supplies" size="10"
-			   	value="0" tooltipid="#SuppliesTT" />
+			   	placeholder="0" tooltipid="#SuppliesTT" />
 
 			<p class="loction-field">Sched C, line 23</p>
 			<p class="label-field">Taxes and Licenses</p>
 			<input class="trigger input-field" type="text" id="TaxesAndLicenses" size="10"
-			   	value="0" tooltipid="#TaxesAndLicensesTT" />
+			   	placeholder="0" tooltipid="#TaxesAndLicensesTT" />
 
 			<p class="loction-field">Sched C, line 24</p>
 			<p class="label-field">Travel and Meals</p>
 			<input class="trigger input-field" type="text" id="Travel" size="10"
-			   	value="0" tooltipid="#TravelTT" />
+			   	placeholder="0" tooltipid="#TravelTT" />
 
 			<p class="loction-field">Sched C, line 25</p>
 			<p class="label-field">Utilities</p>
 			<input class="trigger input-field" type="text" id="Utilities" size="10"
-			   	value="0" tooltipid="#UtilitiesTT" />
+			   	placeholder="0" tooltipid="#UtilitiesTT" />
 
 			<p class="loction-field">Sched C, line 26</p>
 			<p class="label-field">Wages</p>
 			<input class="trigger input-field" type="text" id="Wages" size="10"
-			   	value="0" tooltipid="#WagesTT" />
+			   	placeholder="0" tooltipid="#WagesTT" />
 
 			<p class="loction-field">Sched C, line 27</p>
 			<p class="label-field">Other Expenses</p>
 			<input class="trigger input-field" type="text" id="OtherExpenses" size="10"
-			   	value="0" tooltipid="#OtherExpensesTT" />
+			   	placeholder="0" tooltipid="#OtherExpensesTT" />
 
 			<p class="loction-field">Sched C, line 28</p>
 			<p class="label-field">Total Expenses</p>
@@ -227,7 +231,8 @@
 		</div>
 
 		<?php include "SmallBusiness-Debug.html"; ?> 									<!-- Debugging Fields -->
-		<?php include "../Library/SelfEmploymentTax/SelfEmploymentTax-Debug.html"; ?> 	<!-- Debugging Fields -->
+		<?php include "../Library/SelfEmployment/SEHIDeduction-Debug.html"; ?> 		<!-- Debugging Fields -->
+		<?php include "../Library/SelfEmployment/SelfEmploymentTax-Debug.html"; ?> 	<!-- Debugging Fields -->
 		<?php include "SmallBusiness-HelpInput.html"; ?>								<!-- Tooltips -->
 
 	</div>

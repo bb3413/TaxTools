@@ -60,7 +60,7 @@
 			<p>&nbsp;</p>
 			<p>State Tax Refund</p>
 			<input class="trigger input-field" type="text" id="StateTaxRefund"
-				value="0" tooltipid="#StateTaxRefundTT" />
+				placeholder="0" tooltipid="#StateTaxRefundTT" />
 		</div>
 
 		<h2>Schedule A Information from Previous Year</h2>
@@ -68,22 +68,22 @@
 		<div class="table-1">
 			<p>State Income Tax</p>
 			<input class="trigger input-field" type="text" id="StateIncomeTax"
-				value="0" tooltipid="#StateIncomeTaxTT" />
+				placeholder="0" tooltipid="#StateIncomeTaxTT" />
 			<p>Sales Tax</p>
 			<input class="trigger input-field" type="text" id="SalesTax"
-				value="0" tooltipid="#SalesTaxTT" />
+				placeholder="0" tooltipid="#SalesTaxTT" />
 			<p>Sales Was Tax Used</p>
 			<input class="trigger checkbox" type="checkbox" id="SalesTaxUsed"
 				tooltipid="#SalesTaxUsedTT" />
 			<p>Real Estate Taxes</p>
 			<input class="trigger input-field" type="text" id="RealEstateTaxes"
-				value="0" tooltipid="#RealEstateTaxesTT" />
+				placeholder="0" tooltipid="#RealEstateTaxesTT" />
 			<p>Personal Property Taxes</p>
 			<input class="trigger input-field" type="text" id="PersonalPropertyTaxes"
-				value="0" tooltipid="#PersonalPropertyTaxesTT" />
+				placeholder="0" tooltipid="#PersonalPropertyTaxesTT" />
 			<p>Total Itemized Deductions</p>
 			<input class="trigger input-field" type="text" id="ItemizedDeductions"
-				value="0" tooltipid="#ItemizedDeductionsTT" />
+				placeholder="0" tooltipid="#ItemizedDeductionsTT" />
 		</div>
 
 		<h2>Taxable Amount of the Refund</h2>

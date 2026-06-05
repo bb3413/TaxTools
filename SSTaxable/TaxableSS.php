@@ -39,22 +39,22 @@
 		<div class="table-3x">
 		   	<p>Social Security</p>
 			<input class="trigger input-field" type="text" autofocus id="SocialSecurity"
-				value="0" tooltipid="#SocialSecurityTT" size="10" />
+				placeholder="0" tooltipid="#SocialSecurityTT" size="10" />
 			<p>&nbsp;</p>
 
 			<p>Income</p>
 			<input class="trigger input-field" type="text" id="Income"
-				value="0" tooltipid="#IncomeTT" size="10" />
+				placeholder="0" tooltipid="#IncomeTT" size="10" />
 			<p>&nbsp;</p>
 
 			<p>Tax-Exempt Interest</p>
 			<input class="trigger input-field" type="text" id="TaxExemptInterest"
-				value="0" tooltipid="#TaxExemptInterestTT" size="10" />
+				placeholder="0" tooltipid="#TaxExemptInterestTT" size="10" />
 			<p>&nbsp;</p>
 
 			<p>Adjustments</p>
 			<input class="trigger input-field" type="text" id="Adjustments"
-				value="0" tooltipid="#AdjustmentsTT" size="10" />
+				placeholder="0" tooltipid="#AdjustmentsTT" size="10" />
 			<p>&nbsp;</p>
 
 			<p>&nbsp;</p>
@@ -75,35 +75,35 @@
 		<div class="table-2x">
 			<p class="description-field">Wages</p>
 			<input class="trigger input-field" type="text" id="Wages"
-				value="0" tooltipid="#WagesTT" size="10" />
+				placeholder="0" tooltipid="#WagesTT" size="10" />
 
 			<p class="description-field">Taxable Interest</p>
 			<input class="trigger input-field" type="text" id="TaxableInterest"
-				value="0" tooltipid="#TaxableInterestTT" size="10" />
+				placeholder="0" tooltipid="#TaxableInterestTT" size="10" />
 
 			<p class="description-field">Ordinary Dividends</p>
 			<input class="trigger input-field" type="text" id="OrdinaryDividends"
-				value="0" tooltipid="#OrdinaryDividendsTT" size="10" />
+				placeholder="0" tooltipid="#OrdinaryDividendsTT" size="10" />
 
 			<p class="description-field">Retirement Accounts (taxable amount only)</p>
 			<input class="trigger input-field" type="text" id="RetirementAccounts"
-				value="0" tooltipid="#RetirementAccountsTT" size="10" />
+				placeholder="0" tooltipid="#RetirementAccountsTT" size="10" />
 
 			<p class="description-field">Pensions, Annuities (taxable amount only)</p>
 			<input class="trigger input-field" type="text" id="PensionsAndAnnuities"
-				value="0" tooltipid="#PensionsAndAnnuitiesTT" size="10" />
+				placeholder="0" tooltipid="#PensionsAndAnnuitiesTT" size="10" />
 
 			<p class="description-field">Capital Gains</p>
 			<input class="trigger input-field" type="text" id="CapitalGains"
-				value="0" tooltipid="#CapitalGainsTT" size="10" />
+				placeholder="0" tooltipid="#CapitalGainsTT" size="10" />
 
 			<p class="description-field">Self-employment Income</p>
 			<input class="trigger input-field" type="text" id="SelfEmploymentIncome"
-			   	value="0" tooltipid="#SelfEmploymentIncomeTT" size="10" />
+			   	placeholder="0" tooltipid="#SelfEmploymentIncomeTT" size="10" />
 
 			<p class="description-field">Other Income</p>
 			<input class="trigger input-field" type="text" id="OtherIncome"
-			   	value="0" tooltipid="#OtherIncomeTT" size="10" />
+			   	placeholder="0" tooltipid="#OtherIncomeTT" size="10" />
 		</div>
 
 		<h3>Adjustments Fields</h3>
@@ -114,39 +114,39 @@
 		<div class="table-2x">
 			<p class="description-field">Educator Expenses</p>
 			<input class="trigger input-field" type="text" id="EducatorExpenses"
-			   	value="0" tooltipid="#EducatorExpensesTT" size="10" />
+			   	placeholder="0" tooltipid="#EducatorExpensesTT" size="10" />
 
 			<p class="description-field">Health Savings Account Contributions</p>
 			<input class="trigger input-field" type="text" id="HealthSavingsAccount"
-			   	value="0" tooltipid="#HealthSavingsAccountTT" size="10" />
+			   	placeholder="0" tooltipid="#HealthSavingsAccountTT" size="10" />
 
 			<p class="description-field">Self-Employment Tax Adjustment</p>
 			<input class="trigger input-field" type="text" id="SelfEmploymentTaxAdjustment"
-			   	value="0" tooltipid="#SelfEmploymentTaxAdjustmentTT" size="10" />
+			   	placeholder="0" tooltipid="#SelfEmploymentTaxAdjustmentTT" size="10" />
 
 			<p class="description-field">Self-Employed Health Insurance</p>
 			<input class="trigger input-field" type="text" id="SelfEmployedHealthInsurance"
-			   	value="0" tooltipid="#SelfEmployedHealthInsuranceTT" size="10" />
+			   	placeholder="0" tooltipid="#SelfEmployedHealthInsuranceTT" size="10" />
 
 			<p class="description-field">Early Withdrawal Penalty</p>
 			<input class="trigger input-field" type="text" id="EarlyWithdrawalPenalty"
-			   	value="0" tooltipid="#EarlyWithdrawalPenaltyTT" size="10" />
+			   	placeholder="0" tooltipid="#EarlyWithdrawalPenaltyTT" size="10" />
 
 			<p class="description-field">Alimony Paid</p>
 			<input class="trigger input-field" type="text" id="AlimonyPaid"
-			   	value="0" tooltipid="#AlimonyPaidTT" size="10" />
+			   	placeholder="0" tooltipid="#AlimonyPaidTT" size="10" />
 
 			<p class="description-field">IRA Contributions</p>
 			<input class="trigger input-field" type="text" id="IRAContributions"
-			   	value="0" tooltipid="#IRAContributionsTT" size="10" />
+			   	placeholder="0" tooltipid="#IRAContributionsTT" size="10" />
 
 			<p class="description-field">Student Loan Interest</p>
 			<input class="trigger input-field" type="text" id="StudentLoanInterest"
-			   	value="0" tooltipid="#StudentLoanInterestTT" size="10" />
+			   	placeholder="0" tooltipid="#StudentLoanInterestTT" size="10" />
 
 			<p class="description-field">Other Adjustments</p>
 			<input class="trigger input-field" type="text" id="OtherAdjustments"
-			   	value="0" tooltipid="#OtherAdjustmentsTT" size="10" />
+			   	placeholder="0" tooltipid="#OtherAdjustmentsTT" size="10" />
 		</div>
 
 		<?php include "TaxableSS-Debug.html"; ?> 									<!-- Debugging Fields -->

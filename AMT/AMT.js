@@ -115,16 +115,16 @@ function calculateAMT_Income() {
 	// This funtion performs the calculations in form 6251, part I.
 
 	line_1a	= total_deductions - senior_deduction;
-	line_1b	= Max(0, agi - line_1a);
+	line_1b	= agi - line_1a;
 	if (itemized)
 		line_2a = taxes_paid_deduction;
 	else
 		line_2a = standard_deduction;
-	line_2b	= state_tax_refund;					// Subtraction
+	line_2b	= (-state_tax_refund);				// Subtract
 	line_2c	= investment_interest;
 	line_2d	= depletion;
 	line_2e	= net_operating_loss;
-	line_2f	= alternate_net_operating_loss;		// Subtraction
+	line_2f	= (-alternate_net_operating_loss);	// Subtract
 	line_2g	= private_activity_bonds_interest;
 	line_2h	= qualified_small_business_stock;
 	line_2i	= incentive_stock_options;
@@ -137,17 +137,17 @@ function calculateAMT_Income() {
 	line_2p	= long_term_contracts;
 	line_2q	= mining_costs;
 	line_2r	= reseach_costs;
-	line_2s	= installment_sales;				// Subtraction
+	line_2s	= (-installment_sales);				// Subtract
 	line_2t	= intangible_drilling_costs;
 	line_3	= other_income;
 
 	line_4	=	line_1b
 				+ line_2a
-				- line_2b
+				+ line_2b
 				+ line_2c
 				+ line_2d
 				+ line_2e
-				- line_2f
+				+ line_2f
 				+ line_2g
 				+ line_2h
 				+ line_2i
@@ -160,7 +160,7 @@ function calculateAMT_Income() {
 				+ line_2p
 				+ line_2q
 				+ line_2r
-				- line_2s
+				+ line_2s
 				+ line_2t
 				+ line_3;
 }

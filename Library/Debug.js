@@ -5,6 +5,7 @@
 // isn"t spcified anywhere else.
 let debug			= 0;
 let dbg_inctax		= 0;
+let dbg_sehi		= 0;
 let dbg_setax		= 0;
 let dbg_sstax		= 0;
 
@@ -35,6 +36,7 @@ function TurnOffDebug() {
 
 	debug		= 0;
 	dbg_inctax	= 0;
+	dbg_sehi	= 0;
 	dbg_setax	= 0;
 	dbg_sstax	= 0;
 
@@ -43,6 +45,7 @@ function TurnOffDebug() {
 
 	// Libraries
 	HideDebugFields("IncTax-DebugFields");		// Federal income tax worksheet
+	HideDebugFields("SEHI-DebugFields");		// Self-employment health insurance worksheet
 	HideDebugFields("SETax-DebugFields");		// Self-employment tax worksheet
 	HideDebugFields("SSTax-DebugFields");		// Taxable Social Secirity worksheet
 
@@ -57,6 +60,7 @@ function TurnOnDebug() {
 
 	// Libraries - These are all turned on with individual keywords.
 	if (dbg_inctax)	ShowDebugFields("IncTax-DebugFields");	// Federal income tax worksheet
+	if (dbg_sehi)	ShowDebugFields("SEHI-DebugFields");	// Self-employment health insurance worksheet
 	if (dbg_setax)	ShowDebugFields("SETax-DebugFields");	// Self-employment tax worksheet
 	if (dbg_sstax)	ShowDebugFields("SSTax-DebugFields");	// Taxable Social Secirity worksheet
 
@@ -71,6 +75,7 @@ function TurnOnDebug() {
 //
 //		Debug		Show debug information for the tool
 //		IncTax		Federal income tax worksheet
+//		SEHI		Self-employment tax worksheet
 //		SETax		Self-employment tax worksheet
 //		SSTax		Taxable Social Secirity worksheet
 //		Trace		Trace function calls on console long.
@@ -99,6 +104,11 @@ function getDebugKeywords(input_string) {
 	if (input_string.match(/SSTax/i)) {
 		input_string	= input_string.replace(/\bSSTax\b/ig, "");
 		dbg_sstax		+= 1;
+	}
+
+	if (input_string.match(/SEHI/i)) {
+		input_string	= input_string.replace(/\bSEHI\b/ig, "");
+		dbg_sehi		+= 1;
 	}
 
 	if (input_string.match(/SETax/i)) {
@@ -178,4 +188,3 @@ function dbgLog(message) {
 	const spaces = " ".repeat(indentation * 2);
 	console.log(spaces + message);
 }
-

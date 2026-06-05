@@ -33,6 +33,7 @@
 		<div class="version-block">
 			<p>Development Version 2025.13</p>
 			<ul>
+				<li>6/05/2026 - 005 - More cleanup. Fix AMT and Small Business calculation.</li>
 				<li>6/01/2026 - 004 - Clean up whitespace. Fix today's date in California Estimated Tax
 				Calculator.</li>
 				<li>6/01/2026 - 003 - Cosmetic changes. Change access to sales tax proxy.</li>
@@ -229,12 +230,14 @@
 
 			<h3>Small Business Tax Calculator</h3>
 			<ul>
+				<li>The QBI calculation does not agree with TaxSlayer???</li>
 				<li>Long Term Care insurance is not separated out from medical insurance. If medical
 				insurance includes premiums for long term care insurance, the amount entered needs to
 				be limited by age.</li>
 				<li>This tool does not handle church employees or farm income.</li>
 				<li>The calculation will not be correct if the amount of business income plus wages is
 				greater than the maximum amount subject to Social Security taxes.</li>
+				<li>The QBI deduction phases out at $201,775, which is not accounted for in the tool.</li>
 			</ul>
 
 			<h3>Social Security - Taxable Benefits Calculator</h3>

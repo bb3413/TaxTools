@@ -23,14 +23,13 @@
 		the higher amount.</p>
 
 		<p>The AMT is calculated by starting with the adjusted gross income (AGI) from form 1040, line
-		11b, then adding back certain deductions and including additional income. This is the amount of
-		AMT income. Then, an AMT exemption amount is determined based on the AMT income and the AMT
-		income is reduced by that amount. The remaining AMT income is taxed at 26% or 28% depending on
-		the level of income.</p>
+		11b, then adding back certain deductions and adding some additional income. This amount is the AMT
+		Income. Then, an AMT Exemption amount is determined based on the AMT Income. The AMT Income
+		minus the AMT Exemption is taxed at 26% or 28%, which is the amount of the AMT.</p>
 
-		<p>To determine the AMT, enter information from the federal tax return in the green fields. The
-		amount of the AMT, if any, will be in the blue field at the bottom. Click <a href="AMT-Help.html">
-		this link</a> for more help with this tool.</p>
+		<p>To calculate the AMT using this tool, enter information from the federal tax return in the green
+		fields. The amount of the AMT, if any, will be in the blue field at the bottom. Click
+		<a href="AMT-Help.html"> this link</a> for more help with this tool.</p>
 
 		<h2>Taxpayer Information</h2>
 		<div class="table-3">
@@ -73,127 +72,127 @@
 			<p>1040, line 11b</p>
 			<p>Adjusted Gross Income (AGI)</p>
 			<input class="trigger input-field" type="text" id="AGI"
-				value="0" tooltipid="#AGITT" />
+				placeholder="0" tooltipid="#AGITT" />
 
 			<p>1040, line 3a</p>
 			<p>Qualified Dividends</p>
 			<input class="trigger input-field" type="text" id="QualifiedDividends"
-				value="0" tooltipid="#QualifiedDividendsTT" />
+				placeholder="0" tooltipid="#QualifiedDividendsTT" />
 
 			<p>1040, line 7a</p>
 			<p>Capital Gains</p>
 			<input class="trigger input-field" type="text" id="CapitalGains"
-				value="0" tooltipid="#CapitalGainsTT" />
+				placeholder="0" tooltipid="#CapitalGainsTT" />
 
 			<p>1040, line 15</p>
 			<p>Taxable Income</p>
 			<input class="trigger input-field" type="text" id="TaxableIncome"
-				value="0" tooltipid="#TaxableIncomeTT" />
+				placeholder="0" tooltipid="#TaxableIncomeTT" />
 
 			<p>1040, line 16</p>
 			<p>Income Tax</p>
 			<input class="trigger input-field" type="text" id="IncomeTax"
-				value="0" tooltipid="#IncomeTaxTT" />
+				placeholder="0" tooltipid="#IncomeTaxTT" />
 
 			<p class="span-three">&nbsp;</p>
 
 			<p>1040 SA, line 17</p>
 			<p>Itemized Deduction</p>
 			<input class="trigger input-field" type="text" id="ItemizedDeduction"
-				value="0" tooltipid="#ItemizedDeductionTT" />
+				placeholder="0" tooltipid="#ItemizedDeductionTT" />
 
 			<p>1040 SA, line 7</p>
 			<p>Taxes Paid Deduction</p>
 			<input class="trigger input-field" type="text" id="TaxesPaidDeduction"
-				value="0" tooltipid="#TaxesPaidDeductionTT" />
+				placeholder="0" tooltipid="#TaxesPaidDeductionTT" />
 
 			<p>1040, line 13a</p>
 			<p>QBI Deduction</p>
 			<input class="trigger input-field" type="text" id="QBIDeduction"
-				value="0" tooltipid="#QBIDeductionTT" />
+				placeholder="0" tooltipid="#QBIDeductionTT" />
 		</div>
 
 		<h2>Additions to AMT Income</h2>
 		<div class="table-2">
 			<p>Tax Refunds (subtraction)</p>
 			<input class="trigger input-field" type="text" id="StateTaxRefund"
-				value="0" tooltipid="#StateTaxRefundTT" />
+				placeholder="0" tooltipid="#StateTaxRefundTT" />
 
 			<p>Investment Interest Expense</p>
 			<input class="trigger input-field" type="text" id="InvestmentInterestExpense"
-				value="0" tooltipid="#InvestmentInterestExpenseTT" />
+				placeholder="0" tooltipid="#InvestmentInterestExpenseTT" />
 
 			<p>Depletion</p>
 			<input class="trigger input-field" type="text" id="Depletion"
-				value="0" tooltipid="#DepletionTT" />
+				placeholder="0" tooltipid="#DepletionTT" />
 
 			<p>Net Operating Loss</p>
 			<input class="trigger input-field" type="text" id="NetOperatingLoss"
-				value="0" tooltipid="#NetOperatingLossTT" />
+				placeholder="0" tooltipid="#NetOperatingLossTT" />
 
 			<p>Alternate Net Operating Loss (subtraction)</p>
 			<input class="trigger input-field" type="text" id="AlternateNetOperatingLoss"
-				value="0" tooltipid="#AlternateNetOperatingLossTT" />
+				placeholder="0" tooltipid="#AlternateNetOperatingLossTT" />
 
 			<p>Private Activity Bonds Interest</p>
 			<input class="trigger input-field" type="text" id="PrivateActivityBondsInterest"
-				value="0" tooltipid="#PrivateActivityBondsInterestTT" />
+				placeholder="0" tooltipid="#PrivateActivityBondsInterestTT" />
 
 			<p>Qualified Small Business Stock</p>
 			<input class="trigger input-field" type="text" id="QualifiedSmallBusinessStock"
-				value="0" tooltipid="#QualifiedSmallBusinessStockTT" />
+				placeholder="0" tooltipid="#QualifiedSmallBusinessStockTT" />
 
 			<p>Incentive Stock Options</p>
 			<input class="trigger input-field" type="text" id="IncentiveStockOptions"
-				value="0" tooltipid="#IncentiveStockOptionsTT" />
+				placeholder="0" tooltipid="#IncentiveStockOptionsTT" />
 
 			<p>Estates and Trusts</p>
 			<input class="trigger input-field" type="text" id="EstatesAndTrusts"
-				value="0" tooltipid="#EstatesAndTrustsTT" />
+				placeholder="0" tooltipid="#EstatesAndTrustsTT" />
 
 			<p>Disposition of Property</p>
 			<input class="trigger input-field" type="text" id="DispositionOfProperty"
-				value="0" tooltipid="#DispositionOfPropertyTT" />
+				placeholder="0" tooltipid="#DispositionOfPropertyTT" />
 
 			<p>Post 1986 Depreciation</p>
 			<input class="trigger input-field" type="text" id="Post1986Depreciation"
-				value="0" tooltipid="#Post1986DepreciationTT" />
+				placeholder="0" tooltipid="#Post1986DepreciationTT" />
 
 			<p>Passive Activities</p>
 			<input class="trigger input-field" type="text" id="PassiveActivities"
-				value="0" tooltipid="#PassiveActivitiesTT" />
+				placeholder="0" tooltipid="#PassiveActivitiesTT" />
 
 			<p>Loss Limitations</p>
 			<input class="trigger input-field" type="text" id="LossLimitations"
-				value="0" tooltipid="#LossLimitationsTT" />
+				placeholder="0" tooltipid="#LossLimitationsTT" />
 
 			<p>Circulation Costs</p>
 			<input class="trigger input-field" type="text" id="CirculationCosts"
-				value="0" tooltipid="#CirculationCostsTT" />
+				placeholder="0" tooltipid="#CirculationCostsTT" />
 
 			<p>Long-term Contracts</p>
 			<input class="trigger input-field" type="text" id="LongTermContracts"
-				value="0" tooltipid="#LongTermContractsTT" />
+				placeholder="0" tooltipid="#LongTermContractsTT" />
 
 			<p>Mining Costs</p>
 			<input class="trigger input-field" type="text" id="MiningCosts"
-				value="0" tooltipid="#MiningCostsTT" />
+				placeholder="0" tooltipid="#MiningCostsTT" />
 
 			<p>Reseach Costs</p>
 			<input class="trigger input-field" type="text" id="ReseachCosts"
-				value="0" tooltipid="#ReseachCostsTT" />
+				placeholder="0" tooltipid="#ReseachCostsTT" />
 
 			<p>Installment Sales (subtraction)</p>
 			<input class="trigger input-field" type="text" id="InstallmentSales"
-				value="0" tooltipid="#InstallmentSalesTT" />
+				placeholder="0" tooltipid="#InstallmentSalesTT" />
 
 			<p>Intangible Drilling Costs</p>
 			<input class="trigger input-field" type="text" id="IntangibleDrillingCosts"
-				value="0" tooltipid="#IntangibleDrillingCostsTT" />
+				placeholder="0" tooltipid="#IntangibleDrillingCostsTT" />
 
 			<p>Other Income</p>
 			<input class="trigger input-field" type="text" id="OtherIncome"
-				value="0" tooltipid="#OtherIncomeTT" />
+				placeholder="0" tooltipid="#OtherIncomeTT" />
 		</div>
 
 		<h2>Alternative Mimimum Tax</h2>

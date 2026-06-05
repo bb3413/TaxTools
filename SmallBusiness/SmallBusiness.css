@@ -42,7 +42,7 @@ h1, h2, h3 {
 .tax-formula-container {
 	display:				grid;
 	grid-template-columns:	8rem 1fr;
-	margin-left:			1rem;
+	/* margin-left:			1rem; */
 }
 
 .tax-formula-container p {

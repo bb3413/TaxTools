@@ -27,8 +27,8 @@
 			<p>Tax Year</p>
 			<input class="input-field" type="text" id="TaxYear" value="0000" />
 
-			<p class="label-field left">Filing Status</p>
-			<select class="trigger input-field right" id="FilingStatus" tooltipid="#FilingStatusTT">
+			<p class="label-field">Filing Status</p>
+			<select class="trigger input-field" id="FilingStatus" tooltipid="#FilingStatusTT">
 				<option value="Single">Single</option>
 				<option value="HoH">HoH</option>
 				<option value="MFJ">MFJ</option>
@@ -37,13 +37,13 @@
 			</select>
 
 		   	<p>Adjusted Gross Income (AGI)</p>
-			<input class="input-field" type="text" autofocus id="AdjustedGrossIncome" value="0" />
+			<input class="input-field" type="text" autofocus id="AdjustedGrossIncome" placeholder="0" />
 
 			<p>Taxpayer's Birthday</p>
 			<input class="input-field" type="text" id="TaxpayersBirthday" placeholder="mm/dd/yyyy" />
 
 			<p>Taxpayer's Age</p>
-			<input class="input-field" type="text" id="TaxpayersAge" value="0" />
+			<input class="input-field" type="text" id="TaxpayersAge" placeholder="0" />
 		</div>
 
 		<div  class="table" id="SpouseContainer">
@@ -51,7 +51,7 @@
 			<input class="input-field" type="text" id="SpousesBirthday" placeholder="mm/dd/yyyy" />
 
 		   	<p>Spouse's Age</p>
-		   	<input class="input-field" type="text" id="SpousesAge" value="0" />
+		   	<input class="input-field" type="text" id="SpousesAge" placeholder="0" />
 		</div>
 
 		<div class="table">

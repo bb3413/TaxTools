@@ -39,13 +39,13 @@
 			<input class="input-field" type="text" id="TaxYear" value="0000" />
 
 		   	<p>Retirement Account Balance</p>
-			<input class="input-field" type="text" autofocus id="IRATotal" value="0" />
+			<input class="input-field" type="text" autofocus id="IRATotal" placeholder="0" />
 
 			<p>Taxpayer's Birthday</p>
 			<input class="input-field" type="text" id="TaxpayersBirthday" placeholder="mm/dd/yyyy" />
 
 			<p>Taxpayer's Age</p>
-			<input class="input-field" type="text" id="TaxpayersAge" value="0" />
+			<input class="input-field" type="text" id="TaxpayersAge" placeholder="0" />
 
 			<p>&nbsp;</p>
 			<p>&nbsp;</p>
