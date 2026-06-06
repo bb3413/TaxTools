@@ -21,8 +21,6 @@ let explanation					= "";
 
 // Debugging fields
 let standard_deduction			= 0;
-let salt_with_income_tax		= 0;
-let salt_with_sales_tax			= 0;
 let line_5d						= 0;
 let line_5e						= 0;
 let line_1						= 0;
@@ -81,16 +79,6 @@ function CalculateTaxableAmount() {
 		taxable_amount		= 0;
 		explanation			= "Sales tax is greater that state income tax; sales tax could have " +
 								"used instead of state income tax for the same or better result.";
-		return;
-	}
-
-	salt_with_income_tax	= Min(state_income_tax + real_estate_taxes + personal_property_taxes, max_salt);
-	salt_with_sales_tax		= Min(sales_tax + real_estate_taxes + personal_property_taxes, max_salt);
-
-	if (salt_with_sales_tax >= salt_with_income_tax) {
-		taxable_amount		= 0;
-		explanation			= "Sales tax could have used instead of state income tax for the " +
-								"same or better result";
 		return;
 	}
 
@@ -211,8 +199,6 @@ function GetInputValues() {
 
 	// Debugging fields
 	standard_deduction					= 0;
-	salt_with_income_tax				= 0;
-	salt_with_sales_tax					= 0;
 	line_5d								= 0;
 	line_5e								= 0;
 	line_1								= 0;
@@ -231,19 +217,17 @@ function PutResults() {
 	putUserOutput("Explanation",	explanation,	"text");
 
 	putDebugOutput("Debug01", standard_deduction, 	"Standard Deduction");
-	putDebugOutput("Debug02", salt_with_income_tax,	"State and Local Taxes using Income Tax");
-	putDebugOutput("Debug03", salt_with_sales_tax,	"State and Local Taxes using Sales Tax");
-	putDebugOutput("Debug04", line_5d,				"Line 5d");
-	putDebugOutput("Debug05", line_5e,				"Line 5e");
-	putDebugOutput("Debug06", line_1,				"Line 1");
-	putDebugOutput("Debug07", line_2,				"Line 2");
-	putDebugOutput("Debug08", line_3,				"Line 3");
-	putDebugOutput("Debug09", line_4,				"Line 4");
-	putDebugOutput("Debug10", line_5,				"Line 5");
-	putDebugOutput("Debug10", line_6,				"Line 6");
+	putDebugOutput("Debug02", line_5d,				"Line 5d");
+	putDebugOutput("Debug03", line_5e,				"Line 5e");
+	putDebugOutput("Debug04", line_1,				"Line 1");
+	putDebugOutput("Debug05", line_2,				"Line 2");
+	putDebugOutput("Debug06", line_3,				"Line 3");
+	putDebugOutput("Debug07", line_4,				"Line 4");
+	putDebugOutput("Debug08", line_5,				"Line 5");
+	putDebugOutput("Debug09", line_6,				"Line 6");
 	putDebugOutput("Debug10", line_7,				"Line 7");
-	putDebugOutput("Debug10", line_8,				"Line 8");
-	putDebugOutput("Debug10", line_9,				"Line 9");
+	putDebugOutput("Debug11", line_8,				"Line 8");
+	putDebugOutput("Debug12", line_9,				"Line 9");
 }
 
 function ChangeHandler(event) {
