@@ -107,7 +107,7 @@ function Worksheet(
 	spouse_is_blind,
 	refund,
 	sched_a_5d,		// Total SALT
-	sched_a_5e,		// Limited SALT
+	sched_a_5e,		// Limited by SALT cap
 	itemized_deductions) {
 
 	//
@@ -123,7 +123,7 @@ function Worksheet(
 	let spouse_itemized = true;
 
 	line_1 = refund;						// Income tax refund from 1099-G
-	if (sched_a_5d > sched_a_5e) {			// Total taxes > Taxes limited SALT cap
+	if (sched_a_5d > sched_a_5e) {			// Total taxes > Taxes limited by SALT cap
 		// Limited by SALT cap
 		line_2 = sched_a_5d - sched_a_5e;	// Amount of taxes limited by SALT cap
 
