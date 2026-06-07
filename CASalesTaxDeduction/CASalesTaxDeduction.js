@@ -11,7 +11,7 @@ async function calculateAmount() {
 	let spendable_income	= 0;
 
 	InitializeTaxTables("single", tax_year);
-	
+
 	family_size			= Limit(family_size, 1, 6);
 	spendable_income	= getSpendableIncome();
 	base_sales_tax		= getTaxValue("CA_BaseSalesTax");
@@ -25,10 +25,10 @@ async function calculateAmount() {
 								local_sales_tax,
 								base_sales_tax,
 								extra_sales_tax);
-	
+
 	putUserOutput("TotalSpendableIncome",	spendable_income);
 	putUserOutput("SalesTaxDeduction",		sales_tax_deduction);
-	
+
 	putDebugOutput("Debug01", total_sales_tax,	"Total Sales Tax");
 	putDebugOutput("Debug02", base_sales_tax,	"Base Sales Tax");
 	putDebugOutput("Debug03", local_sales_tax,	"Local Sales Tax");
@@ -69,7 +69,7 @@ function salesTaxWorksheet(
 	let line_6 = 0;
 	let line_7 = 0;
 	let line_8 = 0;
-	
+
 	line_1	= getSalesTaxDeduction(spendable_income, family_size);
 	line_2	= 0;	// 0 for California
 	if (local_sales_tax === 0) {
@@ -86,7 +86,7 @@ function salesTaxWorksheet(
 	}
 	line_7	= extra_sales_tax;
 	line_8	= Round(line_1 + line_6 + line_7);
-	
+
 	putDebugOutput("Debug05", line_1,	"Line 1");
 	putDebugOutput("Debug06", line_2,	"Line 2");
 	putDebugOutput("Debug07", line_3,	"Line 3");
@@ -108,7 +108,7 @@ async function changeAddressHandler(event) {
 	if (street_address && city && zip_code) {
 		total_sales_tax = await fetchSalesTaxRate(street_address, city, zip_code);
 	}
-	
+
 	changeHandler(event);
 }
 

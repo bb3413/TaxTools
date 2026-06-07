@@ -24,7 +24,7 @@ globalThis.dbgExit  ??= () => {};
 
 async function loadIncludes(container = document, depth = 0) {
 	dbgEnter("loadIncludes");
-	
+
 	const MAX_DEPTH = 5;	// Prevent accidental recursion
 	if (depth > MAX_DEPTH) {
 		console.error("Recursive include limit reached. Check for circular references.");
@@ -39,7 +39,7 @@ async function loadIncludes(container = document, depth = 0) {
 		try {
 			const response = await fetch(filename);
 			const file_content = await response.text();
-			
+
 			// Insert the included file content into the element.
 			el.innerHTML = file_content;
 			el.removeAttribute("include-file");	// Not really necessary
@@ -54,15 +54,15 @@ async function loadIncludes(container = document, depth = 0) {
 			const scripts = el.querySelectorAll("script");
 			scripts.forEach(oldScript => {
 				const newScript = document.createElement("script");
-				
-				// Copy all attributes (like src, type, etc.)			
+
+				// Copy all attributes (like src, type, etc.)
 				Array.from(oldScript.attributes).forEach(attr => {
 					newScript.setAttribute(attr.name, attr.value);
 				});
-				
+
 				// Copy the actual code inside the script tag
 				newScript.appendChild(document.createTextNode(oldScript.innerHTML));
-				
+
 				// Append it to the document to trigger its execution
 				oldScript.parentNode.replaceChild(newScript, oldScript);
 			});
@@ -78,7 +78,7 @@ async function loadIncludes(container = document, depth = 0) {
 
 	// Wait for all includes at the current level (and their children) to finish
 	await Promise.all(tasks);
-	
+
 	// Initialization code for other JavaScript files may start running before this
 	// function has finished loading the include files. That is, the DOMContentLoaded
 	// event has occurred, but this function is still loading files. This section
@@ -93,7 +93,7 @@ async function loadIncludes(container = document, depth = 0) {
 			bubbles: true,
 			cancelable: true
 		});
-	
+
 		// Most shared scripts listen to document, but some listen to window
 		document.dispatchEvent(DOMReadyEvent);
 		window.dispatchEvent(DOMReadyEvent);

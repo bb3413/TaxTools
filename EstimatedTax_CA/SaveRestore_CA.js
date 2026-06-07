@@ -117,7 +117,7 @@ function RestoreUserData(event) {
 		try {
 			// The file content is stored in e.target.result as a string.
 			ud = JSON.parse(event.target.result);
-			
+
 			// The data is back in the ud object. Put it into the HTML fields on the web page.
 			RestoreInputFields();
 

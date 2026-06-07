@@ -23,10 +23,10 @@ function isNum(num) {
 function Limit(value, minval = null, maxval = null) {
 	if (isNum(minval))
 		value = Math.max(value, minval);
-	
+
 	if (isNum(maxval))
 		value = Math.min(value, maxval);
-		
+
 	return value;
 }
 
@@ -36,15 +36,15 @@ function toInteger(str) {
 	// as a mathematical expression. The string will then be converted to a
 	// number or zero if it is not a number. Then, it will be rounded to the
 	// nearest whole number.
-	
+
 	const clean_str = str.replace(/[$,\s]/g, "");
 	if (strEmpty(clean_str))
 		return 0;
-		
+
 	let num = evalExpression(clean_str);
 	if (Number.isNaN(num))
 		num = 0;
-		
+
 	return Math.round(num);
 }
 

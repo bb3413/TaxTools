@@ -1,7 +1,7 @@
 
 .tooltip {
 	position: absolute;
-	display: block; /* We keep it in the DOM but hidden */
+	display: block;					/* Keep it in the DOM but hidden */
 	visibility: hidden;
 	opacity: 0;
 	z-index: 1000;

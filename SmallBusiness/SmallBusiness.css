@@ -4,8 +4,17 @@ h1, h2, h3 {
 }
 
 .tight {
-	margin-top:				0;	
+	margin-top:				0;
 	margin-bottom:			0;
+}
+
+.tax-calculation-box {
+	border:					1px solid var(--border-color);
+	padding:				0.5rem;
+}
+
+.tax-calculation-box h3 {
+	margin-top:				0;
 }
 
 .table-3x {
@@ -14,7 +23,8 @@ h1, h2, h3 {
 }
 
 .table-3x p {
-	margin-top:				0;	
+	padding-right:			4px;
+	margin-top:				0;
 	margin-bottom:			0;
 }
 
@@ -24,18 +34,20 @@ h1, h2, h3 {
 }
 
 .table-2x p {
-	margin-top:				0;	
+	padding-right:			4px;
+	margin-top:				0;
 	margin-bottom:			0;
 }
 
 .tax-formula-container {
 	display:				grid;
 	grid-template-columns:	8rem 1fr;
-	margin-left:			1rem;
+	/* margin-left:			1rem; */
 }
 
 .tax-formula-container p {
-	margin-top:				0;	
+	padding-right:			4px;
+	margin-top:				0;
 	margin-bottom:			0;
 }
 

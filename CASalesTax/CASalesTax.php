@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
-	<?php include "../Library/TaxToolsIncludeFiles.html"; ?>
+	<?php include "../Library/TaxTools/IncludeFiles.html"; ?>
 	<link rel="stylesheet" href="CASalesTax.css" />
 	<script defer src="CASalesTax.js"></script>
-		
+
 	<title>California Sales Tax Calculator</title>
 </head>
 
@@ -13,17 +13,17 @@
 	<div class="tool-container">
 		<p class="version-number">Version: <a href="../Version/Version.html">
 			<span id="TaxToolsVersion"></span></a></p>
- 
+
 		<h1 class="title">California Sales Tax Calculator</h1>
-			
-		<p>This tool will return the sales tax percentage for the address. You must enter
-		a value in all three fields.</p>
+
+		<p>This tool will show the sales tax percentage for the address. You must enter
+		a valid value in all three address fields.</p>
 
 		<p>&nbsp;</p>
 		<div class="table">
 	   		<p class="input-label">Street Address</p>
 			<input class="input-field left" type="text" autofocus id="StreetAddress" />
-				
+
 			<p class="input-label">City</p>
 			<input class="input-field left" type="text" id="City" />
 

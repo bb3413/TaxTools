@@ -42,13 +42,13 @@ function getUserInput(elementID, type = "number") {
 	if (typeof value === "boolean") {
 		return value;
 	}
-	
+
 	// Maybe some tools do not include the debug code.
 	if (typeof getDebugKeywords === "function") {
 		// Extract debug keywords and return what is left.
 		value = getDebugKeywords(value);
 	}
-	
+
 	if (strCaseEqual(type, "text")) {
 		return value;
 	}
@@ -61,7 +61,7 @@ function putUserOutput(elementID, value, type = "number") {
 	if (strCaseEqual(type, "dollars")) {
 		// Add commas and prepend with dollar sign.
 		putElementValue(elementID, "$" + FormatNum(value));
-			
+
 	} else if (strCaseEqual(type, "number")) {
 		// Add commas.
 		putElementValue(elementID, FormatNum(value));
@@ -81,7 +81,7 @@ function putUserOutput(elementID, value, type = "number") {
 // Other elements use "textContent" and "innerText". The "textContent" attribute
 // returns the content of the element. The "innerText" attribute is not used often;
 // it returns the content as it is displayed. If the elemenet is hidden, it won"t
-// return the content. 
+// return the content.
 //
 function getElementValue(elementID) {
 	const element = document.getElementById(elementID);
@@ -89,11 +89,11 @@ function getElementValue(elementID) {
 		alert("getElementValue: Element not found: " + elementID);
 	} else {
 		if (element.type === "checkbox" || element.type === "radio") {
-			return element.checked; 
+			return element.checked;
 		}
 
 		if (element.tagName === "SELECT" && element.multiple) {
-			// If multiple selections are possible, value only gets the first one. 
+			// If multiple selections are possible, value only gets the first one.
 			// This functions returns them all.
 			return Array.from(element.selectedOptions).map(opt => opt.value);
 		}
@@ -117,7 +117,7 @@ function putElementValue(elementID, value) {
 			element.checked = Boolean(value);
 			return;
 		}
-			
+
 		if (element.tagName === "SELECT" && element.multiple && Array.isArray(value)) {
 			// Restore selection where multiple selections are possible.
 			Array.from(element.options).forEach(opt => {
@@ -125,7 +125,7 @@ function putElementValue(elementID, value) {
 			});
 			return;
 		}
-		
+
 		if ("value" in element) {
 			// Restore input, textarea, and selects elements.
 			element.value = value;
@@ -154,15 +154,15 @@ function getCSSGlobalVariable(variableName) {
 	//		:root {
 	//			--background-color:			#AAAAAA;	// Gray
 	//		}
-	// 
+	//
 	// Then, if you pass "--background-color" to this function, it will
 	// look up the variable and return "#AAAAAA".
 	//
-	
+
 	// Read the CSS variable from the root (or from a specific element)
 	const rootStyles	= getComputedStyle(document.documentElement);
 	const value			= rootStyles.getPropertyValue(variableName).trim();
-	
+
 	return value;
 }
 

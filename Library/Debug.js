@@ -5,6 +5,7 @@
 // isn"t spcified anywhere else.
 let debug			= 0;
 let dbg_inctax		= 0;
+let dbg_sehi		= 0;
 let dbg_setax		= 0;
 let dbg_sstax		= 0;
 
@@ -35,28 +36,31 @@ function TurnOffDebug() {
 
 	debug		= 0;
 	dbg_inctax	= 0;
+	dbg_sehi	= 0;
 	dbg_setax	= 0;
 	dbg_sstax	= 0;
-	
+
 	// Tools
 	HideDebugFields("DebugFields");				// Tax tool debug fields
 
 	// Libraries
 	HideDebugFields("IncTax-DebugFields");		// Federal income tax worksheet
+	HideDebugFields("SEHI-DebugFields");		// Self-employment health insurance worksheet
 	HideDebugFields("SETax-DebugFields");		// Self-employment tax worksheet
 	HideDebugFields("SSTax-DebugFields");		// Taxable Social Secirity worksheet
-	
+
 	dbgExit("TurnOffDebug");
 }
 
 function TurnOnDebug() {
 	dbgEnter("TurnOnDebug");
-	
+
 	// Tools - These are all turned on with the "debug" keyword.
 	if (debug)		ShowDebugFields("DebugFields");			// Tax tool debug fields
-	
+
 	// Libraries - These are all turned on with individual keywords.
 	if (dbg_inctax)	ShowDebugFields("IncTax-DebugFields");	// Federal income tax worksheet
+	if (dbg_sehi)	ShowDebugFields("SEHI-DebugFields");	// Self-employment health insurance worksheet
 	if (dbg_setax)	ShowDebugFields("SETax-DebugFields");	// Self-employment tax worksheet
 	if (dbg_sstax)	ShowDebugFields("SSTax-DebugFields");	// Taxable Social Secirity worksheet
 
@@ -71,6 +75,7 @@ function TurnOnDebug() {
 //
 //		Debug		Show debug information for the tool
 //		IncTax		Federal income tax worksheet
+//		SEHI		Self-employment tax worksheet
 //		SETax		Self-employment tax worksheet
 //		SSTax		Taxable Social Secirity worksheet
 //		Trace		Trace function calls on console long.
@@ -90,17 +95,22 @@ function getDebugKeywords(input_string) {
 		input_string	= input_string.replace(/\bDebug\b/ig, "");
 		debug			+= 1;
 	}
-	
+
 	if (input_string.match(/\bIncTax\b/i)) {
 		input_string	= input_string.replace(/\bIncTax\b/ig, "");
 		dbg_inctax		+= 1;
 	}
-	
+
 	if (input_string.match(/SSTax/i)) {
 		input_string	= input_string.replace(/\bSSTax\b/ig, "");
 		dbg_sstax		+= 1;
 	}
-	
+
+	if (input_string.match(/SEHI/i)) {
+		input_string	= input_string.replace(/\bSEHI\b/ig, "");
+		dbg_sehi		+= 1;
+	}
+
 	if (input_string.match(/SETax/i)) {
 		input_string	= input_string.replace(/\bSETax\b/ig, "");
 		dbg_setax		+= 1;
@@ -123,7 +133,7 @@ function getDebugKeywords(input_string) {
 // This function is used for copying the value of a variable to a HTML debugging entry.
 //
 function putDebugOutput(basename, value, label1 = null, label2 = null) {
-	
+
 	// Do not call alert() if element is missing; debug code is included and may be present when
 	// not executed from a server.
 
@@ -138,7 +148,7 @@ function putDebugOutput(basename, value, label1 = null, label2 = null) {
 			element.textContent = FormatNum(label1);
 		}
 	}
-	
+
 	if (label2) {
 		element = document.getElementById(basename + "-label2");
 		if (element) {
@@ -178,4 +188,3 @@ function dbgLog(message) {
 	const spaces = " ".repeat(indentation * 2);
 	console.log(spaces + message);
 }
-

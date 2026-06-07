@@ -115,16 +115,16 @@ function calculateAMT_Income() {
 	// This funtion performs the calculations in form 6251, part I.
 
 	line_1a	= total_deductions - senior_deduction;
-	line_1b	= Max(0, agi - line_1a);
+	line_1b	= agi - line_1a;
 	if (itemized)
 		line_2a = taxes_paid_deduction;
 	else
 		line_2a = standard_deduction;
-	line_2b	= state_tax_refund;					// Subtraction
+	line_2b	= (-state_tax_refund);				// Subtract
 	line_2c	= investment_interest;
 	line_2d	= depletion;
 	line_2e	= net_operating_loss;
-	line_2f	= alternate_net_operating_loss;		// Subtraction
+	line_2f	= (-alternate_net_operating_loss);	// Subtract
 	line_2g	= private_activity_bonds_interest;
 	line_2h	= qualified_small_business_stock;
 	line_2i	= incentive_stock_options;
@@ -137,17 +137,17 @@ function calculateAMT_Income() {
 	line_2p	= long_term_contracts;
 	line_2q	= mining_costs;
 	line_2r	= reseach_costs;
-	line_2s	= installment_sales;				// Subtraction
+	line_2s	= (-installment_sales);				// Subtract
 	line_2t	= intangible_drilling_costs;
 	line_3	= other_income;
-	
+
 	line_4	=	line_1b
 				+ line_2a
-				- line_2b
+				+ line_2b
 				+ line_2c
 				+ line_2d
 				+ line_2e
-				- line_2f
+				+ line_2f
 				+ line_2g
 				+ line_2h
 				+ line_2i
@@ -160,14 +160,14 @@ function calculateAMT_Income() {
 				+ line_2p
 				+ line_2q
 				+ line_2r
-				- line_2s
+				+ line_2s
 				+ line_2t
 				+ line_3;
 }
 
 function AMT_TaxWithCapGains() {
 	// This funtion performs the calculations in form 6251, part III.
-	
+
 	line_12	= line_6;			// line 6 = AMT income - AMT exemption
 	line_13	= capital_gains + qualified_dividends;
 	line_14	= 0;				// Leave blank for now.
@@ -211,9 +211,9 @@ function CalculateAMT() {
 	} else {
 		hideElement("SpouseContainer");
 	}
-	
+
 	InitializeTaxTables(filing_status, tax_year);
-	
+
 	let end_of_year				= new Date("12/31/" + tax_year);
 	let taxpayers_age			= Age(taxpayers_birthday, end_of_year);
 	let spouses_age				= Age(spouses_birthday, end_of_year);
@@ -271,7 +271,7 @@ function GetInput() {
 	itemized_deduction				= getUserInput("ItemizedDeduction");
 	taxes_paid_deduction			= getUserInput("TaxesPaidDeduction");
 	qbi_deduction					= getUserInput("QBIDeduction");
-	
+
 	state_tax_refund				= getUserInput("StateTaxRefund");
 	investment_interest				= getUserInput("InvestmentInterestExpense");
 	depletion						= getUserInput("Depletion");
@@ -292,7 +292,7 @@ function GetInput() {
 	installment_sales				= getUserInput("InstallmentSales");
 	intangible_drilling_costs		= getUserInput("IntangibleDrillingCosts");
 	other_income					= getUserInput("OtherIncome");
-	
+
 	amt_income						= 0;
 	amt_exemption					= 0;
 	amt								= 0;
@@ -318,7 +318,7 @@ function GetInput() {
 	line_2j							= 0;
 	line_2k							= 0;
 	line_2l							= 0;
-	line_2m							= 0;	
+	line_2m							= 0;
 	line_2n							= 0;
 	line_2o							= 0;
 	line_2p							= 0;
@@ -371,11 +371,11 @@ function GetInput() {
 }
 
 function PutOutput() {
-	
+
 	putUserOutput("AMTIncome",		line_4);
 	putUserOutput("AMTExemption",	line_5);
 	putUserOutput("AMT",			line_11);
-	
+
 	// Debug fields
 	putDebugOutput("Debug01", standard_deduction,		"Standard Deduction");
 	putDebugOutput("Debug02", senior_deduction,			"Senior Deduction");
@@ -499,6 +499,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	addListener("InstallmentSales",				"change", ChangeHandler);
 	addListener("IntangibleDrillingCosts",		"change", ChangeHandler);
 	addListener("OtherIncome",					"change", ChangeHandler);
-	
+
 	ChangeHandler();
 });

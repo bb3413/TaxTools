@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<?php include "../Library/TaxToolsIncludeFiles.html"; ?>
+	<?php include "../Library/TaxTools/IncludeFiles.html"; ?>
 	<link rel="stylesheet" href="CASalesTaxDeduction.css" />
 	<script defer src="CASalesTaxDeduction.js"></script>
 
@@ -13,27 +13,28 @@
 	<div class="tool-container">
 		<p class="version-number">Version: <a href="../Version/Version.html">
 			<span id="TaxToolsVersion"></span></a></p>
-			
-		<h1 class="title">California Sales Tax Deduction Calculator</h1>
-	 
-		<p>This tool calculate the amount of the sales tax deduction you are allowed. On Schedule A,
-		Itemized Deduction, you have a choice of taking a deduction for the state and local taxes you paid (for
-		example, state income tax withheld from wages) or the sales tax you paid, whichever is greater.</p>
 
-		<p>The amount of the sales tax deduction is based on the following four factors.</p>
+		<h1 class="title">California Sales Tax Deduction Calculator</h1>
+
+		<p>This tool calculates the amount of the sales tax deduction you are allowed. On Schedule A,
+		Itemized Deduction, you have a choice of taking a deduction for the state and local taxes you
+		paid (for example, state income tax withheld from wages) or an estimate of the total sales tax
+		you paid throughout the year, whichever is greater.</p>
+
+		<p>The amount of the sales tax deduction you are allowed is estimated based on the following
+		four values.</p>
 		<ul>
 			<li>Where you live</li>
-			<li>Spendable income</li>
+			<li>Amount of spendable income</li>
 			<li>Number of people in your family</li>
 			<li>Sales tax paid on large purchases</li>
 		</ul>
-		
-		<p>The amount of sales tax you pay is different depending upon where you live.
-		Some states do not have any sales tax, while others have as much as 10%. In
-		addition, many counties and cities add an additional amount to the sales tax.
-        This tools can only calculate the sales tax deduction for taxpayers living in
-		California.</p>
-		
+
+		<p>Where you live determines the sales tax rate that you pay. Some states do not have any
+		sales tax, while others have as much as 10%. In addition, many counties and cities add an
+		additional amount to the sales tax. Note: this tool can only calculate the sales tax
+		deduction for taxpayers living in California.</p>
+
 		<p>Your spendable income is based on your total income, not just your taxable income.
 		The more spendable income you have, the more you are likely to spend. Therefore, the
 		IRS created a table with the allowable sales tax deduction based on spendable income
@@ -44,8 +45,9 @@
 		large purchase, you can add the sales tax from that purchase into the calculation for
 		the sales tax deduction.</p>
 
-		<p>&nbsp;</p>
 		<div class="table-1">
+			<p class="span-three">&nbsp;</p>
+
 			<p>Tax Year</p>
 			<select class="trigger input-field left" id="TaxYear" tooltipid="#TaxYearTT">
 				<option value="2026">2026</option>
@@ -74,7 +76,7 @@
 				tooltipid="#ExtraSalesTaxTT" />
 			<p>&nbsp;</p>
 		</div>
-	
+
 		<h2>Spendable Income</h2>
 		<div class="table-2">
 			<p>1040, line 1z</p>
@@ -139,7 +141,7 @@
 				tooltipid="#SalesTaxDeductionTT">0</p>
 		</div>
 
-        <?php include "CASalesTaxDeduction-Debug.html"; ?>		<!-- Debugging Fields -->
+		<?php include "CASalesTaxDeduction-Debug.html"; ?>		<!-- Debugging Fields -->
 	</div>
 </body>
 </html>

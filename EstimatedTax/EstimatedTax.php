@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-    <?php include "../Library/TaxToolsIncludeFiles.html"; ?>
+	<?php include "../Library/TaxTools/IncludeFiles.html"; ?>
 	<link rel="stylesheet" href="EstimatedTax.css" />
 	<script defer src="SaveRestore.js"></script>
 	<script defer src="EstimatedTax.js"></script>
-		
+
 	<title>Federal Estimated Tax Calculator</title>
 </head>
 
@@ -24,42 +24,18 @@
 		would owe given the data you provide. Unlike a program for doing your taxes, which
 		performs many more calculations, this tool just computes the amount of the tax
 		given the values you enter. This allows you to experiment with different values to
-		see the effect on your taxes. In addition, this makes it very easy to enter information
-		and get an immediate answer.</p>
+		see the effect on your taxes.</p>
 
 		<p>The blue fields are computed from the information you provide. The green fields are
 		where you enter information. The first column shows where the information can be found
-		in the tax return. Click <a href="EstimatedTax-Help.html	">this link</a> for more help
+		in the tax return. Click <a href="EstimatedTax-Help.html">this link</a> for more help
 		with this tool.</p>
-
-		<h3>Tax Formula</h3>
-		<p>The tax formula below describes, at a high level, how the tax is calculated. The value of
-		each item in the tax formula is shown in the Estimated Tax Calculation. You can see a brief
-		description of any of the items by moving the mouse over the calculated value in the
-		Estimated Tax Calculation.</p>
-
-		<div class="tax-formula-container">
-			<p>Total Income</p>
-			<p>= Income from all sources - Non-taxable Income</p>
-			<p>Adjusted Gross Income</p>
-			<p>= Total Income - Adjustments</p>
-			<p>Taxable Income</p>
-			<p>= Adjusted Gross Income - Deductions</p>
-			<p>Total Tax</p>
-			<p>= Tax on Taxable Income + Other Taxes - Non-refundable Credits</p>
-			<p>Refund / Amount Due</p>
-			<p>= Payments + Refundable Credits - Total Tax</p>
-			<p>Estimated Quarterly Tax Payments</p>
-			<p>= (Estimated Payments - Amount Due) / 4</p>
-			<p>&nbsp;</p>
-			<p>&nbsp;</p>
-		</div>
 
 		<div class="save-restore">
 			<!-- Save Button -->
 			<input type="button" id="SaveButton" class="trigger button save-button"
 				value="Save" tooltipid="#SaveButtonTT" />
-				
+
 			<!-- Restore Button -->
 			<input type="file" id="InputFile" accept=".txt" style="display: none;" />
 			<label for="InputFile" class="trigger button restore-button" tooltipid="#RestoreButtonTT">Restore</label>
@@ -100,6 +76,27 @@
 
 				<p class="label-field right">Spouse's Age</p>
 				<p class="trigger output-field" id="SpousesAge" tooltipid="#SpousesAgeTT">0</p>
+			</div>
+
+			<h3>Tax Formula</h3>
+			<p>The tax formula below describes, at a high level, how the tax is calculated. The value of
+			each item in the tax formula is shown in the Estimated Tax Calculation. You can see a brief
+			description of any of the items by moving the mouse over the calculated value in the
+			Estimated Tax Calculation.</p>
+
+			<div class="tax-formula-container">
+				<p>Total Income</p>
+				<p>= Income from all sources - Non-taxable Income</p>
+				<p>Adjusted Gross Income</p>
+				<p>= Total Income - Adjustments</p>
+				<p>Taxable Income</p>
+				<p>= Adjusted Gross Income - Deductions</p>
+				<p>Total Tax</p>
+				<p>= Tax on Taxable Income + Other Taxes - Non-refundable Credits</p>
+				<p>Refund / Amount Due</p>
+				<p>= Payments + Refundable Credits - Total Tax</p>
+				<p>Estimated Quarterly Tax Payments</p>
+				<p>= (Estimated Payments - Amount Due) / 4</p>
 			</div>
 
 			<h3>Estimated Tax Calculation</h3>
@@ -443,7 +440,7 @@
 			<p>1040, line 19</p>
 			<p>Credit for Other Dependents</p>
 			<input class="trigger input-field" type="text" id="CreditForOtherDependents"
-				placeholder="0" size="10" tooltipid="#CreditForOtherDependentsTT" />		
+				placeholder="0" size="10" tooltipid="#CreditForOtherDependentsTT" />
 
 			<p>1040, line 27</p>
 			<p>Earned Income Credit</p>
@@ -475,12 +472,12 @@
 		</div>
 
 		<!-- Debugging Fields -->
-        <?php include "EstimatedTax-Debug.html"; ?>
-        <?php include "../Library/IncomeTax/IncomeTax-Debug.html"; ?>
-        <?php include "../Library/SocialSecurity/SocialSecurity-Debug.html"; ?>
+		<?php include "EstimatedTax-Debug.html"; ?>
+		<?php include "../Library/IncomeTax/IncomeTax-Debug.html"; ?>
+		<?php include "../Library/SocialSecurity/SocialSecurity-Debug.html"; ?>
 
 		<!-- Tooltips -->
-        <?php include "EstimatedTax-HelpInput.html"; ?>
+		<?php include "EstimatedTax-HelpInput.html"; ?>
 	</div>
 </body>
 </html>

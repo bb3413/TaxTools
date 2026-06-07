@@ -19,7 +19,7 @@ display.addEventListener("input", (e) => {
 // --- UI & Cursor Logic ---
 function updateDisplay(newCursorPos = null) {
 	display.value = currentInput || "0";
-	
+
 	let position;
 	if (newCursorPos !== null) {
 		position = newCursorPos;
@@ -116,12 +116,12 @@ function calculateResult() {
 // --- Keyboard Hooks ---
 document.addEventListener("keydown", (e) => {
 	if (e.key === "Backspace") {
-		e.preventDefault(); 
+		e.preventDefault();
 		deleteAtCursor();
 	}
-	if (e.key === "Enter" || e.key === "=") { 
-		e.preventDefault(); 
-		calculateResult(); 
+	if (e.key === "Enter" || e.key === "=") {
+		e.preventDefault();
+		calculateResult();
 	}
 	if (e.key === "Escape") {
 		e.preventDefault();

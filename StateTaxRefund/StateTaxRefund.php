@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<?php include "../Library/TaxToolsIncludeFiles.html"; ?>
+	<?php include "../Library/TaxTools/IncludeFiles.html"; ?>
 	<link rel="stylesheet" href="StateTaxRefund.css" />
 	<script defer src="StateTaxRefund.js"></script>
 
@@ -13,18 +13,17 @@
 	<div class="tool-container">
 		<p class="version-number">Version: <a href="../Version/Version.html">
 			<span id="TaxToolsVersion"></span></a></p>
-			
+
 		<h1 class="title">State Income Tax Refund Calculator</h1>
-	 
+
 		<p>A state income tax refund is only taxable to the extent that the taxpayer benefited from
 		claiming the state income tax as a deduction on the previous year's tax return. This tool
 		calculates the amount of the tax refund that is taxable on this year's federal tax return.</p>
-				
+
 		<p>The blue fields are computed from the information you provide. The green fields are
-		where you enter information. The first column shows where the information can be found
-		in the tax return. Click <a href="StateTaxRefund-Help.html">this link</a> for more help
-		with this tool.</p>
-		
+		where you enter information. Click <a href="StateTaxRefund-Help.html">this link</a> for more
+		help with this tool.</p>
+
 		<div class="table-1">
 			<p>Previous Tax Year</p>
 			<select class="trigger input-field" id="PreviousTaxYear" tooltipid="#PreviousTaxYearTT">
@@ -55,16 +54,16 @@
 			<input class="trigger checkbox" type="checkbox" id="SpouseIsBlind"
 				tooltipid="#SpouseIsBlindTT" />
 		</div>
-        <div class="table-1">
+		<div class="table-1">
 			<p>&nbsp;</p>
 			<p>&nbsp;</p>
 			<p>State Tax Refund</p>
 			<input class="trigger input-field" type="text" id="StateTaxRefund"
 				placeholder="0" tooltipid="#StateTaxRefundTT" />
 		</div>
-		
-		<h2>Information from Previous Year's Schedule A</h2>
-		
+
+		<h2>Schedule A Information from Previous Year</h2>
+
 		<div class="table-1">
 			<p>State Income Tax</p>
 			<input class="trigger input-field" type="text" id="StateIncomeTax"
@@ -72,7 +71,7 @@
 			<p>Sales Tax</p>
 			<input class="trigger input-field" type="text" id="SalesTax"
 				placeholder="0" tooltipid="#SalesTaxTT" />
-			<p>Sales Was Tax Used</p>		  
+			<p>Sales Was Tax Used</p>
 			<input class="trigger checkbox" type="checkbox" id="SalesTaxUsed"
 				tooltipid="#SalesTaxUsedTT" />
 			<p>Real Estate Taxes</p>
@@ -98,7 +97,7 @@
 				tooltipid="#ExplanationTT"></p>
 		</div>
 
-        <?php include "StateTaxRefund-Debug.html"; ?> 		<!-- Debugging Fields -->
+		<?php include "StateTaxRefund-Debug.html"; ?> 		<!-- Debugging Fields -->
 		<?php include "StateTaxRefund-HelpInput.html"; ?> 	<!-- Tooltips -->
 
 	</div>

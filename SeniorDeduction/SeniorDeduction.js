@@ -19,7 +19,7 @@ function CalculateSeniorDeduction() {
 	} else {
 		hideElement("SpouseContainer");
 	}
-	
+
 	if (tax_year === 0) {
 		tax_year = getTaxYear();
 		putUserOutput("TaxYear", tax_year, "text");
@@ -33,9 +33,9 @@ function CalculateSeniorDeduction() {
 	} else {
 		changeBackgroundColor("TaxpayersAge", input_color);
 	}
-	
+
 	if (spouses_birthday !== "") {
-		spouses_age = Age(taxpayers_birthday, end_of_year);
+		spouses_age = Age(spouses_birthday, end_of_year);
 		changeBackgroundColor("SpousesAge", output_color);
 	} else {
 		changeBackgroundColor("SpousesAge", input_color);
@@ -57,8 +57,8 @@ function GetInput() {
 	taxpayers_birthday		= getUserInput("TaxpayersBirthday",	"text");
 	taxpayers_age			= getUserInput("TaxpayersAge");
 	spouses_birthday		= getUserInput("SpousesBirthday",	"text");
-	tspouses_age			= getUserInput("SpousesAge");
-	
+	spouses_age				= getUserInput("SpousesAge");
+
 	senior_deduction		= 0;
 }
 
@@ -66,7 +66,7 @@ function ChangeSpousesAge(event) {
 	const spouses_age = getUserInput("SpousesAge");
 	if (spouses_age !== 0)
 		putUserOutput("SpousesBirthday", "");
-		
+
 	ChangeHandler(event);
 }
 
@@ -74,7 +74,7 @@ function ChangeTaxpayersAge(event) {
 	const taxpayers_age = getUserInput("TaxpayersAge");
 	if (taxpayers_age !== 0)
 		putUserOutput("TaxpayersBirthday", "");
-		
+
 	ChangeHandler(event);
 }
 
@@ -89,7 +89,7 @@ function ChangeHandler(event) {
 
 document.addEventListener("DOMContentLoaded", () => {
 	// Wait for the DOM to be fully loaded before trying to access any elements.
-	
+
 	addListener("TaxYear",				"change", ChangeHandler);
 	addListener("FilingStatus",			"change", ChangeHandler);
 	addListener("AdjustedGrossIncome",	"change", ChangeHandler);

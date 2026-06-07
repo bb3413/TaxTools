@@ -42,18 +42,18 @@ h1, h2, h3 {
 }
 
 .taxpayer-info-container p {
-	margin-top:				0;	
+	margin-top:				0;
 	margin-bottom:			0;
 }
 
 .tax-formula-container {
 	display:				grid;
 	grid-template-columns:	1.1fr 2fr;
-	margin-left:			1rem;
+	/* margin-left:			1rem; */
 }
 
 .tax-formula-container p {
-	margin-top:				0;	
+	margin-top:				0;
 	margin-bottom:			0;
 }
 
@@ -63,7 +63,7 @@ h1, h2, h3 {
 }
 
 .taxpayer-data-container p {
-	margin-top:				0;	
+	margin-top:				0;
 	margin-bottom:			0;
 }
 

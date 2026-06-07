@@ -18,7 +18,7 @@ function CalculategetTaxableSocialSecurity(event) {
 	const ss_received_reported_1	= getUserInput("SocialSecurityReceivedReported-1");
 	const ss_taxable_reported_1		= getUserInput("SocialSecurityTaxableReported-1");
 	let ss_taxable_new_1			= 0;
-	
+
 	// Previous year 2
 	const filing_status_2			= getUserInput("FilingStatus-2", "text");
 	const lump_sum_2				= getUserInput("LumpSum-2");
@@ -27,9 +27,9 @@ function CalculategetTaxableSocialSecurity(event) {
 	const ss_received_reported_2	= getUserInput("SocialSecurityReceivedReported-2");
 	const ss_taxable_reported_2		= getUserInput("SocialSecurityTaxableReported-2");
 	let ss_taxable_new_2			= 0;
-	
+
 	let taxable_percent				= 0;
-	
+
 	putUserOutput("TaxableSocialSecurity-0",	0);
 	putUserOutput("TaxablePercent-0",			"0%", "text");
 	putUserOutput("TaxableSocialSecurityAlt",	0);
@@ -41,9 +41,9 @@ function CalculategetTaxableSocialSecurity(event) {
 	if (ss_received_0 === 0) {
 		return;
 	}
-	
+
 	InitializeTaxTables(filing_status_0);
-	
+
 
 	// Current year - Standard Method
 	ss_taxable_0 = getTaxableSocialSecurity(
@@ -77,7 +77,7 @@ function CalculategetTaxableSocialSecurity(event) {
 								agi_1 - ss_taxable_reported_1,
 								tax_exempt_interest_1,
 								0);
-	
+
 		ss_taxable_new_1	-= ss_taxable_reported_1;
 	}
 	taxable_percent	= (lump_sum_1 === 0) ? 0 : Round(ss_taxable_new_1 / lump_sum_1 * 100);
@@ -94,7 +94,7 @@ function CalculategetTaxableSocialSecurity(event) {
 								agi_2 - ss_taxable_reported_2,
 								tax_exempt_interest_2,
 								0);
-	
+
 		ss_taxable_new_2	-= ss_taxable_reported_2;
 	}
 	taxable_percent	= (lump_sum_2 === 0) ? 0 : Round(ss_taxable_new_2 / lump_sum_2 * 100);
@@ -124,23 +124,23 @@ document.addEventListener("DOMContentLoaded", () => {
 	addListener("Income-0",							"change", ChangeHandler);
 	addListener("TaxExemptInterest-0",				"change", ChangeHandler);
 	addListener("Adjustments-0",					"change", ChangeHandler);
-	
+
 	addListener("SocialSecurity-0",					"change", ChangeHandler);
 	addListener("TaxableSocialSecurity-0",			"change", ChangeHandler)
-	
+
 	addListener("FilingStatus-1",					"change", ChangeHandler);
 	addListener("LumpSum-1",						"change", ChangeHandler);
 	addListener("AGI-1",							"change", ChangeHandler);
 	addListener("TaxExemptInterest-1",				"change", ChangeHandler);
 	addListener("SocialSecurityReceivedReported-2",	"change", ChangeHandler);
 	addListener("SocialSecurityTaxableReported-2",	"change", ChangeHandler);
-	
+
 	addListener("FilingStatus-2",					"change", ChangeHandler);
 	addListener("LumpSum-2",						"change", ChangeHandler);
 	addListener("AGI-2",							"change", ChangeHandler);
 	addListener("TaxExemptInterest-2",				"change", ChangeHandler);
 	addListener("SocialSecurityReceivedReported-2",	"change", ChangeHandler);
 	addListener("SocialSecurityTaxableReported-2",	"change", ChangeHandler);
-	
+
 	TurnOffDebug();
 });

@@ -5,15 +5,15 @@
 	margin-left:			2rem;
 	margin-top:				0;
 }
-			
+
 .table-1 p {
-	padding-right:			6px;
+	padding-right:			4px;
 	margin-top:				0;
 	margin-bottom:			0;
 }
 
 .table-1 input {
-	margin-top:				0;	
+	margin-top:				0;
 	margin-bottom:			0;
 }
 
@@ -23,9 +23,9 @@
 	margin-left:			2rem;
 	margin-top:				0;
 }
-			
+
 .table-2 p {
-	padding-right:			6px;
+	padding-right:			4px;
 	margin-top:				0;
 	margin-bottom:			0;
 }
@@ -38,29 +38,14 @@
 }
 
 .table-3 input {
-	margin-top:				0;	
-	margin-bottom:			0;
-}
-
-.table-3 p {
-	padding-right:			6px;
 	margin-top:				0;
 	margin-bottom:			0;
 }
 
-.help h3 {
+.table-3 p {
+	padding-right:			4px;
+	margin-top:				0;
 	margin-bottom:			0;
-	margin-left:			2rem;
-}
-
-.help p {
-	margin-top:				0;	
-	margin-bottom:			0;
-	margin-left:			2rem;
-}
-			
-.help ul {
-	margin-left:			2rem;
 }
 
 .help-fields h3 {
