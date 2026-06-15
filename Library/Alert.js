@@ -4,3 +4,5 @@ function slowAlert(message) {
 	// display in priority; allow the SalesTaxRate field to finish being cleared.
 	setTimeout(() => { alert(message); }, 10);
 }
+
+export { slowAlert };

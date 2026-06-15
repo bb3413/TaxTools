@@ -1,3 +1,6 @@
+
+import { evalExpression } from "../Library/EvalExpression.js";
+
 let currentInput = "";
 const display = document.getElementById("display");
 
@@ -188,3 +191,18 @@ function solve(input) {
 	});
 	return evalStack[0] || 0;
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('.buttons').addEventListener('click', (event) => {
+        const button = event.target;
+        if (!button.matches('button')) return;
+
+        const action = button.dataset.action;
+        const val = button.dataset.val;
+
+        if (action === 'clear') clearDisplay();
+        else if (action === 'delete') deleteAtCursor();
+        else if (action === 'calculate') calculateResult();
+        else if (val) appendToDisplay(val);
+    });
+});

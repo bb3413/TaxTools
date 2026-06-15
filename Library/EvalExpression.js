@@ -79,3 +79,4 @@ function evalExpression(input) {
 	return evalStack[0];
 }
 
+export { evalExpression };

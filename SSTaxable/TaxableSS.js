@@ -1,5 +1,14 @@
 
-function CalculategetTaxableSocialSecurity() {
+import { turnOffDebug, turnOnDebug }		from "../Library/Debug.js";
+import { addListener }						from "../Library/HTML.js";
+import { getUserInput, putUserOutput }		from "../Library/HTML.js";
+import { showElement, hideElement }			from "../Library/HTML.js";
+import { min, max, round }					from "../Library/Numbers.js";
+import { strCaseEqual }						from "../Library/Strings.js";
+import { getTaxableSocialSecurity }			from "../Library/SocialSecurity/SocialSecurity.js";
+import { initializeTaxTables }				from "../Library/TaxTables/TaxTables.js";
+
+function calculategetTaxableSocialSecurity() {
 	const filing_status				= getUserInput("FilingStatus", "text");
 	const lived_with_spouse			= getUserInput("LivedWithSpouse");
 	const social_security			= getUserInput("SocialSecurity");
@@ -9,7 +18,7 @@ function CalculategetTaxableSocialSecurity() {
 	let taxable_ss					= 0;
 	let taxable_percent				= 0;
 
-	InitializeTaxTables(filing_status);
+	initializeTaxTables(filing_status);
 
 	if (strCaseEqual(filing_status, "MFS")) {
 		showElement("LivedWithSpouseContainer");
@@ -25,13 +34,13 @@ function CalculategetTaxableSocialSecurity() {
 					adjustments,
 					lived_with_spouse);
 
-	taxable_percent = (social_security === 0) ? 0 : Round(taxable_ss / social_security * 100);
+	taxable_percent = (social_security === 0) ? 0 : round(taxable_ss / social_security * 100);
 
 	putUserOutput("TaxableSocialSecurity",	taxable_ss);
 	putUserOutput("TaxablePercent",			taxable_percent + "%", "text");
 }
 
-function ChangeIncomeHandler(event) {
+function changeIncomeHandler(event) {
 	Wages.value					= 0;
 	TaxableInterest.value		= 0;
 	OrdinaryDividends.value		= 0;
@@ -41,10 +50,10 @@ function ChangeIncomeHandler(event) {
 	SelfEmploymentIncome.value	= 0;
 	OtherIncome.value			= 0;
 
-	ChangeHandler(event);
+	changeHandler(event);
 }
 
-function ChangeIncomeComponentHandler(event) {
+function changeIncomeComponentHandler(event) {
 	const wages					= getUserInput("Wages");
 	const taxable_interest		= getUserInput("TaxableInterest");
 	const ordinary_dividends	= getUserInput("OrdinaryDividends");
@@ -64,10 +73,10 @@ function ChangeIncomeComponentHandler(event) {
 										other_income;
 
 	putUserOutput("Income", total_income);
-	ChangeHandler(event);
+	changeHandler(event);
 }
 
-function ChangeAdjustmentsHandler(event) {
+function changeAdjustmentsHandler(event) {
 	EducatorExpenses.value				= 0;
 	HealthSavingsAccount.value			= 0;
 	SelfEmploymentTaxAdjustment.value	= 0;
@@ -78,7 +87,7 @@ function ChangeAdjustmentsHandler(event) {
 	StudentLoanInterest.value			= 0;
 	OtherAdjustments.value				= 0;
 
-	ChangeHandler(event);
+	changeHandler(event);
 }
 
 function ChangeAdjustmentComponentHandler(event) {
@@ -103,35 +112,35 @@ function ChangeAdjustmentComponentHandler(event) {
 											other_adjustments;
 
 	putUserOutput("Adjustments", total_adjustmentsw);
-	ChangeHandler(event);
+	changeHandler(event);
 }
 
-function ChangeHandler(event) {
+function changeHandler(event) {
 	// This is the function that is called if any input field is changed.
-	TurnOffDebug();
-	CalculategetTaxableSocialSecurity();
-	TurnOnDebug();
+	turnOffDebug();
+	calculategetTaxableSocialSecurity();
+	turnOnDebug();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
 	// Wait for the DOM to be fully loaded before trying to access any elements.
 
-	addListener("FilingStatus",					"change", ChangeHandler);
-	addListener("LivedWithSpouse",				"change", ChangeHandler);
-	addListener("SocialSecurity",				"change", ChangeHandler);
-	addListener("Income",						"change", ChangeIncomeHandler);
-	addListener("TaxExemptInterest",			"change", ChangeHandler);
-	addListener("Adjustments",					"change", ChangeAdjustmentsHandler);
+	addListener("FilingStatus",					"change", changeHandler);
+	addListener("LivedWithSpouse",				"change", changeHandler);
+	addListener("SocialSecurity",				"change", changeHandler);
+	addListener("Income",						"change", changeIncomeHandler);
+	addListener("TaxExemptInterest",			"change", changeHandler);
+	addListener("Adjustments",					"change", changeAdjustmentsHandler);
 
 	// Income
-	addListener("Wages",						"change", ChangeIncomeComponentHandler);
-	addListener("TaxableInterest",				"change", ChangeIncomeComponentHandler);
-	addListener("OrdinaryDividends",			"change", ChangeIncomeComponentHandler);
-	addListener("RetirementAccounts",			"change", ChangeIncomeComponentHandler);
-	addListener("PensionsAndAnnuities",			"change", ChangeIncomeComponentHandler);
-	addListener("CapitalGains",					"change", ChangeIncomeComponentHandler);
-	addListener("SelfEmploymentIncome",			"change", ChangeIncomeComponentHandler);
-	addListener("OtherIncome",					"change", ChangeIncomeComponentHandler);
+	addListener("Wages",						"change", changeIncomeComponentHandler);
+	addListener("TaxableInterest",				"change", changeIncomeComponentHandler);
+	addListener("OrdinaryDividends",			"change", changeIncomeComponentHandler);
+	addListener("RetirementAccounts",			"change", changeIncomeComponentHandler);
+	addListener("PensionsAndAnnuities",			"change", changeIncomeComponentHandler);
+	addListener("CapitalGains",					"change", changeIncomeComponentHandler);
+	addListener("SelfEmploymentIncome",			"change", changeIncomeComponentHandler);
+	addListener("OtherIncome",					"change", changeIncomeComponentHandler);
 
 	// Adjustments
 	addListener("EducatorExpenses",				"change", ChangeAdjustmentComponentHandler);
@@ -144,5 +153,5 @@ document.addEventListener("DOMContentLoaded", () => {
 	addListener("StudentLoanInterest",			"change", ChangeAdjustmentComponentHandler);;
 	addListener("OtherAdjustments",				"change", ChangeAdjustmentComponentHandler);
 
-	ChangeHandler();
+	changeHandler();
 });

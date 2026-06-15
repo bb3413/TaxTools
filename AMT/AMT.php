@@ -4,7 +4,7 @@
 	<meta charset="utf-8" />
 	<?php include "../Library/TaxTools/IncludeFiles.html"; ?>
 	<link rel="stylesheet" href="AMT.css" />
-	<script defer src="AMT.js"></script>
+	<script type="module" src="AMT.js"></script>
 
 	<title>Alternative Minimum Tax Calculator</title>
 </head>

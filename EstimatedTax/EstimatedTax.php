@@ -4,8 +4,8 @@
 	<meta charset="utf-8" />
 	<?php include "../Library/TaxTools/IncludeFiles.html"; ?>
 	<link rel="stylesheet" href="EstimatedTax.css" />
-	<script defer src="SaveRestore.js"></script>
-	<script defer src="EstimatedTax.js"></script>
+	<script type="module" src="SaveRestore.js"></script>
+	<script type="module" src="EstimatedTax.js"></script>
 
 	<title>Federal Estimated Tax Calculator</title>
 </head>

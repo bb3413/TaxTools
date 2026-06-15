@@ -1,4 +1,22 @@
 
+import { getAge }							from "../Library/Dates.js";
+import { getTaxYear }						from "../Library/Dates.js";
+import { dbgEnter, dbgExit, dbgLog }		from "../Library/Debug.js";
+import { putDebugOutput }					from "../Library/Debug.js";
+import { turnOffDebug, turnOnDebug }		from "../Library/Debug.js";
+import { addListener }						from "../Library/HTML.js";
+import { getUserInput, putUserOutput }		from "../Library/HTML.js";
+import { min, max, round }					from "../Library/Numbers.js";
+import { strCaseEqual }						from "../Library/Strings.js";
+import { getIncomeTax }						from "../Library/IncomeTax/IncomeTax.js";
+import { getTaxableSocialSecurity }			from "../Library/SocialSecurity/SocialSecurity.js";
+import { getMaxLTC }						from "../Library/TaxTables/TaxTables.js";
+import { getMedicalMileageDeduction }		from "../Library/TaxTables/TaxTables.js";
+import { getStandardDeduction }				from "../Library/TaxTables/TaxTables.js";
+import { getTaxValue }						from "../Library/TaxTables/TaxTables.js";
+import { initializeTaxTables }				from "../Library/TaxTables/TaxTables.js";
+import { saveUserData, restoreUserData }	from "./SaveRestore.js";
+
 // Values from HTML elements; local storage
 let tax_year								= 0;
 
@@ -100,42 +118,42 @@ let other_refundable_credits				= 0;
 let withholding								= 0;
 let estimated_tax_paid						= 0;
 
-function CheckInputValues() {
+function checkInputValues() {
 	//
 	// Correct input values that have a limit. No error is reported if a correction is made.
 	//
 	const fs = filing_status;
 
-	ltc_taxpayer					= Min(ltc_taxpayer,					getMaxLTC(taxpayers_age));
-	ltc_spouse						= Min(ltc_spouse,					getMaxLTC(spouses_age));
+	ltc_taxpayer					= min(ltc_taxpayer,					getMaxLTC(taxpayers_age));
+	ltc_spouse						= min(ltc_spouse,					getMaxLTC(spouses_age));
 
-	educator_expenses				= Min(educator_expenses,			getTaxValue("MaxEducatorExpenses",				fs));
-	capital_gains					= Max(capital_gains,				getTaxValue("MaxCapitalLoss",					fs));
-	student_loan_interest			= Min(student_loan_interest,		getTaxValue("MaxStudentLoanInterest",			fs));
+	educator_expenses				= min(educator_expenses,			getTaxValue("MaxEducatorExpenses",				fs));
+	capital_gains					= max(capital_gains,				getTaxValue("MaxCapitalLoss",					fs));
+	student_loan_interest			= min(student_loan_interest,		getTaxValue("MaxStudentLoanInterest",			fs));
 
 	// OBBA
-	qualified_tips_deduction		= Min(qualified_tips_deduction,		getTaxValue("MaxTipsDeduction",					fs));
-	qualified_overtime_deduction	= Min(qualified_overtime_deduction,	getTaxValue("MaxOvertimeDeduction",				fs));
-	car_loan_interest_deduction		= Min(car_loan_interest_deduction,	getTaxValue("MaxCarLoanInterestDeduction",		fs));
-	senior_deduction				= Min(senior_deduction,				getTaxValue("MaxSeniorDeduction",				fs));
+	qualified_tips_deduction		= min(qualified_tips_deduction,		getTaxValue("MaxTipsDeduction",					fs));
+	qualified_overtime_deduction	= min(qualified_overtime_deduction,	getTaxValue("MaxOvertimeDeduction",				fs));
+	car_loan_interest_deduction		= min(car_loan_interest_deduction,	getTaxValue("MaxCarLoanInterestDeduction",		fs));
+	senior_deduction				= min(senior_deduction,				getTaxValue("MaxSeniorDeduction",				fs));
 
 	// Non-refundable Credits
-	american_opp_credit_no_refund	= Min(american_opp_credit_no_refund,getTaxValue("MaxAmericanOppCreditNoRefund",		fs));
-	child_care_credit				= Min(child_care_credit,			getTaxValue("MaxChildAndDependentCareCredit",	fs));
-	child_tax_credit				= Min(child_tax_credit,				getTaxValue("MaxChildTaxCredit",				fs));
-	foreign_tax_credit				= Min(foreign_tax_credit,			getTaxValue("MaxForeignTaxCredit",				fs));
-	lifetime_learning_credit		= Min(lifetime_learning_credit,		getTaxValue("MaxLifetimeLearningCredit",		fs));
-	residential_energy_credit		= Min(residential_energy_credit,	getTaxValue("MaxResidentialEnergyCredit",		fs));
-	retirement_savings_credit		= Min(retirement_savings_credit,	getTaxValue("MaxRetirementSavingsCredit",		fs));
+	american_opp_credit_no_refund	= min(american_opp_credit_no_refund,getTaxValue("MaxAmericanOppCreditNoRefund",		fs));
+	child_care_credit				= min(child_care_credit,			getTaxValue("MaxChildAndDependentCareCredit",	fs));
+	child_tax_credit				= min(child_tax_credit,				getTaxValue("MaxChildTaxCredit",				fs));
+	foreign_tax_credit				= min(foreign_tax_credit,			getTaxValue("MaxForeignTaxCredit",				fs));
+	lifetime_learning_credit		= min(lifetime_learning_credit,		getTaxValue("MaxLifetimeLearningCredit",		fs));
+	residential_energy_credit		= min(residential_energy_credit,	getTaxValue("MaxResidentialEnergyCredit",		fs));
+	retirement_savings_credit		= min(retirement_savings_credit,	getTaxValue("MaxRetirementSavingsCredit",		fs));
 
 	// Refundable Credits
-	american_opp_credit_refundable	= Min(american_opp_credit_refundable,getTaxValue("MaxAmericanOppCreditRefundable",	fs));
-	credit_for_other_dependents		= Min(credit_for_other_dependents,	getTaxValue("MaxCreditForOtherDependents",		fs));
-	earned_income_credit			= Min(earned_income_credit,			getTaxValue("MaxEarnedIncomeCredit",			fs));
-	premium_tax_credit				= Min(premium_tax_credit,			getTaxValue("MaxPremiumTaxCredit",				fs));
+	american_opp_credit_refundable	= min(american_opp_credit_refundable,getTaxValue("MaxAmericanOppCreditRefundable",	fs));
+	credit_for_other_dependents		= min(credit_for_other_dependents,	getTaxValue("MaxCreditForOtherDependents",		fs));
+	earned_income_credit			= min(earned_income_credit,			getTaxValue("MaxEarnedIncomeCredit",			fs));
+	premium_tax_credit				= min(premium_tax_credit,			getTaxValue("MaxPremiumTaxCredit",				fs));
 }
 
-function CalculateTax() {
+function calculateTax() {
 	let end_of_year					= 0;
 	let total_income_wo_taxable_ss	= 0;
 	let taxable_ss					= 0;
@@ -148,20 +166,20 @@ function CalculateTax() {
 	let std_deduction				= 0;
 	let non_itemized_deductions		= 0;
 
-	InitializeTaxTables(filing_status, tax_year);
+	initializeTaxTables(filing_status, tax_year);
 
 	todays_date						= new Date().toLocaleDateString();
 	end_of_year						= new Date("12/31/" + tax_year);
-	taxpayers_age					= Age(taxpayers_birthday, end_of_year);
+	taxpayers_age					= getAge(taxpayers_birthday, end_of_year);
 	if (strCaseEqual(filing_status, "MFJ")) {
-		spouses_age					= Age(spouses_birthday, end_of_year);
+		spouses_age					= getAge(spouses_birthday, end_of_year);
 	}
 
-	CheckInputValues();
+	checkInputValues();
 	medical_mileage_deduction		= getMedicalMileageDeduction(medical_miles);	// Convert miles to dollars
 
 	// Income
-	retirement_accounts				= Max(0, retirement_accounts - qualified_charitable_distribution);
+	retirement_accounts				= max(0, retirement_accounts - qualified_charitable_distribution);
 	total_income_wo_taxable_ss		= wages +
 										taxable_interest +
 										ordinary_dividends +
@@ -195,7 +213,7 @@ function CalculateTax() {
 
 	total_income					= total_income_wo_taxable_ss + taxable_ss;
 
-	adjusted_gross_income			= Max(total_income - adjustments, 0);
+	adjusted_gross_income			= max(0, total_income - adjustments);
 
 	// Deductions
 	total_medical_deductions		= medical_insurance +
@@ -207,13 +225,13 @@ function CalculateTax() {
 										ltc_spouse +
 										medical_mileage_deduction;
 
-	agi_7_percent					= Round(adjusted_gross_income * 0.075);
-	medical_deductions				= Max(total_medical_deductions - agi_7_percent, 0);
+	agi_7_percent					= round(adjusted_gross_income * 0.075);
+	medical_deductions				= max(0, total_medical_deductions - agi_7_percent);
 
-	salt_taxes						= Max(state_income_tax, sales_tax) +
+	salt_taxes						= max(state_income_tax, sales_tax) +
 											real_estate_property_tax +
 											personal_property_tax;
-	salt_taxes						= Min(salt_taxes, getTaxValue("MaxSALT"));
+	salt_taxes						= min(salt_taxes, getTaxValue("MaxSALT"));
 
 	itemized_deductions				= medical_deductions +
 										salt_taxes +
@@ -222,9 +240,9 @@ function CalculateTax() {
 										noncash_gifts_to_charity;
 
 	std_deduction					= getStandardDeduction(filing_status, taxpayers_age, spouses_age);
-	deductions						= Max(itemized_deductions, std_deduction) + non_itemized_deductions;
+	deductions						= max(itemized_deductions, std_deduction) + non_itemized_deductions;
 
-	taxable_income					= Max(adjusted_gross_income - deductions, 0);
+	taxable_income					= max(0, adjusted_gross_income - deductions);
 
 	// Credits
 	nonrefundable_credits			= american_opp_credit_no_refund +
@@ -256,12 +274,12 @@ function CalculateTax() {
 											qualified_dividends,
 											capital_gains);
 
-	total_tax						= Max(tax_on_taxable_income +
+	total_tax						= max(0, tax_on_taxable_income +
 										total_other_taxes -
-										nonrefundable_credits, 0);
+										nonrefundable_credits);
 
 	amount_due						= payments + refundable_credits - total_tax;
-	estimated_tax					= Round(Max(0, estimated_tax_paid - amount_due) / 4);
+	estimated_tax					= round(max(0, estimated_tax_paid - amount_due) / 4);
 
 	// Fields where input was limited,
 	putDebugOutput("Debug01", educator_expenses,			"Limited Educator Expenses");
@@ -289,7 +307,7 @@ function CalculateTax() {
 	putDebugOutput("Debug20", non_itemized_deductions,		"Non-itemized Deductions");
 }
 
-function GetInputValues() {
+function getInputValues() {
 	// Copy input data from web page to local variables.
 	tax_year							= getUserInput("TaxYear");
 
@@ -389,7 +407,7 @@ function GetInputValues() {
 	estimated_tax_paid					= getUserInput("EstimatedTaxPaid");
 }
 
-function PutResults() {
+function putResults() {
 
 	putUserOutput("TodaysDate",				todays_date, "text");
 
@@ -411,13 +429,13 @@ function PutResults() {
 	putUserOutput("EstimatedTax",			estimated_tax);
 }
 
-function ChangeHandler(event) {
+function changeHandler(event) {
 	// This is the function that is called if any input field is changed.
-	TurnOffDebug();
-	GetInputValues();
-	CalculateTax();
-	PutResults();
-	TurnOnDebug();
+	turnOffDebug();
+	getInputValues();
+	calculateTax();
+	putResults();
+	turnOnDebug();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -426,89 +444,89 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Wait for the DOM to be fully loaded before trying to access any elements.
 
 	// Listen for changes to the input data.
-	addListener("TaxYear",							"change", ChangeHandler);
-	addListener("SaveButton",						"click",  SaveUserData);
-	addListener("InputFile",						"change", RestoreUserData);
+	addListener("TaxYear",							"change", changeHandler);
+	addListener("SaveButton",						"click",  saveUserData);
+	addListener("InputFile",						"change", restoreUserData);
 
 	// Taxpayer information
-	addListener("TaxpayersName",					"change", ChangeHandler);
-	addListener("FilingStatus",						"change", ChangeHandler);
-	addListener("TaxpayersBirthday",				"change", ChangeHandler);
-	addListener("SpousesBirthday",					"change", ChangeHandler);
+	addListener("TaxpayersName",					"change", changeHandler);
+	addListener("FilingStatus",						"change", changeHandler);
+	addListener("TaxpayersBirthday",				"change", changeHandler);
+	addListener("SpousesBirthday",					"change", changeHandler);
 
 	// Income
-	addListener("Wages",							"change", ChangeHandler);
-	addListener("TaxExemptInterest",				"change", ChangeHandler);
-	addListener("TaxableInterest",					"change", ChangeHandler);
-	addListener("QualifiedDividends",				"change", ChangeHandler);
-	addListener("OrdinaryDividends",				"change", ChangeHandler);
-	addListener("RetirementAccounts",				"change", ChangeHandler);
-	addListener("SocialSecurity",					"change", ChangeHandler);
-	addListener("CapitalGains",						"change", ChangeHandler);
-	addListener("SelfEmploymentIncome",				"change", ChangeHandler);
-	addListener("OtherIncome",						"change", ChangeHandler);
+	addListener("Wages",							"change", changeHandler);
+	addListener("TaxExemptInterest",				"change", changeHandler);
+	addListener("TaxableInterest",					"change", changeHandler);
+	addListener("QualifiedDividends",				"change", changeHandler);
+	addListener("OrdinaryDividends",				"change", changeHandler);
+	addListener("RetirementAccounts",				"change", changeHandler);
+	addListener("SocialSecurity",					"change", changeHandler);
+	addListener("CapitalGains",						"change", changeHandler);
+	addListener("SelfEmploymentIncome",				"change", changeHandler);
+	addListener("OtherIncome",						"change", changeHandler);
 
 	// Other Taxes
-	addListener("SelfEmploymentTax",				"change", ChangeHandler);
-	addListener("EarlyWithdrawalTax",				"change", ChangeHandler);
-	addListener("OtherTaxes",						"change", ChangeHandler);
+	addListener("SelfEmploymentTax",				"change", changeHandler);
+	addListener("EarlyWithdrawalTax",				"change", changeHandler);
+	addListener("OtherTaxes",						"change", changeHandler);
 
 	// Adjustments
-	addListener("EducatorExpenses",					"change", ChangeHandler);
-	addListener("HealthSavingsAccount",				"change", ChangeHandler);
-	addListener("SelfEmploymentTaxAdjustment",		"change", ChangeHandler);
-	addListener("SelfEmployedHealthInsurance",		"change", ChangeHandler);
-	addListener("EarlyWithdrawalPenalty",			"change", ChangeHandler);
-	addListener("AlimonyPaid",						"change", ChangeHandler);
-	addListener("IRAContributions",					"change", ChangeHandler);
-	addListener("StudentLoanInterest",				"change", ChangeHandler);
-	addListener("OtherAdjustments",					"change", ChangeHandler);
+	addListener("EducatorExpenses",					"change", changeHandler);
+	addListener("HealthSavingsAccount",				"change", changeHandler);
+	addListener("SelfEmploymentTaxAdjustment",		"change", changeHandler);
+	addListener("SelfEmployedHealthInsurance",		"change", changeHandler);
+	addListener("EarlyWithdrawalPenalty",			"change", changeHandler);
+	addListener("AlimonyPaid",						"change", changeHandler);
+	addListener("IRAContributions",					"change", changeHandler);
+	addListener("StudentLoanInterest",				"change", changeHandler);
+	addListener("OtherAdjustments",					"change", changeHandler);
 
 	// Deductions (non-itemized)
-	addListener("QualifiedBusinessIncomeDeduction",	"change", ChangeHandler);
-	addListener("QualifiedTipsDeduction",			"change", ChangeHandler);
-	addListener("QualifiedOvertimeDeduction",		"change", ChangeHandler);
-	addListener("CarLoanInterestDeduction",			"change", ChangeHandler);
-	addListener("SeniorDeduction",					"change", ChangeHandler);
+	addListener("QualifiedBusinessIncomeDeduction",	"change", changeHandler);
+	addListener("QualifiedTipsDeduction",			"change", changeHandler);
+	addListener("QualifiedOvertimeDeduction",		"change", changeHandler);
+	addListener("CarLoanInterestDeduction",			"change", changeHandler);
+	addListener("SeniorDeduction",					"change", changeHandler);
 
 	// Deductions (itemized)
-	addListener("MedicalInsurance",					"change", ChangeHandler);
-	addListener("DoctorVisits",						"change", ChangeHandler);
-	addListener("PrescriptionDrugs",				"change", ChangeHandler);
-	addListener("MedicalAids",						"change", ChangeHandler);
-	addListener("OtherMedicalExpenses",				"change", ChangeHandler);
-	addListener("LTCTaxpayer",						"change", ChangeHandler);
-	addListener("LTCSpouse",						"change", ChangeHandler);
-	addListener("MedicalMiles",						"change", ChangeHandler);
-	addListener("StateIncomeTax",					"change", ChangeHandler);
-	addListener("SalesTax",							"change", ChangeHandler);
-	addListener("RealEstatePropertyTax",			"change", ChangeHandler);
-	addListener("PersonalPropertyTax",				"change", ChangeHandler);
-	addListener("MortgageInterest",					"change", ChangeHandler);
-	addListener("CashGiftsToCharity",				"change", ChangeHandler);
-	addListener("NoncashGiftsToCharity",			"change", ChangeHandler);
-	addListener("QualifiedCharitableDistribution",	"change", ChangeHandler);
+	addListener("MedicalInsurance",					"change", changeHandler);
+	addListener("DoctorVisits",						"change", changeHandler);
+	addListener("PrescriptionDrugs",				"change", changeHandler);
+	addListener("MedicalAids",						"change", changeHandler);
+	addListener("OtherMedicalExpenses",				"change", changeHandler);
+	addListener("LTCTaxpayer",						"change", changeHandler);
+	addListener("LTCSpouse",						"change", changeHandler);
+	addListener("MedicalMiles",						"change", changeHandler);
+	addListener("StateIncomeTax",					"change", changeHandler);
+	addListener("SalesTax",							"change", changeHandler);
+	addListener("RealEstatePropertyTax",			"change", changeHandler);
+	addListener("PersonalPropertyTax",				"change", changeHandler);
+	addListener("MortgageInterest",					"change", changeHandler);
+	addListener("CashGiftsToCharity",				"change", changeHandler);
+	addListener("NoncashGiftsToCharity",			"change", changeHandler);
+	addListener("QualifiedCharitableDistribution",	"change", changeHandler);
 
 	// Non-refundable Credits
-	addListener("AmericanOppCreditNoRefund",		"change", ChangeHandler);
-	addListener("ChildCareCredit",					"change", ChangeHandler);
-	addListener("ChildTaxCredit",					"change", ChangeHandler);
-	addListener("ForeignTaxCredit",					"change", ChangeHandler);
-	addListener("LifetimeLearningCredit",			"change", ChangeHandler);
-	addListener("ResidentialEnergyCredit",			"change", ChangeHandler);
-	addListener("RetirementSavingsCredit",			"change", ChangeHandler);
-	addListener("OtherNonrefundableCredits",		"change", ChangeHandler);
+	addListener("AmericanOppCreditNoRefund",		"change", changeHandler);
+	addListener("ChildCareCredit",					"change", changeHandler);
+	addListener("ChildTaxCredit",					"change", changeHandler);
+	addListener("ForeignTaxCredit",					"change", changeHandler);
+	addListener("LifetimeLearningCredit",			"change", changeHandler);
+	addListener("ResidentialEnergyCredit",			"change", changeHandler);
+	addListener("RetirementSavingsCredit",			"change", changeHandler);
+	addListener("OtherNonrefundableCredits",		"change", changeHandler);
 
 	// Refundable Credits
-	addListener("AmericanOppCreditRefundable",		"change", ChangeHandler);
-	addListener("CreditForOtherDependents",			"change", ChangeHandler);
-	addListener("EarnedIncomeCredit",				"change", ChangeHandler);
-	addListener("PremiumTaxCredit",					"change", ChangeHandler);
-	addListener("OtherRefundableCredits",			"change", ChangeHandler);
+	addListener("AmericanOppCreditRefundable",		"change", changeHandler);
+	addListener("CreditForOtherDependents",			"change", changeHandler);
+	addListener("EarnedIncomeCredit",				"change", changeHandler);
+	addListener("PremiumTaxCredit",					"change", changeHandler);
+	addListener("OtherRefundableCredits",			"change", changeHandler);
 
 	// Payments
-	addListener("Withholding",						"change", ChangeHandler);
-	addListener("EstimatedTaxPaid",					"change", ChangeHandler);
+	addListener("Withholding",						"change", changeHandler);
+	addListener("EstimatedTaxPaid",					"change", changeHandler);
 
 	// Using autofocus attribute scrolls the page to that element; this will move the
 	// focus but display the page without sccrolling to that element.
@@ -519,7 +537,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	tax_year = getTaxYear();	// Default tax year.
 	putUserOutput("TaxYear", tax_year, "text");
-	ChangeHandler();
+	changeHandler();
 
 	dbgExit("ContentLoaded");
 });
+
+export { changeHandler };

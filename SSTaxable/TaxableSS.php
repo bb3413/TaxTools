@@ -4,7 +4,7 @@
 	<meta charset="utf-8" />
 	<?php include "../Library/TaxTools/IncludeFiles.html"; ?>
 	<link rel="stylesheet" href="TaxableSS.css" />
-	<script defer src="TaxableSS.js"></script>
+	<script type="module" src="TaxableSS.js"></script>
 
 	<title>Taxable Social Security Calculator</title>
 </head>

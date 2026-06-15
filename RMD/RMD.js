@@ -1,4 +1,12 @@
 
+import { getAge }									from "../Library/Dates.js";
+import { getTaxYear }								from "../Library/Dates.js";
+import { turnOffDebug, turnOnDebug }				from "../Library/Debug.js";
+import { addListener }								from "../Library/HTML.js";
+import { changeBackgroundColor, changeTextColor }	from "../Library/HTML.js";
+import { getCSSGlobalVariable }						from "../Library/HTML.js";
+import { getUserInput, putUserOutput }				from "../Library/HTML.js";
+
 let tax_year				= 0;
 let ira_total				= 0;
 let taxpayers_birthday		= "";
@@ -61,7 +69,7 @@ const RMD_Table_III = [	// Uniform Lifetime Table
 	[	120,	2.0,	],
 ];
 
-function CalculateRMD() {
+function calculateRMD() {
 	let end_of_year				= "";
 	let period					= 0;
 
@@ -72,7 +80,7 @@ function CalculateRMD() {
 
 	if (taxpayers_birthday !== "") {
 		end_of_year				= new Date("12/31/" + tax_year).toLocaleDateString();
-		taxpayers_age			= Age(taxpayers_birthday, end_of_year);
+		taxpayers_age			= getAge(taxpayers_birthday, end_of_year);
 		changeBackgroundColor("TaxpayersAge", output_color);
 	} else {
 		changeBackgroundColor("TaxpayersAge", input_color);
@@ -96,12 +104,12 @@ function CalculateRMD() {
 	}
 }
 
-function PutOutput() {
+function putOutput() {
 	putUserOutput("TaxpayersAge",	taxpayers_age);
 	putUserOutput("RMD",			rmd);
 }
 
-function GetInput() {
+function getInput() {
 	tax_year				= getUserInput("TaxYear");
 	ira_total				= getUserInput("IRATotal");
 	taxpayers_birthday		= getUserInput("TaxpayersBirthday",	"text");
@@ -110,33 +118,33 @@ function GetInput() {
 	rmd						= 0;
 }
 
-function ChangedAge(event) {
+function changedAge(event) {
 	const age = getUserInput("TaxpayersAge");
 	if (age !== 0)
 		putUserOutput("TaxpayersBirthday", "");
 
-	ChangeHandler(event);
+	changeHandler(event);
 }
 
-function ChangeHandler(event) {
+function changeHandler(event) {
 	// This is the function that is called if any input field is changed.
-	TurnOffDebug();
-	GetInput();
-	CalculateRMD();
-	PutOutput();
-	TurnOnDebug();
+	turnOffDebug();
+	getInput();
+	calculateRMD();
+	putOutput();
+	turnOnDebug();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
 	// Wait for the DOM to be fully loaded before trying to access any elements.
 
-	addListener("TaxYear",				"change", ChangeHandler);
-	addListener("IRATotal",				"change", ChangeHandler);
-	addListener("TaxpayersBirthday",	"change", ChangeHandler);
-	addListener("TaxpayersAge",			"change", ChangedAge);
+	addListener("TaxYear",				"change", changeHandler);
+	addListener("IRATotal",				"change", changeHandler);
+	addListener("TaxpayersBirthday",	"change", changeHandler);
+	addListener("TaxpayersAge",			"change", changedAge);
 
 	output_color	= getCSSGlobalVariable("--output-color");
 	input_color		= getCSSGlobalVariable("--input-color");
 
-	ChangeHandler();
+	changeHandler();
 });

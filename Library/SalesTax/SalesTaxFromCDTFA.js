@@ -1,4 +1,6 @@
 
+import { TAXTOOLS_URL, SALES_TAX_PROXY } from "../TaxTools/TaxTools.js";
+
 async function fetchSalesTaxRate(address, city, zip) {
 	// encodeURIComponent handles spaces and special characters like "#" safely
 	const cleanAddress	= encodeURIComponent(address.trim());
@@ -29,3 +31,5 @@ async function fetchSalesTaxRate(address, city, zip) {
 
 	return salesTaxRate;
 }
+
+export { fetchSalesTaxRate };

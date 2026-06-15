@@ -1,4 +1,15 @@
 
+import { putDebugOutput }					from "../Library/Debug.js";
+import { turnOffDebug, turnOnDebug }		from "../Library/Debug.js";
+import { addListener }						from "../Library/HTML.js";
+import { getUserInput, putUserOutput }		from "../Library/HTML.js";
+import { limit }							from "../Library/Numbers.js";
+import { min, max, round }					from "../Library/Numbers.js";
+import { fetchSalesTaxRate }				from "../Library/SalesTax/SalesTaxFromCDTFA.js";
+import { initializeTaxTables }				from "../Library/TaxTables/TaxTables.js";
+import { getSalesTaxDeduction }				from "../Library/TaxTables/TaxTables.js";
+import { getTaxValue }						from "../Library/TaxTables/TaxTables.js";
+
 let tax_year				= 0;
 let family_size				= 0;
 let extra_sales_tax			= 0;
@@ -10,13 +21,13 @@ async function calculateAmount() {
 	let local_sales_tax		= 0;
 	let spendable_income	= 0;
 
-	InitializeTaxTables("single", tax_year);
+	initializeTaxTables("single", tax_year);
 
-	family_size			= Limit(family_size, 1, 6);
+	family_size			= limit(family_size, 1, 6);
 	spendable_income	= getSpendableIncome();
 	base_sales_tax		= getTaxValue("CA_BaseSalesTax");
 	if (total_sales_tax > 0) {
-		local_sales_tax = Max(total_sales_tax - base_sales_tax, 0);
+		local_sales_tax = max(0, total_sales_tax - base_sales_tax);
 	}
 
 	sales_tax_deduction = salesTaxWorksheet(
@@ -79,13 +90,13 @@ function salesTaxWorksheet(
 		if (line_2 === 0) {
 			line_4	= base_sales_tax;
 			line_5	= line_3 / line_4;
-			line_6	= Round(line_1 * line_5);
+			line_6	= round(line_1 * line_5);
 		} else {
 			line_6 = line_2 * line_3;
 		}
 	}
 	line_7	= extra_sales_tax;
-	line_8	= Round(line_1 + line_6 + line_7);
+	line_8	= round(line_1 + line_6 + line_7);
 
 	putDebugOutput("Debug05", line_1,	"Line 1");
 	putDebugOutput("Debug06", line_2,	"Line 2");
@@ -113,10 +124,10 @@ async function changeAddressHandler(event) {
 }
 
 function changeHandler(event) {
-	TurnOffDebug();
+	turnOffDebug();
 	getInputValues();
 	calculateAmount();
-	TurnOnDebug();
+	turnOnDebug();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -140,5 +151,5 @@ document.addEventListener("DOMContentLoaded", () => {
 	addListener("SelfEmploymentIncome",		"change", changeHandler);
 	addListener("OtherIncome",				"change", changeHandler);
 
-	TurnOffDebug();
+	turnOffDebug();
 });

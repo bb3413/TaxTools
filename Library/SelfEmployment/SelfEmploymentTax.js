@@ -1,4 +1,7 @@
 
+import { putDebugOutput }		from "../Debug.js";
+import { min, max, round }		from "../Numbers.js";
+
 /*
  * Self-employment Tax Calculation
  *
@@ -26,7 +29,7 @@ let se_line_10	= 0;
 let se_line_11	= 0;
 let se_line_12	= 0;
 
-function SE_Tax(
+function getSETax(
 	profit_from_business,
 	ss_wages) {		// Boxes 3 and 7 on W-2
 
@@ -36,7 +39,7 @@ function SE_Tax(
 	se_line_1b	= 0;								// Ignore - for use with farm income
 	se_line_2	= profit_from_business;				// Net profit from business, from schedule C, line 31
 	se_line_3	= se_line_1a + se_line_1b + se_line_2;	// Total self-imployment income
-	se_line_4a	= Round((se_line_3 > 0) ? se_line_3 * .9235 : se_line_3);	// 92.35%
+	se_line_4a	= round((se_line_3 > 0) ? se_line_3 * .9235 : se_line_3);	// 92.35%
 	se_line_4b = 0;									// Ignore
 	se_line_4c = se_line_4a + se_line_4b;
 	if (se_line_4c < 400) {
@@ -44,7 +47,7 @@ function SE_Tax(
 		return 0;									// No self-employment tax due
 	}
 	se_line_5a	= 0;								// Ignore - church employee income
-	se_line_5b	= Round(se_line_5a * .9235);		// 92.35%
+	se_line_5b	= round(se_line_5a * .9235);		// 92.35%
 	if (se_line_5b < 100) {
 		se_line_5b = 0;
 	}
@@ -59,13 +62,13 @@ function SE_Tax(
 	if (se_line_9 <= 0) {
 		se_line_10	= 0;
 	} else {
-		se_line_10 = Round(Min(se_line_6, se_line_9) * 0.124);	// 12.4% Social Security tax
+		se_line_10 = round(min(se_line_6, se_line_9) * 0.124);	// 12.4% Social Security tax
 	}
-	se_line_11	= Round(se_line_6 * 0.029);			// 2.9% Medicatre tax
+	se_line_11	= round(se_line_6 * 0.029);			// 2.9% Medicatre tax
 	se_line_12	= se_line_10 + se_line_11;			// Social Security tax + Medicare tax = Self-employment tax
 
 	SETax_PutOutput();
-	return Round(se_line_12);
+	return round(se_line_12);
 }
 
 function SETax_ResetLines() {
@@ -107,7 +110,9 @@ function SETax_PutOutput() {
 	putDebugOutput("SETax-Debug14", se_line_8c,	"Line 8c",	"Wages subject to Social Security tax");
 	putDebugOutput("SETax-Debug15", se_line_8d,	"Line 8d",	"Total wages outside business subject to Social Security tax");
 	putDebugOutput("SETax-Debug16", se_line_9,	"Line 9",	"line 7 - line 8d");
-	putDebugOutput("SETax-Debug17", se_line_10,	"Line 10",	"12.4% of Min(line 6, line 9) - Social Security tax");
+	putDebugOutput("SETax-Debug17", se_line_10,	"Line 10",	"12.4% of min(line 6, line 9) - Social Security tax");
 	putDebugOutput("SETax-Debug18", se_line_11,	"Line 11",	"2.9% of line 6 - Medicatre tax");
 	putDebugOutput("SETax-Debug19", se_line_12,	"Line 12",	"Social Security tax + Medicare tax = Self-employment tax");
 }
+
+export { getSETax };

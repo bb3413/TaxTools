@@ -21,7 +21,6 @@
 globalThis.dbgEnter ??= () => {};
 globalThis.dbgExit  ??= () => {};
 
-
 async function loadIncludes(container = document, depth = 0) {
 	dbgEnter("loadIncludes");
 
@@ -112,3 +111,5 @@ async function loadIncludes(container = document, depth = 0) {
 // in turn, calls loadIncludes() without a parameter so loadIncludes() will use its
 // default parameter values.
 window.onload = () => loadIncludes();
+
+export { loadIncludes };

@@ -1,4 +1,17 @@
 
+import { getAge }							from "../Library/Dates.js";
+import { getTaxYear }						from "../Library/Dates.js";
+import { putDebugOutput }					from "../Library/Debug.js";
+import { turnOffDebug, turnOnDebug }		from "../Library/Debug.js";
+import { addListener }						from "../Library/HTML.js";
+import { getUserInput, putUserOutput }		from "../Library/HTML.js";
+import { showElement, hideElement }			from "../Library/HTML.js";
+import { min, max, round }					from "../Library/Numbers.js";
+import { strCaseEqual }						from "../Library/Strings.js";
+import { initializeTaxTables }				from "../Library/TaxTables/TaxTables.js";
+import { getStandardDeduction }				from "../Library/TaxTables/TaxTables.js";
+import { getTaxValue }						from "../Library/TaxTables/TaxTables.js";
+
 let previous_tax_year			= 0;
 let filing_status				= 0;
 let taxpayers_birthday			= 0;
@@ -33,7 +46,7 @@ let line_7						= 0;
 let line_8						= 0;
 let line_9						= 0;
 
-function CalculateTaxableAmount() {
+function calculateTaxableAmount() {
 	let end_of_year				= 0;
 	let taxpayers_age			= 0;
 	let spouses_age				= 0;
@@ -45,11 +58,11 @@ function CalculateTaxableAmount() {
 		hideElement("SpouseContainer");
 	}
 
-	InitializeTaxTables(filing_status, previous_tax_year);
+	initializeTaxTables(filing_status, previous_tax_year);
 
 	end_of_year				= new Date("12/31/" + previous_tax_year);
-	taxpayers_age			= Age(taxpayers_birthday, end_of_year);
-	spouses_age				= Age(spouses_birthday, end_of_year);
+	taxpayers_age			= getAge(taxpayers_birthday, end_of_year);
+	spouses_age				= getAge(spouses_birthday, end_of_year);
 	max_salt				= getTaxValue("MaxSALT");
 
 	standard_deduction		= getStandardDeduction(
@@ -83,7 +96,7 @@ function CalculateTaxableAmount() {
 	}
 
 	line_5d		= state_income_tax + real_estate_taxes + personal_property_taxes;
-	line_5e		= Min(line_5d, max_salt);
+	line_5e		= min(line_5d, max_salt);
 
 	Worksheet(
 		filing_status,
@@ -176,7 +189,7 @@ function Worksheet(
 	return;
 }
 
-function GetInputValues() {
+function getInputValues() {
 	previous_tax_year					= getUserInput("PreviousTaxYear");
 	filing_status						= getUserInput("FilingStatus",		"text");
 	taxpayers_birthday					= getUserInput("TaxpayersBirthday",	"text");
@@ -212,7 +225,7 @@ function GetInputValues() {
 	line_9								= 0;
 }
 
-function PutResults() {
+function putResults() {
 	putUserOutput("TaxableAmount",	taxable_amount);
 	putUserOutput("Explanation",	explanation,	"text");
 
@@ -230,36 +243,36 @@ function PutResults() {
 	putDebugOutput("Debug12", line_9,				"Line 9");
 }
 
-function ChangeHandler(event) {
+function changeHandler(event) {
 	// This is the function that is called if any input field is changed.
-	TurnOffDebug();
-	GetInputValues();
-	CalculateTaxableAmount();
-	PutResults();
-	TurnOnDebug();
+	turnOffDebug();
+	getInputValues();
+	calculateTaxableAmount();
+	putResults();
+	turnOnDebug();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
 	// Wait for the DOM to be fully loaded before trying to access any elements.
 
-	addListener("PreviousTaxYear",			"change", ChangeHandler);
-	addListener("FilingStatus",				"change", ChangeHandler);
-	addListener("TaxpayersBirthday",		"change", ChangeHandler);
-	addListener("SpousesBirthday",			"change", ChangeHandler);
-	addListener("TaxpayerIsBlind",			"change", ChangeHandler);
-	addListener("SpouseIsBlind",			"change", ChangeHandler);
-	addListener("StateTaxRefund",			"change", ChangeHandler);
+	addListener("PreviousTaxYear",			"change", changeHandler);
+	addListener("FilingStatus",				"change", changeHandler);
+	addListener("TaxpayersBirthday",		"change", changeHandler);
+	addListener("SpousesBirthday",			"change", changeHandler);
+	addListener("TaxpayerIsBlind",			"change", changeHandler);
+	addListener("SpouseIsBlind",			"change", changeHandler);
+	addListener("StateTaxRefund",			"change", changeHandler);
 
 	// Information from last year
-	addListener("StateIncomeTax",			"change", ChangeHandler);
-	addListener("SalesTax",					"change", ChangeHandler);
-	addListener("SalesTaxUsed",				"change", ChangeHandler);
-	addListener("RealEstateTaxes",			"change", ChangeHandler);
-	addListener("PersonalPropertyTaxes",	"change", ChangeHandler);
-	addListener("ItemizedDeductions",		"change", ChangeHandler);
+	addListener("StateIncomeTax",			"change", changeHandler);
+	addListener("SalesTax",					"change", changeHandler);
+	addListener("SalesTaxUsed",				"change", changeHandler);
+	addListener("RealEstateTaxes",			"change", changeHandler);
+	addListener("PersonalPropertyTaxes",	"change", changeHandler);
+	addListener("ItemizedDeductions",		"change", changeHandler);
 
 	previous_tax_year = getTaxYear() - 1;	// Default tax year.
 	putUserOutput("PreviousTaxYear", previous_tax_year, "text");
 
-	ChangeHandler();
+	changeHandler();
 });

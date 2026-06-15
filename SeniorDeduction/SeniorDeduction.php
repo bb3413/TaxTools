@@ -5,7 +5,7 @@
 	<?php include "../Library/TaxTools/IncludeFiles.html"; ?>
 	<link rel="stylesheet" href="../Library/TaxTools/HelpFields.css" />
 	<link rel="stylesheet" href="SeniorDeduction.css" />
-	<script defer src="SeniorDeduction.js"></script>
+	<script type="module" src="SeniorDeduction.js"></script>
 
 	<title>Enhanced Deduction for Seniors Calculator</title>
 </head>

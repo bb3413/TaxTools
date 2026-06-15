@@ -4,7 +4,7 @@
 	<meta charset="utf-8" />
 	<?php include "../Library/TaxTools/IncludeFiles.html"; ?>
 	<link rel="stylesheet" href="CASalesTaxDeduction.css" />
-	<script defer src="CASalesTaxDeduction.js"></script>
+	<script type="module" src="CASalesTaxDeduction.js"></script>
 
 	<title>California Sales Tax Deduction Calculator</title>
 </head>
@@ -17,7 +17,7 @@
 		<h1 class="title">California Sales Tax Deduction Calculator</h1>
 
 		<p>This tool calculates the amount of the sales tax deduction you are allowed. On Schedule A,
-		Itemized Deduction, you have a choice of taking a deduction for the state and local taxes you
+		Itemized Deductions, you have a choice of taking a deduction for the state and local taxes you
 		paid (for example, state income tax withheld from wages) or an estimate of the total sales tax
 		you paid throughout the year, whichever is greater.</p>
 

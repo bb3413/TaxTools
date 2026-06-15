@@ -1,11 +1,21 @@
 
-function CalculateTax() {
+import { turnOffDebug, turnOnDebug }		from "../Library/Debug.js";
+import { addListener }						from "../Library/HTML.js";
+import { getUserInput, putUserOutput }		from "../Library/HTML.js";
+import { min, max, round }					from "../Library/Numbers.js";
+import { getSEHIDeduction }					from "../Library/SelfEmployment/SEHIDeduction.js";
+import { getSETax }							from "../Library/SelfEmployment/SelfEmploymentTax.js";
+import { initializeTaxTables }				from "../Library/TaxTables/TaxTables.js";
+import { getBusinessMileageDeduction }		from "../Library/TaxTables/TaxTables.js";
+
+function calculateTax() {
 	let gross_profit					= 0;
 	let gross_income					= 0;
 	let total_expenses					= 0;
 	let car_and_truck					= 0;
 	let net_profit						= 0;
 	let self_employment_tax				= 0;
+	let self_employment_tax_adjustment	= 0;
 	let qbi_deduction					= 0;
 	let sehi_adjustment					= 0;
 	let net_profit_after_sehi			= 0;
@@ -14,7 +24,7 @@ function CalculateTax() {
 	let medical_deduction				= 0;
 	let retirement_plan_contributions	= 0;	// IRA contributions
 
-	InitializeTaxTables();
+	initializeTaxTables();
 
 	car_and_truck = getUserInput("CarAndTruck");
 	if (car_and_truck === 0) {
@@ -50,12 +60,12 @@ function CalculateTax() {
 	net_profit		= gross_income - total_expenses - getUserInput("HomeOfficeExpense");
 
 	// Calculate self-employemnt tax
-	self_employment_tax				= SE_Tax(net_profit, 0);
-	self_employment_tax_adjustment	= Round(self_employment_tax / 2);
+	self_employment_tax				= getSETax(net_profit, 0);
+	self_employment_tax_adjustment	= round(self_employment_tax / 2);
 
 	// Calculate SEHI adjustment
 	medical_insurance				= getUserInput("MedicalInsurance");
-	sehi_adjustment					= SEHIDeduction(
+	sehi_adjustment					= getSEHIDeduction(
 											medical_insurance,
 											0,		// LTC insurane
 											net_profit,
@@ -65,7 +75,7 @@ function CalculateTax() {
 	net_profit_after_sehi		= net_profit - sehi_adjustment;
 	medical_deduction			= medical_insurance - sehi_adjustment;
 
-	qbi_deduction					= Round(Max(0, net_profit -
+	qbi_deduction					= round(max(0, net_profit -
 										self_employment_tax_adjustment -
 										retirement_plan_contributions -
 										sehi_adjustment) * 0.20);
@@ -85,48 +95,48 @@ function CalculateTax() {
 	putUserOutput("TotalExpenses",					total_expenses);
 }
 
-function ChangeHandler(event) {
+function changeHandler(event) {
 	// This is the function that is called if any input field is changed.
-	TurnOffDebug();
-	CalculateTax();
-	TurnOnDebug();
+	turnOffDebug();
+	calculateTax();
+	turnOnDebug();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
 	// Wait for the DOM to be fully loaded before trying to access any elements.
 
 	// Income
-	addListener("Sales",					"change", ChangeHandler);
-	addListener("Returns",					"change", ChangeHandler);
-	addListener("Cost",						"change", ChangeHandler);
-	addListener("OtherIncome",				"change", ChangeHandler);
-	addListener("HomeOfficeExpense",		"change", ChangeHandler);
-	// addListener("GrossIncome",			"change", ChangeHandler);
+	addListener("Sales",					"change", changeHandler);
+	addListener("Returns",					"change", changeHandler);
+	addListener("Cost",						"change", changeHandler);
+	addListener("OtherIncome",				"change", changeHandler);
+	addListener("HomeOfficeExpense",		"change", changeHandler);
+	// addListener("GrossIncome",			"change", changeHandler);
 
 	// Expenses
-	addListener("Advertising",				"change", ChangeHandler);
-	addListener("CarAndTruck",				"change", ChangeHandler);
-	addListener("CarAndTruckMiles",			"change", ChangeHandler);
-	addListener("CommissionsAndFees",		"change", ChangeHandler);
-	addListener("ContractLabor",			"change", ChangeHandler);
-	addListener("Depletion",				"change", ChangeHandler);
-	addListener("Depreciation",				"change", ChangeHandler);
-	addListener("EmployeeBenefitPrograms",	"change", ChangeHandler);
-	addListener("Insurance",				"change", ChangeHandler);
-	addListener("Interest",					"change", ChangeHandler);
-	addListener("ProfessionalServices",		"change", ChangeHandler);
-	addListener("MedicalInsurance",			"change", ChangeHandler);
-	addListener("OfficeExpenses",			"change", ChangeHandler);
-	addListener("PensionPlan",				"change", ChangeHandler);
-	addListener("Rent",						"change", ChangeHandler);
-	addListener("Repairs",					"change", ChangeHandler);
-	addListener("Supplies",					"change", ChangeHandler);
-	addListener("TaxesAndLicenses",			"change", ChangeHandler);
-	addListener("Travel",					"change", ChangeHandler);
-	addListener("Utilities",				"change", ChangeHandler);
-	addListener("Wages",					"change", ChangeHandler);
-	addListener("OtherExpenses",			"change", ChangeHandler);
-	// addListener("TotalExpenses",			"change", ChangeHandler);
+	addListener("Advertising",				"change", changeHandler);
+	addListener("CarAndTruck",				"change", changeHandler);
+	addListener("CarAndTruckMiles",			"change", changeHandler);
+	addListener("CommissionsAndFees",		"change", changeHandler);
+	addListener("ContractLabor",			"change", changeHandler);
+	addListener("Depletion",				"change", changeHandler);
+	addListener("Depreciation",				"change", changeHandler);
+	addListener("EmployeeBenefitPrograms",	"change", changeHandler);
+	addListener("Insurance",				"change", changeHandler);
+	addListener("Interest",					"change", changeHandler);
+	addListener("ProfessionalServices",		"change", changeHandler);
+	addListener("MedicalInsurance",			"change", changeHandler);
+	addListener("OfficeExpenses",			"change", changeHandler);
+	addListener("PensionPlan",				"change", changeHandler);
+	addListener("Rent",						"change", changeHandler);
+	addListener("Repairs",					"change", changeHandler);
+	addListener("Supplies",					"change", changeHandler);
+	addListener("TaxesAndLicenses",			"change", changeHandler);
+	addListener("Travel",					"change", changeHandler);
+	addListener("Utilities",				"change", changeHandler);
+	addListener("Wages",					"change", changeHandler);
+	addListener("OtherExpenses",			"change", changeHandler);
+	// addListener("TotalExpenses",			"change", changeHandler);
 
 	// Using autofocus attribute scrolls the page to that element; this will move the
 	// focus but display the page without sccrolling to that element.
@@ -135,5 +145,5 @@ document.addEventListener("DOMContentLoaded", () => {
 		preventScroll: true
 	});
 
-	ChangeHandler();
+	changeHandler();
 });

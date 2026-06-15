@@ -4,7 +4,7 @@
 	<meta charset="utf-8" />
 	<?php include "../Library/TaxTools/IncludeFiles.html"; ?>
 	<link rel="stylesheet" href="StateTaxRefund.css" />
-	<script defer src="StateTaxRefund.js"></script>
+	<script type="module" src="StateTaxRefund.js"></script>
 
 	<title>State Income Tax Refund Calculator</title>
 </head>

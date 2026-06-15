@@ -1,4 +1,17 @@
 
+import { getAge }										from "../Library/Dates.js";
+import { turnOffDebug, turnOnDebug }					from "../Library/Debug.js";
+import { addListener }									from "../Library/HTML.js";
+import { getUserInput, putUserOutput }					from "../Library/HTML.js";
+import { showElement, hideElement }						from "../Library/HTML.js";
+import { min, max, round }								from "../Library/Numbers.js";
+import { strCaseEqual }									from "../Library/Strings.js";
+import { initializeTaxTables }							from "../Library/TaxTables/TaxTables.js";
+import { get_AMT_Exemption, get_AMT_Tax }				from "../Library/TaxTables/TaxTables.js";
+import { get_CapGains_15_Start, get_CapGains_20_Start }	from "../Library/TaxTables/TaxTables.js";
+import { getSeniorDeduction }							from "../Library/TaxTables/TaxTables.js";
+import { getStandardDeduction }							from "../Library/TaxTables/TaxTables.js";
+
 // Input fields
 let tax_year						= 0;
 let filing_status					= "";
@@ -172,51 +185,51 @@ function AMT_TaxWithCapGains() {
 	line_13	= capital_gains + qualified_dividends;
 	line_14	= 0;				// Leave blank for now.
 	line_15	= line_13 + line_14;
-	line_16	= Min(line_12, line_15);
+	line_16	= min(line_12, line_15);
 	line_17	= line_12 - line_16;
 	line_18	= get_AMT_Tax(filing_status, line_17);
 	line_19	= get_CapGains_15_Start(filing_status);
 	line_20	= taxable_income;
-	line_21	= Max(0, line_19 - line_20);
-	line_22	= Min(line_12, line_13);
-	line_23	= Min(line_21, line_22);				// 0%
+	line_21	= max(0, line_19 - line_20);
+	line_22	= min(line_12, line_13);
+	line_23	= min(line_21, line_22);				// 0%
 	line_24	= line_22 - line_23;
 	line_25	= get_CapGains_20_Start(filing_status);
 	line_26	= line_21;
 	line_27	= taxable_income;
 	line_28	= line_26 + line_27;
-	line_29	= Max(0, line_25 - line_28);
-	line_30	= Min(line_24, line_29);
-	line_31	= Round(line_30 * 0.15);				// 15%
+	line_29	= max(0, line_25 - line_28);
+	line_30	= min(line_24, line_29);
+	line_31	= round(line_30 * 0.15);				// 15%
 	line_32	= line_23 + line_30;
 	if (line_12 !== line_32) {
 		line_33	= line_22 - line_32;
-		line_34	= Round(line_33 * 0.20);			// 20%
+		line_34	= round(line_33 * 0.20);			// 20%
 		if (line_14 !== 0) {
 			line_35	= line_17 + line_32 + line_33;
 			line_36	= line_12 - line_35;
-			line_37	= Round(line_36 * 0.25);		// 25%
+			line_37	= round(line_36 * 0.25);		// 25%
 		}
 	}
 	line_38	= line_18 + line_31 + line_34 + line_37;
 	line_39	= get_AMT_Tax(filing_status, line_12);
-	line_40	= Min(line_38, line_39);
+	line_40	= min(line_38, line_39);
 
 	return line_40;
 }
 
-function CalculateAMT() {
+function calculateAMT() {
 	if (strCaseEqual(filing_status, "MFJ")) {
 		showElement("SpouseContainer");
 	} else {
 		hideElement("SpouseContainer");
 	}
 
-	InitializeTaxTables(filing_status, tax_year);
+	initializeTaxTables(filing_status, tax_year);
 
 	let end_of_year				= new Date("12/31/" + tax_year);
-	let taxpayers_age			= Age(taxpayers_birthday, end_of_year);
-	let spouses_age				= Age(spouses_birthday, end_of_year);
+	let taxpayers_age			= getAge(taxpayers_birthday, end_of_year);
+	let spouses_age				= getAge(spouses_birthday, end_of_year);
 
 	standard_deduction			= getStandardDeduction(
 										filing_status,
@@ -250,10 +263,10 @@ function CalculateAMT() {
 		line_11	= 0;
 	}
 	line_10	= income_tax;				// 1040, line 16, normal income tax
-	line_11	= Max(0, line_9 - line_10);	// AMT
+	line_11	= max(0, line_9 - line_10);	// AMT
 }
 
-function GetInput() {
+function getInput() {
 	tax_year						= getUserInput("TaxYear");
 	filing_status					= getUserInput("FilingStatus",		"text");
 	taxpayers_birthday				= getUserInput("TaxpayersBirthday",	"text");
@@ -292,10 +305,6 @@ function GetInput() {
 	installment_sales				= getUserInput("InstallmentSales");
 	intangible_drilling_costs		= getUserInput("IntangibleDrillingCosts");
 	other_income					= getUserInput("OtherIncome");
-
-	amt_income						= 0;
-	amt_exemption					= 0;
-	amt								= 0;
 
 	// Debug fields
 	standard_deduction				= 0;
@@ -370,7 +379,7 @@ function GetInput() {
 	line_40							= 0;
 }
 
-function PutOutput() {
+function putOutput() {
 
 	putUserOutput("AMTIncome",		line_4);
 	putUserOutput("AMTExemption",	line_5);
@@ -450,11 +459,11 @@ function PutOutput() {
 }
 
 function ChangeHandler(event) {
-	TurnOffDebug();
-	GetInput();
-	CalculateAMT();
-	PutOutput();
-	TurnOnDebug();
+	turnOffDebug();
+	getInput();
+	calculateAMT();
+	putOutput();
+	turnOnDebug();
 }
 
 document.addEventListener("DOMContentLoaded", () => {

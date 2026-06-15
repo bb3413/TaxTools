@@ -1,4 +1,11 @@
 
+import { addListener }									from "../Library/HTML.js";
+import { changeBackgroundColor }						from "../Library/HTML.js";
+import { getCSSGlobalVariable }							from "../Library/HTML.js";
+import { getUserInput, putUserOutput }					from "../Library/HTML.js";
+import { getAge }										from "../Library/Dates.js";
+import { getDateObject }								from "../Library/Dates.js";
+
 let start			= "";
 let end				= "";
 let age				= 0;
@@ -6,7 +13,7 @@ let input_color		= "";
 let output_color	= "";
 
 function calculateAge(start, end) {
-	age = Age(start, end);
+	age = getAge(start, end);
 	putUserOutput("Age", age);
 
 	changeBackgroundColor("Start",	input_color);

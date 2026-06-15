@@ -1,4 +1,33 @@
 
+import { limit }			from "../Numbers.js";
+import { min, max, round }	from "../Numbers.js";
+import { strCaseEqual }		from "../Strings.js";
+import { strDownshift }		from "../Strings.js";
+
+import {
+	TY24_amt_tax,
+	TY24_ca_income_tax_table,
+	TY24_income_tax_table,
+	TY24_ltc_table,
+	TY24_sales_tax_table,
+	TY24_values }	from "./TaxTables_TY24.js";
+	
+import {
+	TY25_amt_tax,
+	TY25_ca_income_tax_table,
+	TY25_income_tax_table,
+	TY25_ltc_table,
+	TY25_sales_tax_table,
+	TY25_values } from "./TaxTables_TY25.js";
+	
+import {
+	TY26_amt_tax,
+	TY26_ca_income_tax_table,
+	TY26_income_tax_table,
+	TY26_ltc_table,
+	TY26_sales_tax_table,
+	TY26_values } from "./TaxTables_TY26.js";
+
 // Tax Tables Access
 //
 // This file provides a tax year indenendent way to access the information in
@@ -16,10 +45,10 @@ let TT_ca_income_tax_table		= [];
 globalThis.dbgEnter ??= () => {};
 globalThis.dbgExit  ??= () => {};
 
-function InitializeTaxTables(filing_status="single", tax_year=2025) {
+function initializeTaxTables(filing_status="single", tax_year=2025) {
 	// Copy the tax year specific information to the generic variables.
 
-	dbgEnter("InitializeTaxTables");
+	dbgEnter("initializeTaxTables");
 	
 	switch (Number(tax_year)) {
 		case 2026:
@@ -54,11 +83,11 @@ function InitializeTaxTables(filing_status="single", tax_year=2025) {
 			break;
 	}
 
-	dbgExit("InitializeTaxTables");
+	dbgExit("initializeTaxTables");
 }
 
 function getBusinessMileageDeduction(miles) {
-	return Round(miles * getTaxValue("BusinessMileage"));
+	return round(miles * getTaxValue("BusinessMileage"));
 }
 
 function getIncomeTaxFromTable(filing_status, income) {
@@ -104,13 +133,13 @@ function getMaxLTC(age) {
 }
 
 function getMedicalMileageDeduction(miles) {
-	return Round(miles * getTaxValue("MedicalMileage"));
+	return round(miles * getTaxValue("MedicalMileage"));
 }
 
 function getSalesTaxDeduction(income, family_size) {
 	dbgEnter("getSalesTaxDeduction");
 	
-	family_size = Limit(family_size, 1, 6);
+	family_size = limit(family_size, 1, 6);
 	
 	let deduction	= 0;
 	let col			= family_size + 1;
@@ -143,8 +172,8 @@ function getSeniorDeduction(
 
 	dbgEnter("getSeniorDeduction");
 		
-	excess = Max(0, agi - phase_out_start);
-	deduction = Round(Max(0, max_senior_deduction - (excess * 0.06)));
+	excess = max(0, agi - phase_out_start);
+	deduction = round(max(0, max_senior_deduction - (excess * 0.06)));
 		
 	if (taxpayers_age >= 65) {
 		senior_deduction = deduction;
@@ -227,11 +256,11 @@ function get_AMT_Exemption(filing_status, amt_income) {
 	let excess		= 0;
 	
 	if (amt_income > phase_out) {
-		excess = Round((amt_income - phase_out) * 0.25);
+		excess = round((amt_income - phase_out) * 0.25);
 	}
 
 	dbgExit("get_AMT_Exemption");
-	return Max(0, exemption - excess);
+	return max(0, exemption - excess);
 }
 
 function get_AMT_Tax(filing_status, income) {
@@ -324,7 +353,7 @@ function get_CA_IncomeTax(filing_status, income) {
 	}
 
 	dbgExit("get_CA_IncomeTax");
-	return Round(tax);
+	return round(tax);
 }
 
 function get_CA_StandardDeduction(filing_status) {
@@ -383,9 +412,15 @@ function TT_cumulativeTax(table, curr_row) {
 		start_of_bracket	= table[row][1];
 		end_of_bracket		= table[row][2];
 		rate				= table[row][3] / 100;	// Convert to percent
-		total += Round((end_of_bracket - start_of_bracket) * rate);
+		total += round((end_of_bracket - start_of_bracket) * rate);
 	}
 
 	dbgExit("TT_cumulativeTax");
 	return total;
 }
+
+export { initializeTaxTables, getBusinessMileageDeduction, getIncomeTaxFromTable, getMaxLTC,
+	getMedicalMileageDeduction, getSalesTaxDeduction, getSeniorDeduction, getStandardDeduction,
+	getTaxValue, get_AMT_Exemption, get_AMT_Tax, get_CA_Exemption, get_CA_IncomeTax,
+	get_CA_StandardDeduction, get_CapGains_15_Start, get_CapGains_20_Start, get_SS_Start50,
+	get_SS_Start50Range };

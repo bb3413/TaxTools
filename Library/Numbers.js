@@ -1,15 +1,14 @@
 
-/*
- * This file contains generic functions for working with numbers.
- */
+import { strEmpty }				from "./Strings.js";
+import { evalExpression }		from "./EvalExpression.js";
 
 // Aliases for Math library functions.
-function AbsoluteValue	(...rest) {return Math.abs(...rest)}
-function Min			(...rest) {return Math.min(...rest)}
-function Max			(...rest) {return Math.max(...rest)}
-function Round			(...rest) {return Math.round(...rest)}
+function abs		(...rest) {return Math.abs(...rest)}
+function min		(...rest) {return Math.min(...rest)}
+function max		(...rest) {return Math.max(...rest)}
+function round		(...rest) {return Math.round(...rest)}
 
-function FormatNum(num) {
+function formatNum(num) {
 	// Convert a number to a comma separated string, foormatted for output.
 	return num.toLocaleString();
 }
@@ -20,7 +19,7 @@ function isNum(num) {
 	return !Number.isNaN(n);
 }
 
-function Limit(value, minval = null, maxval = null) {
+function limit(value, minval = null, maxval = null) {
 	if (isNum(minval))
 		value = Math.max(value, minval);
 
@@ -48,4 +47,4 @@ function toInteger(str) {
 	return Math.round(num);
 }
 
-
+export { abs, formatNum, isNum, limit, min, max, round, toInteger };

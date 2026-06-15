@@ -1,4 +1,9 @@
 
+import { getDebugKeywords }		from "../Library/Debug.js";
+import { strCaseEqual  }		from "./Strings.js";
+import { formatNum }			from "./Numbers.js";
+import { toInteger }			from "./Numbers.js";
+
 //-----  Show/hide element  ---------------------------------
 function showElement(elementID) {
 	const element = document.getElementById(elementID);
@@ -60,11 +65,11 @@ function getUserInput(elementID, type = "number") {
 function putUserOutput(elementID, value, type = "number") {
 	if (strCaseEqual(type, "dollars")) {
 		// Add commas and prepend with dollar sign.
-		putElementValue(elementID, "$" + FormatNum(value));
+		putElementValue(elementID, "$" + formatNum(value));
 
 	} else if (strCaseEqual(type, "number")) {
 		// Add commas.
-		putElementValue(elementID, FormatNum(value));
+		putElementValue(elementID, formatNum(value));
 
 	} else {	// tpye === "text"
 		// Put the value as is.
@@ -166,5 +171,5 @@ function getCSSGlobalVariable(variableName) {
 	return value;
 }
 
-
-
+export { showElement, hideElement, changeBackgroundColor, changeTextColor, getUserInput,
+	putUserOutput, getElementValue, putElementValue, addListener, getCSSGlobalVariable };

@@ -4,7 +4,7 @@
 	<meta charset="utf-8" />
 	<?php include "../Library/TaxTools/IncludeFiles.html"; ?>
 	<link rel="stylesheet" href="SmallBusiness.css" />
-	<script defer src="SmallBusiness.js"></script>
+	<script type="module" src="SmallBusiness.js"></script>
 
 	<title>Small Business Tax Calculator</title>
 </head>

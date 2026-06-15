@@ -1,4 +1,7 @@
 
+import { formatNum }					from "./Numbers.js";
+import { showElement, hideElement }		from "./HTML.js";
+
 // By using a count for each keyword, we can allow the debug keywords to be entered from
 // multiple places. If the keyword is specified anywhere, it turns on the debugging
 // (count > 0). Conversely, removing the keyword only turns off debugging if the keyword
@@ -15,7 +18,7 @@ let	indentation		= 0;
 //
 // Debug Fields are HTML fields that display additional information when debugging is enabled.
 //
-function HideDebugFields(name) {
+function hideDebugFields(name) {
 	const debug_fields = document.getElementById(name);
 	if (debug_fields) {
 		// Only hide if element exists; non-existant element is not an error.
@@ -23,7 +26,7 @@ function HideDebugFields(name) {
 	}
 }
 
-function ShowDebugFields(name) {
+function showDebugFields(name) {
 	const debug_fields = document.getElementById(name);
 	if (debug_fields) {
 		// Only show if element exists; non-existant element is not an error.
@@ -31,8 +34,8 @@ function ShowDebugFields(name) {
 	}
 }
 
-function TurnOffDebug() {
-	dbgEnter("TurnOffDebug");
+function turnOffDebug() {
+	dbgEnter("turnOffDebug");
 
 	debug		= 0;
 	dbg_inctax	= 0;
@@ -41,30 +44,30 @@ function TurnOffDebug() {
 	dbg_sstax	= 0;
 
 	// Tools
-	HideDebugFields("DebugFields");				// Tax tool debug fields
+	hideDebugFields("DebugFields");				// Tax tool debug fields
 
 	// Libraries
-	HideDebugFields("IncTax-DebugFields");		// Federal income tax worksheet
-	HideDebugFields("SEHI-DebugFields");		// Self-employment health insurance worksheet
-	HideDebugFields("SETax-DebugFields");		// Self-employment tax worksheet
-	HideDebugFields("SSTax-DebugFields");		// Taxable Social Secirity worksheet
+	hideDebugFields("IncTax-DebugFields");		// Federal income tax worksheet
+	hideDebugFields("SEHI-DebugFields");		// Self-employment health insurance worksheet
+	hideDebugFields("SETax-DebugFields");		// Self-employment tax worksheet
+	hideDebugFields("SSTax-DebugFields");		// Taxable Social Secirity worksheet
 
-	dbgExit("TurnOffDebug");
+	dbgExit("turnOffDebug");
 }
 
-function TurnOnDebug() {
-	dbgEnter("TurnOnDebug");
+function turnOnDebug() {
+	dbgEnter("turnOnDebug");
 
 	// Tools - These are all turned on with the "debug" keyword.
-	if (debug)		ShowDebugFields("DebugFields");			// Tax tool debug fields
+	if (debug)		showDebugFields("DebugFields");			// Tax tool debug fields
 
 	// Libraries - These are all turned on with individual keywords.
-	if (dbg_inctax)	ShowDebugFields("IncTax-DebugFields");	// Federal income tax worksheet
-	if (dbg_sehi)	ShowDebugFields("SEHI-DebugFields");	// Self-employment health insurance worksheet
-	if (dbg_setax)	ShowDebugFields("SETax-DebugFields");	// Self-employment tax worksheet
-	if (dbg_sstax)	ShowDebugFields("SSTax-DebugFields");	// Taxable Social Secirity worksheet
+	if (dbg_inctax)	showDebugFields("IncTax-DebugFields");	// Federal income tax worksheet
+	if (dbg_sehi)	showDebugFields("SEHI-DebugFields");	// Self-employment health insurance worksheet
+	if (dbg_setax)	showDebugFields("SETax-DebugFields");	// Self-employment tax worksheet
+	if (dbg_sstax)	showDebugFields("SSTax-DebugFields");	// Taxable Social Secirity worksheet
 
-	dbgExit("TurnOnDebug");
+	dbgExit("turnOnDebug");
 }
 
 //
@@ -139,20 +142,20 @@ function putDebugOutput(basename, value, label1 = null, label2 = null) {
 
 	let element = document.getElementById(basename + "-value");
 	if (element) {
-		element.textContent = FormatNum(value);
+		element.textContent = formatNum(value);
 	}
 
 	if (label1) {
 		element = document.getElementById(basename + "-label1");
 		if (element) {
-			element.textContent = FormatNum(label1);
+			element.textContent = formatNum(label1);
 		}
 	}
 
 	if (label2) {
 		element = document.getElementById(basename + "-label2");
 		if (element) {
-			element.textContent = FormatNum(label2);
+			element.textContent = formatNum(label2);
 		}
 	}
 }
@@ -188,3 +191,6 @@ function dbgLog(message) {
 	const spaces = " ".repeat(indentation * 2);
 	console.log(spaces + message);
 }
+
+export { hideDebugFields, showDebugFields, turnOffDebug, turnOnDebug, getDebugKeywords,
+	putDebugOutput, dbgEnter, dbgExit, dbgLog };

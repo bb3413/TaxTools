@@ -1,4 +1,8 @@
 
+import { slowAlert }						from "../Library/Alert.js";
+import { getUserInput, putUserOutput }		from "../Library/HTML.js";
+import { fetchSalesTaxRate }				from "../Library/SalesTax/SalesTaxFromCDTFA.js";
+
 async function buttonHandler(event) {
 	const address	= document.getElementById("StreetAddress").value;
 	const city		= document.getElementById("City").value;

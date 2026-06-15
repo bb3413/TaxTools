@@ -4,7 +4,7 @@
 	<meta charset="utf-8" />
 	<?php include "../Library/TaxTools/IncludeFiles.html"; ?>
 	<link rel="stylesheet" href="LumpSumSS.css" />
-	<script defer src="LumpSumSS.js"></script>
+	<script type="module" src="LumpSumSS.js"></script>
 
 	<title>Social Security Lump Sum Calculator</title>
 </head>

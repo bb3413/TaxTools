@@ -1,4 +1,7 @@
 
+import { getElementValue, putElementValue }	from "../Library/HTML.js";
+import { changeHandler }					from "./EstimatedTax.js";
+
 let ud = {
 	tax_year:								0,
 
@@ -102,7 +105,7 @@ let ud = {
 	estimated_tax_paid:						0,
 };
 
-function SaveVariables() {
+function saveVariables() {
 
 	// Save the outpout fields.
 	ud.todays_date							= todays_date;
@@ -209,7 +212,7 @@ function SaveVariables() {
 	ud.estimated_tax_paid					= estimated_tax_paid;
 }
 
-function SaveInputFields() {
+function saveInputFields() {
 
 	// Save the outpout fields.
 	ud.todays_date							= getElementValue("TodaysDate");
@@ -318,7 +321,7 @@ function SaveInputFields() {
 	ud.estimated_tax_paid					= getElementValue("EstimatedTaxPaid");
 }
 
-function RestoreInputFields() {
+function restoreInputFields() {
 
 	// Restore the output fields.
 	// putElementValue("TodaysDate",					ud.todays_date);
@@ -426,10 +429,10 @@ function RestoreInputFields() {
 	putElementValue("EstimatedTaxPaid",					ud.estimated_tax_paid);
 }
 
-function SaveUserData(event) {
+function saveUserData(event) {
 	// Called when the Save button is pressed. Copy the user data to a ud object
 	// and save it to the user's Download folder.
-	SaveInputFields();		// Copy from input fields to the ud object.
+	saveInputFields();		// Copy from input fields to the ud object.
 
 	// The "blob" is something like a file that you will be able to reference with a URL.
 	// The URL is a tempory URL pointing to the blob. Create an anchor HTML element that
@@ -449,7 +452,7 @@ function SaveUserData(event) {
 	URL.revokeObjectURL(url);
 }
 
-function RestoreUserData(event) {
+function restoreUserData(event) {
 	// Called when the file selection box triggers a change event.
 
 	// The file selection dialog gets a list of files. Only one should be passed
@@ -472,11 +475,11 @@ function RestoreUserData(event) {
 
 			// The data is back in the ud object. Put it into the
 			// HTML fields on the web page.
-			RestoreInputFields();	// Copy from the ud object to the HTML fields.
+			restoreInputFields();	// Copy from the ud object to the HTML fields.
 
 			// Recalculate the estimated tax as if the user changed a field
 			// on the web page.
-			ChangeHandler();	// Update the calculation.
+			changeHandler();	// Update the calculation.
 
 		} catch (error) {
 			alert("Error parsing file.");
@@ -492,3 +495,5 @@ function RestoreUserData(event) {
 	// Start reading the file.
 	reader.readAsText(file);
 }
+
+export { saveUserData, restoreUserData };

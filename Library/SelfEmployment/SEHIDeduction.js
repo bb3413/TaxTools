@@ -1,4 +1,7 @@
 
+import { putDebugOutput }		from "../Debug.js";
+import { min, max, round }		from "../Numbers.js";
+
 /*
  * Self-employment Health Insirance Deduction
  *
@@ -21,7 +24,7 @@ let sehi_line_12	= 0;
 let sehi_line_13	= 0;
 let sehi_line_14	= 0;
 
-function SEHIDeduction(
+function getSEHIDeduction(
 	health_insurance,
 	ltc_insurance,		// Adjusted for age
 	net_profit,
@@ -47,11 +50,11 @@ function SEHIDeduction(
 	sehi_line_10	= sehi_line_8 - sehi_line_9;		// Net profit - SETax deduction - retirement contribution
 	sehi_line_11	= 0;								// Medicare wages from S-corp
 	sehi_line_12	= 0;								// Foreign earned income exclusion, S1, line 8d
-	sehi_line_13	= Max(sehi_line_10, sehi_line_11) - sehi_line_12;
-	sehi_line_14	= Min(sehi_line_3, sehi_line_13);
+	sehi_line_13	= max(sehi_line_10, sehi_line_11) - sehi_line_12;
+	sehi_line_14	= min(sehi_line_3, sehi_line_13);
 
 	SEHI_PutOutput();
-	return Round(sehi_line_14);
+	return round(sehi_line_14);
 }
 
 function SEHI_ResetLines() {
@@ -84,6 +87,8 @@ function SEHI_PutOutput() {
 	putDebugOutput("SEHI-Debug10", sehi_line_10,	"Line 10",	"Net profit - SETax deduction - retirement contributio");
 	putDebugOutput("SEHI-Debug11", sehi_line_11,	"Line 11",	"Medicare wages from S-corp");
 	putDebugOutput("SEHI-Debug12", sehi_line_12,	"Line 12",	"Foreign earned income exclusion, S1, line 8d");
-	putDebugOutput("SEHI-Debug13", sehi_line_13,	"Line 13",	"Max(line 10, line 11) - line 12");
-	putDebugOutput("SEHI-Debug14", sehi_line_14,	"Line 14",	"Min(line_3, line 13) = SEHI deduction");
+	putDebugOutput("SEHI-Debug13", sehi_line_13,	"Line 13",	"max(line 10, line 11) - line 12");
+	putDebugOutput("SEHI-Debug14", sehi_line_14,	"Line 14",	"min(line_3, line 13) = SEHI deduction");
 }
+
+export { getSEHIDeduction };

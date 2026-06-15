@@ -1,4 +1,9 @@
 
+import { putDebugOutput }							from "../Debug.js";
+import { min, max, round }							from "../Numbers.js";
+import { strCaseEqual }								from "../Strings.js";
+import { get_SS_Start50, get_SS_Start50Range }		from "../TaxTables/TaxTables.js";
+
 /*
  * Calculate the amount of Social Security that is taxable.
  *
@@ -56,7 +61,7 @@ function getTaxableSocialSecurity(
 	SSTax_ResetLines();
 
 	ss_line_1	= total_ss;								// Sum of all SSA-1099, box 5
-	ss_line_2	= Round(ss_line_1 / 2);					// Half of total SS benefits
+	ss_line_2	= round(ss_line_1 / 2);					// Half of total SS benefits
 	ss_line_3	= income_wo_ss;							// 1040, lines 1z, 2b, 3b, 4b, 5b, 7, and 8
 	ss_line_4	= tax_exempt_interest;					// 1040, line 2a
 	ss_line_5	= 0;									// Not used
@@ -66,7 +71,7 @@ function getTaxableSocialSecurity(
 		SSTax_PutOutput();
 		return 0;
 	}
-	ss_line_8	= Max(ss_line_6 - ss_line_7, 0);			// SS income
+	ss_line_8	= max(0, ss_line_6 - ss_line_7);			// SS income
 	if (strCaseEqual(filing_status, "MFS") && lived_with_spouse) {
 		ss_line_17 = ss_line_8 * 0.85;
 	} else {
@@ -75,20 +80,20 @@ function getTaxableSocialSecurity(
 			SSTax_PutOutput();
 			return 0;
 		}
-		ss_line_10	= Max(ss_line_8 - ss_line_9, 0);		// Amount above base of range
+		ss_line_10	= max(0, ss_line_8 - ss_line_9);		// Amount above base of range
 		ss_line_11	= get_SS_Start50Range(filing_status);	// Length of 50% taxable range
-		ss_line_12	= Max(ss_line_10 - ss_line_11, 0);		// Amount above top of range
-		ss_line_13	= Min(ss_line_10, ss_line_11);			// Amount within range
+		ss_line_12	= max(0, ss_line_10 - ss_line_11);		// Amount above top of range
+		ss_line_13	= min(ss_line_10, ss_line_11);			// Amount within range
 		ss_line_14	= ss_line_13 * 0.5;						// 50% of amount within range
-		ss_line_15	= Min(ss_line_2, ss_line_14);			// At most 50% is taxable
+		ss_line_15	= min(ss_line_2, ss_line_14);			// At most 50% is taxable
 		ss_line_16	= ss_line_12 * 0.85;					// 85% of amount above range
 		ss_line_17	= ss_line_15 + ss_line_16;				// Taxable amount
 	}
 	ss_line_18	= ss_line_1 * 0.85;							// At most 85% is taxable
-	ss_line_19	= Min(ss_line_17, ss_line_18);				// Taxable amount
+	ss_line_19	= min(ss_line_17, ss_line_18);				// Taxable amount
 
 	SSTax_PutOutput();
-	return Round(ss_line_19);
+	return round(ss_line_19);
 }
 
 function SSTax_ResetLines() {
@@ -134,3 +139,5 @@ function SSTax_PutOutput() {
 	putDebugOutput("SSTax-Debug18", ss_line_18,	"Line 18",	"At most 85% is taxable");
 	putDebugOutput("SSTax-Debug19", ss_line_19,	"Line 19",	"Taxable amount");
 }
+
+export { getTaxableSocialSecurity };

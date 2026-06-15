@@ -1,5 +1,8 @@
 
-function RestoreInputFields() {
+import { getElementValue, putElementValue }	from "../Library/HTML.js";
+import { changeHandler }					from "./EstimatedTax_CA.js";
+
+function restoreInputFields(ud) {
 	// Restore HTML fields with user data from the ud object.
 
 	TaxYear.value						= ud.tax_year;
@@ -73,7 +76,7 @@ function RestoreInputFields() {
 	Contributions.value					= ud.contributions;
 }
 
-function SaveUserData(event) {
+function saveUserData(event) {
 	// This function is called when the Save button is pressed. All the user data as it was
 	// entered by the user is in the ud object. This object also contains the values for fields
 	// that were computed by this tool.  Use JSON to copy the ud object to the file
@@ -97,7 +100,7 @@ function SaveUserData(event) {
 	URL.revokeObjectURL(url);
 }
 
-function RestoreUserData(event) {
+function restoreUserData(event) {
 	// Called when the file selection dialog box triggers a change event.
 
 	// The file selection dialog gets a list of files, but only one should be passed
@@ -116,14 +119,14 @@ function RestoreUserData(event) {
 		// Reading the file is asynchronous. When this event fires, the data is ready.
 		try {
 			// The file content is stored in e.target.result as a string.
-			ud = JSON.parse(event.target.result);
+			let ud = JSON.parse(event.target.result);
 
 			// The data is back in the ud object. Put it into the HTML fields on the web page.
-			RestoreInputFields();
+			restoreInputFields(ud);
 
 			// Recalculate the estimated tax as if the user changed a field
 			// on the web page.
-			ChangeHandler();	// Update the calculation.
+			changeHandler();	// Update the calculation.
 
 		} catch (error) {
 			alert("Error parsing file.");
@@ -139,3 +142,5 @@ function RestoreUserData(event) {
 	// Start reading the file.
 	reader.readAsText(file);
 }
+
+export { saveUserData, restoreUserData };

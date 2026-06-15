@@ -1,9 +1,5 @@
 
-/*
- * This file contains generic functions for working with dates.
- */
-
-function Age(start_date, end_date) {
+function getAge(start_date, end_date) {
 	// Determine the number of years between the start date and end date.
 	const startday	= getDateObject(start_date);
 	const endday	= getDateObject(end_date);
@@ -71,7 +67,5 @@ function isValidDate(date) {
 
 }
 
-
-
-
+export { getAge, getLastYear, getTaxYear, getThisYear, getToday, getDateObject, isBefore, isValidDate };
 

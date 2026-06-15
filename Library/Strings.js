@@ -1,8 +1,4 @@
 
-/*
- * This file contains generic functions for working with strings.
- */
-
 function strCaseEqual(s1, s2) {
 	return s1.toLowerCase() === s2.toLowerCase();
 }
@@ -36,3 +32,4 @@ function strUpshift(s) {
 	return s.toUpperCase();
 }
 
+export { strCaseEqual, strClean, strDownshift, strEmpty, strEqual, strUpshift };
