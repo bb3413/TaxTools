@@ -10,7 +10,7 @@ import {
 	TY24_income_tax_table,
 	TY24_ltc_table,
 	TY24_sales_tax_table,
-	TY24_values }	from "./TaxTables_TY24.js";
+	TY24_values } from "./TaxTables_TY24.js";
 	
 import {
 	TY25_amt_tax,
@@ -419,8 +419,23 @@ function TT_cumulativeTax(table, curr_row) {
 	return total;
 }
 
-export { initializeTaxTables, getBusinessMileageDeduction, getIncomeTaxFromTable, getMaxLTC,
-	getMedicalMileageDeduction, getSalesTaxDeduction, getSeniorDeduction, getStandardDeduction,
-	getTaxValue, get_AMT_Exemption, get_AMT_Tax, get_CA_Exemption, get_CA_IncomeTax,
-	get_CA_StandardDeduction, get_CapGains_15_Start, get_CapGains_20_Start, get_SS_Start50,
-	get_SS_Start50Range };
+export {
+	getBusinessMileageDeduction,
+	getIncomeTaxFromTable,
+	getMaxLTC,
+	getMedicalMileageDeduction,
+	getSalesTaxDeduction,
+	getSeniorDeduction,
+	getStandardDeduction,
+	getTaxValue,
+	get_AMT_Exemption,
+	get_AMT_Tax,
+	get_CA_Exemption,
+	get_CA_IncomeTax,
+	get_CA_StandardDeduction,
+	get_CapGains_15_Start,
+	get_CapGains_20_Start,
+	get_SS_Start50,
+	get_SS_Start50Range,
+	initializeTaxTables,
+};

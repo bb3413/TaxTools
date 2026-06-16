@@ -47,4 +47,13 @@ function toInteger(str) {
 	return Math.round(num);
 }
 
-export { abs, formatNum, isNum, limit, min, max, round, toInteger };
+export {
+	abs,
+	formatNum,
+	isNum,
+	limit,
+	min,
+	max,
+	round,
+	toInteger,
+};

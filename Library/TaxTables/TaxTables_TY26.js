@@ -243,5 +243,11 @@ const TY26_ca_income_tax_table = [
 	[ "MFJ",		1485906,	99999999,	12.3	],		// TY25
 ];
 
-export { TY26_values, TY26_amt_tax, TY26_income_tax_table, TY26_ltc_table, TY26_sales_tax_table,
-	TY26_ca_income_tax_table };
+export {
+	TY26_values,
+	TY26_amt_tax,
+	TY26_income_tax_table,
+	TY26_ltc_table,
+	TY26_sales_tax_table,
+	TY26_ca_income_tax_table,
+};
