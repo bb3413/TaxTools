@@ -67,5 +67,14 @@ function isValidDate(date) {
 
 }
 
-export { getAge, getLastYear, getTaxYear, getThisYear, getToday, getDateObject, isBefore, isValidDate };
+export {
+	getAge,
+	getLastYear, 
+	getTaxYear,
+	getThisYear,
+	getToday,
+	getDateObject,
+	isBefore,
+	isValidDate,
+};
 

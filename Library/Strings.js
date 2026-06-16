@@ -32,4 +32,11 @@ function strUpshift(s) {
 	return s.toUpperCase();
 }
 
-export { strCaseEqual, strClean, strDownshift, strEmpty, strEqual, strUpshift };
+export {
+	strCaseEqual,
+	strClean,
+	strDownshift,
+	strEmpty,
+	strEqual,
+	strUpshift,
+};

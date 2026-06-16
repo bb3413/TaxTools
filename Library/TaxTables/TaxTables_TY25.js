@@ -243,5 +243,11 @@ const TY25_ca_income_tax_table = [
 	[ "MFJ",		1485906,	99999999,	12.3	],
 ];
 
-export { TY25_values, TY25_amt_tax, TY25_income_tax_table, TY25_ltc_table, TY25_sales_tax_table,
-	TY25_ca_income_tax_table };
+export {
+	TY25_values,
+	TY25_amt_tax,
+	TY25_income_tax_table,
+	TY25_ltc_table,
+	TY25_sales_tax_table,
+	TY25_ca_income_tax_table,
+};

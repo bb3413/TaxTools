@@ -171,5 +171,9 @@ function getCSSGlobalVariable(variableName) {
 	return value;
 }
 
-export { showElement, hideElement, changeBackgroundColor, changeTextColor, getUserInput,
-	putUserOutput, getElementValue, putElementValue, addListener, getCSSGlobalVariable };
+export { showElement, hideElement };
+export { changeBackgroundColor, changeTextColor };
+export { getUserInput, putUserOutput };
+export { getElementValue, putElementValue };
+export { addListener };
+export { getCSSGlobalVariable };

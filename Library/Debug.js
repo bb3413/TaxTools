@@ -192,5 +192,8 @@ function dbgLog(message) {
 	console.log(spaces + message);
 }
 
-export { hideDebugFields, showDebugFields, turnOffDebug, turnOnDebug, getDebugKeywords,
-	putDebugOutput, dbgEnter, dbgExit, dbgLog };
+export { hideDebugFields, showDebugFields };
+export { turnOffDebug, turnOnDebug };
+export { getDebugKeywords };
+export { putDebugOutput };
+export { dbgEnter, dbgExit, dbgLog };
