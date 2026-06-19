@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
+	<link rel="stylesheet" href="../Library/TaxTools/TaxTools.css" />
 	<?php include "../Library/TaxTools/IncludeFiles.html"; ?>
 	<link rel="stylesheet" href="EstimatedTax.css" />
-	<script type="module" src="SaveRestore.js"></script>
 	<script type="module" src="EstimatedTax.js"></script>
 
 	<title>Federal Estimated Tax Calculator</title>
@@ -470,11 +470,6 @@
 			<input class="trigger input-field" type="text" id="EstimatedTaxPaid"
 				placeholder="0" size="10" tooltipid="#EstimatedTaxPaidTT" />
 		</div>
-
-		<!-- Debugging Fields -->
-		<?php include "EstimatedTax-Debug.html"; ?>
-		<?php include "../Library/IncomeTax/IncomeTax-Debug.html"; ?>
-		<?php include "../Library/SocialSecurity/SocialSecurity-Debug.html"; ?>
 
 		<!-- Tooltips -->
 		<?php include "EstimatedTax-HelpInput.html"; ?>

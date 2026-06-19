@@ -8,14 +8,7 @@ import { addListener }						from "../Library/HTML.js";
 import { getUserInput, putUserOutput }		from "../Library/HTML.js";
 import { min, max, round }					from "../Library/Numbers.js";
 import { strCaseEqual }						from "../Library/Strings.js";
-import { getIncomeTax }						from "../Library/IncomeTax/IncomeTax.js";
-import { getTaxableSocialSecurity }			from "../Library/SocialSecurity/SocialSecurity.js";
-import { getMaxLTC }						from "../Library/TaxTables/TaxTables.js";
-import { getMedicalMileageDeduction }		from "../Library/TaxTables/TaxTables.js";
-import { getStandardDeduction }				from "../Library/TaxTables/TaxTables.js";
-import { getTaxValue }						from "../Library/TaxTables/TaxTables.js";
-import { initializeTaxTables }				from "../Library/TaxTables/TaxTables.js";
-import { saveUserData, restoreUserData }	from "./SaveRestore.js";
+
 
 let inputs		= {};
 let outputs		= {};
@@ -134,7 +127,7 @@ function putOutputs(outputs) {
 
 function changeHandler(event) {
 	// This is the function that is called if any input field is changed.
-	outputs = {};	Reset outputs.
+	outputs = {};	// Reset outputs.
 	
 	turnOffDebug();
 	inputs = getInputs();
@@ -150,8 +143,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	// Listen for changes to the input data.
 	addListener("TaxYear",							"change", changeHandler);
-	addListener("SaveButton",						"click",  saveUserData);
-	addListener("InputFile",						"change", restoreUserData);
+	// addListener("SaveButton",					"click",  saveUserData);
+	// addListener("InputFile",						"change", restoreUserData);
 
 	// Taxpayer information
 	addListener("TaxpayersName",					"change", changeHandler);
@@ -240,8 +233,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		preventScroll: true
 	});
 
-	tax_year = getTaxYear();	// Default tax year.
-	putUserOutput("TaxYear", tax_year, "text");
+	putUserOutput("TaxYear", getTaxYear(), "text");	// Default tax year.
 	changeHandler();
 
 	dbgExit("ContentLoaded");

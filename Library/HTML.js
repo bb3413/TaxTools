@@ -65,15 +65,15 @@ function getUserInput(elementID, type = "number") {
 function putUserOutput(elementID, value, type = "number") {
 	if (strCaseEqual(type, "dollars")) {
 		// Add commas and prepend with dollar sign.
-		putElementValue(elementID, "$" + formatNum(value));
+		putElementValue(elementID, "$" + formatNum(value===undefined ? 0 : value));
 
 	} else if (strCaseEqual(type, "number")) {
 		// Add commas.
-		putElementValue(elementID, formatNum(value));
+		putElementValue(elementID, formatNum(value===undefined ? 0 : value));
 
 	} else {	// tpye === "text"
 		// Put the value as is.
-		putElementValue(elementID, value);
+		putElementValue(elementID, value===undefined ? "" : value);
 	}
 }
 
