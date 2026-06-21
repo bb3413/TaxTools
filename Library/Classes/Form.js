@@ -33,7 +33,7 @@ export class Form {
 						// an array with all the instances of that form.
 
 	// The form registry maps the name of a form to its class constructor.
-	form_registry = {
+	static form_registry = {
 		"F1040":		F1040,
 		"F1040S1":		F1040S1,
 		"F1040S1A":		F1040S1A,
