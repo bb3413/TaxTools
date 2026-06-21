@@ -1,5 +1,5 @@
 
-class Line {
+export class Line {
 	constructor(label)
 	{
 		this._label					= label;
