@@ -27,7 +27,7 @@ async function calculateAmount() {
 	spendable_income	= getSpendableIncome();
 	base_sales_tax		= getTaxValue("CA_BaseSalesTax");
 	if (total_sales_tax > 0) {
-		local_sales_tax = max(0, total_sales_tax - base_sales_tax);
+		local_sales_tax = Math.max(0, total_sales_tax - base_sales_tax);
 	}
 
 	sales_tax_deduction = salesTaxWorksheet(

@@ -16,6 +16,10 @@ export class Line {
 		this._user_supplied_value = true;
 	}
 
+	get label() {
+		return this._label;
+	}
+
 	get value() {
 		return this._value;
 	}
@@ -29,10 +33,10 @@ export class Line {
 		// the user (see also override_value()).
 		if (!this._user_supplied_value) {
 			if (this._min_value !== undefined) {
-				new_value = max(this._min_value, new_value);
+				new_value = Math.max(this._min_value, new_value);
 			}
 			if (this._max_value !== undefined) {
-				new_value = min(this._max_value, new_value);
+				new_value = Math.min(this._max_value, new_value);
 			}
 			this._value = new_value;
 		}
@@ -40,15 +44,16 @@ export class Line {
 	
 	set min_value(new_min) {
 		this._min_value = new_min;
-		this._value = min(this._min_value, this._value);	// Update value
+		this._value = Math.min(this._min_value, this._value);	// Update value
 	}
 
 	set max_value(new_max) {
 		this._max_value = new_max;
-		this._value = max(this._max_value, this._value);	// Update value
+		this._value = Math.max(this._max_value, this._value);	// Update value
 	}
 
 	toString() {
-		return `${this._label}:	${this._value}`;
+		let str = `${this._label}:`;
+		return str.padEnd(50, " ") + this._value;
 	}
 }

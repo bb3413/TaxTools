@@ -133,7 +133,7 @@ function getItemizedDeductions() {
 }
 
 function getMiscellaneousDeductions() {
-	const agi_percent		= round(ud.federal_agi * 0.02);
+	const agi_percent		= Math.round(ud.federal_agi * 0.02);
 	const misc_deductions	=
 			ud.tax_preparation_fee +
 			ud.safe_deposit_box +
@@ -233,18 +233,18 @@ function calculateTax() {
 									false, false, ud.number_of_dependents);
 	ud.subtractions				= getSubtractions();
 	ud.additions				= getAdditions();
-	ud.deductions				= max(ud.standard_deduction, ud.itemized_deductions);
+	ud.deductions				= Math.max(ud.standard_deduction, ud.itemized_deductions);
 	ud.nonrefundable_credits	= getNonrefundableCredits();
 	ud.refundable_credits		= getRefundableCredits();
 	ud.other_taxes				= getOtherTaxes();
 	ud.payments					= getPayments();
 
-	ud.state_agi				= max(0, ud.federal_agi - ud.subtractions + ud.additions);
-	ud.taxable_income			= max(0, ud.state_agi - ud.deductions);
+	ud.state_agi				= Math.max(0, ud.federal_agi - ud.subtractions + ud.additions);
+	ud.taxable_income			= Math.max(0, ud.state_agi - ud.deductions);
 	ud.income_tax				= get_CA_IncomeTax(ud.filing_status, ud.taxable_income);
 
-	ud.total_tax				= max(0, ud.income_tax - ud.exemptions);
-	ud.total_tax				= max(0, ud.total_tax - ud.nonrefundable_credits);
+	ud.total_tax				= Math.max(0, ud.income_tax - ud.exemptions);
+	ud.total_tax				= Math.max(0, ud.total_tax - ud.nonrefundable_credits);
 	ud.total_tax				+= ud.other_taxes;
 
 	if (ud.payments > ud.use_tax)
@@ -274,11 +274,11 @@ function calculateTax() {
 		ud.refund_amount_due = -ud.amount_you_owe;
 	}
 
-	const estimated_taxes	= max(0, ud.estimated_payments - ud.refund_amount_due);
-	ud.april_payment		= round(estimated_taxes * 0.30);
-	ud.june_payment			= round(estimated_taxes * 0.40);
+	const estimated_taxes	= Math.max(0, ud.estimated_payments - ud.refund_amount_due);
+	ud.april_payment		= Math.round(estimated_taxes * 0.30);
+	ud.june_payment			= Math.round(estimated_taxes * 0.40);
 	ud.september_payment	= 0;
-	ud.january_payment		= round(estimated_taxes * 0.30);
+	ud.january_payment		= Math.round(estimated_taxes * 0.30);
 }
 
 function getInputValues() {

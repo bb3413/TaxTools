@@ -50,8 +50,8 @@ function getSEHIDeduction(
 	sehi_line_10	= sehi_line_8 - sehi_line_9;		// Net profit - SETax deduction - retirement contribution
 	sehi_line_11	= 0;								// Medicare wages from S-corp
 	sehi_line_12	= 0;								// Foreign earned income exclusion, S1, line 8d
-	sehi_line_13	= max(sehi_line_10, sehi_line_11) - sehi_line_12;
-	sehi_line_14	= min(sehi_line_3, sehi_line_13);
+	sehi_line_13	= Math.max(sehi_line_10, sehi_line_11) - sehi_line_12;
+	sehi_line_14	= Math.min(sehi_line_3, sehi_line_13);
 
 	SEHI_PutOutput();
 	return round(sehi_line_14);

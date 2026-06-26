@@ -471,6 +471,11 @@
 				placeholder="0" size="10" tooltipid="#EstimatedTaxPaidTT" />
 		</div>
 
+		<div id="DebugContainer">
+			<h3>Debugging Output</h3>
+			<pre id="DebugOutput"></pre>
+		</div>
+		
 		<!-- Tooltips -->
 		<?php include "EstimatedTax-HelpInput.html"; ?>
 	</div>

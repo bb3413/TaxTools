@@ -71,7 +71,7 @@ function getTaxableSocialSecurity(
 		SSTax_PutOutput();
 		return 0;
 	}
-	ss_line_8	= max(0, ss_line_6 - ss_line_7);			// SS income
+	ss_line_8	= Math.max(0, ss_line_6 - ss_line_7);			// SS income
 	if (strCaseEqual(filing_status, "MFS") && lived_with_spouse) {
 		ss_line_17 = ss_line_8 * 0.85;
 	} else {
@@ -80,20 +80,20 @@ function getTaxableSocialSecurity(
 			SSTax_PutOutput();
 			return 0;
 		}
-		ss_line_10	= max(0, ss_line_8 - ss_line_9);		// Amount above base of range
+		ss_line_10	= Math.max(0, ss_line_8 - ss_line_9);		// Amount above base of range
 		ss_line_11	= get_SS_Start50Range(filing_status);	// Length of 50% taxable range
-		ss_line_12	= max(0, ss_line_10 - ss_line_11);		// Amount above top of range
-		ss_line_13	= min(ss_line_10, ss_line_11);			// Amount within range
+		ss_line_12	= Math.max(0, ss_line_10 - ss_line_11);		// Amount above top of range
+		ss_line_13	= Math.min(ss_line_10, ss_line_11);			// Amount within range
 		ss_line_14	= ss_line_13 * 0.5;						// 50% of amount within range
-		ss_line_15	= min(ss_line_2, ss_line_14);			// At most 50% is taxable
+		ss_line_15	= Math.min(ss_line_2, ss_line_14);			// At most 50% is taxable
 		ss_line_16	= ss_line_12 * 0.85;					// 85% of amount above range
 		ss_line_17	= ss_line_15 + ss_line_16;				// Taxable amount
 	}
 	ss_line_18	= ss_line_1 * 0.85;							// At most 85% is taxable
-	ss_line_19	= min(ss_line_17, ss_line_18);				// Taxable amount
+	ss_line_19	= Math.min(ss_line_17, ss_line_18);				// Taxable amount
 
 	SSTax_PutOutput();
-	return round(ss_line_19);
+	return Math.round(ss_line_19);
 }
 
 function SSTax_ResetLines() {

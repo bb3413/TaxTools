@@ -75,3 +75,10 @@ h1, h2, h3, h4 {
 .help-fields h3 {
 	display: 				none;
 }
+
+#DebugContainer pre {
+	background-color:		var(--output-color);
+	font-family:			monospace, "courier new", monospace;
+	font-size:				16px;	/* Use this with Helvetica */
+	line-height:			1.4;
+}
