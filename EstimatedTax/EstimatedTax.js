@@ -10,7 +10,8 @@ import { TaxTable }			from "../Library/Classes/TaxTable.js";
 
 function checkInputValues(inputs, taxtable, taxpayer) {
 	//
-	// Correct input values that have a limit. No error is reported if a correction is made.
+	// For any values that have a minimum or maximum value, make sure the value is
+	// within range. No error is reported if a correction is made.
 	//
 	const fs	= taxpayer.filing_status;
 	const tt	= taxtable;	// Shorthand
@@ -50,7 +51,7 @@ function createTaxpayer(inputs) {
 		inputs.tax_year,
 		inputs.filing_status,
 		inputs.taxpayers_name,
-		inputs.taxpayers_brithday,
+		inputs.taxpayers_birthday,
 		inputs.taxpayers_age,
 		false,							// inputs.taxpayer_is_blind,
 		inputs.spouses_birthday,
@@ -61,7 +62,12 @@ function createTaxpayer(inputs) {
 	return taxpayer;
 }
 
-function maxInputToTaxFormEntries(inputs, taxpayer) {
+function mapInputValues(inputs, taxpayer) {
+	//
+	// For each entry on the web page, figure out where it goes on the tax forms. Make a
+	// list of the forms that are needed and the lines on those forms that need to be
+	// initialized.
+	//
 	let tt			= TaxTable.getTaxTable(inputs.tax_year);
 	let inp			= inputs;	// Shorthand
 	let tp			= taxpayer;	// Shorthand
@@ -110,7 +116,6 @@ function maxInputToTaxFormEntries(inputs, taxpayer) {
 	tax_data.addLine(f1040S1A,	inp.qualified_overtime_deduction,	"21");
 	tax_data.addLine(f1040S1A,	inp.car_loan_interest_deduction,	"30");
 	tax_data.addLine(f1040S1A,	inp.senior_deduction,				"37");
-	
 
 	// Deductions
 	let total_medical_deductions =
@@ -157,6 +162,13 @@ function maxInputToTaxFormEntries(inputs, taxpayer) {
 }
 
 function getInputs() {
+	//
+	// Get the values from the web page. Put then in an object literal so the values
+	// can be accessed by name. This program recalculates the entire tax return when
+	// a values is changed, not just the value that was changed. This does not seem
+	// to be a performance problem and it prevents needing to know what is dependent
+	// on each value.
+	//
 	let inputs = {};
 	
 	inputs.tax_year								= HTML.getUserInput("TaxYear");
@@ -245,52 +257,39 @@ function getInputs() {
 }
 
 function putOutputs(taxpayer) {
-	let outputs = {};
-
-	let payments			= Forms.getValue("F1040", "26");
-	let amount_due			= Forms.getValue("F1040", "34");
-	let estimated_tax		= Math.round(Math.max(0, payments - amount_due) / 4);
-
-	outputs.todays_date							= new Date().toLocaleDateString();
-	outputs.taxpayers_age						= taxpayer.taxpayers_age;
-	outputs.spouses_age							= taxpayer.spouses_age;
-
-	// Estimated Tax Calculation
-	outputs.total_income						= Forms.getValue("F1040", "09");
-	outputs.adjustments							= Forms.getValue("F1040", "10");
-	outputs.adjusted_gross_income				= Forms.getValue("F1040", "11b");
-	outputs.deductions							= Forms.getValue("F1040", "14");
-	outputs.taxable_income						= Forms.getValue("F1040", "15");
-	outputs.tax_on_taxable_income				= Forms.getValue("F1040", "16");
-	outputs.total_other_taxes					= Forms.getValue("F1040", "23");
-	outputs.nonrefundable_credits				= Forms.getValue("F1040", "20");
-	outputs.total_tax							= Forms.getValue("F1040", "24");
-	outputs.refundable_credits					= Forms.getValue("F1040", "32");
-	outputs.payments							= payments;
-	outputs.amount_due							= amount_due;
-	outputs.estimated_tax						= estimated_tax;
+	//
+	// Get the information we are interested in and write them to the web page.
+	//
+	const todays_date		= new Date().toLocaleDateString();
+	const payments			= Forms.getValue("F1040", "26");
+	const amount_due		= Forms.getValue("F1040", "34");
+	const estimated_tax		= Math.round(Math.max(0, payments - amount_due) / 4);
 	
-	HTML.putUserOutput("TodaysDate",			outputs.todays_date, "text");
-	HTML.putUserOutput("TaxpayersAge",			outputs.taxpayers_age);
-	HTML.putUserOutput("SpousesAge",			outputs.spouses_age);
+	HTML.putUserOutput("TodaysDate",			todays_date, "text");
+	HTML.putUserOutput("TaxpayersAge",			taxpayer.taxpayers_age);
+	HTML.putUserOutput("SpousesAge",			taxpayer.spouses_age);
 
 	// Estimated Tax
-	HTML.putUserOutput("TotalIncome",			outputs.total_income);
-	HTML.putUserOutput("Adjustments",			outputs.adjustments);
-	HTML.putUserOutput("AdjustedGrossIncome",	outputs.adjusted_gross_income);
-	HTML.putUserOutput("Deductions",			outputs.deductions);
-	HTML.putUserOutput("TaxableIncome",			outputs.taxable_income);
-	HTML.putUserOutput("TaxOnTaxableIncome",	outputs.tax_on_taxable_income);
-	HTML.putUserOutput("TotalOtherTaxes",		outputs.total_other_taxes);
-	HTML.putUserOutput("TotalTax",				outputs.total_tax);
-	HTML.putUserOutput("NonrefundableCredits",	outputs.nonrefundable_credits);
-	HTML.putUserOutput("RefundableCredits", 	outputs.refundable_credits);
-	HTML.putUserOutput("Payments", 				outputs.payments);
-	HTML.putUserOutput("AmountDue",				outputs.amount_due);
-	HTML.putUserOutput("EstimatedTax",			outputs.estimated_tax);
+	HTML.putUserOutput("TotalIncome",			Forms.getValue("F1040", "09"));
+	HTML.putUserOutput("Adjustments",			Forms.getValue("F1040", "10"));
+	HTML.putUserOutput("AdjustedGrossIncome",	Forms.getValue("F1040", "11b"));
+	HTML.putUserOutput("Deductions",			Forms.getValue("F1040", "14"));
+	HTML.putUserOutput("TaxableIncome",			Forms.getValue("F1040", "15"));
+	HTML.putUserOutput("TaxOnTaxableIncome",	Forms.getValue("F1040", "16"));
+	HTML.putUserOutput("TotalOtherTaxes",		Forms.getValue("F1040", "23"));
+	HTML.putUserOutput("TotalTax",				Forms.getValue("F1040", "24"));
+	HTML.putUserOutput("NonrefundableCredits",	Forms.getValue("F1040", "20"));
+	HTML.putUserOutput("RefundableCredits", 	Forms.getValue("F1040", "32"));
+	HTML.putUserOutput("Payments", 				payments);
+	HTML.putUserOutput("AmountDue",				amount_due);
+	HTML.putUserOutput("EstimatedTax",			estimated_tax);
 }
 
 function restoreDataHandler(data) {
+	//
+	// This function is called when the user restores the input fields from a file.
+	// The data that was copied from the file is passed a parameter.
+	//
 	let ud;
 
 	// There are currently 2 formats in use; select which one this is.
@@ -399,6 +398,9 @@ function restoreUserData(event) {
 }
 
 function saveUserData(event) {
+	//
+	// This function is called when the user wants to save the input fields to a file.
+	//
 	const FILENAME = "EstimatedTax.txt";
 	
 	let data = {
@@ -411,21 +413,23 @@ function saveUserData(event) {
 }
 
 function changeHandler(event) {
-	// This function is called if any input field is changed.
+	//
+	// This function is called when any input field is changed. It calculates the
+	// whole return (not just the field tha was changed).
+	//
 	let inputs		= {};		// Object - indexed by name
-	let outputs		= {};		// Object - indexed by name
 	let taxpayer	= {};		// Object
 	let tax_data	= [];		// Array of forms - not indexed by name
 	
-	// Reset static (global) variables.
+	// Reset static (global) variables. This erases all information from a previous
+	// calculation.
 	Debug.reset();
 	Forms.reset();
 	Taxpayer.reset();
-	TaxTable.reset();
 	
 	inputs		= getInputs();
 	taxpayer	= createTaxpayer(inputs);
-	tax_data	= maxInputToTaxFormEntries(inputs, taxpayer)
+	tax_data	= mapInputValues(inputs, taxpayer);
 
 	tax_data.loadForms();	// Load the taxpayer's data and calculate their taxes.
 	
@@ -438,7 +442,11 @@ function changeHandler(event) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+	//
 	// Wait for the DOM to be fully loaded before trying to access any elements.
+	// All the listeners for the data fields use the same handler so when any field
+	// is changed the whole return is recalculated.
+	//
 
 	// Listen for changes to the input data.
 	HTML.addListener("TaxYear",							"change", changeHandler);

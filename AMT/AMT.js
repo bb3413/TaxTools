@@ -6,11 +6,11 @@ import { getUserInput, putUserOutput }					from "../Library/HTML.js";
 import { showElement, hideElement }						from "../Library/HTML.js";
 import { min, max, round }								from "../Library/Numbers.js";
 import { strCaseEqual }									from "../Library/Strings.js";
-import { initializeTaxTables }							from "../Library/TaxTables/TaxTables.js";
-import { get_AMT_Exemption, get_AMT_Tax }				from "../Library/TaxTables/TaxTables.js";
-import { get_CapGains_15_Start, get_CapGains_20_Start }	from "../Library/TaxTables/TaxTables.js";
-import { getSeniorDeduction }							from "../Library/TaxTables/TaxTables.js";
-import { getStandardDeduction }							from "../Library/TaxTables/TaxTables.js";
+import { initializeTaxTables }							from "../Library/TaxTables.js";
+import { get_AMT_Exemption, get_AMT_Tax }				from "../Library/TaxTables.js";
+import { get_CapGains_15_Start, get_CapGains_20_Start }	from "../Library/TaxTables.js";
+import { getSeniorDeduction }							from "../Library/TaxTables.js";
+import { getStandardDeduction }							from "../Library/TaxTables.js";
 
 // Input fields
 let tax_year						= 0;
