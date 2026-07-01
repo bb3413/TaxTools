@@ -9,7 +9,8 @@ export class Form {
 		this.modified	= true;			// True => need to call calculate().
 	}
 
-	calculate() {	
+	calculate() {
+		this.modified = false;
 	}
 
 	add(...indexlist) {

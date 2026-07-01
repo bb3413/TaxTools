@@ -433,8 +433,8 @@ function changeHandler(event) {
 
 	tax_data.loadForms();	// Load the taxpayer's data and calculate their taxes.
 	
-	let f1040 = Forms.getForm("F1040");
-	f1040.calculate();
+	Forms.getForm("F1040").calculate();
+	
 	putOutputs(taxpayer);
 
 	// Forms.toConsole();	// Print all forms to the console.log().
