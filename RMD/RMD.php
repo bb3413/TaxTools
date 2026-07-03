@@ -6,7 +6,6 @@
 	<link rel="stylesheet" href="../Library/TaxTools/HelpFields.css" />
 	<link rel="stylesheet" href="RMD.css" />
 	<script type="module" src="RMD.js"></script>
-
 	<title>Required Minimum Distribution Calculator</title>
 </head>
 
@@ -81,7 +80,11 @@
 			is needed to determine the number of years over which the RMDs should be taken.</p>
 		</div>
 
-		<?php include "RMD-Debug.html"; ?> 		<!-- Debugging Fields -->
+		<!-- Display area for debugging information. -->
+		<div id="DebugContainer">
+			<h3>Debugging Output</h3>
+			<pre id="DebugOutput"></pre>
+		</div>
 	</div>
 </body>
 </html>

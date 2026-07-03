@@ -1,7 +1,4 @@
 
-import { getElementValue, putElementValue }	from "../Library/HTML.js";
-import { changeHandler }					from "./EstimatedTax_CA.js";
-
 function restoreInputFields(ud) {
 	// Restore HTML fields with user data from the ud object.
 

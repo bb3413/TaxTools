@@ -19,7 +19,7 @@ export class Form {
 		for (let index of indexlist) {
 			sum += this.lines[index].value
 		}
-		
+
 		return sum;
 	}
 
@@ -33,7 +33,7 @@ export class Form {
 		for (let index of indexlist) {
 			values.push(this.lines[index].value);
 		}
-		
+
 		return Math.min(...values);
 	}
 
@@ -43,7 +43,7 @@ export class Form {
 		for (let index of indexlist) {
 			values.push(this.lines[index].value);
 		}
-		
+
 		return Math.max(...values);
 	}
 
@@ -62,14 +62,14 @@ export class Form {
 	toString() {
 		let str		= [];
 		let title	= [];
-		
+
 		title.push(`Form: ${this.name}`);
-		
+
 		const linenos = Object.keys(this.lines).sort();
 		for (const lineno of linenos) {
 			let line = this.lines[lineno];
 			if (line.value) {	// Skip empty lines.
-				let s = `    lines[${lineno}]`;
+				let s = `	lines[${lineno}]`;
 				s = s.padEnd(16, " ") + line.label;
 				s = s.padEnd(60, " ") + line.value;
 				str.push(s);

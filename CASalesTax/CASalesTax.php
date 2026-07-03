@@ -5,7 +5,6 @@
 	<?php include "../Library/TaxTools/IncludeFiles.html"; ?>
 	<link rel="stylesheet" href="CASalesTax.css" />
 	<script type="module" src="CASalesTax.js"></script>
-
 	<title>California Sales Tax Calculator</title>
 </head>
 

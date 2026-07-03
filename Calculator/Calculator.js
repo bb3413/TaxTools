@@ -1,5 +1,5 @@
 
-import { evalExpression } from "../Library/EvalExpression.js";
+import { Eval } from "../Library/Classes/Eval.js";
 
 let currentInput = "";
 const display = document.getElementById("display");
@@ -98,7 +98,7 @@ function calculateResult() {
 	if (!currentInput) return;
 	try {
 		const cleanInput = currentInput.replace(/,/g, "");
-		let result = evalExpression(cleanInput);	// Use the TaxTools version of solve().
+		let result = Eval.expression(cleanInput);	// Use the TaxTools version of solve().
 
 		// Overflow check: cap at 12 digits or Handle Infinity
 		if (!isFinite(result) || Math.abs(result) > 999999999999) {

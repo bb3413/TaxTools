@@ -5,7 +5,6 @@
 	<?php include "../Library/TaxTools/IncludeFiles.html"; ?>
 	<link rel="stylesheet" href="AMT.css" />
 	<script type="module" src="AMT.js"></script>
-
 	<title>Alternative Minimum Tax Calculator</title>
 </head>
 
@@ -207,8 +206,14 @@
 			<p class="trigger output-field" id="AMT" tooltipid="#AMTTT">0</p>
 		</div>
 
-		<?php include "AMT-Debug.html"; ?>				<!-- Debugging Fields -->
-		<?php include "AMT-HelpInput.html"; ?>			<!-- Tooltips -->
+		<!-- Display area for debugging information. -->
+		<div id="DebugContainer">
+			<h3>Debugging Output</h3>
+			<pre id="DebugOutput"></pre>
+		</div>
+
+		<!-- Tooltips -->
+		<?php include "AMT-HelpInput.html"; ?>
 	</div>
 </body>
 </html>

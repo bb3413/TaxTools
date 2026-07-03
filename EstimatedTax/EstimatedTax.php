@@ -2,17 +2,15 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<link rel="stylesheet" href="../Library/TaxTools/TaxTools.css" />
 	<?php include "../Library/TaxTools/IncludeFiles.html"; ?>
 	<link rel="stylesheet" href="EstimatedTax.css" />
 	<script type="module" src="EstimatedTax.js"></script>
-
 	<title>Federal Estimated Tax Calculator</title>
 </head>
 
 <body>
 	<div class="tool-container">
-		<h1 class="title">Federal Estimated Tax Calculator</h1>
+		<h1 class="title">Federal Estimated Tax Calculatorx</h1>
 		<h2 class="title">for the Tax Year
 			<select id="TaxYear" class="trigger" tooltipid="#TaxYearTT">
 				<option value="2026">2026</option>
@@ -113,7 +111,7 @@
 				<p>Adjusted Gross Income</p>
 				<p class="trigger output-field" id="AdjustedGrossIncome" tooltipid="#AdjustedGrossIncomeTT">0</p>
 
-				<p>1040, line 12</p>
+				<p>1040, line 14</p>
 				<p>Deductions</p>
 				<p class="trigger output-field" id="Deductions" tooltipid="#DeductionsTT">0</p>
 
@@ -199,7 +197,7 @@
 			<input class="trigger input-field" type="text" id="CapitalGains"
 				placeholder="0" size="10" tooltipid="#CapitalGainsTT" />
 
-			<p>1040, line 7</p>
+			<p>1040, line 8</p>
 			<p>Self-employment Income</p>
 			<input class="trigger input-field" type="text" id="SelfEmploymentIncome"
 				placeholder="0" size="10" tooltipid="#SelfEmploymentIncomeTT" />
@@ -471,6 +469,7 @@
 				placeholder="0" size="10" tooltipid="#EstimatedTaxPaidTT" />
 		</div>
 
+		<!-- Display area for debugging information. -->
 		<div id="DebugContainer">
 			<h3>Debugging Output</h3>
 			<pre id="DebugOutput"></pre>

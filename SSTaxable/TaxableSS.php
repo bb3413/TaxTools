@@ -5,7 +5,6 @@
 	<?php include "../Library/TaxTools/IncludeFiles.html"; ?>
 	<link rel="stylesheet" href="TaxableSS.css" />
 	<script type="module" src="TaxableSS.js"></script>
-
 	<title>Taxable Social Security Calculator</title>
 </head>
 
@@ -149,9 +148,14 @@
 			   	placeholder="0" tooltipid="#OtherAdjustmentsTT" size="10" />
 		</div>
 
-		<?php include "TaxableSS-Debug.html"; ?> 									<!-- Debugging Fields -->
-		<?php include "../Library/SocialSecurity/SocialSecurity-Debug.html"; ?> 	<!-- Debugging Fields -->
-		<?php include "TaxableSS-HelpInput.html"; ?> 								<!-- Tooltips -->
+		<!-- Display area for debugging information. -->
+		<div id="DebugContainer">
+			<h3>Debugging Output</h3>
+			<pre id="DebugOutput"></pre>
+		</div>
+
+		<!-- Tooltips -->
+		<?php include "TaxableSS-HelpInput.html"; ?>
 
 	</div>
 </body>

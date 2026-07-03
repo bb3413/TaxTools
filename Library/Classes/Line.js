@@ -41,7 +41,7 @@ export class Line {
 			this._value = new_value;
 		}
 	}
-	
+
 	set min_value(new_min) {
 		this._min_value = new_min;
 		this._value = Math.min(this._min_value, this._value);	// Update value

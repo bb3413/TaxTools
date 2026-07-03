@@ -165,3 +165,10 @@ input:-webkit-autofill:focus {
 	box-shadow: 0 0 0px 1000px var(--input-color) inset !important;
 	-webkit-text-fill-color: var(--text-color) !important;
 }
+
+#DebugContainer pre {
+	background-color:		var(--output-color);
+	font-family:			monospace, "courier new";
+	font-size:				16px;	/* Use this with Helvetica */
+	line-height:			1.4;
+}

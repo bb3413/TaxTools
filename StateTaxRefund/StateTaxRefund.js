@@ -1,17 +1,4 @@
 
-import { getAge }							from "../Library/Dates.js";
-import { getTaxYear }						from "../Library/Dates.js";
-import { putDebugOutput }					from "../Library/Debug.js";
-import { turnOffDebug, turnOnDebug }		from "../Library/Debug.js";
-import { addListener }						from "../Library/HTML.js";
-import { getUserInput, putUserOutput }		from "../Library/HTML.js";
-import { showElement, hideElement }			from "../Library/HTML.js";
-import { min, max, round }					from "../Library/Numbers.js";
-import { strCaseEqual }						from "../Library/Strings.js";
-import { initializeTaxTables }				from "../Library/TaxTables/TaxTables.js";
-import { getStandardDeduction }				from "../Library/TaxTables/TaxTables.js";
-import { getTaxValue }						from "../Library/TaxTables/TaxTables.js";
-
 let previous_tax_year			= 0;
 let filing_status				= 0;
 let taxpayers_birthday			= 0;
@@ -61,8 +48,8 @@ function calculateTaxableAmount() {
 	initializeTaxTables(filing_status, previous_tax_year);
 
 	end_of_year				= new Date("12/31/" + previous_tax_year);
-	taxpayers_age			= getAge(taxpayers_birthday, end_of_year);
-	spouses_age				= getAge(spouses_birthday, end_of_year);
+	taxpayers_age			= Dates.getAge(taxpayers_birthday, end_of_year);
+	spouses_age				= Dates.getAge(spouses_birthday, end_of_year);
 	max_salt				= getTaxValue("MaxSALT");
 
 	standard_deduction		= getStandardDeduction(
@@ -190,21 +177,21 @@ function Worksheet(
 }
 
 function getInputValues() {
-	previous_tax_year					= getUserInput("PreviousTaxYear");
-	filing_status						= getUserInput("FilingStatus",		"text");
-	taxpayers_birthday					= getUserInput("TaxpayersBirthday",	"text");
-	taxpayer_is_blind					= getUserInput("TaxpayerIsBlind");
-	state_tax_refund					= getUserInput("StateTaxRefund");
-	spouses_birthday					= getUserInput("SpousesBirthday",	"text");
-	spouse_is_blind						= getUserInput("SpouseIsBlind");
+	previous_tax_year					= HTML.getUserInput("PreviousTaxYear");
+	filing_status						= HTML.getUserInput("FilingStatus",		"text");
+	taxpayers_birthday					= HTML.getUserInput("TaxpayersBirthday",	"text");
+	taxpayer_is_blind					= HTML.getUserInput("TaxpayerIsBlind");
+	state_tax_refund					= HTML.getUserInput("StateTaxRefund");
+	spouses_birthday					= HTML.getUserInput("SpousesBirthday",	"text");
+	spouse_is_blind						= HTML.getUserInput("SpouseIsBlind");
 
 	// Information from last year
-	state_income_tax					= getUserInput("StateIncomeTax");
-	sales_tax							= getUserInput("SalesTax");
-	sales_tax_used						= getUserInput("SalesTaxUsed");
-	real_estate_taxes					= getUserInput("RealEstateTaxes");
-	personal_property_taxes 			= getUserInput("PersonalPropertyTaxes");
-	itemized_deductions					= getUserInput("ItemizedDeductions");
+	state_income_tax					= HTML.getUserInput("StateIncomeTax");
+	sales_tax							= HTML.getUserInput("SalesTax");
+	sales_tax_used						= HTML.getUserInput("SalesTaxUsed");
+	real_estate_taxes					= HTML.getUserInput("RealEstateTaxes");
+	personal_property_taxes 			= HTML.getUserInput("PersonalPropertyTaxes");
+	itemized_deductions					= HTML.getUserInput("ItemizedDeductions");
 
 	// Output fields
 	taxable_amount						= 0;
@@ -226,53 +213,41 @@ function getInputValues() {
 }
 
 function putResults() {
-	putUserOutput("TaxableAmount",	taxable_amount);
-	putUserOutput("Explanation",	explanation,	"text");
-
-	putDebugOutput("Debug01", standard_deduction, 	"Standard Deduction");
-	putDebugOutput("Debug02", line_5d,				"Line 5d");
-	putDebugOutput("Debug03", line_5e,				"Line 5e");
-	putDebugOutput("Debug04", line_1,				"Line 1");
-	putDebugOutput("Debug05", line_2,				"Line 2");
-	putDebugOutput("Debug06", line_3,				"Line 3");
-	putDebugOutput("Debug07", line_4,				"Line 4");
-	putDebugOutput("Debug08", line_5,				"Line 5");
-	putDebugOutput("Debug09", line_6,				"Line 6");
-	putDebugOutput("Debug10", line_7,				"Line 7");
-	putDebugOutput("Debug11", line_8,				"Line 8");
-	putDebugOutput("Debug12", line_9,				"Line 9");
+	HTML.putUserOutput("TaxableAmount",	taxable_amount);
+	HTML.putUserOutput("Explanation",	explanation,	"text");
 }
 
 function changeHandler(event) {
 	// This is the function that is called if any input field is changed.
-	turnOffDebug();
+	Debug.reset();
 	getInputValues();
 	calculateTaxableAmount();
 	putResults();
-	turnOnDebug();
+	Debug.turnOn();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
 	// Wait for the DOM to be fully loaded before trying to access any elements.
 
-	addListener("PreviousTaxYear",			"change", changeHandler);
-	addListener("FilingStatus",				"change", changeHandler);
-	addListener("TaxpayersBirthday",		"change", changeHandler);
-	addListener("SpousesBirthday",			"change", changeHandler);
-	addListener("TaxpayerIsBlind",			"change", changeHandler);
-	addListener("SpouseIsBlind",			"change", changeHandler);
-	addListener("StateTaxRefund",			"change", changeHandler);
+	HTML.addListener("PreviousTaxYear",			"change", changeHandler);
+	HTML.addListener("FilingStatus",			"change", changeHandler);
+	HTML.addListener("TaxpayersBirthday",		"change", changeHandler);
+	HTML.addListener("SpousesBirthday",			"change", changeHandler);
+	HTML.addListener("TaxpayerIsBlind",			"change", changeHandler);
+	HTML.addListener("SpouseIsBlind",			"change", changeHandler);
+	HTML.addListener("StateTaxRefund",			"change", changeHandler);
 
 	// Information from last year
-	addListener("StateIncomeTax",			"change", changeHandler);
-	addListener("SalesTax",					"change", changeHandler);
-	addListener("SalesTaxUsed",				"change", changeHandler);
-	addListener("RealEstateTaxes",			"change", changeHandler);
-	addListener("PersonalPropertyTaxes",	"change", changeHandler);
-	addListener("ItemizedDeductions",		"change", changeHandler);
+	HTML.addListener("StateIncomeTax",			"change", changeHandler);
+	HTML.addListener("SalesTax",				"change", changeHandler);
+	HTML.addListener("SalesTaxUsed",			"change", changeHandler);
+	HTML.addListener("RealEstateTaxes",			"change", changeHandler);
+	HTML.addListener("PersonalPropertyTaxes",	"change", changeHandler);
+	HTML.addListener("ItemizedDeductions",		"change", changeHandler);
 
 	previous_tax_year = getTaxYear() - 1;	// Default tax year.
-	putUserOutput("PreviousTaxYear", previous_tax_year, "text");
+	HTML.putUserOutput("PreviousTaxYear", previous_tax_year, "text");
 
-	changeHandler();
+	HTML.hideElement("SpouseContainer");
+	HTML.hideElement("DebugContainer");
 });

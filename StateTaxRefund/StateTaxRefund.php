@@ -5,7 +5,6 @@
 	<?php include "../Library/TaxTools/IncludeFiles.html"; ?>
 	<link rel="stylesheet" href="StateTaxRefund.css" />
 	<script type="module" src="StateTaxRefund.js"></script>
-
 	<title>State Income Tax Refund Calculator</title>
 </head>
 
@@ -97,8 +96,14 @@
 				tooltipid="#ExplanationTT"></p>
 		</div>
 
-		<?php include "StateTaxRefund-Debug.html"; ?> 		<!-- Debugging Fields -->
-		<?php include "StateTaxRefund-HelpInput.html"; ?> 	<!-- Tooltips -->
+		<!-- Display area for debugging information. -->
+		<div id="DebugContainer">
+			<h3>Debugging Output</h3>
+			<pre id="DebugOutput"></pre>
+		</div>
+
+		<!-- Tooltips -->
+		<?php include "StateTaxRefund-HelpInput.html"; ?>
 
 	</div>
 </body>

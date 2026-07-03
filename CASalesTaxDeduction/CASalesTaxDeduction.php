@@ -5,7 +5,6 @@
 	<?php include "../Library/TaxTools/IncludeFiles.html"; ?>
 	<link rel="stylesheet" href="CASalesTaxDeduction.css" />
 	<script type="module" src="CASalesTaxDeduction.js"></script>
-
 	<title>California Sales Tax Deduction Calculator</title>
 </head>
 
@@ -141,7 +140,14 @@
 				tooltipid="#SalesTaxDeductionTT">0</p>
 		</div>
 
-		<?php include "CASalesTaxDeduction-Debug.html"; ?>		<!-- Debugging Fields -->
+		<!-- Display area for debugging information. -->
+		<div id="DebugContainer">
+			<h3>Debugging Output</h3>
+			<pre id="DebugOutput"></pre>
+		</div>
+
+		<!-- Tooltips -->
+		<?php include "CASalesTaxDeduction-Debug.html"; ?>
 	</div>
 </body>
 </html>

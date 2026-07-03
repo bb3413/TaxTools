@@ -1,10 +1,7 @@
 
-import { addListener }									from "../Library/HTML.js";
-import { changeBackgroundColor }						from "../Library/HTML.js";
-import { getCSSGlobalVariable }							from "../Library/HTML.js";
-import { getUserInput, putUserOutput }					from "../Library/HTML.js";
-import { getAge }										from "../Library/Dates.js";
-import { getDateObject }								from "../Library/Dates.js";
+import { Dates }			from "../Library/Classes/Dates.js";
+import { HTML }				from "../Library/Classes/HTML.js";
+import { Num }				from "../Library/Classes/Num.js";
 
 let start			= "";
 let end				= "";
@@ -13,12 +10,12 @@ let input_color		= "";
 let output_color	= "";
 
 function calculateAge(start, end) {
-	age = getAge(start, end);
-	putUserOutput("Age", age);
+	age = Dates.getAge(start, end);
+	HTML.putUserOutput("Age", age);
 
-	changeBackgroundColor("Start",	input_color);
-	changeBackgroundColor("End",	input_color);
-	changeBackgroundColor("Age",	output_color);
+	HTML.changeBackgroundColor("Start",	input_color);
+	HTML.changeBackgroundColor("End",	input_color);
+	HTML.changeBackgroundColor("Age",	output_color);
 }
 
 function calculateEndDate(start, age) {
@@ -28,11 +25,11 @@ function calculateEndDate(start, age) {
 
 	end_date.setYear(start_year + age);
 	end = end_date.toLocaleDateString();
-	putUserOutput("End", end);
+	HTML.putUserOutput("End", end);
 
-	changeBackgroundColor("Start",	input_color);
-	changeBackgroundColor("End",	output_color);
-	changeBackgroundColor("Age",	input_color);
+	HTML.changeBackgroundColor("Start",	input_color);
+	HTML.changeBackgroundColor("End",	output_color);
+	HTML.changeBackgroundColor("Age",	input_color);
 }
 
 function calculateStartDate(end, age) {
@@ -42,16 +39,16 @@ function calculateStartDate(end, age) {
 
 	start_date.setYear(end_year - age);
 	start = start_date.toLocaleDateString();
-	putUserOutput("Start", start);
+	HTML.putUserOutput("Start", start);
 
-	changeBackgroundColor("Start",	output_color);
-	changeBackgroundColor("End",	input_color);
-	changeBackgroundColor("Age",	input_color);
+	HTML.changeBackgroundColor("Start",	output_color);
+	HTML.changeBackgroundColor("End",	input_color);
+	HTML.changeBackgroundColor("Age",	input_color);
 }
 
 function startHandler(event) {
-	start = getUserInput("Start", "text");
-	if (!getDateObject(start)) {
+	start = HTML.getUserInput("Start", "text");
+	if (!Dates.getDateObject(start)) {
 		if (start) {
 			alert("Invalid date: " + start);
 		}
@@ -66,8 +63,8 @@ function startHandler(event) {
 }
 
 function endHandler(event) {
-	end = getUserInput("End", "text");
-	if (!getDateObject(end)) {
+	end = HTML.getUserInput("End", "text");
+	if (!Dates.getDateObject(end)) {
 		if (end) {
 			alert("Invalid date: " + end);
 		}
@@ -82,11 +79,11 @@ function endHandler(event) {
 }
 
 function ageHandler(event) {
-	age = getUserInput("Age", "text");
+	age = HTML.getUserInput("Age", "text");
 	if (age === "")
 		return;
 
-	age = toInteger(age);
+	age = Num.toInteger(age);
 
 	if (start) {
 		calculateEndDate(start, age);
@@ -98,13 +95,13 @@ function ageHandler(event) {
 document.addEventListener("DOMContentLoaded", () => {
 	// Wait for the DOM to be fully loaded before trying to access any elements.
 
-	addListener("Start",	"change",	startHandler);
-	addListener("End",		"change",	endHandler);
-	addListener("Age",		"change",	ageHandler);
+	HTML.addListener("Start",	"change",	startHandler);
+	HTML.addListener("End",		"change",	endHandler);
+	HTML.addListener("Age",		"change",	ageHandler);
 
-	output_color	= getCSSGlobalVariable("--output-color");
-	input_color		= getCSSGlobalVariable("--input-color");
+	output_color	= HTML.getCSSGlobalVariable("--output-color");
+	input_color		= HTML.getCSSGlobalVariable("--input-color");
 
 	end = new Date().toLocaleDateString();	// Today's date
-	putUserOutput("End", end);
+	HTML.putUserOutput("End", end);
 });

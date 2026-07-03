@@ -5,7 +5,6 @@
 	<?php include "../Library/TaxTools/IncludeFiles.html"; ?>
 	<link rel="stylesheet" href="LumpSumSS.css" />
 	<script type="module" src="LumpSumSS.js"></script>
-
 	<title>Social Security Lump Sum Calculator</title>
 </head>
 
@@ -161,9 +160,14 @@
 			</div>
 		</div>
 
-		<?php include "LumpSumSS-Debug.html"; ?> 									<!-- Debugging Fields -->
-		<?php include "../Library/SocialSecurity/SocialSecurity-Debug.html"; ?> 	<!-- Debugging Fields -->
-		<?php include "LumpSumSS-HelpInput.html"; ?> 								<!-- Tooltips -->
+		<!-- Display area for debugging information. -->
+		<div id="DebugContainer">
+			<h3>Debugging Output</h3>
+			<pre id="DebugOutput"></pre>
+		</div>
+
+		<!-- Tooltips -->
+		<?php include "LumpSumSS-HelpInput.html"; ?>
 
 	</div>
 </body>

@@ -1,12 +1,4 @@
 
-import { getAge }									from "../Library/Dates.js";
-import { getTaxYear }								from "../Library/Dates.js";
-import { turnOffDebug, turnOnDebug }				from "../Library/Debug.js";
-import { addListener }								from "../Library/HTML.js";
-import { changeBackgroundColor, changeTextColor }	from "../Library/HTML.js";
-import { getCSSGlobalVariable }						from "../Library/HTML.js";
-import { getUserInput, putUserOutput }				from "../Library/HTML.js";
-
 let tax_year				= 0;
 let ira_total				= 0;
 let taxpayers_birthday		= "";
@@ -75,15 +67,15 @@ function calculateRMD() {
 
 	if (tax_year === 0) {
 		tax_year = getTaxYear();
-		putUserOutput("TaxYear", tax_year, "text");
+		HTML.putUserOutput("TaxYear", tax_year, "text");
 	}
 
 	if (taxpayers_birthday !== "") {
 		end_of_year				= new Date("12/31/" + tax_year).toLocaleDateString();
-		taxpayers_age			= getAge(taxpayers_birthday, end_of_year);
-		changeBackgroundColor("TaxpayersAge", output_color);
+		taxpayers_age			= Dates.getAge(taxpayers_birthday, end_of_year);
+		HTML.changeBackgroundColor("TaxpayersAge", output_color);
 	} else {
-		changeBackgroundColor("TaxpayersAge", input_color);
+		HTML.changeBackgroundColor("TaxpayersAge", input_color);
 	}
 
 	if (taxpayers_age < 73) {
@@ -105,46 +97,46 @@ function calculateRMD() {
 }
 
 function putOutput() {
-	putUserOutput("TaxpayersAge",	taxpayers_age);
-	putUserOutput("RMD",			rmd);
+	HTML.putUserOutput("TaxpayersAge",	taxpayers_age);
+	HTML.putUserOutput("RMD",			rmd);
 }
 
 function getInput() {
-	tax_year				= getUserInput("TaxYear");
-	ira_total				= getUserInput("IRATotal");
-	taxpayers_birthday		= getUserInput("TaxpayersBirthday",	"text");
-	taxpayers_age			= getUserInput("TaxpayersAge");
+	tax_year				= HTML.getUserInput("TaxYear");
+	ira_total				= HTML.getUserInput("IRATotal");
+	taxpayers_birthday		= HTML.getUserInput("TaxpayersBirthday",	"text");
+	taxpayers_age			= HTML.getUserInput("TaxpayersAge");
 
 	rmd						= 0;
 }
 
 function changedAge(event) {
-	const age = getUserInput("TaxpayersAge");
+	const age = HTML.getUserInput("TaxpayersAge");
 	if (age !== 0)
-		putUserOutput("TaxpayersBirthday", "");
+		HTML.putUserOutput("TaxpayersBirthday", "");
 
 	changeHandler(event);
 }
 
 function changeHandler(event) {
 	// This is the function that is called if any input field is changed.
-	turnOffDebug();
+	Debug.reset();
 	getInput();
 	calculateRMD();
 	putOutput();
-	turnOnDebug();
+	Debug.turnOn();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
 	// Wait for the DOM to be fully loaded before trying to access any elements.
 
-	addListener("TaxYear",				"change", changeHandler);
-	addListener("IRATotal",				"change", changeHandler);
-	addListener("TaxpayersBirthday",	"change", changeHandler);
-	addListener("TaxpayersAge",			"change", changedAge);
+	HTML.addListener("TaxYear",				"change", changeHandler);
+	HTML.addListener("IRATotal",				"change", changeHandler);
+	HTML.addListener("TaxpayersBirthday",	"change", changeHandler);
+	HTML.addListener("TaxpayersAge",			"change", changedAge);
 
-	output_color	= getCSSGlobalVariable("--output-color");
-	input_color		= getCSSGlobalVariable("--input-color");
-
-	changeHandler();
+	output_color	= HTML.getCSSGlobalVariable("--output-color");
+	input_color		= HTML.getCSSGlobalVariable("--input-color");
+	
+	HTML.hideElement("DebugContainer");
 });

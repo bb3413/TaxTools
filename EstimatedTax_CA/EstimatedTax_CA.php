@@ -6,7 +6,6 @@
 	<link rel="stylesheet" href="EstimatedTax_CA.css" />
 	<script type="module" src="SaveRestore_CA.js"></script>
 	<script type="module" src="EstimatedTax_CA.js"></script>
-
 	<title>California Estimated Tax Calculator</title>
 </head>
 
@@ -405,8 +404,14 @@
 				placeholder="0" id="Contributions" tooltipid="#ContributionsTT" />
 		</div>
 
-		<?php include "EstimatedTax_CA-Debug.html"; ?>		<!-- Debugging Fields -->
-		<?php include "EstimatedTax_CA-HelpInput.html"; ?>	<!-- Tooltips -->
+		<!-- Display area for debugging information. -->
+		<div id="DebugContainer">
+			<h3>Debugging Output</h3>
+			<pre id="DebugOutput"></pre>
+		</div>
+
+		<!-- Tooltips -->
+		<?php include "EstimatedTax_CA-HelpInput.html"; ?>
 	</div>
 </body>
 </html>

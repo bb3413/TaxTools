@@ -1,13 +1,4 @@
 
-import { turnOffDebug, turnOnDebug }		from "../Library/Debug.js";
-import { addListener }						from "../Library/HTML.js";
-import { getUserInput, putUserOutput }		from "../Library/HTML.js";
-import { min, max, round }					from "../Library/Numbers.js";
-import { getSEHIDeduction }					from "../Library/SelfEmployment/SEHIDeduction.js";
-import { getSETax }							from "../Library/SelfEmployment/SelfEmploymentTax.js";
-import { initializeTaxTables }				from "../Library/TaxTables/TaxTables.js";
-import { getBusinessMileageDeduction }		from "../Library/TaxTables/TaxTables.js";
-
 function calculateTax() {
 	let gross_profit					= 0;
 	let gross_income					= 0;
@@ -26,45 +17,45 @@ function calculateTax() {
 
 	initializeTaxTables();
 
-	car_and_truck = getUserInput("CarAndTruck");
+	car_and_truck = HTML.getUserInput("CarAndTruck");
 	if (car_and_truck === 0) {
-		car_and_truck = getBusinessMileageDeduction(getUserInput("CarAndTruckMiles"));
+		car_and_truck = getBusinessMileageDeduction(HTML.getUserInput("CarAndTruckMiles"));
 	}
 
 	// Expenses
 	total_expenses =
-		getUserInput("Advertising") +
+		HTML.getUserInput("Advertising") +
 		car_and_truck +
-		getUserInput("CommissionsAndFees") +
-		getUserInput("ContractLabor") +
-		getUserInput("Depletion") +
-		getUserInput("Depreciation") +
-		getUserInput("EmployeeBenefitPrograms") +
-		getUserInput("Insurance") +
-		getUserInput("Interest") +
-		getUserInput("ProfessionalServices") +
-		getUserInput("OfficeExpenses") +
-		getUserInput("PensionPlan") +
-		getUserInput("Rent") +
-		getUserInput("Repairs") +
-		getUserInput("Supplies") +
-		getUserInput("TaxesAndLicenses") +
-		getUserInput("Travel") +
-		getUserInput("Utilities") +
-		getUserInput("Wages") +
-		getUserInput("OtherExpenses");
+		HTML.getUserInput("CommissionsAndFees") +
+		HTML.getUserInput("ContractLabor") +
+		HTML.getUserInput("Depletion") +
+		HTML.getUserInput("Depreciation") +
+		HTML.getUserInput("EmployeeBenefitPrograms") +
+		HTML.getUserInput("Insurance") +
+		HTML.getUserInput("Interest") +
+		HTML.getUserInput("ProfessionalServices") +
+		HTML.getUserInput("OfficeExpenses") +
+		HTML.getUserInput("PensionPlan") +
+		HTML.getUserInput("Rent") +
+		HTML.getUserInput("Repairs") +
+		HTML.getUserInput("Supplies") +
+		HTML.getUserInput("TaxesAndLicenses") +
+		HTML.getUserInput("Travel") +
+		HTML.getUserInput("Utilities") +
+		HTML.getUserInput("Wages") +
+		HTML.getUserInput("OtherExpenses");
 
 	// Calculate new profit
-	gross_profit	= getUserInput("Sales") - getUserInput("Returns") - getUserInput("Cost");
-	gross_income	= gross_profit + getUserInput("OtherIncome");
-	net_profit		= gross_income - total_expenses - getUserInput("HomeOfficeExpense");
+	gross_profit	= HTML.getUserInput("Sales") - HTML.getUserInput("Returns") - HTML.getUserInput("Cost");
+	gross_income	= gross_profit + HTML.getUserInput("OtherIncome");
+	net_profit		= gross_income - total_expenses - HTML.getUserInput("HomeOfficeExpense");
 
 	// Calculate self-employemnt tax
 	self_employment_tax				= getSETax(net_profit, 0);
 	self_employment_tax_adjustment	= round(self_employment_tax / 2);
 
 	// Calculate SEHI adjustment
-	medical_insurance				= getUserInput("MedicalInsurance");
+	medical_insurance				= HTML.getUserInput("MedicalInsurance");
 	sehi_adjustment					= getSEHIDeduction(
 											medical_insurance,
 											0,		// LTC insurane
@@ -80,63 +71,63 @@ function calculateTax() {
 										retirement_plan_contributions -
 										sehi_adjustment) * 0.20);
 
-	putUserOutput("GrossProfit",					gross_profit);
-	putUserOutput("GrossIncome",					gross_income);
-	putUserOutput("NetProfit",						net_profit);
-	putUserOutput("SelfEmploymentTax",				self_employment_tax);
-	putUserOutput("QBI_Deduction",					qbi_deduction);
-	putUserOutput("SelfEmploymentTaxAdjustment",	self_employment_tax_adjustment);
+	HTML.putUserOutput("GrossProfit",					gross_profit);
+	HTML.putUserOutput("GrossIncome",					gross_income);
+	HTML.putUserOutput("NetProfit",						net_profit);
+	HTML.putUserOutput("SelfEmploymentTax",				self_employment_tax);
+	HTML.putUserOutput("QBI_Deduction",					qbi_deduction);
+	HTML.putUserOutput("SelfEmploymentTaxAdjustment",	self_employment_tax_adjustment);
 
-	putUserOutput("NetProfitAfterSEHI",				net_profit_after_sehi);
-	putUserOutput("SEHI_Adjustment",				sehi_adjustment);
-	putUserOutput("MedicalDeduction",				medical_deduction);
+	HTML.putUserOutput("NetProfitAfterSEHI",				net_profit_after_sehi);
+	HTML.putUserOutput("SEHI_Adjustment",				sehi_adjustment);
+	HTML.putUserOutput("MedicalDeduction",				medical_deduction);
 
-	putUserOutput("GrossIncome",					gross_income);
-	putUserOutput("TotalExpenses",					total_expenses);
+	HTML.putUserOutput("GrossIncome",					gross_income);
+	HTML.putUserOutput("TotalExpenses",					total_expenses);
 }
 
 function changeHandler(event) {
 	// This is the function that is called if any input field is changed.
-	turnOffDebug();
+	Debug.reset();
 	calculateTax();
-	turnOnDebug();
+	Debug.turnOn();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
 	// Wait for the DOM to be fully loaded before trying to access any elements.
 
 	// Income
-	addListener("Sales",					"change", changeHandler);
-	addListener("Returns",					"change", changeHandler);
-	addListener("Cost",						"change", changeHandler);
-	addListener("OtherIncome",				"change", changeHandler);
-	addListener("HomeOfficeExpense",		"change", changeHandler);
-	// addListener("GrossIncome",			"change", changeHandler);
+	HTML.addListener("Sales",					"change", changeHandler);
+	HTML.addListener("Returns",					"change", changeHandler);
+	HTML.addListener("Cost",						"change", changeHandler);
+	HTML.addListener("OtherIncome",				"change", changeHandler);
+	HTML.addListener("HomeOfficeExpense",		"change", changeHandler);
+	// HTML.addListener("GrossIncome",			"change", changeHandler);
 
 	// Expenses
-	addListener("Advertising",				"change", changeHandler);
-	addListener("CarAndTruck",				"change", changeHandler);
-	addListener("CarAndTruckMiles",			"change", changeHandler);
-	addListener("CommissionsAndFees",		"change", changeHandler);
-	addListener("ContractLabor",			"change", changeHandler);
-	addListener("Depletion",				"change", changeHandler);
-	addListener("Depreciation",				"change", changeHandler);
-	addListener("EmployeeBenefitPrograms",	"change", changeHandler);
-	addListener("Insurance",				"change", changeHandler);
-	addListener("Interest",					"change", changeHandler);
-	addListener("ProfessionalServices",		"change", changeHandler);
-	addListener("MedicalInsurance",			"change", changeHandler);
-	addListener("OfficeExpenses",			"change", changeHandler);
-	addListener("PensionPlan",				"change", changeHandler);
-	addListener("Rent",						"change", changeHandler);
-	addListener("Repairs",					"change", changeHandler);
-	addListener("Supplies",					"change", changeHandler);
-	addListener("TaxesAndLicenses",			"change", changeHandler);
-	addListener("Travel",					"change", changeHandler);
-	addListener("Utilities",				"change", changeHandler);
-	addListener("Wages",					"change", changeHandler);
-	addListener("OtherExpenses",			"change", changeHandler);
-	// addListener("TotalExpenses",			"change", changeHandler);
+	HTML.addListener("Advertising",				"change", changeHandler);
+	HTML.addListener("CarAndTruck",				"change", changeHandler);
+	HTML.addListener("CarAndTruckMiles",			"change", changeHandler);
+	HTML.addListener("CommissionsAndFees",		"change", changeHandler);
+	HTML.addListener("ContractLabor",			"change", changeHandler);
+	HTML.addListener("Depletion",				"change", changeHandler);
+	HTML.addListener("Depreciation",				"change", changeHandler);
+	HTML.addListener("EmployeeBenefitPrograms",	"change", changeHandler);
+	HTML.addListener("Insurance",				"change", changeHandler);
+	HTML.addListener("Interest",					"change", changeHandler);
+	HTML.addListener("ProfessionalServices",		"change", changeHandler);
+	HTML.addListener("MedicalInsurance",			"change", changeHandler);
+	HTML.addListener("OfficeExpenses",			"change", changeHandler);
+	HTML.addListener("PensionPlan",				"change", changeHandler);
+	HTML.addListener("Rent",						"change", changeHandler);
+	HTML.addListener("Repairs",					"change", changeHandler);
+	HTML.addListener("Supplies",					"change", changeHandler);
+	HTML.addListener("TaxesAndLicenses",			"change", changeHandler);
+	HTML.addListener("Travel",					"change", changeHandler);
+	HTML.addListener("Utilities",				"change", changeHandler);
+	HTML.addListener("Wages",					"change", changeHandler);
+	HTML.addListener("OtherExpenses",			"change", changeHandler);
+	// HTML.addListener("TotalExpenses",			"change", changeHandler);
 
 	// Using autofocus attribute scrolls the page to that element; this will move the
 	// focus but display the page without sccrolling to that element.
@@ -145,5 +136,5 @@ document.addEventListener("DOMContentLoaded", () => {
 		preventScroll: true
 	});
 
-	changeHandler();
+	HTML.hideElement("DebugContainer");
 });

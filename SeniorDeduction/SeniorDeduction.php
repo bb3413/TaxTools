@@ -6,7 +6,6 @@
 	<link rel="stylesheet" href="../Library/TaxTools/HelpFields.css" />
 	<link rel="stylesheet" href="SeniorDeduction.css" />
 	<script type="module" src="SeniorDeduction.js"></script>
-
 	<title>Enhanced Deduction for Seniors Calculator</title>
 </head>
 
@@ -100,7 +99,11 @@
 			<p>This field is only shown if the filing status is MFJ (married filing jointly).</p>
 		</div>
 
-		<?php include "SeniorDeduction-Debug.html"; ?> 		<!-- Debugging Fields -->
+		<!-- Display area for debugging information. -->
+		<div id="DebugContainer">
+			<h3>Debugging Output</h3>
+			<pre id="DebugOutput"></pre>
+		</div>
 	</div>
 </body>
 </html>

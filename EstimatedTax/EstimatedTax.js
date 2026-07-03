@@ -62,108 +62,9 @@ function createTaxpayer(inputs) {
 	return taxpayer;
 }
 
-function mapInputValues(inputs, taxpayer) {
-	//
-	// For each entry on the web page, figure out where it goes on the tax forms. Make a
-	// list of the forms that are needed and the lines on those forms that need to be
-	// initialized.
-	//
-	let tt			= TaxTable.getTaxTable(inputs.tax_year);
-	let inp			= inputs;	// Shorthand
-	let tp			= taxpayer;	// Shorthand
-
-	checkInputValues(inputs, tt, tp);
-
-	// Build an array with the tax forms entered by the taxpayer.
-	let tax_data	= new TaxpayerForms();
-	let f1040		= tax_data.addForm("F1040");
-	let f1040S1		= tax_data.addForm("F1040S1");
-	let f1040S2		= tax_data.addForm("F1040S2");
-	let f1040S3		= tax_data.addForm("F1040S3");
-	let f1040S1A	= tax_data.addForm("F1040S1A");
-	let f1040SA		= tax_data.addForm("F1040SA");
-
-	tax_data.addLine(f1040,		inp.wages,							"01z");
-	tax_data.addLine(f1040,		inp.tax_exempt_interest,			"02a");
-	tax_data.addLine(f1040,		inp.taxable_interest,				"02b");
-	tax_data.addLine(f1040,		inp.qualified_dividends,			"03a");
-	tax_data.addLine(f1040,		inp.ordinary_dividends,				"03b");
-	tax_data.addLine(f1040,		inp.retirement_accounts,			"04b");
-	tax_data.addLine(f1040,		inp.social_security,				"06a");
-	tax_data.addLine(f1040,		inp.capital_gains,					"07a");
-	tax_data.addLine(f1040,		inp.self_employment_income +
-								inp.other_income,					"08");
-
-	//Other Taxes
-	tax_data.addLine(f1040S2,	inp.self_employment_tax,			"04");
-	tax_data.addLine(f1040S2,	inp.early_withdrawal_tax,			"08");
-	tax_data.addLine(f1040,		inp.other_taxes,					"23");
-
-	// Adjustments
-	tax_data.addLine(f1040S1,	inp.educator_expenses,				"11");
-	tax_data.addLine(f1040S1,	inp.health_savings_account,			"13");
-	tax_data.addLine(f1040S1,	inp.self_employment_tax_adjustment,	"15");
-	tax_data.addLine(f1040S1,	inp.self_employed_health_insurance,	"17");
-	tax_data.addLine(f1040S1,	inp.early_withdrawal_penalty,		"18");
-	tax_data.addLine(f1040S1,	inp.alimony_paid,					"19");
-	tax_data.addLine(f1040S1,	inp.ira_contributions,				"20");
-	tax_data.addLine(f1040S1,	inp.student_loan_interest,			"21");
-	tax_data.addLine(f1040S1,	inp.other_adjustments,				"25");
-
-	// Deductions (non-itemized)
-	tax_data.addLine(f1040,		inp.qualified_business_income_deduction,"13a");
-	tax_data.addLine(f1040S1A,	inp.qualified_tips_deduction,		"13");
-	tax_data.addLine(f1040S1A,	inp.qualified_overtime_deduction,	"21");
-	tax_data.addLine(f1040S1A,	inp.car_loan_interest_deduction,	"30");
-	tax_data.addLine(f1040S1A,	inp.senior_deduction,				"37");
-
-	// Deductions
-	let total_medical_deductions =
-		inp.medical_insurance +
-		inp.doctor_visits +
-		inp.prescription_drugs +
-		inp.medical_aids +
-		inp.other_medical_expenses +
-		inp.ltc_taxpayer +
-		inp.ltc_spouse +
-		tt.getMedicalMileageDeduction(inp.medical_miles);	// Convert miles to dollars;
-	let state_and_local_taxes = Math.max(inp.StateIncomeTax, inp.SalesTax);
-	
-	tax_data.addLine(f1040SA,	total_medical_deductions,			"01");
-	tax_data.addLine(f1040SA,	state_and_local_taxes,				"05a");
-	tax_data.addLine(f1040SA,	inp.RealEstatePropertyTax,			"05b");
-	tax_data.addLine(f1040SA,	inp.PersonalPropertyTax,			"05c");
-	tax_data.addLine(f1040SA,	inp.MortgageInterest,				"08a");
-	tax_data.addLine(f1040SA,	inp.CashGiftsToCharity,				"11");
-	tax_data.addLine(f1040SA,	inp.NoncashGiftsToCharity,			"12");
-
-	// Non-refundable Credits
-	tax_data.addLine(f1040S3,	inp.american_opp_credit_no_refund,	"03");
-	tax_data.addLine(f1040,		inp.child_care_credit,				"19");
-	tax_data.addLine(f1040S3,	inp.child_tax_credit,				"02");
-	tax_data.addLine(f1040S3,	inp.foreign_tax_credit,				"01");
-	tax_data.addLine(f1040S3,	inp.lifetime_learning_credit,		"03");
-	tax_data.addLine(f1040S3,	inp.residential_energy_credit,		"05");
-	tax_data.addLine(f1040S3,	inp.retirement_savings_credit,		"04");
-	tax_data.addLine(f1040S3,	inp.other_nonrefundable_credits,	"06");
-
-	// Refundable Credits
-	tax_data.addLine(f1040S3,	inp.american_opp_credit_refundable,	"03");
-	tax_data.addLine(f1040,		inp.credit_for_other_dependents,	"19");
-	tax_data.addLine(f1040,		inp.earned_income_credit,			"27a");
-	tax_data.addLine(f1040S3,	inp.premium_tax_credit,				"09");
-	tax_data.addLine(f1040S3,	inp.other_refundable_credits,		"13");
-
-	// Payments
-	tax_data.addLine(f1040,		inp.withholding,					"25d");
-	tax_data.addLine(f1040,		inp.estimated_tax_paid,				"26");
-	
-	return tax_data;
-}
-
 function getInputs() {
 	//
-	// Get the values from the web page. Put then in an object literal so the values
+	// Get the values from the web page. Put them in an object literal so the values
 	// can be accessed by name. This program recalculates the entire tax return when
 	// a values is changed, not just the value that was changed. This does not seem
 	// to be a performance problem and it prevents needing to know what is dependent
@@ -256,13 +157,115 @@ function getInputs() {
 	return inputs;
 }
 
+function mapInputValues(inputs) {
+	//
+	// For each entry on the web page, figure out where it goes on the tax forms. Make a
+	// list of the forms that are needed and the lines on those forms that need to be
+	// initialized.
+	//
+	let tt = TaxTable.getTaxTable();
+	let tp = Taxpayer.getTaxpayer();
+
+	checkInputValues(inputs, tt, tp);
+
+	// Build an array with the tax forms entered by the taxpayer.
+	let tax_data	= new TaxpayerForms();
+	let f1040		= tax_data.addForm("F1040");
+	let f1040S1		= tax_data.addForm("F1040S1");
+	let f1040S2		= tax_data.addForm("F1040S2");
+	let f1040S3		= tax_data.addForm("F1040S3");
+	let f1040S1A	= tax_data.addForm("F1040S1A");
+	let f1040SA		= tax_data.addForm("F1040SA");
+
+	tax_data.addLine(f1040,		inputs.wages,							"01z");
+	tax_data.addLine(f1040,		inputs.tax_exempt_interest,				"02a");
+	tax_data.addLine(f1040,		inputs.taxable_interest,				"02b");
+	tax_data.addLine(f1040,		inputs.qualified_dividends,				"03a");
+	tax_data.addLine(f1040,		inputs.ordinary_dividends,				"03b");
+	tax_data.addLine(f1040,		inputs.retirement_accounts,				"04b");
+	tax_data.addLine(f1040,		inputs.social_security,					"06a");
+	tax_data.addLine(f1040,		inputs.capital_gains,					"07a");
+	tax_data.addLine(f1040,		inputs.self_employment_income +
+								inputs.other_income,					"08");
+
+	//Other Taxes
+	tax_data.addLine(f1040S2,	inputs.self_employment_tax,				"04");
+	tax_data.addLine(f1040S2,	inputs.early_withdrawal_tax,			"08");
+	tax_data.addLine(f1040,		inputs.other_taxes,						"23");
+
+	// Adjustments
+	tax_data.addLine(f1040S1,	inputs.educator_expenses,				"11");
+	tax_data.addLine(f1040S1,	inputs.health_savings_account,			"13");
+	tax_data.addLine(f1040S1,	inputs.self_employment_tax_adjustment,	"15");
+	tax_data.addLine(f1040S1,	inputs.self_employed_health_insurance,	"17");
+	tax_data.addLine(f1040S1,	inputs.early_withdrawal_penalty,		"18");
+	tax_data.addLine(f1040S1,	inputs.alimony_paid,					"19a");
+	tax_data.addLine(f1040S1,	inputs.ira_contributions,				"20");
+	tax_data.addLine(f1040S1,	inputs.student_loan_interest,			"21");
+	tax_data.addLine(f1040S1,	inputs.other_adjustments,				"25");
+
+	// Deductions (non-itemized)
+	tax_data.addLine(f1040,		inputs.qualified_business_income_deduction,"13a");
+	tax_data.addLine(f1040S1A,	inputs.qualified_tips_deduction,		"13");
+	tax_data.addLine(f1040S1A,	inputs.qualified_overtime_deduction,	"21");
+	tax_data.addLine(f1040S1A,	inputs.car_loan_interest_deduction,		"30");
+	tax_data.addLine(f1040S1A,	inputs.senior_deduction,				"37");
+
+	// Deductions
+	let total_medical_deductions =
+		inputs.medical_insurance +
+		inputs.doctor_visits +
+		inputs.prescription_drugs +
+		inputs.medical_aids +
+		inputs.other_medical_expenses +
+		inputs.ltc_taxpayer +
+		inputs.ltc_spouse +
+		tt.getMedicalMileageDeduction(inputs.medical_miles);	// Convert miles to dollars;
+	let state_and_local_taxes = Math.max(inputs.state_income_tax, inputs.sales_tax);
+	
+	tax_data.addLine(f1040SA,	total_medical_deductions,				"01");
+	tax_data.addLine(f1040SA,	state_and_local_taxes,					"05a");
+	tax_data.addLine(f1040SA,	inputs.real_estate_property_tax,		"05b");
+	tax_data.addLine(f1040SA,	inputs.personal_property_tax,			"05c");
+	tax_data.addLine(f1040SA,	inputs.mortgage_interest,				"08a");
+	tax_data.addLine(f1040SA,	inputs.cash_gifts_to_charity,			"11");
+	tax_data.addLine(f1040SA,	inputs.noncash_gifts_to_charity,		"12");
+
+	// Non-refundable Credits
+	tax_data.addLine(f1040S3,	inputs.american_opp_credit_no_refund,	"03");
+	tax_data.addLine(f1040,		inputs.child_care_credit,				"19");
+	tax_data.addLine(f1040S3,	inputs.child_tax_credit,				"02");
+	tax_data.addLine(f1040S3,	inputs.foreign_tax_credit,				"01");
+	tax_data.addLine(f1040S3,	inputs.lifetime_learning_credit,		"03");
+	tax_data.addLine(f1040S3,	inputs.residential_energy_credit,		"05a");
+	tax_data.addLine(f1040S3,	inputs.retirement_savings_credit,		"04");
+	tax_data.addLine(f1040S3,	inputs.other_nonrefundable_credits,		"07");
+
+	// Refundable Credits
+	tax_data.addLine(f1040S3,	inputs.american_opp_credit_refundable,	"03");
+	tax_data.addLine(f1040,		inputs.credit_for_other_dependents,		"19");
+	tax_data.addLine(f1040,		inputs.earned_income_credit,			"27a");
+	tax_data.addLine(f1040S3,	inputs.premium_tax_credit,				"09");
+	tax_data.addLine(f1040S3,	inputs.other_refundable_credits,		"13z");
+
+	// Payments
+	tax_data.addLine(f1040,		inputs.withholding,						"25d");
+	tax_data.addLine(f1040,		inputs.estimated_tax_paid,				"26");
+	
+	return tax_data;
+}
+
 function putOutputs(taxpayer) {
 	//
 	// Get the information we are interested in and write them to the web page.
 	//
 	const todays_date		= new Date().toLocaleDateString();
+	const withholding		= Forms.getValue("F1040", "25d");
 	const payments			= Forms.getValue("F1040", "26");
-	const amount_due		= Forms.getValue("F1040", "34");
+	const refund			= Forms.getValue("F1040", "34");
+	let amount_due			= Forms.getValue("F1040", "37");
+	
+	amount_due				= (amount_due !== 0) ? -amount_due : refund;
 	const estimated_tax		= Math.round(Math.max(0, payments - amount_due) / 4);
 	
 	HTML.putUserOutput("TodaysDate",			todays_date, "text");
@@ -280,7 +283,7 @@ function putOutputs(taxpayer) {
 	HTML.putUserOutput("TotalTax",				Forms.getValue("F1040", "24"));
 	HTML.putUserOutput("NonrefundableCredits",	Forms.getValue("F1040", "20"));
 	HTML.putUserOutput("RefundableCredits", 	Forms.getValue("F1040", "32"));
-	HTML.putUserOutput("Payments", 				payments);
+	HTML.putUserOutput("Payments", 				payments + withholding);
 	HTML.putUserOutput("AmountDue",				amount_due);
 	HTML.putUserOutput("EstimatedTax",			estimated_tax);
 }
@@ -420,32 +423,33 @@ function changeHandler(event) {
 	let inputs		= {};		// Object - indexed by name
 	let taxpayer	= {};		// Object
 	let tax_data	= [];		// Array of forms - not indexed by name
-	
+	let tax_table;
+
 	// Reset static (global) variables. This erases all information from a previous
 	// calculation.
 	Debug.reset();
 	Forms.reset();
 	Taxpayer.reset();
-	
-	inputs		= getInputs();
-	taxpayer	= createTaxpayer(inputs);
-	tax_data	= mapInputValues(inputs, taxpayer);
 
-	tax_data.loadForms();	// Load the taxpayer's data and calculate their taxes.
-	
-	Forms.getForm("F1040").calculate();
-	
+	inputs		= getInputs();
+	tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Return value not needed.
+	taxpayer	= createTaxpayer(inputs);					// Return value not needed.
+	tax_data	= mapInputValues(inputs);
+
+	tax_data.loadForms();					// Load the taxpayer's data into tax forms.
+	Forms.getForm("F1040").calculate();		// Calculate the 1040, which, in turn, will
+											// calculate anything it needs.
 	putOutputs(taxpayer);
 
-	// Forms.toConsole();	// Print all forms to the console.log().
-	Debug.turnOn();
+	// Forms.toConsole();					// Print all forms to the console.log().
+	Debug.turnOn();							// Enable debugging keywords.
 }
 
 document.addEventListener("DOMContentLoaded", () => {
 	//
 	// Wait for the DOM to be fully loaded before trying to access any elements.
 	// All the listeners for the data fields use the same handler so when any field
-	// is changed the whole return is recalculated.
+	// is changed the whole calculation is redone.
 	//
 
 	// Listen for changes to the input data.
@@ -540,9 +544,8 @@ document.addEventListener("DOMContentLoaded", () => {
 		preventScroll: true
 	});
 
-	// Set the default tax year in the drop down list.
-	HTML.putUserOutput("TaxYear", Dates.getTaxYear(), "text");
-	Debug.reset();
+	HTML.putUserOutput("TaxYear", Dates.getTaxYear(), "text");		// Default tax year.
+	HTML.hideElement("DebugContainer");
 });
 
 export { changeHandler };

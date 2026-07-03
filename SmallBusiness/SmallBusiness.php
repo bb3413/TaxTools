@@ -5,7 +5,6 @@
 	<?php include "../Library/TaxTools/IncludeFiles.html"; ?>
 	<link rel="stylesheet" href="SmallBusiness.css" />
 	<script type="module" src="SmallBusiness.js"></script>
-
 	<title>Small Business Tax Calculator</title>
 </head>
 
@@ -230,10 +229,14 @@
 			<p class="trigger output-field" id="TotalExpenses" tooltipid="#TotalExpensesTT">0</p>
 		</div>
 
-		<?php include "SmallBusiness-Debug.html"; ?> 									<!-- Debugging Fields -->
-		<?php include "../Library/SelfEmployment/SEHIDeduction-Debug.html"; ?> 		<!-- Debugging Fields -->
-		<?php include "../Library/SelfEmployment/SelfEmploymentTax-Debug.html"; ?> 	<!-- Debugging Fields -->
-		<?php include "SmallBusiness-HelpInput.html"; ?>								<!-- Tooltips -->
+		<!-- Display area for debugging information. -->
+		<div id="DebugContainer">
+			<h3>Debugging Output</h3>
+			<pre id="DebugOutput"></pre>
+		</div>
+
+		<!-- Tooltips -->
+		<?php include "SmallBusiness-HelpInput.html"; ?>
 
 	</div>
 </body>
