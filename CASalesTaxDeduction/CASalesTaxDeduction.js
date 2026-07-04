@@ -13,18 +13,11 @@ let total_sales_tax			= 0;
 let total_spendable_income	= 0;
 
 function createTaxpayer(inputs) {
-	let taxpayer = new Taxpayer(
-		inputs.tax_year,
-		"Single",						// Filing status,
-		"",								// Taxpayers name,
-		"",								// Taxpayers birthday,
-		0,								// Taxpayers age,
-		false,							// Taxpayer is blind,
-		"",								// Spouses birthday,
-		0,								// Spouses age,
-		false,							// Spouse is blind,
-		inputs.family_size);			// Number of dependents);
+	let taxpayer					= new Taxpayer();
 	
+	taxpayer.filing_status			= "Single";
+	taxpayer.number_of_dependents	= inputs.family_size - 1;
+
 	return taxpayer;
 }
 

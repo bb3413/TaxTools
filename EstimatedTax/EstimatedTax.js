@@ -47,18 +47,13 @@ function checkInputValues(inputs, taxtable, taxpayer) {
 }
 
 function createTaxpayer(inputs) {
-	let taxpayer = new Taxpayer(
-		inputs.tax_year,
-		inputs.filing_status,
-		inputs.taxpayers_name,
-		inputs.taxpayers_birthday,
-		inputs.taxpayers_age,
-		false,							// inputs.taxpayer_is_blind,
-		inputs.spouses_birthday,
-		inputs.spouses_age,
-		false,							// inputs.spouse_is_blind,
-		0 );							// inputs.number_of_dependents);
+	let taxpayer					= new Taxpayer();
 	
+	taxpayer.filing_status			= inputs.filing_status;
+	taxpayer.taxpayers_name			= inputs.taxpayers_name;
+	taxpayer.taxpayers_birthday		= inputs.taxpayers_birthday;
+	taxpayer.spouses_birthday		= inputs.spouses_birthday;
+
 	return taxpayer;
 }
 

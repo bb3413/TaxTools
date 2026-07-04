@@ -69,7 +69,7 @@ export class Form {
 		for (const lineno of linenos) {
 			let line = this.lines[lineno];
 			if (line.value) {	// Skip empty lines.
-				let s = `	lines[${lineno}]`;
+				let s = `    lines[${lineno}]`;
 				s = s.padEnd(16, " ") + line.label;
 				s = s.padEnd(60, " ") + line.value;
 				str.push(s);

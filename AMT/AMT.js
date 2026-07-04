@@ -9,18 +9,15 @@ import { TaxpayerForms }	from "../Library/Classes/TaxpayerForms.js";
 import { TaxTable }			from "../Library/Classes/TaxTable.js";
 
 function createTaxpayer(inputs) {
-	let taxpayer = new Taxpayer(
-		inputs.tax_year,
-		inputs.filing_status,
-		inputs.taxpayers_name,
-		inputs.taxpayers_birthday,
-		inputs.taxpayers_age,
-		inputs.taxpayer_is_blind,
-		inputs.spouses_birthday,
-		inputs.spouses_age,
-		inputs.spouse_is_blind,
-		0 );							// inputs.number_of_dependents);
+	let taxpayer					= new Taxpayer();
 	
+	taxpayer.tax_year				= inputs.tax_year;
+	taxpayer.filing_status			= inputs.filing_status;
+	taxpayer.taxpayers_birthday		= inputs.taxpayers_birthday;
+	taxpayer.spouses_birthday		= inputs.spouses_birthday;
+	taxpayer.taxpayer_is_blind		= inputs.taxpayer_is_blind;
+	taxpayer.spouse_is_blind		= inputs.spouse_is_blind;
+
 	return taxpayer;
 }
 
@@ -146,6 +143,7 @@ function ChangeHandler(event) {
 	Taxpayer.reset();
 	
 	inputs = getInputs();
+	if(inputs.filing_status
 	if (Str.caseEqual(inputs.filing_status, "MFJ")) {
 		HTML.showElement("SpouseContainer");
 	} else {
