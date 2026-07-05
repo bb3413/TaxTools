@@ -8,6 +8,42 @@ import { Taxpayer }			from "../Library/Classes/Taxpayer.js";
 import { TaxpayerForms }	from "../Library/Classes/TaxpayerForms.js";
 import { TaxTable }			from "../Library/Classes/TaxTable.js";
 
+function changeHandler(event) {
+	//
+	// This function is called when any input field is changed. It calculates the
+	// whole AMT (not just the field tha was changed).
+	//
+	let taxpayer	= {};	// Object
+	let tax_table	= {};	// Object
+	let tax_data	= [];	// Array
+	let inputs		= {};	// Object
+	
+	// Reset static (global) variables. This erases all information from a previous
+	// calculation.
+	Debug.reset();
+	Forms.reset();
+	Taxpayer.reset();
+	
+	inputs = getInputs();
+	if(inputs.filing_status
+	if (Str.caseEqual(inputs.filing_status, "MFJ")) {
+		HTML.showElement("SpouseContainer");
+	} else {
+		HTML.hideElement("SpouseContainer");
+	}
+	tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
+	taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
+	tax_data	= mapInputValues(inputs);
+
+	tax_data.loadForms();					// Load the taxpayer's data into tax forms.
+	Forms.getForm("WS_AMT").calculate();	// Calculate the AMT Worksheet, which, in turn, will
+											// calculate anything it needs.
+	putOutputs();
+
+	// Forms.toConsole();					// Print all forms to the console.log().
+	Debug.turnOn();							// Enable debugging keywords.
+}
+
 function createTaxpayer(inputs) {
 	let taxpayer					= new Taxpayer();
 	
@@ -82,40 +118,39 @@ function mapInputValues(inputs) {
 	let tax_data	= new TaxpayerForms();
 	let f1040		= tax_data.addForm("F1040");
 	let f1040S1		= tax_data.addForm("F1040S1");
-	let f1040S1A	= tax_data.addForm("F1040S1A");
 	let f1040SA		= tax_data.addForm("F1040SA");
-	let WS_AMT		= tax_data.addForm("WS_AMT");
+	let ws_amt		= tax_data.addForm("WS_AMT");
 
-	tax_data.addLine(f1040,		inputs.agi,								"11b");
-	tax_data.addLine(f1040,		inputs.qualified_dividends,				"03a");
-	tax_data.addLine(f1040,		inputs.capital_gains,					"07a");
-	tax_data.addLine(f1040,		inputs.taxable_income,					"15");
-	tax_data.addLine(f1040,		inputs.income_tax,						"16");
+	tax_data.addLine(f1040,		"11b",	inputs.agi);
+	tax_data.addLine(f1040,		"03a",	inputs.qualified_dividends);
+	tax_data.addLine(f1040,		"07a",	inputs.capital_gains);
+	tax_data.addLine(f1040,		"15",	inputs.taxable_income);
+	tax_data.addLine(f1040,		"16",	inputs.income_tax);
 
-	tax_data.addLine(f1040SA,	inputs.itemized_deduction,				"17");
-	tax_data.addLine(f1040SA,	inputs.taxes_paid_deduction,			"07");
-	tax_data.addLine(f1040,		inputs.qbi_deduction,					"13a");
+	tax_data.addLine(f1040SA,	"17",	inputs.itemized_deduction);
+	tax_data.addLine(f1040SA,	"07",	inputs.taxes_paid_deduction);
+	tax_data.addLine(f1040,		"13a",	inputs.qbi_deduction);
 
-	tax_data.addLine(f1040S1,	inputs.state_tax_refund,				"01");
-	tax_data.addLine(WS_AMT,	inputs.investment_interest,				"02c");
-	tax_data.addLine(WS_AMT,	inputs.depletion,						"02d");
-	tax_data.addLine(WS_AMT,	inputs.net_operating_loss,				"02e");
-	tax_data.addLine(WS_AMT,	inputs.alternate_net_operating_loss,	"02f");
-	tax_data.addLine(WS_AMT,	inputs.private_activity_bonds_interest,	"02g");
-	tax_data.addLine(WS_AMT,	inputs.qualified_small_business_stock,	"02h");
-	tax_data.addLine(WS_AMT,	inputs.incentive_stock_options,			"02i");
-	tax_data.addLine(WS_AMT,	inputs.estates_and_trusts,				"02j");
-	tax_data.addLine(WS_AMT,	inputs.disposition_of_property,			"02k");
-	tax_data.addLine(WS_AMT,	inputs.post_1986_depreciation,			"02l");
-	tax_data.addLine(WS_AMT,	inputs.passive_activities,				"02m");
-	tax_data.addLine(WS_AMT,	inputs.loss_limitations,				"02n");
-	tax_data.addLine(WS_AMT,	inputs.circulation_costs,				"02o");
-	tax_data.addLine(WS_AMT,	inputs.long_term_contracts,				"02p");
-	tax_data.addLine(WS_AMT,	inputs.mining_costs,					"02q");
-	tax_data.addLine(WS_AMT,	inputs.reseach_costs,					"02r");
-	tax_data.addLine(WS_AMT,	inputs.installment_sales,				"02s");
-	tax_data.addLine(WS_AMT,	inputs.intangible_drilling_costs,		"02t");
-	tax_data.addLine(WS_AMT,	inputs.other_income,					"03");
+	tax_data.addLine(f1040S1,	"01",	inputs.state_tax_refund);
+	tax_data.addLine(ws_amt,	"02c",	inputs.investment_interest);
+	tax_data.addLine(ws_amt,	"02d",	inputs.depletion);
+	tax_data.addLine(ws_amt,	"02d",	inputs.net_operating_loss);
+	tax_data.addLine(ws_amt,	"02f",	inputs.alternate_net_operating_loss);
+	tax_data.addLine(ws_amt,	"02h",	.private_activity_bonds_interest);
+	tax_data.addLine(ws_amt,	"02h",	inputs.qualified_small_business_stock);
+	tax_data.addLine(ws_amt,	"02i",	inputs.incentive_stock_options);
+	tax_data.addLine(ws_amt,	"02j",	inputs.estates_and_trusts);
+	tax_data.addLine(ws_amt,	"02k",	inputs.disposition_of_property);
+	tax_data.addLine(ws_amt,	"02l",	inputs.post_1986_depreciation);
+	tax_data.addLine(ws_amt,	"02m",	inputs.passive_activities);
+	tax_data.addLine(ws_amt,	"02n",	inputs.loss_limitations);
+	tax_data.addLine(ws_amt,	"02o",	inputs.circulation_costs);
+	tax_data.addLine(ws_amt,	"02p",	inputs.long_term_contracts);
+	tax_data.addLine(ws_amt,	"02q",	inputs.mining_costs);
+	tax_data.addLine(ws_amt,	"02r",	inputs.reseach_costs);
+	tax_data.addLine(ws_amt,	"02s",	inputs.installment_sales);
+	tax_data.addLine(ws_amt,	"02t",	inputs.intangible_drilling_costs);
+	tax_data.addLine(ws_amt,	"03",	inputs.other_income);
 
 	return tax_data;
 }
@@ -126,42 +161,6 @@ function putOutputs() {
 	HTML.putUserOutput("AMT",			Forms.getValue("WS_AMT", "11"));
 }
 
-function ChangeHandler(event) {
-	//
-	// This function is called when any input field is changed. It calculates the
-	// whole AMT (not just the field tha was changed).
-	//
-	let inputs		= {};		// Object - indexed by name
-	let taxpayer	= {};		// Object
-	let tax_data	= [];		// Array of forms - not indexed by name
-	let tax_table;
-	
-	// Reset static (global) variables. This erases all information from a previous
-	// calculation.
-	Debug.reset();
-	Forms.reset();
-	Taxpayer.reset();
-	
-	inputs = getInputs();
-	if(inputs.filing_status
-	if (Str.caseEqual(inputs.filing_status, "MFJ")) {
-		HTML.showElement("SpouseContainer");
-	} else {
-		HTML.hideElement("SpouseContainer");
-	}
-	tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Return value not needed.
-	taxpayer	= createTaxpayer(inputs);					// Return value not needed.
-	tax_data	= mapInputValues(inputs);
-
-	tax_data.loadForms();					// Load the taxpayer's data into tax forms.
-	Forms.getForm("WS_AMT").calculate();	// Calculate the AMT Worksheet, which, in turn, will
-											// calculate anything it needs.
-	putOutputs();
-
-	// Forms.toConsole();					// Print all forms to the console.log().
-	Debug.turnOn();							// Enable debugging keywords.
-}
-
 document.addEventListener("DOMContentLoaded", () => {
 	//
 	// Wait for the DOM to be fully loaded before trying to access any elements.
@@ -170,44 +169,44 @@ document.addEventListener("DOMContentLoaded", () => {
 	//
 
 	// Listen for changes to the input data.
-	HTML.addListener("TaxYear",						"change", ChangeHandler);
-	HTML.addListener("FilingStatus",				"change", ChangeHandler);
-	HTML.addListener("TaxpayersBirthday",			"change", ChangeHandler);
-	HTML.addListener("SpousesBirthday",				"change", ChangeHandler);
-	HTML.addListener("TaxpayerIsBlind",				"change", ChangeHandler);
-	HTML.addListener("SpouseIsBlind",				"change", ChangeHandler);
+	HTML.addListener("TaxYear",						"change", changeHandler);
+	HTML.addListener("FilingStatus",				"change", changeHandler);
+	HTML.addListener("TaxpayersBirthday",			"change", changeHandler);
+	HTML.addListener("SpousesBirthday",				"change", changeHandler);
+	HTML.addListener("TaxpayerIsBlind",				"change", changeHandler);
+	HTML.addListener("SpouseIsBlind",				"change", changeHandler);
 
 	// Input fields
-	HTML.addListener("AGI",							"change", ChangeHandler);
-	HTML.addListener("QualifiedDividends",			"change", ChangeHandler);
-	HTML.addListener("CapitalGains",				"change", ChangeHandler);
-	HTML.addListener("TaxableIncome",				"change", ChangeHandler);
-	HTML.addListener("IncomeTax",					"change", ChangeHandler);
+	HTML.addListener("AGI",							"change", changeHandler);
+	HTML.addListener("QualifiedDividends",			"change", changeHandler);
+	HTML.addListener("CapitalGains",				"change", changeHandler);
+	HTML.addListener("TaxableIncome",				"change", changeHandler);
+	HTML.addListener("IncomeTax",					"change", changeHandler);
 
-	HTML.addListener("ItemizedDeduction",			"change", ChangeHandler);
-	HTML.addListener("TaxesPaidDeduction",			"change", ChangeHandler);
-	HTML.addListener("QBIDeduction",				"change", ChangeHandler);
+	HTML.addListener("ItemizedDeduction",			"change", changeHandler);
+	HTML.addListener("TaxesPaidDeduction",			"change", changeHandler);
+	HTML.addListener("QBIDeduction",				"change", changeHandler);
 
-	HTML.addListener("StateTaxRefund",				"change", ChangeHandler);
-	HTML.addListener("InvestmentInterestExpense",	"change", ChangeHandler);
-	HTML.addListener("Depletion",					"change", ChangeHandler);
-	HTML.addListener("NetOperatingLoss",			"change", ChangeHandler);
-	HTML.addListener("AlternateNetOperatingLoss",	"change", ChangeHandler);
-	HTML.addListener("PrivateActivityBondsInterest","change", ChangeHandler);
-	HTML.addListener("QualifiedSmallBusinessStock",	"change", ChangeHandler);
-	HTML.addListener("IncentiveStockOptions",		"change", ChangeHandler);
-	HTML.addListener("EstatesAndTrusts",			"change", ChangeHandler);
-	HTML.addListener("DispositionOfProperty",		"change", ChangeHandler);
-	HTML.addListener("Post1986Depreciation",		"change", ChangeHandler);
-	HTML.addListener("PassiveActivities",			"change", ChangeHandler);
-	HTML.addListener("LossLimitations",				"change", ChangeHandler);
-	HTML.addListener("CirculationCosts",			"change", ChangeHandler);
-	HTML.addListener("LongTermContracts",			"change", ChangeHandler);
-	HTML.addListener("MiningCosts",					"change", ChangeHandler);
-	HTML.addListener("ReseachCosts",				"change", ChangeHandler);
-	HTML.addListener("InstallmentSales",			"change", ChangeHandler);
-	HTML.addListener("IntangibleDrillingCosts",		"change", ChangeHandler);
-	HTML.addListener("OtherIncome",					"change", ChangeHandler);
+	HTML.addListener("StateTaxRefund",				"change", changeHandler);
+	HTML.addListener("InvestmentInterestExpense",	"change", changeHandler);
+	HTML.addListener("Depletion",					"change", changeHandler);
+	HTML.addListener("NetOperatingLoss",			"change", changeHandler);
+	HTML.addListener("AlternateNetOperatingLoss",	"change", changeHandler);
+	HTML.addListener("PrivateActivityBondsInterest","change", changeHandler);
+	HTML.addListener("QualifiedSmallBusinessStock",	"change", changeHandler);
+	HTML.addListener("IncentiveStockOptions",		"change", changeHandler);
+	HTML.addListener("EstatesAndTrusts",			"change", changeHandler);
+	HTML.addListener("DispositionOfProperty",		"change", changeHandler);
+	HTML.addListener("Post1986Depreciation",		"change", changeHandler);
+	HTML.addListener("PassiveActivities",			"change", changeHandler);
+	HTML.addListener("LossLimitations",				"change", changeHandler);
+	HTML.addListener("CirculationCosts",			"change", changeHandler);
+	HTML.addListener("LongTermContracts",			"change", changeHandler);
+	HTML.addListener("MiningCosts",					"change", changeHandler);
+	HTML.addListener("ReseachCosts",				"change", changeHandler);
+	HTML.addListener("InstallmentSales",			"change", changeHandler);
+	HTML.addListener("IntangibleDrillingCosts",		"change", changeHandler);
+	HTML.addListener("OtherIncome",					"change", changeHandler);
 
 	HTML.hideElement("SpouseContainer");
 	HTML.hideElement("DebugContainer");

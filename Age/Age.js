@@ -9,6 +9,20 @@ let age				= 0;
 let input_color		= "";
 let output_color	= "";
 
+function ageHandler(event) {
+	age = HTML.getUserInput("Age", "text");
+	if (age === "")
+		return;
+
+	age = Num.toInteger(age);
+
+	if (start) {
+		calculateEndDate(start, age);
+	} else if (end) {
+		calculateStartDate(end, age);
+	}
+}
+
 function calculateAge(start, end) {
 	age = Dates.getAge(start, end);
 	HTML.putUserOutput("Age", age);
@@ -46,22 +60,6 @@ function calculateStartDate(end, age) {
 	HTML.changeBackgroundColor("Age",	input_color);
 }
 
-function startHandler(event) {
-	start = HTML.getUserInput("Start", "text");
-	if (!Dates.getDateObject(start)) {
-		if (start) {
-			alert("Invalid date: " + start);
-		}
-		return;
-	}
-
-	if (end) {
-		calculateAge(start, end);
-	} else if (age) {
-		calculateEndDate(start, age);
-	}
-}
-
 function endHandler(event) {
 	end = HTML.getUserInput("End", "text");
 	if (!Dates.getDateObject(end)) {
@@ -78,17 +76,19 @@ function endHandler(event) {
 	}
 }
 
-function ageHandler(event) {
-	age = HTML.getUserInput("Age", "text");
-	if (age === "")
+function startHandler(event) {
+	start = HTML.getUserInput("Start", "text");
+	if (!Dates.getDateObject(start)) {
+		if (start) {
+			alert("Invalid date: " + start);
+		}
 		return;
+	}
 
-	age = Num.toInteger(age);
-
-	if (start) {
+	if (end) {
+		calculateAge(start, end);
+	} else if (age) {
 		calculateEndDate(start, age);
-	} else if (end) {
-		calculateStartDate(end, age);
 	}
 }
 

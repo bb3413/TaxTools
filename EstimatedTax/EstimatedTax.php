@@ -10,7 +10,7 @@
 
 <body>
 	<div class="tool-container">
-		<h1 class="title">Federal Estimated Tax Calculatorx</h1>
+		<h1 class="title">Federal Estimated Tax Calculator</h1>
 		<h2 class="title">for the Tax Year
 			<select id="TaxYear" class="trigger" tooltipid="#TaxYearTT">
 				<option value="2026">2026</option>

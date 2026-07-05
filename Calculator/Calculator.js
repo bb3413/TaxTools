@@ -4,8 +4,8 @@ import { Eval } from "../Library/Classes/Eval.js";
 let currentInput = "";
 const display = document.getElementById("display");
 
-// This function processes input from the keyboard.
 display.addEventListener("input", (e) => {
+	// This function processes input from the keyboard.
 	let val = e.target.value;
 
 	// Handle the leading zero logic for keyboard typing
@@ -19,30 +19,24 @@ display.addEventListener("input", (e) => {
 	updateDisplay(e.target.selectionStart);
 });
 
-// --- UI & Cursor Logic ---
-function updateDisplay(newCursorPos = null) {
-	display.value = currentInput || "0";
-
-	let position;
-	if (newCursorPos !== null) {
-		position = newCursorPos;
-	} else {
-		position = display.value.length;
+document.addEventListener("keydown", (e) => {
+	// --- Keyboard Hooks ---
+	if (e.key === "Backspace") {
+		e.preventDefault();
+		deleteAtCursor();
 	}
-
-	// Force cursor to the right of the placeholder "0"
-	if (display.value === "0" && position === 0) {
-		position = 1;
+	if (e.key === "Enter" || e.key === "=") {
+		e.preventDefault();
+		calculateResult();
 	}
+	if (e.key === "Escape") {
+		e.preventDefault();
+		clearDisplay();
+	}
+});
 
-	setTimeout(() => {
-		display.focus();
-		display.setSelectionRange(position, position);
-	}, 0);
-}
-
-// This function processes input from the calculator buttons.
 function appendToDisplay(value) {
+	// This function processes input from the calculator buttons.
 	const start = display.selectionStart;
 	const end = display.selectionEnd;
 
@@ -75,25 +69,6 @@ function appendToDisplay(value) {
 	updateDisplay(start + value.length);
 }
 
-function deleteAtCursor() {
-	const start = display.selectionStart;
-	const end = display.selectionEnd;
-
-	if (start !== end) {
-		currentInput = currentInput.slice(0, start) + currentInput.slice(end);
-		updateDisplay(start);
-	} else if (start > 0) {
-		const isLastChar = (currentInput.length === 1);
-		currentInput = currentInput.slice(0, start - 1) + currentInput.slice(start);
-		updateDisplay(isLastChar ? 1 : start - 1);
-	}
-}
-
-function clearDisplay() {
-	currentInput = "";
-	updateDisplay();
-}
-
 function calculateResult() {
 	if (!currentInput) return;
 	try {
@@ -116,30 +91,27 @@ function calculateResult() {
 	}
 }
 
-// --- Keyboard Hooks ---
-document.addEventListener("keydown", (e) => {
-	if (e.key === "Backspace") {
-		e.preventDefault();
-		deleteAtCursor();
-	}
-	if (e.key === "Enter" || e.key === "=") {
-		e.preventDefault();
-		calculateResult();
-	}
-	if (e.key === "Escape") {
-		e.preventDefault();
-		clearDisplay();
-	}
-});
-
-// --- Initialization ---
-window.onload = () => {
+function clearDisplay() {
 	currentInput = "";
-	updateDisplay(1);
-};
+	updateDisplay();
+}
 
-// --- Shunting-yard Engine ---
+function deleteAtCursor() {
+	const start = display.selectionStart;
+	const end = display.selectionEnd;
+
+	if (start !== end) {
+		currentInput = currentInput.slice(0, start) + currentInput.slice(end);
+		updateDisplay(start);
+	} else if (start > 0) {
+		const isLastChar = (currentInput.length === 1);
+		currentInput = currentInput.slice(0, start - 1) + currentInput.slice(start);
+		updateDisplay(isLastChar ? 1 : start - 1);
+	}
+}
+
 function solve(input) {
+	// --- Shunting-yard Engine ---
 	const tokens = input.match(/\d*\.?\d+|[+\-*/()]/g);
 	if (!tokens) return 0;
 
@@ -191,6 +163,34 @@ function solve(input) {
 	});
 	return evalStack[0] || 0;
 }
+
+function updateDisplay(newCursorPos = null) {
+	// --- UI & Cursor Logic ---
+	display.value = currentInput || "0";
+
+	let position;
+	if (newCursorPos !== null) {
+		position = newCursorPos;
+	} else {
+		position = display.value.length;
+	}
+
+	// Force cursor to the right of the placeholder "0"
+	if (display.value === "0" && position === 0) {
+		position = 1;
+	}
+
+	setTimeout(() => {
+		display.focus();
+		display.setSelectionRange(position, position);
+	}, 0);
+}
+
+window.onload = () => {
+	// --- Initialization ---
+	currentInput = "";
+	updateDisplay(1);
+};
 
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.buttons').addEventListener('click', (event) => {

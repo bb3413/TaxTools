@@ -12,6 +12,48 @@ import { TaxTable }				from "../Library/Classes/TaxTable.js";
 let total_sales_tax			= 0;
 let total_spendable_income	= 0;
 
+async function changeAddressHandler(event) {
+	const street_address	= HTML.getUserInput("StreetAddress",	"text");
+	const city				= HTML.getUserInput("City",				"text");
+	const zip_code			= HTML.getUserInput("ZipCode",			"text");
+
+	total_sales_tax = 0;
+	if (street_address && city && zip_code) {
+		total_sales_tax = await fetchSalesTaxRate(street_address, city, zip_code);
+	}
+
+	changeHandler(event);
+}
+
+function changeHandler(event) {
+	//
+	// This function is called when any input field is changed. It calculates the
+	// whole deduction (not just the field tha was changed).
+	//
+	let taxpayer	= {};	// Object
+	let tax_table	= {};	// Object
+	let tax_data	= [];	// Array
+	let inputs		= {};	// Object
+	
+	// Reset static (global) variables. This erases all information from a previous
+	// calculation.
+	Debug.reset();
+	Forms.reset();
+	Taxpayer.reset();
+	
+	inputs		= getInputs();
+	tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
+	taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
+	tax_data	= mapInputValues(inputs);
+
+	tax_data.loadForms();										// Load the taxpayer's data into tax forms.
+	Forms.getForm("WS_SalesTax").calculate(total_sales_tax);
+	putOutputs();
+
+	// Forms.toConsole();										// Print all forms to the console.log().
+	Debug.turnOn();
+}
+
 function createTaxpayer(inputs) {
 	let taxpayer					= new Taxpayer();
 	
@@ -58,19 +100,6 @@ function getInputs() {
 	return inputs;
 }
 
-async function changeAddressHandler(event) {
-	const street_address	= HTML.getUserInput("StreetAddress",	"text");
-	const city				= HTML.getUserInput("City",				"text");
-	const zip_code			= HTML.getUserInput("ZipCode",			"text");
-
-	total_sales_tax = 0;
-	if (street_address && city && zip_code) {
-		total_sales_tax = await fetchSalesTaxRate(street_address, city, zip_code);
-	}
-
-	changeHandler(event);
-}
-
 function mapInputValues(inputs) {
 	//
 	// For each entry on the web page, figure out where it goes on the tax forms. Make a
@@ -81,54 +110,25 @@ function mapInputValues(inputs) {
 	// Build an array with the tax forms entered by the taxpayer.
 	let tax_data	= new TaxpayerForms();
 	let f1040		= tax_data.addForm("F1040");
-	let WS_SalesTax	= tax_data.addForm("WS_SalesTax");
+	let ws_salestax	= tax_data.addForm("WS_SalesTax");
 
-	tax_data.addLine(WS_SalesTax,	inputs.extra_sales_tax,			"07");
-	tax_data.addLine(f1040,			inputs.wages,					"01z");
-	tax_data.addLine(f1040,			inputs.tax_exempt_interest,		"02a");
-	tax_data.addLine(f1040,			inputs.taxable_interest,		"02b");
-	tax_data.addLine(f1040,			inputs.qualified_dividends,		"03a");
-	tax_data.addLine(f1040,			inputs.ordinary_dividends,		"03b");
-	tax_data.addLine(f1040,			inputs.retirement_accounts,		"04a");
-	tax_data.addLine(f1040,			inputs.social_security,			"06a");
-	tax_data.addLine(f1040,			inputs.capital_gains,			"07a");
-	tax_data.addLine(f1040,			inputs.self_employment_income + 
-					 				inputs.other_income,			"08");
+	tax_data.addLine(ws_salestax,	"07",	inputs.extra_sales_tax,			);
+	tax_data.addLine(f1040,			"01z",	inputs.wages,					);
+	tax_data.addLine(f1040,			"02a",	inputs.tax_exempt_interest,		);
+	tax_data.addLine(f1040,			"02b",	inputs.taxable_interest,		);
+	tax_data.addLine(f1040,			"03a",	inputs.qualified_dividends,		);
+	tax_data.addLine(f1040,			"03b",	inputs.ordinary_dividends,		);
+	tax_data.addLine(f1040,			"04a",	inputs.retirement_accounts,		);
+	tax_data.addLine(f1040,			"06a",	inputs.social_security,			);
+	tax_data.addLine(f1040,			"07a",	inputs.capital_gains,			);
+	tax_data.addLine(f1040,			"08",	inputs.self_employment_income + 
+					 						inputs.other_income,			);
 	return tax_data;
 }
 
 function putOutputs() {
 	HTML.putUserOutput("TotalSpendableIncome",	total_spendable_income);
 	HTML.putUserOutput("SalesTaxDeduction",		Forms.getValue("WS_SalesTax", "08"));
-}
-
-function changeHandler(event) {
-	//
-	// This function is called when any input field is changed. It calculates the
-	// whole deduction (not just the field tha was changed).
-	//
-	let inputs		= {};		// Object - indexed by name
-	let taxpayer	= {};		// Object
-	let tax_data	= [];		// Array of forms - not indexed by name
-	let tax_table;
-	
-	// Reset static (global) variables. This erases all information from a previous
-	// calculation.
-	Debug.reset();
-	Forms.reset();
-	Taxpayer.reset();
-	
-	inputs		= getInputs();
-	tax_table	= TaxTable.getTaxTable(inputs.tax_year);		// Return value not needed.
-	taxpayer	= createTaxpayer(inputs);						// Return value not needed.
-	tax_data	= mapInputValues(inputs);
-
-	tax_data.loadForms();										// Load the taxpayer's data into tax forms.
-	Forms.getForm("WS_SalesTax").calculate(total_sales_tax);
-	putOutputs();
-
-	// Forms.toConsole();										// Print all forms to the console.log().
-	Debug.turnOn();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
