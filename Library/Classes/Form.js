@@ -2,6 +2,8 @@
 //
 // This is a template for all tax forms and worksheets.
 //
+import { Debug } from "../Classes/Debug.js";
+
 export class Form {
 	constructor(formname) {
 		this.name		= formname;		// Same as class name.
@@ -68,10 +70,10 @@ export class Form {
 		const linenos = Object.keys(this.lines).sort();
 		for (const lineno of linenos) {
 			let line = this.lines[lineno];
-			if (line.value) {	// Skip empty lines.
+			if (line.value || Debug.verbose()) {	// Skip empty lines.
 				let s = `    lines[${lineno}]`;
 				s = s.padEnd(16, " ") + line.label;
-				s = s.padEnd(60, " ") + line.value;
+				s = s.padEnd(65, " ") + line.value;
 				str.push(s);
 			}
 		}

@@ -33,6 +33,26 @@
 		<div class="version-block">
 			<p>Development Version 2025.15.000@</p>
 			<ul>
+				<li><p>7/11/2026 - 003 - This is a major rewrite of the tax tools. It converts the implementation
+				to use an object-oriented design based on IRS forms. Enough of this version is working to convince
+				me that this is the correct path going forward, but it will remain in a separate Git branch (oo-dev)
+				until I have all the tools working again.</p>
+				<p>The point of this change is the tools will provide correct tax calculatons while providng the
+				ability to override specific fields. This solves the problem of when should the program calculate
+				a value and when should the user enter the value. It now calculates everthing that it knows how to
+				calculate based on the information from the user. The user can override any field in the tax return
+				and any information that is not overridden will be calculated by the tool.</p>
+				<p>The tools can also be seemlessly improved by adding new forms and worksheets and enhancing the
+				calculations for the existing ones. Currently, only the forms and worksheets needed by the current
+				tools are implemented. In theory, if every IRS form were implemented, the tool would be capable of
+				calculating the complete tax return.</p>
+				</li>
+			</ul>
+		</div>
+
+		<div class="version-block">
+			<p>Development Version 2025.15.000@</p>
+			<ul>
 				<li>6/16/2026 - 002 - Reformat export statements.</li>
 				<li>6/15/2026 - 001 - Convert to using JavaScript modules. All procedures names begin with a lowercase
 				letter.</li>

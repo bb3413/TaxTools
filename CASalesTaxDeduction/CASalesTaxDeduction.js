@@ -46,11 +46,11 @@ function changeHandler(event) {
 	taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
 	tax_data	= mapInputValues(inputs);
 
-	tax_data.loadForms();										// Load the taxpayer's data into tax forms.
-	Forms.getForm("WS_SalesTax").calculate(total_sales_tax);
+	tax_data.loadForms();									// Load the taxpayer's data into tax forms.
+	Forms.getForm("SalesTax").calculate(total_sales_tax);
 	putOutputs();
 
-	// Forms.toConsole();										// Print all forms to the console.log().
+	// Forms.toConsole();									// Print all forms to the console.log().
 	Debug.turnOn();
 }
 
@@ -110,25 +110,25 @@ function mapInputValues(inputs) {
 	// Build an array with the tax forms entered by the taxpayer.
 	let tax_data	= new TaxpayerForms();
 	let f1040		= tax_data.addForm("F1040");
-	let ws_salestax	= tax_data.addForm("WS_SalesTax");
+	let salestax	= tax_data.addForm("SalesTax");
 
-	tax_data.addLine(ws_salestax,	"07",	inputs.extra_sales_tax,			);
-	tax_data.addLine(f1040,			"01z",	inputs.wages,					);
-	tax_data.addLine(f1040,			"02a",	inputs.tax_exempt_interest,		);
-	tax_data.addLine(f1040,			"02b",	inputs.taxable_interest,		);
-	tax_data.addLine(f1040,			"03a",	inputs.qualified_dividends,		);
-	tax_data.addLine(f1040,			"03b",	inputs.ordinary_dividends,		);
-	tax_data.addLine(f1040,			"04a",	inputs.retirement_accounts,		);
-	tax_data.addLine(f1040,			"06a",	inputs.social_security,			);
-	tax_data.addLine(f1040,			"07a",	inputs.capital_gains,			);
-	tax_data.addLine(f1040,			"08",	inputs.self_employment_income + 
-					 						inputs.other_income,			);
+	tax_data.addLine(salestax,	"07",	inputs.extra_sales_tax,			);
+	tax_data.addLine(f1040,		"01z",	inputs.wages,					);
+	tax_data.addLine(f1040,		"02a",	inputs.tax_exempt_interest,		);
+	tax_data.addLine(f1040,		"02b",	inputs.taxable_interest,		);
+	tax_data.addLine(f1040,		"03a",	inputs.qualified_dividends,		);
+	tax_data.addLine(f1040,		"03b",	inputs.ordinary_dividends,		);
+	tax_data.addLine(f1040,		"04a",	inputs.retirement_accounts,		);
+	tax_data.addLine(f1040,		"06a",	inputs.social_security,			);
+	tax_data.addLine(f1040,		"07a",	inputs.capital_gains,			);
+	tax_data.addLine(f1040,		"08",	inputs.self_employment_income + 
+					 					inputs.other_income,			);
 	return tax_data;
 }
 
 function putOutputs() {
 	HTML.putUserOutput("TotalSpendableIncome",	total_spendable_income);
-	HTML.putUserOutput("SalesTaxDeduction",		Forms.getValue("WS_SalesTax", "08"));
+	HTML.putUserOutput("SalesTaxDeduction",		Forms.getValue("SalesTax", "08"));
 }
 
 document.addEventListener("DOMContentLoaded", () => {

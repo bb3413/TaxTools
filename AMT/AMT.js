@@ -25,7 +25,6 @@ function changeHandler(event) {
 	Taxpayer.reset();
 	
 	inputs = getInputs();
-	if(inputs.filing_status
 	if (Str.caseEqual(inputs.filing_status, "MFJ")) {
 		HTML.showElement("SpouseContainer");
 	} else {
@@ -36,7 +35,7 @@ function changeHandler(event) {
 	tax_data	= mapInputValues(inputs);
 
 	tax_data.loadForms();					// Load the taxpayer's data into tax forms.
-	Forms.getForm("WS_AMT").calculate();	// Calculate the AMT Worksheet, which, in turn, will
+	Forms.getForm("F6251").calculate();		// Calculate the AMT Worksheet, which, in turn, will
 											// calculate anything it needs.
 	putOutputs();
 
@@ -119,7 +118,7 @@ function mapInputValues(inputs) {
 	let f1040		= tax_data.addForm("F1040");
 	let f1040S1		= tax_data.addForm("F1040S1");
 	let f1040SA		= tax_data.addForm("F1040SA");
-	let ws_amt		= tax_data.addForm("WS_AMT");
+	let f6251		= tax_data.addForm("F6251");
 
 	tax_data.addLine(f1040,		"11b",	inputs.agi);
 	tax_data.addLine(f1040,		"03a",	inputs.qualified_dividends);
@@ -132,33 +131,33 @@ function mapInputValues(inputs) {
 	tax_data.addLine(f1040,		"13a",	inputs.qbi_deduction);
 
 	tax_data.addLine(f1040S1,	"01",	inputs.state_tax_refund);
-	tax_data.addLine(ws_amt,	"02c",	inputs.investment_interest);
-	tax_data.addLine(ws_amt,	"02d",	inputs.depletion);
-	tax_data.addLine(ws_amt,	"02d",	inputs.net_operating_loss);
-	tax_data.addLine(ws_amt,	"02f",	inputs.alternate_net_operating_loss);
-	tax_data.addLine(ws_amt,	"02h",	.private_activity_bonds_interest);
-	tax_data.addLine(ws_amt,	"02h",	inputs.qualified_small_business_stock);
-	tax_data.addLine(ws_amt,	"02i",	inputs.incentive_stock_options);
-	tax_data.addLine(ws_amt,	"02j",	inputs.estates_and_trusts);
-	tax_data.addLine(ws_amt,	"02k",	inputs.disposition_of_property);
-	tax_data.addLine(ws_amt,	"02l",	inputs.post_1986_depreciation);
-	tax_data.addLine(ws_amt,	"02m",	inputs.passive_activities);
-	tax_data.addLine(ws_amt,	"02n",	inputs.loss_limitations);
-	tax_data.addLine(ws_amt,	"02o",	inputs.circulation_costs);
-	tax_data.addLine(ws_amt,	"02p",	inputs.long_term_contracts);
-	tax_data.addLine(ws_amt,	"02q",	inputs.mining_costs);
-	tax_data.addLine(ws_amt,	"02r",	inputs.reseach_costs);
-	tax_data.addLine(ws_amt,	"02s",	inputs.installment_sales);
-	tax_data.addLine(ws_amt,	"02t",	inputs.intangible_drilling_costs);
-	tax_data.addLine(ws_amt,	"03",	inputs.other_income);
+	tax_data.addLine(f6251,		"02c",	inputs.investment_interest);
+	tax_data.addLine(f6251,		"02d",	inputs.depletion);
+	tax_data.addLine(f6251,		"02d",	inputs.net_operating_loss);
+	tax_data.addLine(f6251,		"02f",	inputs.alternate_net_operating_loss);
+	tax_data.addLine(f6251,		"02h",	inputs.private_activity_bonds_interest);
+	tax_data.addLine(f6251,		"02h",	inputs.qualified_small_business_stock);
+	tax_data.addLine(f6251,		"02i",	inputs.incentive_stock_options);
+	tax_data.addLine(f6251,		"02j",	inputs.estates_and_trusts);
+	tax_data.addLine(f6251,		"02k",	inputs.disposition_of_property);
+	tax_data.addLine(f6251,		"02l",	inputs.post_1986_depreciation);
+	tax_data.addLine(f6251,		"02m",	inputs.passive_activities);
+	tax_data.addLine(f6251,		"02n",	inputs.loss_limitations);
+	tax_data.addLine(f6251,		"02o",	inputs.circulation_costs);
+	tax_data.addLine(f6251,		"02p",	inputs.long_term_contracts);
+	tax_data.addLine(f6251,		"02q",	inputs.mining_costs);
+	tax_data.addLine(f6251,		"02r",	inputs.reseach_costs);
+	tax_data.addLine(f6251,		"02s",	inputs.installment_sales);
+	tax_data.addLine(f6251,		"02t",	inputs.intangible_drilling_costs);
+	tax_data.addLine(f6251,		"03",	inputs.other_income);
 
 	return tax_data;
 }
 
 function putOutputs() {
-	HTML.putUserOutput("AMTIncome",		Forms.getValue("WS_AMT", "04"));
-	HTML.putUserOutput("AMTExemption",	Forms.getValue("WS_AMT", "05"));
-	HTML.putUserOutput("AMT",			Forms.getValue("WS_AMT", "11"));
+	HTML.putUserOutput("AMTIncome",		Forms.getValue("F6251", "04"));
+	HTML.putUserOutput("AMTExemption",	Forms.getValue("F6251", "05"));
+	HTML.putUserOutput("AMT",			Forms.getValue("F6251", "11"));
 }
 
 document.addEventListener("DOMContentLoaded", () => {
