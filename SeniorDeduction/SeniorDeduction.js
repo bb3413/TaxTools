@@ -11,7 +11,7 @@ let input_color				= "";
 let output_color			= "";
 
 function calculateSeniorDeduction() {
-	const end_of_year			= new Date("12/31/" + tax_year).toLocaleDateString();;
+	const end_of_year			= new Date("12/31/" + tax_year).toLocaleDateString();
 	let period					= 0;
 
 	if (strCaseEqual(filing_status, "MFJ")) {

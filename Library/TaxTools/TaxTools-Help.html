@@ -59,13 +59,42 @@
 	</ul>
 
 	<h3>Debugging Information</h3>
-	<p>Some of the tools can display additional information that shows the IRS worksheet calculations
-	that were used. To see this information, you need to enter the name of the worksheet on any input
-	line. Or, you can enter the keyword "debug" to display all the worksheets used by the tool. You can
-	enter the worksheet names on any line, they are not case sensitive, and they may appear in any order
-	on the input. You can use commas or whitespace to separate the worksheet names from each other and
-	the input value. In the debugging output, only lines that have a non-zero value are printed to save
-	space.</p>
+	<p>Some of the tools can display additional information that shows internal calculations. To see the
+	additional information you can enter one of several keywords in any input field. The keywords are not
+	case-sensitive and can be entered in any order. Separate the input value and one or more keywords using
+	commas or whitespace.</p>
+	<p>The keywords are the name of a form, worksheet, or one of the following special keywords.</p>
+	<dl>
+		<dt>Debug</dt><dd>Display debug information for all forms.</dd>
+		<dt>Strict</dt><dd>Enable additional error checking.</dd>
+		<dt>Verbose</dt><dd>Print more debugging information (e.g., lines with value=0).</dd>
+		<dt>Trace</dt><dd>Logs function entry and exit to the console log.</dd>
+	</dl>
+	<p>The strict and trace keywords are not currently used by any of the tools. By default, only the lines
+	in a tax form or worksheet with non-zero values are printed. The verbose keyword can be used to print
+	all the lines. The names of the following forms and worksheet can be entered as keywords, but only forms
+	and worksheets created by the tool will be shown.</p>
+	<h4>Forms</h4>
+	<dl>
+		<dt>F1040</dt>		<dd>Form 1040, Individual Tax Return</dd>
+		<dt>F1040S1</dt>	<dd>Form 1040, Schedule 1, Additional Income and Adjustments to Income</dd>
+		<dt>F1040S1A</dt>	<dd>Form 1040, Schedule 1A, Additional Deductions</dd>
+		<dt>F1040S2</dt>	<dd>Form 1040, Schedule 2, Additional Taxes</dd>
+		<dt>F1040S3</dt>	<dd>Form 1040, Schedule 3, Additional Credits and Payments</dd>
+		<dt>F1040SA</dt>	<dd>Form 1040, Schedule A, Itemized Deductions</dd>
+		<dt>F540</dt>		<dd>Form 540, California Resident Income Tax return</dd>
+		<dt>F540CA</dt>		<dd>Form CA (540), California Adjustments - Residents</dd>
+		<dt>F6251</dt>		<dd>Form 6251, Alternative Minimum Tax - Individual</dd>
+	</dl>
+	<h4>Worksheets</h4>
+	<dl>
+		<dt>IncTax</dt>		<dd>Qualified Dividends and Capital Gain Tax Worksheet</dd>
+		<dt>SalesTax</dt>	<dd>State and Local General Sales Tax Deduction Worksheet</dd>
+		<dt>SEHI</dt>		<dd>Self-employment Health Insurance Worksheet</dd>
+		<dt>SETax</dt>		<dd>Self-employment Tax Worksheet</dd>
+		<dt>Simple</dt>		<dd>Simplified Method Worksheet</dd>
+		<dt>SSTax</dt>		<dd>Social Security Benefits Worksheet</dd>
+	</dl>
 
 	<h3>Version Number</h3>
 	<p>There is a single version number for all of the tax planning tools because there so much shared

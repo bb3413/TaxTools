@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	HTML.addListener("EarlyWithdrawalPenalty",		"change", ChangeAdjustmentComponentHandler);
 	HTML.addListener("AlimonyPaid",					"change", ChangeAdjustmentComponentHandler);
 	HTML.addListener("IRAContributions",			"change", ChangeAdjustmentComponentHandler);
-	HTML.addListener("StudentLoanInterest",			"change", ChangeAdjustmentComponentHandler);;
+	HTML.addListener("StudentLoanInterest",			"change", ChangeAdjustmentComponentHandler);
 	HTML.addListener("OtherAdjustments",			"change", ChangeAdjustmentComponentHandler);
 
 	HTML.hideElement("LivedWithSpouseContainer");

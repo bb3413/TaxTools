@@ -152,65 +152,65 @@ function mapInputValues(inputs) {
 	let f540CA		= tax_data.addForm("F540CA");
 
 
-	tax_data.addLine(f540,		"13",	inputs.federal_agi);
+	tax_data.addLine(f540,		"13",		inputs.federal_agi);
 
 	// Subtractions
-	tax_data.addLine(f540CA,	"xx",	inputs.us_treasury_obligations);
-	tax_data.addLine(f540CA,	"xx",	inputs.military_retirement_income);
-	tax_data.addLine(f540CA,	"xx",	inputs.taxable_social_security);
-	tax_data.addLine(f540CA,	"xx",	inputs.state_tax_refund);
-	tax_data.addLine(f540CA,	"xx",	inputs.unemployment_income);
-	tax_data.addLine(f540CA,	"xx",	inputs.california_lottery_winnings);
-	tax_data.addLine(f540CA,	"xx",	inputs.nonqualified_hsa_distributions);
-	tax_data.addLine(f540CA,	"xx",	inputs.alimony_paid);
-	tax_data.addLine(f540CA,	"xx",	inputs.other_subtractions);
+	tax_data.addLine(f540CA,	"A-02bB",	inputs.us_treasury_obligations);
+	tax_data.addLine(f540CA,	"A-05bB",	inputs.military_retirement_income);
+	tax_data.addLine(f540CA,	"A-06bB",	inputs.taxable_social_security);
+	tax_data.addLine(f540CA,	"B-01B",	inputs.state_tax_refund);
+	tax_data.addLine(f540CA,	"B-07B",	inputs.unemployment_income);
+	tax_data.addLine(f540CA,	"B-08bB",	inputs.california_lottery_winnings);
+	tax_data.addLine(f540CA,	"B-08fB",	inputs.nonqualified_hsa_distributions);
+	tax_data.addLine(f540CA,	"C-19aB",	inputs.alimony_paid);
+	tax_data.addLine(f540CA,	"C-24zB",	inputs.other_subtractions);
 
 	// Additions
-	tax_data.addLine(f540CA,	"xx",	inputs.hsa_employer_contributions);
-	tax_data.addLine(f540CA,	"xx",	inputs.alimony_received);
-	tax_data.addLine(f540CA,	"xx",	inputs.home_loan_debt_cancellation);
-	tax_data.addLine(f540CA,	"xx",	inputs.employer_paid_student_loan_payments);
-	tax_data.addLine(f540CA,	"xx",	inputs.educator_expenses);
-	tax_data.addLine(f540CA,	"xx",	inputs.hsa_contributions);
-	tax_data.addLine(f540CA,	"xx",	inputs.ira_contributions);
-	tax_data.addLine(f540CA,	"xx",	inputs.other_additions);
+	tax_data.addLine(f540CA,	"A-01hC",	inputs.hsa_employer_contributions);
+	tax_data.addLine(f540CA,	"B-02aC",	inputs.alimony_received);
+	tax_data.addLine(f540CA,	"B-08cC",	inputs.home_loan_debt_cancellation +
+											inputs.employer_paid_student_loan_payments);
+	tax_data.addLine(f540CA,	"C-11C",	inputs.educator_expenses);
+	tax_data.addLine(f540CA,	"C-13C",	inputs.hsa_contributions);
+	tax_data.addLine(f540CA,	"C-20C",	inputs.ira_contributions);
+	tax_data.addLine(f540CA,	"C-24zC",	inputs.other_additions);
 
 	// Itemized Deductions
-	tax_data.addLine(f540CA,	"xx",	inputs.federal_itemized_deductions);
-	tax_data.addLine(f540CA,	"xx",	inputs.state_income_tax);
-	tax_data.addLine(f540CA,	"xx",	inputs.qualified_hsa_distributions);
-	tax_data.addLine(f540CA,	"xx",	inputs.salt_limit_excess);
-	tax_data.addLine(f540CA,	"xx",	inputs.home_mortgage_interest_limit);
-	tax_data.addLine(f540CA,	"xx",	inputs.tax_preparation_fee);
-	tax_data.addLine(f540CA,	"xx",	inputs.safe_deposit_box);
-	tax_data.addLine(f540CA,	"xx",	inputs.investment_fee);
-	tax_data.addLine(f540CA,	"xx",	inputs.other_deductions);
+	tax_data.addLine(f540CA,	"D-17A",	inputs.federal_itemized_deductions);
+	tax_data.addLine(f540CA,	"D-05aB",	inputs.state_income_tax);
+	tax_data.addLine(f540CA,	"D-04C",	inputs.qualified_hsa_distributions);
+	tax_data.addLine(f540CA,	"D-05aC",	inputs.salt_limit_excess);
+	tax_data.addLine(f540CA,	"D-05aC",	inputs.home_mortgage_interest_limit);
+	tax_data.addLine(f540CA,	"D-20",		inputs.tax_preparation_fee);
+	tax_data.addLine(f540CA,	"D-21",		inputs.safe_deposit_box +
+											inputs.investment_fee);
+	tax_data.addLine(f540CA,	"D-16C",	inputs.other_deductions);
 
 	// Other Taxes, Interest, and Penalties
-	tax_data.addLine(f540,		"xx",	inputs.shared_responsibility_penalty);
-	tax_data.addLine(f540,		"xx",	inputs.interest_and_penalties);
-	tax_data.addLine(f540,		"xx",	inputs.underepayment_of_estimated_tax);
-	tax_data.addLine(f540,		"xx",	inputs.use_tax);
-	tax_data.addLine(f540,		"xx",	inputs.miscellaneous_taxes);
+	tax_data.addLine(f540,		"92",	inputs.shared_responsibility_penalty);
+	tax_data.addLine(f540,		"112",	inputs.interest_and_penalties);
+	tax_data.addLine(f540,		"113",	inputs.underepayment_of_estimated_tax);
+	tax_data.addLine(f540,		"91",	inputs.use_tax);
+	tax_data.addLine(f540,		"63",	inputs.miscellaneous_taxes);
 
 	// Non-refundable Credits
-	tax_data.addLine(f540,		"xx",	inputs.child_care_credit);
-	tax_data.addLine(f540,		"xx",	inputs.renters_credit);
-	tax_data.addLine(f540,		"xx",	inputs.other_nonrefundable_credits);
+	tax_data.addLine(f540,		"40",	inputs.child_care_credit);
+	tax_data.addLine(f540,		"46",	inputs.renters_credit);
+	tax_data.addLine(f540,		"45",	inputs.other_nonrefundable_credits);
 
 	// Refundable Credits
-	tax_data.addLine(f540,		"xx",	inputs.eitc);
-	tax_data.addLine(f540,		"xx",	inputs.young_child_tax_credit);
-	tax_data.addLine(f540,		"xx",	inputs.foster_youth_tax_credit);
-	tax_data.addLine(f540,		"xx",	inputs.other_refundable_credits);
+	tax_data.addLine(f540,		"75",	inputs.eitc);
+	tax_data.addLine(f540,		"76",	inputs.young_child_tax_credit);
+	tax_data.addLine(f540,		"77",	inputs.foster_youth_tax_credit);
+	tax_data.addLine(f540,		"78",	inputs.other_refundable_credits);
 
 	// Payments
-	tax_data.addLine(f540,		"xx",	inputs.withholding);
-	tax_data.addLine(f540,		"xx",	inputs.estimated_payments);
-	tax_data.addLine(f540,		"xx",	inputs.other_payments);
+	tax_data.addLine(f540,		"71",	inputs.withholding);
+	tax_data.addLine(f540,		"72",	inputs.estimated_payments);
+	tax_data.addLine(f540,		"78",	inputs.other_payments);
 
 	// Contributions
-	tax_data.addLine(f540,		"xx",	inputs.contributions);
+	tax_data.addLine(f540,		"110",	inputs.contributions);
 	
 	return tax_data;
 }
@@ -219,7 +219,6 @@ function putOutputs(taxpayer) {
 	//
 	// Get the information we are interested in and write them to the web page.
 	//
-	const todays_date		= new Date().toLocaleDateString();
 	const todays_date		= new Date().toLocaleDateString();
 	const payments			= Forms.getValue("F540", "78");
 	const refund			= Forms.getValue("F540", "115");
@@ -246,10 +245,10 @@ function putOutputs(taxpayer) {
 	HTML.putUserOutput("IncomeTax",				Forms.getValue("F540", "31"));
 	HTML.putUserOutput("TotalTax",				Forms.getValue("F540", "35"));
 	HTML.putUserOutput("RefundAmountDue",		Forms.getValue("F540", "xx"));
-	HTML.putUserOutput("AprilPayment",			Math.round(estimated_tax * 0.30);
-	HTML.putUserOutput("JunePayment",			Math.round(estimated_tax * 0.40);
-	HTML.putUserOutput("SeptemberPayment",		0;
-	HTML.putUserOutput("JanuaryPayment",		Math.round(estimated_tax * 0.30);
+	HTML.putUserOutput("AprilPayment",			Math.round(estimated_tax * 0.30));
+	HTML.putUserOutput("JunePayment",			Math.round(estimated_tax * 0.40));
+	HTML.putUserOutput("SeptemberPayment",		0);
+	HTML.putUserOutput("JanuaryPayment",		Math.round(estimated_tax * 0.30));
 }
 
 function restoreDataHandler(data) {
