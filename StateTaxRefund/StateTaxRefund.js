@@ -3,8 +3,8 @@ let previous_tax_year			= 0;
 let filing_status				= 0;
 let taxpayers_birthday			= 0;
 let spouses_birthday			= 0;
-let taxpayer_is_blind			= false;
-let spouse_is_blind				= false;
+let is_taxpayer_blind			= false;
+let is_spouse_blind				= false;
 let state_tax_refund			= 0;
 
 // Information from last year
@@ -55,7 +55,7 @@ function calculateTaxableAmount() {
 	standard_deduction		= getStandardDeduction(
 									filing_status,
 									taxpayers_age, spouses_age,
-									taxpayer_is_blind, spouse_is_blind);
+									is_taxpayer_blind, is_spouse_blind);
 
 	if (state_tax_refund === 0) {
 		taxable_amount		= 0;
@@ -89,8 +89,8 @@ function calculateTaxableAmount() {
 		filing_status,
 		taxpayers_age,
 		spouses_age,
-		taxpayer_is_blind,
-		spouse_is_blind,
+		is_taxpayer_blind,
+		is_spouse_blind,
 		state_tax_refund,
 		line_5d,
 		line_5e,
@@ -103,8 +103,8 @@ function Worksheet(
 	filing_status,
 	taxpayers_age,
 	spouses_age,
-	taxpayer_is_blind,
-	spouse_is_blind,
+	is_taxpayer_blind,
+	is_spouse_blind,
 	refund,
 	sched_a_5d,		// Total SALT
 	sched_a_5e,		// Limited by SALT cap
@@ -152,7 +152,7 @@ function Worksheet(
 		line_6	= 0;	// Get extra standard deduction
 		line_7	= getStandardDeduction(filing_status,
 							taxpayers_age, spouses_age,
-							taxpayer_is_blind, spouse_is_blind);
+							is_taxpayer_blind, is_spouse_blind);
 		if (line_7 < line_4) {
 			line_8	= line_4 - line_7;	// Itemized deductions - standard deduction
 		} else {
@@ -180,10 +180,10 @@ function getInputValues() {
 	previous_tax_year					= HTML.getUserInput("PreviousTaxYear");
 	filing_status						= HTML.getUserInput("FilingStatus",		"text");
 	taxpayers_birthday					= HTML.getUserInput("TaxpayersBirthday",	"text");
-	taxpayer_is_blind					= HTML.getUserInput("TaxpayerIsBlind");
+	is_taxpayer_blind					= HTML.getUserInput("TaxpayerIsBlind");
 	state_tax_refund					= HTML.getUserInput("StateTaxRefund");
 	spouses_birthday					= HTML.getUserInput("SpousesBirthday",	"text");
-	spouse_is_blind						= HTML.getUserInput("SpouseIsBlind");
+	is_spouse_blind						= HTML.getUserInput("SpouseIsBlind");
 
 	// Information from last year
 	state_income_tax					= HTML.getUserInput("StateIncomeTax");

@@ -21,24 +21,20 @@ function changeHandler(event) {
 	let tax_data	= [];	// Array
 	inputs			= {};	// Object - Global variable
 
-	// Reset static (global) variables. This erases all information from a previous
-	// calculation.
+	// Reset static (global) variables to erase information from a previous calculation.
 	Debug.reset();
 	Forms.reset();
 	Taxpayer.reset();
 
-	inputs		= getInputs();
+	inputs		= getInputs();								// Get inputs from the web page
 	tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
 	taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
-	tax_data	= mapInputValues(inputs);
+	tax_data	= mapInputValues(inputs);					// Map input values to tax forms
 
-	tax_data.loadForms();					// Load the taxpayer's data into tax forms.
-	Forms.getForm("F1040").calculate();		// Calculate the 1040, which, in turn, will
-											// calculate anything it needs.
-	putOutputs(taxpayer);
-
-	// Forms.toConsole();					// Print all forms to the console.log().
-	Debug.turnOn();							// Enable debugging keywords.
+	tax_data.loadForms();									// Create tax forms for the taxpayer's data
+	Forms.getForm("F1040").calculate();						// Calculate the critical form
+	putOutputs(taxpayer);									// Put results on web page
+	Debug.turnOn();											// Put debug info on web page if enabled
 }
 
 function checkInputValues(inputs, taxtable, taxpayer) {
@@ -80,8 +76,9 @@ function checkInputValues(inputs, taxtable, taxpayer) {
 }
 
 function createTaxpayer(inputs) {
-	let taxpayer					= new Taxpayer();
-	
+	const taxpayer					= new Taxpayer();
+
+	taxpayer.tax_year				= inputs.tax_year;
 	taxpayer.taxpayers_name			= inputs.taxpayers_name;
 	taxpayer.filing_status			= inputs.filing_status;
 	taxpayer.taxpayers_birthday		= inputs.taxpayers_birthday;
@@ -98,8 +95,8 @@ function getInputs() {
 	// to be a performance problem and it prevents needing to know what is dependent
 	// on each value.
 	//
-	inputs = {};	// Global variable
-	
+	const inputs = {};
+
 	inputs.tax_year								= HTML.getUserInput("TaxYear");
 
 	// Taxpayer Information
@@ -191,19 +188,19 @@ function mapInputValues(inputs) {
 	// list of the forms that are needed and the lines on those forms that need to be
 	// initialized.
 	//
-	let tt = TaxTable.getTaxTable();
-	let tp = Taxpayer.getTaxpayer();
+	const tt = TaxTable.getTaxTable();
+	const tp = Taxpayer.getTaxpayer();
 
 	checkInputValues(inputs, tt, tp);
 
 	// Build an array with the tax forms entered by the taxpayer.
-	let tax_data	= new TaxpayerForms();
-	let f1040		= tax_data.addForm("F1040");
-	let f1040S1		= tax_data.addForm("F1040S1");
-	let f1040S2		= tax_data.addForm("F1040S2");
-	let f1040S3		= tax_data.addForm("F1040S3");
-	let f1040S1A	= tax_data.addForm("F1040S1A");
-	let f1040SA		= tax_data.addForm("F1040SA");
+	const tax_data	= new TaxpayerForms();
+	const f1040		= tax_data.addForm("F1040");
+	const f1040S1	= tax_data.addForm("F1040S1");
+	const f1040S2	= tax_data.addForm("F1040S2");
+	const f1040S3	= tax_data.addForm("F1040S3");
+	const f1040S1A	= tax_data.addForm("F1040S1A");
+	const f1040SA	= tax_data.addForm("F1040SA");
 
 	tax_data.addLine(f1040,		"01z",	inputs.wages);
 	tax_data.addLine(f1040,		"02a",	inputs.tax_exempt_interest);
@@ -240,7 +237,7 @@ function mapInputValues(inputs) {
 	tax_data.addLine(f1040S1A,	"37",	inputs.senior_deduction);
 
 	// Deductions
-	let total_medical_deductions =
+	const total_medical_deductions =
 		inputs.medical_insurance +
 		inputs.doctor_visits +
 		inputs.prescription_drugs +
@@ -249,8 +246,8 @@ function mapInputValues(inputs) {
 		inputs.ltc_taxpayer +
 		inputs.ltc_spouse +
 		tt.getMedicalMileageDeduction(inputs.medical_miles);	// Convert miles to dollars;
-	let state_and_local_taxes = Math.max(inputs.state_income_tax, inputs.sales_tax);
-	
+	const state_and_local_taxes = Math.max(inputs.state_income_tax, inputs.sales_tax);
+
 	tax_data.addLine(f1040SA,	"01",	total_medical_deductions);
 	tax_data.addLine(f1040SA,	"05a",	state_and_local_taxes);
 	tax_data.addLine(f1040SA,	"05b",	inputs.real_estate_property_tax);
@@ -279,7 +276,7 @@ function mapInputValues(inputs) {
 	// Payments
 	tax_data.addLine(f1040,		"25d",	inputs.withholding);
 	tax_data.addLine(f1040,		"26",	inputs.estimated_tax_paid);
-	
+
 	return tax_data;
 }
 
@@ -292,10 +289,10 @@ function putOutputs(taxpayer) {
 	const payments			= Forms.getValue("F1040", "26");
 	const refund			= Forms.getValue("F1040", "34");
 	let amount_due			= Forms.getValue("F1040", "37");
-	
+
 	amount_due				= (amount_due !== 0) ? -amount_due : refund;
 	const estimated_tax		= Math.round(Math.max(0, payments - amount_due) / 4);
-	
+
 	HTML.putUserOutput("TodaysDate",			todays_date, "text");
 	HTML.putUserOutput("TaxpayersAge",			taxpayer.taxpayers_age);
 	HTML.putUserOutput("SpousesAge",			taxpayer.spouses_age);
@@ -433,12 +430,13 @@ function saveUserData(event) {
 	// This function is called when the user wants to save the input fields to a file.
 	//
 	const FILENAME = "EstimatedTax.txt";
-	
-	let data = {
+
+	const data = {
 		version:		HTML.getUserInput("TaxToolsVersion", "text"),
+		todays_date:	new Date().toLocaleDateString(),
 		input_data:		inputs,
 	};
-	
+
 	File.saveToFile(data, FILENAME);
 }
 

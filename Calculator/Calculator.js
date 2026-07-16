@@ -4,37 +4,6 @@ import { Eval } from "../Library/Classes/Eval.js";
 let currentInput = "";
 const display = document.getElementById("display");
 
-display.addEventListener("input", (e) => {
-	// This function processes input from the keyboard.
-	let val = e.target.value;
-
-	// Handle the leading zero logic for keyboard typing
-	if (/^0[0-9]/.test(val)) {
-		val = val.substring(1);
-	} else if (val === "0-") {
-		val = "-";
-	}
-
-	currentInput = val.replace(/[^0-9+\-*/().,]/g, "");
-	updateDisplay(e.target.selectionStart);
-});
-
-document.addEventListener("keydown", (e) => {
-	// --- Keyboard Hooks ---
-	if (e.key === "Backspace") {
-		e.preventDefault();
-		deleteAtCursor();
-	}
-	if (e.key === "Enter" || e.key === "=") {
-		e.preventDefault();
-		calculateResult();
-	}
-	if (e.key === "Escape") {
-		e.preventDefault();
-		clearDisplay();
-	}
-});
-
 function appendToDisplay(value) {
 	// This function processes input from the calculator buttons.
 	const start = display.selectionStart;
@@ -186,23 +155,54 @@ function updateDisplay(newCursorPos = null) {
 	}, 0);
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+	document.querySelector('.buttons').addEventListener('click', (event) => {
+		const button = event.target;
+		if (!button.matches('button')) return;
+
+		const action = button.dataset.action;
+		const val = button.dataset.val;
+
+		if (action === 'clear') clearDisplay();
+		else if (action === 'delete') deleteAtCursor();
+		else if (action === 'calculate') calculateResult();
+		else if (val) appendToDisplay(val);
+	});
+
+	display.addEventListener("input", (e) => {
+		// This function processes input from the keyboard.
+		let val = e.target.value;
+
+		// Handle the leading zero logic for keyboard typing
+		if (/^0[0-9]/.test(val)) {
+			val = val.substring(1);
+		} else if (val === "0-") {
+			val = "-";
+		}
+
+		currentInput = val.replace(/[^0-9+\-*/().,]/g, "");
+		updateDisplay(e.target.selectionStart);
+	});
+
+	document.addEventListener("keydown", (e) => {
+		// --- Keyboard Hooks ---
+		if (e.key === "Backspace") {
+			e.preventDefault();
+			deleteAtCursor();
+		}
+		if (e.key === "Enter" || e.key === "=") {
+			e.preventDefault();
+			calculateResult();
+		}
+		if (e.key === "Escape") {
+			e.preventDefault();
+			clearDisplay();
+		}
+	});
+});
+
 window.onload = () => {
 	// --- Initialization ---
 	currentInput = "";
 	updateDisplay(1);
 };
-
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelector('.buttons').addEventListener('click', (event) => {
-        const button = event.target;
-        if (!button.matches('button')) return;
-
-        const action = button.dataset.action;
-        const val = button.dataset.val;
-
-        if (action === 'clear') clearDisplay();
-        else if (action === 'delete') deleteAtCursor();
-        else if (action === 'calculate') calculateResult();
-        else if (val) appendToDisplay(val);
-    });
-});

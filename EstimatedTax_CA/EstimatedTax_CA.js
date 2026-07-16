@@ -8,7 +8,7 @@ import { Taxpayer }			from "../Library/Classes/Taxpayer.js";
 import { TaxpayerForms }	from "../Library/Classes/TaxpayerForms.js";
 import { TaxTable }			from "../Library/Classes/TaxTable.js";
 
-// This variable need to be global so it can be accssed by the save and restore handlers.
+// Tis variable need to be global so it can be accssed by the save and restore handlers.
 let inputs = {};
 
 function changeHandler(event) {
@@ -21,29 +21,26 @@ function changeHandler(event) {
 	let tax_data	= [];	// Array
 	inputs			= {};	// Object - Global variable
 
-	// Reset static (global) variables. This erases all information from a previous
-	// calculation.
+	// Reset static (global) variables to erase information from a previous calculation.
 	Debug.reset();
 	Forms.reset();
 	Taxpayer.reset();
 
-	inputs		= getInputs();
+	inputs		= getInputs();								// Get inputs from the web page
 	tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
 	taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
-	tax_data	= mapInputValues(inputs);
+	tax_data	= mapInputValues(inputs);					// Map input values to tax forms
 
-	tax_data.loadForms();					// Load the taxpayer's data into tax forms.
-	Forms.getForm("F540").calculate();		// Calculate the 540, which, in turn, will
-											// calculate anything it needs.
-	putOutputs(taxpayer);
-
-	// Forms.toConsole();					// Print all forms to the console.log().
-	Debug.turnOn();							// Enable debugging keywords.
+	tax_data.loadForms();									// Create tax forms for the taxpayer's data
+	Forms.getForm("F540").calculate();						// Calculate the critical form
+	putOutputs(taxpayer);									// Put results on web page
+	Debug.turnOn();											// Put debug info on web page if enabled
 }
 
 function createTaxpayer(inputs) {
-	let taxpayer					= new Taxpayer();
-	
+	const taxpayer					= new Taxpayer();
+
+	taxpayer.tax_year				= inputs.tax_year;
 	taxpayer.taxpayers_name			= inputs.taxpayers_name;
 	taxpayer.filing_status			= inputs.filing_status;
 	taxpayer.taxpayers_birthday		= inputs.taxpayers_birthday;
@@ -61,7 +58,7 @@ function getInputs() {
 	// to be a performance problem and it prevents needing to know what is dependent
 	// on each value.
 	//
-	let inputs = {};
+	const inputs = {};
 
 	inputs.tax_year								= HTML.getUserInput("TaxYear");
 
@@ -143,16 +140,16 @@ function mapInputValues(inputs) {
 	// list of the forms that are needed and the lines on those forms that need to be
 	// initialized.
 	//
-	let tt = TaxTable.getTaxTable();
-	let tp = Taxpayer.getTaxpayer();
+	const tt = TaxTable.getTaxTable();
+	const tp = Taxpayer.getTaxpayer();
 
 	// Build an array with the tax forms entered by the taxpayer.
-	let tax_data	= new TaxpayerForms();
-	let f540		= tax_data.addForm("F540");
-	let f540CA		= tax_data.addForm("F540CA");
+	const tax_data	= new TaxpayerForms();
+	const f540		= tax_data.addForm("F540");
+	const f540CA		= tax_data.addForm("F540CA");
 
 
-	tax_data.addLine(f540,		"13",		inputs.federal_agi);
+	tax_data.addLine(f540,		"013",		inputs.federal_agi);
 
 	// Subtractions
 	tax_data.addLine(f540CA,	"A-02bB",	inputs.us_treasury_obligations);
@@ -187,31 +184,31 @@ function mapInputValues(inputs) {
 	tax_data.addLine(f540CA,	"D-16C",	inputs.other_deductions);
 
 	// Other Taxes, Interest, and Penalties
-	tax_data.addLine(f540,		"92",	inputs.shared_responsibility_penalty);
+	tax_data.addLine(f540,		"092",	inputs.shared_responsibility_penalty);
 	tax_data.addLine(f540,		"112",	inputs.interest_and_penalties);
 	tax_data.addLine(f540,		"113",	inputs.underepayment_of_estimated_tax);
-	tax_data.addLine(f540,		"91",	inputs.use_tax);
-	tax_data.addLine(f540,		"63",	inputs.miscellaneous_taxes);
+	tax_data.addLine(f540,		"091",	inputs.use_tax);
+	tax_data.addLine(f540,		"063",	inputs.miscellaneous_taxes);
 
 	// Non-refundable Credits
-	tax_data.addLine(f540,		"40",	inputs.child_care_credit);
-	tax_data.addLine(f540,		"46",	inputs.renters_credit);
-	tax_data.addLine(f540,		"45",	inputs.other_nonrefundable_credits);
+	tax_data.addLine(f540,		"040",	inputs.child_care_credit);
+	tax_data.addLine(f540,		"046",	inputs.renters_credit);
+	tax_data.addLine(f540,		"045",	inputs.other_nonrefundable_credits);
 
 	// Refundable Credits
-	tax_data.addLine(f540,		"75",	inputs.eitc);
-	tax_data.addLine(f540,		"76",	inputs.young_child_tax_credit);
-	tax_data.addLine(f540,		"77",	inputs.foster_youth_tax_credit);
-	tax_data.addLine(f540,		"78",	inputs.other_refundable_credits);
+	tax_data.addLine(f540,		"075",	inputs.eitc);
+	tax_data.addLine(f540,		"076",	inputs.young_child_tax_credit);
+	tax_data.addLine(f540,		"077",	inputs.foster_youth_tax_credit);
+	tax_data.addLine(f540,		"078",	inputs.other_refundable_credits);
 
 	// Payments
-	tax_data.addLine(f540,		"71",	inputs.withholding);
-	tax_data.addLine(f540,		"72",	inputs.estimated_payments);
-	tax_data.addLine(f540,		"78",	inputs.other_payments);
+	tax_data.addLine(f540,		"071",	inputs.withholding);
+	tax_data.addLine(f540,		"072",	inputs.estimated_payments);
+	tax_data.addLine(f540,		"078",	inputs.other_payments);
 
 	// Contributions
 	tax_data.addLine(f540,		"110",	inputs.contributions);
-	
+
 	return tax_data;
 }
 
@@ -219,36 +216,37 @@ function putOutputs(taxpayer) {
 	//
 	// Get the information we are interested in and write them to the web page.
 	//
-	const todays_date		= new Date().toLocaleDateString();
-	const payments			= Forms.getValue("F540", "78");
-	const refund			= Forms.getValue("F540", "115");
-	let amount_due			= Forms.getValue("F540", "114");
-	
-	amount_due				= (amount_due !== 0) ? -amount_due : refund;
-	const estimated_tax		= Math.round(Math.max(0, payments - amount_due));
-		
+	const todays_date			= new Date().toLocaleDateString();
+	const payments_and_credits	= Forms.getValue("F540", "078");
+	const estimated_payments	= Forms.getValue("F540", "072");
+	const refund				= Forms.getValue("F540", "097");
+	let amount_due				= Forms.getValue("F540", "100");
+
+	amount_due					= (amount_due !== 0) ? -amount_due : refund;
+	const estimated_tax_due		= Math.max(0, payments_and_credits - estimated_payments - amount_due);
+
 	HTML.putUserOutput("TodaysDate",			todays_date, "text");
 	HTML.putUserOutput("TaxpayersAge",			taxpayer.taxpayers_age);
 	HTML.putUserOutput("SpousesAge",			taxpayer.spouses_age);
 
 	// Estimated Tax
-	HTML.putUserOutput("Exemptions",			Forms.getValue("F540", "11"));
-	HTML.putUserOutput("Subtractions",			Forms.getValue("F540", "14"));
-	HTML.putUserOutput("Additions",				Forms.getValue("F540", "16"));
-	HTML.putUserOutput("Deductions",			Forms.getValue("F540", "18"));
-	HTML.putUserOutput("NonrefundableCredits",	Forms.getValue("F540", "48"));
-	HTML.putUserOutput("RefundableCredits",		Forms.getValue("F540", "74", "75", "76", "77"));
-	HTML.putUserOutput("OtherTaxes",			Forms.getValue("F540", "64"));
-	HTML.putUserOutput("Payments",				Forms.getValue("F540", "78"));
-	HTML.putUserOutput("StateAGI",				Forms.getValue("F540", "17"));
-	HTML.putUserOutput("TaxableIncome",			Forms.getValue("F540", "19"));
-	HTML.putUserOutput("IncomeTax",				Forms.getValue("F540", "31"));
-	HTML.putUserOutput("TotalTax",				Forms.getValue("F540", "35"));
-	HTML.putUserOutput("RefundAmountDue",		Forms.getValue("F540", "xx"));
-	HTML.putUserOutput("AprilPayment",			Math.round(estimated_tax * 0.30));
-	HTML.putUserOutput("JunePayment",			Math.round(estimated_tax * 0.40));
+	HTML.putUserOutput("Exemptions",			Forms.getValue("F540", "011"));
+	HTML.putUserOutput("Subtractions",			Forms.getValue("F540", "014"));
+	HTML.putUserOutput("Additions",				Forms.getValue("F540", "016"));
+	HTML.putUserOutput("Deductions",			Forms.getValue("F540", "018"));
+	HTML.putUserOutput("NonrefundableCredits",	Forms.getValue("F540", "048"));
+	HTML.putUserOutput("RefundableCredits",		Forms.getValue("F540", "074", "075", "076", "077"));
+	HTML.putUserOutput("OtherTaxes",			Forms.getValue("F540", "064"));
+	HTML.putUserOutput("Payments",				Forms.getValue("F540", "078"));
+	HTML.putUserOutput("StateAGI",				Forms.getValue("F540", "017"));
+	HTML.putUserOutput("TaxableIncome",			Forms.getValue("F540", "019"));
+	HTML.putUserOutput("IncomeTax",				Forms.getValue("F540", "031"));
+	HTML.putUserOutput("TotalTax",				Forms.getValue("F540", "035"));
+	HTML.putUserOutput("RefundAmountDue",		amount_due);
+	HTML.putUserOutput("AprilPayment",			Math.round(estimated_tax_due * 0.30));
+	HTML.putUserOutput("JunePayment",			Math.round(estimated_tax_due * 0.40));
 	HTML.putUserOutput("SeptemberPayment",		0);
-	HTML.putUserOutput("JanuaryPayment",		Math.round(estimated_tax * 0.30));
+	HTML.putUserOutput("JanuaryPayment",		Math.round(estimated_tax_due * 0.30));
 }
 
 function restoreDataHandler(data) {
@@ -264,7 +262,7 @@ function restoreDataHandler(data) {
 	} else {
 		inputs = data;
 	}
-	
+
 	HTML.putElementValue("TaxYear",							inputs.tax_year);
 
 	// Taxpayer information
@@ -335,7 +333,7 @@ function restoreDataHandler(data) {
 
 	// Contributions
 	HTML.putElementValue("Contributions",					inputs.contributions);
-	
+
 	changeHandler();
 }
 
@@ -356,13 +354,13 @@ function saveUserData(event) {
 	// This function is called when the user wants to save the input fields to a file.
 	//
 	const FILENAME = "EstimatedTax_CA.txt";
-	
-	let data = {
+
+	const data = {
 		version:		HTML.getUserInput("TaxToolsVersion", "text"),
-		output_data:	outputs,
+		todays_date:	new Date().toLocaleDateString(),
 		input_data:		inputs,
 	};
-	
+
 	File.saveToFile(data, FILENAME);
 }
 

@@ -57,12 +57,12 @@ h1, h2, h3, h4 {
 	margin-bottom:			0;
 }
 
-.taxpayer-data-container {
+.data-line {
 	display:				grid;
 	grid-template-columns:	.6fr 2fr .5fr;
 }
 
-.taxpayer-data-container p {
+.data-line p {
 	margin-top:				0;
 	margin-bottom:			0;
 }

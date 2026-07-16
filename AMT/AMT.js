@@ -17,14 +17,13 @@ function changeHandler(event) {
 	let tax_table	= {};	// Object
 	let tax_data	= [];	// Array
 	let inputs		= {};	// Object
-	
-	// Reset static (global) variables. This erases all information from a previous
-	// calculation.
+
+	// Reset static (global) variables to erase information from a previous calculation.
 	Debug.reset();
 	Forms.reset();
 	Taxpayer.reset();
-	
-	inputs = getInputs();
+
+	inputs = getInputs();									// Get inputs from the web page
 	if (Str.caseEqual(inputs.filing_status, "MFJ")) {
 		HTML.showElement("SpouseContainer");
 	} else {
@@ -32,26 +31,23 @@ function changeHandler(event) {
 	}
 	tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
 	taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
-	tax_data	= mapInputValues(inputs);
+	tax_data	= mapInputValues(inputs);					// Map input values to tax forms
 
-	tax_data.loadForms();					// Load the taxpayer's data into tax forms.
-	Forms.getForm("F6251").calculate();		// Calculate the AMT Worksheet, which, in turn, will
-											// calculate anything it needs.
-	putOutputs();
-
-	// Forms.toConsole();					// Print all forms to the console.log().
-	Debug.turnOn();							// Enable debugging keywords.
+	tax_data.loadForms();									// Create tax forms for the taxpayer's data
+	Forms.getForm("F6251").calculate();						// Calculate the critical form
+	putOutputs();											// Put results on web page
+	Debug.turnOn();											// Put debug info on web page if enabled
 }
 
 function createTaxpayer(inputs) {
-	let taxpayer					= new Taxpayer();
-	
+	const taxpayer					= new Taxpayer();
+
 	taxpayer.tax_year				= inputs.tax_year;
 	taxpayer.filing_status			= inputs.filing_status;
 	taxpayer.taxpayers_birthday		= inputs.taxpayers_birthday;
 	taxpayer.spouses_birthday		= inputs.spouses_birthday;
-	taxpayer.taxpayer_is_blind		= inputs.taxpayer_is_blind;
-	taxpayer.spouse_is_blind		= inputs.spouse_is_blind;
+	taxpayer.is_taxpayer_blind		= inputs.is_taxpayer_blind;
+	taxpayer.is_spouse_blind		= inputs.is_spouse_blind;
 
 	return taxpayer;
 }
@@ -61,15 +57,15 @@ function getInputs() {
 	// Get the values from the web page. Put them in an object literal so the values
 	// can be accessed by name.
 	//
-	let inputs = {};
-	
+	const inputs = {};
+
 	// Input fields
 	inputs.tax_year							= HTML.getUserInput("TaxYear");
 	inputs.filing_status					= HTML.getUserInput("FilingStatus",			"text");
 	inputs.taxpayers_birthday				= HTML.getUserInput("TaxpayersBirthday",	"text");
 	inputs.spouses_birthday					= HTML.getUserInput("SpousesBirthday",		"text");
-	inputs.taxpayer_is_blind				= HTML.getUserInput("TaxpayerIsBlind");
-	inputs.spouse_is_blind					= HTML.getUserInput("SpouseIsBlind");
+	inputs.is_taxpayer_blind				= HTML.getUserInput("TaxpayerIsBlind");
+	inputs.is_spouse_blind					= HTML.getUserInput("SpouseIsBlind");
 
 	// Input fields
 	inputs.agi								= HTML.getUserInput("AGI");
@@ -114,11 +110,11 @@ function mapInputValues(inputs) {
 	//
 
 	// Build an array with the tax forms entered by the taxpayer.
-	let tax_data	= new TaxpayerForms();
-	let f1040		= tax_data.addForm("F1040");
-	let f1040S1		= tax_data.addForm("F1040S1");
-	let f1040SA		= tax_data.addForm("F1040SA");
-	let f6251		= tax_data.addForm("F6251");
+	const tax_data	= new TaxpayerForms();
+	const f1040		= tax_data.addForm("F1040");
+	const f1040S1	= tax_data.addForm("F1040S1");
+	const f1040SA	= tax_data.addForm("F1040SA");
+	const f6251		= tax_data.addForm("F6251");
 
 	tax_data.addLine(f1040,		"11b",	inputs.agi);
 	tax_data.addLine(f1040,		"03a",	inputs.qualified_dividends);

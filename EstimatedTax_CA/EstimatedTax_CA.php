@@ -90,7 +90,7 @@
 				<p>= State AGI - Deductions</p>
 				<p>540, line 31, Income Tax</p>
 				<p>= Tax on Taxable Income</p>
-				<p>540, line 35, Total Tax</p>
+				<p>540, line 64, Total Tax</p>
 				<p>= Income Tax - Exemptions - Non-refundable Credits + Other Taxes</p>
 				<p>540, line 111, Refund / Amount Due</p>
 				<p>= Payments + Refundable Credits - Total Tax</p>
@@ -116,7 +116,7 @@
 				<p>540, line 74-77</p>
 				<p>Refundable Credits</p>
 				<p class="trigger output-field" id="RefundableCredits" tooltipid="#RefundableCreditsTT">0</p>
-				<p>540, line 64</p>
+				<p>540, line 40-46</p>
 				<p>Other Taxes</p>
 				<p class="trigger output-field" id="OtherTaxes" tooltipid="#OtherTaxesTT">0</p>
 				<p>540, line 78</p>
@@ -135,7 +135,7 @@
 				<p>540, line 31</p>
 				<p>Income Tax</p>
 				<p class="trigger output-field" id="IncomeTax" tooltipid="#IncomeTaxTT">0</p>
-				<p>540, line 35</p>
+				<p>540, line 64</p>
 				<p>Total Tax</p>
 				<p class="trigger output-field" id="TotalTax" tooltipid="#TotalTaxTT">0</p>
 				<p>540, line 111-115</p>

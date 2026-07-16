@@ -6,9 +6,10 @@ import { Debug } from "../Classes/Debug.js";
 
 export class Form {
 	constructor(formname) {
-		this.name		= formname;		// Same as class name.
-		this.lines		= {};
-		this.modified	= true;			// True => need to call calculate().
+		this.name			= formname;		// Same as class name.
+		this.lines			= {};
+		this.modified		= true;			// True => need to call calculate().
+		this.isSingleton	= true;			// Only one form of this type allowed.
 	}
 
 	calculate() {
@@ -71,8 +72,8 @@ export class Form {
 		for (const lineno of linenos) {
 			let line = this.lines[lineno];
 			if (line.value || Debug.verbose()) {	// Skip empty lines.
-				let s = `    lines[${lineno}]`;
-				s = s.padEnd(16, " ") + line.label;
+				let s = `	lines[${lineno}]`;
+				s = s.padEnd(18, " ") + line.label;
 				s = s.padEnd(65, " ") + line.value;
 				str.push(s);
 			}

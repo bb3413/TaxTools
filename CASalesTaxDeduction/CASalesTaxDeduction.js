@@ -34,29 +34,26 @@ function changeHandler(event) {
 	let tax_table	= {};	// Object
 	let tax_data	= [];	// Array
 	let inputs		= {};	// Object
-	
-	// Reset static (global) variables. This erases all information from a previous
-	// calculation.
+
+	// Reset static (global) variables to erase information from a previous calculation.
 	Debug.reset();
 	Forms.reset();
 	Taxpayer.reset();
-	
-	inputs		= getInputs();
+
+	inputs		= getInputs();								// Get inputs from the web page
 	tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
 	taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
-	tax_data	= mapInputValues(inputs);
+	tax_data	= mapInputValues(inputs);					// Map input values to tax forms
 
-	tax_data.loadForms();									// Load the taxpayer's data into tax forms.
-	Forms.getForm("SalesTax").calculate(total_sales_tax);
-	putOutputs();
-
-	// Forms.toConsole();									// Print all forms to the console.log().
-	Debug.turnOn();
+	tax_data.loadForms();									// Create tax forms for the taxpayer's data
+	Forms.getForm("SalesTax").calculate(total_sales_tax);	// Calculate the critical form
+	putOutputs();											// Put results on web page
+	Debug.turnOn();											// Put debug info on web page if enabled
 }
 
 function createTaxpayer(inputs) {
-	let taxpayer					= new Taxpayer();
-	
+	const taxpayer					= new Taxpayer();
+
 	taxpayer.filing_status			= "Single";
 	taxpayer.number_of_dependents	= inputs.family_size - 1;
 
@@ -68,8 +65,8 @@ function getInputs() {
 	// Get the values from the web page. Put them in an object literal so the values
 	// can be accessed by name.
 	//
-	let inputs = {};
-	
+	const inputs = {};
+
 	inputs.tax_year					= HTML.getUserInput("TaxYear");
 	inputs.family_size				= HTML.getUserInput("FamilySize");
 	inputs.extra_sales_tax			= HTML.getUserInput("ExtraSalesTax");
@@ -84,7 +81,7 @@ function getInputs() {
 	inputs.capital_gains			= HTML.getUserInput("CapitalGains");
 	inputs.self_employment_income	= HTML.getUserInput("SelfEmploymentIncome");
 	inputs.other_income				= HTML.getUserInput("OtherIncome");
-	
+
 	total_spendable_income =		// Save for output.
 		inputs.wages +
 		inputs.tax_exempt_interest +
@@ -94,7 +91,7 @@ function getInputs() {
 		inputs.retirement_accounts +
 		inputs.social_security +
 		inputs.capital_gains +
-		inputs.self_employment_income + 
+		inputs.self_employment_income +
 		inputs.other_income;
 
 	return inputs;
@@ -108,9 +105,9 @@ function mapInputValues(inputs) {
 	//
 
 	// Build an array with the tax forms entered by the taxpayer.
-	let tax_data	= new TaxpayerForms();
-	let f1040		= tax_data.addForm("F1040");
-	let salestax	= tax_data.addForm("SalesTax");
+	const tax_data	= new TaxpayerForms();
+	const f1040		= tax_data.addForm("F1040");
+	const salestax	= tax_data.addForm("SalesTax");
 
 	tax_data.addLine(salestax,	"07",	inputs.extra_sales_tax,			);
 	tax_data.addLine(f1040,		"01z",	inputs.wages,					);
@@ -121,7 +118,7 @@ function mapInputValues(inputs) {
 	tax_data.addLine(f1040,		"04a",	inputs.retirement_accounts,		);
 	tax_data.addLine(f1040,		"06a",	inputs.social_security,			);
 	tax_data.addLine(f1040,		"07a",	inputs.capital_gains,			);
-	tax_data.addLine(f1040,		"08",	inputs.self_employment_income + 
+	tax_data.addLine(f1040,		"08",	inputs.self_employment_income +
 					 					inputs.other_income,			);
 	return tax_data;
 }
