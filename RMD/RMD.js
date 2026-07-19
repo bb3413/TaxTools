@@ -40,14 +40,18 @@ function changeHandler(event) {
 	//
 	// This function is called when any input field is changed.
 	//
+	try {
+		// Reset static (global) variables to erase information from a previous calculation.
+		Debug.reset();
 
-	// Reset static (global) variables to erase information from a previous calculation.
-	Debug.reset();
-
-	const inputs	= getInputs();							// Get inputs from the web page
-	const outputs	= calculateRMD(inputs);
-	putOutputs(outputs);									// Put results on web page
-	Debug.turnOn();											// Put debug info on web page if enabled
+		const inputs	= getInputs();							// Get inputs from the web page
+		const outputs	= calculateRMD(inputs);
+		putOutputs(outputs);									// Put results on web page
+		Debug.turnOn();											// Put debug info on web page if enabled
+	} catch (err) {
+		HTML.putElementValue("ErrorMessageOutput", err);
+		document.getElementById("ErrorMessageOutput").scrollIntoView({behavior: 'smooth', block: 'start'});
+	}
 }
 
 function getInputs() {
@@ -72,8 +76,9 @@ function putOutputs(outputs) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+	//
 	// Wait for the DOM to be fully loaded before trying to access any elements.
-
+	//
 	HTML.addListener("TaxYear",				"change", changeHandler);
 	HTML.addListener("IRATotal",			"change", changeHandler);
 	HTML.addListener("TaxpayersBirthday",	"change", changeHandler);

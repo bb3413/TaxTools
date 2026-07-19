@@ -2,7 +2,14 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<?php include "../Library/TaxTools/IncludeFiles.html"; ?>
+	<link rel="stylesheet" href="../Library/Classes/HTML.css" />
+	<link rel="stylesheet" href="../Library/TaxTools/TaxTools.css" />
+	<link rel="stylesheet" href="../Library/Tooltips/Tooltips.css" />
+
+	<script type="module" src="../Library/TaxTools/TaxTools.js"></script>
+	<script type="module" src="../Library/Tooltips/Tooltips.js"></script>
+	<script type="module" src="../Version/Version.js"></script>
+
 	<link rel="stylesheet" href="SeniorDeduction.css" />
 	<script type="module" src="SeniorDeduction.js"></script>
 	<title>Enhanced Deduction for Seniors Calculator</title>
@@ -96,6 +103,11 @@
 			birthday in the previous field or you can enter the spouse's age here. If you enter the
 			spouse's age, the spouse's birthday in the previous field will be erased.</p>
 			<p>This field is only shown if the filing status is MFJ (married filing jointly).</p>
+		</div>
+
+		<!-- Display area for error messages. -->
+		<div id="ErrorMessageContainer">
+			<p id="ErrorMessageOutput"></p>
 		</div>
 
 		<!-- Display area for debugging information. -->

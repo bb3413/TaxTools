@@ -1,58 +1,51 @@
 
-function calculategetTaxableSocialSecurity() {
-	const filing_status				= HTML.getUserInput("FilingStatus", "text");
-	const lived_with_spouse			= HTML.getUserInput("LivedWithSpouse");
-	const social_security			= HTML.getUserInput("SocialSecurity");
-	const income					= HTML.getUserInput("Income");
-	const tax_exempt_interest		= HTML.getUserInput("TaxExemptInterest");
-	const adjustments				= HTML.getUserInput("Adjustments");
-	let taxable_ss					= 0;
-	let taxable_percent				= 0;
+import { Dates }				from "../Library/Classes/Dates.js";
+import { Debug }				from "../Library/Classes/Debug.js";
+import { Forms }				from "../Library/Classes/Forms.js";
+import { HTML }					from "../Library/Classes/HTML.js";
+import { Str }					from "../Library/Classes/Str.js";
+import { Taxpayer }				from "../Library/Classes/Taxpayer.js";
+import { TaxData }		from "../Library/Classes/TaxData.js";
+import { TaxTable }				from "../Library/Classes/TaxTable.js";
 
-	initializeTaxTables(filing_status);
+function calculateTax(inputs) {
+	const outputs = {};
 
-	if (strCaseEqual(filing_status, "MFS")) {
-		showElement("LivedWithSpouseContainer");
-	} else {
-		hideElement("LivedWithSpouseContainer");
-	}
+	const ss_tax = Forms.createForm("SSTax");
+	outputs.taxable_ss = ss_tax.calculate(
+		inputs.filing_status,
+		inputs.social_security,			// Total SS received from 1040, line 6a
+		inputs.income,					// Income without taxable SS; 1040, line 9 - 1040, line 6b
+		inputs.tax_exempt_interest,		// Tax exempt interest from 1040, line 2a
+		0,								// Student loan interest from 1040S1, line 21
+		inputs.adjustments,				// Adjustments from 1040, line 10 w/o student loan interest.
+		inputs.lived_with_spouse);		// Lived with spouse
 
-	taxable_ss = getTaxableSocialSecurity(
-					filing_status,
-					social_security,
-					income,
-					tax_exempt_interest,
-					adjustments,
-					lived_with_spouse);
-
-	taxable_percent = (social_security === 0) ? 0 : round(taxable_ss / social_security * 100);
-
-	HTML.putUserOutput("TaxableSocialSecurity",	taxable_ss);
-	HTML.putUserOutput("TaxablePercent",			taxable_percent + "%", "text");
+	return outputs;
 }
 
 function changeIncomeHandler(event) {
-	Wages.value					= 0;
-	TaxableInterest.value		= 0;
-	OrdinaryDividends.value		= 0;
-	RetirementAccounts.value	= 0;
-	PensionsAndAnnuities.value	= 0;
-	CapitalGains.value			= 0;
-	SelfEmploymentIncome.value	= 0;
-	OtherIncome.value			= 0;
+	HTML.getUserInput("Wages",					0);
+	HTML.getUserInput("TaxableInterest",		0);
+	HTML.getUserInput("OrdinaryDividends",		0);
+	HTML.getUserInput("RetirementAccounts",		0);
+	HTML.getUserInput("PensionsAndAnnuities",	0);
+	HTML.getUserInput("CapitalGains",			0);
+	HTML.getUserInput("SelfEmploymentIncome",	0);
+	HTML.getUserInput("OtherIncome",			0);
 
 	changeHandler(event);
 }
 
 function changeIncomeComponentHandler(event) {
-	const wages					= HTML.getUserInput("Wages");
-	const taxable_interest		= HTML.getUserInput("TaxableInterest");
-	const ordinary_dividends	= HTML.getUserInput("OrdinaryDividends");
-	const retirement_accounts	= HTML.getUserInput("RetirementAccounts");
-	const pensions_and_annuities= HTML.getUserInput("PensionsAndAnnuities");
-	const capital_gains			= HTML.getUserInput("CapitalGains");
-	const self_employment_income= HTML.getUserInput("SelfEmploymentIncome");
-	const other_income			= HTML.getUserInput("OtherIncome");
+	const wages						= HTML.getUserInput("Wages");
+	const taxable_interest			= HTML.getUserInput("TaxableInterest");
+	const ordinary_dividends		= HTML.getUserInput("OrdinaryDividends");
+	const retirement_accounts		= HTML.getUserInput("RetirementAccounts");
+	const pensions_and_annuities	= HTML.getUserInput("PensionsAndAnnuities");
+	const capital_gains				= HTML.getUserInput("CapitalGains");
+	const self_employment_income	= HTML.getUserInput("SelfEmploymentIncome");
+	const other_income				= HTML.getUserInput("OtherIncome");
 
 	const total_income				= wages +
 										taxable_interest +
@@ -68,20 +61,20 @@ function changeIncomeComponentHandler(event) {
 }
 
 function changeAdjustmentsHandler(event) {
-	EducatorExpenses.value				= 0;
-	HealthSavingsAccount.value			= 0;
-	SelfEmploymentTaxAdjustment.value	= 0;
-	SelfEmployedHealthInsurance.value	= 0;
-	EarlyWithdrawalPenalty.value		= 0;
-	AlimonyPaid.value					= 0;
-	IRAContributions.value				= 0;
-	StudentLoanInterest.value			= 0;
-	OtherAdjustments.value				= 0;
+	HTML.putUserOutput("EducatorExpenses",				0);
+	HTML.putUserOutput("HealthSavingsAccount",			0);
+	HTML.putUserOutput("SelfEmploymentTaxAdjustment",	0);
+	HTML.putUserOutput("SelfEmployedHealthInsurance",	0);
+	HTML.putUserOutput("EarlyWithdrawalPenalty",		0);
+	HTML.putUserOutput("AlimonyPaid",					0);
+	HTML.putUserOutput("IRAContributions",				0);
+	HTML.putUserOutput("StudentLoanInterest",			0);
+	HTML.putUserOutput("OtherAdjustments",				0);
 
 	changeHandler(event);
 }
 
-function ChangeAdjustmentComponentHandler(event) {
+function changeAdjustmentComponentHandler(event) {
 	const educator_expenses				= HTML.getUserInput("EducatorExpenses");
 	const health_savings_account		= HTML.getUserInput("HealthSavingsAccount");
 	const self_employment_tax_adjustment= HTML.getUserInput("SelfEmploymentTaxAdjustment");
@@ -102,20 +95,86 @@ function ChangeAdjustmentComponentHandler(event) {
 											// student_loan_interest +
 											other_adjustments;
 
-	HTML.putUserOutput("Adjustments", total_adjustmentsw);
+	HTML.putUserOutput("Adjustments", total_adjustments);
 	changeHandler(event);
 }
 
 function changeHandler(event) {
-	// This is the function that is called if any input field is changed.
-	Debug.reset();
-	calculategetTaxableSocialSecurity();
-	Debug.turnOn();
+	//
+	// This function is called when any input field is changed. It calculates the
+	// whole deduction (not just the field tha was changed).
+	//
+	try {
+		let tax_table	= {};	// Object
+		let inputs		= {};	// Object
+		let outputs		= {};	// Object
+
+		// Reset static (global) variables to erase information from a previous calculation.
+		Debug.reset();
+		Forms.reset();
+		Taxpayer.reset();
+
+		inputs		= getInputs();								// Get inputs from the web page
+		tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
+		taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
+
+		outputs		= calculateTax(inputs);
+		putOutputs(inputs);										// Put results on web page
+		Debug.turnOn();											;// Put debug info on web page if enabled
+	} catch (err) {
+		HTML.putElementValue("ErrorMessageOutput", err);
+		document.getElementById("ErrorMessageOutput").scrollIntoView({behavior: 'smooth', block: 'start'});
+	}
+}
+
+function createTaxpayer(inputs) {
+	const taxpayer				= new Taxpayer();
+	taxpayer.tax_year			= inputs.tax_year;
+	taxpayer.lived_with_spouse	= inputs.lived_with_spouse
+	return taxpayer;
+}
+
+function getInputs() {
+	//
+	// Get the values from the web page. Put them in an object literal so the values
+	// can be accessed by name.
+	//
+	const inputs = {};
+
+	inputs.tax_year					= Dates.getTaxYear();
+
+	inputs.filing_status			= HTML.getUserInput("FilingStatus", "text");
+	inputs.lived_with_spouse		= HTML.getUserInput("LivedWithSpouse");
+	inputs.social_security			= HTML.getUserInput("SocialSecurity");
+	inputs.income					= HTML.getUserInput("Income");
+	inputs.tax_exempt_interest		= HTML.getUserInput("TaxExemptInterest");
+	inputs.adjustments				= HTML.getUserInput("Adjustments");
+
+	return inputs;
+}
+
+function putOutputs(inputs) {
+	//
+	// Get the information we are interested in and write them to the web page.
+	//
+	const tp = Taxpayer.getTaxpayer();
+	let taxable_percent = 0;
+
+	if (Str.caseEqual(tp.filing_status, "MFS")) {
+		HTML.showElement("LivedWithSpouseContainer");
+	} else {
+		HTML.hideElement("LivedWithSpouseContainer");
+	}
+
+	taxable_percent = (inputs.social_security === 0) ? 0 : round(outputs.taxable_ss / inputs.social_security * 100);
+	HTML.putUserOutput("TaxableSocialSecurity",	outputs.taxable_ss);
+	HTML.putUserOutput("TaxablePercent",		taxable_percent + "%", "text");
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+	//
 	// Wait for the DOM to be fully loaded before trying to access any elements.
-
+	//
 	HTML.addListener("FilingStatus",				"change", changeHandler);
 	HTML.addListener("LivedWithSpouse",				"change", changeHandler);
 	HTML.addListener("SocialSecurity",				"change", changeHandler);
@@ -134,15 +193,15 @@ document.addEventListener("DOMContentLoaded", () => {
 	HTML.addListener("OtherIncome",					"change", changeIncomeComponentHandler);
 
 	// Adjustments
-	HTML.addListener("EducatorExpenses",			"change", ChangeAdjustmentComponentHandler);
-	HTML.addListener("HealthSavingsAccount",		"change", ChangeAdjustmentComponentHandler);
-	HTML.addListener("SelfEmploymentTaxAdjustment",	"change", ChangeAdjustmentComponentHandler);
-	HTML.addListener("SelfEmployedHealthInsurance",	"change", ChangeAdjustmentComponentHandler);
-	HTML.addListener("EarlyWithdrawalPenalty",		"change", ChangeAdjustmentComponentHandler);
-	HTML.addListener("AlimonyPaid",					"change", ChangeAdjustmentComponentHandler);
-	HTML.addListener("IRAContributions",			"change", ChangeAdjustmentComponentHandler);
-	HTML.addListener("StudentLoanInterest",			"change", ChangeAdjustmentComponentHandler);
-	HTML.addListener("OtherAdjustments",			"change", ChangeAdjustmentComponentHandler);
+	HTML.addListener("EducatorExpenses",			"change", changeAdjustmentComponentHandler);
+	HTML.addListener("HealthSavingsAccount",		"change", changeAdjustmentComponentHandler);
+	HTML.addListener("SelfEmploymentTaxAdjustment",	"change", changeAdjustmentComponentHandler);
+	HTML.addListener("SelfEmployedHealthInsurance",	"change", changeAdjustmentComponentHandler);
+	HTML.addListener("EarlyWithdrawalPenalty",		"change", changeAdjustmentComponentHandler);
+	HTML.addListener("AlimonyPaid",					"change", changeAdjustmentComponentHandler);
+	HTML.addListener("IRAContributions",			"change", changeAdjustmentComponentHandler);
+	HTML.addListener("StudentLoanInterest",			"change", changeAdjustmentComponentHandler);
+	HTML.addListener("OtherAdjustments",			"change", changeAdjustmentComponentHandler);
 
 	HTML.hideElement("LivedWithSpouseContainer");
 	HTML.hideElement("DebugContainer");

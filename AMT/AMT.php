@@ -206,6 +206,11 @@
 			<p class="trigger output-field" id="AMT" tooltipid="#AMTTT">0</p>
 		</div>
 
+		<!-- Display area for error messages. -->
+		<div id="ErrorMessageContainer">
+			<p id="ErrorMessageOutput"></p>
+		</div>
+
 		<!-- Display area for debugging information. -->
 		<div id="DebugContainer">
 			<h3>Debugging Output</h3>

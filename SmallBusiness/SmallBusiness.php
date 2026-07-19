@@ -2,7 +2,14 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<?php include "../Library/TaxTools/IncludeFiles.html"; ?>
+	<link rel="stylesheet" href="../Library/Classes/HTML.css" />
+	<link rel="stylesheet" href="../Library/TaxTools/TaxTools.css" />
+	<link rel="stylesheet" href="../Library/Tooltips/Tooltips.css" />
+
+	<script type="module" src="../Library/TaxTools/TaxTools.js"></script>
+	<script type="module" src="../Library/Tooltips/Tooltips.js"></script>
+	<script type="module" src="../Version/Version.js"></script>
+
 	<link rel="stylesheet" href="SmallBusiness.css" />
 	<script type="module" src="SmallBusiness.js"></script>
 	<title>Small Business Tax Calculator</title>
@@ -227,6 +234,11 @@
 			<p class="loction-field">Sched C, line 28</p>
 			<p class="label-field">Total Expenses</p>
 			<p class="trigger output-field" id="TotalExpenses" tooltipid="#TotalExpensesTT">0</p>
+		</div>
+
+		<!-- Display area for error messages. -->
+		<div id="ErrorMessageContainer">
+			<p id="ErrorMessageOutput"></p>
 		</div>
 
 		<!-- Display area for debugging information. -->

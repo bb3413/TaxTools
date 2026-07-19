@@ -2,7 +2,14 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<?php include "../Library/TaxTools/IncludeFiles.html"; ?>
+	<link rel="stylesheet" href="../Library/Classes/HTML.css" />
+	<link rel="stylesheet" href="../Library/TaxTools/TaxTools.css" />
+	<link rel="stylesheet" href="../Library/Tooltips/Tooltips.css" />
+
+	<script type="module" src="../Library/TaxTools/TaxTools.js"></script>
+	<script type="module" src="../Library/Tooltips/Tooltips.js"></script>
+	<script type="module" src="../Version/Version.js"></script>
+
 	<link rel="stylesheet" href="TaxableSS.css" />
 	<script type="module" src="TaxableSS.js"></script>
 	<title>Taxable Social Security Calculator</title>
@@ -146,6 +153,11 @@
 			<p class="description-field">Other Adjustments</p>
 			<input class="trigger input-field" type="text" id="OtherAdjustments"
 			   	placeholder="0" tooltipid="#OtherAdjustmentsTT" size="10" />
+		</div>
+
+		<!-- Display area for error messages. -->
+		<div id="ErrorMessageContainer">
+			<p id="ErrorMessageOutput"></p>
 		</div>
 
 		<!-- Display area for debugging information. -->

@@ -2,7 +2,14 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<?php include "../Library/TaxTools/IncludeFiles.html"; ?>
+	<link rel="stylesheet" href="../Library/Classes/HTML.css" />
+	<link rel="stylesheet" href="../Library/TaxTools/TaxTools.css" />
+	<link rel="stylesheet" href="../Library/Tooltips/Tooltips.css" />
+
+	<script type="module" src="../Library/TaxTools/TaxTools.js"></script>
+	<script type="module" src="../Library/Tooltips/Tooltips.js"></script>
+	<script type="module" src="../Version/Version.js"></script>
+
 	<link rel="stylesheet" href="Age.css" />
 	<script type="module" src="Age.js"></script>
 	<title>Age Calculator</title>
@@ -30,6 +37,11 @@
 
 			<p>Age</p>
 			<input type="text" id="Age" size="12" />
+		</div>
+		
+		<!-- Display area for error messages. -->
+		<div id="ErrorMessageContainer">
+			<p id="ErrorMessageOutput"></p>
 		</div>
 	</div>
 </body>

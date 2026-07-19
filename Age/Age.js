@@ -10,16 +10,23 @@ let input_color		= "";
 let output_color	= "";
 
 function ageHandler(event) {
-	age = HTML.getUserInput("Age", "text");
-	if (age === "")
-		return;
+	try {
+		HTML.putElementValue("ErrorMessageOutput", "");
+		
+		age = HTML.getUserInput("Age", "text");
+		if (age === "")
+			return;
 
-	age = Num.toInteger(age);
+		age = Num.toInteger(age);
 
-	if (start) {
-		calculateEndDate(start, age);
-	} else if (end) {
-		calculateStartDate(end, age);
+		if (start) {
+			calculateEndDate(start, age);
+		} else if (end) {
+			calculateStartDate(end, age);
+		}
+	} catch (err) {
+		HTML.putElementValue("ErrorMessageOutput", err);
+		document.getElementById("ErrorMessageOutput").scrollIntoView({behavior: 'smooth', block: 'start'});
 	}
 }
 
@@ -61,34 +68,48 @@ function calculateStartDate(end, age) {
 }
 
 function endHandler(event) {
-	end = HTML.getUserInput("End", "text");
-	if (!Dates.getDateObject(end)) {
-		if (end) {
-			alert("Invalid date: " + end);
+	try {
+		HTML.putElementValue("ErrorMessageOutput", "");
+		
+		end = HTML.getUserInput("End", "text");
+		if (!Dates.getDateObject(end)) {
+			if (end) {
+				throw new Error("Invalid date: " + end);
+			}
+			return;
 		}
-		return;
-	}
 
-	if (start) {
-		calculateAge(start, end);
-	} else if (age) {
-		calculateStartDate(end, age);
+		if (start) {
+			calculateAge(start, end);
+		} else if (age) {
+			calculateStartDate(end, age);
+		}
+	} catch (err) {
+		HTML.putElementValue("ErrorMessageOutput", err);
+		document.getElementById("ErrorMessageOutput").scrollIntoView();
 	}
 }
 
 function startHandler(event) {
-	start = HTML.getUserInput("Start", "text");
-	if (!Dates.getDateObject(start)) {
-		if (start) {
-			alert("Invalid date: " + start);
+	try {
+		HTML.putElementValue("ErrorMessageOutput", "");
+		
+		start = HTML.getUserInput("Start", "text");
+		if (!Dates.getDateObject(start)) {
+			if (start) {
+				throw new Error("Invalid date: " + start);
+			}
+			return;
 		}
-		return;
-	}
 
-	if (end) {
-		calculateAge(start, end);
-	} else if (age) {
-		calculateEndDate(start, age);
+		if (end) {
+			calculateAge(start, end);
+		} else if (age) {
+			calculateEndDate(start, age);
+		}
+	} catch (err) {
+		HTML.putElementValue("ErrorMessageOutput", err);
+		document.getElementById("ErrorMessageOutput").scrollIntoView();
 	}
 }
 

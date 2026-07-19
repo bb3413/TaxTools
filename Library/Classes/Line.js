@@ -1,11 +1,15 @@
 
+import { MAX_DOLLAR, MIN_DOLLAR }	from "../TaxTools/TaxTools.js";
+import { Debug }					from "../Classes/Debug.js";
+import { Num }						from "../Classes/Num.js";
+
 export class Line {
 	constructor(label)
 	{
 		this._label					= label;
 		this._value					= 0;
-		this._min_value				= undefined;
-		this._max_value				= undefined;
+		this._min_value				= MIN_DOLLAR;
+		this._max_value				= MAX_DOLLAR;
 		this._user_supplied_value	= false;
 	}
 
@@ -32,10 +36,16 @@ export class Line {
 		// This method is called when the value is calculated by the program, not suplied by
 		// the user (see also override_value()).
 		if (!this._user_supplied_value) {
-			if (this._min_value !== undefined) {
+			if (Num.isNum(this._min_value) && Num.isNum(new_value)) {
+				if (new_value < this._min_value) {
+					Debug.warn(`${this._label}: Value too small (${new_value}).`)
+				}
 				new_value = Math.max(this._min_value, new_value);
 			}
-			if (this._max_value !== undefined) {
+			if (Num.isNum(this._max_value) && Num.isNum(new_value)) {
+				if (new_value > this._max_value) {
+					Debug.warn(`${this._label}: Value too large (${new_value}).`)
+				}
 				new_value = Math.min(this._max_value, new_value);
 			}
 			this._value = new_value;

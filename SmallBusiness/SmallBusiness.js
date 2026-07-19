@@ -4,7 +4,7 @@ import { Debug }				from "../Library/Classes/Debug.js";
 import { Forms }				from "../Library/Classes/Forms.js";
 import { HTML }					from "../Library/Classes/HTML.js";
 import { Taxpayer }				from "../Library/Classes/Taxpayer.js";
-import { TaxpayerForms }		from "../Library/Classes/TaxpayerForms.js";
+import { TaxData }		from "../Library/Classes/TaxData.js";
 import { TaxTable }				from "../Library/Classes/TaxTable.js";
 
 function changeHandler(event) {
@@ -12,25 +12,30 @@ function changeHandler(event) {
 	// This function is called when any input field is changed. It calculates the
 	// whole deduction (not just the field tha was changed).
 	//
-	let taxpayer	= {};	// Object
-	let tax_table	= {};	// Object
-	let tax_data	= [];	// Array
-	let inputs		= {};	// Object
-	let outputs		= {};	// Object
+	try {
+		let taxpayer	= {};	// Object
+		let tax_table	= {};	// Object
+		let tax_data	= [];	// Array
+		let inputs		= {};	// Object
+		let outputs		= {};	// Object
 
-	// Reset static (global) variables to erase information from a previous calculation.
-	Debug.reset();
-	Forms.reset();
-	Taxpayer.reset();
+		// Reset static (global) variables to erase information from a previous calculation.
+		Debug.reset();
+		Forms.reset();
+		Taxpayer.reset();
 
-	inputs		= getInputs();								// Get inputs from the web page
-	tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
-	taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
-	tax_data	= mapInputValues(inputs);					// Map input values to tax forms
+		inputs		= getInputs();								// Get inputs from the web page
+		tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
+		taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
+		tax_data	= mapInputValues(inputs);					// Map input values to tax forms
 
-	tax_data.loadForms();									// Create tax forms for the taxpayer's data
-	putOutputs(inputs);										// Put results on web page
-	Debug.turnOn();											// Put debug info on web page if enabled
+		TaxData.loadForms(tax_data.forms);				// Create tax forms for the taxpayer's data
+		putOutputs(inputs);										// Put results on web page
+		Debug.turnOn();											// Put debug info on web page if enabled
+	} catch (err) {
+		HTML.putElementValue("ErrorMessageOutput", err);
+		document.getElementById("ErrorMessageOutput").scrollIntoView({behavior: 'smooth', block: 'start'});
+	}
 }
 
 function createTaxpayer(inputs) {
@@ -91,9 +96,8 @@ function mapInputValues(inputs) {
 	const tt = TaxTable.getTaxTable();
 
 	// Build an array with the tax forms entered by the taxpayer.
-	const tax_data	= new TaxpayerForms();
+	const tax_data	= new TaxData();
 	const f1040SC	= tax_data.addForm("F1040SC");
-	const se_tax	= tax_data.addForm("SETax");
 	const f7206		= tax_data.addForm("F7206");	// Self-employment Health Insurance Deduction
 
 	// Income
@@ -138,16 +142,15 @@ function putOutputs(inputs) {
 	//
 	// Get the information we are interested in and write them to the web page.
 	//
-	const net_profit				= Forms.getValue("F1040SC",	"31");
 	const retirement_contributions	= 0;
+	const net_profit				= Forms.getValue("F1040SC",	"31");
+	const se_tax					= Forms.getValue("SETax", "12");
 	const sehi_adjustment			= Forms.getValue("F7206", "14");
-	const se_tax_deduction			= Forms.getValue("F1040S1", "15");
 	const qbi_deduction				= Math.round(Math.max(0, net_profit -
-										se_tax_deduction -
+										(se_tax / 2) -
 										retirement_contributions -
 										sehi_adjustment) * 0.20);
 
-	const se_tax = Forms.getValue("SETax", "12");
 	HTML.putUserOutput("GrossProfit",					Forms.getValue("F1040SC", "05"));
 	HTML.putUserOutput("GrossIncome",					Forms.getValue("F1040SC", "07"));
 	HTML.putUserOutput("NetProfit",						net_profit);
@@ -161,7 +164,9 @@ function putOutputs(inputs) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+	//
 	// Wait for the DOM to be fully loaded before trying to access any elements.
+	//
 
 	// Income
 	HTML.addListener("Sales",					"change", changeHandler);

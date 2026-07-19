@@ -2,7 +2,14 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<?php include "../Library/TaxTools/IncludeFiles.html"; ?>
+	<link rel="stylesheet" href="../Library/Classes/HTML.css" />
+	<link rel="stylesheet" href="../Library/TaxTools/TaxTools.css" />
+	<link rel="stylesheet" href="../Library/Tooltips/Tooltips.css" />
+
+	<script type="module" src="../Library/TaxTools/TaxTools.js"></script>
+	<script type="module" src="../Library/Tooltips/Tooltips.js"></script>
+	<script type="module" src="../Version/Version.js"></script>
+
 	<link rel="stylesheet" href="EstimatedTax.css" />
 	<script type="module" src="EstimatedTax.js"></script>
 	<title>Federal Estimated Tax Calculator</title>
@@ -104,7 +111,7 @@
 					<p class="output-field" id="TotalIncome">0</p>
             </div>
 
-			<div class="data-line trigger tooltipid="#AdjustmentsTT"">
+			<div class="data-line trigger tooltipid="#adjustmentstt"">
 				<p>1040, line 10</p>
 				<p>Adjustments</p>
 				<p class="output-field" id="Adjustments">0</p>
@@ -583,6 +590,11 @@
 			<p>Estimated Taxes Paid</p>
 			<input class="input-field" type="text" id="EstimatedTaxPaid"
 				placeholder="0" size="10" />
+		</div>
+
+		<!-- Display area for error messages. -->
+		<div id="ErrorMessageContainer">
+			<p id="ErrorMessageOutput"></p>
 		</div>
 
 		<!-- Display area for debugging information. -->

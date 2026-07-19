@@ -6,7 +6,7 @@ import { fetchSalesTaxRate }	from "../Library/SalesTax/SalesTaxFromCDTFA.js";
 import { Forms }				from "../Library/Classes/Forms.js";
 import { HTML }					from "../Library/Classes/HTML.js";
 import { Taxpayer }				from "../Library/Classes/Taxpayer.js";
-import { TaxpayerForms }		from "../Library/Classes/TaxpayerForms.js";
+import { TaxData }		from "../Library/Classes/TaxData.js";
 import { TaxTable }				from "../Library/Classes/TaxTable.js";
 
 let total_sales_tax			= 0;
@@ -30,25 +30,30 @@ function changeHandler(event) {
 	// This function is called when any input field is changed. It calculates the
 	// whole deduction (not just the field tha was changed).
 	//
-	let taxpayer	= {};	// Object
-	let tax_table	= {};	// Object
-	let tax_data	= [];	// Array
-	let inputs		= {};	// Object
+	try {
+		let taxpayer	= {};	// Object
+		let tax_table	= {};	// Object
+		let tax_data	= [];	// Array
+		let inputs		= {};	// Object
 
-	// Reset static (global) variables to erase information from a previous calculation.
-	Debug.reset();
-	Forms.reset();
-	Taxpayer.reset();
+		// Reset static (global) variables to erase information from a previous calculation.
+		Debug.reset();
+		Forms.reset();
+		Taxpayer.reset();
 
-	inputs		= getInputs();								// Get inputs from the web page
-	tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
-	taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
-	tax_data	= mapInputValues(inputs);					// Map input values to tax forms
+		inputs		= getInputs();								// Get inputs from the web page
+		tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
+		taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
+		tax_data	= mapInputValues(inputs);					// Map input values to tax forms
 
-	tax_data.loadForms();									// Create tax forms for the taxpayer's data
-	Forms.getForm("SalesTax").calculate(total_sales_tax);	// Calculate the critical form
-	putOutputs();											// Put results on web page
-	Debug.turnOn();											// Put debug info on web page if enabled
+		tax_data.loadForms();									// Create tax forms for the taxpayer's data
+		Forms.getForm("SalesTax").calculate(total_sales_tax);	// Calculate the critical form
+		putOutputs();											// Put results on web page
+		Debug.turnOn();											// Put debug info on web page if enabled
+	} catch (err) {
+		HTML.putElementValue("ErrorMessageOutput", err);
+		document.getElementById("ErrorMessageOutput").scrollIntoView({behavior: 'smooth', block: 'start'});
+	}
 }
 
 function createTaxpayer(inputs) {
@@ -105,7 +110,7 @@ function mapInputValues(inputs) {
 	//
 
 	// Build an array with the tax forms entered by the taxpayer.
-	const tax_data	= new TaxpayerForms();
+	const tax_data	= new TaxData();
 	const f1040		= tax_data.addForm("F1040");
 	const salestax	= tax_data.addForm("SalesTax");
 
@@ -129,8 +134,9 @@ function putOutputs() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+	//
 	// Wait for the DOM to be fully loaded before trying to access any elements.
-
+	//
 	HTML.addListener("TaxYear",					"change", changeHandler);
 	HTML.addListener("StreetAddress",			"change", changeAddressHandler);
 	HTML.addListener("City",					"change", changeAddressHandler);

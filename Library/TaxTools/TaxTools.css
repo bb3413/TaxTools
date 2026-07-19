@@ -13,6 +13,7 @@
 	--background-color:			LightCyan;
 	--tool-background-color:	White;
 	--text-color:				Navy;
+	--error-text-color:			Red;
 	--light-text-color:			MediumBlue;
 	--input-color:				#d9fddd;	/* #9FC; */
 	--output-color:				#DEF;
@@ -166,8 +167,15 @@ input:-webkit-autofill:focus {
 	-webkit-text-fill-color: var(--text-color) !important;
 }
 
-#DebugContainer pre {
+#ErrorMessageContainer {
+	color:					var(--error-text-color);
+}
+
+#DebugContainer {
 	background-color:		var(--output-color);
+}
+
+#DebugContainer pre {
 	font-family:			monospace, "courier new";
 	font-size:				16px;	/* Use this with Helvetica */
 	line-height:			1.4;

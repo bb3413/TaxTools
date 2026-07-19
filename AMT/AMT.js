@@ -5,7 +5,7 @@ import { Forms }			from "../Library/Classes/Forms.js";
 import { HTML }				from "../Library/Classes/HTML.js";
 import { Str }				from "../Library/Classes/Str.js";
 import { Taxpayer }			from "../Library/Classes/Taxpayer.js";
-import { TaxpayerForms }	from "../Library/Classes/TaxpayerForms.js";
+import { TaxData }	from "../Library/Classes/TaxData.js";
 import { TaxTable }			from "../Library/Classes/TaxTable.js";
 
 function changeHandler(event) {
@@ -13,30 +13,34 @@ function changeHandler(event) {
 	// This function is called when any input field is changed. It calculates the
 	// whole AMT (not just the field tha was changed).
 	//
-	let taxpayer	= {};	// Object
-	let tax_table	= {};	// Object
-	let tax_data	= [];	// Array
-	let inputs		= {};	// Object
+	try {
+		let taxpayer	= {};	// Object
+		let tax_table	= {};	// Object
+		let tax_data	= [];	// Array
+		let inputs		= {};	// Object
 
-	// Reset static (global) variables to erase information from a previous calculation.
-	Debug.reset();
-	Forms.reset();
-	Taxpayer.reset();
+		// Reset static (global) variables to erase information from a previous calculation.
+		Debug.reset();
+		Forms.reset();
+		Taxpayer.reset();
 
-	inputs = getInputs();									// Get inputs from the web page
-	if (Str.caseEqual(inputs.filing_status, "MFJ")) {
-		HTML.showElement("SpouseContainer");
-	} else {
-		HTML.hideElement("SpouseContainer");
+		inputs = getInputs();									// Get inputs from the web page
+		if (Str.caseEqual(inputs.filing_status, "MFJ")) {
+			HTML.showElement("SpouseContainer");
+		} else {
+			HTML.hideElement("SpouseContainer");
+		}
+		tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
+		taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
+		tax_data	= mapInputValues(inputs);					// Map input values to tax forms
+
+		TaxData.loadForms(tax_data.forms);				// Create tax forms for the taxpayer's data
+		putOutputs();											// Put results on web page
+		Debug.turnOn();											// Put debug info on web page if enabled
+	} catch (err) {
+		HTML.putElementValue("ErrorMessageOutput", err);
+		document.getElementById("ErrorMessageOutput").scrollIntoView({behavior: 'smooth', block: 'start'});
 	}
-	tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
-	taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
-	tax_data	= mapInputValues(inputs);					// Map input values to tax forms
-
-	tax_data.loadForms();									// Create tax forms for the taxpayer's data
-	Forms.getForm("F6251").calculate();						// Calculate the critical form
-	putOutputs();											// Put results on web page
-	Debug.turnOn();											// Put debug info on web page if enabled
 }
 
 function createTaxpayer(inputs) {
@@ -110,7 +114,7 @@ function mapInputValues(inputs) {
 	//
 
 	// Build an array with the tax forms entered by the taxpayer.
-	const tax_data	= new TaxpayerForms();
+	const tax_data	= new TaxData();
 	const f1040		= tax_data.addForm("F1040");
 	const f1040S1	= tax_data.addForm("F1040S1");
 	const f1040SA	= tax_data.addForm("F1040SA");
@@ -151,6 +155,14 @@ function mapInputValues(inputs) {
 }
 
 function putOutputs() {
+	const tp = Taxpayer.getTaxpayer();
+
+	if (Str.caseEqual(tp.filing_status, "MFJ")) {
+		HTML.showElement("SpouseContainer");
+	} else {
+		HTML.hideElement("SpouseContainer");
+	}
+
 	HTML.putUserOutput("AMTIncome",		Forms.getValue("F6251", "04"));
 	HTML.putUserOutput("AMTExemption",	Forms.getValue("F6251", "05"));
 	HTML.putUserOutput("AMT",			Forms.getValue("F6251", "11"));

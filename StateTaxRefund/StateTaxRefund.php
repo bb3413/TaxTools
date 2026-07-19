@@ -2,7 +2,14 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<?php include "../Library/TaxTools/IncludeFiles.html"; ?>
+	<link rel="stylesheet" href="../Library/Classes/HTML.css" />
+	<link rel="stylesheet" href="../Library/TaxTools/TaxTools.css" />
+	<link rel="stylesheet" href="../Library/Tooltips/Tooltips.css" />
+
+	<script type="module" src="../Library/TaxTools/TaxTools.js"></script>
+	<script type="module" src="../Library/Tooltips/Tooltips.js"></script>
+	<script type="module" src="../Version/Version.js"></script>
+
 	<link rel="stylesheet" href="StateTaxRefund.css" />
 	<script type="module" src="StateTaxRefund.js"></script>
 	<title>State Income Tax Refund Calculator</title>
@@ -94,6 +101,11 @@
 			<p>Explanation</p>
 			<p class="trigger" id="Explanation"
 				tooltipid="#ExplanationTT"></p>
+		</div>
+
+		<!-- Display area for error messages. -->
+		<div id="ErrorMessageContainer">
+			<p id="ErrorMessageOutput"></p>
 		</div>
 
 		<!-- Display area for debugging information. -->

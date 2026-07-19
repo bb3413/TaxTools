@@ -2,7 +2,14 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
-	<?php include "../Library/TaxTools/IncludeFiles.html"; ?>
+	<link rel="stylesheet" href="../Library/Classes/HTML.css" />
+	<link rel="stylesheet" href="../Library/TaxTools/TaxTools.css" />
+	<link rel="stylesheet" href="../Library/Tooltips/Tooltips.css" />
+
+	<script type="module" src="../Library/TaxTools/TaxTools.js"></script>
+	<script type="module" src="../Library/Tooltips/Tooltips.js"></script>
+	<script type="module" src="../Version/Version.js"></script>
+
 	<link rel="stylesheet" href="CASalesTax.css" />
 	<script type="module" src="CASalesTax.js"></script>
 	<title>California Sales Tax Calculator</title>
@@ -39,6 +46,11 @@
 			<p class="output-field left" id="SalesTaxRate"></p>
 			<p>&nbsp;</p>
 			<p>&nbsp;</p>
+		</div>
+		
+		<!-- Display area for error messages. -->
+		<div id="ErrorMessageContainer">
+			<p id="ErrorMessageOutput"></p>
 		</div>
 	</div>
 </body>
