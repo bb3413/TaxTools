@@ -1,40 +1,36 @@
 
-import { Dates }			from "../Library/Classes/Dates.js";
-import { Debug }			from "../Library/Classes/Debug.js";
-import { Forms }			from "../Library/Classes/Forms.js";
-import { HTML }				from "../Library/Classes/HTML.js";
-import { Str }				from "../Library/Classes/Str.js";
-import { Taxpayer }			from "../Library/Classes/Taxpayer.js";
-import { TaxData }	from "../Library/Classes/TaxData.js";
-import { TaxTable }			from "../Library/Classes/TaxTable.js";
+import { Dates }		from "../Library/Classes/Dates.js";
+import { Debug }		from "../Library/Classes/Debug.js";
+import { Forms }		from "../Library/Classes/Forms.js";
+import { HTML }			from "../Library/Classes/HTML.js";
+import { Str }			from "../Library/Classes/Str.js";
+import { Taxpayer }		from "../Library/Classes/Taxpayer.js";
+import { TaxData }		from "../Library/Classes/TaxData.js";
+import { TaxTable }		from "../Library/Classes/TaxTable.js";
 
-let input_color				= "";
-let output_color			= "";
+let input_color			= "";
+let output_color		= "";
 
 function changeHandler(event) {
 	//
 	// This function is called when any input field is changed.
 	//
 	try {
-		let taxpayer	= {};	// Object
-		let tax_table	= {};	// Object
-		let tax_data	= [];	// Array
-		let inputs		= {};	// Object
-
 		// Reset static (global) variables to erase information from a previous calculation.
+		HTML.putElementValue("ErrorMessageOutput", "");
 		Debug.reset();
 		Forms.reset();
 		Taxpayer.reset();
 
-		inputs		= getInputs();								// Get inputs from the web page
-		tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
-		taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
-		tax_data	= mapInputValues(inputs);					// Map input values to tax forms
+		const inputs	= getInputs();								// Get inputs from the web page
+		const tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
+		const taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
+		const tax_data	= mapInputValues(inputs);					// Map input values to tax forms
 
-		TaxData.loadForms(tax_data.forms);				// Create tax forms for the taxpayer's data
-		Forms.getForm("F1040S1A").calculate();					// Calculate the form
-		putOutputs(taxpayer);									// Put results on web page
-		Debug.turnOn();											// Put debug info on web page if enabled
+		TaxData.loadForms(tax_data.forms);							// Create tax forms for the taxpayer's data
+		Forms.calculateAll();									// Calculate the tax forms
+		putOutputs(taxpayer);										// Put results on web page
+		Debug.turnOn();												// Put debug info on web page if enabled
 	} catch (err) {
 		HTML.putElementValue("ErrorMessageOutput", err);
 		document.getElementById("ErrorMessageOutput").scrollIntoView({behavior: 'smooth', block: 'start'});

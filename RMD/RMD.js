@@ -42,6 +42,7 @@ function changeHandler(event) {
 	//
 	try {
 		// Reset static (global) variables to erase information from a previous calculation.
+		HTML.putElementValue("ErrorMessageOutput", "");
 		Debug.reset();
 
 		const inputs	= getInputs();							// Get inputs from the web page

@@ -12,7 +12,7 @@ let output_color	= "";
 function ageHandler(event) {
 	try {
 		HTML.putElementValue("ErrorMessageOutput", "");
-		
+
 		age = HTML.getUserInput("Age", "text");
 		if (age === "")
 			return;
@@ -70,7 +70,7 @@ function calculateStartDate(end, age) {
 function endHandler(event) {
 	try {
 		HTML.putElementValue("ErrorMessageOutput", "");
-		
+
 		end = HTML.getUserInput("End", "text");
 		if (!Dates.getDateObject(end)) {
 			if (end) {
@@ -93,7 +93,7 @@ function endHandler(event) {
 function startHandler(event) {
 	try {
 		HTML.putElementValue("ErrorMessageOutput", "");
-		
+
 		start = HTML.getUserInput("Start", "text");
 		if (!Dates.getDateObject(start)) {
 			if (start) {

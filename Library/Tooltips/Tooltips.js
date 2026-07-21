@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			const scrollY = window.scrollY;
 
 			// Show it momentarily at opacity 0 to get its height/width.
-			tip.style.display = "block"; 
+			tip.style.display = "block";
 			const tipRect = tip.getBoundingClientRect();
 
 			// Vertical logic (flip if hits top).

@@ -32,7 +32,7 @@
 			<p class="tight">The net profit for a small business is calculated on Schedule C as shown in the
 			formula below. This, in turn, shows the infomation that is needed to calculate the taxes for the
 			small business.</p>
-		
+
 			<div class="tax-formula-container">
 				<p>&nbsp;</p>
 				<p>&nbsp;</p>
@@ -45,7 +45,7 @@
 				<p>&nbsp;</p>
 				<p>&nbsp;</p>
 			</div>
-		
+
 			<h3>Tax Calculation</h3>
 			<div class="table-3x">
 				<p class="loction-field">Sched C, line 5</p>

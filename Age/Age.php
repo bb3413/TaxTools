@@ -38,7 +38,7 @@
 			<p>Age</p>
 			<input type="text" id="Age" size="12" />
 		</div>
-		
+
 		<!-- Display area for error messages. -->
 		<div id="ErrorMessageContainer">
 			<p id="ErrorMessageOutput"></p>

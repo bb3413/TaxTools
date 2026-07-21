@@ -35,14 +35,14 @@
 			width: 200px; /* Fixed width for math testing */
 			box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 			z-index: 1000;
-			
+
 			/* The "Fade" logic handled by CSS */
 			visibility: hidden;
 			opacity: 0;
 			transition: opacity 0.2s ease-in-out, transform 0.2s ease-out;
 			transform: translateY(5px); /* Small slide effect */
 			pointer-events: none;
-			
+
 			background-color:	Beige;
 			color:				#000;
 		}
@@ -56,8 +56,8 @@
 
 		/* Positioning Helpers */
 		.right-aligned { float: right; }
-		
-		
+
+
 		.tooltip h3 {
 			margin-top:			0;
 		}
@@ -99,7 +99,7 @@
 					const scrollY = window.scrollY;
 
 					// We show it momentarily at opacity 0 to get its height/width
-					tip.style.display = "block"; 
+					tip.style.display = "block";
 					const tipRect = tip.getBoundingClientRect();
 
 					// 2. Vertical Logic (Flip if hits top)

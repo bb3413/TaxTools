@@ -1,11 +1,11 @@
 
-import { Dates }				from "../Library/Classes/Dates.js";
-import { Debug }				from "../Library/Classes/Debug.js";
-import { Forms }				from "../Library/Classes/Forms.js";
-import { HTML }					from "../Library/Classes/HTML.js";
-import { Taxpayer }				from "../Library/Classes/Taxpayer.js";
+import { Dates }		from "../Library/Classes/Dates.js";
+import { Debug }		from "../Library/Classes/Debug.js";
+import { Forms }		from "../Library/Classes/Forms.js";
+import { HTML }			from "../Library/Classes/HTML.js";
+import { Taxpayer }		from "../Library/Classes/Taxpayer.js";
 import { TaxData }		from "../Library/Classes/TaxData.js";
-import { TaxTable }				from "../Library/Classes/TaxTable.js";
+import { TaxTable }		from "../Library/Classes/TaxTable.js";
 
 function changeHandler(event) {
 	//
@@ -13,25 +13,20 @@ function changeHandler(event) {
 	// whole deduction (not just the field tha was changed).
 	//
 	try {
-		let taxpayer	= {};	// Object
-		let tax_table	= {};	// Object
-		let tax_data	= [];	// Array
-		let inputs		= {};	// Object
-		let outputs		= {};	// Object
-
 		// Reset static (global) variables to erase information from a previous calculation.
+		HTML.putElementValue("ErrorMessageOutput", "");
 		Debug.reset();
 		Forms.reset();
 		Taxpayer.reset();
 
-		inputs		= getInputs();								// Get inputs from the web page
-		tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
-		taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
-		tax_data	= mapInputValues(inputs);					// Map input values to tax forms
+		const inputs	= getInputs();								// Get inputs from the web page
+		const tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
+		const taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
+		const tax_data	= mapInputValues(inputs);					// Map input values to tax forms
 
-		TaxData.loadForms(tax_data.forms);				// Create tax forms for the taxpayer's data
-		putOutputs(inputs);										// Put results on web page
-		Debug.turnOn();											// Put debug info on web page if enabled
+		TaxData.loadForms(tax_data.forms);							// Create tax forms for the taxpayer's data
+		putOutputs(inputs);											// Put results on web page
+		Debug.turnOn();												// Put debug info on web page if enabled
 	} catch (err) {
 		HTML.putElementValue("ErrorMessageOutput", err);
 		document.getElementById("ErrorMessageOutput").scrollIntoView({behavior: 'smooth', block: 'start'});

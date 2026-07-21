@@ -1,12 +1,12 @@
 
-import { Dates }				from "../Library/Classes/Dates.js";
-import { Debug }				from "../Library/Classes/Debug.js";
-import { Forms }				from "../Library/Classes/Forms.js";
-import { HTML }					from "../Library/Classes/HTML.js";
-import { Str }					from "../Library/Classes/Str.js";
-import { Taxpayer }				from "../Library/Classes/Taxpayer.js";
+import { Dates }		from "../Library/Classes/Dates.js";
+import { Debug }		from "../Library/Classes/Debug.js";
+import { Forms }		from "../Library/Classes/Forms.js";
+import { HTML }			from "../Library/Classes/HTML.js";
+import { Str }			from "../Library/Classes/Str.js";
+import { Taxpayer }		from "../Library/Classes/Taxpayer.js";
 import { TaxData }		from "../Library/Classes/TaxData.js";
-import { TaxTable }				from "../Library/Classes/TaxTable.js";
+import { TaxTable }		from "../Library/Classes/TaxTable.js";
 
 function calculateTax(inputs) {
 	const outputs = {};
@@ -105,22 +105,18 @@ function changeHandler(event) {
 	// whole deduction (not just the field tha was changed).
 	//
 	try {
-		let tax_table	= {};	// Object
-		let inputs		= {};	// Object
-		let outputs		= {};	// Object
-
 		// Reset static (global) variables to erase information from a previous calculation.
+		HTML.putElementValue("ErrorMessageOutput", "");
 		Debug.reset();
 		Forms.reset();
 		Taxpayer.reset();
 
-		inputs		= getInputs();								// Get inputs from the web page
-		tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
-		taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
-
-		outputs		= calculateTax(inputs);
-		putOutputs(inputs);										// Put results on web page
-		Debug.turnOn();											;// Put debug info on web page if enabled
+		const inputs	= getInputs();								// Get inputs from the web page
+		const tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
+		const taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
+		const outputs	= calculateTax(inputs);
+		putOutputs(inputs);											// Put results on web page
+		Debug.turnOn();												// Put debug info on web page if enabled
 	} catch (err) {
 		HTML.putElementValue("ErrorMessageOutput", err);
 		document.getElementById("ErrorMessageOutput").scrollIntoView({behavior: 'smooth', block: 'start'});

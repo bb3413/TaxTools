@@ -2,7 +2,7 @@
 /* This stylesheet contains styles that are used by all of the tax tools to give them
  * a consistant look and feel.
  */
- 
+
 :root {
 	/* Global variables
 	 *
@@ -21,7 +21,7 @@
 	--shadow-color:				#AAAAAA;	/* Gray */
 	--tooltip-bg-color:			Beige;
 
-	/* Testing	
+	/* Testing
 	--background-color:		white;
 	--text-color:			red;
 	--light-text-color:		green;
@@ -45,8 +45,8 @@ a:visited {
 }
 
 input::placeholder {
-    /* color:				red; */
-    opacity:				0.5;
+	/* color:				red; */
+	opacity:				0.5;
 }
 
 body {
@@ -81,7 +81,7 @@ body {
 .title {
 	text-align:				center;
 }
-			
+
 .version-number {
 	/* Used when printing the version number in the top right corner of an HTML page. */
 	text-align:				right;
@@ -160,7 +160,7 @@ body {
  * work in Chrome, Edge, Safari, and Firefox.
  */
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
+input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
 	-webkit-box-shadow: 0 0 0px 1000px var(--input-color) inset !important;
 	box-shadow: 0 0 0px 1000px var(--input-color) inset !important;

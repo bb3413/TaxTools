@@ -105,11 +105,11 @@
 			</div>
 
 			<h3>Estimated Tax Calculation</h3>
-            <div class="data-line trigger" tooltipid="#TotalIncomeTT">
+			<div class="data-line trigger" tooltipid="#TotalIncomeTT">
 					<p>1040, line 9</p>
 					<p>Total Income</p>
 					<p class="output-field" id="TotalIncome">0</p>
-            </div>
+			</div>
 
 			<div class="data-line trigger tooltipid="#adjustmentstt"">
 				<p>1040, line 10</p>
@@ -602,7 +602,7 @@
 			<h3>Debugging Output</h3>
 			<pre id="DebugOutput"></pre>
 		</div>
-		
+
 		<!-- Tooltips -->
 		<?php include "EstimatedTax-HelpInput.html"; ?>
 	</div>

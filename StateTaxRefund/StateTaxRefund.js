@@ -1,31 +1,31 @@
 
-import { Dates }			from "../Library/Classes/Dates.js";
-import { Debug }			from "../Library/Classes/Debug.js";
-import { Forms }			from "../Library/Classes/Forms.js";
-import { HTML }				from "../Library/Classes/HTML.js";
-import { Str }				from "../Library/Classes/Str.js";
-import { Taxpayer }			from "../Library/Classes/Taxpayer.js";
-import { TaxData }	from "../Library/Classes/TaxData.js";
-import { TaxTable }			from "../Library/Classes/TaxTable.js";
+import { Dates }		from "../Library/Classes/Dates.js";
+import { Debug }		from "../Library/Classes/Debug.js";
+import { Forms }		from "../Library/Classes/Forms.js";
+import { HTML }			from "../Library/Classes/HTML.js";
+import { Str }			from "../Library/Classes/Str.js";
+import { Taxpayer }		from "../Library/Classes/Taxpayer.js";
+import { TaxData }		from "../Library/Classes/TaxData.js";
+import { TaxTable }		from "../Library/Classes/TaxTable.js";
 
 function calculateTaxableAmount(inputs) {
 
 	const tp = Taxpayer.getTaxpayer();
-	
+
 	const outputs = {};
 
 	if (inputs.state_tax_refund === 0) {
 		outputs.taxable_amount		= 0;
 		outputs.explanation			= "Tax refund is $0.";
-		
+
 	} else if (inputs.prev_state_income_tax === 0) {
 		outputs.taxable_amount		= 0;
 		outputs.explanation			= "State income tax is $0; state income tax was not used as a deduction.";
-		
+
 	} else if (inputs.sales_tax_used) {
 		outputs.taxable_amount		= 0;
 		outputs.explanation			= "State income tax was not used as a deduction; sales tax was used instead.";
-		
+
 	} else if (inputs.sales_tax >= inputs.state_income_tax) {
 		outputs.taxable_amount		= 0;
 		outputs.explanation			= "Sales tax is greater that state income tax; sales tax could have " +
@@ -44,26 +44,21 @@ function changeHandler(event) {
 	// whole AMT (not just the field tha was changed).
 	//
 	try {
-		let taxpayer	= {};	// Object
-		let tax_table	= {};	// Object
-		let tax_data	= [];	// Array
-		let inputs		= {};	// Object
-		let outputs		= {};	// Object
-
 		// Reset static (global) variables to erase information from a previous calculation.
+		HTML.putElementValue("ErrorMessageOutput", "");
 		Debug.reset();
 		Forms.reset();
 		Taxpayer.reset();
 
-		inputs		= getInputs();								// Get inputs from the web page
-		tax_table	= TaxTable.getTaxTable(inputs.previous_tax_year);	// Initialize tax tables; ignore return value.
-		taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
-		tax_data	= mapInputValues(inputs);					// Map input values to tax forms
+		const inputs	= getInputs();								// Get inputs from the web page
+		const tax_table	= TaxTable.getTaxTable(inputs.previous_tax_year);	// Initialize tax tables; ignore return value.
+		const taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
+		const tax_data	= mapInputValues(inputs);					// Map input values to tax forms
 
-		TaxData.loadForms(tax_data.forms);				// Create tax forms for the taxpayer's data
-		outputs = calculateTaxableAmount(inputs);
-		putOutputs(outputs);									// Put results on web page
-		Debug.turnOn();											// Put debug info on web page if enabled
+		TaxData.loadForms(tax_data.forms);							// Create tax forms for the taxpayer's data
+		const outputs = calculateTaxableAmount(inputs);
+		putOutputs(outputs);										// Put results on web page
+		Debug.turnOn();												// Put debug info on web page if enabled
 	} catch (err) {
 		HTML.putElementValue("ErrorMessageOutput", err);
 		document.getElementById("ErrorMessageOutput").scrollIntoView({behavior: 'smooth', block: 'start'});
@@ -123,7 +118,7 @@ function mapInputValues(inputs) {
 
 	const tt		= TaxTable.getTaxTable();
 	const max_salt	= tt.getTaxValue("MaxSALT");
-	const line_5d	= inputs.prev_state_income_tax + 
+	const line_5d	= inputs.prev_state_income_tax +
 						inputs.prev_real_estate_taxes +
 						inputs.pev_personal_property_taxes;
 	const line_5e	= Math.min(line_5d, max_salt);
@@ -138,13 +133,13 @@ function mapInputValues(inputs) {
 
 function putOutputs(outputs) {
 	const tp = Taxpayer.getTaxpayer();
-	
+
 	if (Str.caseEqual(tp.filing_status, "MFJ")) {
 		HTML.showElement("SpouseContainer");
 	} else {
 		HTML.hideElement("SpouseContainer");
 	}
-	
+
 	HTML.putUserOutput("TaxableAmount",	outputs.taxable_amount);
 	HTML.putUserOutput("Explanation",	outputs.explanation,	"text");
 }

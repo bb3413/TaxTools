@@ -5,6 +5,7 @@ import { fetchSalesTaxRate }	from "../Library/SalesTax/SalesTaxFromCDTFA.js";
 
 async function buttonHandler(event) {
 	try {
+		HTML.putElementValue("ErrorMessageOutput", "");
 		const address	= document.getElementById("StreetAddress").value;
 		const city		= document.getElementById("City").value;
 		const zip		= document.getElementById("ZipCode").value;

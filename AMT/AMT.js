@@ -5,7 +5,7 @@ import { Forms }			from "../Library/Classes/Forms.js";
 import { HTML }				from "../Library/Classes/HTML.js";
 import { Str }				from "../Library/Classes/Str.js";
 import { Taxpayer }			from "../Library/Classes/Taxpayer.js";
-import { TaxData }	from "../Library/Classes/TaxData.js";
+import { TaxData }			from "../Library/Classes/TaxData.js";
 import { TaxTable }			from "../Library/Classes/TaxTable.js";
 
 function changeHandler(event) {
@@ -13,34 +13,31 @@ function changeHandler(event) {
 	// This function is called when any input field is changed. It calculates the
 	// whole AMT (not just the field tha was changed).
 	//
-	try {
-		let taxpayer	= {};	// Object
-		let tax_table	= {};	// Object
-		let tax_data	= [];	// Array
-		let inputs		= {};	// Object
-
+	// try {
 		// Reset static (global) variables to erase information from a previous calculation.
+		HTML.putElementValue("ErrorMessageOutput", "");
 		Debug.reset();
 		Forms.reset();
 		Taxpayer.reset();
 
-		inputs = getInputs();									// Get inputs from the web page
+		const inputs = getInputs();								// Get inputs from the web page
 		if (Str.caseEqual(inputs.filing_status, "MFJ")) {
 			HTML.showElement("SpouseContainer");
 		} else {
 			HTML.hideElement("SpouseContainer");
 		}
-		tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
-		taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
-		tax_data	= mapInputValues(inputs);					// Map input values to tax forms
+		const tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
+		const taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
+		const tax_data	= mapInputValues(inputs);					// Map input values to tax forms
 
-		TaxData.loadForms(tax_data.forms);				// Create tax forms for the taxpayer's data
-		putOutputs();											// Put results on web page
-		Debug.turnOn();											// Put debug info on web page if enabled
-	} catch (err) {
-		HTML.putElementValue("ErrorMessageOutput", err);
-		document.getElementById("ErrorMessageOutput").scrollIntoView({behavior: 'smooth', block: 'start'});
-	}
+		TaxData.loadForms(tax_data.forms);							// Create tax forms for the taxpayer's data
+		Forms.calculateAll();										// Calculate the tax forms
+		putOutputs();												// Put results on web page
+		Debug.turnOn();												// Put debug info on web page if enabled
+	// } catch (err) {
+		// HTML.putElementValue("ErrorMessageOutput", err);
+		// document.getElementById("ErrorMessageOutput").scrollIntoView({behavior: 'smooth', block: 'start'});
+	// }
 }
 
 function createTaxpayer(inputs) {
@@ -133,9 +130,9 @@ function mapInputValues(inputs) {
 	tax_data.addLine(f1040S1,	"01",	inputs.state_tax_refund);
 	tax_data.addLine(f6251,		"02c",	inputs.investment_interest);
 	tax_data.addLine(f6251,		"02d",	inputs.depletion);
-	tax_data.addLine(f6251,		"02d",	inputs.net_operating_loss);
+	tax_data.addLine(f6251,		"02e",	inputs.net_operating_loss);
 	tax_data.addLine(f6251,		"02f",	inputs.alternate_net_operating_loss);
-	tax_data.addLine(f6251,		"02h",	inputs.private_activity_bonds_interest);
+	tax_data.addLine(f6251,		"02g",	inputs.private_activity_bonds_interest);
 	tax_data.addLine(f6251,		"02h",	inputs.qualified_small_business_stock);
 	tax_data.addLine(f6251,		"02i",	inputs.incentive_stock_options);
 	tax_data.addLine(f6251,		"02j",	inputs.estates_and_trusts);
