@@ -14,6 +14,7 @@ import { F1040S3 }			from "../Forms/F1040S3.js";
 import { F1040SA }			from "../Forms/F1040SA.js";
 import { F1040SC }			from "../Forms/F1040SC.js";
 import { F1040SSE }			from "../Forms/F1040SSE.js";	// Self-employment Tax
+import { F1099G }			from "../Forms/F1099G.js";
 import { F540 }				from "../Forms/F540.js";		// California Income Tax
 import { F540CA }			from "../Forms/F540CA.js";		// California Adjustments
 import { F6251 }			from "../Forms/F6251.js";		// AMT worksheet
@@ -43,6 +44,7 @@ const formsClassMap = {	// Map the form names to the actual class references.
 	"F1040SA":		F1040SA,
 	"F1040SC":		F1040SC,
 	"F1040SSE":		F1040SSE,
+	"F1099G":		F1099G,
 	"F540":			F540,
 	"F540CA":		F540CA,
 	"F6251":		F6251,
