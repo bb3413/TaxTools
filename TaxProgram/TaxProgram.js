@@ -30,7 +30,8 @@ function changeHandler(inputs) {
 		const tax_table	= TaxTable.getTaxTable(tax_year);			// Initialize tax tables; ignore return value.
 		const taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
 		TaxData.loadForms(inputs.Forms);							// Create tax forms with the taxpayer's data
-		Forms.calculateAll();										// Calculate the tax forms
+		Forms.getForm("F1040").calculate();							// Calculate the tax forms
+		Forms.getForm("F540").calculate();							// Calculate the tax forms
 		putOutputs(tax_year);
 	} catch (err) {
 		HTML.putElementValue("ErrorMessageOutput", err);

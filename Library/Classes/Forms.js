@@ -6,20 +6,40 @@
 import { Debug }			from "../Classes/Debug.js";
 
 // Tax Forms
-import { F1040 }			from "../Forms/F1040.js";
-import { F1040S1 }			from "../Forms/F1040S1.js";
-import { F1040S1A }			from "../Forms/F1040S1A.js";
-import { F1040S2 }			from "../Forms/F1040S2.js";
-import { F1040S3 }			from "../Forms/F1040S3.js";
-import { F1040SA }			from "../Forms/F1040SA.js";
-import { F1040SC }			from "../Forms/F1040SC.js";
-import { F1040SSE }			from "../Forms/F1040SSE.js";	// Self-employment Tax
-import { F1099G }			from "../Forms/F1099G.js";
-import { F540 }				from "../Forms/F540.js";		// California Income Tax
-import { F540CA }			from "../Forms/F540CA.js";		// California Adjustments
-import { F6251 }			from "../Forms/F6251.js";		// AMT worksheet
-import { F7206 }			from "../Forms/F7206.js";		// Self-employment Health Insurance Deduction
-import { W2 }				from "../Forms/W2.js";
+import { F1040 }			from "../Forms/F1040";
+import { F1040S1 }			from "../Forms/F1040S1";
+import { F1040S1A }			from "../Forms/F1040S1A";
+import { F1040S2 }			from "../Forms/F1040S2";
+import { F1040S3 }			from "../Forms/F1040S3";
+import { F1040SA }			from "../Forms/F1040SA";
+// import { F1040SB }		from "../Forms/F1040SB";
+import { F1040SC }			from "../Forms/F1040SC";
+// import { F1040SD }		from "../Forms/F1040SD";
+// import { F1040SE }		from "../Forms/F1040SE";
+import { F1040SSE }			from "../Forms/F1040SSE";	// Self-employment Tax
+// import { F1041 }			from "../Forms/F1041";
+// import { F1065B }		from "../Forms/F1065B";
+// import { F1098 }			from "../Forms/F1098";
+// import { F1098E }		from "../Forms/F1098E";
+// import { F1098T }		from "../Forms/F1098T";
+// import { F1099C }		from "../Forms/F1099C";
+// import { F1099DIV }		from "../Forms/F1099DIV";
+import { F1099G }			from "../Forms/F1099G";
+// import { F1099INT }		from "../Forms/F1099INT";
+// import { F1099K }		from "../Forms/F1099K";
+// import { F1099LTC }		from "../Forms/F1099LTC";
+// import { F1099MISC }		from "../Forms/F1099MISC";
+// import { F1099NEC }		from "../Forms/F1099NEC";
+// import { F1099OID }		from "../Forms/F1099OID";
+// import { F1099R }		from "../Forms/F1099R";
+// import { F1099S }		from "../Forms/F1099S";
+// import { F1120S }		from "../Forms/F1120S";
+// import { F2441 }			from "../Forms/F2441";
+import { F540 }				from "../Forms/F540";		// California Income Tax
+import { F540CA }			from "../Forms/F540CA";		// California Adjustments
+import { F6251 }			from "../Forms/F6251";		// AMT worksheet
+import { F7206 }			from "../Forms/F7206";		// Self-employment Health Insurance Deduction
+import { W2 }				from "../Forms/W2";
 
 // Worksheets
 import { IncTax }			from "../Worksheets/IncTax.js";
@@ -36,20 +56,40 @@ let instances	= {};	// This variable is indexed by form name. For each form, it
 
 const formsClassMap = {	// Map the form names to the actual class references.
 	// Tax Forms
-	"F1040":		F1040,
-	"F1040S1":		F1040S1,
-	"F1040S1A":		F1040S1A,
-	"F1040S2":		F1040S2,
-	"F1040S3":		F1040S3,
-	"F1040SA":		F1040SA,
-	"F1040SC":		F1040SC,
-	"F1040SSE":		F1040SSE,
-	"F1099G":		F1099G,
-	"F540":			F540,
-	"F540CA":		F540CA,
-	"F6251":		F6251,
-	"F7206":		F7206,
-	"W2":			W2,
+	"F1040",		F1040,	
+	"F1040S1",		F1040S1,	
+	"F1040S1A",		F1040S1A,	
+	"F1040S2",		F1040S2,	
+	"F1040S3",		F1040S3,	
+	"F1040SA",		F1040SA,	
+	"F1040SB",		F1040SB,		
+	"F1040SC",		F1040SC,	
+	"F1040SD",		F1040SD,	
+	"F1040SE",		F1040SE,	
+	"F1040SSE",		F1040SSE,	
+	"F1041",		F1041,	
+	"F1065B",		F1065B,	
+	"F1098",		F1098,	
+	"F1098E",		F1098E,	
+	"F1098T",		F1098T,	
+	"F1099C",		F1099C,	
+	"F1099DIV",		F1099DIV,	
+	"F1099G",		F1099G,	
+	"F1099INT",		F1099INT,	
+	"F1099K",		F1099K,	
+	"F1099LTC",		F1099LTC,	
+	"F1099MISC",	F1099MISC,	
+	"F1099NEC",		F1099NEC,	
+	"F1099OID",		F1099OID,	
+	"F1099R",		F1099R,	
+	"F1099S",		F1099S,	
+	"F1120S",		F1120S,	
+	"F2441",		F2441,	
+	"F540",			F540,	
+	"F540CA",		F540CA,	
+	"F6251",		F6251,	
+	"F7206",		F7206,	
+	"W2",			W2,	
 
 	// Worksheets
 	"IncTax":		IncTax,
@@ -88,19 +128,6 @@ export class Forms {
 		formlist.push(form);
 	}
 
-	static calculateAll() {
-		let f1040 = Forms.getForm("F1040");	// Do 1040 first if is exists.
-		if (f1040 && f1040.modified) {
-			f1040.calculate();
-		}
-
-		Forms.getAllForms().forEach(function(form) {
-			if (form.modified) {
-				form.calculate();
-			}
-		});
-	}
-
 	static createForm(formname) {
 		const form_class = formsClassMap[formname];
 
@@ -137,8 +164,9 @@ export class Forms {
 	}
 
 	static getForm(formname, index = 0) {
-		// Get a form by type of form. If more than one fr of that type, you can specify the
-		// index of the one you want.
+		//
+		// Get an instance of a form. If it has not been created, undefined will be returned.
+		//
 		let formlist = instances[formname];
 		let instance = undefined;
 
@@ -160,7 +188,7 @@ export class Forms {
 	}
 
 	static getValue(formname, ...lineno) {
-		// This method will get a value from a tax form. If the form does not exist, it wll try to
+		// This method will get a value from a tax form. If the form does not exist, it wlll try to
 		// create it. If it has not been calculated, it will be calculated. If the form has not been
 		// implemented, zero will be returned. If there is more than one instance of the form, the lines
 		// from all the instances are added together.

@@ -29,7 +29,7 @@ function changeHandler(event) {
 		const tax_data	= mapInputValues(inputs);					// Map input values to tax forms
 
 		TaxData.loadForms(tax_data.forms);							// Create tax forms for the taxpayer's data
-		Forms.calculateAll();										// Calculate the tax forms
+		Forms.getForm("F1040").calculate();							// Calculate the tax forms
 		putOutputs(taxpayer);										// Put results on web page
 		Debug.turnOn();												// Put debug info on web page if enabled
 	} catch (err) {
