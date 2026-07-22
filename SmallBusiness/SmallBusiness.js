@@ -139,7 +139,7 @@ function putOutputs(inputs) {
 	//
 	const retirement_contributions	= 0;
 	const net_profit				= Forms.getValue("F1040SC",	"31");
-	const se_tax					= Forms.getValue("SETax", "12");
+	const se_tax					= Forms.getValue("F1040SSE", "12");
 	const sehi_adjustment			= Forms.getValue("F7206", "14");
 	const qbi_deduction				= Math.round(Math.max(0, net_profit -
 										(se_tax / 2) -
@@ -153,9 +153,11 @@ function putOutputs(inputs) {
 	HTML.putUserOutput("QBI_Deduction",					qbi_deduction);
 	HTML.putUserOutput("SelfEmploymentTaxAdjustment",	Math.round(se_tax / 2));
 
-	HTML.putUserOutput("NetProfitAfterSEHI",			net_profit - sehi_adjustment);
+	HTML.putUserOutput("NetProfitAfterSEHI",			Math.max(0, net_profit - sehi_adjustment));
 	HTML.putUserOutput("SEHI_Adjustment",				sehi_adjustment);
-	HTML.putUserOutput("MedicalDeduction",				inputs.medical_insurance - sehi_adjustment);
+	HTML.putUserOutput("MedicalDeduction",				Math.max(0, inputs.medical_insurance - sehi_adjustment));
+
+	HTML.putUserOutput("TotalExpenses",					Forms.getValue("F1040SC", "28"));
 }
 
 document.addEventListener("DOMContentLoaded", () => {

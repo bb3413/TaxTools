@@ -13,7 +13,7 @@ function changeHandler(event) {
 	// This function is called when any input field is changed. It calculates the
 	// whole AMT (not just the field tha was changed).
 	//
-	// try {
+	try {
 		// Reset static (global) variables to erase information from a previous calculation.
 		HTML.putElementValue("ErrorMessageOutput", "");
 		Debug.reset();
@@ -34,10 +34,10 @@ function changeHandler(event) {
 		Forms.calculateAll();										// Calculate the tax forms
 		putOutputs();												// Put results on web page
 		Debug.turnOn();												// Put debug info on web page if enabled
-	// } catch (err) {
-		// HTML.putElementValue("ErrorMessageOutput", err);
-		// document.getElementById("ErrorMessageOutput").scrollIntoView({behavior: 'smooth', block: 'start'});
-	// }
+	} catch (err) {
+		HTML.putElementValue("ErrorMessageOutput", err);
+		document.getElementById("ErrorMessageOutput").scrollIntoView({behavior: 'smooth', block: 'start'});
+	}
 }
 
 function createTaxpayer(inputs) {

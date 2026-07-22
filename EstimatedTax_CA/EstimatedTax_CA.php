@@ -117,13 +117,13 @@
 				<p>540, line 18</p>
 				<p>Deductions</p>
 				<p class="trigger output-field" id="Deductions" tooltipid="#DeductionsTT">0</p>
-				<p>540, line 48</p>
+				<p>540, line 47</p>
 				<p>Non-refundable Credits</p>
 				<p class="trigger output-field" id="NonrefundableCredits" tooltipid="#NonrefundableCreditsTT">0</p>
 				<p>540, line 74-77</p>
 				<p>Refundable Credits</p>
 				<p class="trigger output-field" id="RefundableCredits" tooltipid="#RefundableCreditsTT">0</p>
-				<p>540, line 40-46</p>
+				<p>540, line 61-63</p>
 				<p>Other Taxes</p>
 				<p class="trigger output-field" id="OtherTaxes" tooltipid="#OtherTaxesTT">0</p>
 				<p>540, line 78</p>

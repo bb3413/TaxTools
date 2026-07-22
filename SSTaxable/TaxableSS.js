@@ -8,6 +8,9 @@ import { Taxpayer }		from "../Library/Classes/Taxpayer.js";
 import { TaxData }		from "../Library/Classes/TaxData.js";
 import { TaxTable }		from "../Library/Classes/TaxTable.js";
 
+let input_color				= "";
+let output_color			= "";
+
 function calculateTax(inputs) {
 	const outputs = {};
 
@@ -25,14 +28,16 @@ function calculateTax(inputs) {
 }
 
 function changeIncomeHandler(event) {
-	HTML.getUserInput("Wages",					0);
-	HTML.getUserInput("TaxableInterest",		0);
-	HTML.getUserInput("OrdinaryDividends",		0);
-	HTML.getUserInput("RetirementAccounts",		0);
-	HTML.getUserInput("PensionsAndAnnuities",	0);
-	HTML.getUserInput("CapitalGains",			0);
-	HTML.getUserInput("SelfEmploymentIncome",	0);
-	HTML.getUserInput("OtherIncome",			0);
+	HTML.putUserOutput("Wages",					0);
+	HTML.putUserOutput("TaxableInterest",		0);
+	HTML.putUserOutput("OrdinaryDividends",		0);
+	HTML.putUserOutput("RetirementAccounts",	0);
+	HTML.putUserOutput("PensionsAndAnnuities",	0);
+	HTML.putUserOutput("CapitalGains",			0);
+	HTML.putUserOutput("SelfEmploymentIncome",	0);
+	HTML.putUserOutput("OtherIncome",			0);
+
+	HTML.changeBackgroundColor("Income", input_color);
 
 	changeHandler(event);
 }
@@ -57,6 +62,8 @@ function changeIncomeComponentHandler(event) {
 										other_income;
 
 	HTML.putUserOutput("Income", total_income);
+	HTML.changeBackgroundColor("Income", output_color);
+
 	changeHandler(event);
 }
 
@@ -70,6 +77,8 @@ function changeAdjustmentsHandler(event) {
 	HTML.putUserOutput("IRAContributions",				0);
 	HTML.putUserOutput("StudentLoanInterest",			0);
 	HTML.putUserOutput("OtherAdjustments",				0);
+
+	HTML.changeBackgroundColor("Adjustments", input_color);
 
 	changeHandler(event);
 }
@@ -96,6 +105,8 @@ function changeAdjustmentComponentHandler(event) {
 											other_adjustments;
 
 	HTML.putUserOutput("Adjustments", total_adjustments);
+	HTML.changeBackgroundColor("Adjustments", output_color);
+
 	changeHandler(event);
 }
 
@@ -104,7 +115,7 @@ function changeHandler(event) {
 	// This function is called when any input field is changed. It calculates the
 	// whole deduction (not just the field tha was changed).
 	//
-	try {
+	//try {
 		// Reset static (global) variables to erase information from a previous calculation.
 		HTML.putElementValue("ErrorMessageOutput", "");
 		Debug.reset();
@@ -115,12 +126,12 @@ function changeHandler(event) {
 		const tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
 		const taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
 		const outputs	= calculateTax(inputs);
-		putOutputs(inputs);											// Put results on web page
+		putOutputs(inputs, outputs);								// Put results on web page
 		Debug.turnOn();												// Put debug info on web page if enabled
-	} catch (err) {
+	/*} catch (err) {
 		HTML.putElementValue("ErrorMessageOutput", err);
 		document.getElementById("ErrorMessageOutput").scrollIntoView({behavior: 'smooth', block: 'start'});
-	}
+	}*/
 }
 
 function createTaxpayer(inputs) {
@@ -149,7 +160,7 @@ function getInputs() {
 	return inputs;
 }
 
-function putOutputs(inputs) {
+function putOutputs(inputs, outputs) {
 	//
 	// Get the information we are interested in and write them to the web page.
 	//
@@ -162,7 +173,7 @@ function putOutputs(inputs) {
 		HTML.hideElement("LivedWithSpouseContainer");
 	}
 
-	taxable_percent = (inputs.social_security === 0) ? 0 : round(outputs.taxable_ss / inputs.social_security * 100);
+	taxable_percent = (inputs.social_security === 0) ? 0 : Math.round(outputs.taxable_ss / inputs.social_security * 100);
 	HTML.putUserOutput("TaxableSocialSecurity",	outputs.taxable_ss);
 	HTML.putUserOutput("TaxablePercent",		taxable_percent + "%", "text");
 }
@@ -198,6 +209,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	HTML.addListener("IRAContributions",			"change", changeAdjustmentComponentHandler);
 	HTML.addListener("StudentLoanInterest",			"change", changeAdjustmentComponentHandler);
 	HTML.addListener("OtherAdjustments",			"change", changeAdjustmentComponentHandler);
+
+	output_color	= HTML.getCSSGlobalVariable("--output-color");
+	input_color		= HTML.getCSSGlobalVariable("--input-color");
 
 	HTML.hideElement("LivedWithSpouseContainer");
 	HTML.hideElement("DebugContainer");

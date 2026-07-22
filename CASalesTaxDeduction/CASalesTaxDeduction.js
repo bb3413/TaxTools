@@ -42,8 +42,8 @@ function changeHandler(event) {
 		const taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
 		const tax_data	= mapInputValues(inputs);					// Map input values to tax forms
 
-		tax_data.loadForms();										// Create tax forms for the taxpayer's data
-		Forms.calculateAll();										// Calculate the tax forms
+		TaxData.loadForms(tax_data.forms);							// Create tax forms for the taxpayer's data
+		Forms.getForm("SalesTax").calculate(total_sales_tax);		// Calculate the tax forms
 		putOutputs();												// Put results on web page
 		Debug.turnOn();												// Put debug info on web page if enabled
 	} catch (err) {

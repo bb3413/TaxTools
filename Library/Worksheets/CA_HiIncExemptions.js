@@ -1,0 +1,78 @@
+
+//
+// California AGI Limitations Worksheet to limit exemptions for high incomes from the
+// Instructions for Form 540 California Resideny Income tax return, page 17.
+//
+import { Debug }	from "../Classes/Debug.js";
+import { Form }		from "../Classes/Form.js";
+import { Forms }	from "../Classes/Forms.js";
+import { Line }		from "../Classes/Line.js";
+import { TaxTable }	from "../Classes/TaxTable.js";
+import { Taxpayer }	from "../Classes/Taxpayer.js";
+
+export class CA_HiIncExemptions extends Form {
+	constructor(formname) {
+		Debug.enter("CA_HiIncExemptions.Constructor()");
+		super(formname);
+
+		Forms.addForm(formname, this);
+
+		this.lines["0a"]	= new Line("Federal AGI");
+		this.lines["0b"]	= new Line("Exemption Phseout");
+		this.lines["0c"]	= new Line("");
+		this.lines["0d"]	= new Line("");
+		this.lines["0e"]	= new Line("");
+		this.lines["0f"]	= new Line("Number of Personal Exemptions");
+		this.lines["0g"]	= new Line("");
+		this.lines["0h"]	= new Line("Amount of Personal Exemptions");
+		this.lines["0i"]	= new Line("");
+		this.lines["0j"]	= new Line("Number of Dependent Exemptions");
+		this.lines["0k"]	= new Line("");
+		this.lines["0l"]	= new Line("Amount of Dependent Exemptions");
+		this.lines["0m"]	= new Line("");
+		this.lines["0n"]	= new Line("");
+		this.lines["exemptions"]	= new Line("exemptions");
+
+		Debug.exit("CA_HiIncExemptions.Constructor()");
+	}
+
+	calculate() {
+		if (!this.modified) {
+			throw new Error(`${formname} already calculated.`);
+		}
+
+		Debug.enter("CA_HiIncExemptions.calculate()");
+		this.modified = false;
+		const tt = TaxTable.getTaxTable();
+		const tp = Taxpayer.getTaxpayer();
+		const personal_exemption	= tt.getTaxValue("CA_PersonalExemption", tp.filing_status);
+		const dependent_exemption	= tt.getTaxValue("CA_DependentExemption", tp.filing_status);
+
+		this.lines["0a"].value	= Forms.getValue("F540", "13");			// Federal AGI
+		this.lines["0b"].value	= tt.getTaxValue("CA_HiIncPhaseout", tp.filing_status);
+		this.lines["0c"].value	= this.subtract("0a", "0b");
+		if (Str.caseEqual(tp.filing_status, "MFJ")) {
+			this.lines["0d"].value	= this.line("0c") / 2500;
+		} else {
+			this.lines["0d"].value	= this.line("0c") / 1250;
+		}
+		this.lines["0d"].value	= Math.round(this.line("d"));
+		this.lines["0e"].value	= this.line("0d") * 6;
+		this.lines["0f"].value	= (Forms.getValue("F540", "07") +		// Number of Personal Exemptions
+									Forms.getValue("F540", "08") +
+									Forms.getValue("F540", "09")) / personal_exemption;
+		this.lines["0g"].value	= this.line("0e") * this.line("0f");
+		this.lines["0h"].value	= Forms.getValue("F540", "07") +		// Amount of Personal Exemptions
+									Forms.getValue("F540", "08") +
+									Forms.getValue("F540", "09");
+		this.lines["0i"].value	= Math.max(0, this.subtract("0h", "0g"));
+		this.lines["0j"].value	= Forms.getValue("F540", "10") / dependent_exemption; // Number of Personal Exemptions
+		this.lines["0k"].value	= this.line("0e") * this.line("0j");
+		this.lines["0l"].value	= Forms.getValue("F540", "10"); 		// Amount of Personal Exemptions
+		this.lines["0m"].value	= Math.max(0, this.subtract("0l", "0k"));
+		this.lines["0n"].value	= this.add("0i", "0m");
+
+		this.lines["exemptions"]= this.line("0n");
+		Debug.exit("CA_HiIncExemptions.calculate()");
+	}
+}

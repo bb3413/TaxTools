@@ -235,9 +235,9 @@ function putOutputs(taxpayer) {
 	HTML.putUserOutput("Subtractions",			Forms.getValue("F540", "014"));
 	HTML.putUserOutput("Additions",				Forms.getValue("F540", "016"));
 	HTML.putUserOutput("Deductions",			Forms.getValue("F540", "018"));
-	HTML.putUserOutput("NonrefundableCredits",	Forms.getValue("F540", "048"));
+	HTML.putUserOutput("NonrefundableCredits",	Forms.getValue("F540", "047"));
 	HTML.putUserOutput("RefundableCredits",		Forms.getValue("F540", "074", "075", "076", "077"));
-	HTML.putUserOutput("OtherTaxes",			Forms.getValue("F540", "064"));
+	HTML.putUserOutput("OtherTaxes",			Forms.getValue("F540", "061","062","063"));
 	HTML.putUserOutput("Payments",				Forms.getValue("F540", "078"));
 	HTML.putUserOutput("StateAGI",				Forms.getValue("F540", "017"));
 	HTML.putUserOutput("TaxableIncome",			Forms.getValue("F540", "019"));

@@ -12,10 +12,6 @@ export class Form {
 		this.isSingleton	= true;			// Only one form of this type allowed.
 	}
 
-	calculate() {
-		this.modified = false;
-	}
-
 	add(...indexlist) {
 		let sum = 0;
 

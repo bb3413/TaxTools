@@ -3,6 +3,7 @@ import { Dates }		from "../Library/Classes/Dates.js";
 import { Debug }		from "../Library/Classes/Debug.js";
 import { Forms }		from "../Library/Classes/Forms.js";
 import { HTML }			from "../Library/Classes/HTML.js";
+import { Taxpayer }		from "../Library/Classes/Taxpayer.js";
 import { TaxData }		from "../Library/Classes/TaxData.js";
 import { TaxTable }		from "../Library/Classes/TaxTable.js";
 
@@ -13,6 +14,10 @@ function calculateTax(inputs) {
 	const ss_tax_alt	= Forms.createForm("SSTax");
 	const ss_tax_1		= Forms.createForm("SSTax");
 	const ss_tax_2		= Forms.createForm("SSTax")
+
+	if (inputs.ss_received_0 < inputs.lump_sum_1 + inputs.lump_sum_2) {
+		throw new Error("Sum of lump sum payments cannot be greater that the total benefits received.");
+	}
 
 	// Current year - Standard Method
 	outputs.ss_taxable_0 = ss_tax_0.calculate(
@@ -25,7 +30,7 @@ function calculateTax(inputs) {
 		false);							// Lived with spouse
 
 	// Current year - Alternate Method
-	let ss_received_alt = input.ss_received_0 - input.lump_sum_1 - input.lump_sum_2;
+	let ss_received_alt = inputs.ss_received_0 - inputs.lump_sum_1 - inputs.lump_sum_2;
 	if (ss_received_alt !== 0) {
 		outputs.ss_taxable_alt = ss_tax_alt.calculate(
 			inputs.filing_status_0,
@@ -41,14 +46,14 @@ function calculateTax(inputs) {
 	if (inputs.lump_sum_1 !== 0) {
 		outputs.ss_taxable_new_1 = ss_tax_1.calculate(
 			inputs.filing_status_1,
-			input.ss_received_reported_1 + input.lump_sum_1,	// Total SS received
-			input.agi_1 - input.ss_taxable_reported_1,			// Income without taxable SS
-			input.tax_exempt_interest_1,						// Tax exempt interest
+			inputs.ss_received_reported_1 + inputs.lump_sum_1,	// Total SS received
+			inputs.agi_1 - inputs.ss_taxable_reported_1,			// Income without taxable SS
+			inputs.tax_exempt_interest_1,						// Tax exempt interest
 			0,													// Student loan interest
 			0,													// Adjustments
 			false);												// Lived with spouse
 
-		outputs.ss_taxable_new_1	-= input.ss_taxable_reported_1;
+		outputs.ss_taxable_new_1	-= inputs.ss_taxable_reported_1;
 		outputs.ss_taxable_alt		+= outputs.ss_taxable_new_1;
 	}
 
@@ -56,16 +61,18 @@ function calculateTax(inputs) {
 	if (inputs.lump_sum_2 !== 0) {
 		outputs.ss_taxable_new_2 = ss_tax_2.calculate(
 			inputs.filing_status_2,
-			input.ss_received_reported_2 + input.lump_sum_2,	// Total SS received
-			input.agi_2 - input.ss_taxable_reported_2,			// Income without taxable SS
-			input.tax_exempt_interest_2,						// Tax exempt interest
+			inputs.ss_received_reported_2 + inputs.lump_sum_2,	// Total SS received
+			inputs.agi_2 - inputs.ss_taxable_reported_2,			// Income without taxable SS
+			inputs.tax_exempt_interest_2,						// Tax exempt interest
 			0,													// Student loan interest
 			0,													// Adjustments
 			false);												// Lived with spouse
 
-		outputs.ss_taxable_new_2	-= input.ss_taxable_reported_2;
+		outputs.ss_taxable_new_2	-= inputs.ss_taxable_reported_2;
 		outputs.ss_taxable_alt		+= outputs.ss_taxable_new_2;
 	}
+
+	return outputs;
 }
 
 function changeHandler(event) {
@@ -83,7 +90,7 @@ function changeHandler(event) {
 		const inputs	= getInputs();								// Get inputs from the web page
 		const tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
 		const outputs	= calculateTax(inputs);
-		putOutputs(inputs);											// Put results on web page
+		putOutputs(inputs, outputs);								// Put results on web page
 		Debug.turnOn();												// Put debug info on web page if enabled
 	} catch (err) {
 		HTML.putElementValue("ErrorMessageOutput", err);
@@ -126,29 +133,29 @@ function getInputs() {
 	return inputs;
 }
 
-function putOutputs(inputs) {
+function putOutputs(inputs, outputs) {
 	//
 	// Get the information we are interested in and write them to the web page.
 	//
 	let taxable_percent = 0;
 
 	// Current year - Standard Method
-	taxable_percent = round(outputs.ss_taxable_0 / inputs.ss_received_0 * 100);
+	taxable_percent = Math.round(outputs.ss_taxable_0 / inputs.ss_received_0 * 100);
 	HTML.putUserOutput("TaxableSocialSecurity-0",		outputs.ss_taxable_0);
 	HTML.putUserOutput("TaxablePercent-0",				taxable_percent + "%", "text");
 
 	// Previous Year 1
-	taxable_percent	= (inputs.lump_sum_1 === 0) ? 0 : round(outputs.ss_taxable_new_1 / inputs.lump_sum_1 * 100);
+	taxable_percent	= (inputs.lump_sum_1 === 0) ? 0 : Math.round(outputs.ss_taxable_new_1 / inputs.lump_sum_1 * 100);
 	HTML.putUserOutput("TaxableSocialSecurityNew-1",	outputs.ss_taxable_new_1);
 	HTML.putUserOutput("TaxablePercent-1",				taxable_percent + "%", "text");
 
 	// Previous Year 2
-	taxable_percent	= (inputs.lump_sum_2 === 0) ? 0 : round(outputs.ss_taxable_new_2 / inputs.lump_sum_2 * 100);
+	taxable_percent	= (inputs.lump_sum_2 === 0) ? 0 : Math.round(outputs.ss_taxable_new_2 / inputs.lump_sum_2 * 100);
 	HTML.putUserOutput("TaxableSocialSecurityNew-2",	outputs.ss_taxable_new_2);
 	HTML.putUserOutput("TaxablePercent-2",				taxable_percent + "%", "text");
 
 	// Alternate taxable amount
-	taxable_percent = round(output.ss_taxable_alt / input.ss_received_0 * 100);
+	taxable_percent = Math.round(outputs.ss_taxable_alt / inputs.ss_received_0 * 100);
 	HTML.putUserOutput("TaxableSocialSecurityAlt",		outputs.ss_taxable_alt);
 	HTML.putUserOutput("TaxablePercentAlt",				taxable_percent + "%", "text");
 }
