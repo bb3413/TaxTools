@@ -11,6 +11,7 @@ export class F1099G extends Form {
 		Debug.enter("F1099G.Constructor()");
 		super(formname);
 
+		this.isSingleton = false;
 		Forms.addForm(formname, this);
 
 		this.lines["01"]	= new Line("Unemployment Compensation");
