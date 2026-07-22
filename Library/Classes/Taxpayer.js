@@ -40,27 +40,27 @@ export class Taxpayer {
 	}
 
 	// Getter methods
-	get tax_year(){						return this._tax_year};
-	get filing_status(){				return this._filing_status};
+	get tax_year( ){					return this._tax_year};
+	get filing_status() {				return this._filing_status};
 
-	get taxpayers_name(){				return this._taxpayers_name};
-	get taxpayers_birthday(){			return this._taxpayers_birthday};
-	get taxpayers_age(){				return this._taxpayers_age};
-	get is_taxpayer_blind(){			return this._is_taxpayer_blind};
-	get is_taxpayer_citizen(){			return this._is_taxpayer_citizen};
-	get taxpayer_has_ssn(){				return this._taxpayer_has_ssn};
+	get taxpayers_name() {				return this._taxpayers_name};
+	get taxpayers_birthday() {			return this._taxpayers_birthday};
+	get taxpayers_age() {				return this._taxpayers_age};
+	get is_taxpayer_blind() {			return this._is_taxpayer_blind};
+	get is_taxpayer_citizen() {			return this._is_taxpayer_citizen};
+	get taxpayer_has_ssn() {			return this._taxpayer_has_ssn};
 
-	get spouses_birthday(){				return this._spouses_birthday};
-	get spouses_age(){					return this._spouses_age};
-	get is_spouse_blind(){				return this._is_spouse_blind};
-	get is_spouse_citizen(){			return this._is_spouse_citizen};
-	get spouse_has_ssn(){				return this._spouse_has_ssn};
+	get spouses_birthday() {			return this._spouses_birthday};
+	get spouses_age() {					return this._spouses_age};
+	get is_spouse_blind() {				return this._is_spouse_blind};
+	get is_spouse_citizen() {			return this._is_spouse_citizen};
+	get spouse_has_ssn() {				return this._spouse_has_ssn};
 
-	get lived_with_spouse(){			return this._lived_with_spouse};
-	get number_of_dependents(){			return this._number_of_dependents};
+	get lived_with_spouse() {			return this._lived_with_spouse};
+	get number_of_dependents() {		return this._number_of_dependents};
 
 	// Setter methods
-	set tax_year(year){					this._tax_year					= year ?? this._tax_year; }
+	set tax_year(year) {				this._tax_year					= year ?? this._tax_year; }
 	set filing_status(fs) {				this._filing_status				= fs   ?? this._filing_status; }
 
 	set taxpayers_name(name) {			this._taxpayers_name			= name ?? this._taxpayers_name; }
@@ -72,7 +72,7 @@ export class Taxpayer {
 	set is_spouse_citizen(bool) {		this._is_spouse_citizen			= bool ?? this._is_spouse_citizen; }
 	set spouse_has_ssn(bool) {			this._spouse_has_ssn			= bool ?? this._spouse_has_ssn; }
 
-	set lived_with_spouse(bool){		this._lived_with_spouse			= bool ?? this._lived_with_spouse; }
+	set lived_with_spouse(bool) {		this._lived_with_spouse			= bool ?? this._lived_with_spouse; }
 	set number_of_dependents(num){		this._number_of_dependents		= num  ?? this._number_of_dependents; }
 
 	set taxpayers_birthday(birthday) {

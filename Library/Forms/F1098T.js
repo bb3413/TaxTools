@@ -6,9 +6,9 @@ import { Line }		from "../Classes/Line.js";
 import { TaxTable }	from "../Classes/TaxTable.js";
 import { Taxpayer }	from "../Classes/Taxpayer.js";
 
-export class Template extends Form {
+export class F1098T extends Form {
 	constructor(formname) {
-		Debug.enter("Template.Constructor()");
+		Debug.enter("F1098T.Constructor()");
 		super(formname);
 
 		// NOT IMPLEMENTED
@@ -75,7 +75,7 @@ export class Template extends Form {
 		this.lines["40s"]	= new Line("");
 		this.lines["named_return"]	= new Line("Named Return");
 
-		Debug.exit("Template.Constructor()");
+		Debug.exit("F1098T.Constructor()");
 	}
 
 	calculate() {
@@ -83,7 +83,7 @@ export class Template extends Form {
 			throw new Error(`${formname} already calculated.`);
 		}
 
-		Debug.enter("Template.calculate()");
+		Debug.enter("F1098T.calculate()");
 		this.modified = false;
 		const tt = TaxTable.getTaxTable();
 		const tp = Taxpayer.getTaxpayer();
@@ -100,6 +100,6 @@ export class Template extends Form {
 		this.lines["10"].value	= 0;	//
 
 		this.lines["named_return"].value = this.line(10);
-		Debug.exit("Template.calculate()");
+		Debug.exit("F1098T.calculate()");
 	}
 }
