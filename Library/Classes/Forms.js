@@ -22,6 +22,7 @@ import { F1065B }		from "../Forms/F1065B.js";
 import { F1098 }		from "../Forms/F1098.js";
 import { F1098E }		from "../Forms/F1098E.js";
 import { F1098T }		from "../Forms/F1098T.js";
+import { F1099B }		from "../Forms/F1099B.js";
 import { F1099C }		from "../Forms/F1099C.js";
 import { F1099DIV }		from "../Forms/F1099DIV.js";
 import { F1099G }		from "../Forms/F1099G.js";
@@ -72,6 +73,7 @@ const formsClassMap = {	// Map the form names to the actual class references.
 	"F1098":		F1098,
 	"F1098E":		F1098E,
 	"F1098T":		F1098T,
+	"F1099B":		F1099B,
 	"F1099C":		F1099C,
 	"F1099DIV":		F1099DIV,
 	"F1099G":		F1099G,
@@ -108,21 +110,6 @@ const formsClassMap = {	// Map the form names to the actual class references.
 // be created and calculated before the value is returned. This array lists those forms.
 const create_on_demand = [
 	// Forms
-
-	// Worksheets
-	"IncTax",
-	"Refund",
-	"SalesTax",
-	"Simple",
-	"SSTax",
-
-	// California Worksheets
-	"CA_HiIncDeductions",
-	"CA_HiIncExemptions",
-];
-const not_checked_yet = [
-	// This is a temporary array to help keep track of which forms have been
-	// checked and which are not accounted for.
 	"F1040",
 	"F1040S1",
 	"F1040S1A",
@@ -134,29 +121,41 @@ const not_checked_yet = [
 	"F1040SD",
 	"F1040SE",
 	"F1040SSE",
-	"F1041",
-	"F1065B",
-	"F1098",
-	"F1098E",
-	"F1098T",
-	"F1099C",
-	"F1099DIV",
-	"F1099G",
-	"F1099INT",
-	"F1099K",
-	"F1099LTC",
-	"F1099MISC",
-	"F1099NEC",
-	"F1099OID",
-	"F1099R",
-	"F1099S",
-	"F1120S",
+//	"F1041",
+//	"F1065B",
+//	"F1098",
+//	"F1098E",
+//	"F1098T",
+//	"F1099B",
+//	"F1099C",
+//	"F1099DIV",
+//	"F1099G",
+//	"F1099INT",
+//	"F1099K",
+//	"F1099LTC",
+//	"F1099MISC",
+//	"F1099NEC",
+//	"F1099OID",
+//	"F1099R",
+//	"F1099S",
+//	"F1120S",
 	"F2441",
 	"F540",
 	"F540CA",
 	"F6251",
 	"F7206",
-	"W2",
+//	"W2",
+
+	// Worksheets
+	"IncTax",
+	"Refund",
+	"SalesTax",
+	"Simple",
+	"SSTax",
+
+	// California Worksheets
+	"CA_HiIncDeductions",
+	"CA_HiIncExemptions",
 ];
 
 export class Forms {

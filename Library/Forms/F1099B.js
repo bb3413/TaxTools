@@ -6,9 +6,9 @@ import { Line }		from "../Classes/Line.js";
 import { TaxTable }	from "../Classes/TaxTable.js";
 import { Taxpayer }	from "../Classes/Taxpayer.js";
 
-export class F1099K extends Form {
+export class F1099B extends Form {
 	constructor(formname) {
-		Debug.enter("F1099K.Constructor()");
+		Debug.enter("F1099B.Constructor()");
 		super(formname);
 
 		// NOT IMPLEMENTED
@@ -76,7 +76,7 @@ export class F1099K extends Form {
 		this.lines["40s"]	= new Line("");
 		this.lines["named_return"]	= new Line("Named Return");
 
-		Debug.exit("F1099K.Constructor()");
+		Debug.exit("F1099B.Constructor()");
 	}
 
 	calculate() {
@@ -84,7 +84,7 @@ export class F1099K extends Form {
 			throw new Error(`${formname} already calculated.`);
 		}
 
-		Debug.enter("F1099K.calculate()");
+		Debug.enter("F1099B.calculate()");
 		this.modified = false;
 		const tt = TaxTable.getTaxTable();
 		const tp = Taxpayer.getTaxpayer();
@@ -101,6 +101,6 @@ export class F1099K extends Form {
 		this.lines["10"].value	= 0;	//
 
 		this.lines["named_return"].value = this.line(10);
-		Debug.exit("F1099K.calculate()");
+		Debug.exit("F1099B.calculate()");
 	}
 }

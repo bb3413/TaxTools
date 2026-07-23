@@ -11,6 +11,7 @@ export class F1040SC extends Form {
 		Debug.enter("F1040SC.Constructor()");
 		super(formname);
 
+		this.isSingleton = false;
 		Forms.addForm(formname, this);
 
 		// Income

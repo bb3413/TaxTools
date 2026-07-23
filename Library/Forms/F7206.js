@@ -16,6 +16,7 @@ export class F7206 extends Form {
 		Debug.enter("F7206.Constructor()");
 		super(formname);
 
+		this.isSingleton = false;
 		Forms.addForm(formname, this);
 
 		this.lines["01"]	= new Line("Health Insurance");

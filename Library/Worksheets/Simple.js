@@ -45,6 +45,7 @@ export class Simple extends Form {
 		Debug.enter("Simple.Constructor()");
 		super(formname);
 
+		this.isSingleton = false;
 		Forms.addForm(formname, this);
 
 		this.lines["01"]	= new Line("Gross Distribution (1099-R, box 1)");

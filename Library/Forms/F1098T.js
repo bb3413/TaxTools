@@ -13,6 +13,7 @@ export class F1098T extends Form {
 
 		// NOT IMPLEMENTED
 
+		this.isSingleton = false;
 		Forms.addForm(formname, this);
 
 		this.lines["01"]	= new Line("");
