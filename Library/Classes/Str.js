@@ -96,7 +96,25 @@ export class Str {
 		return str[0].toUpperCase() + str.slice(1);
 	}
 
-	static toEnglishCase(name) {
+	static camelToEnglishCase(name) {
+		// Convert Camel case (abcDefGhi) to English (Abc def ghi) preserving acronyms.
+		name = name
+				// Insert space before capital letter when preceded by lowercase/number
+				.replace(/([a-z0-9]+)([A-Z])/g, '$1 $2')
+				// Insert space between acronym and starting word (e.g., "HTTPResponse" -> "HTTP Response")
+				.replace(/([A-Z]+)([A-Za-z])/g, '$1 $2')
+				// Insert space between letter followed by number
+				.replace(/([A-Za-z]+)([0-9])/g, '$1 $2')
+				// Insert space between number followed by letter
+				.replace(/([0-9]+)([A-Za-z])/g, '$1 $2')
+				.trim();
+		
+		name = Str.upshiftFirst(name);
+
+		return name;
+	}
+
+	static snakeToEnglishCase(name) {
 		// Convert snake case (abc_def_ghi) to English (Abc def ghi).
 		name = name.replace(/_/g, " ").trim();
 		name = Str.upshiftFirst(name);
@@ -104,12 +122,21 @@ export class Str {
 		return name;
 	}
 
-	static toSnakeCase(name) {
-		// Convert camel case (abcDefGhi) to snake case (abc_def_ghi).
-		return name.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase();
+	static camelToSnakeCase(name) {
+		// Convert camel case (abcDefGhi) to snake case (abc_def_ghi) preserving acronyms.
+		return name
+				// Insert underbar before capital letter when preceded by lowercase/number
+				.replace(/([a-z0-9]+)([A-Z])/g, '$1_$2')
+				// Insert underbar between acronym and starting word (e.g., "HTTPResponse" -> "HTTP Response")
+				.replace(/([A-Z]+)([A-Za-z])/g, '$1_$2')
+				// Insert underbar between letter followed by number
+				.replace(/([A-Za-z]+)([0-9])/g, '$1_$2')
+				// Insert underbar between number followed by letter
+				.replace(/([0-9]+)([A-Za-z])/g, '$1_$2')
+				.toLowerCase();
 	}
 
-	static toCamelCase(name) {
+	static snakeToCamelCase(name) {
 		// Convert snake case (abc_def_ghi) to camel case (abcDefGhi).
 		let newname = "";
 		let words = name.split("_");

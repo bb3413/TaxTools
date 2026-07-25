@@ -18,7 +18,7 @@ function keywordList() {
 		"Verbose" ];
 
 	// Keywords are the debug keywords plus the names of the tax forms and worksheets.
-	return debug_keywords.concat(Forms.formNames());
+	return debug_keywords.concat(Forms.listAllForms());
 }
 
 function hideField(name) {

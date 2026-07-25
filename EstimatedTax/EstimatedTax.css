@@ -12,7 +12,7 @@ h1, h2, h3, h4 {
 	font-weight:			700;
 }
 
-.save-restore {
+.save-restore-container {
 	display:				flex;
 	justify-content:		flex-end;	/* Align the div block to the right. */
 	align-items:			flex-end;	/* Align buttons on bottom edge. */

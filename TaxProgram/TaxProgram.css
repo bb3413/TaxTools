@@ -16,15 +16,19 @@ h2 {
 	font-weight:			700;
 }
 
-.button-container {
+.save-restore-container {
 	display:				flex;
-	justify-content:		center;		/* Align the div block to the right. */
+	justify-content:		flex-end;	/* Align the div block to the right. */
 	align-items:			flex-end;	/* Align buttons on bottom edge. */
+	gap:					5px;		/* Optional: adds space between buttons */
 	margin-bottom:			3px;
-	margin-top:				10px;
 }
 
-.load-button {
+.save-button {
+	padding-bottom:			3px;
+}
+
+.restore-button {
 	display: 				inline-block;
 	cursor:					pointer;
 	padding-left:			6px;

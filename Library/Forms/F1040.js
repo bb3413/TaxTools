@@ -3,10 +3,73 @@ import { Debug }	from "../Classes/Debug.js";
 import { Form }		from "../Classes/Form.js";
 import { Line }		from "../Classes/Line.js";
 import { Forms }	from "../Classes/Forms.js";
+import { HTML }		from "../Classes/HTML.js";
 import { TaxTable }	from "../Classes/TaxTable.js";
 import { Taxpayer }	from "../Classes/Taxpayer.js";
 import { IncTax }	from "../Worksheets/IncTax.js";
 import { SSTax }	from "../Worksheets/SSTax.js";
+
+const FIELDS =	[ 
+	// Line		Element
+	// Number	Name
+	[ "01a",	"Wages" ],
+	[ "01b",	"HouseholdWages" ],
+	[ "01c",	"TipIncome" ],
+	[ "01d",	"MedicaidWaiverPayments" ],
+	[ "01e",	"DependentCareBenefits" ],
+	[ "01f",	"AdoptionBenefits" ],
+	[ "01g",	"WagesFromForm8919" ],
+	[ "01h",	"OtherEarnedIncome" ],
+	[ "01i",	"NontaxableCombatPay" ],
+	[ "01z",	"TotalLines1aTo1h" ],
+	[ "02a",	"TaxExemptInterest" ],
+	[ "02b",	"TaxableInterest" ],
+	[ "03a",	"QualifiedDividends" ],
+	[ "03b",	"OrdinaryDividends" ],
+	[ "04a",	"IRADistributions" ],
+	[ "04b",	"TaxableIRA" ],
+	[ "05a",	"PensionsAndAnnuities" ],
+	[ "05b",	"TaxablePensionsAndAnnuities" ],
+	[ "06a",	"SocialSecurityBenefits" ],
+	[ "06b",	"TaxableSocialSecurity" ],
+	[ "07a",	"CapitalGain" ],
+	[ "08",		"AdditionalIncome" ],
+	[ "09",		"TotalIncome" ],
+	[ "10",		"AdjustmentsToIncome" ],
+	[ "11a",	"AdjustedGrossIncome" ],
+	[ "11b",	"AdjustedGrossIncome" ],
+	[ "12e",	"Deductions" ],
+	[ "13a",	"QBIDeduction" ],
+	[ "13b",	"AdditionalDeductions" ],
+	[ "14",		"TotalDeductions" ],
+	[ "15",		"TaxableIncome" ],
+	[ "16",		"IncomeTax" ],
+	[ "17",		"AdditionalTax" ],
+	[ "18",		"TotalTax" ],
+	[ "19",		"ChildTaxCredit" ],
+	[ "20",		"NonrefundableCredits" ],
+	[ "21",		"TotalNonrefundableCredits" ],
+	[ "22",		"TaxMinusNonrefundableCredits" ],
+	[ "23",		"OtherTaxes" ],
+	[ "24",		"TotalTax" ],
+	[ "25a",	"WithholdingFromW2" ],
+	[ "25b",	"WithholdingFrom1099" ],
+	[ "25c",	"OtherWithholding" ],
+	[ "25d",	"TotalWithholding" ],
+	[ "26",		"EstimatedTaxPayments" ],
+	[ "27a",	"EarnedIncomeCredit" ],
+	[ "28",		"AdditionalChildTaxCredit" ],
+	[ "29",		"AmericanOpportunityCredit" ],
+	[ "30",		"RefundableAdoptionCredit" ],
+	[ "31",		"AdditionalRefundableCredits" ],
+	[ "32",		"EstimatedPaymentsAndRefundableCredits" ],
+	[ "33",		"TotalPayments" ],
+	[ "34",		"Overpaid" ],
+	[ "35a",	"Refund" ],
+	[ "36",		"ApplyToNextYearsTax" ],
+	[ "37",		"AmountOwed" ],
+	[ "38",		"EstimatedTaxPenalty" ],
+];
 
 export class F1040 extends Form {
 	constructor(formname) {
@@ -24,7 +87,7 @@ export class F1040 extends Form {
 		this.lines["01g"]	= new Line("Wages from Form 8919");
 		this.lines["01h"]	= new Line("Other Earned Income");
 		this.lines["01i"]	= new Line("Nontaxable Combat Pay");
-		this.lines["01z"]	= new Line("Total lines 1a-1h");
+		this.lines["01z"]	= new Line("Total lines 1a To 1h");
 		this.lines["02a"]	= new Line("Tax-exempt Interest");
 		this.lines["02b"]	= new Line("Taxable Interest");
 		this.lines["03a"]	= new Line("Qualified Dividends");
@@ -191,5 +254,66 @@ export class F1040 extends Form {
 			/*
 			return 1040[9] + 1040S1[24j] - (1040[1z] + 1040S1[3,6,8a,8d,8u,18])
 			*/
+	}
+
+	//
+	// Static methods
+	//
+	static getFieldsForInput(input) {
+		// Gets the fields from the web page, process any debug keywords,
+		// and convert to an integer. Put the values into the object passed
+		// as a parameter.
+
+		FIELDS.forEach(function(line) {
+			const lineno		= line[0];
+			const element_name	= line[1];
+			const var_name		= Str.toSnake(label);
+			
+			input[var_name] = HTML.getUserInput(line[1]);
+		});
+	}
+
+	static getFieldsForSave() {
+		// This method gets the fields from the web page and create an array in the
+		// format needed to save the value to a file.
+		const title		= [ "W2" ];
+		const form		= [];
+
+		FIELDS.forEach(function(line) {
+			const lineno		= line[0];
+			const element_name	= line[1];
+			const value			= HTML.getElementValue(element_name);
+			if (value) {	// Don't save blank lines.
+				form.push( [ lineno, value ] );
+			}
+		});
+		
+		if (form.length > 0) {
+			return title.concat(form);
+		} else {
+			return [];
+		}
+	}
+
+	static putFieldsFormRestore(form) {
+		// This method puts the fields read from a saved file back onto the
+		// web page.
+		form.pop();		// Ignore the form name.
+
+		form.forEach(function(line) {
+			let lineno			= line[0];
+			let element_name	= line[1];
+			HTML.putElementValue(element_name, value);
+		});
+	}
+
+	static listFields() {
+		const fields = [];
+
+		FIELDS.forEach(function(field) {
+			fields.push(field);
+		});
+
+		return fields;
 	}
 }

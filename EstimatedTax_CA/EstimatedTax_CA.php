@@ -17,7 +17,7 @@
 
 <body>
 	<div class="tool-container">
-		<h1 class="title">California Estimated Tax Calculator</h1>
+		<h1 class="title" id="Title">California Estimated Tax Calculator</h1>
 		<h2 class="title">for the Tax Year
 			<select id="TaxYear" class="trigger" tooltipid="#TaxYearTT">
 				<option value="2026">2026</option>
@@ -36,7 +36,7 @@
 		in the tax return. Click <a href="EstimatedTax_CA-Help.html">this link</a> for more help
 		with this tool.</p>
 
-		<div class="save-restore">
+		<div class="save-restore-container">
 			<!-- Save Button -->
 			<input type="button" id="SaveButton" class="trigger button save-button"
 				value="Save" tooltipid="#SaveButtonTT" />

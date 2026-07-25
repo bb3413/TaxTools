@@ -193,11 +193,6 @@ export class Forms {
 		return undefined;
 	}
 
-	static formNames(){
-		// Get the names of all supported forms, whether they exist or not.
-		return Object.keys(formsClassMap);
-	}
-
 	static getAllForms(formname = "") {
 		// Get all the form objects that have been created, or all the forms of a particular type.
 		let all_forms	= [];
@@ -216,6 +211,10 @@ export class Forms {
 			}
 		}
 		return all_forms;
+	}
+
+	static getClass(class_name) {
+		return formsClassMap[class_name];
 	}
 
 	static getForm(formname, index = 0) {
@@ -303,6 +302,32 @@ export class Forms {
 		}
 		Debug.exit(`Forms.getTextValue(${str})`);
 		return str;
+	}
+
+	static listAllForms(){
+		// Return array with the names of all suported tax forms and worksheets.
+		return Object.keys(formsClassMap);
+	}
+
+	static listAllTaxForms(){
+		const tax_forms = [];
+		// Return array with the names of the suported tax forms.
+		Object.keys(formsClassMap).forEach(function(name) {
+			if (name.startsWith("F") || name === "W2") {
+				tax_forms.push(name);
+			}
+		});
+	
+		return tax_forms;
+	}
+
+	static listAllWorksheets(){
+		// Return array with the names of the suported worksheets.
+		Object.keys(formsClassMap).forEach(function(name) {
+			if (!name.startsWith("F") && name !== "W2") {
+				tax_forms.push(name);
+			}
+		});
 	}
 
 	static toConsole() {

@@ -9,6 +9,8 @@ import { Taxpayer }		from "../Library/Classes/Taxpayer.js";
 import { TaxData }		from "../Library/Classes/TaxData.js";
 import { TaxTable }		from "../Library/Classes/TaxTable.js";
 
+import { TAX_PROGRAM_SAVE_FILE } from "../Library/TaxTools/TaxTools.js";
+
 function changeHandler(inputs) {
 	//
 	// This function is called when any input field is changed. It calculates the
@@ -49,11 +51,69 @@ function createTaxpayer(inputs) {
 	Object.keys(inputs.Taxpayer).forEach(function(key) {
 		// Keys in the JSON file use camel case. Convert it to snake case, which is
 		// used for variable names.
-		let fieldname = Str.toSnakeCase(key);
+		let fieldname = Str.camelToSnakeCase(key);
 		taxpayer[fieldname] = inputs.Taxpayer[key];
 	});
 
 	return taxpayer;
+}
+
+function getFieldsForInput(input) {
+	// Gets the fields from the web page, process any debug keywords,
+	// and convert to an integer. Put the values into the object passed
+	// as a parameter.
+
+	FIELDS.forEach(function(line) {
+		const lineno		= line[0];
+		const element_name	= line[1];
+		const var_name		= Str.toSnake(label);
+		if ([ "09", "15", "20" ].includes(lineno)) {
+			let value = HTML.getUserInput(label, "text");
+		} else {
+			let value = HTML.getUserInput(line[1]);
+		}
+		input[var_name] = value;
+	});
+}
+
+function getFieldsForSave(formname) {
+	// This method gets the fields from the web page and create an array in the
+	// format needed to save the value to a file.
+	const title			= [ formname ];
+	const form			= [];
+	const form_class	= Forms.getClass(formname);
+
+	if (typeof form_class.listFields !== "function") {
+		return [];
+	}
+	
+	const fields = form_class.listFields();
+	fields.forEach(function(line) {
+		const lineno		= line[0];
+		const element_name	= line[1];
+		const value			= HTML.getElementValue(`${formname}-${element_name}`);
+		if (value) {	// Don't save blank lines.
+			form.push( [ lineno, value ] );
+		}
+	});
+	
+	if (form.length > 0) {
+		return title.concat(form);
+	} else {
+		return [];
+	}
+}
+
+function putFieldsFormRestore(form) {
+	// This method puts the fields read from a saved file back onto the
+	// web page.
+	form.pop();		// Ignore the form name.
+
+	form.forEach(function(line) {
+		let lineno			= line[0];
+		let element_name	= line[1];
+		HTML.putElementValue(element_name, value);
+	});
 }
 
 function putOutputs(tax_year) {
@@ -62,9 +122,31 @@ function putOutputs(tax_year) {
 	Debug.turnOn();											// Put debug info on web page if enabled
 }
 
-function readTaxData(event) {
+function restoreDataHandler(data) {
 	//
-	// Read the file with the tax data.
+	// This function is called when the user restores the input fields from a file.
+	// The data that was copied from the file is passed a parameter.
+	//
+	let inputs;
+/*
+	// There are currently 2 formats in use; select which one this is.
+	if (data.input_data) {
+		inputs = data.input_data;
+	} else {
+		inputs = data;
+	}
+
+	// Restore the input fields
+	HTML.putElementValue("TaxYear",							inputs.tax_year);
+
+	// Taxpayer Information
+	HTML.putElementValue("TaxpayersName",					inputs.taxpayers_name);
+	HTML.putElementValue("FilingStatus",					inputs.filing_status);
+*/
+	changeHandler();
+}
+
+function restoreUserData(event) {
 	//
 	// The file selection dialog gets a list of files, but only one should be passed
 	// in our case; select the first file and ignore the rest.
@@ -75,13 +157,37 @@ function readTaxData(event) {
 		return;
 	}
 
-	File.restoreFromFile(filename, changeHandler);
+	File.restoreFromFile(filename, restoreDataHandler);
+}
+
+function saveUserData(event) {
+	//
+	// This function is called when the user wants to save the input fields to a file.
+	//
+	let inputs = [];
+	Forms.listAllTaxForms().forEach(function(formname) {
+		let tmp = getFieldsForSave(formname);
+		if (tmp.length > 0) {
+			inputs.push(tmp);
+		}
+	});
+
+	const data = {
+		version:		HTML.getUserInput("TaxToolsVersion", "text"),
+		tool:			HTML.getUserInput("Title", "text"),
+		todays_date:	new Date().toLocaleDateString(),
+		input_data:		inputs,
+	};
+
+	File.saveToFile(data, TAX_PROGRAM_SAVE_FILE);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
 	//
 	// Wait for the DOM to be fully loaded before trying to access any elements.
 	//
-	HTML.addListener("InputFile", "change", readTaxData);
+	HTML.addListener("SaveButton",	"click",  saveUserData);
+	HTML.addListener("InputFile",	"change", restoreUserData);
+
 	HTML.hideElement("DebugContainer");
 });

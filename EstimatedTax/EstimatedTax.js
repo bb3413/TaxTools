@@ -8,6 +8,8 @@ import { Taxpayer }		from "../Library/Classes/Taxpayer.js";
 import { TaxData }		from "../Library/Classes/TaxData.js";
 import { TaxTable }		from "../Library/Classes/TaxTable.js";
 
+import { ESTIMATED_TAX_SAVE_FILE } from "../Library/TaxTools/TaxTools.js";
+
 // This variable need to be global so it can be accssed by the save and restore handlers.
 let inputs = {};
 
@@ -432,15 +434,13 @@ function saveUserData(event) {
 	//
 	// This function is called when the user wants to save the input fields to a file.
 	//
-	const FILENAME = "EstimatedTax.txt";
-
 	const data = {
 		version:		HTML.getUserInput("TaxToolsVersion", "text"),
 		todays_date:	new Date().toLocaleDateString(),
 		input_data:		inputs,
 	};
 
-	File.saveToFile(data, FILENAME);
+	File.saveToFile(data, ESTIMATED_TAX_SAVE_FILE);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -545,5 +545,3 @@ document.addEventListener("DOMContentLoaded", () => {
 	HTML.putUserOutput("TaxYear", Dates.getTaxYear(), "text");		// Default tax year.
 	HTML.hideElement("DebugContainer");
 });
-
-export { changeHandler };

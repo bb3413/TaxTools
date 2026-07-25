@@ -116,7 +116,7 @@ export class Taxpayer {
 				continue;
 			}
 			if (value) {	// Skip empty lines.
-				let s = "	" + Str.toEnglishCase(field);
+				let s = "	" + Str.snakeToEnglishCase(field);
 				s = s.padEnd(65, " ") + value;
 				str.push(s);
 			}

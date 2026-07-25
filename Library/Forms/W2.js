@@ -2,9 +2,43 @@
 import { Debug }	from "../Classes/Debug.js";
 import { Form }		from "../Classes/Form.js";
 import { Forms }	from "../Classes/Forms.js";
+import { HTML }		from "../Classes/HTML.js";
 import { Line }		from "../Classes/Line.js";
 import { TaxTable }	from "../Classes/TaxTable.js";
 import { Taxpayer }	from "../Classes/Taxpayer.js";
+
+const FIELDS = [
+	// Line		Element
+	// Number	Name
+	[ "01", 	"Wages" ],
+	[ "02", 	"FederalTaxWithheld" ],
+	[ "03", 	"SocialSecurityWages" ],
+	[ "04", 	"SocialSecurityTaxWithheld" ],
+	[ "05", 	"MedicareWages" ],
+	[ "06", 	"MedicareTaxWithheld" ],
+	[ "07", 	"SocialSecurityTips" ],
+	[ "08", 	"AllocatedTips" ],
+	[ "09", 	"NotUsed" ],
+	[ "10", 	"DependentCareBenefits" ],
+	[ "11", 	"NonqualifiedPlans" ],
+	[ "12a", 	"OptionA" ],
+	[ "12b", 	"OptionB" ],
+	[ "12c", 	"OptionC" ],
+	[ "12d", 	"OptionD" ],
+	[ "13a", 	"StatuatoryEmployee" ],
+	[ "13b", 	"RetirementPlan" ],
+	[ "13c", 	"TPartySickPlan" ],
+	[ "14a", 	"OtherA" ],
+	[ "14b", 	"OtherB" ],
+	[ "14c", 	"OtherC" ],
+	[ "14d", 	"OtherD" ],
+	[ "15", 	"StateIdentification" ],
+	[ "16", 	"StateWages" ],
+	[ "17", 	"StateTaxWithheld" ],
+	[ "18", 	"LocalWages" ],
+	[ "19", 	"LocalTaxWithheld" ],
+	[ "20", 	"LocalityName" ],
+];
 
 export class W2 extends Form {
 	constructor(formname) {
@@ -25,11 +59,17 @@ export class W2 extends Form {
 		this.lines["09"]	= new Line("Not used");
 		this.lines["10"]	= new Line("Dependent Care Benefits");
 		this.lines["11"]	= new Line("Non-qualified Plans");
-		this.lines["12-X"]	= new Line("Option");
+		this.lines["12a"]	= new Line("Option A");
+		this.lines["12b"]	= new Line("Option B");
+		this.lines["12c"]	= new Line("Option C");
+		this.lines["12d"]	= new Line("Option D");
 		this.lines["13a"]	= new Line("Statutory Employee");
 		this.lines["13b"]	= new Line("Retirement Plan");
 		this.lines["13c"]	= new Line("Third-party Sick Pay");
-		this.lines["14-X"]	= new Line("Other");
+		this.lines["14a"]	= new Line("Other A");
+		this.lines["14b"]	= new Line("Other B");
+		this.lines["14c"]	= new Line("Other C");
+		this.lines["14d"]	= new Line("Other D");
 		this.lines["15"]	= new Line("State, ID");
 		this.lines["16"]	= new Line("State Wages");
 		this.lines["17"]	= new Line("State Income Tax Withheld");
@@ -57,5 +97,15 @@ export class W2 extends Form {
 		this.lines["20"].value	= ""		// Locality Name
 
 		Debug.exit("W2.calculate()");
+	}
+
+	static listFields() {
+		const fields = [];
+
+		FIELDS.forEach(function(field) {
+			fields.push(field);
+		});
+
+		return fields;
 	}
 }

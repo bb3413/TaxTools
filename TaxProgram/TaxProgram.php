@@ -3,6 +3,7 @@
 <head>
 	<meta charset="utf-8" />
 	<link rel="stylesheet" href="../Library/Classes/HTML.css" />
+	<link rel="stylesheet" href="../Library/Forms-HTML/TaxForm.css" />
 	<link rel="stylesheet" href="../Library/TaxTools/TaxTools.css" />
 	<link rel="stylesheet" href="../Library/Tooltips/Tooltips.css" />
 
@@ -20,7 +21,7 @@
 		<p class="version-number">Version: <a href="../Version/Version.html">
 			<span id="TaxToolsVersion"></span></a></p>
 
-		<h1 class="title">Tax Program</h1>
+		<h1 class="title" id="Title">Tax Program</h1>
 		<h2 class="title">for the Tax Year
 			<select id="TaxYear" class="trigger" tooltipid="#TaxYearTT">
 				<option value="2026">2026</option>
@@ -33,11 +34,21 @@
 		<p>This tool is intended... Click <a href="TaxProgram-Help.html">this link</a> for more help
 		with this tool.</p>
 
-		<div class="button-container">
-			<!-- Load Button -->
+		<div class="save-restore-container">
+			<!-- Save Button -->
+			<input type="button" id="SaveButton" class="trigger button save-button"
+				value="Save" tooltipid="#SaveButtonTT" />
+
+			<!-- Restore Button -->
 			<input type="file" id="InputFile" accept=".txt" style="display: none;" />
-			<label for="InputFile" class="trigger button load-button" tooltipid="#LoadButtonTT">Load</label>
+			<label for="InputFile" class="trigger button restore-button"
+				tooltipid="#RestoreButtonTT">Restore</label>
 		</div>
+
+		<p>&nbsp;</p>
+		<!-- Forms -->
+		<?php include "../Library/Forms-HTML/F1040.html"; ?>
+		<?php include "../Library/Forms-HTML/W2.html"; ?>
 
 		<!-- Display area for error messages. -->
 		<div id="ErrorMessageContainer">

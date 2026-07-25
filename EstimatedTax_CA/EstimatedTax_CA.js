@@ -8,6 +8,8 @@ import { Taxpayer }		from "../Library/Classes/Taxpayer.js";
 import { TaxData }		from "../Library/Classes/TaxData.js";
 import { TaxTable }		from "../Library/Classes/TaxTable.js";
 
+import { ESTIMATED_TAX_CA_SAVE_FILE } from "../Library/TaxTools/TaxTools.js";
+
 // Tis variable need to be global so it can be accssed by the save and restore handlers.
 let inputs = {};
 
@@ -364,7 +366,7 @@ function saveUserData(event) {
 		input_data:		inputs,
 	};
 
-	File.saveToFile(data, FILENAME);
+	File.saveToFile(data, ESTIMATED_TAX_CA_SAVE_FILE);
 }
 
 
