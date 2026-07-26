@@ -12,7 +12,7 @@ export class F1040SB extends Form {
 		super(formname);
 
 		// NOT IMPLEMENTED
-		
+
 		Forms.addForm(formname, this);
 
 		this.lines["01"]	= new Line("");

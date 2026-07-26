@@ -96,25 +96,25 @@ export class Str {
 		return str[0].toUpperCase() + str.slice(1);
 	}
 
-	static camelToEnglishCase(name) {
+	static camelCaseToEnglish(name) {
 		// Convert Camel case (abcDefGhi) to English (Abc def ghi) preserving acronyms.
 		name = name
 				// Insert space before capital letter when preceded by lowercase/number
 				.replace(/([a-z0-9]+)([A-Z])/g, '$1 $2')
 				// Insert space between acronym and starting word (e.g., "HTTPResponse" -> "HTTP Response")
-				.replace(/([A-Z]+)([A-Za-z])/g, '$1 $2')
+				.replace(/([A-Z]+)([A-Z][a-z])/g, '$1 $2')
 				// Insert space between letter followed by number
 				.replace(/([A-Za-z]+)([0-9])/g, '$1 $2')
 				// Insert space between number followed by letter
 				.replace(/([0-9]+)([A-Za-z])/g, '$1 $2')
 				.trim();
-		
+
 		name = Str.upshiftFirst(name);
 
 		return name;
 	}
 
-	static snakeToEnglishCase(name) {
+	static snakeCaseToEnglish(name) {
 		// Convert snake case (abc_def_ghi) to English (Abc def ghi).
 		name = name.replace(/_/g, " ").trim();
 		name = Str.upshiftFirst(name);

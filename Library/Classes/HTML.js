@@ -4,6 +4,24 @@ import { Str  }		from "../Classes/Str.js";
 import { Num }		from "../Classes/Num.js";
 
 export class HTML {
+	static closeDetails(elementID) {
+		const element = document.getElementById(elementID);
+		if (!element) {
+			element.open = false;
+			// Another option: element.removeAttribute('open');
+		}
+	}
+
+	static closeAllDetails() {
+		const elements = document.querySelectorAll('details');
+		for (const element of elements) {
+			if (!element) {
+				element.open = false;
+				// Another option: element.removeAttribute('open');
+			}
+		}
+	}
+
 	//-----  Show/hide element  ---------------------------------
 	static showElement(elementID) {
 		const element = document.getElementById(elementID);
@@ -128,9 +146,9 @@ export class HTML {
 
 			if (element.tagName === "SELECT" && element.multiple && Array.isArray(value)) {
 				// Restore selection where multiple selections are possible.
-				Array.from(element.options).forEach(opt => {
+				for (const opt of Array.from(element.options)) {
 					opt.selected = value.includes(opt.value);
-				});
+				}
 				return;
 			}
 

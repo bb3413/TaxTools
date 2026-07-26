@@ -32,8 +32,11 @@ function changeHandler(inputs) {
 		const tax_table	= TaxTable.getTaxTable(tax_year);			// Initialize tax tables; ignore return value.
 		const taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
 		TaxData.loadForms(inputs.Forms);							// Create tax forms with the taxpayer's data
-		Forms.getForm("F1040").calculate();							// Calculate the tax forms
-		Forms.getForm("F540").calculate();							// Calculate the tax forms
+		const f1040 = Forms.getForm("F1040");
+		if (f1040) {
+			f1040.calculate();
+		}
+
 		putOutputs(tax_year);
 	} catch (err) {
 		HTML.putElementValue("ErrorMessageOutput", err);
@@ -48,12 +51,12 @@ function createTaxpayer(inputs) {
 		taxpayer.tax_year = inputs.TaxYear;
 	}
 
-	Object.keys(inputs.Taxpayer).forEach(function(key) {
+	for (const key of Object.keys(inputs.Taxpayer)) {
 		// Keys in the JSON file use camel case. Convert it to snake case, which is
 		// used for variable names.
 		let fieldname = Str.camelToSnakeCase(key);
 		taxpayer[fieldname] = inputs.Taxpayer[key];
-	});
+	}
 
 	return taxpayer;
 }
@@ -63,7 +66,12 @@ function getFieldsForInput(input) {
 	// and convert to an integer. Put the values into the object passed
 	// as a parameter.
 
-	FIELDS.forEach(function(line) {
+	if (typeof form_class.listFields !== "function") {
+		return [];
+	}
+
+	const fields = form_class.listFields()
+	for (const line of fields) {
 		const lineno		= line[0];
 		const element_name	= line[1];
 		const var_name		= Str.toSnake(label);
@@ -73,7 +81,7 @@ function getFieldsForInput(input) {
 			let value = HTML.getUserInput(line[1]);
 		}
 		input[var_name] = value;
-	});
+	}
 }
 
 function getFieldsForSave(formname) {
@@ -86,17 +94,17 @@ function getFieldsForSave(formname) {
 	if (typeof form_class.listFields !== "function") {
 		return [];
 	}
-	
+
 	const fields = form_class.listFields();
-	fields.forEach(function(line) {
+	for (const line of fields) {
 		const lineno		= line[0];
 		const element_name	= line[1];
 		const value			= HTML.getElementValue(`${formname}-${element_name}`);
 		if (value) {	// Don't save blank lines.
 			form.push( [ lineno, value ] );
 		}
-	});
-	
+	}
+
 	if (form.length > 0) {
 		return title.concat(form);
 	} else {
@@ -109,17 +117,39 @@ function putFieldsFormRestore(form) {
 	// web page.
 	form.pop();		// Ignore the form name.
 
-	form.forEach(function(line) {
+	for (const line of form) {
 		let lineno			= line[0];
 		let element_name	= line[1];
 		HTML.putElementValue(element_name, value);
-	});
+	}
 }
 
 function putOutputs(tax_year) {
-	HTML.putUserOutput("TaxYear", tax_year, "text");		// Default tax year.
-	Debug.getKeywords("Debug");								// Use the Debug module to print the results
-	Debug.turnOn();											// Put debug info on web page if enabled
+	//
+	//	Print Any Tax Forms that were created
+	//
+	let tax_forms = "";
+
+	// Print the Taxpayer information
+	// Print the 1040
+	// Print the 1040S1
+	// Print the 1040S1A
+	// Print the 1040S2
+	// Print the 1040S3
+	// Print the Schedule A
+	// Print the Schedule B
+	// Print the Schedule C
+	// Print the Schedule D
+	// Print the Schedule E
+	// Print the 540
+	// Print the 540 CA
+
+	// Close the input forms so they are in their colapsed state.
+	HTML.closeAllDetails();
+
+	HTML.putElementValue("TaxReturnOutput", tax_forms);
+	HTML.showElement("TaxReturnContainer");
+	document.getElementById("TaxReturnOutput").scrollIntoView({behavior: 'smooth', block: 'start'});
 }
 
 function restoreDataHandler(data) {
@@ -143,7 +173,6 @@ function restoreDataHandler(data) {
 	HTML.putElementValue("TaxpayersName",					inputs.taxpayers_name);
 	HTML.putElementValue("FilingStatus",					inputs.filing_status);
 */
-	changeHandler();
 }
 
 function restoreUserData(event) {
@@ -165,12 +194,12 @@ function saveUserData(event) {
 	// This function is called when the user wants to save the input fields to a file.
 	//
 	let inputs = [];
-	Forms.listAllTaxForms().forEach(function(formname) {
+	for (const formname of Forms.listAllTaxForms()) {
 		let tmp = getFieldsForSave(formname);
 		if (tmp.length > 0) {
 			inputs.push(tmp);
 		}
-	});
+	}
 
 	const data = {
 		version:		HTML.getUserInput("TaxToolsVersion", "text"),
@@ -186,8 +215,10 @@ document.addEventListener("DOMContentLoaded", () => {
 	//
 	// Wait for the DOM to be fully loaded before trying to access any elements.
 	//
-	HTML.addListener("SaveButton",	"click",  saveUserData);
-	HTML.addListener("InputFile",	"change", restoreUserData);
+	HTML.addListener("CalculateButton",	"click",  changeHandler);
+	HTML.addListener("SaveButton",		"click",  saveUserData);
+	HTML.addListener("InputFile",		"change", restoreUserData);
 
+	HTML.hideElement("TaxReturnContainer");
 	HTML.hideElement("DebugContainer");
 });

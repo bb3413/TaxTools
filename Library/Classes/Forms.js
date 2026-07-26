@@ -105,6 +105,28 @@ const formsClassMap = {	// Map the form names to the actual class references.
 	"CA_HiIncExemptions":		CA_HiIncDeductions,
 };
 
+const print_order = [
+	"F1040",
+	"F1040S1",
+	"F1040S1A",
+	"F1040S2",
+	"F1040S3",
+	"F1040SA",
+	"F1040SB",
+	"F1040SC",
+	"F1040SD",
+	"F1040SE",
+	"F1040SSE",
+	"F1041",
+	"F1065B",
+	"F1120S",
+	"F2441",
+	"F6251",
+	"F7206",
+	"F540",
+	"F540CA",
+];
+
 // When getValue() or getTextValue() is called, the default is to return 0 or "" if the
 // form has not been created. However, some forms get input from other forms and need to
 // be created and calculated before the value is returned. This array lists those forms.
@@ -193,6 +215,21 @@ export class Forms {
 		return undefined;
 	}
 
+	static formsToPrint() {
+		const forms = [];
+
+		for (const formname of print_order) {
+			let formlist = instances[formname];
+			if (formlist) {
+				for (const form of formlist) {
+					forms.push(form);
+				}
+			}
+		}
+
+		return forms;
+	}
+
 	static getAllForms(formname = "") {
 		// Get all the form objects that have been created, or all the forms of a particular type.
 		let all_forms	= [];
@@ -255,8 +292,8 @@ export class Forms {
 			formlist = instances[formname];
 		}
 
-		if (formlist && formlist.length > 0) {
-			formlist.forEach(function(form) {
+		if (formlist) {
+			for (const form of formlist) {
 				if (form.modified) {
 					form.calculate();
 				}
@@ -265,7 +302,7 @@ export class Forms {
 						sum += form.lines[ln].value;
 					}
 				}
-			});
+			}
 		}
 		Debug.exit(`Forms.getValue(${sum})`);
 		return sum;
@@ -285,8 +322,8 @@ export class Forms {
 			formlist = instances[formname];
 		}
 
-		if (formlist && formlist.length > 0) {
-			formlist.forEach(function(form) {
+		if (formlist) {
+			for (const form of formlist) {
 				if (form.modified) {
 					form.calculate();
 				}
@@ -298,7 +335,7 @@ export class Forms {
 						str += form.lines[ln].value;
 					}
 				}
-			});
+			}
 		}
 		Debug.exit(`Forms.getTextValue(${str})`);
 		return str;
@@ -311,29 +348,30 @@ export class Forms {
 
 	static listAllTaxForms(){
 		const tax_forms = [];
+
 		// Return array with the names of the suported tax forms.
-		Object.keys(formsClassMap).forEach(function(name) {
+		for (const name of Object.keys(formsClassMap)) {
 			if (name.startsWith("F") || name === "W2") {
 				tax_forms.push(name);
 			}
-		});
-	
+		}
+
 		return tax_forms;
 	}
 
 	static listAllWorksheets(){
 		// Return array with the names of the suported worksheets.
-		Object.keys(formsClassMap).forEach(function(name) {
+		for (const name of Object.keys(formsClassMap)) {
 			if (!name.startsWith("F") && name !== "W2") {
 				tax_forms.push(name);
 			}
-		});
+		}
 	}
 
 	static toConsole() {
 		let formlist = getAllFotms();
-		formlist.forEach(function(form) {
+		for (const form of formlist) {
 			form.toConsole();
-		});
+		}
 	}
 }

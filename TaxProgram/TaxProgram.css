@@ -16,12 +16,17 @@ h2 {
 	font-weight:			700;
 }
 
-.save-restore-container {
+.button-container {
 	display:				flex;
-	justify-content:		flex-end;	/* Align the div block to the right. */
+	/* justify-content:		flex-end;	/* Align the div block to the right. */
+	justify-content:		center;		/* Align the div block to the right. */
 	align-items:			flex-end;	/* Align buttons on bottom edge. */
 	gap:					5px;		/* Optional: adds space between buttons */
 	margin-bottom:			3px;
+}
+
+.calculate-button {
+	padding-bottom:			3px;
 }
 
 .save-button {
@@ -33,6 +38,29 @@ h2 {
 	cursor:					pointer;
 	padding-left:			6px;
 	padding-right:			6px;
+}
+
+.taxpayer-info-container {
+	width:					30rem;
+	display:				grid;
+	grid-template-columns:	1fr 1fr;
+	/* margin-left:			2rem; */
+}
+
+.taxpayer-info-container p {
+	/* text-align:			right; */
+	/* padding-right:		4px; */
+	margin-top:				0;
+	margin-bottom:			0;
+}
+
+.taxpayer-info-container input {
+	margin-top:				0;
+	margin-bottom:			0;
+}
+
+.tax-return-output {
+	border:					1px solid var(--border-color);
 }
 
 .help-fields h3 {

@@ -30,8 +30,7 @@ export class TaxData {
 		// Load the tax forms from the taxpayer.
 
 		// For each form.
-		forms.forEach(function(formdata, index) {
-			// console.log(`Formdata: ${formdata}, Index: ${index}`);
+		for (const formdata of forms) {
 			let formname	= formdata[0];
 			let lines		= formdata[1];
 
@@ -42,8 +41,7 @@ export class TaxData {
 			}
 
 			// For each line of data, put it on the form.
-			lines.forEach(function(linedata, index) {
-				// console.log(`Linedata: ${linedata}, Index: ${index}`);
+			for (const linedata of lines) {
 				let lineno		= linedata[0];
 				let value		= linedata[1];
 
@@ -54,7 +52,7 @@ export class TaxData {
 					line.override_value(value);
 					// form.lines[lineno].override_value(value);
 				}
-			});
-		});
+			}
+		}
 	}
 }

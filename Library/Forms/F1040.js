@@ -4,12 +4,13 @@ import { Form }		from "../Classes/Form.js";
 import { Line }		from "../Classes/Line.js";
 import { Forms }	from "../Classes/Forms.js";
 import { HTML }		from "../Classes/HTML.js";
+import { Str }		from "../Classes/Str.js";
 import { TaxTable }	from "../Classes/TaxTable.js";
 import { Taxpayer }	from "../Classes/Taxpayer.js";
 import { IncTax }	from "../Worksheets/IncTax.js";
 import { SSTax }	from "../Worksheets/SSTax.js";
 
-const FIELDS =	[ 
+const FIELDS =	[
 	// Line		Element
 	// Number	Name
 	[ "01a",	"Wages" ],
@@ -78,63 +79,11 @@ export class F1040 extends Form {
 
 		Forms.addForm(formname, this);
 
-		this.lines["01a"]	= new Line("Wages");
-		this.lines["01b"]	= new Line("Household Wages");
-		this.lines["01c"]	= new Line("Tip Income");
-		this.lines["01d"]	= new Line("Medicaid Waiver Payments");
-		this.lines["01e"]	= new Line("Dependent Care Benefits");
-		this.lines["01f"]	= new Line("Adoption Benefits");
-		this.lines["01g"]	= new Line("Wages from Form 8919");
-		this.lines["01h"]	= new Line("Other Earned Income");
-		this.lines["01i"]	= new Line("Nontaxable Combat Pay");
-		this.lines["01z"]	= new Line("Total lines 1a To 1h");
-		this.lines["02a"]	= new Line("Tax-exempt Interest");
-		this.lines["02b"]	= new Line("Taxable Interest");
-		this.lines["03a"]	= new Line("Qualified Dividends");
-		this.lines["03b"]	= new Line("Ordinary Dividends");
-		this.lines["04a"]	= new Line("IRA Distributions");
-		this.lines["04b"]	= new Line("Taxable IRA");
-		this.lines["05a"]	= new Line("Pensions and Annuities");
-		this.lines["05b"]	= new Line("Taxable Pensions and Annuities");
-		this.lines["06a"]	= new Line("Social Security Benefits");
-		this.lines["06b"]	= new Line("Taxable Social Security");
-		this.lines["07a"]	= new Line("Capital Gain");
-		this.lines["08"]	= new Line("Additional Income");
-		this.lines["09"]	= new Line("Total Income");
-		this.lines["10"]	= new Line("Adjustments to Income");
-		this.lines["11a"]	= new Line("Adjusted Gross Income");
-		this.lines["11b"]	= new Line("Adjusted Gross Income");
-		this.lines["12e"]	= new Line("Deductions");
-		this.lines["13a"]	= new Line("QBI Deduction");
-		this.lines["13b"]	= new Line("Additional Deductions");
-		this.lines["14"]	= new Line("Total Deductions");
-		this.lines["15"]	= new Line("Taxable Income");
-		this.lines["16"]	= new Line("Income Tax");
-		this.lines["17"]	= new Line("Additional Tax");
-		this.lines["18"]	= new Line("Total Tax");
-		this.lines["19"]	= new Line("Child Tax Credit");
-		this.lines["20"]	= new Line("Non-refundable Credits");
-		this.lines["21"]	= new Line("Total Non-refundable Credits");
-		this.lines["22"]	= new Line("Tax minus Non-refundable Credits");
-		this.lines["23"]	= new Line("Other Taxes");
-		this.lines["24"]	= new Line("Total Tax");
-		this.lines["25a"]	= new Line("Withholding from W-2s");
-		this.lines["25b"]	= new Line("Withholding from 1099s");
-		this.lines["25c"]	= new Line("Other Withholding");
-		this.lines["25d"]	= new Line("Total Withholding");
-		this.lines["26"]	= new Line("Estimated Tax Payments");
-		this.lines["27a"]	= new Line("Earned Income Credit");
-		this.lines["28"]	= new Line("Additional Child Tax Credit");
-		this.lines["29"]	= new Line("American Opportunity Credit");
-		this.lines["30"]	= new Line("Refundable Adoption Credit");
-		this.lines["31"]	= new Line("Additional Refundable Credits");
-		this.lines["32"]	= new Line("Estimated Payments and Refundable Credits");
-		this.lines["33"]	= new Line("Total Payments");
-		this.lines["34"]	= new Line("Overpaid");
-		this.lines["35a"]	= new Line("Refund");
-		this.lines["36"]	= new Line("Apply to Next Year's Tax");
-		this.lines["37"]	= new Line("Amount Owed");
-		this.lines["38"]	= new Line("Estimated Tax Penalty");
+		for (const field of FIELDS) {
+			const lineno	= field[0];
+			const name		= field[1];
+			this.lines[lineno] = new Line(Str.camelCaseToEnglish(name));
+		};
 
 		Debug.exit("F1040.Constructor()");
 	}
@@ -256,63 +205,12 @@ export class F1040 extends Form {
 			*/
 	}
 
-	//
-	// Static methods
-	//
-	static getFieldsForInput(input) {
-		// Gets the fields from the web page, process any debug keywords,
-		// and convert to an integer. Put the values into the object passed
-		// as a parameter.
-
-		FIELDS.forEach(function(line) {
-			const lineno		= line[0];
-			const element_name	= line[1];
-			const var_name		= Str.toSnake(label);
-			
-			input[var_name] = HTML.getUserInput(line[1]);
-		});
-	}
-
-	static getFieldsForSave() {
-		// This method gets the fields from the web page and create an array in the
-		// format needed to save the value to a file.
-		const title		= [ "W2" ];
-		const form		= [];
-
-		FIELDS.forEach(function(line) {
-			const lineno		= line[0];
-			const element_name	= line[1];
-			const value			= HTML.getElementValue(element_name);
-			if (value) {	// Don't save blank lines.
-				form.push( [ lineno, value ] );
-			}
-		});
-		
-		if (form.length > 0) {
-			return title.concat(form);
-		} else {
-			return [];
-		}
-	}
-
-	static putFieldsFormRestore(form) {
-		// This method puts the fields read from a saved file back onto the
-		// web page.
-		form.pop();		// Ignore the form name.
-
-		form.forEach(function(line) {
-			let lineno			= line[0];
-			let element_name	= line[1];
-			HTML.putElementValue(element_name, value);
-		});
-	}
-
 	static listFields() {
 		const fields = [];
 
-		FIELDS.forEach(function(field) {
+		for (const field of FIELDS) {
 			fields.push(field);
-		});
+		}
 
 		return fields;
 	}

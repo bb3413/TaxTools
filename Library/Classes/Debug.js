@@ -55,13 +55,13 @@ export class Debug {
 		// input string. You can use commas or whitespace to separate the keywords and the value.
 		// The final string will have all commas and unnecessary whitespace removed.
 		//
-		keywordList().forEach(function(keyword) {
+		for (const keyword of keywordList()) {
 			let regex = new RegExp(`\\b${keyword}\\b`, 'ig');
 			if (input_string.match(regex)) {
 				input_string = input_string.replace(regex, "");
 				debug_used_keywords.push(keyword);
 			}
-		});
+		}
 
 		if (debug_used_keywords.includes("Debug")) {
 			debug_all = true;
@@ -93,9 +93,9 @@ export class Debug {
 		if (trace_log.length > 0) {
 			str.push("");
 			str.push("Debug Trace Log");
-			trace_log.forEach(function(line) {
+			for (const line of trace_log) {
 				str.push(line);
-			});
+			}
 		}
 
 		return str.join("\n");
@@ -122,12 +122,11 @@ export class Debug {
 			}
 		}
 
-		let forms = Forms.getAllForms();
-		forms.forEach(function(form) {
+		for (const form of Forms.getAllForms()) {
 			if (debug_all || debug_used_keywords.includes(form.name)) {
 				output += form.toString();
 			}
-		});
+		}
 
 		output = Str.wrapLines(output);
 
