@@ -9,47 +9,35 @@ import { Taxpayer }		from "../Library/Classes/Taxpayer.js";
 import { TaxData }		from "../Library/Classes/TaxData.js";
 import { TaxTable }		from "../Library/Classes/TaxTable.js";
 
+import { F1040_HTML }	from "../Library/Forms-HTML/F1040-HTML.js";
+import { W2_HTML }		from "../Library/Forms-HTML/W2-HTML.js";
+
 import { TAX_PROGRAM_SAVE_FILE } from "../Library/TaxTools/TaxTools.js";
 
-function changeHandler(inputs) {
+function changeHandler(event) {
 	//
 	// This function is called when any input field is changed. It calculates the
 	// whole return (not just the field tha was changed).
 	//
-	try {
-		// Reset static (global) variables to erase information from a previous calculation.
-		HTML.putElementValue("ErrorMessageOutput", "");
-		Debug.reset();
-		Forms.reset();
-		Taxpayer.reset();
-		throw new Error(`Test error message.`);
-
-		let tax_year = Dates.getTaxYear();
-		if (inputs?.TaxYear !== undefined) {
-			tax_year = inputs?.TaxYear;
-		}
-
+	//try {
+		const tax_year	= HTML.getUserInput("TaxYear");
 		const tax_table	= TaxTable.getTaxTable(tax_year);			// Initialize tax tables; ignore return value.
-		const taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
-		TaxData.loadForms(inputs.Forms);							// Create tax forms with the taxpayer's data
-		const f1040 = Forms.getForm("F1040");
-		if (f1040) {
-			f1040.calculate();
-		}
-
+		const taxpayer	= createTaxpayer();							// Initialize taxpayer; ignore return value.
+		const tax_data	= mapInputValues();							// Map input values to tax forms
+		TaxData.loadForms(tax_data);								// Create tax forms with the taxpayer's data
+		const f1040 = Forms.getForm("F1040") || Forms.createForm("F1040");
+		f1040.calculate();
 		putOutputs(tax_year);
-	} catch (err) {
-		HTML.putElementValue("ErrorMessageOutput", err);
-		document.getElementById("ErrorMessageOutput").scrollIntoView();
-	}
+	//} catch (err) {
+		//HTML.putElementValue("ErrorMessageOutput", err);
+		//document.getElementById("ErrorMessageOutput").scrollIntoView();
+	//}
 }
 
-function createTaxpayer(inputs) {
+function createTaxpayer() {
 	const taxpayer = new Taxpayer();
 
-	if (inputs.TaxYear !== undefined) {
-		taxpayer.tax_year = inputs.TaxYear;
-	}
+	taxpayer.tax_year = HTML.getUserInput("TaxYear");
 
 	for (const key of Object.keys(inputs.Taxpayer)) {
 		// Keys in the JSON file use camel case. Convert it to snake case, which is
@@ -57,31 +45,30 @@ function createTaxpayer(inputs) {
 		let fieldname = Str.camelToSnakeCase(key);
 		taxpayer[fieldname] = inputs.Taxpayer[key];
 	}
-
+/*
+	inputs.AlimonyPaid				= HTML.getUserInput(`TP-${index}-AlimonyPaid`);
+	inputs.AlimonyReceived			= HTML.getUserInput(`TP-${index}-AlimonyReceived`);
+	inputs.DivorceDate				= HTML.getUserInput(`TP-${index}-DivorceDate`,	"text");
+	inputs.FederalEstimatedPayments	= HTML.getUserInput(`TP-${index}-FederalEstimatedPayments`);
+	inputs.StateEstimatedPayments	= HTML.getUserInput(`TP-${index}-StateEstimatedPayments`);
+	inputs.MedicalInsurancePremiums	= HTML.getUserInput(`TP-${index}-MedicalInsurancePremiums`);
+	inputs.MedicarePremiums			= HTML.getUserInput(`TP-${index}-MedicarePremiums`);
+	inputs.TaxpayerLTCPremiums		= HTML.getUserInput(`TP-${index}-TaxpayerLTCPremiums`);
+	inputs.SpouseLTCPremiums		= HTML.getUserInput(`TP-${index}-SpouseLTCPremiums`);
+	inputs.OtherMedicalExpenses		= HTML.getUserInput(`TP-${index}-OtherMedicalExpenses`);
+	inputs.MedicalMiles				= HTML.getUserInput(`TP-${index}-MedicalMiles`);
+	inputs.PropertyTax				= HTML.getUserInput(`TP-${index}-PropertyTax`);
+	inputs.PersonalPropertyTax		= HTML.getUserInput(`TP-${index}-PersonalPropertyTax`);
+	inputs.ExtraSalesTax			= HTML.getUserInput(`TP-${index}-ExtraSalesTax`);
+	inputs.CashGiftToCharity		= HTML.getUserInput(`TP-${index}-CashGiftToCharity`);
+	inputs.NoncashGiftToCharity		= HTML.getUserInput(`TP-${index}-NoncashGiftToCharity`);
+	inputs.TaxPreparationFees		= HTML.getUserInput(`TP-${index}-TaxPreparationFees`);
+	inputs.InvestmentExpenses		= HTML.getUserInput(`TP-${index}-LocalityName`);
+	inputs.UnreimbursedEmployeeExpenses	= HTML.getUserInput(`TP-${index}-UnreimbursedEmployeeExpenses`);
+	inputs.TaxpayerEducatorExpenses= HTML.getUserInput(`TP-${index}-TaxpayerEducatorExpenses`);
+	inputs.SpouseEducatorExpenses	= HTML.getUserInput(`TP-${index}-SpouseEducatorExpenses`);
+*/
 	return taxpayer;
-}
-
-function getFieldsForInput(input) {
-	// Gets the fields from the web page, process any debug keywords,
-	// and convert to an integer. Put the values into the object passed
-	// as a parameter.
-
-	if (typeof form_class.listFields !== "function") {
-		return [];
-	}
-
-	const fields = form_class.listFields()
-	for (const line of fields) {
-		const lineno		= line[0];
-		const element_name	= line[1];
-		const var_name		= Str.toSnake(label);
-		if ([ "09", "15", "20" ].includes(lineno)) {
-			let value = HTML.getUserInput(label, "text");
-		} else {
-			let value = HTML.getUserInput(line[1]);
-		}
-		input[var_name] = value;
-	}
 }
 
 function getFieldsForSave(formname) {
@@ -112,12 +99,22 @@ function getFieldsForSave(formname) {
 	}
 }
 
-function putFieldsFormRestore(form) {
+function mapInputValues() {
+	const tax_data	= new TaxData();
+
+	W2_HTML.getHTMLInput(tax_data, 0);
+	F1040_HTML.getHTMLInput(tax_data);
+
+	return tax_data;
+}
+
+function putFieldsFromRestore(form) {
 	// This method puts the fields read from a saved file back onto the
 	// web page.
-	form.pop();		// Ignore the form name.
+	formname = form[0];
 
-	for (const line of form) {
+	for (let i = 1; i < form.length; i++) {
+		let line			= form[i];
 		let lineno			= line[0];
 		let element_name	= line[1];
 		HTML.putElementValue(element_name, value);
@@ -126,30 +123,43 @@ function putFieldsFormRestore(form) {
 
 function putOutputs(tax_year) {
 	//
-	//	Print Any Tax Forms that were created
+	//	Print the tax forms that were created.
 	//
 	let tax_forms = "";
 
-	// Print the Taxpayer information
-	// Print the 1040
-	// Print the 1040S1
-	// Print the 1040S1A
-	// Print the 1040S2
-	// Print the 1040S3
-	// Print the Schedule A
-	// Print the Schedule B
-	// Print the Schedule C
-	// Print the Schedule D
-	// Print the Schedule E
-	// Print the 540
-	// Print the 540 CA
+	let tp = Taxpayer.getTaxpayer();
+	tax_forms += tp.toString();
+							   
+	for (const form in Forms.formsToPrint()) {
+		tax_forms += form.toString();
+	}
 
 	// Close the input forms so they are in their colapsed state.
-	HTML.closeAllDetails();
+	// HTML.closeAllDetails();
 
+	// Copy the tax forms to the web page, show the area with the tax forms, and nove the focus to that area.
 	HTML.putElementValue("TaxReturnOutput", tax_forms);
 	HTML.showElement("TaxReturnContainer");
 	document.getElementById("TaxReturnOutput").scrollIntoView({behavior: 'smooth', block: 'start'});
+}
+
+function refresh(event) {
+	HTML.hideElement("TaxReturnContainer");
+	HTML.hideElement("DebugContainer")
+	HTML.putElementValue("ErrorMessageOutput", "");
+	
+	const filing_status = HTML.getUserInput("FilingStatus", "text");
+	HTML.hideElement("SpouseContainer");
+	if (Str.caseEqual(filing_status, "MFJ")) {
+		HTML.showElement("SpouseContainer");
+	} else {
+		HTML.hideElement("SpouseContainer");
+	}
+
+	// Reset static (global) variables to erase information from a previous calculation.
+	Debug.reset();
+	Forms.reset();
+	Taxpayer.reset();
 }
 
 function restoreDataHandler(data) {
@@ -157,22 +167,15 @@ function restoreDataHandler(data) {
 	// This function is called when the user restores the input fields from a file.
 	// The data that was copied from the file is passed a parameter.
 	//
-	let inputs;
-/*
-	// There are currently 2 formats in use; select which one this is.
-	if (data.input_data) {
-		inputs = data.input_data;
-	} else {
-		inputs = data;
+	const tool = HTML.getUserInput("Title", "text");
+	if (data.tool !== tool) {
+		throw new Error(`Restored data file is intended for the ${data.tool} tool.`);
 	}
 
-	// Restore the input fields
-	HTML.putElementValue("TaxYear",							inputs.tax_year);
-
-	// Taxpayer Information
-	HTML.putElementValue("TaxpayersName",					inputs.taxpayers_name);
-	HTML.putElementValue("FilingStatus",					inputs.filing_status);
-*/
+	let inputs = data.inputs;
+	for (const form of inputs) {
+		putFieldsFromRestore(form);
+	}
 }
 
 function restoreUserData(event) {
@@ -218,7 +221,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	HTML.addListener("CalculateButton",	"click",  changeHandler);
 	HTML.addListener("SaveButton",		"click",  saveUserData);
 	HTML.addListener("InputFile",		"change", restoreUserData);
+	HTML.addListener("ToolContainer",	"change", refresh);
 
-	HTML.hideElement("TaxReturnContainer");
-	HTML.hideElement("DebugContainer");
+	refresh();
 });

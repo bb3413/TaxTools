@@ -41,9 +41,9 @@ h2 {
 }
 
 .taxpayer-info-container {
-	width:					30rem;
+	width:					43rem;
 	display:				grid;
-	grid-template-columns:	1fr 1fr;
+	grid-template-columns:	.4fr 1fr;
 	/* margin-left:			2rem; */
 }
 

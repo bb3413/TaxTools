@@ -17,7 +17,7 @@
 </head>
 
 <body>
-	<div class="tool-container">
+	<div class="tool-container" id="ToolContainer">
 		<p class="version-number">Version: <a href="../Version/Version.html">
 			<span id="TaxToolsVersion"></span></a></p>
 
@@ -52,11 +52,7 @@
 		<div class="taxpayer-info-container">
 			<p>&nbsp;</p>
 			<p>&nbsp;</p>
-			<p class="label-field">Taxpayer's Name</p>
-			<input class="trigger input-field left" type="text" id="TaxpayersName"
-				spellcheck="false" size="36" tooltipid="#TaxpayersNameTT" />
-
-			<p class="label-field">Filing Status</p>
+			<p>Filing Status</p>
 			<select class="trigger input-field left" id="FilingStatus" tooltipid="#FilingStatusTT">
 				<option value="Single">Single</option>
 				<option value="HoH">HoH</option>
@@ -64,8 +60,23 @@
 				<option value="QSS">QSS</option>
 				<option value="MFS">MFS</option>
 			</select>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
 
-			<p class="label-field">Taxpayer's Birthday</p>
+			<p>Taxpayer's Name</p>
+			<input class="trigger input-field left" type="text" id="TaxpayersName"
+				spellcheck="false" size="45" tooltipid="#TaxpayersNameTT" />
+
+			<p>Street Address</p>
+			<input class="input-field left" type="text" autofocus id="StreetAddress" />
+
+			<p>City</p>
+			<input class="input-field left" type="text" id="City" />
+
+			<p>Zip Code</p>
+			<input class="input-field left" type="text" id="ZipCode"  />
+
+			<p>Taxpayer's Birthday</p>
 			<input class="trigger input-field left" type="text" id="TaxpayersBirthday" size="36"
 				placeholder="mm/dd/yyyy" tooltipid="#TaxpayersBirthdayTT" />
 
@@ -75,7 +86,7 @@
 		</div>
 
 		<div class="taxpayer-info-container" id="SpouseContainer">
-			<p class="label-field">Spouse's Birthday</p>
+			<p>Spouse's Birthday</p>
 			<input class="trigger input-field left" type="text" id="SpousesBirthday" size="36"
 				placeholder="mm/dd/yyyy" tooltipid="#SpousesBirthdayTT" />
 
@@ -85,9 +96,12 @@
 		</div>
 
 		<p>&nbsp;</p>
-		<!-- Forms -->
-		<?php include "../Library/Forms-HTML/F1040.html"; ?>
-		<?php include "../Library/Forms-HTML/W2.html"; ?>
+		<h2>Input Forms</h2>
+		<?php include "../Library/Forms-HTML/Taxpayer-HTML.html"; ?>
+		<?php include "../Library/Forms-HTML/W2-HTML.html"; ?>
+
+		<h2>Additional Tax Forms</h2>
+		<?php include "../Library/Forms-HTML/F1040-HTML.html"; ?>
 
 		<!-- Display area for Tax Return. -->
 		<p>&nbsp;</p>

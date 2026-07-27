@@ -1,5 +1,7 @@
 
-import { Forms } from "../Classes/Forms.js";
+import { Debug }	from "../Classes/Debug.js";
+import { Forms }	from "../Classes/Forms.js";
+import { Num }		from "../Classes/Num.js";
 
 //
 // This object contains the user data that was provided to enter in the tax return.
@@ -24,6 +26,28 @@ export class TaxData {
 	addLine(formdata, lineno, value) {
 		let linedata = [lineno, value];
 		formdata[1].push(linedata);
+	}
+
+	static addLineRaw(tax_data, form, line, value, text = false) {
+		if (value === "") {
+			// If the user enters 0, add it; otherwise use the default 0 so the
+			// form's steps can override it.
+			return;
+		}
+
+		if ((typeof value === "boolean") && (value === true)) {
+			tax_data.addLine(form, line, value);
+			return;
+		}
+
+		// Extract debug keywords and return what is left.
+		value = Debug.getKeywords(value);
+
+		if (text) {
+			tax_data.addLine(form, line, value);
+		} else {
+			tax_data.addLine(form, line, Num.toInteger(value));
+		}
 	}
 
 	static loadForms(forms) {

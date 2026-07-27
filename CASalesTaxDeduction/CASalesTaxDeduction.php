@@ -62,13 +62,13 @@
 			</select>
 			<p>&nbsp;</p>
 
-	   		<p class="input-label">Street Address</p>
+	   		<p>Street Address</p>
 			<input class="input-field left span-two" type="text" autofocus id="StreetAddress" />
 
-			<p class="input-label">City</p>
+			<p>City</p>
 			<input class="input-field left span-two" type="text" id="City" />
 
-			<p class="input-label">Zip Code</p>
+			<p>Zip Code</p>
 			<input class="input-field left" type="text" id="ZipCode"  />
 			<p>&nbsp;</p>
 
