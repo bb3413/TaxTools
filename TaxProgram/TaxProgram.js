@@ -148,9 +148,9 @@ function refresh(event) {
 	HTML.hideElement("DebugContainer")
 	HTML.putElementValue("ErrorMessageOutput", "");
 	
-	const filing_status = HTML.getUserInput("FilingStatus", "text");
+	const filing_status = HTML.getUserInput("FilingStatus", "text").toUpperCase();
 	HTML.hideElement("SpouseContainer");
-	if (Str.caseEqual(filing_status, "MFJ")) {
+	if (filing_status === "MFJ") {
 		HTML.showElement("SpouseContainer");
 	} else {
 		HTML.hideElement("SpouseContainer");

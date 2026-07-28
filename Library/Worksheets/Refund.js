@@ -10,7 +10,6 @@ import { Debug }	from "../Classes/Debug.js";
 import { Form }		from "../Classes/Form.js";
 import { Forms }	from "../Classes/Forms.js";
 import { Line }		from "../Classes/Line.js";
-import { Str }		from "../Classes/Str.js";
 import { TaxTable }	from "../Classes/TaxTable.js";
 import { Taxpayer }	from "../Classes/Taxpayer.js";
 
@@ -93,7 +92,7 @@ export class Refund extends Form {
 		}
 
 		this.lines["04"].value = this.line("itemized_deductions");
-		if (Str.caseEqual(tp.filing_status, "MFS") && spouse_itemized) {
+		if ((tp.filing_status === "MFS") && spouse_itemized) {
 			this.lines["08"].value = this.line("04");
 		} else {
 			this.lines["05"].value	= 0;	// Get base standard deduction

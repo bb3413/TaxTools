@@ -3,7 +3,6 @@ import { Debug }				from "../Classes/Debug.js";
 import { Form }					from "../Classes/Form.js";
 import { Forms }				from "../Classes/Forms.js";
 import { Line }					from "../Classes/Line.js";
-import { Str }					from "../Classes/Str.js";
 import { TaxTable }				from "../Classes/TaxTable.js";
 import { Taxpayer }				from "../Classes/Taxpayer.js";
 import { CA_HiIncExemptions }	from "../Worksheets/CA_HiIncExemptions.js";
@@ -172,20 +171,20 @@ export class F540 extends Form {
 		const dependent_exemption	= tt.getTaxValue("CA_DependentExemption", tp.filing_status);
 
 		// Filing Status
-		this.lines["001"].value	= false;	// Single
+		this.lines["001"].value	= false;	// SINGLE
 		this.lines["002"].value	= false;	// MFJ
 		this.lines["003"].value	= false;	// MFS
-		this.lines["004"].value	= false;	// HoH
+		this.lines["004"].value	= false;	// HOH
 		this.lines["005"].value	= false;	// QSS
-		if (Str.caseEqual(tp.filing_status, "Single")) {
+		if (tp.filing_status === "SINGLE") {
 			this.lines["001"].value	= true;
-		} else if (Str.caseEqual(tp.filing_status, "MFJ")) {
+		} else if (tp.filing_status === "MFJ") {
 			this.lines["002"].value	= true;
-		} else if (Str.caseEqual(tp.filing_status, "MFS")) {
+		} else if (tp.filing_status === "MFS") {
 			this.lines["003"].value	= true;
-		} else if (Str.caseEqual(tp.filing_status, "HoH")) {
+		} else if (tp.filing_status === "HOH") {
 			this.lines["004"].value	= true;
-		} else if (Str.caseEqual(tp.filing_status, "QSS")) {
+		} else if (tp.filing_status === "QSS") {
 			this.lines["005"].value	= true;
 		}
 
@@ -194,7 +193,7 @@ export class F540 extends Form {
 
 		// Personal Exemption
 		this.lines["007"].value	= personal_exemption;
-		if (Str.caseEqual(tp.filing_status, "MFJ") || Str.caseEqual(tp.filing_status, "QSS")) {
+		if ((tp.filing_status === "MFJ") || (tp.filing_status === "QSS")) {
 			this.lines["007"].value += personal_exemption;
 		}
 
@@ -203,7 +202,7 @@ export class F540 extends Form {
 		if (tp.is_taxpayer_blind) {
 			this.lines["008"].value += personal_exemption;
 		}
-		if (Str.caseEqual(tp.filing_status, "MFJ") && tp.is_spouse_blind) {
+		if ((tp.filing_status === "MFJ") && tp.is_spouse_blind) {
 			this.lines["008"].value += personal_exemption;
 		}
 
@@ -212,7 +211,7 @@ export class F540 extends Form {
 		if (tp.taxpayers_age >= 65) {
 			this.lines["009"].value += personal_exemption;
 		}
-		if (Str.caseEqual(tp.filing_status, "MFJ") && tp.spouses_age >= 65) {
+		if ((tp.filing_status === "MFJ") && tp.spouses_age >= 65) {
 			this.lines["009"].value += personal_exemption;
 		}
 

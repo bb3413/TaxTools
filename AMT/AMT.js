@@ -3,7 +3,6 @@ import { Dates }			from "../Library/Classes/Dates.js";
 import { Debug }			from "../Library/Classes/Debug.js";
 import { Forms }			from "../Library/Classes/Forms.js";
 import { HTML }				from "../Library/Classes/HTML.js";
-import { Str }				from "../Library/Classes/Str.js";
 import { Taxpayer }			from "../Library/Classes/Taxpayer.js";
 import { TaxData }			from "../Library/Classes/TaxData.js";
 import { TaxTable }			from "../Library/Classes/TaxTable.js";
@@ -20,8 +19,8 @@ function changeHandler(event) {
 		Forms.reset();
 		Taxpayer.reset();
 
-		const inputs = getInputs();								// Get inputs from the web page
-		if (Str.caseEqual(inputs.filing_status, "MFJ")) {
+		const inputs = getInputs();									// Get inputs from the web page
+		if (inputs.filing_status === "MFJ") {
 			HTML.showElement("SpouseContainer");
 		} else {
 			HTML.hideElement("SpouseContainer");
@@ -62,7 +61,7 @@ function getInputs() {
 
 	// Input fields
 	inputs.tax_year							= HTML.getUserInput("TaxYear");
-	inputs.filing_status					= HTML.getUserInput("FilingStatus",			"text");
+	inputs.filing_status					= HTML.getUserInput("FilingStatus",			"text").toUpperCase();
 	inputs.taxpayers_birthday				= HTML.getUserInput("TaxpayersBirthday",	"text");
 	inputs.spouses_birthday					= HTML.getUserInput("SpousesBirthday",		"text");
 	inputs.is_taxpayer_blind				= HTML.getUserInput("TaxpayerIsBlind");
@@ -154,7 +153,7 @@ function mapInputValues(inputs) {
 function putOutputs() {
 	const tp = Taxpayer.getTaxpayer();
 
-	if (Str.caseEqual(tp.filing_status, "MFJ")) {
+	if (tp.filing_status === "MFJ") {
 		HTML.showElement("SpouseContainer");
 	} else {
 		HTML.hideElement("SpouseContainer");

@@ -25,7 +25,7 @@ export class TaxTable_2024 extends TaxTableTmpl {
 	// This table contains constant tax values.
 	//
 	values = [
-		// 	Name								Single		HoH			MFJ			QSS			MFS
+		// 	Name								SINGLE		HOH			MFJ			QSS			MFS
 		[ "BusinessMileage",					0.67,		0.67,		0.67,		0.67,		0.67		],
 		[ "CharityMileage",						0.14,		0.14,		0.14,		0.14,		0.14		],
 		[ "MedicalMileage",						0.21,		0.21,		0.21,		0.21,		0.21		],
@@ -36,7 +36,7 @@ export class TaxTable_2024 extends TaxTableTmpl {
 		[ "MaxSALT",							10000,		10000,		10000,		10000,		10000		],
 		[ "MaxStudentLoanInterest",				2500,		2500,		2500,		2500,		0			],
 
-		// OBBA deductions						Single		HoH			MFJ			QSS			MFS
+		// OBBA deductions						SINGLE		HOH			MFJ			QSS			MFS
 		[ "MaxCarLoanInterestDeduction",		0,			0,			0,			0,			0			],
 		[ "CarLoanInterestDeductionPhaseOut",	0,			0,			0,			0,			0			],
 		[ "MaxOvertimeDeduction",				0,			0,			0,			0,			0			],
@@ -46,7 +46,7 @@ export class TaxTable_2024 extends TaxTableTmpl {
 		[ "MaxSeniorDeduction",					0,			0,			0,			0,			0			],
 		[ "SeniorDeductionPhaseOut",			0,			0,			0,			0,			0			],
 
-		// Non-refundable credits				Single		HoH			MFJ			QSS			MFS
+		// Non-refundable credits				SINGLE		HOH			MFJ			QSS			MFS
 		[ "MaxAmericanOppCreditNoRefund",		MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	0			],
 		[ "MaxChildAndDependentCareCredit",		MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	0			],
 		[ "MaxChildTaxCredit",					MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR	],
@@ -55,21 +55,21 @@ export class TaxTable_2024 extends TaxTableTmpl {
 		[ "MaxResidentialEnergyCredit",			MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR	],
 		[ "MaxRetirementSavingsCredit",			1000,		1000,		2000,		1000,		1000		],
 
-		// Refundable credits					Single		HoH			MFJ			QSS			MFS
+		// Refundable credits					SINGLE		HOH			MFJ			QSS			MFS
 		[ "MaxAmericanOppCreditRefundable",		MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	0			],
 		[ "MaxCreditForOtherDependents",		MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR	],
 		[ "MaxEarnedIncomeCredit",				59899,		59899,		66819,		59899,		0			],
 		[ "MaxPremiumTaxCredit",				MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	0			],
 
-		// AMT									Single		HoH			MFJ			QSS			MFS
+		// AMT									SINGLE		HOH			MFJ			QSS			MFS
 		[ "AMT_Exemption",						85700,		85700,		133500,		133500,		66650		],
 		[ "AMT_ExemptionPhaseOut",				609350,		609350,		1218700,	1218700,	609350		],
 
-		// Capital gains ranges					Single		HoH			MFJ			QSS			MFS
+		// Capital gains ranges					SINGLE		HOH			MFJ			QSS			MFS
 		[ "CG_15PercentRangeStart",				47025,		63000,		94050,		94050,		47025		],
 		[ "CG_20PercentRangestart",				518900,		551350,		583750,		583750,		291850		],
 
-		// Social Security 50% taxable range	Single		HoH			MFJ			QSS			MFS
+		// Social Security 50% taxable range	SINGLE		HOH			MFJ			QSS			MFS
 		[ "SS_50PercentRangeStart",				25000,		25000,		32000,		25000,		25000		],
 		[ "SS_50PercentRangeEnd",				34000,		34000,		44000,		34000,		34000		],
 		[ "SS_50PercentRangeLength",			9000,		9000,		12000,		9000,		9000		],
@@ -78,7 +78,7 @@ export class TaxTable_2024 extends TaxTableTmpl {
 		[ "StandardDeduction",					14600,		21900,		29200,		29200,		14600		],
 		[ "StandardDeductionExtra",				1950,		1950,		1550,		1550,		1550		],
 
-		// California constants					Single		HoH			MFJ			QSS			MFS
+		// California constants					SINGLE		HOH			MFJ			QSS			MFS
 		[ "CA_PersonalExemption",				149,		149,		149,		149,		149			],
 		[ "CA_DependentExemption",				447,		447,		447,		447,		447			],
 		[ "CA_StandardDeduction",				5540,		11080,		11080,		11080,		5540		],
@@ -93,11 +93,11 @@ export class TaxTable_2024 extends TaxTableTmpl {
 	amt_tax = [
 		//				Start of	End of		Subtract	Rate
 		//				Bracket		Bracket					Percent
-		[ "Single",		0,			232600,		0,			26	],
-		[ "Single",		239100,		MAX_DOLLAR,	4782,		28	],
+		[ "SINGLE",		0,			232600,		0,			26	],
+		[ "SINGLE",		239100,		MAX_DOLLAR,	4782,		28	],
 
-		[ "HoH",		0,			232600,		0,			26	],
-		[ "HoH",		239100,		MAX_DOLLAR,	4782,		28	],
+		[ "HOH",		0,			232600,		0,			26	],
+		[ "HOH",		239100,		MAX_DOLLAR,	4782,		28	],
 
 		[ "MFJ",		0,			232600,		0,			26	],
 		[ "MFJ",		232600,		MAX_DOLLAR,	4782,		28	],
@@ -124,21 +124,21 @@ export class TaxTable_2024 extends TaxTableTmpl {
 	income_tax_table = [
 		// Filing		Start of	End of		Rate
 		// Status		Bracket		Bracket		Percent
-		[ "Single",		0,			11600,		10 ],
-		[ "Single",		11600,		47150,		12 ],
-		[ "Single",		47150,		100525,		22 ],
-		[ "Single",		100525,		191950,		24 ],
-		[ "Single",		191950,		243725,		32 ],
-		[ "Single",		243725,		609350,		35 ],
-		[ "Single",		609350,		MAX_DOLLAR,	37 ],
+		[ "SINGLE",		0,			11600,		10 ],
+		[ "SINGLE",		11600,		47150,		12 ],
+		[ "SINGLE",		47150,		100525,		22 ],
+		[ "SINGLE",		100525,		191950,		24 ],
+		[ "SINGLE",		191950,		243725,		32 ],
+		[ "SINGLE",		243725,		609350,		35 ],
+		[ "SINGLE",		609350,		MAX_DOLLAR,	37 ],
 
-		[ "HoH",		0,			16550,		10 ],
-		[ "HoH",		16550,		63100,		12 ],
-		[ "HoH",		63100,		100500,		22 ],
-		[ "HoH",		100500,		191950,		24 ],
-		[ "HoH",		191950,		243725,		32 ],
-		[ "HoH",		243725,		609350,		35 ],
-		[ "HoH",		609350,		MAX_DOLLAR,	37 ],
+		[ "HOH",		0,			16550,		10 ],
+		[ "HOH",		16550,		63100,		12 ],
+		[ "HOH",		63100,		100500,		22 ],
+		[ "HOH",		100500,		191950,		24 ],
+		[ "HOH",		191950,		243725,		32 ],
+		[ "HOH",		243725,		609350,		35 ],
+		[ "HOH",		609350,		MAX_DOLLAR,	37 ],
 
 		[ "MFJ",		0,			23200,		10 ],
 		[ "MFJ",		23200,		94300,		12 ],
@@ -274,30 +274,30 @@ export class TaxTable_2024 extends TaxTableTmpl {
 	//
 	// California Income Tax Table
 	//
-	// Single and MFS are the same. MFJ and QSS are the same.
+	// SINGLE and MFS are the same. MFJ and QSS are the same.
 	//
 	ca_income_tax_table = [
 		// Filing		Start of	End of		Rate
 		// Status		Bracket		Bracket		Percent
-		[ "Single",		0,			10756,		1		],
-		[ "Single",		10756,		25499,		2		],
-		[ "Single",		25499,		40245,		4		],
-		[ "Single",		40245,		55866,		6		],
-		[ "Single",		55866,		70606,		8		],
-		[ "Single",		70606,		360659,		9.3		],
-		[ "Single",		360659,		432787,		10.3	],
-		[ "Single",		432787,		721314,		11.3	],
-		[ "Single",		721314,		MAX_DOLLAR,	12.3	],
+		[ "SINGLE",		0,			10756,		1		],
+		[ "SINGLE",		10756,		25499,		2		],
+		[ "SINGLE",		25499,		40245,		4		],
+		[ "SINGLE",		40245,		55866,		6		],
+		[ "SINGLE",		55866,		70606,		8		],
+		[ "SINGLE",		70606,		360659,		9.3		],
+		[ "SINGLE",		360659,		432787,		10.3	],
+		[ "SINGLE",		432787,		721314,		11.3	],
+		[ "SINGLE",		721314,		MAX_DOLLAR,	12.3	],
 
-		[ "HoH",		0,			21527,		1		],
-		[ "HoH",		21527,		51000,		2		],
-		[ "HoH",		51000,		65744,		4		],
-		[ "HoH",		65744,		81364,		6		],
-		[ "HoH",		81364,		96107,		8		],
-		[ "HoH",		96107,		490493,		9.3		],
-		[ "HoH",		490493,		588593,		10.3	],
-		[ "HoH",		588593,		980987,		11.3	],
-		[ "HoH",		980987,		MAX_DOLLAR,	12.3	],
+		[ "HOH",		0,			21527,		1		],
+		[ "HOH",		21527,		51000,		2		],
+		[ "HOH",		51000,		65744,		4		],
+		[ "HOH",		65744,		81364,		6		],
+		[ "HOH",		81364,		96107,		8		],
+		[ "HOH",		96107,		490493,		9.3		],
+		[ "HOH",		490493,		588593,		10.3	],
+		[ "HOH",		588593,		980987,		11.3	],
+		[ "HOH",		980987,		MAX_DOLLAR,	12.3	],
 
 		[ "MFJ",		0,			21512,		1		],
 		[ "MFJ",		21512,		50998,		2		],

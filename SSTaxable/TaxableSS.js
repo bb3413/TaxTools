@@ -3,7 +3,6 @@ import { Dates }		from "../Library/Classes/Dates.js";
 import { Debug }		from "../Library/Classes/Debug.js";
 import { Forms }		from "../Library/Classes/Forms.js";
 import { HTML }			from "../Library/Classes/HTML.js";
-import { Str }			from "../Library/Classes/Str.js";
 import { Taxpayer }		from "../Library/Classes/Taxpayer.js";
 import { TaxData }		from "../Library/Classes/TaxData.js";
 import { TaxTable }		from "../Library/Classes/TaxTable.js";
@@ -150,7 +149,7 @@ function getInputs() {
 
 	inputs.tax_year					= Dates.getTaxYear();
 
-	inputs.filing_status			= HTML.getUserInput("FilingStatus", "text");
+	inputs.filing_status			= HTML.getUserInput("FilingStatus", "text").toUpperCase();
 	inputs.lived_with_spouse		= HTML.getUserInput("LivedWithSpouse");
 	inputs.social_security			= HTML.getUserInput("SocialSecurity");
 	inputs.income					= HTML.getUserInput("Income");
@@ -167,7 +166,7 @@ function putOutputs(inputs, outputs) {
 	const tp = Taxpayer.getTaxpayer();
 	let taxable_percent = 0;
 
-	if (Str.caseEqual(tp.filing_status, "MFS")) {
+	if (tp.filing_status === "MFS") {
 		HTML.showElement("LivedWithSpouseContainer");
 	} else {
 		HTML.hideElement("LivedWithSpouseContainer");

@@ -196,7 +196,7 @@ export class Taxpayer {
 		const fields = Object.keys(this);
 		for (const field of fields) {
 			let value = this[field];
-			if (!Str.caseEqual(this.filing_status, "MFJ") && field.match(/spouse/i)) {
+			if ((this.filing_status !== "MFJ") && field.match(/spouse/i)) {
 				continue;
 			}
 			if (value) {	// Skip empty lines.

@@ -104,7 +104,7 @@ function getInputs() {
 
 	// Taxpayer Information
 	inputs.taxpayers_name						= HTML.getUserInput("TaxpayersName",	"text");
-	inputs.filing_status						= HTML.getUserInput("FilingStatus",		"text");
+	inputs.filing_status						= HTML.getUserInput("FilingStatus",		"text").toUpperCase();
 	inputs.taxpayers_birthday					= HTML.getUserInput("TaxpayersBirthday","text");
 	inputs.spouses_birthday						= HTML.getUserInput("SpousesBirthday",	"text");
 

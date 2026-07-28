@@ -74,7 +74,7 @@ function getInputs() {
 	const inputs = {};
 
 	inputs.tax_year					= HTML.getUserInput("TaxYear");
-	inputs.filing_status			= HTML.getUserInput("FilingStatus",		"text");
+	inputs.filing_status			= HTML.getUserInput("FilingStatus",		"text").toUpperCase();
 	inputs.adjusted_gross_income	= HTML.getUserInput("AdjustedGrossIncome");
 	inputs.taxpayers_birthday		= HTML.getUserInput("TaxpayersBirthday","text");
 	inputs.taxpayers_age			= 0;
@@ -107,7 +107,7 @@ function mapInputValues(inputs) {
 }
 
 function putOutputs(taxpayer) {
-	if (Str.caseEqual(taxpayer.filing_status, "MFJ")) {
+	if (taxpayer.filing_status === "MFJ") {
 		HTML.showElement("SpouseContainer");
 	} else {
 		HTML.hideElement("SpouseContainer");

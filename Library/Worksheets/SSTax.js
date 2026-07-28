@@ -7,7 +7,6 @@ import { Debug }	from "../Classes/Debug.js";
 import { Form }		from "../Classes/Form.js";
 import { Forms }	from "../Classes/Forms.js";
 import { Line }		from "../Classes/Line.js";
-import { Str }		from "../Classes/Str.js";
 import { TaxTable }	from "../Classes/TaxTable.js";
 import { Taxpayer }	from "../Classes/Taxpayer.js";
 
@@ -96,7 +95,7 @@ export class SSTax extends Form {
 			return 0;
 		}
 		this.lines["08"].value	= Math.max(0, this.subtract("06", "07"));	// SS income
-		if (Str.caseEqual(filing_status, "MFS") && lived_with_spouse) {
+		if ((filing_status === "MFS") && lived_with_spouse) {
 			this.lines["17"].value = this.line("08") * 0.85;					// 85%
 		} else {
 			this.lines["09"].value = tt.get_SS_Start_50(filing_status);	// Start of 50% taxable range

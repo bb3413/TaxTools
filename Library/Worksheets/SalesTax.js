@@ -8,7 +8,6 @@ import { Form }		from "../Classes/Form.js";
 import { Forms }	from "../Classes/Forms.js";
 import { Line }		from "../Classes/Line.js";
 import { Num }		from "../Classes/Num.js";
-import { Str }		from "../Classes/Str.js";
 import { TaxTable }	from "../Classes/TaxTable.js";
 import { Taxpayer }	from "../Classes/Taxpayer.js";
 
@@ -43,7 +42,7 @@ export class SalesTax extends Form {
 
 		// Input values
 		let family_size = tp.number_of_dependents + 1;
-		if (Str.caseEqual(tp.filing_status, "MFJ")) {
+		if (tp.filing_status === "MFJ") {
 			family_size += 1;
 		}
 		family_size = Num.limit(family_size, 1, 6);

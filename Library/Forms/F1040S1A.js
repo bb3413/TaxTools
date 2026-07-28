@@ -3,7 +3,6 @@ import { Debug }	from "../Classes/Debug.js";
 import { Form }		from "../Classes/Form.js";
 import { Line }		from "../Classes/Line.js";
 import { Forms }	from "../Classes/Forms.js";
-import { Str }		from "../Classes/Str.js";
 import { TaxTable }	from "../Classes/TaxTable.js";
 import { Taxpayer }	from "../Classes/Taxpayer.js";
 
@@ -184,7 +183,7 @@ export class F1040S1A extends Form {
 			this.lines["36a"].value	= this.line("35");						// Senior deduction for Taxpayer
 		}
 		this.lines["36b"].value	= 0;
-		if (Str.caseEqual(tp.filing_status, "MFJ") && tp.taxpayer_has_ssn && tp.spouses_age >= 65) {
+		if ((tp.filing_status === "MFJ") && tp.taxpayer_has_ssn && tp.spouses_age >= 65) {
 			this.lines["36b"].value	= this.line("35");						// Senior deduction for Spouse
 		}
 		this.lines["37"].value	= this.add("36a","36b");					// Senior Deduction

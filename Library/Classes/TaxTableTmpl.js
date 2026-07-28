@@ -18,7 +18,7 @@ export class TaxTableTmpl {
 		//
 		let tax  = 0;
 		for (let row = 0; row < this.income_tax_table.length; row++) {
-			if (Str.caseEqual(filing_status, this.income_tax_table[row][0]) &&
+			if ((filing_status === this.income_tax_table[row][0]) &&
 					income > this.income_tax_table[row][1] &&
 					income <= this.income_tax_table[row][2]) {
 
@@ -104,7 +104,7 @@ export class TaxTableTmpl {
 			senior_deduction = deduction;
 		}
 
-		if (Str.caseEqual(filing_status, "MFJ")) {
+		if (filing_status === "MFJ") {
 			if (spouses_age >= 65) {
 				senior_deduction += deduction;
 			}
@@ -114,7 +114,7 @@ export class TaxTableTmpl {
 	}
 
 	getStandardDeduction(
-		filing_status		= "Single",
+		filing_status		= "SINGLE",
 		taxpayers_age		= 0,
 		spouses_age			= 0,
 		is_taxpayer_blind	= false,
@@ -128,7 +128,7 @@ export class TaxTableTmpl {
 		if (is_taxpayer_blind)
 			std_deduction += std_deduction_extra;
 
-		if (Str.caseEqual(filing_status, "MFJ")) {
+		if (filing_status === "MFJ") {
 			if (spouses_age >= 65)
 				std_deduction += std_deduction_extra;
 			if (is_spouse_blind)
@@ -138,17 +138,17 @@ export class TaxTableTmpl {
 		return std_deduction;
 	}
 
-	getTaxValue(name, filing_status = "Single") {
+	getTaxValue(name, filing_status = "SINGLE") {
 		let value = -1;
 
 		// Table columns
 		let fs = 1;
-		switch (Str.downshift(filing_status)) {
-			case "single":	fs = 1; break;
-			case "hoh":		fs = 2; break;
-			case "mfj":		fs = 3; break;
-			case "qss":		fs = 4; break;
-			case "mfs":		fs = 5; break;
+		switch (filing_status) {
+			case "SINGLE":	fs = 1; break;
+			case "HOH":		fs = 2; break;
+			case "MFJ":		fs = 3; break;
+			case "QSS":		fs = 4; break;
+			case "MFS":		fs = 5; break;
 		}
 
 		for (let row = 0; row < this.values.length; row++) {
@@ -181,7 +181,7 @@ export class TaxTableTmpl {
 	get_AMT_Tax(filing_status, income) {
 		let tax = 0;
 		for (let row = 0; row < this.amt_tax.length; row++) {
-			if (Str.caseEqual(filing_status, this.amt_tax[row][0]) &&
+			if ((filing_status === this.amt_tax[row][0]) &&
 					income > this.amt_tax[row][1] &&
 					income <= this.amt_tax[row][2]) {
 
@@ -197,7 +197,7 @@ export class TaxTableTmpl {
 	}
 
 	get_CA_Exemption(
-		filing_status		= "Single",
+		filing_status		= "SINGLE",
 		taxpayers_age		= 0,
 		spouses_age			= 0,
 		is_taxpayer_blind	= false,
@@ -213,7 +213,7 @@ export class TaxTableTmpl {
 		if (is_taxpayer_blind)
 			exemption += personal_exemption;
 
-		if (Str.caseEqual(filing_status, "MFJ")) {
+		if (filing_status === "MFJ") {
 			exemption += personal_exemption;		// One exemption for the spouse.
 			if (spouses_age >= 65)
 				exemption += personal_exemption;
@@ -233,20 +233,20 @@ export class TaxTableTmpl {
 		//		((income - start_of_bracket) * tax_rate) + cumulative_tax
 		//
 
-		// Single and MFS are the same. MFJ and QSS are the same.
-		switch (Str.downshift(filing_status)) {
-			case "qss":
+		// SINGLE and MFS are the same. MFJ and QSS are the same.
+		switch (filing_status) {
+			case "QSS":
 				filing_status	= "MFJ";
 				break;
-			case "mfs":
-				filing_status	= "Single";
+			case "MFS":
+				filing_status	= "SINGLE";
 				break;
 		}
 
 		let tax = 0;
 
 		for (let row = 0; row < this.ca_income_tax_table.length; row++) {
-			if (Str.caseEqual(filing_status, this.ca_income_tax_table[row][0]) &&
+			if ((filing_status === this.ca_income_tax_table[row][0]) &&
 					income > this.ca_income_tax_table[row][1] &&
 					income <= this.ca_income_tax_table[row][2]) {
 

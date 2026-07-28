@@ -25,7 +25,7 @@ export class TaxTable_2026 extends TaxTableTmpl {
 	// This table contains constant tax values.
 	//
 	values = [
-		// 	Name								Single		HoH			MFJ			QSS			MFS
+		// 	Name								SINGLE		HOH			MFJ			QSS			MFS
 		[ "BusinessMileage",					0.725,		0.725,		0.725,		0.725,		0.725		],
 		[ "CharityMileage",						0.14,		0.14,		0.14,		0.14,		0.14		],
 		[ "MedicalMileage",						0.205,		0.205,		0.205,		0.205,		0.21		],
@@ -36,7 +36,7 @@ export class TaxTable_2026 extends TaxTableTmpl {
 		[ "MaxSALT",							40000,		40000,		40000,		40000,		20000		],	// TY25
 		[ "MaxStudentLoanInterest",				2500,		2500,		2500,		2500,		0			],	// TY25
 
-		// OBBA deductions						Single		HoH			MFJ			QSS			MFS
+		// OBBA deductions						SINGLE		HOH			MFJ			QSS			MFS
 		[ "MaxCarLoanInterestDeduction",		10000,		10000,		10000,		10000,		10000		],	// TY25
 		[ "CarLoanInterestDeductionPhaseOut",	100000,		100000,		200000,		100000,		100000		],	// TY25
 		[ "MaxOvertimeDeduction",				12500,		12500,		25000,		12500,		0			],	// TY25
@@ -46,7 +46,7 @@ export class TaxTable_2026 extends TaxTableTmpl {
 		[ "MaxSeniorDeduction",					6000,		6000,		6000,		6000,		0			],	// TY25
 		[ "SeniorDeductionPhaseOut",			75000,		75000,		150000,		75000,		75000		],	// TY25
 
-		// Non-refundable credits				Single		HoH			MFJ			QSS			MFS
+		// Non-refundable credits				SINGLE		HOH			MFJ			QSS			MFS
 		[ "MaxAmericanOppCreditNoRefund",		MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	0			],
 		[ "MaxChildAndDependentCareCredit",		MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	0			],
 		[ "MaxChildTaxCredit",					MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR	],
@@ -55,21 +55,21 @@ export class TaxTable_2026 extends TaxTableTmpl {
 		[ "MaxResidentialEnergyCredit",			MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR	],
 		[ "MaxRetirementSavingsCredit",			1000,		1000,		2000,		1000,		1000		],	// TY25
 
-		// Refundable credits					Single		HoH			MFJ			QSS			MFS
+		// Refundable credits					SINGLE		HOH			MFJ			QSS			MFS
 		[ "MaxAmericanOppCreditRefundable",		MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	0			],
 		[ "MaxCreditForOtherDependents",		MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR	],
 		[ "MaxEarnedIncomeCredit",				61555,		61555,		68675,		61555,		0			],	// TY25
 		[ "MaxPremiumTaxCredit",				MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	0			],
 
-		// AMT									Single		HoH			MFJ			QSS			MFS
+		// AMT									SINGLE		HOH			MFJ			QSS			MFS
 		[ "AMT_Exemption",						90100,		90100,		140200,		140200,		70100		],
 		[ "AMT_ExemptionPhaseOut",				500000,		500000,		1000000,	1000000,	500000		],
 
-		// Capital gains ranges					Single		HoH			MFJ			QSS			MFS
+		// Capital gains ranges					SINGLE		HOH			MFJ			QSS			MFS
 		[ "CG_15PercentRangeStart",				49450,		66200,		98900,		98900,		49450		],
 		[ "CG_20PercentRangestart",				545500,		579600,		613700,		613700,		306850		],
 
-		// Social Security 50% taxable range	Single		HoH			MFJ			QSS			MFS
+		// Social Security 50% taxable range	SINGLE		HOH			MFJ			QSS			MFS
 		[ "SS_50PercentRangeStart",				25000,		25000,		32000,		25000,		25000		],	// TY25
 		[ "SS_50PercentRangeEnd",				34000,		34000,		44000,		34000,		34000		],	// TY25
 		[ "SS_50PercentRangeLength",			9000,		9000,		12000,		9000,		9000		],	// TY25
@@ -78,7 +78,7 @@ export class TaxTable_2026 extends TaxTableTmpl {
 		[ "StandardDeduction",					16100,		24150,		32200,		32200,		16100		],
 		[ "StandardDeductionExtra",				2050,		2050,		1650,		1650,		1650		],
 
-		// California constants					Single		HoH			MFJ			QSS			MFS
+		// California constants					SINGLE		HOH			MFJ			QSS			MFS
 		[ "CA_PersonalExemption",				153,		153,		153,		153,		153			],	// TY25
 		[ "CA_DependentExemption",				475,		475,		475,		475,		475			],	// TY25
 		[ "CA_StandardDeduction",				5706,		11412,		11412,		11412,		5706		],	// TY25
@@ -93,11 +93,11 @@ export class TaxTable_2026 extends TaxTableTmpl {
 	amt_tax = [
 		//				Start of	End of		Subtract	Rate
 		//				Bracket		Bracket					Percent
-		[ "Single",		0,			239100,		0,			26	],		// TY25
-		[ "Single",		239100,		MAX_DOLLAR,	4782,		28	],		// TY25
+		[ "SINGLE",		0,			239100,		0,			26	],		// TY25
+		[ "SINGLE",		239100,		MAX_DOLLAR,	4782,		28	],		// TY25
 
-		[ "HoH",		0,			239100,		0,			26	],		// TY25
-		[ "HoH",		239100,		MAX_DOLLAR,	4782,		28	],		// TY25
+		[ "HOH",		0,			239100,		0,			26	],		// TY25
+		[ "HOH",		239100,		MAX_DOLLAR,	4782,		28	],		// TY25
 
 		[ "MFJ",		0,			239100,		0,			26	],		// TY25
 		[ "MFJ",		239100,		MAX_DOLLAR,	4782,		28	],		// TY25
@@ -124,21 +124,21 @@ export class TaxTable_2026 extends TaxTableTmpl {
 	income_tax_table = [
 		// Filing		Start of	End of		Rate
 		// Status		Bracket		Bracket		Percent
-		[ "Single",		0,			12400,		10 ],
-		[ "Single",		12400,		50400,		12 ],
-		[ "Single",		50400,		105700,		22 ],
-		[ "Single",		105700,		201775,		24 ],
-		[ "Single",		201775,		256225,		32 ],
-		[ "Single",		256225,		640600,		35 ],
-		[ "Single",		640600,		MAX_DOLLAR,	37 ],
+		[ "SINGLE",		0,			12400,		10 ],
+		[ "SINGLE",		12400,		50400,		12 ],
+		[ "SINGLE",		50400,		105700,		22 ],
+		[ "SINGLE",		105700,		201775,		24 ],
+		[ "SINGLE",		201775,		256225,		32 ],
+		[ "SINGLE",		256225,		640600,		35 ],
+		[ "SINGLE",		640600,		MAX_DOLLAR,	37 ],
 
-		[ "HoH",		0,			17700,		10 ],
-		[ "HoH",		17700,		67450,		12 ],
-		[ "HoH",		67450,		105700,		22 ],
-		[ "HoH",		105700,		201775,		24 ],
-		[ "HoH",		201775,		256200,		32 ],
-		[ "HoH",		256200,		640600,		35 ],
-		[ "HoH",		640600,		MAX_DOLLAR,	37 ],
+		[ "HOH",		0,			17700,		10 ],
+		[ "HOH",		17700,		67450,		12 ],
+		[ "HOH",		67450,		105700,		22 ],
+		[ "HOH",		105700,		201775,		24 ],
+		[ "HOH",		201775,		256200,		32 ],
+		[ "HOH",		256200,		640600,		35 ],
+		[ "HOH",		640600,		MAX_DOLLAR,	37 ],
 
 		[ "MFJ",		0,			24800,		10 ],
 		[ "MFJ",		24800,		100800,		12 ],
@@ -275,30 +275,30 @@ export class TaxTable_2026 extends TaxTableTmpl {
 	//
 	// California Income Tax Table
 	//
-	// Single and MFS are the same. MFJ and QSS are the same.
+	// SINGLE and MFS are the same. MFJ and QSS are the same.
 	//
 	ca_income_tax_table = [
 		// Filing		Start of	End of		Rate
 		// Status		Bracket		Bracket		Percent
-		[ "Single",		0,			11079,		1.0		],		// TY25
-		[ "Single",		11079,		26264,		2.0		],		// TY25
-		[ "Single",		26264,		41452,		4.0		],		// TY25
-		[ "Single",		41452,		57542,		6.0		],		// TY25
-		[ "Single",		57542,		72724,		8.0		],		// TY25
-		[ "Single",		72724,		371479,		9.3		],		// TY25
-		[ "Single",		371479,		445771,		10.3	],		// TY25
-		[ "Single",		445771,		742953,		11.3	],		// TY25
-		[ "Single",		742953,		MAX_DOLLAR,	12.3	],		// TY25
+		[ "SINGLE",		0,			11079,		1.0		],		// TY25
+		[ "SINGLE",		11079,		26264,		2.0		],		// TY25
+		[ "SINGLE",		26264,		41452,		4.0		],		// TY25
+		[ "SINGLE",		41452,		57542,		6.0		],		// TY25
+		[ "SINGLE",		57542,		72724,		8.0		],		// TY25
+		[ "SINGLE",		72724,		371479,		9.3		],		// TY25
+		[ "SINGLE",		371479,		445771,		10.3	],		// TY25
+		[ "SINGLE",		445771,		742953,		11.3	],		// TY25
+		[ "SINGLE",		742953,		MAX_DOLLAR,	12.3	],		// TY25
 
-		[ "HoH",		0,			22173,		.0		],		// TY25
-		[ "HoH",		22173,		52530,		2.0		],		// TY25
-		[ "HoH",		52530,		67716,		4.0		],		// TY25
-		[ "HoH",		67716,		83805,		6.0		],		// TY25
-		[ "HoH",		83805,		98990,		8.0		],		// TY25
-		[ "HoH",		98990,		505208,		9.3		],		// TY25
-		[ "HoH",		505208,		606251,		10.3	],		// TY25
-		[ "HoH",		606251,		1010417,	11.3	],		// TY25
-		[ "HoH",		1010417,	MAX_DOLLAR,	12.3	],		// TY25
+		[ "HOH",		0,			22173,		.0		],		// TY25
+		[ "HOH",		22173,		52530,		2.0		],		// TY25
+		[ "HOH",		52530,		67716,		4.0		],		// TY25
+		[ "HOH",		67716,		83805,		6.0		],		// TY25
+		[ "HOH",		83805,		98990,		8.0		],		// TY25
+		[ "HOH",		98990,		505208,		9.3		],		// TY25
+		[ "HOH",		505208,		606251,		10.3	],		// TY25
+		[ "HOH",		606251,		1010417,	11.3	],		// TY25
+		[ "HOH",		1010417,	MAX_DOLLAR,	12.3	],		// TY25
 
 		[ "MFJ",		0,			22158,		1.0		],		// TY25
 		[ "MFJ",		22158,		52528,		2.0		],		// TY25

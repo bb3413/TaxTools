@@ -108,14 +108,14 @@ function getInputs() {
 	inputs.tax_year					= Dates.getTaxYear();
 
 	// Current year
-	inputs.filing_status_0			= HTML.getUserInput("FilingStatus-0", "text");
+	inputs.filing_status_0			= HTML.getUserInput("FilingStatus-0", "text").toUpperCase();
 	inputs.ss_received_0			= HTML.getUserInput("SocialSecurity-0");
 	inputs.ss_income_0				= HTML.getUserInput("Income-0");
 	inputs.tax_exempt_interest_0	= HTML.getUserInput("TaxExemptInterest-0");
 	inputs.adjustments_0			= HTML.getUserInput("Adjustments-0");
 
 	// Previous year 1
-	inputs.filing_status_1			= HTML.getUserInput("FilingStatus-1", "text");
+	inputs.filing_status_1			= HTML.getUserInput("FilingStatus-1", "text").toUpperCase();
 	inputs.lump_sum_1				= HTML.getUserInput("LumpSum-1");
 	inputs.agi_1					= HTML.getUserInput("AGI-1");
 	inputs.tax_exempt_interest_1	= HTML.getUserInput("TaxExemptInterest-1");
@@ -123,7 +123,7 @@ function getInputs() {
 	inputs.ss_taxable_reported_1	= HTML.getUserInput("SocialSecurityTaxableReported-1");
 
 	// Previous year 2
-	inputs.filing_status_2			= HTML.getUserInput("FilingStatus-2", "text");
+	inputs.filing_status_2			= HTML.getUserInput("FilingStatus-2", "text").toUpperCase();
 	inputs.lump_sum_2				= HTML.getUserInput("LumpSum-2");
 	inputs.agi_2					= HTML.getUserInput("AGI-2");
 	inputs.tax_exempt_interest_2	= HTML.getUserInput("TaxExemptInterest-2");

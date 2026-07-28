@@ -3,7 +3,6 @@ import { Dates }		from "../Library/Classes/Dates.js";
 import { Debug }		from "../Library/Classes/Debug.js";
 import { Forms }		from "../Library/Classes/Forms.js";
 import { HTML }			from "../Library/Classes/HTML.js";
-import { Str }			from "../Library/Classes/Str.js";
 import { Taxpayer }		from "../Library/Classes/Taxpayer.js";
 import { TaxData }		from "../Library/Classes/TaxData.js";
 import { TaxTable }		from "../Library/Classes/TaxTable.js";
@@ -87,7 +86,7 @@ function getInputs() {
 
 	// Input fields
 	inputs.previous_tax_year				= HTML.getUserInput("PreviousTaxYear");
-	inputs.filing_status					= HTML.getUserInput("FilingStatus",		"text");
+	inputs.filing_status					= HTML.getUserInput("FilingStatus",		"text").toUpperCase();
 	inputs.taxpayers_birthday				= HTML.getUserInput("TaxpayersBirthday","text");
 	inputs.is_taxpayer_blind				= HTML.getUserInput("TaxpayerIsBlind");
 	inputs.spouses_birthday					= HTML.getUserInput("SpousesBirthday",	"text");
@@ -134,7 +133,7 @@ function mapInputValues(inputs) {
 function putOutputs(outputs) {
 	const tp = Taxpayer.getTaxpayer();
 
-	if (Str.caseEqual(tp.filing_status, "MFJ")) {
+	if (tp.filing_status === "MFJ") {
 		HTML.showElement("SpouseContainer");
 	} else {
 		HTML.hideElement("SpouseContainer");

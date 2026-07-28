@@ -55,7 +55,7 @@ function changeHandler(event) {
 function createTaxpayer(inputs) {
 	const taxpayer					= new Taxpayer();
 
-	taxpayer.filing_status			= "Single";
+	taxpayer.filing_status			= "SINGLE";
 	taxpayer.number_of_dependents	= inputs.family_size - 1;
 
 	return taxpayer;
