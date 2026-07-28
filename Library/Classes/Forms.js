@@ -180,36 +180,38 @@ const create_on_demand = [
 	"CA_HiIncExemptions",
 ];
 
+function addForm(formname, form) {
+	if (!formname) {
+		throw new Error("Forms addForm: Form name is not set.");
+	}
+
+	let formlist = instances[formname];
+	if (!formlist) {
+		// This is the first form of this type.
+		instances[formname] = [];
+		formlist = instances[formname];
+	}
+
+	if ((formlist.length > 0) && (form.isSingleton)) {
+		throw new Error(`Forms addForm: Singleton form ${formname} already exists; cannot add.`)
+		return;
+	}
+
+	formlist.push(form);
+}
+
 export class Forms {
 	static reset() {
 		instances		= {};
-	}
-
-	static addForm(formname, form) {
-		if (!formname) {
-			throw new Error("Forms.addForm: Form name is not set.");
-		}
-
-		let formlist = instances[formname];
-		if (!formlist) {
-			// This is the first form of this type.
-			instances[formname] = [];
-			formlist = instances[formname];
-		}
-
-		if ((formlist.length > 0) && (form.isSingleton)) {
-			throw new Error(`Forms.addForm: Singleton form ${formname} already exists; cannot add.`)
-			return;
-		}
-
-		formlist.push(form);
 	}
 
 	static createForm(formname) {
 		const form_class = formsClassMap[formname];
 
 		if (form_class) {
-			return new form_class(formname);
+			const form = new form_class(formname);
+			addForm(formname, form);
+			return form;
 		}
 
 		return undefined;

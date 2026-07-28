@@ -18,7 +18,7 @@ function changeHandler(event) {
 	// This function is called when any input field is changed. It calculates the
 	// whole return (not just the field tha was changed).
 	//
-	try {
+	//try {
 		// Reset static (global) variables to erase information from a previous calculation.
 		HTML.putElementValue("ErrorMessageOutput", "");
 		Debug.reset();
@@ -34,10 +34,10 @@ function changeHandler(event) {
 		Forms.getForm("F1040").calculate();							// Calculate the tax forms
 		putOutputs(taxpayer);										// Put results on web page
 		Debug.turnOn();												// Put debug info on web page if enabled
-	} catch (err) {
+	//} catch (err) {
 		HTML.putElementValue("ErrorMessageOutput", err);
 		document.getElementById("ErrorMessageOutput").scrollIntoView({behavior: 'smooth', block: 'start'});
-	}
+	//}
 }
 
 function checkInputValues(inputs, taxtable, taxpayer) {
@@ -183,6 +183,17 @@ function getInputs() {
 	inputs.estimated_tax_paid					= HTML.getUserInput("EstimatedTaxPaid");
 
 	return inputs;
+}
+
+function mapInputValuesNew(inputs) {
+	const tt		= TaxTable.getTaxTable();
+	const tp		= Taxpayer.getTaxpayer();
+	const f1040		= Forms.createForm("F1040");
+	const f1040S1	= Forms.createForm("F1040S1");
+	const f1040S2	= Forms.createForm("F1040S2");
+	const f1040S3	= Forms.createForm("F1040S3");
+	const f1040S1A	= Forms.createForm("F1040S1A");
+	const f1040SA	= Forms.createForm("F1040SA");
 }
 
 function mapInputValues(inputs) {

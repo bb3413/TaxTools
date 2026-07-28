@@ -15,8 +15,6 @@ export class IncTax extends Form {
 		Debug.enter("IncTax.Constructor()");
 		super(formname);
 
-		Forms.addForm(formname, this);
-
 		this.lines["01"]	= new Line("Taxable Income");
 		this.lines["02"]	= new Line("Qualified Dividends");
 		this.lines["03"]	= new Line("Capital Gains");

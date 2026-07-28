@@ -14,8 +14,6 @@ export class F6251 extends Form {
 		Debug.enter("F6251.Constructor()");
 		super(formname);
 
-		Forms.addForm(formname, this);
-
 		// Form 6251, Part I - AMT Income
 		this.lines["01a"]	= new Line("Total Deductions w/o Senior Deduction");
 		this.lines["01b"]	= new Line("AGI - Deductions");

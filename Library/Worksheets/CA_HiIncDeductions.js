@@ -15,8 +15,6 @@ export class CA_HiIncDeductions extends Form {
 		Debug.enter("CA_HiIncDeductions.Constructor()");
 		super(formname);
 
-		Forms.addForm(formname, this);
-
 		this.lines["01"]	= new Line("Total Deductions");
 		this.lines["02"]	= new Line("Medical + Interest, + Theft");
 		this.lines["03"]	= new Line("Deductions - line 2");

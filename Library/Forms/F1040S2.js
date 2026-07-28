@@ -9,8 +9,6 @@ export class F1040S2 extends Form {
 		Debug.enter("F1040S2.Constructor()");
 		super(formname);
 
-		Forms.addForm(formname, this);
-
 		// Tax
 		this.lines["01a"]	= new Line("Repayment of Advanced PTC");
 		this.lines["01b"]	= new Line("Repayment of New Clean Vehicle Credit");

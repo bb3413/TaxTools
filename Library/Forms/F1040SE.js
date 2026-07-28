@@ -13,8 +13,6 @@ export class F1040SE extends Form {
 
 		// NOT IMPLEMENTED
 
-		Forms.addForm(formname, this);
-
 		this.lines["01"]	= new Line("");
 		this.lines["02"]	= new Line("");
 		this.lines["03"]	= new Line("");

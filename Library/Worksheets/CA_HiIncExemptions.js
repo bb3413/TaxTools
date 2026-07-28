@@ -15,8 +15,6 @@ export class CA_HiIncExemptions extends Form {
 		Debug.enter("CA_HiIncExemptions.Constructor()");
 		super(formname);
 
-		Forms.addForm(formname, this);
-
 		this.lines["0a"]	= new Line("Federal AGI");
 		this.lines["0b"]	= new Line("Exemption Phseout");
 		this.lines["0c"]	= new Line("");

@@ -14,7 +14,6 @@ export class F1099B extends Form {
 		// NOT IMPLEMENTED
 
 		this.isSingleton = false;
-		Forms.addForm(formname, this);
 
 		this.lines["01"]	= new Line("");
 		this.lines["02"]	= new Line("");

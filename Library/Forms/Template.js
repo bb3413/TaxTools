@@ -11,8 +11,6 @@ export class Template extends Form {
 		Debug.enter("Template.Constructor()");
 		super(formname);
 
-		Forms.addForm(formname, this);
-
 		this.lines["01"]	= new Line("");
 		this.lines["02"]	= new Line("");
 		this.lines["03"]	= new Line("");

@@ -12,7 +12,6 @@ export class F1040SC extends Form {
 		super(formname);
 
 		this.isSingleton = false;
-		Forms.addForm(formname, this);
 
 		// Income
 		this.lines["01"]	= new Line("Gross Receipts or Sales");

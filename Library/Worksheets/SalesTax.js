@@ -16,8 +16,6 @@ export class SalesTax extends Form {
 		Debug.enter("SalesTax.Constructor()");
 		super(formname);
 
-		Forms.addForm(formname, this);
-
 		this.lines["01"]	= new Line("Sales Tax from Table");
 		this.lines["02"]	= new Line("Not used in California");
 		this.lines["03"]	= new Line("Local Sales Tax");

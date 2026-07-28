@@ -11,8 +11,6 @@ export class F1040SA extends Form {
 		Debug.enter("F1040SA.Constructor()");
 		super(formname);
 
-		Forms.addForm(formname, this);
-
 		this.lines["01"]	= new Line("Medical Expenses");
 		this.lines["02"]	= new Line("AGI");
 		this.lines["03"]	= new Line("7.5% or AGI");

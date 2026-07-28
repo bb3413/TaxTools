@@ -18,8 +18,6 @@ export class Refund extends Form {
 		Debug.enter("Refund.Constructor()");
 		super(formname);
 
-		Forms.addForm(formname, this);
-
 		// Inputs
 		this.lines["sched_a_5d"]		= new Line("Previous Tax Year, State and Local Taxes");
 		this.lines["sched_a_5e"]		= new Line("Previous Tax Year, Amount Limited by SALT Cap");

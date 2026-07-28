@@ -13,8 +13,6 @@ export class F1040SSE extends Form {
 		Debug.enter("F1040SSE.Constructor()");
 		super(formname);
 
-		Forms.addForm(formname, this);
-
 		this.lines["01a"]	= new Line("Not used");
 		this.lines["01b"]	= new Line("Not used");
 		this.lines["02"]	= new Line("Net profit from business");

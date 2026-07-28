@@ -12,8 +12,6 @@ export class F540 extends Form {
 		Debug.enter("F540.Constructor()");
 		super(formname);
 
-		Forms.addForm(formname, this);
-
 		// Filing Status
 		this.lines["001"]	= new Line("Single");
 		this.lines["002"]	= new Line("MFJ");

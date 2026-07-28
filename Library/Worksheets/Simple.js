@@ -46,7 +46,6 @@ export class Simple extends Form {
 		super(formname);
 
 		this.isSingleton = false;
-		Forms.addForm(formname, this);
 
 		this.lines["01"]	= new Line("Gross Distribution (1099-R, box 1)");
 		this.lines["02"]	= new Line("Total Contributions (1099-R, box 9b)");

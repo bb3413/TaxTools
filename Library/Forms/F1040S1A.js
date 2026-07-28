@@ -24,8 +24,6 @@ export class F1040S1A extends Form {
 		Debug.enter("F1040S1A.Constructor()");
 		super(formname);
 
-		Forms.addForm(formname, this);
-
 		// No Tax on Tips
 		this.lines["01"]	= new Line("Adjusted Gross Income");
 		this.lines["02a"]	= new Line("Income from Puerto Rico");

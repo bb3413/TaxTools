@@ -46,7 +46,6 @@ export class W2 extends Form {
 		super(formname);
 
 		this.isSingleton = false;
-		Forms.addForm(formname, this);
 
 		for (const field of FIELDS) {
 			const lineno	= field[0];

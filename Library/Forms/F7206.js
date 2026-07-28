@@ -17,7 +17,6 @@ export class F7206 extends Form {
 		super(formname);
 
 		this.isSingleton = false;
-		Forms.addForm(formname, this);
 
 		this.lines["01"]	= new Line("Health Insurance");
 		this.lines["02"]	= new Line("LTC Insurance");		// Rounded down by age

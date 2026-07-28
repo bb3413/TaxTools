@@ -9,8 +9,6 @@ export class F1040S3 extends Form {
 		Debug.enter("F1040S3.Constructor()");
 		super(formname);
 
-		Forms.addForm(formname, this);
-
 		// Non-refundable Credits
 		this.lines["01"]	= new Line("Foreign Tax Credit");
 		this.lines["02"]	= new Line("Child and Dependent Care Credit");

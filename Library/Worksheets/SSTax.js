@@ -14,9 +14,8 @@ export class SSTax extends Form {
 	constructor(formname) {
 		Debug.enter("SSTax.Constructor()");
 		super(formname);
-		this.isSingleton = false;
 
-		Forms.addForm(formname, this);
+		this.isSingleton = false;
 
 		this.lines["01"]	= new Line("Sum of all SSA-1099, box 5");
 		this.lines["02"]	= new Line("Half of total SS benefits");

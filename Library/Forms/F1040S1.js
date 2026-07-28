@@ -9,8 +9,6 @@ export class F1040S1 extends Form {
 		Debug.enter("F1040S1.Constructor()");
 		super(formname);
 
-		Forms.addForm(formname, this);
-
 		// Additions to Income
 		this.lines["01"]	= new Line("Taxable Refund");
 		this.lines["02a"]	= new Line("Alimony Received");

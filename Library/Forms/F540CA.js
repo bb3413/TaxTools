@@ -12,8 +12,6 @@ export class F540CA extends Form {
 		Debug.enter("F540CA.Constructor()");
 		super(formname);
 
-		Forms.addForm(formname, this);
-
 		// Part I Income Adjustment Schedule - Section A
 		// Income
 		this.lines["A-01aA"]	= new Line("Wages");

@@ -12,7 +12,6 @@ export class F1099G extends Form {
 		super(formname);
 
 		this.isSingleton = false;
-		Forms.addForm(formname, this);
 
 		this.lines["01"]	= new Line("Unemployment Compensation");
 		this.lines["02"]	= new Line("State or Local Refund");

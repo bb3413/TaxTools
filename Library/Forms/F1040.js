@@ -77,8 +77,6 @@ export class F1040 extends Form {
 		Debug.enter("F1040.Constructor()");
 		super(formname);
 
-		Forms.addForm(formname, this);
-
 		for (const field of FIELDS) {
 			const lineno	= field[0];
 			const name		= field[1];
