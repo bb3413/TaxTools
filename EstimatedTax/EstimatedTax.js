@@ -190,38 +190,38 @@ function mapInputValues(inputs) {
 	const f1040S1A	= Forms.createForm("F1040S1A");
 	const f1040SA	= Forms.createForm("F1040SA");
 
-	f1040.lines["01z"].override_value(inputs.wages);
-	f1040.lines["02a"].override_value(inputs.tax_exempt_interest);
-	f1040.lines["02b"].override_value(inputs.taxable_interest);
-	f1040.lines["03a"].override_value(inputs.qualified_dividends);
-	f1040.lines["03b"].override_value(inputs.ordinary_dividends);
-	f1040.lines["04b"].override_value(inputs.retirement_accounts);
-	f1040.lines["06a"].override_value(inputs.social_security);
-	f1040.lines["07a"].override_value(inputs.capital_gains);
-	f1040.lines["08" ].override_value(inputs.self_employment_income + inputs.other_income);
+	f1040.lines["01z"].user_value(inputs.wages);
+	f1040.lines["02a"].user_value(inputs.tax_exempt_interest);
+	f1040.lines["02b"].user_value(inputs.taxable_interest);
+	f1040.lines["03a"].user_value(inputs.qualified_dividends);
+	f1040.lines["03b"].user_value(inputs.ordinary_dividends);
+	f1040.lines["04b"].user_value(inputs.retirement_accounts);
+	f1040.lines["06a"].user_value(inputs.social_security);
+	f1040.lines["07a"].user_value(inputs.capital_gains);
+	f1040.lines["08" ].user_value(inputs.self_employment_income + inputs.other_income);
 
 	//Other Taxes
-	f1040S2.lines["04"].override_value(inputs.self_employment_tax);
-	f1040S2.lines["08"].override_value(inputs.early_withdrawal_tax);
-	f1040.lines  ["23"].override_value(inputs.other_taxes);
+	f1040S2.lines["04"].user_value(inputs.self_employment_tax);
+	f1040S2.lines["08"].user_value(inputs.early_withdrawal_tax);
+	f1040.lines  ["23"].user_value(inputs.other_taxes);
 
 	// Adjustments
-	f1040S1.lines["11"].override_value(inputs.educator_expenses);
-	f1040S1.lines["13"].override_value(inputs.health_savings_account);
-	f1040S1.lines["15"].override_value(inputs.self_employment_tax_adjustment);
-	f1040S1.lines["17"].override_value(inputs.self_employed_health_insurance);
-	f1040S1.lines["18"].override_value(inputs.early_withdrawal_penalty);
-	f1040S1.lines["19a"].override_value(inputs.alimony_paid);
-	f1040S1.lines["20"].override_value(inputs.ira_contributions);
-	f1040S1.lines["21"].override_value(inputs.student_loan_interest);
-	f1040S1.lines["25"].override_value(inputs.other_adjustments);
+	f1040S1.lines["11"].user_value(inputs.educator_expenses);
+	f1040S1.lines["13"].user_value(inputs.health_savings_account);
+	f1040S1.lines["15"].user_value(inputs.self_employment_tax_adjustment);
+	f1040S1.lines["17"].user_value(inputs.self_employed_health_insurance);
+	f1040S1.lines["18"].user_value(inputs.early_withdrawal_penalty);
+	f1040S1.lines["19a"].user_value(inputs.alimony_paid);
+	f1040S1.lines["20"].user_value(inputs.ira_contributions);
+	f1040S1.lines["21"].user_value(inputs.student_loan_interest);
+	f1040S1.lines["25"].user_value(inputs.other_adjustments);
 
 	// Deductions (non-itemized)
-	f1040.lines   ["13a"].override_value(inputs.qualified_business_income_deduction);
-	f1040S1A.lines["13"].override_value(inputs.qualified_tips_deduction);
-	f1040S1A.lines["21"].override_value(inputs.qualified_overtime_deduction);
-	f1040S1A.lines["30"].override_value(inputs.car_loan_interest_deduction);
-	f1040S1A.lines["37"].override_value(inputs.senior_deduction);
+	f1040.lines   ["13a"].user_value(inputs.qualified_business_income_deduction);
+	f1040S1A.lines["13"].user_value(inputs.qualified_tips_deduction);
+	f1040S1A.lines["21"].user_value(inputs.qualified_overtime_deduction);
+	f1040S1A.lines["30"].user_value(inputs.car_loan_interest_deduction);
+	f1040S1A.lines["37"].user_value(inputs.senior_deduction);
 
 	// Deductions
 	const total_medical_deductions =
@@ -235,34 +235,34 @@ function mapInputValues(inputs) {
 		tt.getMedicalMileageDeduction(inputs.medical_miles);	// Convert miles to dollars;
 	const state_and_local_taxes = Math.max(inputs.state_income_tax, inputs.sales_tax);
 
-	f1040SA.lines["01"].override_value(total_medical_deductions);
-	f1040SA.lines["05a"].override_value(state_and_local_taxes);
-	f1040SA.lines["05b"].override_value(inputs.real_estate_property_tax);
-	f1040SA.lines["05c"].override_value(inputs.personal_property_tax);
-	f1040SA.lines["08a"].override_value(inputs.mortgage_interest);
-	f1040SA.lines["11"].override_value(inputs.cash_gifts_to_charity);
-	f1040SA.lines["12"].override_value(inputs.noncash_gifts_to_charity);
+	f1040SA.lines["01"].user_value(total_medical_deductions);
+	f1040SA.lines["05a"].user_value(state_and_local_taxes);
+	f1040SA.lines["05b"].user_value(inputs.real_estate_property_tax);
+	f1040SA.lines["05c"].user_value(inputs.personal_property_tax);
+	f1040SA.lines["08a"].user_value(inputs.mortgage_interest);
+	f1040SA.lines["11"].user_value(inputs.cash_gifts_to_charity);
+	f1040SA.lines["12"].user_value(inputs.noncash_gifts_to_charity);
 
 	// Non-refundable Credits
-	f1040S3.lines["03"].override_value(inputs.american_opp_credit_no_refund);
-	f1040.lines  ["19"].override_value(inputs.child_care_credit);
-	f1040S3.lines["02"].override_value(inputs.child_tax_credit);
-	f1040S3.lines["01"].override_value(inputs.foreign_tax_credit);
-	f1040S3.lines["03"].override_value(inputs.lifetime_learning_credit);
-	f1040S3.lines["05a"].override_value(inputs.residential_energy_credit);
-	f1040S3.lines["04"].override_value(inputs.retirement_savings_credit);
-	f1040S3.lines["07"].override_value(inputs.other_nonrefundable_credits);
+	f1040S3.lines["03"].user_value(inputs.american_opp_credit_no_refund);
+	f1040.lines  ["19"].user_value(inputs.child_care_credit);
+	f1040S3.lines["02"].user_value(inputs.child_tax_credit);
+	f1040S3.lines["01"].user_value(inputs.foreign_tax_credit);
+	f1040S3.lines["03"].user_value(inputs.lifetime_learning_credit);
+	f1040S3.lines["05a"].user_value(inputs.residential_energy_credit);
+	f1040S3.lines["04"].user_value(inputs.retirement_savings_credit);
+	f1040S3.lines["07"].user_value(inputs.other_nonrefundable_credits);
 
 	// Refundable Credits
-	f1040S3.lines["03" ].override_value(inputs.american_opp_credit_refundable);
-	f1040.lines  ["19" ].override_value(inputs.credit_for_other_dependents);
-	f1040.lines  ["27a"].override_value(inputs.earned_income_credit);
-	f1040S3.lines["09" ].override_value(inputs.premium_tax_credit);
-	f1040S3.lines["13z"].override_value(inputs.other_refundable_credits);
+	f1040S3.lines["03" ].user_value(inputs.american_opp_credit_refundable);
+	f1040.lines  ["19" ].user_value(inputs.credit_for_other_dependents);
+	f1040.lines  ["27a"].user_value(inputs.earned_income_credit);
+	f1040S3.lines["09" ].user_value(inputs.premium_tax_credit);
+	f1040S3.lines["13z"].user_value(inputs.other_refundable_credits);
 
 	// Payments
-	f1040.lines["25d"].override_value(inputs.withholding);
-	f1040.lines["26"].override_value(inputs.estimated_tax_paid);
+	f1040.lines["25d"].user_value(inputs.withholding);
+	f1040.lines["26"].user_value(inputs.estimated_tax_paid);
 }
 
 function putOutputs() {

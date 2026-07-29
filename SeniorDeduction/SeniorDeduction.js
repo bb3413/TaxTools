@@ -91,7 +91,7 @@ function mapInputValues(inputs) {
 
 	const f1040S1A = Forms.createForm("F1040S1A");
 
-	f1040S1A.lines["01"].override_value(inputs.adjusted_gross_income);
+	f1040S1A.lines["01"].user_value(inputs.adjusted_gross_income);
 }
 
 function putOutputs(taxpayer) {

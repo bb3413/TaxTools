@@ -99,16 +99,16 @@ function mapInputValues(inputs) {
 	const f1040		= Forms.createForm("F1040");
 	const salestax	= Forms.createForm("SalesTax");
 
-	salestax.lines["07"].override_value(inputs.extra_sales_tax);
-	f1040.lines["01z"].override_value(inputs.wages);
-	f1040.lines["02a"].override_value(inputs.tax_exempt_interest);
-	f1040.lines["02b"].override_value(inputs.taxable_interest);
-	f1040.lines["03a"].override_value(inputs.qualified_dividends);
-	f1040.lines["03b"].override_value(inputs.ordinary_dividends);
-	f1040.lines["04a"].override_value(inputs.retirement_accounts);
-	f1040.lines["06a"].override_value(inputs.social_security);
-	f1040.lines["07a"].override_value(inputs.capital_gains);
-	f1040.lines["08" ].override_value(inputs.self_employment_income + inputs.other_income);
+	salestax.lines["07"].user_value(inputs.extra_sales_tax);
+	f1040.lines["01z"].user_value(inputs.wages);
+	f1040.lines["02a"].user_value(inputs.tax_exempt_interest);
+	f1040.lines["02b"].user_value(inputs.taxable_interest);
+	f1040.lines["03a"].user_value(inputs.qualified_dividends);
+	f1040.lines["03b"].user_value(inputs.ordinary_dividends);
+	f1040.lines["04a"].user_value(inputs.retirement_accounts);
+	f1040.lines["06a"].user_value(inputs.social_security);
+	f1040.lines["07a"].user_value(inputs.capital_gains);
+	f1040.lines["08" ].user_value(inputs.self_employment_income + inputs.other_income);
 }
 
 function putOutputs() {

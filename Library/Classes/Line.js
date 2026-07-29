@@ -13,7 +13,7 @@ export class Line {
 		this._user_supplied_value	= false;
 	}
 
-	override_value(new_value) {
+	user_value(new_value) {
 		// This method is called when the value is supplied by the user; not calculated
 		// by the program (see also set value()).
 		
@@ -43,7 +43,7 @@ export class Line {
 
 	set value(new_value) {
 		// This method is called when the value is calculated by the program, not suplied by
-		// the user (see also override_value()).
+		// the user (see also user_value()).
 		if (!this._user_supplied_value) {
 			if (Num.isNum(this._min_value) && Num.isNum(new_value)) {
 				if (new_value < this._min_value) {
