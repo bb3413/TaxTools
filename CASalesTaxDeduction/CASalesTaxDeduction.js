@@ -6,7 +6,6 @@ import { fetchSalesTaxRate }	from "../Library/SalesTax/SalesTaxFromCDTFA.js";
 import { Forms }				from "../Library/Classes/Forms.js";
 import { HTML }					from "../Library/Classes/HTML.js";
 import { Taxpayer }				from "../Library/Classes/Taxpayer.js";
-import { TaxData }				from "../Library/Classes/TaxData.js";
 import { TaxTable }				from "../Library/Classes/TaxTable.js";
 
 let total_sales_tax			= 0;
@@ -40,9 +39,7 @@ function changeHandler(event) {
 		const inputs	= getInputs();								// Get inputs from the web page
 		const tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
 		const taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
-		const tax_data	= mapInputValues(inputs);					// Map input values to tax forms
-
-		TaxData.loadForms(tax_data.forms);							// Create tax forms for the taxpayer's data
+		mapInputValues(inputs);										// Map input values to tax forms
 		Forms.getForm("SalesTax").calculate(total_sales_tax);		// Calculate the tax forms
 		putOutputs();												// Put results on web page
 		Debug.turnOn();												// Put debug info on web page if enabled
@@ -99,29 +96,19 @@ function getInputs() {
 }
 
 function mapInputValues(inputs) {
-	//
-	// For each entry on the web page, figure out where it goes on the tax forms. Make a
-	// list of the forms that are needed and the lines on those forms that need to be
-	// initialized.
-	//
+	const f1040		= Forms.createForm("F1040");
+	const salestax	= Forms.createForm("SalesTax");
 
-	// Build an array with the tax forms entered by the taxpayer.
-	const tax_data	= new TaxData();
-	const f1040		= tax_data.addForm("F1040");
-	const salestax	= tax_data.addForm("SalesTax");
-
-	tax_data.addLine(salestax,	"07",	inputs.extra_sales_tax,			);
-	tax_data.addLine(f1040,		"01z",	inputs.wages,					);
-	tax_data.addLine(f1040,		"02a",	inputs.tax_exempt_interest,		);
-	tax_data.addLine(f1040,		"02b",	inputs.taxable_interest,		);
-	tax_data.addLine(f1040,		"03a",	inputs.qualified_dividends,		);
-	tax_data.addLine(f1040,		"03b",	inputs.ordinary_dividends,		);
-	tax_data.addLine(f1040,		"04a",	inputs.retirement_accounts,		);
-	tax_data.addLine(f1040,		"06a",	inputs.social_security,			);
-	tax_data.addLine(f1040,		"07a",	inputs.capital_gains,			);
-	tax_data.addLine(f1040,		"08",	inputs.self_employment_income +
-					 					inputs.other_income,			);
-	return tax_data;
+	salestax.lines["07"].override_value(inputs.extra_sales_tax);
+	f1040.lines["01z"].override_value(inputs.wages);
+	f1040.lines["02a"].override_value(inputs.tax_exempt_interest);
+	f1040.lines["02b"].override_value(inputs.taxable_interest);
+	f1040.lines["03a"].override_value(inputs.qualified_dividends);
+	f1040.lines["03b"].override_value(inputs.ordinary_dividends);
+	f1040.lines["04a"].override_value(inputs.retirement_accounts);
+	f1040.lines["06a"].override_value(inputs.social_security);
+	f1040.lines["07a"].override_value(inputs.capital_gains);
+	f1040.lines["08" ].override_value(inputs.self_employment_income + inputs.other_income);
 }
 
 function putOutputs() {

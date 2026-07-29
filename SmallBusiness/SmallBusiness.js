@@ -4,7 +4,6 @@ import { Debug }		from "../Library/Classes/Debug.js";
 import { Forms }		from "../Library/Classes/Forms.js";
 import { HTML }			from "../Library/Classes/HTML.js";
 import { Taxpayer }		from "../Library/Classes/Taxpayer.js";
-import { TaxData }		from "../Library/Classes/TaxData.js";
 import { TaxTable }		from "../Library/Classes/TaxTable.js";
 
 function changeHandler(event) {
@@ -22,9 +21,7 @@ function changeHandler(event) {
 		const inputs	= getInputs();								// Get inputs from the web page
 		const tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
 		const taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
-		const tax_data	= mapInputValues(inputs);					// Map input values to tax forms
-
-		TaxData.loadForms(tax_data.forms);							// Create tax forms for the taxpayer's data
+		mapInputValues(inputs);										// Map input values to tax forms
 		putOutputs(inputs);											// Put results on web page
 		Debug.turnOn();												// Put debug info on web page if enabled
 	} catch (err) {
@@ -83,54 +80,44 @@ function getInputs() {
 }
 
 function mapInputValues(inputs) {
-	//
-	// For each entry on the web page, figure out where it goes on the tax forms. Make a
-	// list of the forms that are needed and the lines on those forms that need to be
-	// initialized.
-	//
-	const tt = TaxTable.getTaxTable();
-
-	// Build an array with the tax forms entered by the taxpayer.
-	const tax_data	= new TaxData();
-	const f1040SC	= tax_data.addForm("F1040SC");
-	const f7206		= tax_data.addForm("F7206");	// Self-employment Health Insurance Deduction
+	const tt		= TaxTable.getTaxTable();
+	const f1040SC	= Forms.createForm("F1040SC");
+	const f7206		= Forms.createForm("F7206");	// Self-employment Health Insurance Deduction
 
 	// Income
-	tax_data.addLine(f1040SC,	"01",	inputs.sales);
-	tax_data.addLine(f1040SC,	"02",	inputs.returns);
-	tax_data.addLine(f1040SC,	"04",	inputs.cost);
-	tax_data.addLine(f1040SC,	"06",	inputs.other_income);
-	tax_data.addLine(f1040SC,	"30",	inputs.home_office_expense);
+	f1040SC.lines["01"].override_value(inputs.sales);
+	f1040SC.lines["02"].override_value(inputs.returns);
+	f1040SC.lines["04"].override_value(inputs.cost);
+	f1040SC.lines["06"].override_value(inputs.other_income);
+	f1040SC.lines["30"].override_value(inputs.home_office_expense);
 
 	// Expenses
 	let car_and_truck = inputs.car_and_truck;
 	if (car_and_truck === 0) {
 		car_and_truck = tt.getBusinessMileageDeduction(inputs.car_and_truck_miles);
 	}
-	tax_data.addLine(f1040SC,	"08",	inputs.advertising);
-	tax_data.addLine(f1040SC,	"09",	car_and_truck);
-	tax_data.addLine(f1040SC,	"10",	inputs.commissions_and_fees);
-	tax_data.addLine(f1040SC,	"11",	inputs.contract_labor);
-	tax_data.addLine(f1040SC,	"12",	inputs.depletion);
-	tax_data.addLine(f1040SC,	"13",	inputs.depreciation);
-	tax_data.addLine(f1040SC,	"14",	inputs.employee_benefit_programs);
-	tax_data.addLine(f1040SC,	"15",	inputs.insurance);
-	tax_data.addLine(f1040SC,	"16a",	inputs.interest);
-	tax_data.addLine(f1040SC,	"17",	inputs.professional_services);
-	tax_data.addLine(f1040SC,	"18",	inputs.office_expenses);
-	tax_data.addLine(f1040SC,	"19",	inputs.pension_plan);
-	tax_data.addLine(f1040SC,	"20a",	inputs.rent);
-	tax_data.addLine(f1040SC,	"21",	inputs.repairs);
-	tax_data.addLine(f1040SC,	"22",	inputs.supplies);
-	tax_data.addLine(f1040SC,	"23",	inputs.taxes_and_licenses);
-	tax_data.addLine(f1040SC,	"24a",	inputs.travel);
-	tax_data.addLine(f1040SC,	"25",	inputs.utilities);
-	tax_data.addLine(f1040SC,	"26",	inputs.wages);
-	tax_data.addLine(f1040SC,	"27b",	inputs.other_expenses);
+	f1040SC.lines["08" ].override_value(inputs.advertising);
+	f1040SC.lines["09" ].override_value(car_and_truck);
+	f1040SC.lines["10" ].override_value(inputs.commissions_and_fees);
+	f1040SC.lines["11" ].override_value(inputs.contract_labor);
+	f1040SC.lines["12" ].override_value(inputs.depletion);
+	f1040SC.lines["13" ].override_value(inputs.depreciation);
+	f1040SC.lines["14" ].override_value(inputs.employee_benefit_programs);
+	f1040SC.lines["15" ].override_value(inputs.insurance);
+	f1040SC.lines["16a"].override_value(inputs.interest);
+	f1040SC.lines["17" ].override_value(inputs.professional_services);
+	f1040SC.lines["18" ].override_value(inputs.office_expenses);
+	f1040SC.lines["19" ].override_value(inputs.pension_plan);
+	f1040SC.lines["20a"].override_value(inputs.rent);
+	f1040SC.lines["21" ].override_value(inputs.repairs);
+	f1040SC.lines["22" ].override_value(inputs.supplies);
+	f1040SC.lines["23" ].override_value(inputs.taxes_and_licenses);
+	f1040SC.lines["24a"].override_value(inputs.travel);
+	f1040SC.lines["25" ].override_value(inputs.utilities);
+	f1040SC.lines["26" ].override_value(inputs.wages);
+	f1040SC.lines["27b"].override_value(inputs.other_expenses);
 
-	tax_data.addLine(f7206,		"01",	inputs.medical_insurance);
-
-	return tax_data;
+	f7206.lines["01"].override_value(inputs.medical_insurance);
 }
 
 function putOutputs(inputs) {

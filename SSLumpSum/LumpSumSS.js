@@ -4,7 +4,6 @@ import { Debug }		from "../Library/Classes/Debug.js";
 import { Forms }		from "../Library/Classes/Forms.js";
 import { HTML }			from "../Library/Classes/HTML.js";
 import { Taxpayer }		from "../Library/Classes/Taxpayer.js";
-import { TaxData }		from "../Library/Classes/TaxData.js";
 import { TaxTable }		from "../Library/Classes/TaxTable.js";
 
 function calculateTax(inputs) {

@@ -1,6 +1,5 @@
 
 import { Debug }	from "../Classes/Debug.js";
-import { Str  }		from "../Classes/Str.js";
 import { Num }		from "../Classes/Num.js";
 
 export class HTML {
@@ -59,7 +58,7 @@ export class HTML {
 	}
 
 	//-----  Get/put user input/output---------------------------------
-	static getUserInput(elementID, type = "number") {
+	static getUserInput(elementID, default_value = 0) {
 		let value = HTML.getElementValue(elementID);
 		if (typeof value === "boolean") {
 			return value;
@@ -71,20 +70,24 @@ export class HTML {
 			value = Debug.getKeywords(value);
 		}
 
-		if (Str.caseEqual(type, "text")) {
+		if (default_value === "text") {
 			return value;
 		}
 
-		// Process dollar sign, commas, and mathmatical expressions.
-		return Num.toInteger(value);
+		if (value === "") {
+			return default_value;
+		} else {
+			// Process dollar sign, commas, and mathmatical expressions.
+			return Num.toInteger(value);
+		}
 	}
 
 	static putUserOutput(elementID, value, type = "number") {
-		if (Str.caseEqual(type, "dollars")) {
+		if (type === "dollars") {
 			// Add commas and prepend with dollar sign.
 			HTML.putElementValue(elementID, "$" + Num.format(value===undefined ? 0 : value));
 
-		} else if (Str.caseEqual(type, "number")) {
+		} else if (type === "number") {
 			// Add commas.
 			HTML.putElementValue(elementID, Num.format(value===undefined ? 0 : value));
 

@@ -5,7 +5,6 @@ import { Forms }		from "../Library/Classes/Forms.js";
 import { HTML }			from "../Library/Classes/HTML.js";
 import { Str }			from "../Library/Classes/Str.js";
 import { Taxpayer }		from "../Library/Classes/Taxpayer.js";
-import { TaxData }		from "../Library/Classes/TaxData.js";
 import { TaxTable }		from "../Library/Classes/TaxTable.js";
 
 let input_color			= "";
@@ -25,9 +24,7 @@ function changeHandler(event) {
 		const inputs	= getInputs();								// Get inputs from the web page
 		const tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
 		const taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
-		const tax_data	= mapInputValues(inputs);					// Map input values to tax forms
-
-		TaxData.loadForms(tax_data.forms);							// Create tax forms for the taxpayer's data
+		mapInputValues(inputs);										// Map input values to tax forms
 		Forms.getForm("F1040S1A").calculate();						// Calculate the tax forms
 		putOutputs(taxpayer);										// Put results on web page
 		Debug.turnOn();												// Put debug info on web page if enabled
@@ -91,19 +88,10 @@ function getInputs() {
 }
 
 function mapInputValues(inputs) {
-	//
-	// For each entry on the web page, figure out where it goes on the tax forms. Make a
-	// list of the forms that are needed and the lines on those forms that need to be
-	// initialized.
-	//
 
-	// Build an array with the tax forms entered by the taxpayer.
-	const tax_data	= new TaxData();
-	const f1040S1A	= tax_data.addForm("F1040S1A");
+	const f1040S1A = Forms.createForm("F1040S1A");
 
-	tax_data.addLine(f1040S1A,	"01",	inputs.adjusted_gross_income);
-
-	return tax_data;
+	f1040S1A.lines["01"].override_value(inputs.adjusted_gross_income);
 }
 
 function putOutputs(taxpayer) {

@@ -4,7 +4,6 @@ import { Debug }			from "../Library/Classes/Debug.js";
 import { Forms }			from "../Library/Classes/Forms.js";
 import { HTML }				from "../Library/Classes/HTML.js";
 import { Taxpayer }			from "../Library/Classes/Taxpayer.js";
-import { TaxData }			from "../Library/Classes/TaxData.js";
 import { TaxTable }			from "../Library/Classes/TaxTable.js";
 
 function changeHandler(event) {
@@ -27,10 +26,7 @@ function changeHandler(event) {
 		}
 		const tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
 		const taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
-		const tax_data	= mapInputValues(inputs);					// Map input values to tax forms
-
-		TaxData.loadForms(tax_data.forms);							// Create tax forms for the taxpayer's data
-		Forms.getForm("F6251").calculate();							// Calculate the tax forms
+		mapInputValues(inputs);										// Map input values to tax forms
 		putOutputs();												// Put results on web page
 		Debug.turnOn();												// Put debug info on web page if enabled
 	} catch (err) {
@@ -101,53 +97,42 @@ function getInputs() {
 
 	return inputs;
 }
-
 function mapInputValues(inputs) {
-	//
-	// For each entry on the web page, figure out where it goes on the tax forms. Make a
-	// list of the forms that are needed and the lines on those forms that need to be
-	// initialized.
-	//
+	const f1040		= Forms.createForm("F1040");
+	const f1040S1	= Forms.createForm("F1040S1");
+	const f1040SA	= Forms.createForm("F1040SA");
+	const f6251		= Forms.createForm("F6251");
 
-	// Build an array with the tax forms entered by the taxpayer.
-	const tax_data	= new TaxData();
-	const f1040		= tax_data.addForm("F1040");
-	const f1040S1	= tax_data.addForm("F1040S1");
-	const f1040SA	= tax_data.addForm("F1040SA");
-	const f6251		= tax_data.addForm("F6251");
+	f1040.lines["11b"].override_value(inputs.agi);
+	f1040.lines["03a"].override_value(inputs.qualified_dividends);
+	f1040.lines["07a"].override_value(inputs.capital_gains);
+	f1040.lines["15"].override_value(inputs.taxable_income);
+	f1040.lines["16"].override_value(inputs.income_tax);
 
-	tax_data.addLine(f1040,		"11b",	inputs.agi);
-	tax_data.addLine(f1040,		"03a",	inputs.qualified_dividends);
-	tax_data.addLine(f1040,		"07a",	inputs.capital_gains);
-	tax_data.addLine(f1040,		"15",	inputs.taxable_income);
-	tax_data.addLine(f1040,		"16",	inputs.income_tax);
+	f1040SA.lines["17"].override_value(inputs.itemized_deduction);
+	f1040SA.lines["07"].override_value(inputs.taxes_paid_deduction);
+	f1040.lines["13a"].override_value(inputs.qbi_deduction);
 
-	tax_data.addLine(f1040SA,	"17",	inputs.itemized_deduction);
-	tax_data.addLine(f1040SA,	"07",	inputs.taxes_paid_deduction);
-	tax_data.addLine(f1040,		"13a",	inputs.qbi_deduction);
-
-	tax_data.addLine(f1040S1,	"01",	inputs.state_tax_refund);
-	tax_data.addLine(f6251,		"02c",	inputs.investment_interest);
-	tax_data.addLine(f6251,		"02d",	inputs.depletion);
-	tax_data.addLine(f6251,		"02e",	inputs.net_operating_loss);
-	tax_data.addLine(f6251,		"02f",	inputs.alternate_net_operating_loss);
-	tax_data.addLine(f6251,		"02g",	inputs.private_activity_bonds_interest);
-	tax_data.addLine(f6251,		"02h",	inputs.qualified_small_business_stock);
-	tax_data.addLine(f6251,		"02i",	inputs.incentive_stock_options);
-	tax_data.addLine(f6251,		"02j",	inputs.estates_and_trusts);
-	tax_data.addLine(f6251,		"02k",	inputs.disposition_of_property);
-	tax_data.addLine(f6251,		"02l",	inputs.post_1986_depreciation);
-	tax_data.addLine(f6251,		"02m",	inputs.passive_activities);
-	tax_data.addLine(f6251,		"02n",	inputs.loss_limitations);
-	tax_data.addLine(f6251,		"02o",	inputs.circulation_costs);
-	tax_data.addLine(f6251,		"02p",	inputs.long_term_contracts);
-	tax_data.addLine(f6251,		"02q",	inputs.mining_costs);
-	tax_data.addLine(f6251,		"02r",	inputs.reseach_costs);
-	tax_data.addLine(f6251,		"02s",	inputs.installment_sales);
-	tax_data.addLine(f6251,		"02t",	inputs.intangible_drilling_costs);
-	tax_data.addLine(f6251,		"03",	inputs.other_income);
-
-	return tax_data;
+	f1040S1.lines["01"].override_value(inputs.state_tax_refund);
+	f6251.lines["02c"].override_value(inputs.investment_interest);
+	f6251.lines["02d"].override_value(inputs.depletion);
+	f6251.lines["02e"].override_value(inputs.net_operating_loss);
+	f6251.lines["02f"].override_value(inputs.alternate_net_operating_loss);
+	f6251.lines["02g"].override_value(inputs.private_activity_bonds_interest);
+	f6251.lines["02h"].override_value(inputs.qualified_small_business_stock);
+	f6251.lines["02i"].override_value(inputs.incentive_stock_options);
+	f6251.lines["02j"].override_value(inputs.estates_and_trusts);
+	f6251.lines["02k"].override_value(inputs.disposition_of_property);
+	f6251.lines["02l"].override_value(inputs.post_1986_depreciation);
+	f6251.lines["02m"].override_value(inputs.passive_activities);
+	f6251.lines["02n"].override_value(inputs.loss_limitations);
+	f6251.lines["02o"].override_value(inputs.circulation_costs);
+	f6251.lines["02p"].override_value(inputs.long_term_contracts);
+	f6251.lines["02q"].override_value(inputs.mining_costs);
+	f6251.lines["02r"].override_value(inputs.reseach_costs);
+	f6251.lines["02s"].override_value(inputs.installment_sales);
+	f6251.lines["02t"].override_value(inputs.intangible_drilling_costs);
+	f6251.lines["03"].override_value(inputs.other_income);
 }
 
 function putOutputs() {

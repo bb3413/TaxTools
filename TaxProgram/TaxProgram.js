@@ -6,7 +6,6 @@ import { Forms }		from "../Library/Classes/Forms.js";
 import { HTML }			from "../Library/Classes/HTML.js";
 import { Str }			from "../Library/Classes/Str.js";
 import { Taxpayer }		from "../Library/Classes/Taxpayer.js";
-import { TaxData }		from "../Library/Classes/TaxData.js";
 import { TaxTable }		from "../Library/Classes/TaxTable.js";
 
 import { F1040_HTML }	from "../Library/Forms-HTML/F1040-HTML.js";
@@ -23,8 +22,7 @@ function changeHandler(event) {
 		const tax_year	= HTML.getUserInput("TaxYear");
 		const tax_table	= TaxTable.getTaxTable(tax_year);			// Initialize tax tables; ignore return value.
 		const taxpayer	= createTaxpayer();							// Initialize taxpayer; ignore return value.
-		const tax_data	= mapInputValues();							// Map input values to tax forms
-		TaxData.loadForms(tax_data);								// Create tax forms with the taxpayer's data
+		mapInputValues();											// Map input values to tax forms
 		const f1040 = Forms.getForm("F1040") || Forms.createForm("F1040");
 		f1040.calculate();
 		putOutputs(tax_year);
@@ -100,12 +98,8 @@ function getFieldsForSave(formname) {
 }
 
 function mapInputValues() {
-	const tax_data	= new TaxData();
-
-	W2_HTML.getHTMLInput(tax_data, 0);
-	F1040_HTML.getHTMLInput(tax_data);
-
-	return tax_data;
+	W2_HTML.getHTMLInput(0);
+	F1040_HTML.getHTMLInput();
 }
 
 function putFieldsFromRestore(form) {

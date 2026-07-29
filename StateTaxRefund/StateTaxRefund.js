@@ -4,7 +4,6 @@ import { Debug }		from "../Library/Classes/Debug.js";
 import { Forms }		from "../Library/Classes/Forms.js";
 import { HTML }			from "../Library/Classes/HTML.js";
 import { Taxpayer }		from "../Library/Classes/Taxpayer.js";
-import { TaxData }		from "../Library/Classes/TaxData.js";
 import { TaxTable }		from "../Library/Classes/TaxTable.js";
 
 function calculateTaxableAmount(inputs) {
@@ -52,9 +51,7 @@ function changeHandler(event) {
 		const inputs	= getInputs();								// Get inputs from the web page
 		const tax_table	= TaxTable.getTaxTable(inputs.previous_tax_year);	// Initialize tax tables; ignore return value.
 		const taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
-		const tax_data	= mapInputValues(inputs);					// Map input values to tax forms
-
-		TaxData.loadForms(tax_data.forms);							// Create tax forms for the taxpayer's data
+		mapInputValues(inputs);										// Map input values to tax forms
 		const outputs = calculateTaxableAmount(inputs);
 		putOutputs(outputs);										// Put results on web page
 		Debug.turnOn();												// Put debug info on web page if enabled
@@ -105,29 +102,18 @@ function getInputs() {
 }
 
 function mapInputValues(inputs) {
-	//
-	// For each entry on the web page, figure out where it goes on the tax forms. Make a
-	// list of the forms that are needed and the lines on those forms that need to be
-	// initialized.
-	//
-
-	// Build an array with the tax forms entered by the taxpayer.
-	const tax_data	= new TaxData();
-	const refund	= tax_data.addForm("Refund");
-
 	const tt		= TaxTable.getTaxTable();
 	const max_salt	= tt.getTaxValue("MaxSALT");
 	const line_5d	= inputs.prev_state_income_tax +
 						inputs.prev_real_estate_taxes +
 						inputs.pev_personal_property_taxes;
 	const line_5e	= Math.min(line_5d, max_salt);
-
-	tax_data.addLine(refund,	"refund",				inputs.state_tax_refund);
-	tax_data.addLine(refund,	"sched_a_5d",			line_5d);
-	tax_data.addLine(refund,	"sched_a_5e",			line_5e);
-	tax_data.addLine(refund,	"itemized_deductions",	inputs.prev_itemized_deductions);
-
-	return tax_data;
+	const refund	= Forms.createForm("Refund");
+	
+	refund.lines["refund"].override_value(inputs.state_tax_refund);
+	refund.lines["sched_a_5d"].override_value(line_5d);
+	refund.lines["sched_a_5e"].override_value(line_5e);
+	refund.lines["itemized_deductions"].override_value(inputs.prev_itemized_deductions);
 }
 
 function putOutputs(outputs) {
