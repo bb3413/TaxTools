@@ -526,5 +526,5 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 
 	HTML.putUserOutput("TaxYear", Dates.getTaxYear(), "text");		// Default tax year.
-	HTML.hideElement("DebugContainer");
+	HTML.hideElement("debug-container");
 });

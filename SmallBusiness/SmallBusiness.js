@@ -192,5 +192,5 @@ document.addEventListener("DOMContentLoaded", () => {
 		preventScroll: true
 	});
 
-	HTML.hideElement("DebugContainer");
+	HTML.hideElement("debug-container");
 });

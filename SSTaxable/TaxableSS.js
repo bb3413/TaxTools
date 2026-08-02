@@ -212,5 +212,5 @@ document.addEventListener("DOMContentLoaded", () => {
 	input_color		= HTML.getCSSGlobalVariable("--input-color");
 
 	HTML.hideElement("LivedWithSpouseContainer");
-	HTML.hideElement("DebugContainer");
+	HTML.hideElement("debug-container");
 });

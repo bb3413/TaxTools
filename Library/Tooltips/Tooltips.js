@@ -18,11 +18,15 @@ document.addEventListener("DOMContentLoaded", () => {
 			const tipRect = tip.getBoundingClientRect();
 
 			// Vertical logic (flip if hits top).
-			let ttTop = (triggerRect.top + scrollY) - tipRect.height - 15;
-			if (ttTop < scrollY + 10) {
-				ttTop = (triggerRect.bottom + scrollY) + 15;
+			let ttTop = (triggerRect.top + scrollY) - tipRect.height - 25;
+			if (ttTop < scrollY + 20) {
+				ttTop = (triggerRect.bottom + scrollY) + 25;
 			}
 
+			console.log("Trigger: " + trigger);
+			console.log("TriggerRect: " + triggerRect);
+			console.log("Tip: " + tip);
+			console.log("TipRect: " + tipRect);
 			// Horizontal logic (shift if hits right edge).
 			let ttLeft = triggerRect.left;
 			const tipRightEdge = ttLeft + tipRect.width;

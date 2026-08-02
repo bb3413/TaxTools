@@ -197,5 +197,5 @@ document.addEventListener("DOMContentLoaded", () => {
 	HTML.addListener("OtherIncome",					"change", changeHandler);
 
 	HTML.hideElement("SpouseContainer");
-	HTML.hideElement("DebugContainer");
+	HTML.hideElement("debug-container");
 });

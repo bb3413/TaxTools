@@ -45,7 +45,7 @@ export class Debug {
 		debug_all				= false;
 		debug_used_keywords		= [];
 		trace_log				= [];
-		hideField("DebugContainer");
+		hideField("debug-container");
 	}
 
 	static getKeywords(input_string) {
@@ -130,12 +130,12 @@ export class Debug {
 
 		output = Str.wrapLines(output);
 
-		const element = document.getElementById("DebugOutput");
+		const element = document.getElementById("debug-output");
 		if (!element) {
-			throw new Error("Debug.turnOn: The \"DebugOutput\" HTML element is missing.");
+			throw new Error("Debug.turnOn: The \"debug-output\" HTML element is missing.");
 		} else {
-			HTML.putElementValue("DebugOutput", output);
-			showField("DebugContainer");
+			HTML.putElementValue("debug-output", output);
+			showField("debug-container");
 		}
 	}
 

@@ -114,14 +114,6 @@ export class Str {
 		return name;
 	}
 
-	static snakeCaseToEnglish(name) {
-		// Convert snake case (abc_def_ghi) to English (Abc def ghi).
-		name = name.replace(/_/g, " ").trim();
-		name = Str.upshiftFirst(name);
-
-		return name;
-	}
-
 	static camelToSnakeCase(name) {
 		// Convert camel case (abcDefGhi) to snake case (abc_def_ghi) preserving acronyms.
 		return name
@@ -136,6 +128,18 @@ export class Str {
 				.toLowerCase();
 	}
 
+	static kebabToSnakeCase(name) {
+		return name.replace(/-/g, "_");
+	}
+
+	static snakeCaseToEnglish(name) {
+		// Convert snake case (abc_def_ghi) to English (Abc def ghi).
+		name = name.replace(/_/g, " ").trim();
+		name = Str.upshiftFirst(name);
+
+		return name;
+	}
+
 	static snakeToCamelCase(name) {
 		// Convert snake case (abc_def_ghi) to camel case (abcDefGhi).
 		let newname = "";
@@ -148,5 +152,9 @@ export class Str {
 			}
 		}
 		return newname;
+	}
+
+	static snakeToKebabCase(name) {
+		return name.replace(/_/g, "-");
 	}
 }

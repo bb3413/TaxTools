@@ -3,8 +3,8 @@ import { Debug }	from "../Classes/Debug.js";
 import { Num }		from "../Classes/Num.js";
 
 export class HTML {
-	static closeDetails(elementID) {
-		const element = document.getElementById(elementID);
+	static closeDetails(element_id) {
+		const element = document.getElementById(element_id);
 		if (!element) {
 			element.open = false;
 			// Another option: element.removeAttribute('open');
@@ -12,7 +12,7 @@ export class HTML {
 	}
 
 	static closeAllDetails() {
-		const elements = document.querySelectorAll('details');
+		const elements = document.querySelectorAll("details");
 		for (const element of elements) {
 			if (!element) {
 				element.open = false;
@@ -22,44 +22,44 @@ export class HTML {
 	}
 
 	//-----  Show/hide element  ---------------------------------
-	static showElement(elementID) {
-		const element = document.getElementById(elementID);
+	static showElement(element_id) {
+		const element = document.getElementById(element_id);
 		if (!element) {
-			throw new Error("getElementValue: Element not found: " + elementID);
+			throw new Error("getElementValue: Element not found: " + element_id);
 		} else {
 			element.classList.remove('hidden');
 		}
 	}
-	static hideElement(elementID) {
-		const element = document.getElementById(elementID);
+	static hideElement(element_id) {
+		const element = document.getElementById(element_id);
 		if (!element) {
-			throw new Error("getElementValue: Element not found: " + elementID);
+			throw new Error("getElementValue: Element not found: " + element_id);
 		} else {
 			element.classList.add('hidden');
 		}
 	}
 
 	//---- Change background/foreground color  ----------------------------------
-	static changeBackgroundColor(elementID, color) {
-		const element = document.getElementById(elementID);
+	static changeBackgroundColor(element_id, color) {
+		const element = document.getElementById(element_id);
 		if (!element) {
-			throw new Error("getElementValue: Element not found: " + elementID);
+			throw new Error("getElementValue: Element not found: " + element_id);
 		} else {
 			element.style.background = color;
 		}
 	}
-	static changeTextColor(elementID, color) {
-		const element = document.getElementById(elementID);
+	static changeTextColor(element_id, color) {
+		const element = document.getElementById(element_id);
 		if (!element) {
-			throw new Error("getElementValue: Element not found: " + elementID);
+			throw new Error("getElementValue: Element not found: " + element_id);
 		} else {
 			element.style.color = color;
 		}
 	}
 
 	//-----  Get/put user input/output---------------------------------
-	static getUserInput(elementID, default_value = 0) {
-		let value = HTML.getElementValue(elementID);
+	static getUserInput(element_id, default_value = 0) {
+		let value = HTML.getElementValue(element_id);
 		if (typeof value === "boolean") {
 			return value;
 		}
@@ -82,18 +82,18 @@ export class HTML {
 		}
 	}
 
-	static putUserOutput(elementID, value, type = "number") {
+	static putUserOutput(element_id, value, type = "number") {
 		if (type === "dollars") {
 			// Add commas and prepend with dollar sign.
-			HTML.putElementValue(elementID, "$" + Num.format(value===undefined ? 0 : value));
+			HTML.putElementValue(element_id, "$" + Num.format(value===undefined ? 0 : value));
 
 		} else if (type === "number") {
 			// Add commas.
-			HTML.putElementValue(elementID, Num.format(value===undefined ? 0 : value));
+			HTML.putElementValue(element_id, Num.format(value===undefined ? 0 : value));
 
 		} else {	// tpye === "text"
 			// Put the value as is.
-			HTML.putElementValue(elementID, value===undefined ? "" : value);
+			HTML.putElementValue(element_id, value===undefined ? "" : value);
 		}
 	}
 
@@ -108,10 +108,10 @@ export class HTML {
 	// it returns the content as it is displayed. If the elemenet is hidden, it won"t
 	// return the content.
 	//
-	static getElementValue(elementID) {
-		const element = document.getElementById(elementID);
+	static getElementValue(element_id) {
+		const element = document.getElementById(element_id);
 		if (!element) {
-			throw new Error("getElementValue: Element not found: " + elementID);
+			throw new Error("getElementValue: Element not found: " + element_id);
 		} else {
 			if (element.type === "checkbox" || element.type === "radio") {
 				return element.checked;
@@ -133,14 +133,14 @@ export class HTML {
 		}
 	}
 
-	static putElementValue(elementID, value) {
-		const element = document.getElementById(elementID);
+	static putElementValue(element_id, value) {
+		const element = document.getElementById(element_id);
 		if (String(element.placeholder) === String(value)) {
 			value = "";
 		}
 
 		if (!element) {
-			throw new Error("putElementValue: Element not found: " + elementID);
+			throw new Error("putElementValue: Element not found: " + element_id);
 		} else {
 			if (element.type === "checkbox" || element.type === "radio") {
 				element.checked = Boolean(value);
@@ -168,10 +168,10 @@ export class HTML {
 	}
 
 	//-----  Miscellaneous utility functions  ---------------------------------
-	static addListener(elementID, event, handler) {
-		const element = document.getElementById(elementID);
+	static addListener(element_id, event, handler) {
+		const element = document.getElementById(element_id);
 		if (!element) {
-			throw new Error("addListener: Element not found: " + elementID);
+			throw new Error("addListener: Element not found: " + element_id);
 		} else {
 			element.addEventListener(event, handler);
 		}

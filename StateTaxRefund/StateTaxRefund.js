@@ -151,5 +151,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	HTML.putUserOutput("PreviousTaxYear", Dates.getTaxYear() - 1, "text");	// Default tax year.
 	HTML.hideElement("SpouseContainer");
-	HTML.hideElement("DebugContainer");
+	HTML.hideElement("debug-container");
 });

@@ -4,6 +4,10 @@ import { Str }		from "../Classes/Str.js";
 
 let taxpayer = undefined;		// Global variable.
 
+function printLine(output, label, value) {
+	output.push(label.padEnd(20, " ") + value);
+}
+
 export class Taxpayer {
 	static getTaxpayer() {
 		return taxpayer;
@@ -22,7 +26,7 @@ export class Taxpayer {
 		this._taxpayers_name					= "";
 		this._street_address					= "";		// Needed for sales tax deduction calculation
 		this._city								= "";		// Needed for sales tax deduction calculation
-		this._zip								= "";		// Needed for sales tax deduction calculation
+		this._zip_code							= "";		// Needed for sales tax deduction calculation
 
 		// Taxpayer
 		this._taxpayers_birthday				= "";
@@ -66,14 +70,16 @@ export class Taxpayer {
 		this._unreimbursed_employee_expenses	= 0;
 	}
 
+	//
 	// Getter methods
+	//
 	get tax_year(){						return this._tax_year};
 	get filing_status() {				return this._filing_status};
 
 	get taxpayers_name() {				return this._taxpayers_name};
 	get street_address() {				return this._street_address};
 	get city() {						return this._city};
-	get zip() {							return this._zip};
+	get zip_code() {					return this._zip_code};
 
 	get taxpayers_birthday() {			return this._taxpayers_birthday};
 	get taxpayers_age() {				return this._taxpayers_age};
@@ -113,48 +119,50 @@ export class Taxpayer {
 	get investment_expenses	() {		return this._investment_expenses};
 	get unreimbursed_employee_expenses() {	return this._unreimbursed_employee_expenses};
 
+	//
 	// Setter methods
-	set tax_year(year) {				this._tax_year					= year ?? this._tax_year; }
-	set filing_status(fs) {				this._filing_status				= fs   ?? this._filing_status; }
+	//
+	set tax_year(year) {					this._tax_year						= year }
+	set filing_status(fs) {					this._filing_status					= fs }
 
-	set taxpayers_name(name) {			this._taxpayers_name			= name ?? this._taxpayers_name; }
-	set street_address(str) {			this._street_address			= str  ?? this._street_address; }
-	set city(str) {						this._city						= str  ?? this._city; }
-	set zip(str) {						this._zip						= str  ?? this._zip; }
+	set taxpayers_name(name) {				this._taxpayers_name				= name }
+	set street_address(str) {				this._street_address				= str }
+	set city(str) {							this._city							= str }
+	set zip_code(str) {						this._zip_code						= str }
 
-	set is_taxpayer_blind(bool) {		this._is_taxpayer_blind			= bool ?? this._is_taxpayer_blind; }
-	set is_taxpayer_citizen(bool) {		this._is_taxpayer_citizen		= bool ?? this._is_taxpayer_citizen; }
-	set taxpayer_has_ssn(bool) {		this._taxpayer_has_ssn			= bool ?? this._taxpayer_has_ssn; }
-	set lived_with_spouse(bool) {		this._lived_with_spouse			= bool ?? this._lived_with_spouse; }
-	set number_of_dependents(num){		this._number_of_dependents		= num  ?? this._number_of_dependents; }
-	set rents_home(bool) {				this._rents_home				= bool ?? this._rents_home; }
-	set taxpayer_educator_expenses(val){this._taxpayer_educator_expenses= val ?? this._taxpayer_educator_expenses; }
-	set taxpayer_ltc_premiums(val) {	this._taxpayer_ltc_premiums		= val ?? this._taxpayer_ltc_premiums; }
+	set is_taxpayer_blind(bool) {			this._is_taxpayer_blind				= bool }
+	set is_taxpayer_citizen(bool) {			this._is_taxpayer_citizen			= bool }
+	set taxpayer_has_ssn(bool) {			this._taxpayer_has_ssn				= bool }
+	set lived_with_spouse(bool) {			this._lived_with_spouse				= bool }
+	set number_of_dependents(num){			this._number_of_dependents			= num }
+	set rents_home(bool) {					this._rents_home					= bool }
+	set taxpayer_educator_expenses(val) {	this._taxpayer_educator_expenses	= val }
+	set taxpayer_ltc_premiums(val) {		this._taxpayer_ltc_premiums			= val }
 
-	set is_spouse_blind(bool) {			this._is_spouse_blind			= bool ?? this._is_spouse_blind; }
-	set is_spouse_citizen(bool) {		this._is_spouse_citizen			= bool ?? this._is_spouse_citizen; }
-	set spouse_has_ssn(bool) {			this._spouse_has_ssn			= bool ?? this._spouse_has_ssn; }
-	set spouse_educator_expenses(val) {	this._spouse_educator_expenses	= val ?? this._spouse_educator_expenses; }
-	set spouse_ltc_premiums(val) {		this._spouse_ltc_premiums		= val ?? this._spouse_ltc_premiums; }
+	set is_spouse_blind(bool) {				this._is_spouse_blind				= bool }
+	set is_spouse_citizen(bool) {			this._is_spouse_citizen				= bool }
+	set spouse_has_ssn(bool) {				this._spouse_has_ssn				= bool }
+	set spouse_educator_expenses(val) {		this._spouse_educator_expenses		= val }
+	set spouse_ltc_premiums(val) {			this._spouse_ltc_premiums			= val }
 
-	set number_of_dependents(val) {			this._number_of_dependents		= val ?? this._number_of_dependents; }
-	set alimony_paid(val) {					this._alimony_paid				= val ?? this._alimony_paid; }
-	set alimony_received(val) {				this._alimony_received			= val ?? this._alimony_received; }
-	set divorce_date(val) {					this._divorce_date				= val ?? this._divorce_date; }
-	set federal_estimated_payments(val) {	this._federal_estimated_payments= val ?? this._federal_estimated_payments; }
-	set state_estimated_payments(val) {		this._state_estimated_payments	= val ?? this._state_estimated_payments; }
-	set medical_insurance_premiums(val) {	this._medical_insurance_premiums= val ?? this._medical_insurance_premiums; }
-	set medicare_repremiums	(val) {			this._medicare_repremiums		= val ?? this._medicare_repremiums; }
-	set other_medical_expenses(val) {		this._other_medical_expenses	= val ?? this._other_medical_expenses; }
-	set medical_miles(val) {				this._medical_miles				= val ?? this._medical_miles; }
-	set property_tax(val) {					this._property_tax				= val ?? this._property_tax; }
-	set personal_property_tax(val) {		this._personal_property_tax		= val ?? this._personal_property_tax; }
-	set extra_sales_tax(val) {				this._extra_sales_tax			= val ?? this._extra_sales_tax; }
-	set cash_gift_to_charity(val) {			this._cash_gift_to_charity		= val ?? this._cash_gift_to_charity; }
-	set noncash_gift_to_charity(val) {		this._noncash_gift_to_charity	= val ?? this._noncash_gift_to_charity; }
-	set tax_preparation_fees(val) {			this._tax_preparation_fees		= val ?? this._tax_preparation_fees; }
-	set investment_expenses(val) {			this._investment_expenses		= val ?? this._investment_expenses; }
-	set unreimbursed_employee_expenses(val){this._unreimbursed_employee_expenses= val ?? this._unreimbursed_employee_expenses; }
+	set number_of_dependents(val) {			this._number_of_dependents			= val }
+	set alimony_paid(val) {					this._alimony_paid					= val }
+	set alimony_received(val) {				this._alimony_received				= val }
+	set divorce_date(val) {					this._divorce_date					= val }
+	set federal_estimated_payments(val) {	this._federal_estimated_payments	= val }
+	set state_estimated_payments(val) {		this._state_estimated_payments		= val }
+	set medical_insurance_premiums(val) {	this._medical_insurance_premiums	= val }
+	set medicare_repremiums	(val) {			this._medicare_repremiums			= val }
+	set other_medical_expenses(val) {		this._other_medical_expenses		= val }
+	set medical_miles(val) {				this._medical_miles					= val }
+	set property_tax(val) {					this._property_tax					= val }
+	set personal_property_tax(val) {		this._personal_property_tax			= val }
+	set extra_sales_tax(val) {				this._extra_sales_tax				= val }
+	set cash_gift_to_charity(val) {			this._cash_gift_to_charity			= val }
+	set noncash_gift_to_charity(val) {		this._noncash_gift_to_charity		= val }
+	set tax_preparation_fees(val) {			this._tax_preparation_fees			= val }
+	set investment_expenses(val) {			this._investment_expenses			= val }
+	set unreimbursed_employee_expenses(val) { this._unreimbursed_employee_expenses = val }
 
 	set taxpayers_birthday(birthday) {
 		if (birthday === null || birthday === undefined) { return; }
@@ -185,6 +193,24 @@ export class Taxpayer {
 	}
 
 	toPrint() {
+		let lines = [];
+
+		printLine(lines, "Tax Year",			this.tax_year);
+		printLine(lines, "Filing Status",		this.filing_status);
+		lines.push("");
+		
+		printLine(lines, "Taxpayer's Name",		this.taxpayers_name);
+		printLine(lines, "Street Address",		this.street_address);
+		printLine(lines, "City, State, Zip",	`${this.city}, CA ${this.zip_code}`);
+		printLine(lines, "Taxpayer's Birthday",	`${this.taxpayers_birthday}, Age: ${this.taxpayers_age}`);
+		printLine(lines, "Taxpayer Is Blind",	this.is_taxpayer_blind);
+
+		if (this.filing_status === "MFJ") {
+			printLine(lines, "Spouse's Birthday",	`${this.spouses_birthday}, Age: ${this.spouses_age}`);
+			printLine(lines, "Spouse Is Blind",	this.is_spouse_blind);
+		}
+		lines.push("");
+		return lines.join("\n");
 	}
 
 	toString() {

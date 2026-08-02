@@ -1,72 +1,75 @@
 
-import { Dates }		from "../Library/Classes/Dates.js";
-import { Debug }		from "../Library/Classes/Debug.js";
-import { File }			from "../Library/Classes/File.js";
-import { Forms }		from "../Library/Classes/Forms.js";
-import { HTML }			from "../Library/Classes/HTML.js";
-import { Str }			from "../Library/Classes/Str.js";
-import { Taxpayer }		from "../Library/Classes/Taxpayer.js";
-import { TaxTable }		from "../Library/Classes/TaxTable.js";
+import { Dates }			from "../Library/Classes/Dates.js";
+import { Debug }			from "../Library/Classes/Debug.js";
+import { File }				from "../Library/Classes/File.js";
+import { Forms }			from "../Library/Classes/Forms.js";
+import { HTML }				from "../Library/Classes/HTML.js";
+import { HTMLDoc }			from "../Library/Classes/HTMLDoc.js";
+import { Taxpayer }			from "../Library/Classes/Taxpayer.js";
+import { TaxTable }			from "../Library/Classes/TaxTable.js";
 
-import { F1040_HTML }	from "../Library/Forms-HTML/F1040-HTML.js";
-import { W2_HTML }		from "../Library/Forms-HTML/W2-HTML.js";
+import { Taxpayer_HTML }	from "../Library/Forms-HTML/Taxpayer-HTML.js";
+import { F1040_HTML }		from "../Library/Forms-HTML/F1040-HTML.js";
+import { W2_HTML }			from "../Library/Forms-HTML/W2-HTML.js";
 
 import { TAX_PROGRAM_SAVE_FILE } from "../Library/TaxTools/TaxTools.js";
 
-function changeHandler(event) {
+function calculateHandler(event) {
 	//
-	// This function is called when any input field is changed. It calculates the
-	// whole return (not just the field tha was changed).
+	// This function is called when the Calculate button is pressed. It causes
+	// the tax return to be generated.
 	//
 	//try {
-		const tax_year	= HTML.getUserInput("TaxYear");
-		const tax_table	= TaxTable.getTaxTable(tax_year);			// Initialize tax tables; ignore return value.
-		const taxpayer	= createTaxpayer();							// Initialize taxpayer; ignore return value.
-		mapInputValues();											// Map input values to tax forms
+		// Reset static (global) variables to erase information from a previous calculation.
+		Debug.reset();
+		Forms.reset();
+		HTMLDoc.reset();
+		Taxpayer.reset();
+
+		const tax_year	= HTML.getUserInput("tax-year");
+		const tax_table	= TaxTable.getTaxTable(tax_year);			// Initialize tax tables
+		const taxpayer	= getTaxpayer();							// Create and initialize taxpayer
+		createTaxForms();											// Create tax forms from user input
 		const f1040 = Forms.getForm("F1040") || Forms.createForm("F1040");
 		f1040.calculate();
-		putOutputs(tax_year);
+		putOutputs();
 	//} catch (err) {
 		//HTML.putElementValue("ErrorMessageOutput", err);
 		//document.getElementById("ErrorMessageOutput").scrollIntoView();
 	//}
 }
 
-function createTaxpayer() {
-	const taxpayer = new Taxpayer();
+function changeHandler(event) {
+	//
+	// This function is called when any of the input fields are changed. It hides any
+	// information from a previous calculation and updates the fields that are shown
+	// when the filing status changes.
+	//
+	// HTML.hideElement("TaxReturnContainer");
+	HTML.hideElement("debug-container")
+	HTML.putElementValue("ErrorMessageOutput", "");
 
-	taxpayer.tax_year = HTML.getUserInput("TaxYear");
-
-	for (const key of Object.keys(inputs.Taxpayer)) {
-		// Keys in the JSON file use camel case. Convert it to snake case, which is
-		// used for variable names.
-		let fieldname = Str.camelToSnakeCase(key);
-		taxpayer[fieldname] = inputs.Taxpayer[key];
+	// Remove the tax return.
+	const htmldoc = HTMLDoc.getDoc();
+	if (htmldoc) {
+		htmldoc.remove();
 	}
-/*
-	inputs.AlimonyPaid				= HTML.getUserInput(`TP-${index}-AlimonyPaid`);
-	inputs.AlimonyReceived			= HTML.getUserInput(`TP-${index}-AlimonyReceived`);
-	inputs.DivorceDate				= HTML.getUserInput(`TP-${index}-DivorceDate`,	"text");
-	inputs.FederalEstimatedPayments	= HTML.getUserInput(`TP-${index}-FederalEstimatedPayments`);
-	inputs.StateEstimatedPayments	= HTML.getUserInput(`TP-${index}-StateEstimatedPayments`);
-	inputs.MedicalInsurancePremiums	= HTML.getUserInput(`TP-${index}-MedicalInsurancePremiums`);
-	inputs.MedicarePremiums			= HTML.getUserInput(`TP-${index}-MedicarePremiums`);
-	inputs.TaxpayerLTCPremiums		= HTML.getUserInput(`TP-${index}-TaxpayerLTCPremiums`);
-	inputs.SpouseLTCPremiums		= HTML.getUserInput(`TP-${index}-SpouseLTCPremiums`);
-	inputs.OtherMedicalExpenses		= HTML.getUserInput(`TP-${index}-OtherMedicalExpenses`);
-	inputs.MedicalMiles				= HTML.getUserInput(`TP-${index}-MedicalMiles`);
-	inputs.PropertyTax				= HTML.getUserInput(`TP-${index}-PropertyTax`);
-	inputs.PersonalPropertyTax		= HTML.getUserInput(`TP-${index}-PersonalPropertyTax`);
-	inputs.ExtraSalesTax			= HTML.getUserInput(`TP-${index}-ExtraSalesTax`);
-	inputs.CashGiftToCharity		= HTML.getUserInput(`TP-${index}-CashGiftToCharity`);
-	inputs.NoncashGiftToCharity		= HTML.getUserInput(`TP-${index}-NoncashGiftToCharity`);
-	inputs.TaxPreparationFees		= HTML.getUserInput(`TP-${index}-TaxPreparationFees`);
-	inputs.InvestmentExpenses		= HTML.getUserInput(`TP-${index}-LocalityName`);
-	inputs.UnreimbursedEmployeeExpenses	= HTML.getUserInput(`TP-${index}-UnreimbursedEmployeeExpenses`);
-	inputs.TaxpayerEducatorExpenses= HTML.getUserInput(`TP-${index}-TaxpayerEducatorExpenses`);
-	inputs.SpouseEducatorExpenses	= HTML.getUserInput(`TP-${index}-SpouseEducatorExpenses`);
-*/
-	return taxpayer;
+	
+	const filing_status = HTML.getUserInput("FilingStatus", "text").toUpperCase();
+	HTML.hideElement("SpouseContainer");
+	if (filing_status === "MFJ") {
+		HTML.showElement("SpouseContainer");
+	} else {
+		HTML.hideElement("SpouseContainer");
+	}
+}
+
+function createTaxForms() {
+	// Input forms
+	W2_HTML.getUserInput(0);
+
+	// Additional Tax Forms
+	F1040_HTML.getUserInput();
 }
 
 function getFieldsForSave(formname) {
@@ -97,39 +100,28 @@ function getFieldsForSave(formname) {
 	}
 }
 
-function mapInputValues() {
-	W2_HTML.getHTMLInput(0);
-	F1040_HTML.getHTMLInput();
-}
-
-function putFieldsFromRestore(form) {
-	// This method puts the fields read from a saved file back onto the
-	// web page.
-	formname = form[0];
-
-	for (let i = 1; i < form.length; i++) {
-		let line			= form[i];
-		let lineno			= line[0];
-		let element_name	= line[1];
-		HTML.putElementValue(element_name, value);
-	}
-}
-
-function putOutputs(tax_year) {
+function putOutputs() {
 	//
 	//	Print the tax forms that were created.
 	//
 	let tax_forms = "";
 
-	let tp = Taxpayer.getTaxpayer();
-	tax_forms += tp.toString();
-							   
-	for (const form in Forms.formsToPrint()) {
-		tax_forms += form.toString();
+	tax_forms += Taxpayer.getTaxpayer().toPrint();
+
+	let forms = Forms.formsToPrint();
+	for (const form of forms) {
+		tax_forms += form.toPrint();
 	}
 
+	const doc = new HTMLDoc();
+	doc.startElement("div");
+	doc.addElement("p", "", "This is the first dynamically added line.");
+	doc.addElement("p", "", "This is the second dynamically added line.");
+	doc.stopElement("div");
+	doc.putAfter("TaxReturnContainer");
+
 	// Close the input forms so they are in their colapsed state.
-	// HTML.closeAllDetails();
+	HTML.closeAllDetails();
 
 	// Copy the tax forms to the web page, show the area with the tax forms, and nove the focus to that area.
 	HTML.putElementValue("TaxReturnOutput", tax_forms);
@@ -137,38 +129,26 @@ function putOutputs(tax_year) {
 	document.getElementById("TaxReturnOutput").scrollIntoView({behavior: 'smooth', block: 'start'});
 }
 
-function refresh(event) {
-	HTML.hideElement("TaxReturnContainer");
-	HTML.hideElement("DebugContainer")
-	HTML.putElementValue("ErrorMessageOutput", "");
-	
-	const filing_status = HTML.getUserInput("FilingStatus", "text").toUpperCase();
-	HTML.hideElement("SpouseContainer");
-	if (filing_status === "MFJ") {
-		HTML.showElement("SpouseContainer");
-	} else {
-		HTML.hideElement("SpouseContainer");
-	}
-
-	// Reset static (global) variables to erase information from a previous calculation.
-	Debug.reset();
-	Forms.reset();
-	Taxpayer.reset();
-}
-
 function restoreDataHandler(data) {
 	//
 	// This function is called when the user restores the input fields from a file.
 	// The data that was copied from the file is passed a parameter.
 	//
-	const tool = HTML.getUserInput("Title", "text");
+	const tool = HTML.getUserInput("title", "text");
 	if (data.tool !== tool) {
 		throw new Error(`Restored data file is intended for the ${data.tool} tool.`);
 	}
 
-	let inputs = data.inputs;
-	for (const form of inputs) {
-		putFieldsFromRestore(form);
+	// For each form.
+	for (const form of data.inputs) {
+		// Puts the fields read from a saved file back onto the web page.
+		formname = form[0];
+		for (let i = 1; i < form.length; i++) {
+			let line			= form[i];
+			let lineno			= line[0];
+			let element_name	= line[1];
+			HTML.putElementValue(element_name, value);
+		}
 	}
 }
 
@@ -200,7 +180,7 @@ function saveUserData(event) {
 
 	const data = {
 		version:		HTML.getUserInput("TaxToolsVersion", "text"),
-		tool:			HTML.getUserInput("Title", "text"),
+		tool:			HTML.getUserInput("title", "text"),
 		todays_date:	new Date().toLocaleDateString(),
 		input_data:		inputs,
 	};
@@ -212,10 +192,68 @@ document.addEventListener("DOMContentLoaded", () => {
 	//
 	// Wait for the DOM to be fully loaded before trying to access any elements.
 	//
-	HTML.addListener("CalculateButton",	"click",  changeHandler);
-	HTML.addListener("SaveButton",		"click",  saveUserData);
-	HTML.addListener("InputFile",		"change", restoreUserData);
-	HTML.addListener("ToolContainer",	"change", refresh);
+	HTML.addListener("calculate-button",	"click",  calculateHandler);
+	HTML.addListener("save-button",			"click",  saveUserData);
+	HTML.addListener("input-file",			"change", restoreUserData);
+	HTML.addListener("tool-container",		"change", changeHandler);
 
-	refresh();
+	changeHandler();
 });
+
+//
+// Get Input from the Web
+//
+function getTaxpayer() {
+	let inputs = {};
+
+	const taxpayer = new Taxpayer();
+
+	taxpayer.tax_year						= HTML.getUserInput("tax-year");
+	taxpayer.filing_status					= HTML.getUserInput(`filing-status`,	"text").toUpperCase();
+
+	taxpayer.taxpayers_name					= HTML.getUserInput(`taxpayers-name`,	"text");
+	taxpayer.street_address					= HTML.getUserInput(`street-address`,	"text");
+	taxpayer.city							= HTML.getUserInput(`city`,				"text");
+	taxpayer.zip_code						= HTML.getUserInput(`zip-code`,			"text");
+
+	// Taxpayer
+	taxpayer.taxpayers_birthday				= HTML.getUserInput(`taxpayers-birthday`, "text");
+	taxpayer.is_taxpayer_blind				= HTML.getUserInput(`is-taxpayer-blind`, "");
+	// taxpayer.is_taxpayer_citizen			= HTML.getUserInput(`is-taxpayer-citizen`, "");
+	// taxpayer.taxpayer_has_ssn			= HTML.getUserInput(`taxpayer-has-ssn`, "");
+	// taxpayer.lived_with_spouse			= HTML.getUserInput(`lived-with-spouse`, "");
+	// taxpayer.can_be_dependent			= HTML.getUserInput(`can-be-dependent`, "");
+	// taxpayer.rents_home					= HTML.getUserInput(`rents-home`, "");
+	taxpayer.taxpayer_educator_expenses		= HTML.getUserInput(`tp-taxpayer-educator-expenses`, "");
+	taxpayer.taxpayer_ltc_premiums			= HTML.getUserInput(`tp-taxpayer-ltc-premiums`, "");
+
+	// Spouse
+	taxpayer.spouses_birthday				= HTML.getUserInput(`spouses-birthday`, "text");
+	taxpayer.is_spouse_blind				= HTML.getUserInput(`is-spouse-blind`, "");
+	// taxpayer.is_spouse_citizen			= HTML.getUserInput(`is-spouse-citizen`, "");
+	// taxpayer.spouse_has_ssn				= HTML.getUserInput(`spouse-has-ssn`, "");
+	taxpayer.spouse_educator_expenses		= HTML.getUserInput(`tp-spouse-educator-expenses`, "");
+	taxpayer.spouse_ltc_premiums			= HTML.getUserInput(`tp-spouse-ltc-premiums`, "");
+
+	// Taxpayer and spouse
+	// taxpayer.number_of_dependents		= HTML.getUserInput(`tp--number-of-dependents`, "");
+	taxpayer.alimony_paid					= HTML.getUserInput(`tp-alimony-paid`, "");
+	taxpayer.alimony_received				= HTML.getUserInput(`tp-alimony-received`, "");
+	taxpayer.divorce_date					= HTML.getUserInput(`tp-divorce-date`, "text");
+	taxpayer.federal_estimated_payments		= HTML.getUserInput(`tp-federal-estimated-payments`, "");
+	taxpayer.state_estimated_payments		= HTML.getUserInput(`tp-state-estimated-payments`, "");
+	taxpayer.medical_insurance_premiums		= HTML.getUserInput(`tp-medical-insurance-premiums`, "");
+	taxpayer.medicare_repremiums			= HTML.getUserInput(`tp-medicare-premiums`, "");
+	taxpayer.other_medical_expenses			= HTML.getUserInput(`tp-other-medical-expenses`, "");
+	taxpayer.medical_miles					= HTML.getUserInput(`tp-medical-miles`, "");
+	taxpayer.property_tax					= HTML.getUserInput(`tp-property-tax`, "");
+	taxpayer.personal_property_tax			= HTML.getUserInput(`tp-personal-property-tax`, "");
+	taxpayer.extra_sales_tax				= HTML.getUserInput(`tp-extra-sales-tax`, "");
+	taxpayer.cash_gift_to_charity			= HTML.getUserInput(`tp-cash-gift-to-charity`, "");
+	taxpayer.noncash_gift_to_charity		= HTML.getUserInput(`tp-noncash-gift-to-charity`, "");
+	taxpayer.tax_preparation_fees			= HTML.getUserInput(`tp-tax-preparation-fees`, "");
+	taxpayer.investment_expenses			= HTML.getUserInput(`tp-investment-expenses`, "");
+	taxpayer.unreimbursed_employee_expenses	= HTML.getUserInput(`tp-unreimbursed-employee-expenses`, "");
+
+	return taxpayer;
+}

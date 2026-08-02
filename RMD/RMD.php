@@ -88,14 +88,14 @@
 		</div>
 
 		<!-- Display area for error messages. -->
-		<div id="ErrorMessageContainer">
+		<div id="error-message-container">
 			<p id="ErrorMessageOutput"></p>
 		</div>
 
 		<!-- Display area for debugging information. -->
-		<div id="DebugContainer">
+		<div id="debug-container">
 			<h3>Debugging Output</h3>
-			<pre id="DebugOutput"></pre>
+			<pre id="debug-output"></pre>
 		</div>
 	</div>
 </body>

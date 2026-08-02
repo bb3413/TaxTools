@@ -105,16 +105,16 @@
 			</div>
 
 			<h3>Estimated Tax Calculation</h3>
-			<div class="data-line trigger" tooltipid="#TotalIncomeTT">
-					<p>1040, line 9</p>
-					<p>Total Income</p>
-					<p class="output-field" id="TotalIncome">0</p>
+			<div class="data-line">
+					<p class="trigger" tooltipid="#TotalIncomeTT">1040, line 9</p>
+					<p class="trigger" tooltipid="#TotalIncomeTT">Total Income</p>
+					<p class="trigger output-field" tooltipid="#TotalIncomeTT" id="TotalIncome">0</p>
 			</div>
 
-			<div class="data-line trigger tooltipid="#adjustmentstt"">
-				<p>1040, line 10</p>
-				<p>Adjustments</p>
-				<p class="output-field" id="Adjustments">0</p>
+			<div class="data-line">
+				<p class="trigger" tooltipid="#AdjustmentsTT">1040, line 10</p>
+				<p class="trigger" tooltipid="#AdjustmentsTT">Adjustments</p>
+				<p class="trigger output-field" tooltipid="#AdjustmentsTT" id="Adjustments">0</p>
 			</div>
 
 			<div class="data-line trigger" tooltipid="#AdjustedGrossIncomeTT">
@@ -593,14 +593,14 @@
 		</div>
 
 		<!-- Display area for error messages. -->
-		<div id="ErrorMessageContainer">
+		<div id="error-message-container">
 			<p id="ErrorMessageOutput"></p>
 		</div>
 
 		<!-- Display area for debugging information. -->
-		<div id="DebugContainer">
+		<div id="debug-container">
 			<h3>Debugging Output</h3>
-			<pre id="DebugOutput"></pre>
+			<pre id="debug-output"></pre>
 		</div>
 
 		<!-- Tooltips -->

@@ -58,6 +58,10 @@ export class Form {
 		console.log(this.toString());
 	}
 
+	toPrint() {
+		return this.toString();
+	}
+
 	toString() {
 		let str		= [];
 		let title	= [];

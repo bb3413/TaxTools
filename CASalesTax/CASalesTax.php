@@ -49,7 +49,7 @@
 		</div>
 
 		<!-- Display area for error messages. -->
-		<div id="ErrorMessageContainer">
+		<div id="error-message-container">
 			<p id="ErrorMessageOutput"></p>
 		</div>
 	</div>

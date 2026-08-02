@@ -138,5 +138,5 @@ document.addEventListener("DOMContentLoaded", () => {
 	HTML.addListener("SelfEmploymentIncome",	"change", changeHandler);
 	HTML.addListener("OtherIncome",				"change", changeHandler);
 
-	HTML.hideElement("DebugContainer");
+	HTML.hideElement("debug-container");
 });

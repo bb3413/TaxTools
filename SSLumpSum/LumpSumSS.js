@@ -183,5 +183,5 @@ document.addEventListener("DOMContentLoaded", () => {
 	HTML.addListener("SocialSecurityReceivedReported-2","change", changeHandler);
 	HTML.addListener("SocialSecurityTaxableReported-2",	"change", changeHandler);
 
-	HTML.hideElement("DebugContainer");
+	HTML.hideElement("debug-container");
 });
