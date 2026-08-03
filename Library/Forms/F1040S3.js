@@ -50,12 +50,12 @@ export class F1040S3 extends Form {
 	}
 
 	calculate() {
-		if (!this.modified) {
-			throw new Error(`${formname} already calculated.`);
+		if (this.calculated) {
+			throw new Error(`${this.formname} already calculated.`);
 		}
 
 		Debug.enter("F1040S3.calculate()");
-		this.modified = false;
+		this.calculated = true;
 
 /*		foreignTaxCredt = Forms.getValue("F1099INT", "xx") +
 									Forms.getValue("F1099DIV", "xx") +

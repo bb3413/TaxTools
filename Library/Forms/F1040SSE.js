@@ -38,12 +38,12 @@ export class F1040SSE extends Form {
 	}
 
 	calculate() {
-		if (!this.modified) {
-			throw new Error(`${formname} already calculated.`);
+		if (this.calculated) {
+			throw new Error(`${this.formname} already calculated.`);
 		}
 
 		Debug.enter("F1040SSE.calculate()");
-		this.modified = false;
+		this.calculated = true;
 
 		this.lines["01a"].value		= 0;							// Ignore - for use with farm income
 		this.lines["01b"].value		= 0;							// Ignore - for use with farm income

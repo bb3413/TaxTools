@@ -62,12 +62,12 @@ export class F1040S2 extends Form {
 	}
 
 	calculate() {
-		if (!this.modified) {
-			throw new Error(`${formname} already calculated.`);
+		if (this.calculated) {
+			throw new Error(`${this.formname} already calculated.`);
 		}
 
 		Debug.enter("F1040S2.calculate()");
-		this.modified = false;
+		this.calculated = true;
 
 		// Tax
 		this.lines["01a"].value	= Forms.getValue("F8962", "xx");	// Repayment of Advanced PTC

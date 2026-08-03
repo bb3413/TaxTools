@@ -11,7 +11,7 @@ let output_color	= "";
 
 function ageHandler(event) {
 	try {
-		HTML.putElementValue("ErrorMessageOutput", "");
+		HTML.putElementValue("error-message-output", "");
 
 		age = HTML.getUserInput("Age", "text");
 		if (age === "")
@@ -25,8 +25,8 @@ function ageHandler(event) {
 			calculateStartDate(end, age);
 		}
 	} catch (err) {
-		HTML.putElementValue("ErrorMessageOutput", err);
-		document.getElementById("ErrorMessageOutput").scrollIntoView({behavior: 'smooth', block: 'start'});
+		HTML.putElementValue("error-message-output", err);
+		document.getElementById("error-message-output").scrollIntoView({behavior: 'smooth', block: 'start'});
 	}
 }
 
@@ -69,7 +69,7 @@ function calculateStartDate(end, age) {
 
 function endHandler(event) {
 	try {
-		HTML.putElementValue("ErrorMessageOutput", "");
+		HTML.putElementValue("error-message-output", "");
 
 		end = HTML.getUserInput("End", "text");
 		if (!Dates.getDateObject(end)) {
@@ -85,14 +85,14 @@ function endHandler(event) {
 			calculateStartDate(end, age);
 		}
 	} catch (err) {
-		HTML.putElementValue("ErrorMessageOutput", err);
-		document.getElementById("ErrorMessageOutput").scrollIntoView();
+		HTML.putElementValue("error-message-output", err);
+		document.getElementById("error-message-output").scrollIntoView();
 	}
 }
 
 function startHandler(event) {
 	try {
-		HTML.putElementValue("ErrorMessageOutput", "");
+		HTML.putElementValue("error-message-output", "");
 
 		start = HTML.getUserInput("Start", "text");
 		if (!Dates.getDateObject(start)) {
@@ -108,8 +108,8 @@ function startHandler(event) {
 			calculateEndDate(start, age);
 		}
 	} catch (err) {
-		HTML.putElementValue("ErrorMessageOutput", err);
-		document.getElementById("ErrorMessageOutput").scrollIntoView();
+		HTML.putElementValue("error-message-output", err);
+		document.getElementById("error-message-output").scrollIntoView();
 	}
 }
 

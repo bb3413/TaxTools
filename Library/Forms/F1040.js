@@ -10,89 +10,79 @@ import { Taxpayer }	from "../Classes/Taxpayer.js";
 import { IncTax }	from "../Worksheets/IncTax.js";
 import { SSTax }	from "../Worksheets/SSTax.js";
 
-const FIELDS =	[
-	// Line		Element
-	// Number	Name
-	[ "01a",	"Wages" ],
-	[ "01b",	"HouseholdWages" ],
-	[ "01c",	"TipIncome" ],
-	[ "01d",	"MedicaidWaiverPayments" ],
-	[ "01e",	"DependentCareBenefits" ],
-	[ "01f",	"AdoptionBenefits" ],
-	[ "01g",	"WagesFromForm8919" ],
-	[ "01h",	"OtherEarnedIncome" ],
-	[ "01i",	"NontaxableCombatPay" ],
-	[ "01z",	"TotalLines1aTo1h" ],
-	[ "02a",	"TaxExemptInterest" ],
-	[ "02b",	"TaxableInterest" ],
-	[ "03a",	"QualifiedDividends" ],
-	[ "03b",	"OrdinaryDividends" ],
-	[ "04a",	"IRADistributions" ],
-	[ "04b",	"TaxableIRA" ],
-	[ "05a",	"PensionsAndAnnuities" ],
-	[ "05b",	"TaxablePensionsAndAnnuities" ],
-	[ "06a",	"SocialSecurityBenefits" ],
-	[ "06b",	"TaxableSocialSecurity" ],
-	[ "07a",	"CapitalGain" ],
-	[ "08",		"AdditionalIncome" ],
-	[ "09",		"TotalIncome" ],
-	[ "10",		"AdjustmentsToIncome" ],
-	[ "11a",	"AdjustedGrossIncome" ],
-	[ "11b",	"AdjustedGrossIncome" ],
-	[ "12e",	"Deductions" ],
-	[ "13a",	"QBIDeduction" ],
-	[ "13b",	"AdditionalDeductions" ],
-	[ "14",		"TotalDeductions" ],
-	[ "15",		"TaxableIncome" ],
-	[ "16",		"IncomeTax" ],
-	[ "17",		"AdditionalTax" ],
-	[ "18",		"TotalTax" ],
-	[ "19",		"ChildTaxCredit" ],
-	[ "20",		"NonrefundableCredits" ],
-	[ "21",		"TotalNonrefundableCredits" ],
-	[ "22",		"TaxMinusNonrefundableCredits" ],
-	[ "23",		"OtherTaxes" ],
-	[ "24",		"TotalTax" ],
-	[ "25a",	"WithholdingFromW2" ],
-	[ "25b",	"WithholdingFrom1099" ],
-	[ "25c",	"OtherWithholding" ],
-	[ "25d",	"TotalWithholding" ],
-	[ "26",		"EstimatedTaxPayments" ],
-	[ "27a",	"EarnedIncomeCredit" ],
-	[ "28",		"AdditionalChildTaxCredit" ],
-	[ "29",		"AmericanOpportunityCredit" ],
-	[ "30",		"RefundableAdoptionCredit" ],
-	[ "31",		"AdditionalRefundableCredits" ],
-	[ "32",		"EstimatedPaymentsAndRefundableCredits" ],
-	[ "33",		"TotalPayments" ],
-	[ "34",		"Overpaid" ],
-	[ "35a",	"Refund" ],
-	[ "36",		"ApplyToNextYearsTax" ],
-	[ "37",		"AmountOwed" ],
-	[ "38",		"EstimatedTaxPenalty" ],
-];
-
 export class F1040 extends Form {
 	constructor(formname) {
 		Debug.enter("F1040.Constructor()");
 		super(formname);
 
-		for (const field of FIELDS) {
-			const lineno	= field[0];
-			const name		= field[1];
-			this.lines[lineno] = new Line(Str.camelCaseToEnglish(name));
-		};
-
+		this.lines["01a"]	= new Line("Wages");
+		this.lines["01b"]	= new Line("Household Wages");
+		this.lines["01c"]	= new Line("Tip Income");
+		this.lines["01d"]	= new Line("Medicaid Waiver Payments");
+		this.lines["01e"]	= new Line("Dependent Care Benefits");
+		this.lines["01f"]	= new Line("Adoption Benefits");
+		this.lines["01g"]	= new Line("Wages From Form 8919");
+		this.lines["01h"]	= new Line("Other Earned Income");
+		this.lines["01i"]	= new Line("Nontaxable Combat Pay");
+		this.lines["01z"]	= new Line("Total Lines 1a-To1h");
+		this.lines["02a"]	= new Line("Tax Exempt Interest");
+		this.lines["02b"]	= new Line("Taxable Interest");
+		this.lines["03a"]	= new Line("Qualified Dividends");
+		this.lines["03b"]	= new Line("Ordinary Dividends");
+		this.lines["04a"]	= new Line("IRA Distributions");
+		this.lines["04b"]	= new Line("Taxable IRA");
+		this.lines["05a"]	= new Line("Pensions And Annuities");
+		this.lines["05b"]	= new Line("Taxable Pensions And Annuities");
+		this.lines["06a"]	= new Line("Social Security Benefits");
+		this.lines["06b"]	= new Line("Taxable Social Security");
+		this.lines["07a"]	= new Line("Capital Gain");
+		this.lines["08"]	= new Line("Additional Income");
+		this.lines["09"]	= new Line("Total Income");
+		this.lines["10"]	= new Line("Adjustments To Income");
+		this.lines["11a"]	= new Line("Adjusted Gross Income");
+		this.lines["11b"]	= new Line("Adjusted Gross Income");
+		this.lines["12e"]	= new Line("Deductions");
+		this.lines["13a"]	= new Line("QBI Deduction");
+		this.lines["13b"]	= new Line("Additional Deductions");
+		this.lines["14"]	= new Line("Total Deductions");
+		this.lines["15"]	= new Line("Taxable Income");
+		this.lines["16"]	= new Line("Income Tax");
+		this.lines["17"]	= new Line("Additional Tax");
+		this.lines["18"]	= new Line("Total Tax");
+		this.lines["19"]	= new Line("Child Tax Credit");
+		this.lines["20"]	= new Line("Nonrefundable Credits");
+		this.lines["21"]	= new Line("Total Nonrefundable Credits");
+		this.lines["22"]	= new Line("Tax Minus Nonrefundable Credits");
+		this.lines["23"]	= new Line("Other Taxes");
+		this.lines["24"]	= new Line("Total Tax");
+		this.lines["25a"]	= new Line("Withholding From W2");
+		this.lines["25b"]	= new Line("Withholding From 1099");
+		this.lines["25c"]	= new Line("Other Withholding");
+		this.lines["25d"]	= new Line("Total Withholding");
+		this.lines["26"]	= new Line("Estimated Tax Payments");
+		this.lines["27a"]	= new Line("Earned Income Credit");
+		this.lines["28"]	= new Line("Additional Child Tax Credit");
+		this.lines["29"]	= new Line("American Opportunity Credit");
+		this.lines["30"]	= new Line("Refundable Adoption Credit");
+		this.lines["31"]	= new Line("Additional Refundable Credits");
+		this.lines["32"]	= new Line("Estimated Payments And Refundable Credits");
+		this.lines["33"]	= new Line("Total Payments");
+		this.lines["34"]	= new Line("Overpaid");
+		this.lines["35a"]	= new Line("Refund");
+		this.lines["36"]	= new Line("Apply To Next Years Tax");
+		this.lines["37"]	= new Line("Amount Owed");
+		this.lines["38"]	= new Line("Estimated Tax Penalty");
+	
 		Debug.exit("F1040.Constructor()");
 	}
 
 	calculate() {
-		if (!this.modified) {
-			throw new Error(`${formname} already calculated.`);
+		if (this.calculated) {
+			throw new Error(`${this.formname} already calculated.`);
 		}
 
 		Debug.enter("F1040.calculate()");
-		this.modified = false;
+		this.calculated = true;
 		const tt = TaxTable.getTaxTable();
 		const tp = Taxpayer.getTaxpayer();
 
@@ -197,19 +187,26 @@ export class F1040 extends Form {
 			*/
 	}
 
+	put1040Information() {
+		//
+		// Fill in the 1040 fields information on the output form 1040.
+		//
+		const element = document.getElementById("form-1040-output");
+		if (!element) {
+			if (Debug.strict()) {
+				throw new Error("getElementValue: Element not found: form-1040-output");
+			}
+			return;
+		}
+
+		for (const lineno of Object.keys(this.lines)) {
+			HTML.putUserOutput(`f1040-${lineno}`, this.line(lineno));
+		}
+	}
+
 	unearnedIncome() {
 			/*
 			return 1040[9] + 1040S1[24j] - (1040[1z] + 1040S1[3,6,8a,8d,8u,18])
 			*/
-	}
-
-	static listFields() {
-		const fields = [];
-
-		for (const field of FIELDS) {
-			fields.push(field);
-		}
-
-		return fields;
 	}
 }

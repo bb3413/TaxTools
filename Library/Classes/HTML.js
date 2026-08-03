@@ -5,7 +5,7 @@ import { Num }		from "../Classes/Num.js";
 export class HTML {
 	static closeDetails(element_id) {
 		const element = document.getElementById(element_id);
-		if (!element) {
+		if (element) {
 			element.open = false;
 			// Another option: element.removeAttribute('open');
 		}
@@ -14,47 +14,67 @@ export class HTML {
 	static closeAllDetails() {
 		const elements = document.querySelectorAll("details");
 		for (const element of elements) {
-			if (!element) {
+			if (element) {
 				element.open = false;
 				// Another option: element.removeAttribute('open');
 			}
 		}
 	}
 
+	static openDetails(element_id) {
+		const element = document.getElementById(element_id);
+		if (element) {
+			element.open = true;
+		}
+	}
 	//-----  Show/hide element  ---------------------------------
 	static showElement(element_id) {
 		const element = document.getElementById(element_id);
 		if (!element) {
-			throw new Error("getElementValue: Element not found: " + element_id);
-		} else {
-			element.classList.remove('hidden');
+			if (Debug.strict()) {
+				throw new Error("getElementValue: Element not found: " + element_id);
+			}
+			return;
 		}
+
+		element.classList.remove('hidden');
 	}
+	
 	static hideElement(element_id) {
 		const element = document.getElementById(element_id);
 		if (!element) {
-			throw new Error("getElementValue: Element not found: " + element_id);
-		} else {
-			element.classList.add('hidden');
+			if (Debug.strict()) {
+				throw new Error("getElementValue: Element not found: " + element_id);
+			}
+			return;
 		}
+
+		element.classList.add('hidden');
 	}
 
 	//---- Change background/foreground color  ----------------------------------
 	static changeBackgroundColor(element_id, color) {
 		const element = document.getElementById(element_id);
 		if (!element) {
-			throw new Error("getElementValue: Element not found: " + element_id);
-		} else {
-			element.style.background = color;
+			if (Debug.strict()) {
+				throw new Error("getElementValue: Element not found: " + element_id);
+			}
+			return;
 		}
+
+		element.style.background = color;
 	}
+
 	static changeTextColor(element_id, color) {
 		const element = document.getElementById(element_id);
 		if (!element) {
-			throw new Error("getElementValue: Element not found: " + element_id);
-		} else {
-			element.style.color = color;
+			if (Debug.strict()) {
+				throw new Error("getElementValue: Element not found: " + element_id);
+			}
+			return;
 		}
+
+		element.style.color = color;
 	}
 
 	//-----  Get/put user input/output---------------------------------
@@ -111,70 +131,79 @@ export class HTML {
 	static getElementValue(element_id) {
 		const element = document.getElementById(element_id);
 		if (!element) {
-			throw new Error("getElementValue: Element not found: " + element_id);
-		} else {
-			if (element.type === "checkbox" || element.type === "radio") {
-				return element.checked;
+			if (Debug.strict()) {
+				throw new Error("getElementValue: Element not found: " + element_id);
 			}
-
-			if (element.tagName === "SELECT" && element.multiple) {
-				// If multiple selections are possible, value only gets the first one.
-				// This functions returns them all.
-				return Array.from(element.selectedOptions).map(opt => opt.value);
-			}
-
-			if ("value" in element) {
-				// Get input, textarea, and selects elements.
-				return element.value;
-			}
-
-			// Get other elements (div, span, p).
-			return element.textContent;
+			return;
 		}
+
+		if (element.type === "checkbox" || element.type === "radio") {
+			return element.checked;
+		}
+
+		if (element.tagName === "SELECT" && element.multiple) {
+			// If multiple selections are possible, value only gets the first one.
+			// This functions returns them all.
+			return Array.from(element.selectedOptions).map(opt => opt.value);
+		}
+
+		if ("value" in element) {
+			// Get input, textarea, and selects elements.
+			return element.value;
+		}
+
+		// Get other elements (div, span, p).
+		return element.textContent;
 	}
 
 	static putElementValue(element_id, value) {
 		const element = document.getElementById(element_id);
+		if (!element) {
+			if (Debug.strict()) {
+				throw new Error("putElementValue: Element not found: " + element_id);
+			}
+			return;
+		}
+
 		if (String(element.placeholder) === String(value)) {
 			value = "";
 		}
 
-		if (!element) {
-			throw new Error("putElementValue: Element not found: " + element_id);
-		} else {
-			if (element.type === "checkbox" || element.type === "radio") {
-				element.checked = Boolean(value);
-				return;
-			}
-
-			if (element.tagName === "SELECT" && element.multiple && Array.isArray(value)) {
-				// Restore selection where multiple selections are possible.
-				for (const opt of Array.from(element.options)) {
-					opt.selected = value.includes(opt.value);
-				}
-				return;
-			}
-
-			if ("value" in element) {
-				// Restore input, textarea, and selects elements.
-				element.value = value;
-				return;
-			}
-
-			// Restore other elements (e.g., div, span, p).
-			element.textContent = value;
+		if (element.type === "checkbox" || element.type === "radio") {
+			element.checked = Boolean(value);
 			return;
 		}
+
+		if (element.tagName === "SELECT" && element.multiple && Array.isArray(value)) {
+			// Restore selection where multiple selections are possible.
+			for (const opt of Array.from(element.options)) {
+				opt.selected = value.includes(opt.value);
+			}
+			return;
+		}
+
+		if ("value" in element) {
+			// Restore input, textarea, and selects elements.
+			element.value = value;
+			return;
+		}
+
+		// Restore other elements (e.g., div, span, p).
+		element.textContent = value;
+		return;
 	}
 
 	//-----  Miscellaneous utility functions  ---------------------------------
 	static addListener(element_id, event, handler) {
 		const element = document.getElementById(element_id);
 		if (!element) {
-			throw new Error("addListener: Element not found: " + element_id);
-		} else {
-			element.addEventListener(event, handler);
+			if (Debug.strict()) {
+				throw new Error("addListener: Element not found: " + element_id);
+			}
+			return;
 		}
+		
+		element.addEventListener(event, handler);
 	}
 
 	static getCSSGlobalVariable(variableName) {

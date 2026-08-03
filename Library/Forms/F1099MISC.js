@@ -79,12 +79,12 @@ export class F1099MISC extends Form {
 	}
 
 	calculate() {
-		if (!this.modified) {
-			throw new Error(`${formname} already calculated.`);
+		if (this.calculated) {
+			throw new Error(`${this.formname} already calculated.`);
 		}
 
 		Debug.enter("F1099MISC.calculate()");
-		this.modified = false;
+		this.calculated = true;
 		const tt = TaxTable.getTaxTable();
 		const tp = Taxpayer.getTaxpayer();
 

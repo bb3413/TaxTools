@@ -49,7 +49,7 @@
 				tooltipid="#restore-button-tt">Restore</label>
 		</div>
 
-		<div class="taxpayer-info-container">
+		<div class="taxpayer-info-short-line">
 			<p>&nbsp;</p>
 			<p>&nbsp;</p>
 			<p>Filing Status</p>
@@ -60,50 +60,55 @@
 				<option value="QSS">QSS</option>
 				<option value="MFS">MFS</option>
 			</select>
-			<p>&nbsp;</p>
-			<p>&nbsp;</p>
-
+		</div>
+		<div class="taxpayer-info-long-line">
 			<p>Taxpayer's Name</p>
 			<input class="trigger input-field left" type="text" id="taxpayers-name"
 				spellcheck="false" size="45" tooltipid="#taxpayers-name-tt" />
-
+		</div>
+		<div class="taxpayer-info-long-line">
 			<p>Street Address</p>
 			<input class="input-field left" type="text" autofocus id="street-address" />
-
+		</div>
+		<div class="taxpayer-info-long-line">
 			<p>City</p>
 			<input class="input-field left" type="text" id="city" />
-
+		</div>
+		<div class="taxpayer-info-short-line">
 			<p>Zip Code</p>
 			<input class="input-field left" type="text" id="zip-code"  />
-
+		</div>
+		<div class="taxpayer-info-short-line">
 			<p>Taxpayer's Birthday</p>
 			<input class="trigger input-field left" type="text" id="taxpayers-birthday" size="36"
 				placeholder="mm/dd/yyyy" tooltipid="#taxpayers-birthday-tt" />
-
+		</div>
+		<div class="taxpayer-info-short-line">
 			<p>Is Taxpayer Blind</p>
 			<input class="trigger checkbox" type="checkbox" id="is-taxpayer-blind"
 				tooltipid="#is-taxpayer-blind-tt" />
 		</div>
 
-		<div class="taxpayer-info-container" id="spouse-container">
-			<p>Spouse's Birthday</p>
-			<input class="trigger input-field left" type="text" id="spouses-birthday" size="36"
-				placeholder="mm/dd/yyyy" tooltipid="#spouses-birthday-tt" />
-
-			<p>Is Spouse Blind</p>
-			<input class="trigger checkbox" type="checkbox" id="is-spouse-blind"
-				tooltipid="#is-spouse-blind-tt" />
+		<div id="spouse-container">
+			<div class="taxpayer-info-short-line">
+				<p>Spouse's Birthday</p>
+				<input class="trigger input-field left" type="text" id="spouses-birthday" size="36"
+					placeholder="mm/dd/yyyy" tooltipid="#spouses-birthday-tt" />
+			</div>
+			<div class="taxpayer-info-short-line">
+				<p>Is Spouse Blind</p>
+				<input class="trigger checkbox" type="checkbox" id="is-spouse-blind"
+					tooltipid="#is-spouse-blind-tt" />
+			</div>
 		</div>
 
-		<p>&nbsp;</p>
-		<h2>Input Forms</h2>
+		<h2>Input Information</h2>
 		<?php include "../Library/TaxForms-In/Taxpayer.html"; ?>
 		<?php include "../Library/TaxForms-In/W2.html"; ?>
 
 		<!-- Display area for Tax Return. -->
 		<p>&nbsp;</p>
 		<div id="tax-return-container">
-			<!--<p id="tax-return-output" class="tax-return-output"></p>-->
 			<?php include "../Library/TaxForms-Out/F1040.html"; ?>
 		</div>
 

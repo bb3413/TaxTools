@@ -7,7 +7,7 @@ h2 {
 	margin-top:				2;
 }
 
-#TaxYear {
+#tax-year {
 	background:				var(--input-color);
 	color:					var(--text-color);
 	box-shadow: 			0px 1px 4px var(--shadow-color);
@@ -40,21 +40,27 @@ h2 {
 	padding-right:			6px;
 }
 
-.taxpayer-info-container {
-	width:					43rem;
+.taxpayer-info-short-line {
 	display:				grid;
-	grid-template-columns:	.4fr 1fr;
-	/* margin-left:			2rem; */
+	grid-template-columns:	150px 100px;
 }
 
-.taxpayer-info-container p {
-	/* text-align:			right; */
-	/* padding-right:		4px; */
+.taxpayer-info-short-line p {
 	margin-top:				0;
 	margin-bottom:			0;
 }
 
-.taxpayer-info-container input {
+.taxpayer-info-short-line input {
+	margin-top:				0;
+	margin-bottom:			0;
+}
+
+.taxpayer-info-long-line {
+	display:				grid;
+	grid-template-columns:	150px 400px;
+}
+
+.taxpayer-info-long-line p {
 	margin-top:				0;
 	margin-bottom:			0;
 }

@@ -5,7 +5,7 @@ import { fetchSalesTaxRate }	from "../Library/SalesTax/SalesTaxFromCDTFA.js";
 
 async function buttonHandler(event) {
 	try {
-		HTML.putElementValue("ErrorMessageOutput", "");
+		HTML.putElementValue("error-message-output", "");
 		const address	= document.getElementById("StreetAddress").value;
 		const city		= document.getElementById("City").value;
 		const zip		= document.getElementById("ZipCode").value;
@@ -28,8 +28,8 @@ async function buttonHandler(event) {
 			throw new Error("Unable to lookup sales tax.");
 		}
 	} catch (err) {
-		HTML.putElementValue("ErrorMessageOutput", err);
-		document.getElementById("ErrorMessageOutput").scrollIntoView({behavior: 'smooth', block: 'start'});
+		HTML.putElementValue("error-message-output", err);
+		document.getElementById("error-message-output").scrollIntoView({behavior: 'smooth', block: 'start'});
 	}
 }
 

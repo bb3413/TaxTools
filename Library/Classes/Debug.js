@@ -45,6 +45,7 @@ export class Debug {
 		debug_all				= false;
 		debug_used_keywords		= [];
 		trace_log				= [];
+		HTML.putElementValue("debug-output", "");
 		hideField("debug-container");
 	}
 
@@ -72,6 +73,11 @@ export class Debug {
 									.trim()							// Remove leading and trailing whitespace
 									.replace(/^,\s*|\s*,$/g, "");	// Remove leading and trailing commas
 		return input_string;
+	}
+
+	static setKeywords(input_string) {
+		// Alias for getKeywords();.
+		return Debug.getKeywords(input_string);
 	}
 
 	static strict() {

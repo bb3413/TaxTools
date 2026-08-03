@@ -35,12 +35,12 @@ export class CA_HiIncExemptions extends Form {
 	}
 
 	calculate() {
-		if (!this.modified) {
-			throw new Error(`${formname} already calculated.`);
+		if (this.calculated) {
+			throw new Error(`${this.formname} already calculated.`);
 		}
 
 		Debug.enter("CA_HiIncExemptions.calculate()");
-		this.modified = false;
+		this.calculated = true;
 		const tt = TaxTable.getTaxTable();
 		const tp = Taxpayer.getTaxpayer();
 		const personal_exemption	= tt.getTaxValue("CA_PersonalExemption", tp.filing_status);

@@ -13,7 +13,7 @@ function changeHandler(event) {
 	//
 	try {
 		// Reset static (global) variables to erase information from a previous calculation.
-		HTML.putElementValue("ErrorMessageOutput", "");
+		HTML.putElementValue("error-message-output", "");
 		Debug.reset();
 		Forms.reset();
 		Taxpayer.reset();
@@ -30,8 +30,8 @@ function changeHandler(event) {
 		putOutputs();												// Put results on web page
 		Debug.turnOn();												// Put debug info on web page if enabled
 	} catch (err) {
-		HTML.putElementValue("ErrorMessageOutput", err);
-		document.getElementById("ErrorMessageOutput").scrollIntoView({behavior: 'smooth', block: 'start'});
+		HTML.putElementValue("error-message-output", err);
+		document.getElementById("error-message-output").scrollIntoView({behavior: 'smooth', block: 'start'});
 	}
 }
 

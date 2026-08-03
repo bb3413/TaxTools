@@ -79,12 +79,12 @@ export class F1040S1 extends Form {
 	}
 
 	calculate() {
-		if (!this.modified) {
-			throw new Error(`${formname} already calculated.`);
+		if (this.calculated) {
+			throw new Error(`${this.formname} already calculated.`);
 		}
 
 		Debug.enter("F1040S1.calculate()");
-		this.modified = false;
+		this.calculated = true;
 
 		// Aditions to Income
 		this.lines["01"].value	= 0;									// Taxable Refund

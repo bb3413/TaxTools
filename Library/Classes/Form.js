@@ -8,7 +8,7 @@ export class Form {
 	constructor(formname) {
 		this.name			= formname;		// Same as class name.
 		this.lines			= {};
-		this.modified		= true;			// True => need to call calculate().
+		this.calculated		= false;		// True => need to call calculate().
 		this.isSingleton	= true;			// Only one form of this type allowed.
 	}
 
@@ -20,6 +20,15 @@ export class Form {
 		}
 
 		return sum;
+	}
+
+	isUsed() {
+		for (const line of Object.keys(this.lines)) {
+			if (line.value) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	line(lineno) {

@@ -138,10 +138,10 @@ const create_on_demand = [
 	"F1040S2",
 	"F1040S3",
 	"F1040SA",
-	"F1040SB",
-	"F1040SC",
-	"F1040SD",
-	"F1040SE",
+//	"F1040SB",
+//	"F1040SC",
+//	"F1040SD",
+//	"F1040SE",
 	"F1040SSE",
 //	"F1041",
 //	"F1065B",
@@ -161,11 +161,11 @@ const create_on_demand = [
 //	"F1099R",
 //	"F1099S",
 //	"F1120S",
-	"F2441",
+//	"F2441",
 	"F540",
 	"F540CA",
-	"F6251",
-	"F7206",
+//	"F6251",
+//	"F7206",
 //	"W2",
 
 	// Worksheets
@@ -217,6 +217,13 @@ export class Forms {
 		return undefined;
 	}
 
+	static dataChanged() {
+		// Called when input information has changed so the forms can be recalculated.
+		for (const form of Forms.getAllForms()) {
+			form.calculated = false;
+		}
+	}
+	
 	static formsToPrint() {
 		const forms = [];
 
@@ -280,36 +287,6 @@ export class Forms {
 		return instance;
 	}
 
-	static getValue(formname, ...lineno) {
-		// This method will get a value from a tax form. If the form does not exist, it wlll try to
-		// create it. If it has not been calculated, it will be calculated. If the form has not been
-		// implemented, zero will be returned. If there is more than one instance of the form, the lines
-		// from all the instances are added together.
-		Debug.enter(`Forms.getValue(${formname}, ${lineno})`);
-		let sum = 0;
-		let formlist = instances[formname];
-		if (!formlist && create_on_demand.includes(formname)) {
-			// Try to create; not an error if it fails; it may be a form that is not implemented yet.
-			Forms.createForm(formname);
-			formlist = instances[formname];
-		}
-
-		if (formlist) {
-			for (const form of formlist) {
-				if (form.modified) {
-					form.calculate();
-				}
-				for (let ln of lineno) {
-					if (form.lines[ln] !== undefined) {
-						sum += form.lines[ln].value;
-					}
-				}
-			}
-		}
-		Debug.exit(`Forms.getValue(${sum})`);
-		return sum;
-	}
-
 	static getTextValue(formname, ...lineno) {
 		// This method will get a text value from a tax form. If the form does not exist, it wll try to
 		// create it. If it has not been calculated, it will be calculated. If the form has not been
@@ -326,7 +303,7 @@ export class Forms {
 
 		if (formlist) {
 			for (const form of formlist) {
-				if (form.modified) {
+				if (!form.calculated) {
 					form.calculate();
 				}
 				for (let ln of lineno) {
@@ -343,6 +320,62 @@ export class Forms {
 		return str;
 	}
 
+	getUserSuppliedValues() {
+		// Return array of: formName, formIndex, lineNumber, value
+		// This method is used to save the current state to a file. It only saves the user
+		// supplied values; the rest are calculated and do no need to be saved,
+		let user_values = [];
+
+		// For each type of form.
+		for (const formname of Object.keys(instances)) {
+			let formlist = instances[formname];
+			// For each instance of a particilar form.
+			for (let index = 0; index < formlist.length; index++) {
+				let form = formlist[index];
+				// For each line on the form, see if the value was supplied by the user or
+				// calculated by the form.
+				for (const lineno of Object.keys(form.lines)) {
+					if (form.lines[lineno].isUserSuppliedValue()) {
+						let info = [ formname, index, lineno, form.lines[lineno].value ];
+						user_values.push(info);
+					}
+				}
+			}
+		}
+
+		return user_values;
+	}
+
+	static getValue(formname, ...lineno) {
+		// This method will get a value from a tax form. If the form does not exist, it wlll try to
+		// create it. If it has not been calculated, it will be calculated. If the form has not been
+		// implemented, zero will be returned. If there is more than one instance of the form, the lines
+		// from all the instances are added together.
+		Debug.enter(`Forms.getValue(${formname}, ${lineno})`);
+		let sum = 0;
+		let formlist = instances[formname];
+		if (!formlist && create_on_demand.includes(formname)) {
+			// Try to create; not an error if it fails; it may be a form that is not implemented yet.
+			Forms.createForm(formname);
+			formlist = instances[formname];
+		}
+
+		if (formlist) {
+			for (const form of formlist) {
+				if (!form.calculated) {
+					form.calculate();
+				}
+				for (let ln of lineno) {
+					if (form.lines[ln] !== undefined) {
+						sum += form.lines[ln].value;
+					}
+				}
+			}
+		}
+		Debug.exit(`Forms.getValue(${sum})`);
+		return sum;
+	}
+
 	static listAllForms(){
 		// Return array with the names of all suported tax forms and worksheets.
 		return Object.keys(formsClassMap);
@@ -351,7 +384,7 @@ export class Forms {
 	static listAllTaxForms(){
 		const tax_forms = [];
 
-		// Return array with the names of the suported tax forms.
+		// Return array with the names of the suported tax forms (ship worksheets).
 		for (const name of Object.keys(formsClassMap)) {
 			if (name.startsWith("F") || name === "W2") {
 				tax_forms.push(name);
