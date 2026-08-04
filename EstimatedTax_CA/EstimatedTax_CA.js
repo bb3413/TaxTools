@@ -140,64 +140,64 @@ function mapInputValues(inputs) {
 	const f540		= Forms.createForm("F540");
 	const f540CA	= Forms.createForm("F540CA");
 
-	f540.lines["013"].user_value(inputs.federal_agi);
+	f540.lines["013"].user_value	= inputs.federal_agi);
 
 	// Subtractions
-	f540CA.lines["A-02bB"].user_value(inputs.us_treasury_obligations);
-	f540CA.lines["A-05bB"].user_value(inputs.military_retirement_income);
-	f540CA.lines["A-06bB"].user_value(inputs.taxable_social_security);
-	f540CA.lines["B-01B" ].user_value(inputs.state_tax_refund);
-	f540CA.lines["B-07B" ].user_value(inputs.unemployment_income);
-	f540CA.lines["B-08bB"].user_value(inputs.california_lottery_winnings);
-	f540CA.lines["B-08fB"].user_value(inputs.nonqualified_hsa_distributions);
-	f540CA.lines["C-19aB"].user_value(inputs.alimony_paid);
-	f540CA.lines["C-24zB"].user_value(inputs.other_subtractions);
+	f540CA.lines["A-02bB"].user_value	= inputs.us_treasury_obligations;
+	f540CA.lines["A-05bB"].user_value	= inputs.military_retirement_income;
+	f540CA.lines["A-06bB"].user_value	= inputs.taxable_social_security;
+	f540CA.lines["B-01B" ].user_value	= inputs.state_tax_refund;
+	f540CA.lines["B-07B" ].user_value	= inputs.unemployment_income;
+	f540CA.lines["B-08bB"].user_value	= inputs.california_lottery_winnings;
+	f540CA.lines["B-08fB"].user_value	= inputs.nonqualified_hsa_distributions;
+	f540CA.lines["C-19aB"].user_value	= inputs.alimony_paid;
+	f540CA.lines["C-24zB"].user_value	= inputs.other_subtractions;
 
 	// Additions
-	f540CA.lines["A-01hC"].user_value(inputs.hsa_employer_contributions);
-	f540CA.lines["B-02aC"].user_value(inputs.alimony_received);
-	f540CA.lines["B-08cC"].user_value(inputs.home_loan_debt_cancellation +
-											inputs.employer_paid_student_loan_payments);
-	f540CA.lines["C-11C" ].user_value(inputs.educator_expenses);
-	f540CA.lines["C-13C" ].user_value(inputs.hsa_contributions);
-	f540CA.lines["C-20C" ].user_value(inputs.ira_contributions);
-	f540CA.lines["C-24zC"].user_value(inputs.other_additions);
+	f540CA.lines["A-01hC"].user_value	= inputs.hsa_employer_contributions;
+	f540CA.lines["B-02aC"].user_value	= inputs.alimony_received;
+	f540CA.lines["B-08cC"].user_value	= inputs.home_loan_debt_cancellation +
+											inputs.employer_paid_student_loan_payments;
+	f540CA.lines["C-11C" ].user_value	= inputs.educator_expenses;
+	f540CA.lines["C-13C" ].user_value	= inputs.hsa_contributions;
+	f540CA.lines["C-20C" ].user_value	= inputs.ira_contributions;
+	f540CA.lines["C-24zC"].user_value	= inputs.other_additions;
 
 	// Itemized Deductions
-	f540CA.lines["D-17A" ].user_value(inputs.federal_itemized_deductions);
-	f540CA.lines["D-05aB"].user_value(inputs.state_income_tax);
-	f540CA.lines["D-04C" ].user_value(inputs.qualified_hsa_distributions);
-	f540CA.lines["D-05aC"].user_value(inputs.salt_limit_excess);
-	f540CA.lines["D-05aC"].user_value(inputs.home_mortgage_interest_limit);
-	f540CA.lines["D-20"  ].user_value(inputs.tax_preparation_fee);
-	f540CA.lines["D-21"  ].user_value(inputs.safe_deposit_box + inputs.investment_fee);
-	f540CA.lines["D-16C" ].user_value(inputs.other_deductions);
+	f540CA.lines["D-17A" ].user_value	= inputs.federal_itemized_deductions;
+	f540CA.lines["D-05aB"].user_value	= inputs.state_income_tax;
+	f540CA.lines["D-04C" ].user_value	= inputs.qualified_hsa_distributions;
+	f540CA.lines["D-05aC"].user_value	= inputs.salt_limit_excess;
+	f540CA.lines["D-05aC"].user_value	= inputs.home_mortgage_interest_limit;
+	f540CA.lines["D-20"  ].user_value	= inputs.tax_preparation_fee;
+	f540CA.lines["D-21"  ].user_value	= inputs.safe_deposit_box + inputs.investment_fee;
+	f540CA.lines["D-16C" ].user_value	= inputs.other_deductions;
 
 	// Other Taxes, Interest, and Penalties
-	f540.lines[	"092"].user_value(inputs.shared_responsibility_penalty);
-	f540.lines[	"112"].user_value(inputs.interest_and_penalties);
-	f540.lines[	"113"].user_value(inputs.underepayment_of_estimated_tax);
-	f540.lines[	"091"].user_value(inputs.use_tax);
-	f540.lines[	"063"].user_value(inputs.miscellaneous_taxes);
+	f540.lines[	"092"].user_value	= inputs.shared_responsibility_penalty;
+	f540.lines[	"112"].user_value	= inputs.interest_and_penalties;
+	f540.lines[	"113"].user_value	= inputs.underepayment_of_estimated_tax;
+	f540.lines[	"091"].user_value	= inputs.use_tax;
+	f540.lines[	"063"].user_value	= inputs.miscellaneous_taxes;
 
 	// Non-refundable Credits
-	f540.lines[	"040"].user_value(inputs.child_care_credit);
-	f540.lines[	"046"].user_value(inputs.renters_credit);
-	f540.lines[	"045"].user_value(inputs.other_nonrefundable_credits);
+	f540.lines[	"040"].user_value	= inputs.child_care_credit;
+	f540.lines[	"046"].user_value	= inputs.renters_credit;
+	f540.lines[	"045"].user_value	= inputs.other_nonrefundable_credits;
 
 	// Refundable Credits
-	f540.lines[	"075"].user_value(inputs.eitc);
-	f540.lines[	"076"].user_value(inputs.young_child_tax_credit);
-	f540.lines[	"077"].user_value(inputs.foster_youth_tax_credit);
-	f540.lines[	"078"].user_value(inputs.other_refundable_credits);
+	f540.lines[	"075"].user_value	= inputs.eitc;
+	f540.lines[	"076"].user_value	= inputs.young_child_tax_credit;
+	f540.lines[	"077"].user_value	= inputs.foster_youth_tax_credit;
+	f540.lines[	"078"].user_value	= inputs.other_refundable_credits;
 
 	// Payments
-	f540.lines[	"071"].user_value(inputs.withholding);
-	f540.lines[	"072"].user_value(inputs.estimated_payments);
-	f540.lines[	"078"].user_value(inputs.other_payments);
+	f540.lines[	"071"].user_value	= inputs.withholding;
+	f540.lines[	"072"].user_value	= inputs.estimated_payments;
+	f540.lines[	"078"].user_value	= inputs.other_payments;
 
 	// Contributions
-	f540.lines[	"110"].user_value(inputs.contributions);
+	f540.lines[	"110"].user_value	= inputs.contributions;
 }
 
 function putOutputs(taxpayer) {

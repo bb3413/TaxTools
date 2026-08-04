@@ -23,10 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
 				ttTop = (triggerRect.bottom + scrollY) + 25;
 			}
 
-			console.log("Trigger: " + trigger);
-			console.log("TriggerRect: " + triggerRect);
-			console.log("Tip: " + tip);
-			console.log("TipRect: " + tipRect);
 			// Horizontal logic (shift if hits right edge).
 			let ttLeft = triggerRect.left;
 			const tipRightEdge = ttLeft + tipRect.width;

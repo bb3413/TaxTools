@@ -6,6 +6,8 @@ import { Taxpayer }	from "../Classes/Taxpayer.js";
 
 let indentation			= 0;
 let debug_all			= false;
+let strict				= false;
+let verbose				= false;
 let debug_used_keywords = [];
 let trace_log			= [];
 
@@ -43,6 +45,8 @@ export class Debug {
 	static reset() {
 		indentation				= 0;
 		debug_all				= false;
+		strict					= false;
+		verbose					= false;
 		debug_used_keywords		= [];
 		trace_log				= [];
 		HTML.putElementValue("debug-output", "");
@@ -75,13 +79,12 @@ export class Debug {
 		return input_string;
 	}
 
-	static setKeywords(input_string) {
-		// Alias for getKeywords();.
-		return Debug.getKeywords(input_string);
+	static set_strict(bool = true) {
+		strict = bool;
 	}
 
 	static strict() {
-		if (debug_used_keywords.includes("Strict")) {
+		if (strict || debug_used_keywords.includes("Strict")) {
 			return true;
 		} else {
 			return false;
@@ -145,8 +148,12 @@ export class Debug {
 		}
 	}
 
+	static set_verbose(bool = true) {
+		verbose = bool;
+	}
+
 	static verbose() {
-		if (debug_used_keywords.includes("Verbose")) {
+		if (verbose || debug_used_keywords.includes("Verbose")) {
 			return true;
 		} else {
 			return false;
@@ -156,6 +163,18 @@ export class Debug {
 	static warn(msg) {
 		if (Debug.strict()) {
 				console.log(msg);
+		}
+	}
+
+	static verify(expression, message) {
+		if (expression) {
+			return true;
+		} else {
+			console.log(message);
+			if (Debug.strict()) {
+				throw new Error(message);
+			}
+			return false;
 		}
 	}
 

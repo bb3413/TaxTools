@@ -19,14 +19,24 @@ h2 {
 .button-container {
 	display:				flex;
 	/* justify-content:		flex-end;	/* Align the div block to the right. */
-	justify-content:		center;		/* Align the div block to the right. */
+	justify-content:		center;		/* Align the div block to the center. */
 	align-items:			flex-end;	/* Align buttons on bottom edge. */
 	gap:					5px;		/* Optional: adds space between buttons */
 	margin-bottom:			3px;
 }
 
+.flex-right {
+	justify-content:		right;		/* Align the div block to the right. */
+}
+
 .calculate-button {
-	padding-bottom:			3px;
+	font-size:				18px;
+	font-weight:			700;
+	padding-top:			5px;
+	padding-bottom:			5px;
+	padding-left:			10px;
+	padding-right:			10px;
+	border-radius:			5px;
 }
 
 .save-button {

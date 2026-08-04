@@ -7,7 +7,7 @@ import { HTML }				from "../Library/Classes/HTML.js";
 import { Taxpayer }			from "../Library/Classes/Taxpayer.js";
 import { TaxTable }			from "../Library/Classes/TaxTable.js";
 	
-import { W2 }				from "../Library/Forms/W2.js";
+import { W2 }				from "../Library/TaxForms/W2.js";
 
 
 import { TAX_PROGRAM_SAVE_FILE } from "../Library/TaxTools/TaxTools.js";
@@ -38,8 +38,8 @@ function changeHandler(event) {
 
 	// Reset debugging and error information.
 	Debug.reset();
+	Debug.set_strict();
 	HTML.putElementValue("error-message-output", "");
-	Debug.setKeywords("strict");
 
 	// Reset tax return information.
 	Forms.dataChanged();	// Reset forms so they will be recalculated.
@@ -74,7 +74,6 @@ function putOutputs() {
 	taxpayer.putTaxpayerInformation();
 	f1040.put1040Information();
 	const elements = document.querySelectorAll("tax-return-container");
-	HTML.openDetails("tax-return-container");
 	HTML.showElement("tax-return-container");
 	document.getElementById("tax-return-container").scrollIntoView({behavior: 'smooth', block: 'start'});
 }

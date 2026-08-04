@@ -110,10 +110,10 @@ function mapInputValues(inputs) {
 	const line_5e	= Math.min(line_5d, max_salt);
 	const refund	= Forms.createForm("Refund");
 	
-	refund.lines["refund"].user_value(inputs.state_tax_refund);
-	refund.lines["sched_a_5d"].user_value(line_5d);
-	refund.lines["sched_a_5e"].user_value(line_5e);
-	refund.lines["itemized_deductions"].user_value(inputs.prev_itemized_deductions);
+	refund.lines["refund"].user_value				= inputs.state_tax_refund;
+	refund.lines["sched_a_5d"].user_value			= line_5d;
+	refund.lines["sched_a_5e"].user_value			= line_5e;
+	refund.lines["itemized_deductions"].user_value	= inputs.prev_itemized_deductions;
 }
 
 function putOutputs(outputs) {

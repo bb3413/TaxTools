@@ -85,39 +85,39 @@ function mapInputValues(inputs) {
 	const f7206		= Forms.createForm("F7206");	// Self-employment Health Insurance Deduction
 
 	// Income
-	f1040SC.lines["01"].user_value(inputs.sales);
-	f1040SC.lines["02"].user_value(inputs.returns);
-	f1040SC.lines["04"].user_value(inputs.cost);
-	f1040SC.lines["06"].user_value(inputs.other_income);
-	f1040SC.lines["30"].user_value(inputs.home_office_expense);
+	f1040SC.lines["01"].user_value	= inputs.sales;
+	f1040SC.lines["02"].user_value	= inputs.returns;
+	f1040SC.lines["04"].user_value	= inputs.cost;
+	f1040SC.lines["06"].user_value	= inputs.other_income;
+	f1040SC.lines["30"].user_value	= inputs.home_office_expense;
 
 	// Expenses
 	let car_and_truck = inputs.car_and_truck;
 	if (car_and_truck === 0) {
 		car_and_truck = tt.getBusinessMileageDeduction(inputs.car_and_truck_miles);
 	}
-	f1040SC.lines["08" ].user_value(inputs.advertising);
-	f1040SC.lines["09" ].user_value(car_and_truck);
-	f1040SC.lines["10" ].user_value(inputs.commissions_and_fees);
-	f1040SC.lines["11" ].user_value(inputs.contract_labor);
-	f1040SC.lines["12" ].user_value(inputs.depletion);
-	f1040SC.lines["13" ].user_value(inputs.depreciation);
-	f1040SC.lines["14" ].user_value(inputs.employee_benefit_programs);
-	f1040SC.lines["15" ].user_value(inputs.insurance);
-	f1040SC.lines["16a"].user_value(inputs.interest);
-	f1040SC.lines["17" ].user_value(inputs.professional_services);
-	f1040SC.lines["18" ].user_value(inputs.office_expenses);
-	f1040SC.lines["19" ].user_value(inputs.pension_plan);
-	f1040SC.lines["20a"].user_value(inputs.rent);
-	f1040SC.lines["21" ].user_value(inputs.repairs);
-	f1040SC.lines["22" ].user_value(inputs.supplies);
-	f1040SC.lines["23" ].user_value(inputs.taxes_and_licenses);
-	f1040SC.lines["24a"].user_value(inputs.travel);
-	f1040SC.lines["25" ].user_value(inputs.utilities);
-	f1040SC.lines["26" ].user_value(inputs.wages);
-	f1040SC.lines["27b"].user_value(inputs.other_expenses);
+	f1040SC.lines["08" ].user_value	= inputs.advertising;
+	f1040SC.lines["09" ].user_value	= car_and_truck;
+	f1040SC.lines["10" ].user_value	= inputs.commissions_and_fees;
+	f1040SC.lines["11" ].user_value	= inputs.contract_labor;
+	f1040SC.lines["12" ].user_value	= inputs.depletion;
+	f1040SC.lines["13" ].user_value	= inputs.depreciation;
+	f1040SC.lines["14" ].user_value	= inputs.employee_benefit_programs;
+	f1040SC.lines["15" ].user_value	= inputs.insurance;
+	f1040SC.lines["16a"].user_value	= inputs.interest;
+	f1040SC.lines["17" ].user_value	= inputs.professional_services;
+	f1040SC.lines["18" ].user_value	= inputs.office_expenses;
+	f1040SC.lines["19" ].user_value	= inputs.pension_plan;
+	f1040SC.lines["20a"].user_value	= inputs.rent;
+	f1040SC.lines["21" ].user_value	= inputs.repairs;
+	f1040SC.lines["22" ].user_value	= inputs.supplies;
+	f1040SC.lines["23" ].user_value	= inputs.taxes_and_licenses;
+	f1040SC.lines["24a"].user_value	= inputs.travel;
+	f1040SC.lines["25" ].user_value	= inputs.utilities;
+	f1040SC.lines["26" ].user_value	= inputs.wages;
+	f1040SC.lines["27b"].user_value	= inputs.other_expenses;
 
-	f7206.lines["01"].user_value(inputs.medical_insurance);
+	f7206.lines["01"].user_value	= inputs.medical_insurance;
 }
 
 function putOutputs(inputs) {

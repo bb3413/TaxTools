@@ -31,14 +31,17 @@
 		</h2>
 
 		<p>&nbsp;</p>
-		<p>This tool is intended... Click <a href="TaxProgram-Help.html">this link</a> for more help
-		with this tool.</p>
+		<p>This is a very simple tax calculation tool. There are a number of forms
+		that resemble the forms you receive to report your tax information.
+		This is where you input your information. When you are finished entering
+		your tax information, press the Calculate button and the tool will calculate
+		your taxes and display the relevant tax forms. Click <a href="TaxProgram-Help.html">
+		this link</a> for more help with this tool.</p>
 
-		<div class="button-container">
-			<!-- Calculate Button -->
-			<input type="button" id="calculate-button" class="trigger button calculate-button"
-				value="Calculate" tooltipid="#calculate-button-tt" />
+		<p>You can use the Save and Restore buttons to save the information you have entered and 
+		restore it again.</p>
 
+		<div class="button-container flex-right">
 			<!-- Save Button -->
 			<input type="button" id="save-button" class="trigger button save-button"
 				value="Save" tooltipid="#save-button-tt" />
@@ -50,8 +53,6 @@
 		</div>
 
 		<div class="taxpayer-info-short-line">
-			<p>&nbsp;</p>
-			<p>&nbsp;</p>
 			<p>Filing Status</p>
 			<select class="trigger input-field left" id="filing-status" tooltipid="#filing-status-tt">
 				<option value="Single">Single</option>
@@ -102,14 +103,20 @@
 			</div>
 		</div>
 
-		<h2>Input Information</h2>
-		<?php include "../Library/TaxForms-In/Taxpayer.html"; ?>
-		<?php include "../Library/TaxForms-In/W2.html"; ?>
+		<div class="button-container">
+			<!-- Calculate Button -->
+			<input type="button" id="calculate-button" class="trigger button calculate-button"
+				value="Calculate" tooltipid="#calculate-button-tt" />
+		</div>
+		
+		<h2>Tax Information Input Forms</h2>
+		<?php include "../Library/TaxForms-HTML/W2.html"; ?>
+		<?php include "../Library/TaxForms-HTML/Taxpayer.html"; ?>
 
 		<!-- Display area for Tax Return. -->
 		<p>&nbsp;</p>
 		<div id="tax-return-container">
-			<?php include "../Library/TaxForms-Out/F1040.html"; ?>
+			<?php include "../Library/TaxForms-HTML/F1040.html"; ?>
 		</div>
 
 		<!-- Display area for error messages. -->

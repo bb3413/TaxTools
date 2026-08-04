@@ -6,41 +6,41 @@
 import { Debug }		from "../Classes/Debug.js";
 
 // Tax Forms
-import { F1040 }		from "../Forms/F1040.js";
-import { F1040S1 }		from "../Forms/F1040S1.js";
-import { F1040S1A }		from "../Forms/F1040S1A.js";
-import { F1040S2 }		from "../Forms/F1040S2.js";
-import { F1040S3 }		from "../Forms/F1040S3.js";
-import { F1040SA }		from "../Forms/F1040SA.js";
-import { F1040SB }		from "../Forms/F1040SB.js";
-import { F1040SC }		from "../Forms/F1040SC.js";
-import { F1040SD }		from "../Forms/F1040SD.js";
-import { F1040SE }		from "../Forms/F1040SE.js";
-import { F1040SSE }		from "../Forms/F1040SSE.js";	// Self-employment Tax
-import { F1041 }		from "../Forms/F1041.js";
-import { F1065B }		from "../Forms/F1065B.js";
-import { F1098 }		from "../Forms/F1098.js";
-import { F1098E }		from "../Forms/F1098E.js";
-import { F1098T }		from "../Forms/F1098T.js";
-import { F1099B }		from "../Forms/F1099B.js";
-import { F1099C }		from "../Forms/F1099C.js";
-import { F1099DIV }		from "../Forms/F1099DIV.js";
-import { F1099G }		from "../Forms/F1099G.js";
-import { F1099INT }		from "../Forms/F1099INT.js";
-import { F1099K }		from "../Forms/F1099K.js";
-import { F1099LTC }		from "../Forms/F1099LTC.js";
-import { F1099MISC }	from "../Forms/F1099MISC.js";
-import { F1099NEC }		from "../Forms/F1099NEC.js";
-import { F1099OID }		from "../Forms/F1099OID.js";
-import { F1099R }		from "../Forms/F1099R.js";
-import { F1099S }		from "../Forms/F1099S.js";
-import { F1120S }		from "../Forms/F1120S.js";
-import { F2441 }		from "../Forms/F2441.js";
-import { F540 }			from "../Forms/F540.js";		// California Income Tax
-import { F540CA }		from "../Forms/F540CA.js";		// California Adjustments
-import { F6251 }		from "../Forms/F6251.js";		// AMT worksheet
-import { F7206 }		from "../Forms/F7206.js";		// Self-employment Health Insurance Deduction
-import { W2 }			from "../Forms/W2.js";
+import { F1040 }		from "../TaxForms/F1040.js";
+import { F1040S1 }		from "../TaxForms/F1040S1.js";
+import { F1040S1A }		from "../TaxForms/F1040S1A.js";
+import { F1040S2 }		from "../TaxForms/F1040S2.js";
+import { F1040S3 }		from "../TaxForms/F1040S3.js";
+import { F1040SA }		from "../TaxForms/F1040SA.js";
+import { F1040SB }		from "../TaxForms/F1040SB.js";
+import { F1040SC }		from "../TaxForms/F1040SC.js";
+import { F1040SD }		from "../TaxForms/F1040SD.js";
+import { F1040SE }		from "../TaxForms/F1040SE.js";
+import { F1040SSE }		from "../TaxForms/F1040SSE.js";	// Self-employment Tax
+import { F1041 }		from "../TaxForms/F1041.js";
+import { F1065B }		from "../TaxForms/F1065B.js";
+import { F1098 }		from "../TaxForms/F1098.js";
+import { F1098E }		from "../TaxForms/F1098E.js";
+import { F1098T }		from "../TaxForms/F1098T.js";
+import { F1099B }		from "../TaxForms/F1099B.js";
+import { F1099C }		from "../TaxForms/F1099C.js";
+import { F1099DIV }		from "../TaxForms/F1099DIV.js";
+import { F1099G }		from "../TaxForms/F1099G.js";
+import { F1099INT }		from "../TaxForms/F1099INT.js";
+import { F1099K }		from "../TaxForms/F1099K.js";
+import { F1099LTC }		from "../TaxForms/F1099LTC.js";
+import { F1099MISC }	from "../TaxForms/F1099MISC.js";
+import { F1099NEC }		from "../TaxForms/F1099NEC.js";
+import { F1099OID }		from "../TaxForms/F1099OID.js";
+import { F1099R }		from "../TaxForms/F1099R.js";
+import { F1099S }		from "../TaxForms/F1099S.js";
+import { F1120S }		from "../TaxForms/F1120S.js";
+import { F2441 }		from "../TaxForms/F2441.js";
+import { F540 }			from "../TaxForms/F540.js";		// California Income Tax
+import { F540CA }		from "../TaxForms/F540CA.js";		// California Adjustments
+import { F6251 }		from "../TaxForms/F6251.js";		// AMT worksheet
+import { F7206 }		from "../TaxForms/F7206.js";		// Self-employment Health Insurance Deduction
+import { W2 }			from "../TaxForms/W2.js";
 
 // Worksheets
 import { IncTax }		from "../Worksheets/IncTax.js";
@@ -320,7 +320,7 @@ export class Forms {
 		return str;
 	}
 
-	getUserSuppliedValues() {
+	static getUserSuppliedValues() {
 		// Return array of: formName, formIndex, lineNumber, value
 		// This method is used to save the current state to a file. It only saves the user
 		// supplied values; the rest are calculated and do no need to be saved,

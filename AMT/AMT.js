@@ -103,36 +103,36 @@ function mapInputValues(inputs) {
 	const f1040SA	= Forms.createForm("F1040SA");
 	const f6251		= Forms.createForm("F6251");
 
-	f1040.lines["11b"].user_value(inputs.agi);
-	f1040.lines["03a"].user_value(inputs.qualified_dividends);
-	f1040.lines["07a"].user_value(inputs.capital_gains);
-	f1040.lines["15"].user_value(inputs.taxable_income);
-	f1040.lines["16"].user_value(inputs.income_tax);
+	f1040.lines["11b"].user_value	= inputs.agi;
+	f1040.lines["03a"].user_value	= inputs.qualified_dividends;
+	f1040.lines["07a"].user_value	= inputs.capital_gains;
+	f1040.lines["15"].user_value	= inputs.taxable_income;
+	f1040.lines["16"].user_value	= inputs.income_tax;
 
-	f1040SA.lines["17"].user_value(inputs.itemized_deduction);
-	f1040SA.lines["07"].user_value(inputs.taxes_paid_deduction);
-	f1040.lines["13a"].user_value(inputs.qbi_deduction);
+	f1040SA.lines["17"].user_value	= inputs.itemized_deduction;
+	f1040SA.lines["07"].user_value	= inputs.taxes_paid_deduction;
+	f1040.lines["13a"].user_value	= inputs.qbi_deduction;
 
-	f1040S1.lines["01"].user_value(inputs.state_tax_refund);
-	f6251.lines["02c"].user_value(inputs.investment_interest);
-	f6251.lines["02d"].user_value(inputs.depletion);
-	f6251.lines["02e"].user_value(inputs.net_operating_loss);
-	f6251.lines["02f"].user_value(inputs.alternate_net_operating_loss);
-	f6251.lines["02g"].user_value(inputs.private_activity_bonds_interest);
-	f6251.lines["02h"].user_value(inputs.qualified_small_business_stock);
-	f6251.lines["02i"].user_value(inputs.incentive_stock_options);
-	f6251.lines["02j"].user_value(inputs.estates_and_trusts);
-	f6251.lines["02k"].user_value(inputs.disposition_of_property);
-	f6251.lines["02l"].user_value(inputs.post_1986_depreciation);
-	f6251.lines["02m"].user_value(inputs.passive_activities);
-	f6251.lines["02n"].user_value(inputs.loss_limitations);
-	f6251.lines["02o"].user_value(inputs.circulation_costs);
-	f6251.lines["02p"].user_value(inputs.long_term_contracts);
-	f6251.lines["02q"].user_value(inputs.mining_costs);
-	f6251.lines["02r"].user_value(inputs.reseach_costs);
-	f6251.lines["02s"].user_value(inputs.installment_sales);
-	f6251.lines["02t"].user_value(inputs.intangible_drilling_costs);
-	f6251.lines["03"].user_value(inputs.other_income);
+	f1040S1.lines["01"].user_value	= inputs.state_tax_refund;
+	f6251.lines["02c"].user_value	= inputs.investment_interest;
+	f6251.lines["02d"].user_value	= inputs.depletion;
+	f6251.lines["02e"].user_value	= inputs.net_operating_loss;
+	f6251.lines["02f"].user_value	= inputs.alternate_net_operating_loss;
+	f6251.lines["02g"].user_value	= inputs.private_activity_bonds_interest;
+	f6251.lines["02h"].user_value	= inputs.qualified_small_business_stock;
+	f6251.lines["02i"].user_value	= inputs.incentive_stock_options;
+	f6251.lines["02j"].user_value	= inputs.estates_and_trusts;
+	f6251.lines["02k"].user_value	= inputs.disposition_of_property;
+	f6251.lines["02l"].user_value	= inputs.post_1986_depreciation;
+	f6251.lines["02m"].user_value	= inputs.passive_activities;
+	f6251.lines["02n"].user_value	= inputs.loss_limitations;
+	f6251.lines["02o"].user_value	= inputs.circulation_costs;
+	f6251.lines["02p"].user_value	= inputs.long_term_contracts;
+	f6251.lines["02q"].user_value	= inputs.mining_costs;
+	f6251.lines["02r"].user_value	= inputs.reseach_costs;
+	f6251.lines["02s"].user_value	= inputs.installment_sales;
+	f6251.lines["02t"].user_value	= inputs.intangible_drilling_costs;
+	f6251.lines["03"].user_value	= inputs.other_income;
 }
 
 function putOutputs() {

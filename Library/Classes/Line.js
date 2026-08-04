@@ -12,23 +12,7 @@ export class Line {
 		this._max_value				= MAX_DOLLAR;
 		this._user_supplied_value	= false;
 	}
-/*
-	user_value(new_value) {
-		// This method is called when the value is supplied by the user; not calculated
-		// by the program (see also set value()).
-		
-		if (new_value === "") {
-			// If the user did not enter a value or cleared it, use the default for the line,
-			// which will allows the form's steps to calculate the value. If the user
-			// explicitly entered 0, use it.
-			this._user_supplied_value = false;
-			return;
-		}
-		
-		this.value = new_value;		// Don't use _value so it invokes the setter function.
-		this._user_supplied_value = true;
-	}
-*/
+
 	get label() {
 		return this._label;
 	}
@@ -64,7 +48,7 @@ export class Line {
 
 	set value(new_value) {
 		// This method is called when the value is calculated by the program, not suplied by
-		// the user (see also user_value()). It prevents the calculation from changing a value
+		// the user (see also "set user_value"). It prevents the calculation from changing a value
 		// supplied by the user.
 		if (this.isUserSuppliedValue()) {
 			// Ignore new value.
