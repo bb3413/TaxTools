@@ -4,13 +4,37 @@ import { Debug }			from "../Library/Classes/Debug.js";
 import { File }				from "../Library/Classes/File.js";
 import { Forms }			from "../Library/Classes/Forms.js";
 import { HTML }				from "../Library/Classes/HTML.js";
+import { HTMLTaxForms }		from "../Library/Classes/HTMLTaxForms.js";
 import { Taxpayer }			from "../Library/Classes/Taxpayer.js";
 import { TaxTable }			from "../Library/Classes/TaxTable.js";
 	
 import { W2 }				from "../Library/TaxForms/W2.js";
 
+// Save information about which tax forms have been added to the web page.
+let next_w2					= 1;
 
 import { TAX_PROGRAM_SAVE_FILE } from "../Library/TaxTools/TaxTools.js";
+
+function addForm(event) {
+	//
+	// This function is called when the user wants to add another input tax form.
+	//
+	let form_id	= "";
+	let html	= "";
+	
+	const form_name = HTML.getElementValue("add-form-button");
+	HTML.putElementValue("add-form-button", "");	// Reselect the "Add Form" entry.
+	
+	switch (form_name) {
+		case "":
+			break;
+
+		case "W-2":
+			[ form_id, html ] = W2.getHTML(next_w2++);
+			HTMLTaxForms.addForm(form_id, html);
+			break;
+	}
+}
 
 function calculateHandler(event) {
 	//
@@ -139,6 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	//
 	HTML.addListener("calculate-button",	"click",  calculateHandler);
 	HTML.addListener("save-button",			"click",  saveUserData);
+	HTML.addListener("add-form-button",		"click",  addForm);
 	HTML.addListener("input-file",			"change", restoreUserData);
 	HTML.addListener("tool-container",		"change", changeHandler);
 

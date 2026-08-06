@@ -106,18 +106,26 @@
 		<div class="button-container">
 			<!-- Calculate Button -->
 			<input type="button" id="calculate-button" class="trigger button calculate-button"
-				value="Calculate" tooltipid="#calculate-button-tt" />
+				value="Calculate Tax Return" tooltipid="#calculate-button-tt" />
 		</div>
-		
-		<h2>Tax Information Input Forms</h2>
-		<?php include "../Library/TaxForms-HTML/W2.html"; ?>
+
+		<p>&nbsp;</p>
+		<div class="input-form-header">
+			<h2>Tax Information Input Forms</h2>
+			<select id="add-form-button" class="trigger" tooltipid="#add-form-button-tt">
+				<option value="" hidden disabled selected>Add Form</option>
+				<option value="W-2">		W-2</option>
+				<option value="SSA-1099">	SSA-1099</option>
+			</select>
+		</div>
+
+		<!-- Display area for input tax forms. -->
+		<div id="insert-input-forms-here"></div>
 		<?php include "../Library/TaxForms-HTML/Taxpayer.html"; ?>
 
 		<!-- Display area for Tax Return. -->
 		<p>&nbsp;</p>
-		<div id="tax-return-container">
-			<?php include "../Library/TaxForms-HTML/F1040.html"; ?>
-		</div>
+		<div id="insert-output-forms-here"></div>
 
 		<!-- Display area for error messages. -->
 		<div id="error-message-container">
