@@ -1,10 +1,10 @@
 
 import { Debug }	from "../Classes/Debug.js";
-import { Form }		from "../Classes/Form.js";
 import { Line }		from "../Classes/Line.js";
-import { Forms }	from "../Classes/Forms.js";
+import { TaxForm }	from "../Classes/TaxForm.js";
+import { TaxForms }	from "../Classes/TaxForms.js";
 
-export class F1040S1 extends Form {
+export class F1040S1 extends TaxForm {
 	constructor(formname) {
 		Debug.enter("F1040S1.Constructor()");
 		super(formname);
@@ -90,18 +90,18 @@ export class F1040S1 extends Form {
 		this.lines["01"].value	= 0;									// Taxable Refund
 		this.lines["02a"].value	= 0;									// Alimony Received
 		this.lines["02b"].value	= 0;									// Business Income
-		this.lines["03"].value	= Forms.getValue("F1040SC",		"31");	// Other Gains
+		this.lines["03"].value	= TaxForms.getValue("F1040SC",		"31");	// Other Gains
 		this.lines["04"].value	= 0;									// Schedule E Income
 		this.lines["05"].value	= 0;									// Farm Income
-		this.lines["06"].value	= Forms.getValue("F1099G",		"01");	// Unemployment Compensation
+		this.lines["06"].value	= TaxForms.getValue("F1099G",		"01");	// Unemployment Compensation
 		this.lines["07"].value	= 0;									// Other Income
 		this.lines["08a"].value	= 0;									// Net Operating Loss (Subtract)
 		this.lines["08b"].value	= 0;									// Gambling
 		this.lines["08c"].value	= 0;									// Cancellation of Debt
-		this.lines["08d"].value	= -(Forms.getValue("F2555",		"xx"));	// Foreign Earned Income Exclusion (Subtract)
-		this.lines["08e"].value	= Forms.getValue("F8853",		"xx");	// Income from form 8853
-		this.lines["08f"].value	= Forms.getValue("F8889",		"16") +	// Income from form 8889
-									Forms.getValue("F8889",		"20");
+		this.lines["08d"].value	= -(TaxForms.getValue("F2555",		"xx"));	// Foreign Earned Income Exclusion (Subtract)
+		this.lines["08e"].value	= TaxForms.getValue("F8853",		"xx");	// Income from form 8853
+		this.lines["08f"].value	= TaxForms.getValue("F8889",		"16") +	// Income from form 8889
+									TaxForms.getValue("F8889",		"20");
 		this.lines["08g"].value	= 0;									// Alaska Permanent Fund
 		this.lines["08h"].value	= 0;									// Jury Duty Pay (see line 24a)
 		this.lines["08i"].value	= 0;									// Prizes and Awards
@@ -114,8 +114,8 @@ export class F1040S1 extends Form {
 		this.lines["08p"].value	= 0;									// Excess Business Loss
 		this.lines["08q"].value	= 0;									// Taxable ABLE Distributions
 		this.lines["08r"].value	= 0;									// Scholarship Not on W-2
-		this.lines["08s"].value	= -(Forms.getValue("W2", "xx") +		// Non-taxable Medicaid Waiver Payment (Subtract)
-									Forms.getValue("F1099MISC", "xx"));
+		this.lines["08s"].value	= -(TaxForms.getValue("W2", "xx") +		// Non-taxable Medicaid Waiver Payment (Subtract)
+									TaxForms.getValue("F1099MISC", "xx"));
 		this.lines["08t"].value	= 0;									// Pension from Non-qualified Plan
 		this.lines["08u"].value	= 0;									// Wages While Incarcerated
 		this.lines["08v"].value	= 0;									// Digital Assets Received
@@ -128,9 +128,9 @@ export class F1040S1 extends Form {
 		// Adjustments to Income
 		this.lines["11"].value	= 0;									// Educator Expense
 		this.lines["12"].value	= 0;									// Business Expense from Form 2106
-		this.lines["13"].value	= Forms.getValue("F8889", "13");		// HSA Deduction
+		this.lines["13"].value	= TaxForms.getValue("F8889", "13");		// HSA Deduction
 		this.lines["14"].value	= 0;									// Moving Expenses
-		this.lines["15"].value	= Forms.getValue("F1040SSE", "13");		// Deductable SE Tax
+		this.lines["15"].value	= TaxForms.getValue("F1040SSE", "13");		// Deductable SE Tax
 		this.lines["16"].value	= 0;									// Deductable SEP, Simple
 		this.lines["17"].value	= 0;									// Self-employed Health Insurance
 		this.lines["18"].value	= 0;									// Early Withdrawal Penalty

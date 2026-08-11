@@ -1,7 +1,7 @@
 
 import { Dates }		from "../Library/Classes/Dates.js";
 import { Debug }		from "../Library/Classes/Debug.js";
-import { Forms }		from "../Library/Classes/Forms.js";
+import { Forms }		from "../Library/Classes/TaxForms.js";
 import { HTML }			from "../Library/Classes/HTML.js";
 import { Taxpayer }		from "../Library/Classes/Taxpayer.js";
 import { TaxTable }		from "../Library/Classes/TaxTable.js";
@@ -12,7 +12,7 @@ let output_color			= "";
 function calculateTax(inputs) {
 	const outputs = {};
 
-	const ss_tax = Forms.createForm("SSTax");
+	const ss_tax = TaxForms.createForm("SSTax");
 	outputs.taxable_ss = ss_tax.calculate(
 		inputs.filing_status,
 		inputs.social_security,			// Total SS received from 1040, line 6a
@@ -117,7 +117,7 @@ function changeHandler(event) {
 		// Reset static (global) variables to erase information from a previous calculation.
 		HTML.putElementValue("error-message-output", "");
 		Debug.reset();
-		Forms.reset();
+		TaxForms.reset();
 		Taxpayer.reset();
 
 		const inputs	= getInputs();								// Get inputs from the web page

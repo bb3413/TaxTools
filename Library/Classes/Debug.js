@@ -1,7 +1,7 @@
 
 import { HTML }		from "../Classes/HTML.js";
-import { Forms }	from "../Classes/Forms.js";
 import { Str }		from "../Classes/Str.js";
+import { TaxForms }	from "../Classes/TaxForms.js";
 import { Taxpayer }	from "../Classes/Taxpayer.js";
 
 let indentation			= 0;
@@ -20,7 +20,7 @@ function keywordList() {
 		"Verbose" ];
 
 	// Keywords are the debug keywords plus the names of the tax forms and worksheets.
-	return debug_keywords.concat(Forms.listAllForms());
+	return debug_keywords.concat(TaxForms.listAllForms());
 }
 
 function hideField(name) {
@@ -131,7 +131,7 @@ export class Debug {
 			}
 		}
 
-		for (const form of Forms.getAllForms()) {
+		for (const form of TaxForms.getAllForms()) {
 			if (debug_all || debug_used_keywords.includes(form.name)) {
 				output += form.toString();
 			}

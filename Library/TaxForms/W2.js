@@ -1,11 +1,11 @@
 
 import { Debug }	from "../Classes/Debug.js";
-import { Form }		from "../Classes/Form.js";
-import { Forms }	from "../Classes/Forms.js";
 import { HTML }		from "../Classes/HTML.js";
 import { Line }		from "../Classes/Line.js";
 import { Objects }	from "../Classes/Objects.js";
 import { Str }		from "../Classes/Str.js";
+import { TaxForm }	from "../Classes/TaxForm.js";
+import { TaxForms }	from "../Classes/TaxForms.js";
 import { TaxTable }	from "../Classes/TaxTable.js";
 import { Taxpayer }	from "../Classes/Taxpayer.js";
 
@@ -162,7 +162,7 @@ const HTML_FORM = `
 		</details>
 `;
 
-export class W2 extends Form {
+export class W2 extends TaxForm {
 	static getHTML(index) {
 		if (!index) {
 			throw new Error("Debug.getHTML: Index is undefined.");
@@ -223,7 +223,7 @@ export class W2 extends Form {
 			return;
 		}
 
-		const w2 = Forms.createForm("W2");
+		const w2 = TaxForms.createForm("W2");
 
 		w2.lines["01"  ].user_value	= inputs["01"];
 		w2.lines["02"  ].user_value	= inputs["02"];

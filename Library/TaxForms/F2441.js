@@ -1,12 +1,12 @@
 
 import { Debug }	from "../Classes/Debug.js";
-import { Form }		from "../Classes/Form.js";
-import { Forms }	from "../Classes/Forms.js";
+import { TaxForm }	from "../Classes/TaxForm.js";
+import { TaxForms }	from "../Classes/TaxForms.js";
 import { Line }		from "../Classes/Line.js";
 import { TaxTable }	from "../Classes/TaxTable.js";
 import { Taxpayer }	from "../Classes/Taxpayer.js";
 
-export class F2441 extends Form {
+export class F2441 extends TaxForm {
 	constructor(formname) {
 		Debug.enter("F2441.Constructor()");
 		super(formname);

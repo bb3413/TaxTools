@@ -6,8 +6,8 @@
 
 import { Dates }	from "../Classes/Dates.js";
 import { Debug }	from "../Classes/Debug.js";
-import { Form }		from "../Classes/Form.js";
-import { Forms }	from "../Classes/Forms.js";
+import { TaxForm }	from "../Classes/TaxForm.js";
+import { TaxForms }	from "../Classes/TaxForms.js";
 import { Line }		from "../Classes/Line.js";
 import { TaxTable }	from "../Classes/TaxTable.js";
 import { Taxpayer }	from "../Classes/Taxpayer.js";
@@ -40,7 +40,7 @@ function getMonthsPaid() {
 function getAmountRecovered() {
 }
 
-export class Simple extends Form {
+export class Simple extends TaxForm {
 	constructor(formname) {
 		Debug.enter("Simple.Constructor()");
 		super(formname);

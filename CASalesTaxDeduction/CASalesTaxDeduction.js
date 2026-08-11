@@ -3,7 +3,7 @@ import { Alert }				from "../Library/Classes/Alert.js";
 import { Dates }				from "../Library/Classes/Dates.js";
 import { Debug }				from "../Library/Classes/Debug.js";
 import { fetchSalesTaxRate }	from "../Library/SalesTax/SalesTaxFromCDTFA.js";
-import { Forms }				from "../Library/Classes/Forms.js";
+import { Forms }				from "../Library/Classes/TaxForms.js";
 import { HTML }					from "../Library/Classes/HTML.js";
 import { Taxpayer }				from "../Library/Classes/Taxpayer.js";
 import { TaxTable }				from "../Library/Classes/TaxTable.js";
@@ -33,14 +33,14 @@ function changeHandler(event) {
 		// Reset static (global) variables to erase information from a previous calculation.
 		HTML.putElementValue("error-message-output", "");
 		Debug.reset();
-		Forms.reset();
+		TaxForms.reset();
 		Taxpayer.reset();
 
 		const inputs	= getInputs();								// Get inputs from the web page
 		const tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
 		const taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
 		mapInputValues(inputs);										// Map input values to tax forms
-		Forms.getForm("SalesTax").calculate(total_sales_tax);		// Calculate the tax forms
+		TaxForms.getForm("SalesTax").calculate(total_sales_tax);		// Calculate the tax forms
 		putOutputs();												// Put results on web page
 		Debug.turnOn();												// Put debug info on web page if enabled
 	} catch (err) {
@@ -96,8 +96,8 @@ function getInputs() {
 }
 
 function mapInputValues(inputs) {
-	const f1040		= Forms.createForm("F1040");
-	const salestax	= Forms.createForm("SalesTax");
+	const f1040		= TaxForms.createForm("F1040");
+	const salestax	= TaxForms.createForm("SalesTax");
 
 	salestax.lines["07"].user_value	= inputs.extra_sales_tax;
 	f1040.lines["01z"].user_value	= inputs.wages;
@@ -113,7 +113,7 @@ function mapInputValues(inputs) {
 
 function putOutputs() {
 	HTML.putUserOutput("TotalSpendableIncome",	total_spendable_income);
-	HTML.putUserOutput("SalesTaxDeduction",		Forms.getValue("SalesTax", "08"));
+	HTML.putUserOutput("SalesTaxDeduction",		TaxForms.getValue("SalesTax", "08"));
 }
 
 document.addEventListener("DOMContentLoaded", () => {

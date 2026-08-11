@@ -66,7 +66,7 @@ function insertOutputForm(name, tax_forms) {
 
 	return insert_after;
 }
-
+	
 function addForm(taxform_id, taxform, after_id) {
 		// The taxform ID is ID value of the form container. It is used to determine
 		// where to insert the taxform amongst the current tax forms. Taxform is a string
@@ -83,7 +83,7 @@ function addForm(taxform_id, taxform, after_id) {
 		document.getElementById(taxform_id).scrollIntoView({behavior: 'smooth', block: 'start'});
 }
 
-export class HTMLTaxForms {
+export class TaxFormPages {
 	static addInputForm(taxform_id, taxform) {
 		const after_id = insertInputForm(taxform_id, input_forms);
 		addForm(taxform_id, taxform, after_id);
@@ -92,5 +92,25 @@ export class HTMLTaxForms {
 	static addOutputForm(taxform_id, taxform) {
 		const after_id = insertOutputForm(taxform_id, output_forms);
 		addForm(taxform_id, taxform, after_id);
+	}
+
+	static getInputForms() {
+		return input_forms;
+	}
+
+	static parseFormName(name) {
+		const parts = name.split("-");
+		const classname = TaxForms.getClass(parts[0]);
+		if (parts.length === 2) {
+			return [ classname, -1 ];
+		} else {
+			return [ classname, parts[1] ];
+		}
+	}
+
+	static removeOutputForms(taxform_id, taxform) {
+		while (output_forms.length > 0) {
+			document.getElementById(output_forms.pop()).remove();
+		}
 	}
 }

@@ -3,13 +3,13 @@
 // This is form 6251, Alternative Minimum Tax - Individual.
 //
 import { Debug }	from "../Classes/Debug.js";
-import { Form }		from "../Classes/Form.js";
-import { Forms }	from "../Classes/Forms.js";
+import { TaxForm }	from "../Classes/TaxForm.js";
+import { TaxForms }	from "../Classes/TaxForms.js";
 import { Line }		from "../Classes/Line.js";
 import { TaxTable }	from "../Classes/TaxTable.js";
 import { Taxpayer }	from "../Classes/Taxpayer.js";
 
-export class F6251 extends Form {
+export class F6251 extends TaxForm {
 	constructor(formname) {
 		Debug.enter("F6251.Constructor()");
 		super(formname);
@@ -94,17 +94,17 @@ export class F6251 extends Form {
 		const tp = Taxpayer.getTaxpayer();
 
 		// Input values
-		const qualified_dividends	= Forms.getValue("F1040",	"03a");
-		const capital_gains			= Forms.getValue("F1040",	"07a");
-		const agi					= Forms.getValue("F1040",	"11b");
-		const qbi_deduction			= Forms.getValue("F1040",	"13a");
-		const total_deductions		= Forms.getValue("F1040",	"14");
-		const taxable_income		= Forms.getValue("F1040",	"15");
-		const income_tax			= Forms.getValue("F1040",	"16");
-		const taxable_refund		= Forms.getValue("F1040S1",	"01");
-		const senior_deduction		= Forms.getValue("F1040S1A","37");
-		const itemized_deductions	= Forms.getValue("F1040SA",	"17");
-		const taxes_paid_deduction	= Forms.getValue("F1040SA",	"07");
+		const qualified_dividends	= TaxForms.getValue("F1040",	"03a");
+		const capital_gains			= TaxForms.getValue("F1040",	"07a");
+		const agi					= TaxForms.getValue("F1040",	"11b");
+		const qbi_deduction			= TaxForms.getValue("F1040",	"13a");
+		const total_deductions		= TaxForms.getValue("F1040",	"14");
+		const taxable_income		= TaxForms.getValue("F1040",	"15");
+		const income_tax			= TaxForms.getValue("F1040",	"16");
+		const taxable_refund		= TaxForms.getValue("F1040S1",	"01");
+		const senior_deduction		= TaxForms.getValue("F1040S1A","37");
+		const itemized_deductions	= TaxForms.getValue("F1040SA",	"17");
+		const taxes_paid_deduction	= TaxForms.getValue("F1040SA",	"07");
 		const standard_deduction	= tt.getStandardDeduction(
 										tp.filing_status,
 										tp.taxpayers_age,		tp.spouses_age,

@@ -21,8 +21,14 @@
 			<span id="TaxToolsVersion"></span></a></p>
 
 		<h1 class="title" id="title">Tax Forms</h1>
-		<div id="insert-tax-forms-here"></div>
-		<?php include "../Library/TaxForms-HTML/Taxpayer.html"; ?>
+		<h2>Input Tax Forms</h2>
+		<!-- Display area for input tax forms. -->
+		<div id="insert-input-forms-here"></div>
+		<?php include "../Library/Classes/Taxpayer.html"; ?>
+
+		<h2>Output Tax Forms</h2>
+		<!-- Display area for output tax forms. -->
+		<div id="insert-output-forms-here"></div>
 	</div>
 </body>
 </html>

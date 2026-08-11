@@ -123,7 +123,7 @@
 		<div id="insert-input-forms-here"></div>
 		<?php include "../Library/Classe/Taxpayer.html"; ?>
 
-		<!-- Display area for Tax Return. -->
+		<!-- Display area for output tax forms. -->
 		<p>&nbsp;</p>
 		<div id="insert-output-forms-here"></div>
 

@@ -1,10 +1,10 @@
 
 import { Debug }	from "../Classes/Debug.js";
-import { Form }		from "../Classes/Form.js";
 import { Line }		from "../Classes/Line.js";
-import { Forms }	from "../Classes/Forms.js";
 import { HTML }		from "../Classes/HTML.js";
 import { Str }		from "../Classes/Str.js";
+import { TaxForm }	from "../Classes/TaxForm.js";
+import { TaxForms }	from "../Classes/TaxForms.js";
 import { TaxTable }	from "../Classes/TaxTable.js";
 import { Taxpayer }	from "../Classes/Taxpayer.js";
 import { IncTax }	from "../Worksheets/IncTax.js";
@@ -403,7 +403,7 @@ const HTML_FORM = `
 		</details>
 `;
 
-export class F1040 extends Form {
+export class F1040 extends TaxForm {
 	static getHTML() {
 		return [ "f1040-details", HTML_FORM ];
 	}
@@ -485,45 +485,45 @@ export class F1040 extends Form {
 
 		// User input values are already set. If this calculation modifies one of
 		// those values, it will be ignored.
-		this.lines["01a"].value	= Forms.getValue("W2", "01");				// Wages
+		this.lines["01a"].value	= TaxForms.getValue("W2", "01");				// Wages
 		this.lines["01b"].value	= 0;										// Household ages
 		this.lines["01c"].value	= 0;										// Tip Income
 		this.lines["01d"].value	= 0;										// Medicaid Waiver Payments
-		this.lines["01e"].value	= Forms.getValue("F2441", "26");			// Dependent Care Benefits
-		this.lines["01f"].value	= Forms.getValue("F8839", "31");			// Adoption Benefits
-		this.lines["01g"].value	= Forms.getValue("F8919", "06");			// Wages from Form f8919
+		this.lines["01e"].value	= TaxForms.getValue("F2441", "26");			// Dependent Care Benefits
+		this.lines["01f"].value	= TaxForms.getValue("F8839", "31");			// Adoption Benefits
+		this.lines["01g"].value	= TaxForms.getValue("F8919", "06");			// Wages from Form f8919
 		this.lines["01h"].value	= 0;										// Other Earned Income
 		this.lines["01i"].value	= 0;										// Nontaxable Combat Pay
 		this.lines["01z"].value	= this.add("01a","01b","01c","01d","01e","01f","01g","01h");
-		this.lines["02a"].value	= Forms.getValue("F1099INT",	"08");		// Tax-exempt Interest
-		this.lines["02b"].value	= Forms.getValue("F1099INT",	"01");		// Taxable Interest
-		this.lines["03a"].value	= Forms.getValue("F1099DIV",	"01b");		// Qualified Dividends
-		this.lines["03b"].value	= Forms.getValue("F1099DIV",	"01a");		// Ordinary Dividends
-		this.lines["04a"].value	= Forms.getValue("F1099R",		"01");		// IRA Distributions
-		this.lines["04b"].value	= Forms.getValue("F1099R",		"02a") +	// Taxable IRA
-									Forms.getValue("F8606",		"15c") +
-									Forms.getValue("F8606",		"18") +
-									Forms.getValue("F8606",		"25c");
-		this.lines["05a"].value	= Forms.getValue("F1099R",		"01");		// Pensions and Annuities
-		this.lines["05b"].value	= Forms.getValue("F1099R",		"02a");		// Taxable Pensions and Annuities
-		this.lines["06a"].value	= Forms.getValue("FSSA1099",	"05");		// Social Security Benefits
+		this.lines["02a"].value	= TaxForms.getValue("F1099INT",	"08");		// Tax-exempt Interest
+		this.lines["02b"].value	= TaxForms.getValue("F1099INT",	"01");		// Taxable Interest
+		this.lines["03a"].value	= TaxForms.getValue("F1099DIV",	"01b");		// Qualified Dividends
+		this.lines["03b"].value	= TaxForms.getValue("F1099DIV",	"01a");		// Ordinary Dividends
+		this.lines["04a"].value	= TaxForms.getValue("F1099R",		"01");		// IRA Distributions
+		this.lines["04b"].value	= TaxForms.getValue("F1099R",		"02a") +	// Taxable IRA
+									TaxForms.getValue("F8606",		"15c") +
+									TaxForms.getValue("F8606",		"18") +
+									TaxForms.getValue("F8606",		"25c");
+		this.lines["05a"].value	= TaxForms.getValue("F1099R",		"01");		// Pensions and Annuities
+		this.lines["05b"].value	= TaxForms.getValue("F1099R",		"02a");		// Taxable Pensions and Annuities
+		this.lines["06a"].value	= TaxForms.getValue("FSSA1099",	"05");		// Social Security Benefits
 		this.lines["06b"].value = 0;  // DELAY INITIALIZATION UNTIL LATER
 
-		this.lines["07a"].value	= Forms.getValue("F1040SD",		"16") +		// Capital Gain
-									Forms.getValue("F1040SD",	"21");
-		this.lines["08"].value	= Forms.getValue("F1040S1",		"10");		// Additional Income
+		this.lines["07a"].value	= TaxForms.getValue("F1040SD",		"16") +		// Capital Gain
+									TaxForms.getValue("F1040SD",	"21");
+		this.lines["08"].value	= TaxForms.getValue("F1040S1",		"10");		// Additional Income
 
 		// Reorder fields for dependency. Taxable SS, which is on 1040 line 6b, depends on 1040 lines 1z,
 		// 2a, 2b, 3b, 4b, 5b, 6a, 7, 8, and 10. And, 1040 line 9 depends on Taxable SS.
-		this.lines["10"].value	= Forms.getValue("F1040S1", "26");			// Adjustments to Income
-		this.lines["06b"].value	= Forms.getValue("SSTax", "19");			// Taxable Social Security
+		this.lines["10"].value	= TaxForms.getValue("F1040S1", "26");			// Adjustments to Income
+		this.lines["06b"].value	= TaxForms.getValue("SSTax", "19");			// Taxable Social Security
 
 		// Resume normal order
 		this.lines["09"].value	= this.add("01z","02b","03b","04b","05b","06b","07a","08");	// Total Income
 		this.lines["11a"].value	= this.subtract("09", "10");				// Adjusted Gross Income
 		this.lines["11b"].value	= this.line("11a");							// Adjusted Gross Income
 
-		const itemized_deductions	= Forms.getValue("F1040SA", "17");
+		const itemized_deductions	= TaxForms.getValue("F1040SA", "17");
 		const standard_deduction	= tt.getStandardDeduction(
 			tp.filing_status,
 			tp.taxpayers_age,
@@ -533,38 +533,38 @@ export class F1040 extends Form {
 
 		this.lines["12e"].value	= Math.max(standard_deduction, itemized_deductions);	// Deductions
 /*
-		if (this.line("11a") - Forms.getValue("F1040S1", "13") - this.line("12e") < 3rd tax bracket limit) {
-			this.lines["13a"].value = Forms.getValue("F8995", "15");
+		if (this.line("11a") - TaxForms.getValue("F1040S1", "13") - this.line("12e") < 3rd tax bracket limit) {
+			this.lines["13a"].value = TaxForms.getValue("F8995", "15");
 		} else {
-			this.lines["13a"].value = Forms.getValue("F8995a", "19");
+			this.lines["13a"].value = TaxForms.getValue("F8995a", "19");
 		}
 */
-		this.lines["13a"].value	= Forms.getValue("F8995", "15");			// QBI Deduction
-		this.lines["13b"].value	= Forms.getValue("F1040S1A", "38");			// Additional Deductions
+		this.lines["13a"].value	= TaxForms.getValue("F8995", "15");			// QBI Deduction
+		this.lines["13b"].value	= TaxForms.getValue("F1040S1A", "38");			// Additional Deductions
 		this.lines["14"].value	= this.add("12e","13a","13b");				// Total Deductions
 		this.lines["15"].value	= Math.max(0, this.subtract("11b", "14"));	// Taxable Income
-		this.lines["16"].value	= Forms.getValue("IncTax", "25");			// Income Tax
-		this.lines["17"].value	= Forms.getValue("F1040S2", "03");			// Additional Tax
+		this.lines["16"].value	= TaxForms.getValue("IncTax", "25");			// Income Tax
+		this.lines["17"].value	= TaxForms.getValue("F1040S2", "03");			// Additional Tax
 		this.lines["18"].value	= this.add("16", "17");						// Total Tax
-		this.lines["19"].value	= Forms.getValue("F8812", "14");			// Child Tax Credit
-		this.lines["20"].value	= Forms.getValue("F1040S3", "08");			// Non-refundable Credits
+		this.lines["19"].value	= TaxForms.getValue("F8812", "14");			// Child Tax Credit
+		this.lines["20"].value	= TaxForms.getValue("F1040S3", "08");			// Non-refundable Credits
 		this.lines["21"].value	= this.add("19", "20");						// Total Non-refundable Credits
 		this.lines["22"].value	= Math.max(0, this.subtract("18", "21"));	// Tax minus Non-refundable Credits
-		this.lines["23"].value	= Forms.getValue("F1040S2", "21");			// Other Taxes
+		this.lines["23"].value	= TaxForms.getValue("F1040S2", "21");			// Other Taxes
 		this.lines["24"].value	= this.add("22", "23");						// Total Tax
-		this.lines["25a"].value	= Forms.getValue("W2", "02");				// Witholding from W-2s
-		this.lines["25b"].value	= Forms.getValue("F1099INT", "04") +
-									Forms.getValue("F1099DIV", "04") +
-									Forms.getValue("F1099R", "04") +
-									Forms.getValue("FSSA1099", "06");		// Withholding from 1099s
-		this.lines["25c"].value	= Forms.getValue("F8959", "24");			// Other withholding
+		this.lines["25a"].value	= TaxForms.getValue("W2", "02");				// Witholding from W-2s
+		this.lines["25b"].value	= TaxForms.getValue("F1099INT", "04") +
+									TaxForms.getValue("F1099DIV", "04") +
+									TaxForms.getValue("F1099R", "04") +
+									TaxForms.getValue("FSSA1099", "06");		// Withholding from 1099s
+		this.lines["25c"].value	= TaxForms.getValue("F8959", "24");			// Other withholding
 		this.lines["25d"].value	= this.add("25a", "25b", "25c");			// Total Withholding
 		this.lines["26"].value	= 0;										// Estimated tax payments
-		this.lines["27a"].value	= Forms.getValue("EIC", "xx");				// Earned Income Credit
-		this.lines["28"].value	= Forms.getValue("F8812", "27");			// Additional Child Tax Credit
-		this.lines["29"].value	= Forms.getValue("F8863", "08");			// American Opportunity Credit
-		this.lines["30"].value	= Forms.getValue("F8839", "13");			// Refundable Adoption Credit
-		this.lines["31"].value	= Forms.getValue("F1040S3", "15");			// Additional Refundable Credits
+		this.lines["27a"].value	= TaxForms.getValue("EIC", "xx");				// Earned Income Credit
+		this.lines["28"].value	= TaxForms.getValue("F8812", "27");			// Additional Child Tax Credit
+		this.lines["29"].value	= TaxForms.getValue("F8863", "08");			// American Opportunity Credit
+		this.lines["30"].value	= TaxForms.getValue("F8839", "13");			// Refundable Adoption Credit
+		this.lines["31"].value	= TaxForms.getValue("F1040S3", "15");			// Additional Refundable Credits
 		this.lines["32"].value	= this.add("27a","28","29","30","31");		// Estimated Payments and Refundable Credits
 		this.lines["33"].value	= this.add("25d","26","32");				// Total Payments
 		if (this.line("33") > this.line("24")) {
@@ -573,7 +573,7 @@ export class F1040 extends Form {
 			this.lines["36"].value	= 0;									// Amount applied to next year's taxes.
 		} else {
 			this.lines["37"].value	= this.subtract("24", "33");				// Amount Owed
-			this.lines["38"].value	= Forms.getValue("Penalty", "xx");			// Estimated Tax Penalty
+			this.lines["38"].value	= TaxForms.getValue("Penalty", "xx");			// Estimated Tax Penalty
 		}
 		Debug.exit("F1040.calculate()");
 	}

@@ -1,8 +1,8 @@
 
 import { Debug }	from "../Classes/Debug.js";
-import { Form }		from "../Classes/Form.js";
 import { Line }		from "../Classes/Line.js";
-import { Forms }	from "../Classes/Forms.js";
+import { TaxForm }	from "../Classes/TaxForm.js";
+import { TaxForms }	from "../Classes/TaxForms.js";
 import { TaxTable }	from "../Classes/TaxTable.js";
 import { Taxpayer }	from "../Classes/Taxpayer.js";
 
@@ -19,7 +19,7 @@ function roundUp(value) {
 	return num;
 }
 
-export class F1040S1A extends Form {
+export class F1040S1A extends TaxForm {
 	constructor(formname) {
 		Debug.enter("F1040S1A.Constructor()");
 		super(formname);
@@ -100,16 +100,16 @@ export class F1040S1A extends Form {
 		max_deduction		= tt.getTaxValue("MaxTipsDeduction",		tp.filing_status);
 		start_of_phase_out	= tt.getTaxValue("TipsDeductionPhaseOut",	tp.filing_status);
 
-		this.lines["01"].value	= Forms.getValue("F1040", "11b");			// Adjusted Gross Income
+		this.lines["01"].value	= TaxForms.getValue("F1040", "11b");			// Adjusted Gross Income
 		this.lines["02a"].value	= 0;										// Income from Puerto Rico
-		this.lines["02b"].value	= Forms.getValue("F2555", "45");			// Foreign Earned Income Housing Exclusion
-		this.lines["02c"].value	= Forms.getValue("F2555", "50");			// Foreign Earned Invome Housing Deduction
-		this.lines["02d"].value	= Forms.getValue("F4563", "15");			// Samoa Income Exclusion
+		this.lines["02b"].value	= TaxForms.getValue("F2555", "45");			// Foreign Earned Income Housing Exclusion
+		this.lines["02c"].value	= TaxForms.getValue("F2555", "50");			// Foreign Earned Invome Housing Deduction
+		this.lines["02d"].value	= TaxForms.getValue("F4563", "15");			// Samoa Income Exclusion
 		this.lines["02e"].value	= this.add("02a","02b","02c","02d");		// Total Foreign Income
 		this.lines["03"].value	= this.add("01","02e");						// AGI + Foreign Income
-		this.lines["04a"].value	= Forms.getValue("W2", "05") +				// Qualified Tips
-									Forms.getValue("W2", "07");
-		this.lines["04b"].value	= Forms.getValue("F4137", "01");			// Qualified Tips from Form 4137
+		this.lines["04a"].value	= TaxForms.getValue("W2", "05") +				// Qualified Tips
+									TaxForms.getValue("W2", "07");
+		this.lines["04b"].value	= TaxForms.getValue("F4137", "01");			// Qualified Tips from Form 4137
 		this.lines["04c"].value	= 0;										// Qualified Tips Allowed
 		this.lines["05"].value	= 0;										// Qualified Tips from Business
 		this.lines["06"].value	= this.add("04c","05");						// Total Qualified Tips

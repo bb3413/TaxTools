@@ -2,7 +2,7 @@
 import { Dates }		from "../Library/Classes/Dates.js";
 import { Debug }		from "../Library/Classes/Debug.js";
 import { File }			from "../Library/Classes/File.js";
-import { Forms }		from "../Library/Classes/Forms.js";
+import { Forms }		from "../Library/Classes/TaxForms.js";
 import { HTML }			from "../Library/Classes/HTML.js";
 import { Taxpayer }		from "../Library/Classes/Taxpayer.js";
 import { TaxTable }		from "../Library/Classes/TaxTable.js";
@@ -21,7 +21,7 @@ function changeHandler(event) {
 		// Reset static (global) variables to erase information from a previous calculation.
 		HTML.putElementValue("error-message-output", "");
 		Debug.reset();
-		Forms.reset();
+		TaxForms.reset();
 		Taxpayer.reset();
 
 		TaxTable.getTaxTable(HTML.getUserInput("TaxYear"));	// Initialize tax tables
@@ -29,7 +29,7 @@ function changeHandler(event) {
 		createTaxpayer(inputs);								// Initialize taxpayer
 		checkInputValues(inputs);							// Verify input values are in valid range
 		mapInputValues(inputs);								// Map input values to tax forms
-		Forms.getForm("F1040").calculate();					// Calculate the tax forms
+		TaxForms.getForm("F1040").calculate();					// Calculate the tax forms
 		putOutputs();										// Put results on web page
 		Debug.turnOn();										// Put debug info on web page if enabled
 	} catch (err) {
@@ -183,12 +183,12 @@ function getInputs() {
 
 function mapInputValues(inputs) {
 	const tt		= TaxTable.getTaxTable();
-	const f1040		= Forms.createForm("F1040");
-	const f1040S1	= Forms.createForm("F1040S1");
-	const f1040S2	= Forms.createForm("F1040S2");
-	const f1040S3	= Forms.createForm("F1040S3");
-	const f1040S1A	= Forms.createForm("F1040S1A");
-	const f1040SA	= Forms.createForm("F1040SA");
+	const f1040		= TaxForms.createForm("F1040");
+	const f1040S1	= TaxForms.createForm("F1040S1");
+	const f1040S2	= TaxForms.createForm("F1040S2");
+	const f1040S3	= TaxForms.createForm("F1040S3");
+	const f1040S1A	= TaxForms.createForm("F1040S1A");
+	const f1040SA	= TaxForms.createForm("F1040SA");
 
 	f1040.lines["01z"].user_value	= inputs.wages;
 	f1040.lines["02a"].user_value	= inputs.tax_exempt_interest;
@@ -217,7 +217,7 @@ function mapInputValues(inputs) {
 	f1040S1.lines["25"].user_value	= inputs.other_adjustments;
 
 	// Deductions (non-itemized)
-	f1040.lines   ["13a"].user_value	= inputs.qualified_business_income_deduction;
+	f1040.lines   ["13a"].user_value= inputs.qualified_business_income_deduction;
 	f1040S1A.lines["13"].user_value	= inputs.qualified_tips_deduction;
 	f1040S1A.lines["21"].user_value	= inputs.qualified_overtime_deduction;
 	f1040S1A.lines["30"].user_value	= inputs.car_loan_interest_deduction;
@@ -271,10 +271,10 @@ function putOutputs() {
 	//
 	const tp				= Taxpayer.getTaxpayer();
 	const todays_date		= new Date().toLocaleDateString();
-	const withholding		= Forms.getValue("F1040", "25d");
-	const payments			= Forms.getValue("F1040", "26");
-	const refund			= Forms.getValue("F1040", "34");
-	let amount_due			= Forms.getValue("F1040", "37");
+	const withholding		= TaxForms.getValue("F1040", "25d");
+	const payments			= TaxForms.getValue("F1040", "26");
+	const refund			= TaxForms.getValue("F1040", "34");
+	let amount_due			= TaxForms.getValue("F1040", "37");
 
 	amount_due				= (amount_due !== 0) ? -amount_due : refund;
 	const estimated_tax		= Math.round(Math.max(0, payments - amount_due) / 4);
@@ -284,16 +284,16 @@ function putOutputs() {
 	HTML.putUserOutput("SpousesAge",			tp.spouses_age);
 
 	// Estimated Tax
-	HTML.putUserOutput("TotalIncome",			Forms.getValue("F1040", "09"));
-	HTML.putUserOutput("Adjustments",			Forms.getValue("F1040", "10"));
-	HTML.putUserOutput("AdjustedGrossIncome",	Forms.getValue("F1040", "11b"));
-	HTML.putUserOutput("Deductions",			Forms.getValue("F1040", "14"));
-	HTML.putUserOutput("TaxableIncome",			Forms.getValue("F1040", "15"));
-	HTML.putUserOutput("TaxOnTaxableIncome",	Forms.getValue("F1040", "16"));
-	HTML.putUserOutput("TotalOtherTaxes",		Forms.getValue("F1040", "23"));
-	HTML.putUserOutput("TotalTax",				Forms.getValue("F1040", "24"));
-	HTML.putUserOutput("NonrefundableCredits",	Forms.getValue("F1040", "20"));
-	HTML.putUserOutput("RefundableCredits", 	Forms.getValue("F1040", "32"));
+	HTML.putUserOutput("TotalIncome",			TaxForms.getValue("F1040", "09"));
+	HTML.putUserOutput("Adjustments",			TaxForms.getValue("F1040", "10"));
+	HTML.putUserOutput("AdjustedGrossIncome",	TaxForms.getValue("F1040", "11b"));
+	HTML.putUserOutput("Deductions",			TaxForms.getValue("F1040", "14"));
+	HTML.putUserOutput("TaxableIncome",			TaxForms.getValue("F1040", "15"));
+	HTML.putUserOutput("TaxOnTaxableIncome",	TaxForms.getValue("F1040", "16"));
+	HTML.putUserOutput("TotalOtherTaxes",		TaxForms.getValue("F1040", "23"));
+	HTML.putUserOutput("TotalTax",				TaxForms.getValue("F1040", "24"));
+	HTML.putUserOutput("NonrefundableCredits",	TaxForms.getValue("F1040", "20"));
+	HTML.putUserOutput("RefundableCredits", 	TaxForms.getValue("F1040", "32"));
 	HTML.putUserOutput("Payments", 				payments + withholding);
 	HTML.putUserOutput("AmountDue",				amount_due);
 	HTML.putUserOutput("EstimatedTax",			estimated_tax);
@@ -521,9 +521,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Using autofocus attribute scrolls the page to that element; this will move the
 	// focus but display the page without sccrolling to that element.
 	const TaxpayersName = document.getElementById("TaxpayersName");
-	TaxpayersName.focus({
-		preventScroll: true
-	});
+	TaxpayersName.focus({preventScroll: true});
 
 	HTML.putUserOutput("TaxYear", Dates.getTaxYear(), "text");		// Default tax year.
 	HTML.hideElement("debug-container");

@@ -1,6 +1,6 @@
 
 import { HTML }				from "../Library/Classes/HTML.js";
-import { HTMLTaxForms }		from "../Library/Classes/HTMLTaxForms.js";
+import { TaxFormPages }		from "../Library/Classes/TaxFormPages.js";
 	
 import { W2 }				from "../Library/TaxForms/W2.js";
 import { F1040 }			from "../Library/TaxForms/F1040.js";
@@ -12,17 +12,17 @@ function addForm(form_name) {
 	switch (form_name) {
 		case "W-2":
 			[ form_id, html ] = W2.getHTML(1);
-			HTMLTaxForms.addForm(form_id, html);
+			TaxFormPages.addInputForm(form_id, html);
 			break;
 		
 		case "1040":
 			[ form_id, html ] = F1040.getHTML();
-			HTMLTaxForms.addForm(form_id, html);
+			TaxFormPages.addOutputForm(form_id, html);
 			break;
 				
 		case "Template":
 			[ form_id, html ] = Template.getHTML();
-			HTMLTaxForms.addForm(form_id, html);
+			TaxFormPages.addOutputForm(form_id, html);
 			break;
 	}
 }

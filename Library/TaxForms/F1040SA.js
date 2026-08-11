@@ -1,12 +1,12 @@
 
 import { Debug }	from "../Classes/Debug.js";
-import { Form }		from "../Classes/Form.js";
-import { Forms }	from "../Classes/Forms.js";
+import { TaxForm }	from "../Classes/TaxForm.js";
+import { TaxForms }	from "../Classes/TaxForms.js";
 import { Line }		from "../Classes/Line.js";
 import { TaxTable }	from "../Classes/TaxTable.js";
 import { Taxpayer }	from "../Classes/Taxpayer.js";
 
-export class F1040SA extends Form {
+export class F1040SA extends TaxForm {
 	constructor(formname) {
 		Debug.enter("F1040SA.Constructor()");
 		super(formname);
@@ -51,7 +51,7 @@ export class F1040SA extends Form {
 		const tp = Taxpayer.getTaxpayer();
 
 		this.lines["01"].value	= 0;								// Medical Expenses
-		this.lines["02"].value	= Forms.getValue("F1040", "11b");	// AGI
+		this.lines["02"].value	= TaxForms.getValue("F1040", "11b");	// AGI
 		this.lines["03"].value	= Math.round(this.line("02") * 0.075);	// 7.5% or AGI
 		this.lines["04"].value	= Math.max(0, this.subtract("01", "03"));	// Medical Deduction
 		this.lines["05a"].value	= 0;								// State and Local Income Tax

@@ -7,13 +7,13 @@
 // Tax Refund Worksheet on page 90, which is implemented in this worksheet.
 //
 import { Debug }	from "../Classes/Debug.js";
-import { Form }		from "../Classes/Form.js";
-import { Forms }	from "../Classes/Forms.js";
+import { TaxForm }	from "../Classes/TaxForm.js";
+import { TaxForms }	from "../Classes/TaxForms.js";
 import { Line }		from "../Classes/Line.js";
 import { TaxTable }	from "../Classes/TaxTable.js";
 import { Taxpayer }	from "../Classes/Taxpayer.js";
 
-export class Refund extends Form {
+export class Refund extends TaxForm {
 	constructor(formname) {
 		Debug.enter("Refund.Constructor()");
 		super(formname);
@@ -57,7 +57,7 @@ export class Refund extends Form {
 		this.lines["sched_a_5e"].value			= 0;	// Previous Tax Year, Amount Limited by SALT Cap
 		this.lines["itemized_deductions"].value	= 0;	// Previous Tax Year, Itemized Deductions
 		this.lines["refund"].value				= Math.min(	// State Tax Refund
-													Forms.getValue("F1099G", "02"),
+													TaxForms.getValue("F1099G", "02"),
 													this.line("sched_a_5d"));
 		// Outputs
 		this.lines["taxable_amount"].value		= 0;
