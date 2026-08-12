@@ -1,9 +1,9 @@
 
 import { Dates }		from "../Library/Classes/Dates.js";
 import { Debug }		from "../Library/Classes/Debug.js";
-import { Forms }		from "../Library/Classes/TaxForms.js";
 import { HTML }			from "../Library/Classes/HTML.js";
 import { Str }			from "../Library/Classes/Str.js";
+import { TaxForms }		from "../Library/Classes/TaxForms.js";
 import { Taxpayer }		from "../Library/Classes/Taxpayer.js";
 import { TaxTable }		from "../Library/Classes/TaxTable.js";
 

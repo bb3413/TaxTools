@@ -11,13 +11,13 @@ const HTML_FORM = `
 			<summary class="taxform-title">Taxform Template</summary>
 			<div>&nbsp;</div>
 			<div class="taxform-container">
-				<div class="taxform-line-1-value">
+				<div class="taxform-lno-desc-lno-value">
 					<p class="lineno">01a</p>
 					<p class="description">Xxxxxxxxxxxxxxxxxxxxxx</p>
 					<p class="lineno">01a</p>
 					<p class="value" id="01a">0</p>
 				</div>
-				<div class="taxform-line-unused-value">
+				<div class="taxform-lno-desc-lno-value-lno-value">
 					<p class="lineno">01a</p>
 					<p class="description">Xxxxxxxxxxxxxxxxxxxxxx</p>
 					<p class="lineno">01a</p>
@@ -25,7 +25,7 @@ const HTML_FORM = `
 					<p class="notused"></p>
 					<p class="notused"></p>
 				</div>
-				<div class="taxform-line-2-values">
+				<div class="taxform-lno-desc-lno-value-label-lno-value">
 					<p class="lineno">01a</p>
 					<p class="description">Xxxxxxxxxxxxxxxxxxxxxx</p>
 					<p class="lineno">01a</p>

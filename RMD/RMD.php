@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<link rel="stylesheet" href="../Library/Classes/HTML.css" />
-	<link rel="stylesheet" href="../Library/TaxTools/TaxTools.css" />
-	<link rel="stylesheet" href="../Library/Tooltips/Tooltips.css" />
+	<link rel="stylesheet" href="../Library/CSS/HTML.css" />
+	<link rel="stylesheet" href="../Library/CSS/TaxTools.css" />
+	<link rel="stylesheet" href="../Library/CSS/Tooltips.css" />
 
 	<script type="module" src="../Library/TaxTools/TaxTools.js"></script>
 	<script type="module" src="../Library/Tooltips/Tooltips.js"></script>
 	<script type="module" src="../Version/Version.js"></script>
 
-	<link rel="stylesheet" href="../Library/TaxTools/HelpFields.css" />
+	<link rel="stylesheet" href="../Library/CSS/HelpFields.css" />
 	<link rel="stylesheet" href="RMD.css" />
 	<script type="module" src="RMD.js"></script>
 	<title>Required Minimum Distribution Calculator</title>

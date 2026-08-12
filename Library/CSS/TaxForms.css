@@ -1,0 +1,145 @@
+
+.taxform-container {
+	font-size:				12px;
+	padding-left:			3px;
+	padding-right:			3px;
+}
+
+.taxform-container p {
+	margin-top:				0;
+	margin-bottom:			0;
+}
+
+.taxform-title {
+	font-size:				14px;
+	font-weight:			bold;
+}
+
+/*
+ * Line types
+ *
+ * Simple line numbers					35px	(e.g., "12a")
+ * Line number with label				70px	(e.g., "Box 11")
+ * Descriptions expand to fill line		1fr
+ * Numeric values						90px
+ */
+.taxform-desc-value {
+	/* Description...value */
+	display:				grid;
+	grid-template-columns:	1fr 90px;
+}
+
+.taxform-lno-desc-code-value {
+	/* Line Description...code value */
+	display:				grid;
+	grid-template-columns:	70px 1fr 90px 90px;	/* 70px line numbers */
+}
+
+.taxform-lno-desc-value {
+	/* Line Description...value */
+	display:				grid;
+	grid-template-columns:	70px 1fr 90px;	/* 70px line numbers */
+}
+
+.taxform-desc-string {
+	/* Description...string */
+	display:				grid;
+	grid-template-columns:	150px 1fr;
+	width:					500px
+}
+
+.taxform-lno-desc-shorttext {
+	/* Description... string */
+	display:				grid;
+	grid-template-columns:	150px 1fr;
+	width:					300px
+}
+
+.taxform-lno-desc-lno-value {
+	/* Line Description...line value */
+	display:				grid;
+	grid-template-columns:	35px 1fr 35px 90px;	/* 35px line numbers */
+	font-size:				12px;
+}
+
+.taxform-lno-desc-lno-value-lno-value {
+	/* Line Description...line value unused unused */
+	display:				grid;
+	grid-template-columns:	35px 1fr 35px 90px 35px 90px;	/* 35px line numbers */
+}
+
+.taxform-lno-desc-lno-value-label-lno-value {
+	/* Line Description...line value label...line value */
+	display:				grid;
+	grid-template-columns:	35px 1fr 35px 90px 1fr 35px 90px;	/* 35px line numbers */
+}
+
+.taxform-lno-4-checkboxes {
+	/* Line Label1...box1  Label2...box2  Label3...box3  Label4...box4 */
+	display:				grid;
+	grid-template-columns:	70px 1fr 20px 1fr 20px 1fr 20px 1fr 20px 1fr 20px;
+	gap: 					2px;
+}
+
+.taxform-lno-4-checkboxes p {
+	text-align:				right;
+}
+
+/*
+ * Fields types
+ */
+.lineno {
+	border:					1px solid black;
+	padding-left:			3px;
+	padding-right:			3px;
+}
+
+.description {
+	border:					1px solid black;
+	padding-left:			3px;
+	padding-right:			3px;
+}
+
+.label {
+	border:					1px solid black;
+	padding-left:			3px;
+	padding-right:			3px;
+}
+
+.text-value {
+	border:					1px solid black;
+	padding-left:			3px;
+	padding-right:			3px;
+	text-align:				left;
+	background:				var(--output-color);
+}
+.value {
+	border:					1px solid black;
+	padding-left:			3px;
+	padding-right:			3px;
+	text-align:				right;
+	background:				var(--output-color);
+}
+
+.notused {
+	border:					1px solid black;
+	background:				lightgray;
+	padding-left:			3px;
+	padding-right:			3px;
+}
+
+.fake-checkbox {
+	border:					1px solid black;
+	background:				var(--output-color);
+	text-align:				center;
+}
+
+/*
+ * For specific tax forms.
+ */
+.taxform-1040-checkboxes {
+	/* Label1...box1  Label2...box2  Label3...box3  Label4...box4 */
+	display:				grid;
+	grid-template-columns:	1fr 20px 1fr 20px 1fr 20px 1fr 20px 1fr 20px;
+	gap: 					10px;
+}

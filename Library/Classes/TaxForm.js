@@ -2,7 +2,8 @@
 //
 // This is a template for all tax forms and worksheets.
 //
-import { Debug } from "../Classes/Debug.js";
+import { Debug }		from "../Classes/Debug.js";
+import { HTMLBuild }	from "../Classes/HTMLBuild.js";
 
 export class TaxForm {
 	constructor(formname) {
@@ -65,6 +66,15 @@ export class TaxForm {
 
 	toConsole() {
 		console.log(this.toString());
+	}
+
+	toHTML() {
+		const doc = new HTMLBuild();
+		doc.startElement("div");
+		doc.addElement("p", "", "This is the first dynamically added line.");
+		doc.addElement("p", "", "This is the second dynamically added line.");
+		doc.stopElement("div");
+		doc.putAfter("TaxReturnContainer");
 	}
 
 	toPrint() {

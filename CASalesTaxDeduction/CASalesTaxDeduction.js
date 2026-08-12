@@ -3,8 +3,8 @@ import { Alert }				from "../Library/Classes/Alert.js";
 import { Dates }				from "../Library/Classes/Dates.js";
 import { Debug }				from "../Library/Classes/Debug.js";
 import { fetchSalesTaxRate }	from "../Library/SalesTax/SalesTaxFromCDTFA.js";
-import { Forms }				from "../Library/Classes/TaxForms.js";
 import { HTML }					from "../Library/Classes/HTML.js";
+import { TaxForms }				from "../Library/Classes/TaxForms.js";
 import { Taxpayer }				from "../Library/Classes/Taxpayer.js";
 import { TaxTable }				from "../Library/Classes/TaxTable.js";
 
