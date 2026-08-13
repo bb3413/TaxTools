@@ -2,6 +2,27 @@
 import { Num }		from "../Classes/Num.js";
 import { Str }		from "../Classes/Str.js";
 
+// Values columns
+const SINGLE	= 0;		
+const HOH		= 1;
+const MFJ		= 2;
+const QSS		= 3;
+const MFS		= 4;
+
+function getValuesCol(filing_status) {
+	let col = 0;
+	switch (filing_status) {
+		case "SINGLE":	col = 0; break;
+		case "HOH":		col = 1; break;
+		case "MFJ":		col = 2; break;
+		case "QSS":		col = 3; break;
+		case "MFS":		col = 4; break;
+		default:		throw new Error("TT.getValueCol: Invalid filing_status: " + filing_status);
+	}
+	return col;
+}
+
+
 export class TaxTableTmpl {
 	getBusinessMileageDeduction(miles) {
 		return Math.round(miles * this.getTaxValue("BusinessMileage"));
@@ -121,7 +142,7 @@ export class TaxTableTmpl {
 		is_spouse_blind		= false)
 	{
 		let std_deduction		= this.getTaxValue("StandardDeduction", filing_status)
-		let std_deduction_extra	= this.getTaxValue("StandardDeductionEXtra", filing_status)
+		let std_deduction_extra	= this.getTaxValue("StandardDeductionExtra", filing_status)
 
 		if (taxpayers_age >= 65)
 			std_deduction += std_deduction_extra;
@@ -139,31 +160,11 @@ export class TaxTableTmpl {
 	}
 
 	getTaxValue(name, filing_status = "SINGLE") {
-		let value = -1;
-
-		// Table columns
-		let fs = 1;
-		switch (filing_status) {
-			case "SINGLE":	fs = 1; break;
-			case "HOH":		fs = 2; break;
-			case "MFJ":		fs = 3; break;
-			case "QSS":		fs = 4; break;
-			case "MFS":		fs = 5; break;
+		if (!this.values[name]) {
+			throw new Error("TT.getTaxValue(): Invalid tax value: " + name);
 		}
 
-		for (let row = 0; row < this.values.length; row++) {
-			if (Str.caseEqual(name, this.values[row][0])) {
-				value = this.values[row][fs];
-				break;
-			}
-		}
-
-		if (value === -1) {
-			throw new Error("Invalid tax value: " + name);
-			return;
-		}
-
-		return value;
+		return this.values[name][getValuesCol(filing_status)]
 	}
 
 	get_AMT_Exemption(filing_status, amt_income) {

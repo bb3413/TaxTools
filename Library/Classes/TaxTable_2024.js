@@ -24,68 +24,68 @@ export class TaxTable_2024 extends TaxTableTmpl {
 	//
 	// This table contains constant tax values.
 	//
-	values = [
-		// 	Name								SINGLE		HOH			MFJ			QSS			MFS
-		[ "BusinessMileage",					0.67,		0.67,		0.67,		0.67,		0.67		],
-		[ "CharityMileage",						0.14,		0.14,		0.14,		0.14,		0.14		],
-		[ "MedicalMileage",						0.21,		0.21,		0.21,		0.21,		0.21		],
+	values = {
+		// 	Name								SINGLE			HOH			MFJ			QSS			MFS
+		"BusinessMileage":						[ 0.67,			0.67,		0.67,		0.67,		0.67		],
+		"CharityMileage":						[ 0.14,			0.14,		0.14,		0.14,		0.14		],
+		"MedicalMileage":						[ 0.21,			0.21,		0.21,		0.21,		0.21		],
 
-		[ "MaxCapitalLoss",						-3000,		-3000,		-3000,		-3000,		-1500		],
-		[ "MaxEducatorExpenses",				300,		300,		600,		300,		300			],
-		[ "MaxTaxedSS",							176100,		176100,		176100,		176100,		176100		],
-		[ "MaxSALT",							10000,		10000,		10000,		10000,		10000		],
-		[ "MaxStudentLoanInterest",				2500,		2500,		2500,		2500,		0			],
+		"MaxCapitalLoss":						[ -3000,		-3000,		-3000,		-3000,		-1500		],
+		"MaxEducatorExpenses":					[ 300,			300,		600,		300,		300			],
+		"MaxTaxedSS":							[ 176100,		176100,		176100,		176100,		176100		],
+		"MaxSALT":								[ 10000,		10000,		10000,		10000,		10000		],
+		"MaxStudentLoanInterest":				[ 2500,			2500,		2500,		2500,		0			],
 
-		// OBBA deductions						SINGLE		HOH			MFJ			QSS			MFS
-		[ "MaxCarLoanInterestDeduction",		0,			0,			0,			0,			0			],
-		[ "CarLoanInterestDeductionPhaseOut",	0,			0,			0,			0,			0			],
-		[ "MaxOvertimeDeduction",				0,			0,			0,			0,			0			],
-		[ "OvertimeDeductionPhaseOut",			0,			0,			0,			0,			0			],
-		[ "MaxTipsDeduction",					0,			0,			0,			0,			0			],
-		[ "TipsDeductionPhaseOut",				0,			0,			0,			0,			0			],
-		[ "MaxSeniorDeduction",					0,			0,			0,			0,			0			],
-		[ "SeniorDeductionPhaseOut",			0,			0,			0,			0,			0			],
+		// OBBA deductions						SINGLE			HOH			MFJ			QSS			MFS
+		"MaxCarLoanInterestDeduction":			[ 0,			0,			0,			0,			0			],
+		"CarLoanInterestDeductionPhaseOut":		[ 0,			0,			0,			0,			0			],
+		"MaxOvertimeDeduction":					[ 0,			0,			0,			0,			0			],
+		"OvertimeDeductionPhaseOut":			[ 0,			0,			0,			0,			0			],
+		"MaxTipsDeduction":						[ 0,			0,			0,			0,			0			],
+		"TipsDeductionPhaseOut":				[ 0,			0,			0,			0,			0			],
+		"MaxSeniorDeduction":					[ 0,			0,			0,			0,			0			],
+		"SeniorDeductionPhaseOut":				[ 0,			0,			0,			0,			0			],
 
-		// Non-refundable credits				SINGLE		HOH			MFJ			QSS			MFS
-		[ "MaxAmericanOppCreditNoRefund",		MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	0			],
-		[ "MaxChildAndDependentCareCredit",		MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	0			],
-		[ "MaxChildTaxCredit",					MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR	],
-		[ "MaxForeignTaxCredit",				300,		300,		600,		300,		300			],
-		[ "MaxLifetimeLearningCredit",			2000,		2000,		2000,		2000,		0			],
-		[ "MaxResidentialEnergyCredit",			MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR	],
-		[ "MaxRetirementSavingsCredit",			1000,		1000,		2000,		1000,		1000		],
+		// Non-refundable credits				SINGLE			HOH			MFJ			QSS			MFS
+		"MaxAmericanOppCreditNoRefund":			[ MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	0			],
+		"MaxChildAndDependentCareCredit":		[ MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	0			],
+		"MaxChildTaxCredit":					[ MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR	],
+		"MaxForeignTaxCredit":					[ 300,			300,		600,		300,		300			],
+		"MaxLifetimeLearningCredit":			[ 2000,			2000,		2000,		2000,		0			],
+		"MaxResidentialEnergyCredit":			[ MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR	],
+		"MaxRetirementSavingsCredit":			[ 1000,			1000,		2000,		1000,		1000		],
 
-		// Refundable credits					SINGLE		HOH			MFJ			QSS			MFS
-		[ "MaxAmericanOppCreditRefundable",		MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	0			],
-		[ "MaxCreditForOtherDependents",		MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR	],
-		[ "MaxEarnedIncomeCredit",				59899,		59899,		66819,		59899,		0			],
-		[ "MaxPremiumTaxCredit",				MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	0			],
+		// Refundable credits					SINGLE			HOH			MFJ			QSS			MFS
+		"MaxAmericanOppCreditRefundable":		[ MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	0			],
+		"MaxCreditForOtherDependents":			[ MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR	],
+		"MaxEarnedIncomeCredit":				[ 59899,		59899,		66819,		59899,		0			],
+		"MaxPremiumTaxCredit":					[ MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	0			],
 
-		// AMT									SINGLE		HOH			MFJ			QSS			MFS
-		[ "AMT_Exemption",						85700,		85700,		133500,		133500,		66650		],
-		[ "AMT_ExemptionPhaseOut",				609350,		609350,		1218700,	1218700,	609350		],
+		// AMT									SINGLE			HOH			MFJ			QSS			MFS
+		"AMT_Exemption":						[ 85700,		85700,		133500,		133500,		66650		],
+		"AMT_ExemptionPhaseOut":				[ 609350,		609350,		1218700,	1218700,	609350		],
 
-		// Capital gains ranges					SINGLE		HOH			MFJ			QSS			MFS
-		[ "CG_15PercentRangeStart",				47025,		63000,		94050,		94050,		47025		],
-		[ "CG_20PercentRangestart",				518900,		551350,		583750,		583750,		291850		],
+		// Capital gains ranges					SINGLE			HOH			MFJ			QSS			MFS
+		"CG_15PercentRangeStart":				[ 47025,		63000,		94050,		94050,		47025		],
+		"CG_20PercentRangeStart":				[ 518900,		551350,		583750,		583750,		291850		],
 
-		// Social Security 50% taxable range	SINGLE		HOH			MFJ			QSS			MFS
-		[ "SS_50PercentRangeStart",				25000,		25000,		32000,		25000,		25000		],
-		[ "SS_50PercentRangeEnd",				34000,		34000,		44000,		34000,		34000		],
-		[ "SS_50PercentRangeLength",			9000,		9000,		12000,		9000,		9000		],
+		// Social Security 50% taxable range	SINGLE			HOH			MFJ			QSS			MFS
+		"SS_50PercentRangeStart":				[ 25000,		25000,		32000,		25000,		25000		],
+		"SS_50PercentRangeEnd":					[ 34000,		34000,		44000,		34000,		34000		],
+		"SS_50PercentRangeLength":				[ 9000,			9000,		12000,		9000,		9000		],
 
 		// Standard deduction and extra for 65 or blind
-		[ "StandardDeduction",					14600,		21900,		29200,		29200,		14600		],
-		[ "StandardDeductionExtra",				1950,		1950,		1550,		1550,		1550		],
+		"StandardDeduction":					[ 14600,		21900,		29200,		29200,		14600		],
+		"StandardDeductionExtra":				[ 1950,			1950,		1550,		1550,		1550		],
 
-		// California constants					SINGLE		HOH			MFJ			QSS			MFS
-		[ "CA_PersonalExemption",				149,		149,		149,		149,		149			],
-		[ "CA_DependentExemption",				447,		447,		447,		447,		447			],
-		[ "CA_StandardDeduction",				5540,		11080,		11080,		11080,		5540		],
-		[ "CA_BaseSalesTax",					7.25,		7.25,		7.25,		7.25,		7.25		],
-		[ "CA_RentersCredit",					60,			120,		120,		120,		60			],
-		[ "CA_HiIncPhaseout",					244857,		367291,		489719,		489719,		244857		],
-	];
+		// California constants					SINGLE			HOH			MFJ			QSS			MFS
+		"CA_PersonalExemption":					[ 149,			149,		149,		149,		149			],
+		"CA_DependentExemption":				[ 447,			447,		447,		447,		447			],
+		"CA_StandardDeduction":					[ 5540,			11080,		11080,		11080,		5540		],
+		"CA_BaseSalesTax":						[ 7.25,			7.25,		7.25,		7.25,		7.25		],
+		"CA_RentersCredit":						[ 60,			120,		120,		120,		60			],
+		"CA_HiIncPhaseout":						[ 244857,		367291,		489719,		489719,		244857		],
+	};
 
 	//
 	// Alternative Minimum Tax (AMT)
