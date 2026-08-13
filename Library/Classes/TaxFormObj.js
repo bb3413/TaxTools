@@ -3,85 +3,10 @@
 // This module manages tax forms that have been created as objects of the TaxForm class.
 //
 import { Debug }		from "../Classes/Debug.js";
-import { ClassByName }	from "../Classes/ClassByName.js";
+import { TaxFormName }	from "../Classes/TaxFormName.js";
 
 let instances	= {};	// This variable is indexed by form name. For each form, it
 						// returns an array with all the instances of that form.
-
-const print_order = [
-	"F1040",
-	"F1040S1",
-	"F1040S1A",
-	"F1040S2",
-	"F1040S3",
-	"F1040SA",
-	"F1040SB",
-	"F1040SC",
-	"F1040SD",
-	"F1040SE",
-	"F1040SSE",
-	"F1041",
-	"F1065B",
-	"F1120S",
-	"F2441",
-	"F6251",
-	"F7206",
-	"F540",
-	"F540CA",
-];
-
-// When getValue() or getTextValue() is called, the default is to return 0 or "" if the
-// form has not been created. However, some forms get input from other forms and need to
-// be created and calculated before the value is returned. This array lists those forms.
-const create_on_demand = [
-	// Forms
-	"F1040",
-	"F1040S1",
-	"F1040S1A",
-	"F1040S2",
-	"F1040S3",
-	"F1040SA",
-//	"F1040SB",
-//	"F1040SC",
-//	"F1040SD",
-//	"F1040SE",
-	"F1040SSE",
-//	"F1041",
-//	"F1065B",
-//	"F1098",
-//	"F1098E",
-//	"F1098T",
-//	"F1099B",
-//	"F1099C",
-//	"F1099DIV",
-//	"F1099G",
-//	"F1099INT",
-//	"F1099K",
-//	"F1099LTC",
-//	"F1099MISC",
-//	"F1099NEC",
-//	"F1099OID",
-//	"F1099R",
-//	"F1099S",
-//	"F1120S",
-//	"F2441",
-	"F540",
-	"F540CA",
-//	"F6251",
-//	"F7206",
-//	"W2",
-
-	// Worksheets
-	"IncTax",
-	"Refund",
-	"SalesTax",
-	"Simple",
-	"SSTax",
-
-	// California Worksheets
-	"CA_HiIncDeductions",
-	"CA_HiIncExemptions",
-];
 
 function addForm(formname, form) {
 	if (!formname) {
@@ -109,7 +34,7 @@ export class TaxFormObj {
 	}
 
 	static createForm(formname) {
-		const form_class = ClassByName.getClass(formname);
+		const form_class = TaxFormName.getClass(formname);
 
 		if (form_class) {
 			const form = new form_class(formname);
@@ -130,7 +55,7 @@ export class TaxFormObj {
 	static formsToPrint() {
 		const forms = [];
 
-		for (const formname of print_order) {
+		for (const formname of TaxFormNames.printOrder()) {
 			let formlist = instances[formname];
 			if (formlist) {
 				for (const form of formlist) {
@@ -194,7 +119,7 @@ export class TaxFormObj {
 		Debug.enter(`TaxFormObj.getTextValue(${formname}, ${lineno})`);
 		let str = "";
 		let formlist = instances[formname];
-		if (!formlist && create_on_demand.includes(formname)) {
+		if (!formlist && TaxFormName.createOnDemand(formname)) {
 			// Try to create; not an error if it fails; it may be a form that is not implemented yet.
 			TaxFormObj.createForm(formname);
 			formlist = instances[formname];
@@ -253,7 +178,7 @@ export class TaxFormObj {
 		Debug.enter(`TaxFormObj.getValue(${formname}, ${lineno})`);
 		let sum = 0;
 		let formlist = instances[formname];
-		if (!formlist && create_on_demand.includes(formname)) {
+		if (!formlist && TaxFormName.createOnDemand(formname)) {
 			// Try to create; not an error if it fails; it may be a form that is not implemented yet.
 			TaxFormObj.createForm(formname);
 			formlist = instances[formname];
@@ -273,28 +198,6 @@ export class TaxFormObj {
 		}
 		Debug.exit(`TaxFormObj.getValue(${sum})`);
 		return sum;
-	}
-
-	static listAllTaxFormObj(){
-		const tax_forms = [];
-
-		// Return array with the names of the suported tax forms (ship worksheets).
-		for (const name of ClassByName.listAllForms()) {
-			if (name.startsWith("F") || name === "W2") {
-				tax_forms.push(name);
-			}
-		}
-
-		return tax_forms;
-	}
-
-	static listAllWorksheets(){
-		// Return array with the names of the suported worksheets.
-		for (const name of ClassByName.listAllForms()) {
-			if (!name.startsWith("F") && name !== "W2") {
-				tax_forms.push(name);
-			}
-		}
 	}
 
 	static toConsole() {

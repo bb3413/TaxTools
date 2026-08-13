@@ -4,15 +4,13 @@ import { Debug }			from "../Library/Classes/Debug.js";
 import { File }				from "../Library/Classes/File.js";
 import { HTML }				from "../Library/Classes/HTML.js";
 import { TaxFormWeb }		from "../Library/Classes/TaxFormWeb.js";
+import { TaxFormName }		from "../Library/Classes/TaxFormName.js";
 import { TaxFormObj }		from "../Library/Classes/TaxFormObj.js";
 import { Taxpayer }			from "../Library/Classes/Taxpayer.js";
 import { TaxTable }			from "../Library/Classes/TaxTable.js";
 
 import { F1040 }			from "../Library/TaxForms/F1040.js";
 import { W2 }				from "../Library/TaxForms/W2.js";
-
-// Save information about which tax forms have been added to the web page.
-let next_w2					= 1;
 
 import { TAX_PROGRAM_SAVE_FILE } from "../Library/TaxTools/TaxTools.js";
 
@@ -25,7 +23,9 @@ function addForm(event) {
 	
 	const form_name = HTML.getElementValue("add-form-button");	// Get selected form name.
 	HTML.putElementValue("add-form-button", "");	// Change selection back to the "Add Form" entry.
-	
+
+	TaxFormName.createTaxFormWebPage(form_name);
+	/*
 	switch (form_name) {
 		case "":
 			break;
@@ -35,6 +35,7 @@ function addForm(event) {
 			TaxFormWeb.addInputForm(form_id, html);
 			break;
 	}
+	*/
 }
 
 function calculateHandler(event) {

@@ -2,7 +2,7 @@
 //
 // This module manages the tax forms that are displayed on the web page.
 //
-import { ClassByName }	from "../Classes/ClassByName.js";
+import { TaxFormName }	from "../Classes/TaxFormName.js";
 import { HTML }			from "../Classes/HTML.js";
 
 // These arrays contains the names, in order, of the container element for the
@@ -100,7 +100,7 @@ export class TaxFormWeb {
 
 	static parseFormName(name) {
 		const parts = name.split("-");
-		const classname = ClassByName.getClass(parts[0]);
+		const classname = TaxFormName.getClass(parts[0]);
 		if (parts.length === 2) {
 			return [ classname, -1 ];
 		} else {

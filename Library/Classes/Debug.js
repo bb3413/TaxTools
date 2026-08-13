@@ -1,5 +1,5 @@
 
-import { ClassByName }	from "../Classes/ClassByName.js";
+import { TaxFormName }	from "../Classes/TaxFormName.js";
 import { HTML }			from "../Classes/HTML.js";
 import { Str }			from "../Classes/Str.js";
 import { TaxFormObj }	from "../Classes/TaxFormObj.js";
@@ -21,7 +21,7 @@ function keywordList() {
 		"Verbose" ];
 
 	// Keywords are the debug keywords plus the names of the tax forms and worksheets.
-	return debug_keywords.concat(ClassByName.listAllForms());
+	return debug_keywords.concat(TaxFormName.listAllForms());
 }
 
 function hideField(name) {
