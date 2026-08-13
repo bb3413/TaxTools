@@ -1,7 +1,7 @@
 
 import { Debug }	from "../Classes/Debug.js";
 import { TaxForm }	from "../Classes/TaxForm.js";
-import { TaxForms }	from "../Classes/TaxForms.js";
+import { TaxFormObj }	from "../Classes/TaxFormObj.js";
 import { Line }		from "../Classes/Line.js";
 
 export class F1040S3 extends TaxForm {
@@ -57,48 +57,48 @@ export class F1040S3 extends TaxForm {
 		Debug.enter("F1040S3.calculate()");
 		this.calculated = true;
 
-/*		foreignTaxCredt = TaxForms.getValue("F1099INT", "xx") +
-									TaxForms.getValue("F1099DIV", "xx") +
-									TaxForms.getValue("F1041", "xx") +
-									TaxForms.getValue("F1165", "xx");
+/*		foreignTaxCredt = TaxFormObj.getValue("F1099INT", "xx") +
+									TaxFormObj.getValue("F1099DIV", "xx") +
+									TaxFormObj.getValue("F1041", "xx") +
+									TaxFormObj.getValue("F1165", "xx");
 		if foreignTaxCredt < 300 per spouse
 			1040S3[1] = foreignTaxCredt
 		else
 			1040S3[1] f1116[35]
 */
 		// Non-refundable Credits
-		this.lines["01"].value	= TaxForms.getValue("F1116", "xx");	// Foreign Tax Credit"
-		this.lines["02"].value	= TaxForms.getValue("F2441", "11");	// Child and Dependent Care Credit
-		this.lines["03"].value	= TaxForms.getValue("F8863", "19");	// Education Credit
-		this.lines["04"].value	= TaxForms.getValue("F8880", "xx");	// Retirement Savings Credit
-		this.lines["05a"].value	= TaxForms.getValue("F5695", "15");	// Residential Clean Energy Credit
-		this.lines["05b"].value	= TaxForms.getValue("F5695", "32");	// Energy Efficient Home Credit
-		this.lines["06a"].value	= TaxForms.getValue("F3800", "xx");	// General Business Credit
-		this.lines["06b"].value	= TaxForms.getValue("F8801", "25");	// Credit for Prior Year Minimum Tax
-		this.lines["06c"].value	= TaxForms.getValue("F8839", "xx");	// Adoption Credit
-		this.lines["06d"].value	= TaxForms.getValue("F1040SR", "xx");	// Credit for Elderly or Disabled
+		this.lines["01"].value	= TaxFormObj.getValue("F1116", "xx");	// Foreign Tax Credit"
+		this.lines["02"].value	= TaxFormObj.getValue("F2441", "11");	// Child and Dependent Care Credit
+		this.lines["03"].value	= TaxFormObj.getValue("F8863", "19");	// Education Credit
+		this.lines["04"].value	= TaxFormObj.getValue("F8880", "xx");	// Retirement Savings Credit
+		this.lines["05a"].value	= TaxFormObj.getValue("F5695", "15");	// Residential Clean Energy Credit
+		this.lines["05b"].value	= TaxFormObj.getValue("F5695", "32");	// Energy Efficient Home Credit
+		this.lines["06a"].value	= TaxFormObj.getValue("F3800", "xx");	// General Business Credit
+		this.lines["06b"].value	= TaxFormObj.getValue("F8801", "25");	// Credit for Prior Year Minimum Tax
+		this.lines["06c"].value	= TaxFormObj.getValue("F8839", "xx");	// Adoption Credit
+		this.lines["06d"].value	= TaxFormObj.getValue("F1040SR", "xx");	// Credit for Elderly or Disabled
 		this.lines["06e"].value	= 0;								// Reserved for Future Use
-		this.lines["06f"].value	= TaxForms.getValue("F8936", "xx");	// Clean Vehicle Credit
-		this.lines["06g"].value	= TaxForms.getValue("F8396", "xx");	// Mortgage Interest Credit
-		this.lines["06h"].value	= TaxForms.getValue("F8859", "xx");	// DC Homebuyer Credit
-		this.lines["06i"].value	= TaxForms.getValue("F8834", "xx");	// EV Credit
-		this.lines["06j"].value	= TaxForms.getValue("F8911", "xx");	// Refueling Property Credit
-		this.lines["06k"].value	= TaxForms.getValue("F8912", "xx");	// Tax Credit Bond Holder Credit
-		this.lines["06l"].value	= TaxForms.getValue("F8978", "14");	// Partner's Additional Reporting
-		this.lines["06m"].value	= TaxForms.getValue("F8936", "xx");	// Used EV Credit
+		this.lines["06f"].value	= TaxFormObj.getValue("F8936", "xx");	// Clean Vehicle Credit
+		this.lines["06g"].value	= TaxFormObj.getValue("F8396", "xx");	// Mortgage Interest Credit
+		this.lines["06h"].value	= TaxFormObj.getValue("F8859", "xx");	// DC Homebuyer Credit
+		this.lines["06i"].value	= TaxFormObj.getValue("F8834", "xx");	// EV Credit
+		this.lines["06j"].value	= TaxFormObj.getValue("F8911", "xx");	// Refueling Property Credit
+		this.lines["06k"].value	= TaxFormObj.getValue("F8912", "xx");	// Tax Credit Bond Holder Credit
+		this.lines["06l"].value	= TaxFormObj.getValue("F8978", "14");	// Partner's Additional Reporting
+		this.lines["06m"].value	= TaxFormObj.getValue("F8936", "xx");	// Used EV Credit
 		this.lines["06z"].value	= 0;								// Non-refundable Credits Not Listed
 		this.lines["07"].value	= this.add("06a","06b","06c","06d","06e","06f","06g","06h","06i","06j",
 										   "06k","06l","06m","06z");	// Total Other Non-refundable Credits
 		this.lines["08"].value	= this.add("01","02","03","04","05a","07");	// Total Non-refundable Credits
 
 		// Other Payments and Refundable Credits
-		this.lines["09"].value	= TaxForms.getValue("F8962", "xx");	// PTC
+		this.lines["09"].value	= TaxFormObj.getValue("F8962", "xx");	// PTC
 		this.lines["10"].value	= 0;								// Amount Paid with Extension Request
 		this.lines["11"].value	= 0;								// Excess SS Withheld
-		this.lines["12"].value	= TaxForms.getValue("F4136", "xx");	// Tax on Fuels Credit
-		this.lines["13a"].value	= TaxForms.getValue("F2439", "xx");	// Undistributed LT Gains
+		this.lines["12"].value	= TaxFormObj.getValue("F4136", "xx");	// Tax on Fuels Credit
+		this.lines["13a"].value	= TaxFormObj.getValue("F2439", "xx");	// Undistributed LT Gains
 		this.lines["13b"].value	= 0;								// Section 1341 Credit
-		this.lines["13c"].value	= TaxForms.getValue("F3800", "06");	// Payment from Form 3800
+		this.lines["13c"].value	= TaxFormObj.getValue("F3800", "06");	// Payment from Form 3800
 		this.lines["13d"].value	= 0;								// Deferred 965 Tax Liability
 		this.lines["13z"].value	= 0;								// Other Refundable Credits
 		this.lines["14"].value	= this.add("13a","13b","13c","13d","13z");	// Total Other Refundable Credits

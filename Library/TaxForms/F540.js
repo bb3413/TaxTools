@@ -1,7 +1,7 @@
 
 import { Debug }				from "../Classes/Debug.js";
 import { TaxForm }				from "../Classes/TaxForm.js";
-import { TaxForms }				from "../Classes/TaxForms.js";
+import { TaxFormObj }				from "../Classes/TaxFormObj.js";
 import { Line }					from "../Classes/Line.js";
 import { TaxTable }				from "../Classes/TaxTable.js";
 import { Taxpayer }				from "../Classes/Taxpayer.js";
@@ -218,13 +218,13 @@ export class F540 extends TaxForm {
 		this.lines["011"].value	= this.add("007", "008", "009", "010");		// Total Exemptions
 
 		// Taxable Income
-		this.lines["012"].value	= TaxForms.getValue("W2", "16");			// State Wages
-		this.lines["013"].value	= TaxForms.getValue("F1040", "11b");		// Federal AGI
-		this.lines["014"].value	= TaxForms.getValue("F540CA", "C-27B");	// CA Adjustments - Subtractions
+		this.lines["012"].value	= TaxFormObj.getValue("W2", "16");			// State Wages
+		this.lines["013"].value	= TaxFormObj.getValue("F1040", "11b");		// Federal AGI
+		this.lines["014"].value	= TaxFormObj.getValue("F540CA", "C-27B");	// CA Adjustments - Subtractions
 		this.lines["015"].value	= this.subtract("013", "014");			// AGI - Subtractions
-		this.lines["016"].value	= TaxForms.getValue("F540CA", "C-27C");	// CA Adjustments - Additions
+		this.lines["016"].value	= TaxFormObj.getValue("F540CA", "C-27C");	// CA Adjustments - Additions
 		this.lines["017"].value	= this.add("015", "016");				// AGI + Additions = CA AGI
-		this.lines["018"].value	= TaxForms.getValue("F540CA", "D-30");		// Deductions
+		this.lines["018"].value	= TaxFormObj.getValue("F540CA", "D-30");		// Deductions
 		this.lines["019"].value	= this.subtract("017", "018");			// Taxable Income
 		this.lines["020"].value	= 0;									// Reserved for Future Use
 		this.lines["021"].value	= 0;									// Reserved for Future Use
@@ -291,10 +291,10 @@ export class F540 extends TaxForm {
 		this.lines["070"].value	= 0;									// Reserved for Future Use
 
 		// Payments
-		this.lines["071"].value	= TaxForms.getValue("W2", "19") +			// Withholding
-									TaxForms.getValue("F1099INT", "17") +
-									TaxForms.getValue("F1099DIV", "16") +
-									TaxForms.getValue("F1099R", "14");
+		this.lines["071"].value	= TaxFormObj.getValue("W2", "19") +			// Withholding
+									TaxFormObj.getValue("F1099INT", "17") +
+									TaxFormObj.getValue("F1099DIV", "16") +
+									TaxFormObj.getValue("F1099R", "14");
 		this.lines["072"].value	= 0;									// Estimated Taxes and Payments
 		this.lines["073"].value	= 0;									// Withholding from Forms 592-B and 593
 		this.lines["074"].value	= 0;									// Excess SDI or VPDI

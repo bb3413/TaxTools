@@ -5,7 +5,7 @@
 //
 import { Debug }	from "../Classes/Debug.js";
 import { TaxForm }	from "../Classes/TaxForm.js";
-import { TaxForms }	from "../Classes/TaxForms.js";
+import { TaxFormObj }	from "../Classes/TaxFormObj.js";
 import { Line }		from "../Classes/Line.js";
 import { TaxTable }	from "../Classes/TaxTable.js";
 import { Taxpayer }	from "../Classes/Taxpayer.js";
@@ -63,19 +63,19 @@ export class SSTax extends TaxForm {
 			filing_status = tp.filing_status;
 		}
 		if (ss_income === undefined) {
-			ss_income = TaxForms.getValue("F1040", "06a");
+			ss_income = TaxFormObj.getValue("F1040", "06a");
 		}
 		if (income_wo_ss === undefined) {
-			income_wo_ss = TaxForms.getValue("F1040", "01z","02b","03b","04b","05b","07","08");
+			income_wo_ss = TaxFormObj.getValue("F1040", "01z","02b","03b","04b","05b","07","08");
 		}
 		if (tax_exempt_int === undefined) {
-			tax_exempt_int = TaxForms.getValue("F1040", "02a");
+			tax_exempt_int = TaxFormObj.getValue("F1040", "02a");
 		}
 		if (student_loan_int === undefined) {
-			student_loan_int = TaxForms.getValue("F1040S1", "21");
+			student_loan_int = TaxFormObj.getValue("F1040S1", "21");
 		}
 		if (adjustments === undefined) {
-			adjustments = TaxForms.getValue("F1040", "10");
+			adjustments = TaxFormObj.getValue("F1040", "10");
 		}
 		if (lived_with_spouse === undefined) {
 			lived_with_spouse = tp.lived_with_spouse;

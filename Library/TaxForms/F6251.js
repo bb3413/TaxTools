@@ -4,7 +4,7 @@
 //
 import { Debug }	from "../Classes/Debug.js";
 import { TaxForm }	from "../Classes/TaxForm.js";
-import { TaxForms }	from "../Classes/TaxForms.js";
+import { TaxFormObj }	from "../Classes/TaxFormObj.js";
 import { Line }		from "../Classes/Line.js";
 import { TaxTable }	from "../Classes/TaxTable.js";
 import { Taxpayer }	from "../Classes/Taxpayer.js";
@@ -94,17 +94,17 @@ export class F6251 extends TaxForm {
 		const tp = Taxpayer.getTaxpayer();
 
 		// Input values
-		const qualified_dividends	= TaxForms.getValue("F1040",	"03a");
-		const capital_gains			= TaxForms.getValue("F1040",	"07a");
-		const agi					= TaxForms.getValue("F1040",	"11b");
-		const qbi_deduction			= TaxForms.getValue("F1040",	"13a");
-		const total_deductions		= TaxForms.getValue("F1040",	"14");
-		const taxable_income		= TaxForms.getValue("F1040",	"15");
-		const income_tax			= TaxForms.getValue("F1040",	"16");
-		const taxable_refund		= TaxForms.getValue("F1040S1",	"01");
-		const senior_deduction		= TaxForms.getValue("F1040S1A","37");
-		const itemized_deductions	= TaxForms.getValue("F1040SA",	"17");
-		const taxes_paid_deduction	= TaxForms.getValue("F1040SA",	"07");
+		const qualified_dividends	= TaxFormObj.getValue("F1040",	"03a");
+		const capital_gains			= TaxFormObj.getValue("F1040",	"07a");
+		const agi					= TaxFormObj.getValue("F1040",	"11b");
+		const qbi_deduction			= TaxFormObj.getValue("F1040",	"13a");
+		const total_deductions		= TaxFormObj.getValue("F1040",	"14");
+		const taxable_income		= TaxFormObj.getValue("F1040",	"15");
+		const income_tax			= TaxFormObj.getValue("F1040",	"16");
+		const taxable_refund		= TaxFormObj.getValue("F1040S1",	"01");
+		const senior_deduction		= TaxFormObj.getValue("F1040S1A","37");
+		const itemized_deductions	= TaxFormObj.getValue("F1040SA",	"17");
+		const taxes_paid_deduction	= TaxFormObj.getValue("F1040SA",	"07");
 		const standard_deduction	= tt.getStandardDeduction(
 										tp.filing_status,
 										tp.taxpayers_age,		tp.spouses_age,

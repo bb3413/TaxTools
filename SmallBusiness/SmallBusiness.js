@@ -2,7 +2,7 @@
 import { Dates }		from "../Library/Classes/Dates.js";
 import { Debug }		from "../Library/Classes/Debug.js";
 import { HTML }			from "../Library/Classes/HTML.js";
-import { TaxForms }		from "../Library/Classes/TaxForms.js";
+import { TaxFormObj }		from "../Library/Classes/TaxFormObj.js";
 import { Taxpayer }		from "../Library/Classes/Taxpayer.js";
 import { TaxTable }		from "../Library/Classes/TaxTable.js";
 
@@ -15,7 +15,7 @@ function changeHandler(event) {
 		// Reset static (global) variables to erase information from a previous calculation.
 		HTML.putElementValue("error-message-output", "");
 		Debug.reset();
-		TaxForms.reset();
+		TaxFormObj.reset();
 		Taxpayer.reset();
 
 		const inputs	= getInputs();								// Get inputs from the web page
@@ -81,8 +81,8 @@ function getInputs() {
 
 function mapInputValues(inputs) {
 	const tt		= TaxTable.getTaxTable();
-	const f1040SC	= TaxForms.createForm("F1040SC");
-	const f7206		= TaxForms.createForm("F7206");	// Self-employment Health Insurance Deduction
+	const f1040SC	= TaxFormObj.createForm("F1040SC");
+	const f7206		= TaxFormObj.createForm("F7206");	// Self-employment Health Insurance Deduction
 
 	// Income
 	f1040SC.lines["01"].user_value	= inputs.sales;
@@ -125,16 +125,16 @@ function putOutputs(inputs) {
 	// Get the information we are interested in and write them to the web page.
 	//
 	const retirement_contributions	= 0;
-	const net_profit				= TaxForms.getValue("F1040SC",	"31");
-	const se_tax					= TaxForms.getValue("F1040SSE", "12");
-	const sehi_adjustment			= TaxForms.getValue("F7206", "14");
+	const net_profit				= TaxFormObj.getValue("F1040SC",	"31");
+	const se_tax					= TaxFormObj.getValue("F1040SSE", "12");
+	const sehi_adjustment			= TaxFormObj.getValue("F7206", "14");
 	const qbi_deduction				= Math.round(Math.max(0, net_profit -
 										(se_tax / 2) -
 										retirement_contributions -
 										sehi_adjustment) * 0.20);
 
-	HTML.putUserOutput("GrossProfit",					TaxForms.getValue("F1040SC", "05"));
-	HTML.putUserOutput("GrossIncome",					TaxForms.getValue("F1040SC", "07"));
+	HTML.putUserOutput("GrossProfit",					TaxFormObj.getValue("F1040SC", "05"));
+	HTML.putUserOutput("GrossIncome",					TaxFormObj.getValue("F1040SC", "07"));
 	HTML.putUserOutput("NetProfit",						net_profit);
 	HTML.putUserOutput("SelfEmploymentTax",				se_tax);
 	HTML.putUserOutput("QBI_Deduction",					qbi_deduction);
@@ -144,7 +144,7 @@ function putOutputs(inputs) {
 	HTML.putUserOutput("SEHI_Adjustment",				sehi_adjustment);
 	HTML.putUserOutput("MedicalDeduction",				Math.max(0, inputs.medical_insurance - sehi_adjustment));
 
-	HTML.putUserOutput("TotalExpenses",					TaxForms.getValue("F1040SC", "28"));
+	HTML.putUserOutput("TotalExpenses",					TaxFormObj.getValue("F1040SC", "28"));
 }
 
 document.addEventListener("DOMContentLoaded", () => {

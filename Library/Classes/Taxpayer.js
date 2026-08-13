@@ -7,7 +7,7 @@ let taxpayer = undefined;		// Global variable.
 
 function getUserInput(element_id, default_value) {
 	// In some tools the element may not exist and HTML.getUserInput fails in strict
-	// mode if element does not eixt.
+	// mode if element does not eixt. This function ignores that error.
 	if (document.getElementById(element_id)) {
 		return HTML.getUserInput(element_id, default_value);
 	} else {
@@ -30,7 +30,6 @@ function printLine(output, label, value) {
 }
 
 export class Taxpayer {
-	
 	//
 	// ---------------- Static Methods ----------------
 	//
@@ -285,27 +284,29 @@ export class Taxpayer {
 		//
 		// Put the taxpayer information on the output form 1040.
 		//
-		HTML.putUserOutput("f1040-filing-status",		printFilingStatus(this.filing_status));
-		HTML.putUserOutput("f1040-taxpayers-name",		this.taxpayers_name);
-		HTML.putUserOutput("f1040-street-address",		this.street_address);
+		HTML.putUserOutput("f1040-filing-status",		printFilingStatus(this.filing_status), "text");
+		HTML.putUserOutput("f1040-taxpayers-name",		this.taxpayers_name, "text");
+		HTML.putUserOutput("f1040-street-address",		this.street_address, "text");
 		if (this.city) {
-			HTML.putUserOutput("f1040-city-state-zip",	`${this.city}, CA ${this.zip_code}`);
+			HTML.putUserOutput("f1040-city-state-zip",	`${this.city}, CA ${this.zip_code}`, "text");
 		} else {
-			HTML.putUserOutput("f1040-city-state-zip",	"");
+			HTML.putUserOutput("f1040-city-state-zip",	"", "text");
 		}
 
 		if (this.taxpayers_birthday) {
-			HTML.putUserOutput("f1040-taxpayers-birthday",	`${this.taxpayers_birthday} (Age ${this.taxpayers_age})`);
+			HTML.putUserOutput("f1040-taxpayers-birthday",
+				`${this.taxpayers_birthday} (Age ${this.taxpayers_age})`, "text");
 		} else {
-			HTML.putUserOutput("f1040-taxpayers-birthday", "");
+			HTML.putUserOutput("f1040-taxpayers-birthday", "", "text");
 		}
 		if (this.spouses_birthday) {
-			HTML.putUserOutput("f1040-spouses-birthday",	`${this.spouses_birthday} (Age ${this.spouses_age})`);
+			HTML.putUserOutput("f1040-spouses-birthday",
+				`${this.spouses_birthday} (Age ${this.spouses_age})`, "text");
 		} else {
-			HTML.putUserOutput("f1040-spouses-birthday", "");
+			HTML.putUserOutput("f1040-spouses-birthday", "", "text");
 		}
-		HTML.putUserOutput("f1040-taxpayer-is-blind",	this.is_taxpayer_blind ? "X" : "");
-		HTML.putUserOutput("f1040-spouse-is-blind",		this.is_spouse_blind ? "X" : "");
+		HTML.putUserOutput("f1040-taxpayer-is-blind",	this.is_taxpayer_blind ? "X" : "", "text");
+		HTML.putUserOutput("f1040-spouse-is-blind",		this.is_spouse_blind ? "X" : "", "text");
 	}
 
 	toPrint() {

@@ -1,16 +1,16 @@
 
 import { Debug }	from "../Classes/Debug.js";
 import { TaxForm }	from "../Classes/TaxForm.js";
-import { TaxForms }	from "../Classes/TaxForms.js";
+import { TaxFormObj }	from "../Classes/TaxFormObj.js";
 import { Line }		from "../Classes/Line.js";
 import { TaxTable }	from "../Classes/TaxTable.js";
 import { Taxpayer }	from "../Classes/Taxpayer.js";
 
 const HTML_FORM = `
-		<details class="taxform-container" id="template-details">
+		<details class="taxform-details" id="template-details">
 			<summary class="taxform-title">Taxform Template</summary>
-			<div>&nbsp;</div>
 			<div class="taxform-container">
+				<div>&nbsp;</div>
 				<div class="taxform-lno-desc-lno-value">
 					<p class="lineno">01a</p>
 					<p class="description">Xxxxxxxxxxxxxxxxxxxxxx</p>
@@ -34,8 +34,8 @@ const HTML_FORM = `
 					<p class="lineno">01b</p>
 					<p class="value" id="01b">0</p>
 				</div>
+				<div>&nbsp;</div>
 			</div>
-			<div>&nbsp;</div>
 		</details>
 `;
 

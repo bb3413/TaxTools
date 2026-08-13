@@ -19,13 +19,9 @@
 		htmldoc.remove();
 	}
 */
-
-let instance = undefined;
 						
 export class HTMLBuild {
 	constructor() {
-		instance = this;
-
 		this._htmldoc	= [];
 		this._id		= "";
 	}
@@ -53,20 +49,6 @@ export class HTMLBuild {
 
 	set id(str) {
 		this._id = str;
-	}
-
-	//
-	// Static methods
-	//
-	static getDoc() {
-		return instance;
-	}
-
-	static reset() {
-		if (instance) {
-			instance.remove();
-		}
-		instance = undefined;
 	}
 
 	//
@@ -121,5 +103,9 @@ export class HTMLBuild {
 		}
 		const line = `<${element} ${css_str}>${str}`;
 		this.htmldoc.push(line);
+	}
+
+	toString() {
+		return this.htmldoc.join("\n");
 	}
 }

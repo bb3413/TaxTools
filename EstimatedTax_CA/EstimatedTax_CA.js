@@ -3,7 +3,7 @@ import { Dates }		from "../Library/Classes/Dates.js";
 import { Debug }		from "../Library/Classes/Debug.js";
 import { File }			from "../Library/Classes/File.js";
 import { HTML }			from "../Library/Classes/HTML.js";
-import { TaxForms }		from "../Library/Classes/TaxForms.js";
+import { TaxFormObj }		from "../Library/Classes/TaxFormObj.js";
 import { Taxpayer }		from "../Library/Classes/Taxpayer.js";
 import { TaxTable }		from "../Library/Classes/TaxTable.js";
 
@@ -21,14 +21,14 @@ function changeHandler(event) {
 		// Reset static (global) variables to erase information from a previous calculation.
 		HTML.putElementValue("error-message-output", "");
 		Debug.reset();
-		TaxForms.reset();
+		TaxFormObj.reset();
 		Taxpayer.reset();
 
 		inputs			= getInputs();								// Get inputs from the web page
 		const tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
 		const taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
 		mapInputValues(inputs);										// Map input values to tax forms
-		TaxForms.getForm("F540").calculate();							// Calculate the tax forms
+		TaxFormObj.getForm("F540").calculate();							// Calculate the tax forms
 		putOutputs(taxpayer);										// Put results on web page
 		Debug.turnOn();												// Put debug info on web page if enabled
 	} catch (err) {
@@ -137,8 +137,8 @@ function getInputs() {
 function mapInputValues(inputs) {
 	const tt		= TaxTable.getTaxTable();
 	const tp		= Taxpayer.getTaxpayer();
-	const f540		= TaxForms.createForm("F540");
-	const f540CA	= TaxForms.createForm("F540CA");
+	const f540		= TaxFormObj.createForm("F540");
+	const f540CA	= TaxFormObj.createForm("F540CA");
 
 	f540.lines["013"].user_value	= inputs.federal_agi);
 
@@ -205,10 +205,10 @@ function putOutputs(taxpayer) {
 	// Get the information we are interested in and write them to the web page.
 	//
 	const todays_date			= new Date().toLocaleDateString();
-	const payments_and_credits	= TaxForms.getValue("F540", "078");
-	const estimated_payments	= TaxForms.getValue("F540", "072");
-	const refund				= TaxForms.getValue("F540", "097");
-	let amount_due				= TaxForms.getValue("F540", "100");
+	const payments_and_credits	= TaxFormObj.getValue("F540", "078");
+	const estimated_payments	= TaxFormObj.getValue("F540", "072");
+	const refund				= TaxFormObj.getValue("F540", "097");
+	let amount_due				= TaxFormObj.getValue("F540", "100");
 
 	amount_due					= (amount_due !== 0) ? -amount_due : refund;
 	const estimated_tax_due		= Math.max(0, payments_and_credits - estimated_payments - amount_due);
@@ -218,18 +218,18 @@ function putOutputs(taxpayer) {
 	HTML.putUserOutput("SpousesAge",			taxpayer.spouses_age);
 
 	// Estimated Tax
-	HTML.putUserOutput("Exemptions",			TaxForms.getValue("F540", "011"));
-	HTML.putUserOutput("Subtractions",			TaxForms.getValue("F540", "014"));
-	HTML.putUserOutput("Additions",				TaxForms.getValue("F540", "016"));
-	HTML.putUserOutput("Deductions",			TaxForms.getValue("F540", "018"));
-	HTML.putUserOutput("NonrefundableCredits",	TaxForms.getValue("F540", "047"));
-	HTML.putUserOutput("RefundableCredits",		TaxForms.getValue("F540", "074", "075", "076", "077"));
-	HTML.putUserOutput("OtherTaxes",			TaxForms.getValue("F540", "061","062","063"));
-	HTML.putUserOutput("Payments",				TaxForms.getValue("F540", "078"));
-	HTML.putUserOutput("StateAGI",				TaxForms.getValue("F540", "017"));
-	HTML.putUserOutput("TaxableIncome",			TaxForms.getValue("F540", "019"));
-	HTML.putUserOutput("IncomeTax",				TaxForms.getValue("F540", "031"));
-	HTML.putUserOutput("TotalTax",				TaxForms.getValue("F540", "035"));
+	HTML.putUserOutput("Exemptions",			TaxFormObj.getValue("F540", "011"));
+	HTML.putUserOutput("Subtractions",			TaxFormObj.getValue("F540", "014"));
+	HTML.putUserOutput("Additions",				TaxFormObj.getValue("F540", "016"));
+	HTML.putUserOutput("Deductions",			TaxFormObj.getValue("F540", "018"));
+	HTML.putUserOutput("NonrefundableCredits",	TaxFormObj.getValue("F540", "047"));
+	HTML.putUserOutput("RefundableCredits",		TaxFormObj.getValue("F540", "074", "075", "076", "077"));
+	HTML.putUserOutput("OtherTaxes",			TaxFormObj.getValue("F540", "061","062","063"));
+	HTML.putUserOutput("Payments",				TaxFormObj.getValue("F540", "078"));
+	HTML.putUserOutput("StateAGI",				TaxFormObj.getValue("F540", "017"));
+	HTML.putUserOutput("TaxableIncome",			TaxFormObj.getValue("F540", "019"));
+	HTML.putUserOutput("IncomeTax",				TaxFormObj.getValue("F540", "031"));
+	HTML.putUserOutput("TotalTax",				TaxFormObj.getValue("F540", "035"));
 	HTML.putUserOutput("RefundAmountDue",		amount_due);
 	HTML.putUserOutput("AprilPayment",			Math.round(estimated_tax_due * 0.30));
 	HTML.putUserOutput("JunePayment",			Math.round(estimated_tax_due * 0.40));

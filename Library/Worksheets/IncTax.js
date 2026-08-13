@@ -5,7 +5,7 @@
 //
 import { Debug }	from "../Classes/Debug.js";
 import { TaxForm }	from "../Classes/TaxForm.js";
-import { TaxForms }	from "../Classes/TaxForms.js";
+import { TaxFormObj }	from "../Classes/TaxFormObj.js";
 import { Line }		from "../Classes/Line.js";
 import { TaxTable }	from "../Classes/TaxTable.js";
 import { Taxpayer }	from "../Classes/Taxpayer.js";
@@ -54,9 +54,9 @@ export class IncTax extends TaxForm {
 		const tt = TaxTable.getTaxTable();
 		const tp = Taxpayer.getTaxpayer();
 
-		this.lines["01"].value	= TaxForms.getValue("F1040",	"15");		// Taxable Income
-		this.lines["02"].value	= TaxForms.getValue("F1040",	"03a");		// Qualified Dividends
-		this.lines["03"].value	= TaxForms.getValue("F1040",	"07");		// Capital Gains
+		this.lines["01"].value	= TaxFormObj.getValue("F1040",	"15");		// Taxable Income
+		this.lines["02"].value	= TaxFormObj.getValue("F1040",	"03a");		// Qualified Dividends
+		this.lines["03"].value	= TaxFormObj.getValue("F1040",	"07");		// Capital Gains
 		this.lines["04"].value	= this.add("02", "03");					// Total Capital Gains
 		this.lines["05"].value	= Math.max(0, this.subtract("01", "04"));	// Total Ordinary Income
 		this.lines["06"].value	= tt.get_CapGains_15_Start(tp.filing_status);	// Start of 15% CG Bracket

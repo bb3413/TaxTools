@@ -3,11 +3,12 @@ import { Dates }			from "../Library/Classes/Dates.js";
 import { Debug }			from "../Library/Classes/Debug.js";
 import { File }				from "../Library/Classes/File.js";
 import { HTML }				from "../Library/Classes/HTML.js";
-import { TaxFormPages }		from "../Library/Classes/TaxFormPages.js";
-import { TaxForms }			from "../Library/Classes/TaxForms.js";
+import { TaxFormWeb }		from "../Library/Classes/TaxFormWeb.js";
+import { TaxFormObj }		from "../Library/Classes/TaxFormObj.js";
 import { Taxpayer }			from "../Library/Classes/Taxpayer.js";
 import { TaxTable }			from "../Library/Classes/TaxTable.js";
-	
+
+import { F1040 }			from "../Library/TaxForms/F1040.js";
 import { W2 }				from "../Library/TaxForms/W2.js";
 
 // Save information about which tax forms have been added to the web page.
@@ -22,8 +23,8 @@ function addForm(event) {
 	let form_id	= "";
 	let html	= "";
 	
-	const form_name = HTML.getElementValue("add-form-button");
-	HTML.putElementValue("add-form-button", "");	// Reselect the "Add Form" entry.
+	const form_name = HTML.getElementValue("add-form-button");	// Get selected form name.
+	HTML.putElementValue("add-form-button", "");	// Change selection back to the "Add Form" entry.
 	
 	switch (form_name) {
 		case "":
@@ -31,7 +32,7 @@ function addForm(event) {
 
 		case "W-2":
 			[ form_id, html ] = W2.getHTML(next_w2++);
-			TaxFormPages.addInputForm(form_id, html);
+			TaxFormWeb.addInputForm(form_id, html);
 			break;
 	}
 }
@@ -45,7 +46,7 @@ function calculateHandler(event) {
 		TaxTable.getTaxTable(HTML.getUserInput("tax-year"));	// Initialize tax tables
 		Taxpayer.initializeTaxpayer();							// Create and initialize taxpayer
 		createTaxForms();										// Create tax forms from user input
-		const f1040 = TaxForms.getForm("F1040") || TaxForms.createForm("F1040");
+		const f1040 = TaxFormObj.getForm("F1040") || TaxFormObj.createForm("F1040");
 		f1040.calculate();
 		putOutputs();
 		Debug.turnOn();
@@ -57,17 +58,19 @@ function calculateHandler(event) {
 
 function changeHandler(event) {
 	//
-	// This function is called when any of the input fields are changed.
+	// This function is called when any of the input fields are changed. It will reset the
+	// information from a previous calculation and it may need to change what is shown on the
+	// web page if the filing status changed.
 	//
 
 	// Reset debugging and error information.
 	Debug.reset();
 	Debug.set_strict();
-	HTML.putElementValue("error-message-output", "");
+	HTML.putElementValue("error-message-output", "");	// Clear error message.
+	HTML.hideElement("tax-return-container");
 
-	// Reset tax return information.
-	TaxForms.dataChanged();	// Reset forms so they will be recalculated.
-	TaxFormPages.removeOutputForms();
+	TaxFormObj.dataChanged();				// Reset forms so they will be recalculated.
+	TaxFormWeb.removeOutputForms();	// Remove forms from previous calculation.
 
 	// See if filing status changed.
 	const filing_status = HTML.getUserInput("filing-status", "text").toUpperCase();
@@ -84,9 +87,10 @@ function createTaxForms() {
 	// copy the information from the tax forms on the web page to objects instances of the
 	// tax form.
 	//
-	for (let formname of TaxFormPages.getInputForms()) {
-		let [ classname, index ] = TaxFormPages.parseFormName(formname);
-		window[classname].getUserInput(index);
+	for (let formname of TaxFormWeb.getInputForms()) {
+		let [ classname, index ] = TaxFormWeb.parseFormName(formname);
+		// window[classname].getUserInput(index);
+		classname.getUserInput(index);
 	}
 }
 
@@ -94,15 +98,24 @@ function putOutputs() {
 	//
 	//	Print the tax forms that were created.
 	//
-	const taxpayer	= Taxpayer.getTaxpayer();
-	const f1040		= TaxForms.getForm("F1040");
+	let form_id	= "";
+	let html	= "";
 
 	// Close the input forms so they do not distract from the tax return information.
 	HTML.closeAllDetails();
 
+	const taxpayer	= Taxpayer.getTaxpayer();
+	const f1040		= TaxFormObj.getForm("F1040");
+
+	// Create the 1040 web page.
+	[ form_id, html ] = F1040.getHTML();
+	TaxFormWeb.addOutputForm(form_id, html);
+
+	// Write information to the 1040 web page.
 	taxpayer.putTaxpayerInformation();
 	f1040.put1040Information();
-	const elements = document.querySelectorAll("tax-return-container");
+
+	// Show the tax return forms
 	HTML.showElement("tax-return-container");
 	document.getElementById("tax-return-container").scrollIntoView({behavior: 'smooth', block: 'start'});
 }
@@ -149,7 +162,7 @@ function saveUserData(event) {
 	// This function is called when the user wants to save the input fields to a file.
 	//
 	const taxpayer = Taxpayer.getTaxpayer();
-	const taxforms = TaxForms.getUserSuppliedValues()
+	const taxforms = TaxFormObj.getUserSuppliedValues()
 
 	const data = {
 		"tool_name":	HTML.getUserInput("title", "text"),

@@ -5,7 +5,7 @@
 //
 import { Debug }	from "../Classes/Debug.js";
 import { TaxForm }	from "../Classes/TaxForm.js";
-import { TaxForms }	from "../Classes/TaxForms.js";
+import { TaxFormObj }	from "../Classes/TaxFormObj.js";
 import { Line }		from "../Classes/Line.js";
 import { TaxTable }	from "../Classes/TaxTable.js";
 import { Taxpayer }	from "../Classes/Taxpayer.js";
@@ -40,16 +40,16 @@ export class CA_HiIncDeductions extends TaxForm {
 		const tt = TaxTable.getTaxTable();
 		const tp = Taxpayer.getTaxpayer();
 
-		this.lines["01"].value	= TaxForms.getValue("F540CA", "D-28");		// Total Deductions
-		this.lines["02"].value	= TaxForms.getValue("F1040SA", "04") +		// Medical Expenses
-									TaxForms.getValue("F1040SA", "09") +	// Interest
-									TaxForms.getValue("F1040SA", "15");	// Casualy and Theft
+		this.lines["01"].value	= TaxFormObj.getValue("F540CA", "D-28");		// Total Deductions
+		this.lines["02"].value	= TaxFormObj.getValue("F1040SA", "04") +		// Medical Expenses
+									TaxFormObj.getValue("F1040SA", "09") +	// Interest
+									TaxFormObj.getValue("F1040SA", "15");	// Casualy and Theft
 		this.lines["03"].value	= this.subtract("01", "02");			// Deductions - line 2
 		if (this.line("03") <= 0) {
 			this.lines["Deductions"].value	= this.line("01");
 		} else {
 			this.lines["04"].value	= Math.round(this.line("03") * 0.80);	// 80%
-			this.lines["05"].value	= TaxForms.getValue("F1040", "11b");		// Federal AGI
+			this.lines["05"].value	= TaxFormObj.getValue("F1040", "11b");		// Federal AGI
 			this.lines["06"].value	= tt.getTaxValue("CA_HiIncPhaseout", tp.filing_status);
 			this.lines["07"].value	= this.subtract("05", "06");			// AGI - Phaseout
 			if (this.line("07") <= 0) {

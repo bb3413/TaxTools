@@ -8,7 +8,7 @@
 //
 import { Debug }	from "../Classes/Debug.js";
 import { TaxForm }	from "../Classes/TaxForm.js";
-import { TaxForms }	from "../Classes/TaxForms.js";
+import { TaxFormObj }	from "../Classes/TaxFormObj.js";
 import { Line }		from "../Classes/Line.js";
 import { TaxTable }	from "../Classes/TaxTable.js";
 import { Taxpayer }	from "../Classes/Taxpayer.js";
@@ -57,7 +57,7 @@ export class Refund extends TaxForm {
 		this.lines["sched_a_5e"].value			= 0;	// Previous Tax Year, Amount Limited by SALT Cap
 		this.lines["itemized_deductions"].value	= 0;	// Previous Tax Year, Itemized Deductions
 		this.lines["refund"].value				= Math.min(	// State Tax Refund
-													TaxForms.getValue("F1099G", "02"),
+													TaxFormObj.getValue("F1099G", "02"),
 													this.line("sched_a_5d"));
 		// Outputs
 		this.lines["taxable_amount"].value		= 0;

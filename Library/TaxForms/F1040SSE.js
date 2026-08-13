@@ -5,7 +5,7 @@
 //
 import { Debug }	from "../Classes/Debug.js";
 import { TaxForm }	from "../Classes/TaxForm.js";
-import { TaxForms }	from "../Classes/TaxForms.js";
+import { TaxFormObj }	from "../Classes/TaxFormObj.js";
 import { Line }		from "../Classes/Line.js";
 
 export class F1040SSE extends TaxForm {
@@ -47,7 +47,7 @@ export class F1040SSE extends TaxForm {
 
 		this.lines["01a"].value		= 0;							// Ignore - for use with farm income
 		this.lines["01b"].value		= 0;							// Ignore - for use with farm income
-		this.lines["02"].value		= TaxForms.getValue("F1040SC", "31");	// Net profit from business
+		this.lines["02"].value		= TaxFormObj.getValue("F1040SC", "31");	// Net profit from business
 		this.lines["03"].value		= this.add("01a", "01b", "02");	// Total self-imployment income
 		this.lines["04a"].value		= Math.round((this.line("03") > 0) ? this.line("03") * 0.9235 : this.line("03"));	// 92.35%
 		this.lines["04b"].value		= 0;							// Ignore
@@ -62,8 +62,8 @@ export class F1040SSE extends TaxForm {
 		}
 		this.lines["06"].value		= this.add("04c", "05b");
 		this.lines["07"].value		= 176100;						// Maximum amount of wages subject to SS tax
-		this.lines["08a"].value		= TaxForms.getValue("W2", "03") +
-										TaxForms.getValue("W2", "07");	// Boxes 3 and 7 on W-2
+		this.lines["08a"].value		= TaxFormObj.getValue("W2", "03") +
+										TaxFormObj.getValue("W2", "07");	// Boxes 3 and 7 on W-2
 		this.lines["08b"].value		= 0;							// Unreported tips subject to ss tax
 		this.lines["08c"].value		= 0;							// Wages subject to ss tax
 		this.lines["08d"].value		= this.add("08a", "08b", "08c");// Wages outside business subject to SS tax

@@ -3,7 +3,7 @@ import { Dates }		from "../Library/Classes/Dates.js";
 import { Debug }		from "../Library/Classes/Debug.js";
 import { HTML }			from "../Library/Classes/HTML.js";
 import { Str }			from "../Library/Classes/Str.js";
-import { TaxForms }		from "../Library/Classes/TaxForms.js";
+import { TaxFormObj }		from "../Library/Classes/TaxFormObj.js";
 import { Taxpayer }		from "../Library/Classes/Taxpayer.js";
 import { TaxTable }		from "../Library/Classes/TaxTable.js";
 
@@ -18,14 +18,14 @@ function changeHandler(event) {
 		// Reset static (global) variables to erase information from a previous calculation.
 		HTML.putElementValue("error-message-output", "");
 		Debug.reset();
-		TaxForms.reset();
+		TaxFormObj.reset();
 		Taxpayer.reset();
 
 		const inputs	= getInputs();								// Get inputs from the web page
 		const tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
 		const taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
 		mapInputValues(inputs);										// Map input values to tax forms
-		TaxForms.getForm("F1040S1A").calculate();						// Calculate the tax forms
+		TaxFormObj.getForm("F1040S1A").calculate();						// Calculate the tax forms
 		putOutputs(taxpayer);										// Put results on web page
 		Debug.turnOn();												// Put debug info on web page if enabled
 	} catch (err) {
@@ -89,7 +89,7 @@ function getInputs() {
 
 function mapInputValues(inputs) {
 
-	const f1040S1A = TaxForms.createForm("F1040S1A");
+	const f1040S1A = TaxFormObj.createForm("F1040S1A");
 
 	f1040S1A.lines["01"].user_value = inputs.adjusted_gross_income;
 }
@@ -115,7 +115,7 @@ function putOutputs(taxpayer) {
 
 	HTML.putUserOutput("TaxpayersAge",			taxpayer.taxpayers_age);
 	HTML.putUserOutput("SpousesAge",			taxpayer.spouses_age);
-	HTML.putUserOutput("SeniorDeduction", 		TaxForms.getValue("F1040S1A", "37"));
+	HTML.putUserOutput("SeniorDeduction", 		TaxFormObj.getValue("F1040S1A", "37"));
 }
 
 document.addEventListener("DOMContentLoaded", () => {

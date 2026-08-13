@@ -1,9 +1,9 @@
 
 //
-// This module can be used to add tax forms from the current web page.
+// This module manages the tax forms that are displayed on the web page.
 //
-
-import { HTML } from "../Classes/HTML.js";
+import { ClassByName }	from "../Classes/ClassByName.js";
+import { HTML }			from "../Classes/HTML.js";
 
 // These arrays contains the names, in order, of the container element for the
 // tax forms that have been added to the web page
@@ -83,7 +83,7 @@ function addForm(taxform_id, taxform, after_id) {
 		document.getElementById(taxform_id).scrollIntoView({behavior: 'smooth', block: 'start'});
 }
 
-export class TaxFormPages {
+export class TaxFormWeb {
 	static addInputForm(taxform_id, taxform) {
 		const after_id = insertInputForm(taxform_id, input_forms);
 		addForm(taxform_id, taxform, after_id);
@@ -100,7 +100,7 @@ export class TaxFormPages {
 
 	static parseFormName(name) {
 		const parts = name.split("-");
-		const classname = TaxForms.getClass(parts[0]);
+		const classname = ClassByName.getClass(parts[0]);
 		if (parts.length === 2) {
 			return [ classname, -1 ];
 		} else {

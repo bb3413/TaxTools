@@ -70,11 +70,23 @@ export class TaxForm {
 
 	toHTML() {
 		const doc = new HTMLBuild();
-		doc.startElement("div");
-		doc.addElement("p", "", "This is the first dynamically added line.");
-		doc.addElement("p", "", "This is the second dynamically added line.");
-		doc.stopElement("div");
-		doc.putAfter("TaxReturnContainer");
+		doc.startElement("details", "taxform-details");		// Start of details
+			doc.addElement("summary", "taxform-title", this.formname);
+			doc.startElement("div", "taxform-container");	// Start of taxform-contianer
+				doc.addElement("div", "", "&nbsp;");		// Blank line
+				for (const lineno of Object.keys(this.lines).sort()) {
+					let line = this.lines[lineno];
+					doc.startElement("div", "taxform-lno-desc-value");	// Start of line
+						doc.addElement("p", "lineno",		lineno);
+						doc.addElement("p", "description",	line.label);
+						doc.addElement("p", "value",		line.value);
+					doc.stopElement("div");					// End of line
+				}
+				doc.addElement("div", "", "&nbsp;");		// Blank line
+			doc.stopElement("div");							// End of taxform-contianer
+		doc.stopElement("div");								// End of details
+		
+		return doc.toString();
 	}
 
 	toPrint() {

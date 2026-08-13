@@ -5,15 +5,15 @@ import { Line }		from "../Classes/Line.js";
 import { Objects }	from "../Classes/Objects.js";
 import { Str }		from "../Classes/Str.js";
 import { TaxForm }	from "../Classes/TaxForm.js";
-import { TaxForms }	from "../Classes/TaxForms.js";
+import { TaxFormObj }	from "../Classes/TaxFormObj.js";
 import { TaxTable }	from "../Classes/TaxTable.js";
 import { Taxpayer }	from "../Classes/Taxpayer.js";
 
 const HTML_FORM = `
-		<details class="taxform-container" id="w2-XX-details">
+		<details class="taxform-details" id="w2-XX-details">
 			<summary class="taxform-title">#XX&nbsp;&nbsp;W-2 - Wage and Tax Statement</summary>
-			<div>&nbsp;</div>
-			<div>
+			<div class="taxform-container">
+				<div>&nbsp;</div>
 				<div class="taxform-lno-desc-value trigger" tooltipid="#w2-XX-01-tt">
 					<p>Box 1</p>
 					<p>Wages, tips, other compensation</p>
@@ -157,8 +157,8 @@ const HTML_FORM = `
 					<p>Locality name</p>
 					<input class="input-field" type="text" id="w2-XX-20" size="10" placeholder="" />
 				</div>
+				<div>&nbsp;</div>
 			</div>
-			<div>&nbsp;</div>
 		</details>
 `;
 
@@ -223,7 +223,7 @@ export class W2 extends TaxForm {
 			return;
 		}
 
-		const w2 = TaxForms.createForm("W2");
+		const w2 = TaxFormObj.createForm("W2");
 
 		w2.lines["01"  ].user_value	= inputs["01"];
 		w2.lines["02"  ].user_value	= inputs["02"];

@@ -2,7 +2,7 @@
 import { Dates }		from "../Library/Classes/Dates.js";
 import { Debug }		from "../Library/Classes/Debug.js";
 import { HTML }			from "../Library/Classes/HTML.js";
-import { TaxForms }		from "../Library/Classes/TaxForms.js";
+import { TaxFormObj }		from "../Library/Classes/TaxFormObj.js";
 import { Taxpayer }		from "../Library/Classes/Taxpayer.js";
 import { TaxTable }		from "../Library/Classes/TaxTable.js";
 
@@ -29,8 +29,8 @@ function calculateTaxableAmount(inputs) {
 		outputs.explanation			= "Sales tax is greater that state income tax; sales tax could have " +
 										"used instead of state income tax for the same or better result.";
 	} else {
-		outputs.taxable_amount	= TaxForms.getValue("Refund",	"taxable_amount");
-		outputs.explanation		= TaxForms.getTextValue("Refund",	"explanation");
+		outputs.taxable_amount	= TaxFormObj.getValue("Refund",	"taxable_amount");
+		outputs.explanation		= TaxFormObj.getTextValue("Refund",	"explanation");
 	}
 
 	return outputs;
@@ -45,7 +45,7 @@ function changeHandler(event) {
 		// Reset static (global) variables to erase information from a previous calculation.
 		HTML.putElementValue("error-message-output", "");
 		Debug.reset();
-		TaxForms.reset();
+		TaxFormObj.reset();
 		Taxpayer.reset();
 
 		const inputs	= getInputs();								// Get inputs from the web page
@@ -108,7 +108,7 @@ function mapInputValues(inputs) {
 						inputs.prev_real_estate_taxes +
 						inputs.pev_personal_property_taxes;
 	const line_5e	= Math.min(line_5d, max_salt);
-	const refund	= TaxForms.createForm("Refund");
+	const refund	= TaxFormObj.createForm("Refund");
 	
 	refund.lines["refund"].user_value				= inputs.state_tax_refund;
 	refund.lines["sched_a_5d"].user_value			= line_5d;

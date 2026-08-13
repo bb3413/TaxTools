@@ -31,15 +31,15 @@
 		</h2>
 
 		<p>&nbsp;</p>
-		<p>This is a very simple tax calculation tool. There are a number of forms
+		<p>This is a simple income tax calculation tool. There are a number of forms
 		that resemble the forms you receive to report your tax information.
 		This is where you input your information. When you are finished entering
 		your tax information, press the Calculate button and the tool will calculate
-		your taxes and display the relevant tax forms. Click <a href="TaxProgram-Help.html">
+		your income tax and display the relevant tax forms. Click <a href="TaxProgram-Help.html">
 		this link</a> for more help with this tool.</p>
 
 		<p>You can use the Save and Restore buttons to save the information you have entered and 
-		restore it again.</p>
+		restore it again later.</p>
 
 		<div class="button-container flex-right">
 			<!-- Save Button -->
@@ -121,11 +121,14 @@
 
 		<!-- Display area for input tax forms. -->
 		<div id="insert-input-forms-here"></div>
-		<?php include "../Library/Classe/Taxpayer.html"; ?>
+		<?php include "../Library/Classes/Taxpayer.html"; ?>
 
 		<!-- Display area for output tax forms. -->
 		<p>&nbsp;</p>
-		<div id="insert-output-forms-here"></div>
+		<div id="tax-return-container">
+			<h2>Tax Return</h2>
+			<div id="insert-output-forms-here"></div>
+		</div>
 
 		<!-- Display area for error messages. -->
 		<div id="error-message-container">

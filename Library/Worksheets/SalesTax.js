@@ -5,7 +5,7 @@
 //
 import { Debug }	from "../Classes/Debug.js";
 import { TaxForm }	from "../Classes/TaxForm.js";
-import { TaxForms }	from "../Classes/TaxForms.js";
+import { TaxFormObj }	from "../Classes/TaxFormObj.js";
 import { Line }		from "../Classes/Line.js";
 import { Num }		from "../Classes/Num.js";
 import { TaxTable }	from "../Classes/TaxTable.js";
@@ -46,15 +46,15 @@ export class SalesTax extends TaxForm {
 		family_size = Num.limit(family_size, 1, 6);
 
 		const spendable_income =
-			TaxForms.getValue("F1040",	"01z") +	// wages
-			TaxForms.getValue("F1040",	"02a") +	// tax exempt interest
-			TaxForms.getValue("F1040",	"02b") +	// taxable interest
-			TaxForms.getValue("F1040",	"03a") +	// qualified dividends
-			TaxForms.getValue("F1040",	"03b") +	// ordinary dividends
-			TaxForms.getValue("F1040",	"04a") +	// retirement accounts
-			TaxForms.getValue("F1040",	"06a") +	// social security
-			TaxForms.getValue("F1040",	"07a") +	// capital gains
-			TaxForms.getValue("F1040",	"08");		// self employment income + other income
+			TaxFormObj.getValue("F1040",	"01z") +	// wages
+			TaxFormObj.getValue("F1040",	"02a") +	// tax exempt interest
+			TaxFormObj.getValue("F1040",	"02b") +	// taxable interest
+			TaxFormObj.getValue("F1040",	"03a") +	// qualified dividends
+			TaxFormObj.getValue("F1040",	"03b") +	// ordinary dividends
+			TaxFormObj.getValue("F1040",	"04a") +	// retirement accounts
+			TaxFormObj.getValue("F1040",	"06a") +	// social security
+			TaxFormObj.getValue("F1040",	"07a") +	// capital gains
+			TaxFormObj.getValue("F1040",	"08");		// self employment income + other income
 
 		const base_sales_tax	= tt.getTaxValue("CA_BaseSalesTax");
 		let local_sales_tax		= 0;

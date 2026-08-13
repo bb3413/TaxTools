@@ -2,17 +2,17 @@
 import { Dates }		from "../Library/Classes/Dates.js";
 import { Debug }		from "../Library/Classes/Debug.js";
 import { HTML }			from "../Library/Classes/HTML.js";
-import { TaxForms }		from "../Library/Classes/TaxForms.js";
+import { TaxFormObj }		from "../Library/Classes/TaxFormObj.js";
 import { Taxpayer }		from "../Library/Classes/Taxpayer.js";
 import { TaxTable }		from "../Library/Classes/TaxTable.js";
 
 function calculateTax(inputs) {
 	const outputs = {};
 
-	const ss_tax_0		= TaxForms.createForm("SSTax");
-	const ss_tax_alt	= TaxForms.createForm("SSTax");
-	const ss_tax_1		= TaxForms.createForm("SSTax");
-	const ss_tax_2		= TaxForms.createForm("SSTax")
+	const ss_tax_0		= TaxFormObj.createForm("SSTax");
+	const ss_tax_alt	= TaxFormObj.createForm("SSTax");
+	const ss_tax_1		= TaxFormObj.createForm("SSTax");
+	const ss_tax_2		= TaxFormObj.createForm("SSTax")
 
 	if (inputs.ss_received_0 < inputs.lump_sum_1 + inputs.lump_sum_2) {
 		throw new Error("Sum of lump sum payments cannot be greater that the total benefits received.");
@@ -83,7 +83,7 @@ function changeHandler(event) {
 		// Reset static (global) variables to erase information from a previous calculation.
 		HTML.putElementValue("error-message-output", "");
 		Debug.reset();
-		TaxForms.reset();
+		TaxFormObj.reset();
 		Taxpayer.reset();
 
 		const inputs	= getInputs();								// Get inputs from the web page

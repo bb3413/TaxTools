@@ -2,7 +2,7 @@
 import { Dates }			from "../Library/Classes/Dates.js";
 import { Debug }			from "../Library/Classes/Debug.js";
 import { HTML }				from "../Library/Classes/HTML.js";
-import { TaxForms }			from "../Library/Classes/TaxForms.js";
+import { TaxFormObj }			from "../Library/Classes/TaxFormObj.js";
 import { Taxpayer }			from "../Library/Classes/Taxpayer.js";
 import { TaxTable }			from "../Library/Classes/TaxTable.js";
 
@@ -15,7 +15,7 @@ function changeHandler(event) {
 		// Reset static (global) variables to erase information from a previous calculation.
 		HTML.putElementValue("error-message-output", "");
 		Debug.reset();
-		TaxForms.reset();
+		TaxFormObj.reset();
 		Taxpayer.reset();
 
 		const inputs = getInputs();									// Get inputs from the web page
@@ -98,10 +98,10 @@ function getInputs() {
 	return inputs;
 }
 function mapInputValues(inputs) {
-	const f1040		= TaxForms.createForm("F1040");
-	const f1040S1	= TaxForms.createForm("F1040S1");
-	const f1040SA	= TaxForms.createForm("F1040SA");
-	const f6251		= TaxForms.createForm("F6251");
+	const f1040		= TaxFormObj.createForm("F1040");
+	const f1040S1	= TaxFormObj.createForm("F1040S1");
+	const f1040SA	= TaxFormObj.createForm("F1040SA");
+	const f6251		= TaxFormObj.createForm("F6251");
 
 	f1040.lines["11b"].user_value	= inputs.agi;
 	f1040.lines["03a"].user_value	= inputs.qualified_dividends;
@@ -144,9 +144,9 @@ function putOutputs() {
 		HTML.hideElement("SpouseContainer");
 	}
 
-	HTML.putUserOutput("AMTIncome",		TaxForms.getValue("F6251", "04"));
-	HTML.putUserOutput("AMTExemption",	TaxForms.getValue("F6251", "05"));
-	HTML.putUserOutput("AMT",			TaxForms.getValue("F6251", "11"));
+	HTML.putUserOutput("AMTIncome",		TaxFormObj.getValue("F6251", "04"));
+	HTML.putUserOutput("AMTExemption",	TaxFormObj.getValue("F6251", "05"));
+	HTML.putUserOutput("AMT",			TaxFormObj.getValue("F6251", "11"));
 }
 
 document.addEventListener("DOMContentLoaded", () => {

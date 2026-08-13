@@ -1,8 +1,11 @@
 
-.taxform-container {
+.taxform-details {
 	font-size:				12px;
 	padding-left:			3px;
 	padding-right:			3px;
+}
+
+.taxform-container {
 }
 
 .taxform-container p {
