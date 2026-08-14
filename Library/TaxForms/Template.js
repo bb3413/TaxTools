@@ -40,7 +40,7 @@ const HTML_FORM = `
 `;
 
 export class Template extends TaxForm {
-	static getHTML() {
+	static getInputHTML() {
 		return [ "template-details", HTML_FORM ];
 	}
 

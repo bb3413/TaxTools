@@ -404,10 +404,6 @@ const HTML_FORM = `
 `;
 
 export class F1040 extends TaxForm {
-	static getHTML() {
-		return [ "f1040-details", HTML_FORM ];
-	}
-
 	constructor(formname) {
 		Debug.enter("F1040.Constructor()");
 		super(formname);
@@ -584,7 +580,11 @@ export class F1040 extends TaxForm {
 			*/
 	}
 
-	put1040Information() {
+	getOutputHTML() {
+		return HTML_FORM;
+	}
+
+	putInformation() {
 		//
 		// Fill in the 1040 fields information on the output form 1040.
 		//

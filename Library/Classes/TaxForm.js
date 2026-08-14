@@ -6,17 +6,16 @@ import { Debug }		from "../Classes/Debug.js";
 import { HTMLBuild }	from "../Classes/HTMLBuild.js";
 
 export class TaxForm {
-	constructor(formname) {
-		this.name			= formname;		// Same as class name.
+	constructor(form_name) {
+		this.name			= form_name;		// Same as class name.
 		this.lines			= {};
 		this.calculated		= false;		// True => need to call calculate().
-		this.isSingleton	= true;			// Only one form of this type allowed.
 	}
 
-	add(...indexlist) {
+	add(...index_list) {
 		let sum = 0;
 
-		for (let index of indexlist) {
+		for (let index of index_list) {
 			sum += this.lines[index].value
 		}
 
@@ -36,20 +35,20 @@ export class TaxForm {
 		return this.lines[lineno].value;
 	}
 
-	min(...indexlist) {
+	min(...index_list) {
 		let values = [];
 
-		for (let index of indexlist) {
+		for (let index of index_list) {
 			values.push(this.lines[index].value);
 		}
 
 		return Math.min(...values);
 	}
 
-	max(...indexlist) {
+	max(...index_list) {
 		let values = [];
 
-		for (let index of indexlist) {
+		for (let index of index_list) {
 			values.push(this.lines[index].value);
 		}
 

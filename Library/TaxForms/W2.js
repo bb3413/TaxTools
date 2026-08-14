@@ -163,9 +163,9 @@ const HTML_FORM = `
 `;
 
 export class W2 extends TaxForm {
-	static getHTML(index) {
+	static getInputHTML(index) {
 		if (!index) {
-			throw new Error("Debug.getHTML: Index is undefined.");
+			throw new Error("Debug.getInputHTML: Index is undefined.");
 		}
 
 		return [ `w2-${index}-details`, HTML_FORM.replace(/XX/g, index) ];

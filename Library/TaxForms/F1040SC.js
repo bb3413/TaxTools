@@ -11,8 +11,6 @@ export class F1040SC extends TaxForm {
 		Debug.enter("F1040SC.Constructor()");
 		super(formname);
 
-		this.isSingleton = false;
-
 		// Income
 		this.lines["01"]	= new Line("Gross Receipts or Sales");
 		this.lines["02"]	= new Line("Returns and Allowances");

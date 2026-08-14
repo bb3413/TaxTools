@@ -11,17 +11,18 @@ function addForm(form_name) {
 	let html	= "";
 	switch (form_name) {
 		case "W-2":
-			[ form_id, html ] = W2.getHTML(1);
+			[ form_id, html ] = W2.getInputHTML(1);
 			TaxFormWeb.addInputForm(form_id, html);
 			break;
 		
 		case "1040":
-			[ form_id, html ] = F1040.getHTML();
+			let f1040 = TaxFormObj.createForm("F1040");
+			[ form_id, html ] = f1040.getOutputHTML();
 			TaxFormWeb.addOutputForm(form_id, html);
 			break;
 				
 		case "Template":
-			[ form_id, html ] = Template.getHTML();
+			[ form_id, html ] = Template.getInputHTML();
 			TaxFormWeb.addOutputForm(form_id, html);
 			break;
 	}

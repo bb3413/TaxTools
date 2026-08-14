@@ -1,17 +1,15 @@
 
-import { Debug }	from "../Classes/Debug.js";
-import { TaxForm }	from "../Classes/TaxForm.js";
+import { Debug }		from "../Classes/Debug.js";
+import { Line }			from "../Classes/Line.js";
+import { TaxForm }		from "../Classes/TaxForm.js";
 import { TaxFormObj }	from "../Classes/TaxFormObj.js";
-import { Line }		from "../Classes/Line.js";
-import { TaxTable }	from "../Classes/TaxTable.js";
-import { Taxpayer }	from "../Classes/Taxpayer.js";
+import { TaxTable }		from "../Classes/TaxTable.js";
+import { Taxpayer }		from "../Classes/Taxpayer.js";
 
 export class F1099G extends TaxForm {
 	constructor(formname) {
 		Debug.enter("F1099G.Constructor()");
 		super(formname);
-
-		this.isSingleton = false;
 
 		this.lines["01"]	= new Line("Unemployment Compensation");
 		this.lines["02"]	= new Line("State or Local Refund");

@@ -22,20 +22,16 @@ function addForm(event) {
 	let html	= "";
 	
 	const form_name = HTML.getElementValue("add-form-button");	// Get selected form name.
-	HTML.putElementValue("add-form-button", "");	// Change selection back to the "Add Form" entry.
+	HTML.putElementValue("add-form-button", "");				// Change selection back to the "Add Form" entry.
 
-	TaxFormName.createTaxFormWebPage(form_name);
-	/*
 	switch (form_name) {
 		case "":
 			break;
 
 		case "W-2":
-			[ form_id, html ] = W2.getHTML(next_w2++);
-			TaxFormWeb.addInputForm(form_id, html);
+			TaxFormName.createTaxFormWebPage("W2");
 			break;
 	}
-	*/
 }
 
 function calculateHandler(event) {
@@ -71,7 +67,7 @@ function changeHandler(event) {
 	HTML.hideElement("tax-return-container");
 
 	TaxFormObj.dataChanged();				// Reset forms so they will be recalculated.
-	TaxFormWeb.removeOutputForms();	// Remove forms from previous calculation.
+	TaxFormWeb.removeOutputForms();			// Remove forms from previous calculation.
 
 	// See if filing status changed.
 	const filing_status = HTML.getUserInput("filing-status", "text").toUpperCase();
@@ -88,10 +84,10 @@ function createTaxForms() {
 	// copy the information from the tax forms on the web page to objects instances of the
 	// tax form.
 	//
-	for (let formname of TaxFormWeb.getInputForms()) {
-		let [ classname, index ] = TaxFormWeb.parseFormName(formname);
-		// window[classname].getUserInput(index);
-		classname.getUserInput(index);
+	for (let form_name of TaxFormWeb.getInputForms()) {
+		let [ class_name, index ] = TaxFormWeb.parseFormName(form_name);
+		// window[class_name].getUserInput(index);
+		TaxFormName.getUserInput("W2", index);
 	}
 }
 
@@ -99,8 +95,6 @@ function putOutputs() {
 	//
 	//	Print the tax forms that were created.
 	//
-	let form_id	= "";
-	let html	= "";
 
 	// Close the input forms so they do not distract from the tax return information.
 	HTML.closeAllDetails();
@@ -108,13 +102,34 @@ function putOutputs() {
 	const taxpayer	= Taxpayer.getTaxpayer();
 	const f1040		= TaxFormObj.getForm("F1040");
 
-	// Create the 1040 web page.
-	[ form_id, html ] = F1040.getHTML();
-	TaxFormWeb.addOutputForm(form_id, html);
+	// Create the web pages.
+	let html = "";
+	for(const form_name of TaxFormName.listOutputForms()) {
+		let forms = TaxFormObj.getAllForms(form_name);
+		for(const form of forms) {
+			if (typeof form.getOutputHTML === "function") {
+				html += form.getOutputHTML();
+			} else {
+				Debug.warn(`Formname: ${form.name}: Missing getOutputHTML() method.`);
+			}
+		}
+	}
+	const element = document.getElementById("insert-output-forms-here");
+	element.insertAdjacentHTML("afterend", html);
 
-	// Write information to the 1040 web page.
+	// Write the tax information to the forms just created.
+	for(const form_name of TaxFormName.listOutputForms()) {
+		let forms = TaxFormObj.getAllForms(form_name);
+		for(const form of forms) {
+			if (typeof form.putInformation === "function") {
+				html += form.putInformation();
+			} else {
+				Debug.warn(`Formname: ${form.name}: Missing putInformation() method.`);
+			}
+		}
+	}
+
 	taxpayer.putTaxpayerInformation();
-	f1040.put1040Information();
 
 	// Show the tax return forms
 	HTML.showElement("tax-return-container");
@@ -134,7 +149,6 @@ function restoreDataHandler(data) {
 	// For each form.
 	for (const form of data.inputs) {
 		// Puts the fields read from a saved file back onto the web page.
-		formname = form[0];
 		for (let i = 1; i < form.length; i++) {
 			let line			= form[i];
 			let lineno			= line[0];
