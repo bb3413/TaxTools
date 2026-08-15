@@ -116,6 +116,7 @@
 	text-align:				left;
 	background:				var(--output-color);
 }
+
 .value {
 	border:					1px solid black;
 	padding-left:			3px;
