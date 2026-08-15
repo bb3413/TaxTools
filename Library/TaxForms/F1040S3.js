@@ -1,8 +1,9 @@
 
-import { Debug }	from "../Classes/Debug.js";
-import { TaxForm }	from "../Classes/TaxForm.js";
+import { Debug }		from "../Classes/Debug.js";
+import { Line }			from "../Classes/Line.js";
+import { TaxForm }		from "../Classes/TaxForm.js";
 import { TaxFormObj }	from "../Classes/TaxFormObj.js";
-import { Line }		from "../Classes/Line.js";
+
 
 export class F1040S3 extends TaxForm {
 	constructor(formname) {

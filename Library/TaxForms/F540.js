@@ -1,8 +1,8 @@
 
 import { Debug }				from "../Classes/Debug.js";
-import { TaxForm }				from "../Classes/TaxForm.js";
-import { TaxFormObj }				from "../Classes/TaxFormObj.js";
 import { Line }					from "../Classes/Line.js";
+import { TaxForm }				from "../Classes/TaxForm.js";
+import { TaxFormObj }			from "../Classes/TaxFormObj.js";
 import { TaxTable }				from "../Classes/TaxTable.js";
 import { Taxpayer }				from "../Classes/Taxpayer.js";
 import { CA_HiIncExemptions }	from "../Worksheets/CA_HiIncExemptions.js";

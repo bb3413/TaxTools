@@ -4,12 +4,12 @@
 //
 // This is an implementation of form 7206..
 //
-import { Debug }	from "../Classes/Debug.js";
-import { TaxForm }	from "../Classes/TaxForm.js";
+import { Debug }		from "../Classes/Debug.js";
+import { Line }			from "../Classes/Line.js";
+import { TaxForm }		from "../Classes/TaxForm.js";
 import { TaxFormObj }	from "../Classes/TaxFormObj.js";
-import { Line }		from "../Classes/Line.js";
-import { TaxTable }	from "../Classes/TaxTable.js";
-import { Taxpayer }	from "../Classes/Taxpayer.js";
+import { TaxTable }		from "../Classes/TaxTable.js";
+import { Taxpayer }		from "../Classes/Taxpayer.js";
 
 export class F7206 extends TaxForm {
 	constructor(formname) {

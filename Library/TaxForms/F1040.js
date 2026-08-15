@@ -1,14 +1,14 @@
 
-import { Debug }	from "../Classes/Debug.js";
-import { Line }		from "../Classes/Line.js";
-import { HTML }		from "../Classes/HTML.js";
-import { Str }		from "../Classes/Str.js";
-import { TaxForm }	from "../Classes/TaxForm.js";
+import { Debug }		from "../Classes/Debug.js";
+import { Line }			from "../Classes/Line.js";
+import { HTML }			from "../Classes/HTML.js";
+import { Str }			from "../Classes/Str.js";
+import { TaxForm }		from "../Classes/TaxForm.js";
 import { TaxFormObj }	from "../Classes/TaxFormObj.js";
-import { TaxTable }	from "../Classes/TaxTable.js";
-import { Taxpayer }	from "../Classes/Taxpayer.js";
-import { IncTax }	from "../Worksheets/IncTax.js";
-import { SSTax }	from "../Worksheets/SSTax.js";
+import { TaxTable }		from "../Classes/TaxTable.js";
+import { Taxpayer }		from "../Classes/Taxpayer.js";
+import { IncTax }		from "../Worksheets/IncTax.js";
+import { SSTax }		from "../Worksheets/SSTax.js";
 
 const HTML_FORM = `
 		<details class="taxform-details" id="f1040-details">

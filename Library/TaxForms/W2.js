@@ -1,13 +1,13 @@
 
-import { Debug }	from "../Classes/Debug.js";
-import { HTML }		from "../Classes/HTML.js";
-import { Line }		from "../Classes/Line.js";
-import { Objects }	from "../Classes/Objects.js";
-import { Str }		from "../Classes/Str.js";
-import { TaxForm }	from "../Classes/TaxForm.js";
+import { Debug }		from "../Classes/Debug.js";
+import { HTML }			from "../Classes/HTML.js";
+import { Line }			from "../Classes/Line.js";
+import { Objects }		from "../Classes/Objects.js";
+import { Str }			from "../Classes/Str.js";
+import { TaxForm }		from "../Classes/TaxForm.js";
 import { TaxFormObj }	from "../Classes/TaxFormObj.js";
-import { TaxTable }	from "../Classes/TaxTable.js";
-import { Taxpayer }	from "../Classes/Taxpayer.js";
+import { TaxTable }		from "../Classes/TaxTable.js";
+import { Taxpayer }		from "../Classes/Taxpayer.js";
 
 const HTML_FORM = `
 		<details class="taxform-details" id="w2-XX-details">
