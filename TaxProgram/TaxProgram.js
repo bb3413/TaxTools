@@ -101,17 +101,17 @@ function putOutputs() {
 
 	// Create the tax return web pages.
 	let html = "";
-	const tax_return_container = document.getElementById("insert-output-forms-here");
+	const tax_return_area = document.getElementById("insert-output-forms-here");
 	for(const form_name of TaxFormName.listOutputForms()) {
 		for(const form of TaxFormObj.getAllForms(form_name)) {
 			if (form.isUsed()) {
 				if (typeof form.getOutputHTML === "function") {
 					html = form.getOutputHTML();
-					tax_return_container.insertAdjacentHTML("beforeend", html);
+					tax_return_area.insertAdjacentHTML("beforeend", html);
 					form.putInformation();
 				} else {
 					html = form.toHTML();
-					tax_return_container.insertAdjacentHTML("beforeend", html);
+					tax_return_area.insertAdjacentHTML("beforeend", html);
 				}
 			}
 		}

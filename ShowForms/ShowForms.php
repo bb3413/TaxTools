@@ -29,6 +29,11 @@
 		<h2>Output Tax Forms</h2>
 		<!-- Display area for output tax forms. -->
 		<div id="insert-output-forms-here"></div>
+
+		<!-- Display area for error messages. -->
+		<div id="error-message-container">
+			<p id="error-message-output"></p>
+		</div>
 	</div>
 </body>
 </html>

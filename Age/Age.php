@@ -41,7 +41,7 @@
 
 		<!-- Display area for error messages. -->
 		<div id="error-message-container">
-			<p id="ErrorMessageOutput"></p>
+			<p id="error-message-output"></p>
 		</div>
 	</div>
 </body>

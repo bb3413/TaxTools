@@ -9,6 +9,22 @@ import { HTML }			from "../Classes/HTML.js";
 // tax forms that have been added to the web page
 let input_forms		= [];
 let output_forms	= [];
+	
+function addForm(taxform_id, taxform, after_id) {
+		// The taxform ID is ID value of the form container. It is used to determine
+		// where to insert the taxform amongst the current tax forms. Taxform is a string
+		// containing HTML code that will be added to the current web page.
+
+		const where			= "afterend";	// beforebegin, afterbegin, beforeend, afterend
+		const element		= document.getElementById(after_id);
+
+		// Insert the tax form.
+		element.insertAdjacentHTML(where, taxform);
+		
+		HTML.openDetails(taxform_id)
+		// Scroll the window to the new tax form.
+		document.getElementById(taxform_id).scrollIntoView({behavior: 'smooth', block: 'start'});
+}
 
 function insertInputForm(name, tax_forms) {
 	//
@@ -65,22 +81,6 @@ function insertOutputForm(name, tax_forms) {
 	}
 
 	return insert_after;
-}
-	
-function addForm(taxform_id, taxform, after_id) {
-		// The taxform ID is ID value of the form container. It is used to determine
-		// where to insert the taxform amongst the current tax forms. Taxform is a string
-		// containing HTML code that will be added to the current web page.
-
-		const where			= "afterend";	// beforebegin, afterbegin, beforeend, afterend
-		const element		= document.getElementById(after_id);
-
-		// Insert the tax form.
-		element.insertAdjacentHTML(where, taxform);
-		
-		HTML.openDetails(taxform_id)
-		// Scroll the window to the new tax form.
-		document.getElementById(taxform_id).scrollIntoView({behavior: 'smooth', block: 'start'});
 }
 
 export class TaxFormWeb {

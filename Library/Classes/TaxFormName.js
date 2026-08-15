@@ -41,6 +41,8 @@ import { F6251 }		from "../TaxForms/F6251.js";		// AMT worksheet
 import { F7206 }		from "../TaxForms/F7206.js";		// Self-employment Health Insurance Deduction
 import { W2 }			from "../TaxForms/W2.js";
 
+import { Template }		from "../TaxForms/Template.js";
+
 // Worksheets
 import { IncTax }		from "../Worksheets/IncTax.js";
 import { SalesTax }		from "../Worksheets/SalesTax.js";
@@ -169,6 +171,12 @@ export class TaxFormName {
 
 			case "W2":
 				[ form_id, html ] = W2.getInputHTML(getIndex(form_name));
+				TaxFormWeb.addInputForm(form_id, html);
+				break;
+
+
+			case "Template":
+				[ form_id, html ] = Template.getInputHTML(getIndex(form_name));
 				TaxFormWeb.addInputForm(form_id, html);
 				break;
 		}

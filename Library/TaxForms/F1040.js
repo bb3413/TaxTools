@@ -535,32 +535,32 @@ export class F1040 extends TaxForm {
 			this.lines["13a"].value = TaxFormObj.getValue("F8995a", "19");
 		}
 */
-		this.lines["13a"].value	= TaxFormObj.getValue("F8995", "15");			// QBI Deduction
-		this.lines["13b"].value	= TaxFormObj.getValue("F1040S1A", "38");			// Additional Deductions
+		this.lines["13a"].value	= TaxFormObj.getValue("F8995", "15");		// QBI Deduction
+		this.lines["13b"].value	= TaxFormObj.getValue("F1040S1A", "38");	// Additional Deductions
 		this.lines["14"].value	= this.add("12e","13a","13b");				// Total Deductions
 		this.lines["15"].value	= Math.max(0, this.subtract("11b", "14"));	// Taxable Income
-		this.lines["16"].value	= TaxFormObj.getValue("IncTax", "25");			// Income Tax
-		this.lines["17"].value	= TaxFormObj.getValue("F1040S2", "03");			// Additional Tax
+		this.lines["16"].value	= TaxFormObj.getValue("IncTax", "25");		// Income Tax
+		this.lines["17"].value	= TaxFormObj.getValue("F1040S2", "03");		// Additional Tax
 		this.lines["18"].value	= this.add("16", "17");						// Total Tax
-		this.lines["19"].value	= TaxFormObj.getValue("F8812", "14");			// Child Tax Credit
-		this.lines["20"].value	= TaxFormObj.getValue("F1040S3", "08");			// Non-refundable Credits
+		this.lines["19"].value	= TaxFormObj.getValue("F8812", "14");		// Child Tax Credit
+		this.lines["20"].value	= TaxFormObj.getValue("F1040S3", "08");		// Non-refundable Credits
 		this.lines["21"].value	= this.add("19", "20");						// Total Non-refundable Credits
 		this.lines["22"].value	= Math.max(0, this.subtract("18", "21"));	// Tax minus Non-refundable Credits
-		this.lines["23"].value	= TaxFormObj.getValue("F1040S2", "21");			// Other Taxes
+		this.lines["23"].value	= TaxFormObj.getValue("F1040S2", "21");		// Other Taxes
 		this.lines["24"].value	= this.add("22", "23");						// Total Tax
-		this.lines["25a"].value	= TaxFormObj.getValue("W2", "02");				// Witholding from W-2s
+		this.lines["25a"].value	= TaxFormObj.getValue("W2", "02");			// Witholding from W-2s
 		this.lines["25b"].value	= TaxFormObj.getValue("F1099INT", "04") +
 									TaxFormObj.getValue("F1099DIV", "04") +
 									TaxFormObj.getValue("F1099R", "04") +
-									TaxFormObj.getValue("FSSA1099", "06");		// Withholding from 1099s
-		this.lines["25c"].value	= TaxFormObj.getValue("F8959", "24");			// Other withholding
+									TaxFormObj.getValue("FSSA1099", "06");	// Withholding from 1099s
+		this.lines["25c"].value	= TaxFormObj.getValue("F8959", "24");		// Other withholding
 		this.lines["25d"].value	= this.add("25a", "25b", "25c");			// Total Withholding
 		this.lines["26"].value	= 0;										// Estimated tax payments
-		this.lines["27a"].value	= TaxFormObj.getValue("EIC", "xx");				// Earned Income Credit
-		this.lines["28"].value	= TaxFormObj.getValue("F8812", "27");			// Additional Child Tax Credit
-		this.lines["29"].value	= TaxFormObj.getValue("F8863", "08");			// American Opportunity Credit
-		this.lines["30"].value	= TaxFormObj.getValue("F8839", "13");			// Refundable Adoption Credit
-		this.lines["31"].value	= TaxFormObj.getValue("F1040S3", "15");			// Additional Refundable Credits
+		this.lines["27a"].value	= TaxFormObj.getValue("EIC", "xx");			// Earned Income Credit
+		this.lines["28"].value	= TaxFormObj.getValue("F8812", "27");		// Additional Child Tax Credit
+		this.lines["29"].value	= TaxFormObj.getValue("F8863", "08");		// American Opportunity Credit
+		this.lines["30"].value	= TaxFormObj.getValue("F8839", "13");		// Refundable Adoption Credit
+		this.lines["31"].value	= TaxFormObj.getValue("F1040S3", "15");		// Additional Refundable Credits
 		this.lines["32"].value	= this.add("27a","28","29","30","31");		// Estimated Payments and Refundable Credits
 		this.lines["33"].value	= this.add("25d","26","32");				// Total Payments
 		if (this.line("33") > this.line("24")) {
@@ -568,8 +568,8 @@ export class F1040 extends TaxForm {
 			this.lines["35a"].value	= this.subtract("34", "36");			// Refund
 			this.lines["36"].value	= 0;									// Amount applied to next year's taxes.
 		} else {
-			this.lines["37"].value	= this.subtract("24", "33");				// Amount Owed
-			this.lines["38"].value	= TaxFormObj.getValue("Penalty", "xx");			// Estimated Tax Penalty
+			this.lines["37"].value	= this.subtract("24", "33");			// Amount Owed
+			this.lines["38"].value	= TaxFormObj.getValue("Penalty", "xx");	// Estimated Tax Penalty
 		}
 		Debug.exit("F1040.calculate()");
 	}
