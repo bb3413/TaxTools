@@ -23,8 +23,8 @@ export class TaxForm {
 	}
 
 	isUsed() {
-		for (const line of Object.keys(this.lines)) {
-			if (line.value) {
+		for (const lineno of Object.keys(this.lines)) {
+			if (this.line(lineno)) {
 				return true;
 			}
 		}
@@ -70,7 +70,7 @@ export class TaxForm {
 	toHTML() {
 		const doc = new HTMLBuild();
 		doc.startElement("details", "taxform-details");		// Start of details
-			doc.addElement("summary", "taxform-title", this.formname);
+			doc.addElement("summary", "taxform-title", this.name);
 			doc.startElement("div", "taxform-container");	// Start of taxform-contianer
 				doc.addElement("div", "", "&nbsp;");		// Blank line
 				for (const lineno of Object.keys(this.lines).sort()) {
@@ -83,8 +83,8 @@ export class TaxForm {
 				}
 				doc.addElement("div", "", "&nbsp;");		// Blank line
 			doc.stopElement("div");							// End of taxform-contianer
-		doc.stopElement("div");								// End of details
-		
+		doc.stopElement("details");							// End of details
+		console.log(doc.toString());
 		return doc.toString();
 	}
 
