@@ -22,15 +22,17 @@
 						
 export class HTMLBuild {
 	constructor() {
-		this._htmldoc	= [];
-		this._id		= "";
+		this._htmldoc		= [];
+		this._id			= "";
+		this._indent_level	= 0;
 	}
 
 	//
 	// Getter methods
 	//
-	get htmldoc(){	return this._htmldoc };
-	get id(){		return this._id };
+	get htmldoc() {	return this._htmldoc };
+	get id() {		return this._id };
+	get indent() {	return "\t".repeat(this._indent_level * 1) };
 
 	//
 	// Setter methods
@@ -59,7 +61,7 @@ export class HTMLBuild {
 		if (css_class) {
 			css_str = `class="${css_class}"`
 		}
-		const line = `<${element} ${css_str}>${str}</${element}>`;
+		const line = `${this.indent}<${element} ${css_str}>${str}</${element}>`;
 		this.htmldoc.push(line);
 	}
 
@@ -91,8 +93,10 @@ export class HTMLBuild {
 		}
 	}
 
-	stopElement(element, str) {
-		const line = `${str}</${element}>`;
+	stopElement(element) {
+		this._indent_level = Math.max(0, this._indent_level - 1);
+
+		const line = `${this.indent}</${element}>`;
 		this.htmldoc.push(line);
 	}
 
@@ -101,8 +105,10 @@ export class HTMLBuild {
 		if (css_class) {
 			css_str = `class="${css_class}"`
 		}
-		const line = `<${element} ${css_str}>${str}`;
+		const line = `${this.indent}<${element} ${css_str}>${str}`;
 		this.htmldoc.push(line);
+
+		this._indent_level += 1;
 	}
 
 	toString() {
