@@ -93,45 +93,35 @@ function createTaxForms() {
 
 function putOutputs() {
 	//
-	//	Print the tax forms that were created.
+	//	Print the tax forms.
 	//
 
 	// Close the input forms so they do not distract from the tax return information.
 	HTML.closeAllDetails();
 
-	const taxpayer	= Taxpayer.getTaxpayer();
-	const f1040		= TaxFormObj.getForm("F1040");
-
-	// Create the web pages.
+	// Create the tax return web pages.
 	let html = "";
+	const tax_return_container = document.getElementById("insert-output-forms-here");
 	for(const form_name of TaxFormName.listOutputForms()) {
-		let forms = TaxFormObj.getAllForms(form_name);
-		for(const form of forms) {
-			if (typeof form.getOutputHTML === "function") {
-				html += form.getOutputHTML();
-			} else {
-				Debug.warn(`Formname: ${form.name}: Missing getOutputHTML() method.`);
-			}
-		}
-	}
-	const element = document.getElementById("insert-output-forms-here");
-	element.insertAdjacentHTML("afterend", html);
-
-	// Write the tax information to the forms just created.
-	for(const form_name of TaxFormName.listOutputForms()) {
-		let forms = TaxFormObj.getAllForms(form_name);
-		for(const form of forms) {
-			if (typeof form.putInformation === "function") {
-				html += form.putInformation();
-			} else {
-				Debug.warn(`Formname: ${form.name}: Missing putInformation() method.`);
+		for(const form of TaxFormObj.getAllForms(form_name)) {
+			if (form.isUsed()) {
+				if (typeof form.getOutputHTML === "function") {
+					html = form.getOutputHTML();
+					tax_return_container.insertAdjacentHTML("beforeend", html);
+					form.putInformation();
+				} else {
+					html = form.toHTML();
+					tax_return_container.insertAdjacentHTML("beforeend", html);
+				}
 			}
 		}
 	}
 
-	taxpayer.putTaxpayerInformation();
+	// Put the taxpayer information into form 1040.
+	Taxpayer.getTaxpayer().putTaxpayerInformation();
 
-	// Show the tax return forms
+	// Show the tax return forms.
+	HTML.openDetails("f1040-details");
 	HTML.showElement("tax-return-container");
 	document.getElementById("tax-return-container").scrollIntoView({behavior: 'smooth', block: 'start'});
 }
