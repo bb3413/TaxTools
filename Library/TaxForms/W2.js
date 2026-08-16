@@ -11,7 +11,7 @@ import { Taxpayer }		from "../Classes/Taxpayer.js";
 
 const HTML_FORM = `
 		<details class="taxform-details" id="w2-XX-details">
-			<summary class="taxform-title">#XX&nbsp;&nbsp;W-2 - Wage and Tax Statement</summary>
+			<summary class="taxform-title">W-2 - Wage and Tax Statement</summary>
 			<div class="taxform-container">
 				<div>&nbsp;</div>
 				<div class="taxform-lno-desc-value trigger" tooltipid="#w2-XX-01-tt">
@@ -165,19 +165,23 @@ const HTML_FORM = `
 export class W2 extends TaxForm {
 	static getInputHTML(index) {
 		if (!index) {
-			throw new Error("Debug.getInputHTML: Index is undefined.");
+			throw new Error("W2.getInputHTML: Index is undefined.");
 		}
 
 		return [ `w2-${index}-details`, HTML_FORM.replace(/XX/g, index) ];
 	}
 
-	static getUserInput(index = 1) {	// Index starts at 1.
+	static getUserInput(index) {
 		//
 		// Create a new W-2 form and initialize it with information from the Web page.
 		//
+		if (!index) {
+			throw new Error("W2.getUserInput: Index is undefined.");
+		}
+
 		const element = document.getElementById(`w2-${index}-details`);
 		if (!element) {
-			throw new Error(`getElementValue: Element not found: w2-${index}-details`);
+			throw new Error(`W2.getUserInput: Element not found: w2-${index}-details`);
 		}
 
 		let inputs = {};

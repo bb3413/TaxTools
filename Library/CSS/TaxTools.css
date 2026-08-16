@@ -97,10 +97,6 @@ body {
 	text-align:				right;
 }
 
-.input-color {
-	background-color:		var(--input-color);
-}
-
 .output-field {
 	border:					1px solid var(--border-color);
 	padding-left:			2px;
@@ -109,32 +105,6 @@ body {
 	color:					var(--text-color);
 	text-align:				right;
 }
-
-.output-color {
-	background-color:		var(--output-color);
-}
-
-.right {
-	text-align:				right;
-}
-
-.left {
-	text-align:				left;
-}
-
-.flex-right {
-	justify-content:		right;		/* Align the elements in a flex-box to the right. */
-}
-
-.flex-center {
-	justify-content:		center;		/* Center the elements in a flex-box. */
-}
-
-.span-two	{ grid-column: span 2; }
-.span-three	{ grid-column: span 3; }
-.span-four	{ grid-column: span 4; }
-.span-five	{ grid-column: span 5; }
-.span-six	{ grid-column: span 6; }
 
 .button {
 	background:				var(--input-color);
@@ -201,3 +171,17 @@ input:-webkit-autofill:focus {
 	font-size:				16px;	/* Use this with Helvetica */
 	line-height:			1.4;
 }
+
+/* Overrides: put the after the class where you want to override the attribute. */
+.noborder		{ border:				none !important; }
+.input-color	{ background-color:		var(--input-color); }
+.output-color	{ background-color:		var(--output-color); }
+.right			{ text-align:			right; }
+.left			{ text-align:			left; }
+.span-two		{ grid-column:			span 2; }
+.span-three		{ grid-column:			span 3; }
+.span-four		{ grid-column:			span 4; }
+.span-five		{ grid-column:			span 5; }
+.span-six		{ grid-column:			span 6; }
+.flex-right		{ justify-content:		right; }	/* Align the elements in a flex-box to the right. */
+.flex-center	{ justify-content:		center; }	/* Center the elements in a flex-box. */

@@ -29,7 +29,7 @@ function addForm(event) {
 			break;
 
 		case "W-2":
-			TaxFormName.createTaxFormWebPage("W2");
+			TaxFormName.createInputPage("W2");
 			break;
 	}
 }

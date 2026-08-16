@@ -9,24 +9,38 @@ import { F1040 }		from "../Library/TaxForms/F1040.js";
 import { Template }		from "../Library/TaxForms/Template.js";
 
 function addForm(form_name) {
-	let form_id	= "";
-	let html	= "";
+	let form_id;
+	let html;
+	let uid;	// Unique ID
+
 	const output_form_area = document.getElementById("insert-output-forms-here");
 
 	try {
 		switch (form_name) {
 			case "W2":
-				TaxFormName.createTaxFormWebPage(form_name);
+				TaxFormName.createInputPage(form_name);
 				break;
 		
 			case "F1040":
-				let f1040 = TaxFormObj.createForm("F1040");
-				html = f1040.getOutputHTML();
+				let f1040	= TaxFormObj.createForm("F1040");
+				uid			= TaxFormName.getUID(form_name);
+				html		= f1040.getOutputHTML(uid);
+				output_form_area.insertAdjacentHTML("beforeend", html);
+				break;
+		
+			case "F1040SC":
+				// Display as input form.
+				TaxFormName.createInputPage(form_name);
+
+				// Display as output form.
+				let f1040sc	= TaxFormObj.createForm("F1040SC");
+				uid			= TaxFormName.getUID(form_name);
+				html		= f1040sc.getOutputHTML(uid);
 				output_form_area.insertAdjacentHTML("beforeend", html);
 				break;
 				
 			case "Template":
-				TaxFormName.createTaxFormWebPage(form_name);
+				TaxFormName.createInputPage(form_name);
 				break;
 		}
 	} catch (err) {
@@ -42,6 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	// HTML.addListener("tool-container", "change", changeHandler);
 	addForm("W2");
 	addForm("F1040");
+	addForm("F1040SC");
 	addForm("Template");
 	HTML.closeAllDetails();
 });

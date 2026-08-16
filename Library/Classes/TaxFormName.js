@@ -133,21 +133,8 @@ const print_order = [
 ];
 
 
-// If there can be multiple instances of a form, it needs an index to distinguish them.
-let next_form_index = {};
-
-function getIndex(form_name) {
-	let form_index = next_form_index[form_name];
-
-	if (form_index) {
-		next_form_index[form_name]++;
-	} else {
-		form_index = 1;
-		next_form_index[form_name] = 2;
-	}
-
-	return form_index;
-}
+// If there can be multiple instances of a form, it needs an ID to distinguish it.
+let next_form_uid = {};
 
 export class TaxFormName {
 	static createOnDemand(form_name) {
@@ -161,22 +148,31 @@ export class TaxFormName {
 		}
 	}
 
-	static createTaxFormWebPage(form_name) {
+	static createInputPage(form_name) {
 		let html;
 		let form_id;
+		let uid;
 
 		switch (form_name) {
 			case "":
 				break;
 
+			case "F1040SC":
+				uid = TaxFormName.getUID(form_name);
+				[ form_id, html ] = F1040SC.getInputHTML(uid);
+				TaxFormWeb.addInputForm(form_id, html);
+				break;
+
 			case "W2":
-				[ form_id, html ] = W2.getInputHTML(getIndex(form_name));
+				uid = TaxFormName.getUID(form_name);
+				[ form_id, html ] = W2.getInputHTML(uid);
 				TaxFormWeb.addInputForm(form_id, html);
 				break;
 
 
 			case "Template":
-				[ form_id, html ] = Template.getInputHTML(getIndex(form_name));
+				uid = TaxFormName.getUID(form_name);
+				[ form_id, html ] = Template.getInputHTML(uid);
 				TaxFormWeb.addInputForm(form_id, html);
 				break;
 		}
@@ -190,7 +186,20 @@ export class TaxFormName {
 		}
 	}
 
-	static getUserInput(form_name, index) {
+	static getUID(form_name) {
+		let form_uid = next_form_uid[form_name];
+
+		if (form_uid) {
+			next_form_uid[form_name]++;
+		} else {
+			form_uid = 1;
+			next_form_uid[form_name] = 2;
+		}
+
+		return form_uid;
+	}
+
+	static getUserInput(form_name, uid) {
 		let html;
 		let form_id;
 
@@ -199,7 +208,7 @@ export class TaxFormName {
 				break;
 
 			case "W2":
-				W2.getUserInput(index);
+				W2.getUserInput(uid);
 				break;
 		}
 	}

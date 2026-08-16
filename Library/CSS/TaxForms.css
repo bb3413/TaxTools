@@ -18,6 +18,24 @@
 	font-weight:			bold;
 }
 
+.taxform-section-container {
+	display:				grid;
+	grid-template-columns:	50px 1fr;
+	border:					1px solid black;
+	font-size:				14px;
+	font-weight:			bold;
+}
+
+.section-part {
+	background-color:		black;
+	color:					white;
+}
+
+.section-title {
+	padding-left:			20px;
+}
+
+
 /*
  * Line types
  *
@@ -62,7 +80,6 @@
 	/* Line Description...line value */
 	display:				grid;
 	grid-template-columns:	35px 1fr 35px 90px;	/* 35px line numbers */
-	font-size:				12px;
 }
 
 .taxform-lno-desc-lno-value-lno-value {
@@ -75,6 +92,13 @@
 	/* Line Description...line value label...line value */
 	display:				grid;
 	grid-template-columns:	35px 1fr 35px 90px 1fr 35px 90px;	/* 35px line numbers */
+}
+
+.taxform-lno-desc-lno-value-lno-desc-lno-value {
+	/* Cloumn 1							Column 2
+	/* Line Description...line value	Line Description...line value */
+	display:				grid;
+	grid-template-columns:	35px 1fr 35px 90px 35px 1fr 35px 90px;	/* 35px line numbers */
 }
 
 .taxform-lno-4-checkboxes {
