@@ -3,12 +3,12 @@
 // This worksheet calculates the Qualified Dividends and Capital Gain Tax Worksheet from the
 // 1040 Instructions (TY2025), line 16, page 38.
 //
-import { Debug }	from "../Classes/Debug.js";
-import { TaxForm }	from "../Classes/TaxForm.js";
+import { Debug }		from "../Classes/Debug.js";
+import { Line }			from "../Classes/Line.js";
+import { TaxForm }		from "../Classes/TaxForm.js";
 import { TaxFormObj }	from "../Classes/TaxFormObj.js";
-import { Line }		from "../Classes/Line.js";
-import { TaxTable }	from "../Classes/TaxTable.js";
-import { Taxpayer }	from "../Classes/Taxpayer.js";
+import { TaxTable }		from "../Classes/TaxTable.js";
+import { Taxpayer }		from "../Classes/Taxpayer.js";
 
 export class IncTax extends TaxForm {
 	constructor(formname) {

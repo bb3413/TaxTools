@@ -4,13 +4,13 @@
 // 1040 Instructions (TY2025), lines 5a and 5b, page 29.
 //
 
-import { Dates }	from "../Classes/Dates.js";
-import { Debug }	from "../Classes/Debug.js";
-import { TaxForm }	from "../Classes/TaxForm.js";
+import { Dates }		from "../Classes/Dates.js";
+import { Debug }		from "../Classes/Debug.js";
+import { Line }			from "../Classes/Line.js";
+import { TaxForm }		from "../Classes/TaxForm.js";
 import { TaxFormObj }	from "../Classes/TaxFormObj.js";
-import { Line }		from "../Classes/Line.js";
-import { TaxTable }	from "../Classes/TaxTable.js";
-import { Taxpayer }	from "../Classes/Taxpayer.js";
+import { TaxTable }		from "../Classes/TaxTable.js";
+import { Taxpayer }		from "../Classes/Taxpayer.js";
 
 const table_1 = [
 	//				  Before  After

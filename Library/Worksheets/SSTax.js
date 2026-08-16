@@ -3,12 +3,12 @@
 // This is the Social Security Benefits Worksheet from the
 // 1040 Instructions (TY2025), lines 6a and 6b, page 32.
 //
-import { Debug }	from "../Classes/Debug.js";
-import { TaxForm }	from "../Classes/TaxForm.js";
+import { Debug }		from "../Classes/Debug.js";
+import { Line }			from "../Classes/Line.js";
+import { TaxForm }		from "../Classes/TaxForm.js";
 import { TaxFormObj }	from "../Classes/TaxFormObj.js";
-import { Line }		from "../Classes/Line.js";
-import { TaxTable }	from "../Classes/TaxTable.js";
-import { Taxpayer }	from "../Classes/Taxpayer.js";
+import { TaxTable }		from "../Classes/TaxTable.js";
+import { Taxpayer }		from "../Classes/Taxpayer.js";
 
 export class SSTax extends TaxForm {
 	constructor(formname) {
