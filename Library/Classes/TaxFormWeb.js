@@ -5,112 +5,102 @@
 import { TaxFormName }	from "../Classes/TaxFormName.js";
 import { HTML }			from "../Classes/HTML.js";
 
-// These arrays contains the names, in order, of the container element for the
-// tax forms that have been added to the web page
-let input_forms		= [];
-let output_forms	= [];
-	
-function addForm(taxform_id, taxform, after_id) {
-		// The taxform ID is ID value of the form container. It is used to determine
-		// where to insert the taxform amongst the current tax forms. Taxform is a string
-		// containing HTML code that will be added to the current web page.
+// These arrays contain the container IDs, in order, for the tax forms that
+// have been added to the web page.
+let input_forms			= ["taxpayer-details"];		// Already entered in PHP file.
+let output_forms		= [];
 
-		const where			= "afterend";	// beforebegin, afterbegin, beforeend, afterend
-		const element		= document.getElementById(after_id);
+// The web pages need unique IDs to include in their element IDs to avoid name
+// collisions when the same form is added more than once. This object is indexed
+// by form name so each form has its own series of UIDs starting at 1.
+let next_form_uid = {};
 
-		// Insert the tax form.
-		element.insertAdjacentHTML(where, taxform);
-		
-		HTML.openDetails(taxform_id)
-		// Scroll the window to the new tax form.
-		document.getElementById(taxform_id).scrollIntoView({behavior: 'smooth', block: 'start'});
-}
-
-function insertInputForm(name, tax_forms) {
-	//
-	// Determine which element to insert the tax form after.
-	//
-	let insert_after = undefined;
-
-	if (tax_forms.length === 0) {
-		insert_after = "insert-input-forms-here";
-		tax_forms.push(name);
-	} else if (tax_forms.length === 1) {
-		insert_after = tax_forms[0];
-		tax_forms.push(name);
-	} else {
-		// Find a place to insert the form.
-		const new_formname = name.split('-')[0];
-		let last_form = -1;
-
-		// Find the last form of the same type.
-		for (let i = 0; i < tax_forms.length; i++) {
-			const old_formname = tax_forms[i].split('-')[0];
-			if (new_formname === old_formname) {
-				last_form = i;
-			}
-		}
-
-		if (last_form === -1) {
-			// Add to the end of the current forms.
-			insert_after = tax_forms[tax_forms.length-1];
-			tax_forms.push(name);
-		} else {
-			// Insert the new form after the last form of the same type.
-			insert_after = tax_forms[last_form];
-			tax_forms.splice(last_form, 0, name);
-		}
-	}
-
-	return insert_after;
-}
-
-function insertOutputForm(name, tax_forms) {
-	//
-	// Determine which element to insert the tax form after.
-	//
-	let insert_after = undefined;
-
-	if (tax_forms.length === 0) {
-		insert_after = "insert-output-forms-here";
-		tax_forms.push(name);
-	} else {
-		// Add to the end of the current forms.
-		insert_after = tax_forms[tax_forms.length-1];
-		tax_forms.push(name);
-	}
-
-	return insert_after;
-}
+// The following element IDs identify the ontainers that will hold the tax forms.
+const INPUT_LOCATION	= "input-forms-container";
+const OUTPUT_LOCATION	= "output-forms-container";
 
 export class TaxFormWeb {
 	static addInputForm(taxform_id, taxform) {
-		const after_id = insertInputForm(taxform_id, input_forms);
-		addForm(taxform_id, taxform, after_id);
+		//
+		// Determine where to insert the new form amoung the current forms.
+		//
+		let where;			// beforebegin, afterbegin, beforeend, afterend
+		let element_id;
+
+		if (input_forms.length === 0) {
+			where		= "afterbegin";
+			element_id	= INPUT_LOCATION;
+			input_forms.push(taxform_id);
+		} else {
+			// Find the form to insert the new form after.
+			const new_formname	= taxform_id.split('-')[0];
+			let last_found		= -1;
+			where				= "afterend";
+
+			// Find the last form of the same type.
+			for (let i = 0; i < input_forms.length; i++) {
+				const old_formname = input_forms[i].split('-')[0];
+				if (new_formname === old_formname) {
+					last_found = i;
+				}
+			}
+
+			if (last_found === -1) {
+				// Add to the end of the current forms.
+				element_id = input_forms[input_forms.length-1];
+				input_forms.push(taxform_id);
+			} else {
+				// Insert the new form after the last form of the same type.
+				element_id = input_forms[last_found];
+				input_forms.splice(last_found, 0, taxform_id);
+			}
+		}
+
+		// Insert the tax form.
+		const element = document.getElementById(element_id);
+		element.insertAdjacentHTML(where, taxform);
+
+		// Open the form and scroll the window to it.
+		HTML.openDetails(taxform_id)
+		document.getElementById(taxform_id).scrollIntoView({behavior: 'smooth', block: 'start'});
 	}
 
 	static addOutputForm(taxform_id, taxform) {
-		const after_id = insertOutputForm(taxform_id, output_forms);
-		addForm(taxform_id, taxform, after_id);
+		// Output forms are currently always added to the end of the current forms.
+		output_forms.push(taxform_id);
+		const element = document.getElementById(OUTPUT_LOCATION);
+		element.insertAdjacentHTML("beforeend", taxform);
 	}
 
 	static getInputForms() {
 		return input_forms;
 	}
 
-	static parseFormName(name) {
-		const parts = name.split("-");
-		const classname = TaxFormName.getClass(parts[0]);
-		if (parts.length === 2) {
-			return [ classname, -1 ];
+	static getUID(formname) {
+		// Get a number that is unique to the type of the form.
+		let form_uid = next_form_uid[formname];
+
+		if (form_uid) {
+			next_form_uid[formname]++;
 		} else {
-			return [ classname, parts[1] ];
+			form_uid = 1;
+			next_form_uid[formname] = 2;
 		}
+
+		return form_uid;
 	}
 
-	static removeOutputForms(taxform_id, taxform) {
+	static parseFormName(taxform_id) {
+		const parts = taxform_id.split("-");
+		return [ parts[0].toUpperCase(), parts[1].replace(/-/g, "") ];
+	}
+
+	static removeOutputForms() {
 		while (output_forms.length > 0) {
-			document.getElementById(output_forms.pop()).remove();
+			let taxform_id = output_forms.pop();
+			let [ formname, uid ] = TaxFormWeb.parseFormName(taxform_id);
+			next_form_uid[formname]--;
+			document.getElementById(taxform_id).remove();
 		}
 	}
 }

@@ -5,23 +5,23 @@
 import { Debug }		from "../Classes/Debug.js";
 import { TaxFormName }	from "../Classes/TaxFormName.js";
 
-let instances	= {};	// This variable is indexed by form name. For each form, it
+let instances = {};		// This variable is indexed by form name. For each form, it
 						// returns an array with all the instances of that form.
 
-function addForm(form_name, form) {
-	if (!form_name) {
+function addForm(formname, form) {
+	if (!formname) {
 		throw new Error("TaxFormObj.addForm(): Form name is not set.");
 	}
 
-	let form_list = instances[form_name];
+	let form_list = instances[formname];
 	if (!form_list) {
 		// This is the first form of this type.
-		instances[form_name] = [];
-		form_list = instances[form_name];
+		instances[formname] = [];
+		form_list = instances[formname];
 	}
 
-	if ((form_list.length > 0) && TaxFormName.isSingleton(form_name)) {
-		throw new Error(`TaxFormObj.addForm(): Singleton form ${form_name} already exists; cannot add.`)
+	if ((form_list.length > 0) && TaxFormName.isSingleton(formname)) {
+		throw new Error(`TaxFormObj.addForm(): Singleton form ${formname} already exists; cannot add.`)
 		return;
 	}
 
@@ -33,53 +33,60 @@ export class TaxFormObj {
 		instances		= {};
 	}
 
-	static createForm(form_name) {
-		const form_class = TaxFormName.getClass(form_name);
+	static createForm(formname) {
+		const form_class = TaxFormName.getClass(formname);
 
 		if (form_class) {
-			const form = new form_class(form_name);
-			addForm(form_name, form);
+			const form = new form_class(formname);
+			addForm(formname, form);
 			return form;
 		}
 
 		return undefined;
 	}
 
-	static dataChanged() {
+	static deleteAllForms() {
 		// Called when input information has changed so the forms can be recalculated.
-		for (const form of TaxFormObj.getAllForms()) {
-			form.calculated = false;
-		}
+		instances = {};
 	}
-	
-	static formsToPrint() {
-		const forms = [];
 
-		for (const form_name of TaxFormNames.printOrder()) {
-			let form_list = instances[form_name];
-			if (form_list) {
-				for (const form of form_list) {
-					forms.push(form);
-				}
+	static earnedIncome() {
+		return TaxFormObj.getValue( "F1040",   "01z") +		// Wages
+				TaxFormObj.getValue("F1040S1", "03" ) +		// Business income
+				TaxFormObj.getValue("F1040S1", "06" ) +		// Farm income
+				TaxFormObj.getValue("F1040S1", "08r") +		// Scholarship
+				TaxFormObj.getValue("F1040S1", "08t") +		// Pension
+				TaxFormObj.getValue("F1040S1", "08u") -		// Wages earned while incarcerated
+				TaxFormObj.getValue("F1040S1", "015");		// Deductible part of self-employment tax
+	}
+
+	static formsInPrintOrder() {
+		let forms = [];
+
+		for (let formname of TaxFormName.printOrder()) {
+			let more_forms = TaxFormObj.getAllForms(formname);
+			for (let next_form of more_forms) {
+				forms.push(next_form);
 			}
 		}
 
 		return forms;
 	}
 
-	static getAllForms(form_name = "") {
-		// Get all the form objects that have been created, or all the forms of a particular type.
+	static getAllForms(formname = "") {
+		// Get all the form objects that have been created, or all the forms of a
+		// particular type.
 		let all_forms	= [];
-		let form_names	= [];
+		let formnames	= [];
 
-		if (form_name) {
-			form_names = [ form_name ];
+		if (formname) {
+			formnames = [ formname ];
 		} else {
-			form_names = Object.keys(instances);
+			formnames = Object.keys(instances);
 		}
 
-		for (const form_name of form_names) {
-			let form_list = instances[form_name];
+		for (const formname of formnames) {
+			let form_list = instances[formname];
 			if (form_list) {
 				for (const form of form_list) {
 					all_forms.push(form);
@@ -89,42 +96,37 @@ export class TaxFormObj {
 		return all_forms;
 	}
 
-	static getForm(form_name, index = 0) {
+	static getForm(formname) {
 		//
 		// Get an instance of a form. If it has not been created, undefined will be returned.
 		//
-		let form_list = instances[form_name];
-		let instance = undefined;
-
-		if (!form_list) {
-			// Return undefined.
-			// throw new Error(`TaxFormObj.getForm(): Form ${form_name} not found.`);
-		} else {
-			if (form_list.length === 0) {
-				// Return undefined.
-				// throw new Error(`TaxFormObj.getForm(): No instances of form ${form_name}.`);
-			} else if ((form_list.length-1) < index) {
-				throw new Error(`TaxFormObj.getForm(): Index (${index}) is > last instance of form.`);
+		let instance;
+		let form_list = instances[formname];
+		if (form_list) {
+			if (form_list.length > 1) {
+				throw new Error(`TaxFormObj.getForm(): More than one instance of form ${formname}.`);
 			} else {
-				instance = form_list[index];
+				instance = form_list[0];
 			}
 		}
 
 		return instance;
 	}
 
-	static getTextValue(form_name, ...lineno) {
-		// This method will get a text value from a tax form. If the form does not exist, it wll try to
-		// create it. If it has not been calculated, it will be calculated. If the form has not been
-		// implemented, "" will be returned. If there is more than one instance of the form, the lines
-		// from all the instances are concatinated together.
-		Debug.enter(`TaxFormObj.getTextValue(${form_name}, ${lineno})`);
+	static getTextValue(formname, ...lineno) {
+		// This method will get a text value from a tax form. If the form does not exist,
+		// it will try to create it. If it has not been calculated, it will be calculated.
+		// If the form has not been implemented, "" will be returned. If there is more than
+		// one instance of the form, the lines from all the instances are concatinated
+		// together.
+		Debug.enter(`TaxFormObj.getTextValue(${formname}, ${lineno})`);
 		let str = "";
-		let form_list = instances[form_name];
-		if (!form_list && TaxFormName.createOnDemand(form_name)) {
-			// Try to create; not an error if it fails; it may be a form that is not implemented yet.
-			TaxFormObj.createForm(form_name);
-			form_list = instances[form_name];
+		let form_list = instances[formname];
+		if (!form_list && TaxFormName.createOnDemand(formname)) {
+			// Try to create; not an error if it fails; it may be a form that is not
+			// implemented yet.
+			TaxFormObj.createForm(formname);
+			form_list = instances[formname];
 		}
 
 		if (form_list) {
@@ -153,8 +155,8 @@ export class TaxFormObj {
 		let user_values = [];
 
 		// For each type of form.
-		for (const form_name of Object.keys(instances)) {
-			let form_list = instances[form_name];
+		for (const formname of Object.keys(instances)) {
+			let form_list = instances[formname];
 			// For each instance of a particilar form.
 			for (let index = 0; index < form_list.length; index++) {
 				let form = form_list[index];
@@ -162,7 +164,7 @@ export class TaxFormObj {
 				// calculated by the form.
 				for (const lineno of Object.keys(form.lines)) {
 					if (form.lines[lineno].isUserSuppliedValue()) {
-						let info = [ form_name, index, lineno, form.lines[lineno].value ];
+						let info = [ formname, index, lineno, form.lines[lineno].value ];
 						user_values.push(info);
 					}
 				}
@@ -172,18 +174,19 @@ export class TaxFormObj {
 		return user_values;
 	}
 
-	static getValue(form_name, ...lineno) {
-		// This method will get a value from a tax form. If the form does not exist, it wlll try to
-		// create it. If it has not been calculated, it will be calculated. If the form has not been
-		// implemented, zero will be returned. If there is more than one instance of the form, the lines
-		// from all the instances are added together.
-		Debug.enter(`TaxFormObj.getValue(${form_name}, ${lineno})`);
+	static getValue(formname, ...lineno) {
+		// This method will get a value from a tax form. If the form does not exist, it wlll
+		// try to create it. If it has not been calculated, it will be calculated. If the
+		// form has not been implemented, zero will be returned. If there is more than one
+		// instance of the form, the lines from all the instances are added together.
+		Debug.enter(`TaxFormObj.getValue(${formname}, ${lineno})`);
 		let sum = 0;
-		let form_list = instances[form_name];
-		if (!form_list && TaxFormName.createOnDemand(form_name)) {
-			// Try to create; not an error if it fails; it may be a form that is not implemented yet.
-			TaxFormObj.createForm(form_name);
-			form_list = instances[form_name];
+		let form_list = instances[formname];
+		if (!form_list && TaxFormName.createOnDemand(formname)) {
+			// Try to create; not an error if it fails; it may be a form that is not
+			// implemented yet.
+			TaxFormObj.createForm(formname);
+			form_list = instances[formname];
 		}
 
 		if (form_list) {
@@ -207,5 +210,18 @@ export class TaxFormObj {
 		for (const form of form_list) {
 			form.toConsole();
 		}
+	}
+
+	static unearnedIncome() {
+		return Math.max(0,
+				TaxFormObj.getValue("F1040",   "09" ) +		// Total income
+				TaxFormObj.getValue("F1040S1", "24j") -		// Housing deduction from form 2555
+				TaxFormObj.getValue("F1040",   "01z") -		// Wages
+				TaxFormObj.getValue("F1040S1", "03" ) -		// Business income
+				TaxFormObj.getValue("F1040S1", "06" ) -		// Farm income
+				TaxFormObj.getValue("F1040S1", "08a") -		// Net operating loss 
+				TaxFormObj.getValue("F1040S1", "08d") -		// Foreign earned income exclusion from Form 2555
+				TaxFormObj.getValue("F1040S1", "08u") -		// Wages earned while incarcerated
+				TaxFormObj.getValue("F1040S1", "18" ) );	// Penalty on early withdrawal of savings
 	}
 }

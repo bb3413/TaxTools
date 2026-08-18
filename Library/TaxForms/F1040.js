@@ -17,35 +17,35 @@ const HTML_FORM = `
 				<div>&nbsp;</div>
 				<div class="taxform-desc-string">
 					<p>Taxpayer&apos;s Name</p>
-					<p class="text-value" id="f1040-XX-taxpayers-name"></p>
+					<input class="output-field" readonly type="text" id="f1040-XX-taxpayers-name" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-desc-string">
 					<p>Address</p>
-					<p class="text-value" id="f1040-XX-street-address"></p>
+					<input class="output-field" readonly type="text" id="f1040-XX-street-address" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-desc-string">
 					<p>City, State, Zip Code</p>
-					<p class="text-value" id="f1040-XX-city-state-zip"></p>
+					<input class="output-field" readonly type="text" id="f1040-XX-city-state-zip" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-shorttext">
 					<p>Taxpayer&apos;s Birthday</p>
-					<p class="text-value" id="f1040-XX-taxpayers-birthday"></p>
+					<input class="output-field" readonly type="text" id="f1040-XX-taxpayers-birthday" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-shorttext">
 					<p>Spouse&apos;s Birthday</p>
-					<p class="text-value" id="f1040-XX-spouses-birthday"></p>
+					<input class="output-field" readonly type="text" id="f1040-XX-spouses-birthday" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-shorttext">
 					<p>Filing Status</p>
-					<p class="text-value" id="f1040-XX-filing-status"></p>
+					<input class="output-field" readonly type="text" id="f1040-XX-filing-status" size="10" placeholder="0" />
 				</div>
 
 				<div>&nbsp;</div>
 				<div class="taxform-1040-checkboxes">
 					<p class="right">Taxayer Is Blind</p>
-					<p class="fake-checkbox" id="f1040-XX-taxpayer-is-blind">X</p>
+					<input class="checkbox output-color" readonly type="checkbox" id="f1040-XX-taxpayer-is-blind" size="10" placeholder="0" />
 					<p class="right">Spouse Is Blind</p>
-					<p class="fake-checkbox" id="f1040-XX-spouse-is-blind">X</p>
+					<input class="checkbox output-color" readonly type="checkbox" id="f1040-XX-spouse-is-blind" size="10" placeholder="0" />
 				</div>
 
 				<div>&nbsp;</div>
@@ -53,55 +53,55 @@ const HTML_FORM = `
 					<p class="lineno">1a</p>
 					<p class="description">Total amount from Form(s) W-2, box 1</p>
 					<p class="lineno">1a</p>
-					<p class="value" id="f1040-XX-01a">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-01a" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value">
 					<p class="lineno">1b</p>
 					<p class="description">Household employee wages not reported on Form(s) W-2</p>
 					<p class="lineno">1b</p>
-					<p class="value" id="f1040-XX-01b">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-01b" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value">
 					<p class="lineno">1c</p>
 					<p class="description">Tip income not reported on line 1a</p>
 					<p class="lineno">1c</p>
-					<p class="value" id="f1040-XX-01c">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-01c" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value">
 					<p class="lineno">1d</p>
 					<p class="description">Medicaid waiver payments not reported on Form(s) W-2</p>
 					<p class="lineno">1d</p>
-					<p class="value" id="f1040-XX-01d">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-01d" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value">
 					<p class="lineno">1e</p>
 					<p class="description">Taxable dependent care benefits from Form 2441, line 26</p>
 					<p class="lineno">1e</p>
-					<p class="value" id="f1040-XX-01e">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-01e" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value">
 					<p class="lineno">1f</p>
 					<p class="description">Employer-provided adoption benefits from Form 8839, line 31</p>
 					<p class="lineno">1f</p>
-					<p class="value" id="f1040-XX-01f">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-01f" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value">
 					<p class="lineno">1g</p>
 					<p class="description">Wages from Form 8919, line 6</p>
 					<p class="lineno">1g</p>
-					<p class="value" id="f1040-XX-01g">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-01g" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value">
 					<p class="lineno">1h</p>
 					<p class="description">Other earned income</p>
 					<p class="lineno">1h</p>
-					<p class="value" id="f1040-XX-01h">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-01h" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value-lno-value">
 					<p class="lineno">1i</p>
 					<p class="description">Nontaxable combat pay election</p>
 					<p class="lineno">1i</p>
-					<p class="value" id="f1040-XX-01i">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-01i" size="10" placeholder="0" />
 					<p class="notused"></p>
 					<p class="notused"></p>
 				</div>
@@ -109,178 +109,178 @@ const HTML_FORM = `
 					<p class="lineno">1z</p>
 					<p class="description">Add lines 1a through 1h</p>
 					<p class="lineno">1z</p>
-					<p class="value" id="f1040-XX-01z">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-01z" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value-label-lno-value">
 					<p class="lineno">2a</p>
 					<p class="description">Tax-exempt interest</p>
 					<p class="lineno">2a</p>
-					<p class="value" id="f1040-XX-02a">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-02a" size="10" placeholder="0" />
 					<p class="label">Taxable interest</p>
 					<p class="lineno">2b</p>
-					<p class="value" id="f1040-XX-02b">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-02b" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value-label-lno-value">
 					<p class="lineno">3a</p>
 					<p class="description">Qualified dividends</p>
 					<p class="lineno">3a</p>
-					<p class="value" id="f1040-XX-03a">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-03a" size="10" placeholder="0" />
 					<p class="label">Ordinary dividends</p>
 					<p class="lineno">3b</p>
-					<p class="value" id="f1040-XX-03b">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-03b" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value-label-lno-value">
 					<p class="lineno">4a</p>
 					<p class="description">IRA distributions</p>
 					<p class="lineno">4a</p>
-					<p class="value" id="f1040-XX-04a">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-04a" size="10" placeholder="0" />
 					<p class="label">Taxable amount</p>
 					<p class="lineno">4b</p>
-					<p class="value" id="f1040-XX-04b">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-04b" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value-label-lno-value">
 					<p class="lineno">5a</p>
 					<p class="description">Pensions and annuities</p>
 					<p class="lineno">5a</p>
-					<p class="value" id="f1040-XX-05a">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-05a" size="10" placeholder="0" />
 					<p class="label">Taxable amount</p>
 					<p class="lineno">5b</p>
-					<p class="value" id="f1040-XX-05b">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-05b" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value-label-lno-value">
 					<p class="lineno">6a</p>
 					<p class="description">Social security benefits</p>
 					<p class="lineno">6a</p>
-					<p class="value" id="f1040-XX-06a">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-06a" size="10" placeholder="0" />
 					<p class="label">Taxable amount</p>
 					<p class="lineno">6b</p>
-					<p class="value" id="f1040-XX-06b">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-06b" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value">
 					<p class="lineno">7a</p>
 					<p class="description">Capital gain or (loss)</p>
 					<p class="lineno">7a</p>
-					<p class="value" id="f1040-XX-07a">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-07a" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value">
 					<p class="lineno">8</p>
 					<p class="description">Additional income from Schedule 1, line 10</p>
 					<p class="lineno">8</p>
-					<p class="value" id="f1040-XX-08">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-08" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value">
 					<p class="lineno">9</p>
 					<p class="description">Add lines 1z, 2b, 3b, 4b, 5b, 6b, 7a, and 8. This is your total income</p>
 					<p class="lineno">9</p>
-					<p class="value" id="f1040-XX-09">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-09" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value">
 					<p class="lineno">10</p>
 					<p class="description">Adjustments to income from Schedule 1, line 26</p>
 					<p class="lineno">10</p>
-					<p class="value" id="f1040-XX-10">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-10" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value">
 					<p class="lineno">11a</p>
 					<p class="description">Subtract line 10 from line 9. This is your adjusted gross income</p>
 					<p class="lineno">11a</p>
-					<p class="value" id="f1040-XX-11a">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-11a" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value">
 					<p class="lineno">11b</p>
 					<p class="description">Amount from line 11a (adjusted gross income)</p>
 					<p class="lineno">11b</p>
-					<p class="value" id="f1040-XX-11b">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-11b" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value">
 					<p class="lineno">12e</p>
 					<p class="description">Standard deduction or itemized deductions (from Schedule A)</p>
 					<p class="lineno">12e</p>
-					<p class="value" id="f1040-XX-12e">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-12e" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value">
 					<p class="lineno">13a</p>
 					<p class="description">Qualified business income deduction from Form 8995 or Form 8995-A</p>
 					<p class="lineno">13a</p>
-					<p class="value" id="f1040-XX-13a">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-13a" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value">
 					<p class="lineno">13b</p>
 					<p class="description">Additional deductions from Schedule 1-A, line 38</p>
 					<p class="lineno">13b</p>
-					<p class="value" id="f1040-XX-13b">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-13b" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value">
 					<p class="lineno">14</p>
 					<p class="description">Add lines 12e, 13a, and 13b</p>
 					<p class="lineno">14</p>
-					<p class="value" id="f1040-XX-14">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-14" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value">
 					<p class="lineno">15</p>
 					<p class="description">Subtract line 14 from line 11b. If zero or less, enter -0-. This is your taxable income</p>
 					<p class="lineno">15</p>
-					<p class="value" id="f1040-XX-15">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-15" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value">
 					<p class="lineno">16</p>
 					<p class="description">Tax</p>
 					<p class="lineno">16</p>
-					<p class="value" id="f1040-XX-16">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-16" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value">
 					<p class="lineno">17</p>
 					<p class="description">Amount from Schedule 2, line 3</p>
 					<p class="lineno">17</p>
-					<p class="value" id="f1040-XX-17">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-17" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value">
 					<p class="lineno">18</p>
 					<p class="description">Add lines 16 and 17</p>
 					<p class="lineno">18</p>
-					<p class="value" id="f1040-XX-18">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-18" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value">
 					<p class="lineno">19</p>
 					<p class="description">Child tax credit or credit for other dependents from Schedule 8812</p>
 					<p class="lineno">19</p>
-					<p class="value" id="f1040-XX-19">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-19" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value">
 					<p class="lineno">20</p>
 					<p class="description">Amount from Schedule 3, line 8</p>
 					<p class="lineno">20</p>
-					<p class="value" id="f1040-XX-20">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-20" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value">
 					<p class="lineno">21</p>
 					<p class="description">Add lines 19 and 20</p>
 					<p class="lineno">21</p>
-					<p class="value" id="f1040-XX-21">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-21" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value">
 					<p class="lineno">22</p>
 					<p class="description">Subtract line 21 from line 18. If zero or less, enter -0-</p>
 					<p class="lineno">22</p>
-					<p class="value" id="f1040-XX-22">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-22" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value">
 					<p class="lineno">23</p>
 					<p class="description">Other taxes, including self-employment tax, from Schedule 2, line 21</p>
 					<p class="lineno">23</p>
-					<p class="value" id="f1040-XX-23">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-23" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value">
 					<p class="lineno">24</p>
 					<p class="description">Add lines 22 and 23. This is your total tax</p>
 					<p class="lineno">24</p>
-					<p class="value" id="f1040-XX-24">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-24" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value-lno-value">
 					<p class="lineno">25a</p>
 					<p class="description">Federal income tax withheld from Form(s) W-2</p>
 					<p class="lineno">25a</p>
-					<p class="value" id="f1040-XX-25a">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-25a" size="10" placeholder="0" />
 					<p class="notused"></p>
 					<p class="notused"></p>
 				</div>
@@ -288,7 +288,7 @@ const HTML_FORM = `
 					<p class="lineno">25b</p>
 					<p class="description">Federal income tax withheld from Form(s) 1099</p>
 					<p class="lineno">25b</p>
-					<p class="value" id="f1040-XX-25b">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-25b" size="10" placeholder="0" />
 					<p class="notused"></p>
 					<p class="notused"></p>
 				</div>
@@ -296,7 +296,7 @@ const HTML_FORM = `
 					<p class="lineno">25c</p>
 					<p class="description">Federal income tax withheld from Other forms</p>
 					<p class="lineno">25c</p>
-					<p class="value" id="f1040-XX-25c">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-25c" size="10" placeholder="0" />
 					<p class="notused"></p>
 					<p class="notused"></p>
 				</div>
@@ -304,19 +304,19 @@ const HTML_FORM = `
 					<p class="lineno">25d</p>
 					<p class="description">Add lines 25a through 25c</p>
 					<p class="lineno">25d</p>
-					<p class="value" id="f1040-XX-25d">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-25d" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value">
 					<p class="lineno">26</p>
 					<p class="description">2025 estimated tax payments and amount applied from 2024 return</p>
 					<p class="lineno">26</p>
-					<p class="value" id="f1040-XX-26">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-26" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value-lno-value">
 					<p class="lineno">27a</p>
 					<p class="description">Earned income credit (EIC)</p>
 					<p class="lineno">27a</p>
-					<p class="value" id="f1040-XX-27a">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-27a" size="10" placeholder="0" />
 					<p class="notused"></p>
 					<p class="notused"></p>
 				</div>
@@ -324,7 +324,7 @@ const HTML_FORM = `
 					<p class="lineno">28</p>
 					<p class="description">Additional child tax credit (ACTC) from Schedule 8812</p>
 					<p class="lineno">28</p>
-					<p class="value" id="f1040-XX-28">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-28" size="10" placeholder="0" />
 					<p class="notused"></p>
 					<p class="notused"></p>
 				</div>
@@ -332,7 +332,7 @@ const HTML_FORM = `
 					<p class="lineno">29</p>
 					<p class="description">American opportunity credit from Form 8863, line 8</p>
 					<p class="lineno">29</p>
-					<p class="value" id="f1040-XX-29">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-29" size="10" placeholder="0" />
 					<p class="notused"></p>
 					<p class="notused"></p>
 				</div>
@@ -340,7 +340,7 @@ const HTML_FORM = `
 					<p class="lineno">30</p>
 					<p class="description">Refundable adoption credit from Form 8839, line 13</p>
 					<p class="lineno">30</p>
-					<p class="value" id="f1040-XX-30">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-30" size="10" placeholder="0" />
 					<p class="notused"></p>
 					<p class="notused"></p>
 				</div>
@@ -348,7 +348,7 @@ const HTML_FORM = `
 					<p class="lineno">31</p>
 					<p class="description">Amount from Schedule 3, line 15</p>
 					<p class="lineno">31</p>
-					<p class="value" id="f1040-XX-31">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-31" size="10" placeholder="0" />
 					<p class="notused"></p>
 					<p class="notused"></p>
 				</div>
@@ -356,31 +356,31 @@ const HTML_FORM = `
 					<p class="lineno">32</p>
 					<p class="description">Add lines 27a, 28, 29, 30, and 31. These are your total other payments and refundable credits</p>
 					<p class="lineno">32</p>
-					<p class="value" id="f1040-XX-32">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-32" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value">
 					<p class="lineno">33</p>
 					<p class="description">Add lines 25d, 26, and 32. These are your total payments</p>
 					<p class="lineno">33</p>
-					<p class="value" id="f1040-XX-33">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-33" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value">
 					<p class="lineno">34</p>
 					<p class="description">If line 33 is more than line 24, subtract line 24 from line 33. This is the amount you overpaid</p>
 					<p class="lineno">34</p>
-					<p class="value" id="f1040-XX-34">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-34" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value">
 					<p class="lineno">35a</p>
 					<p class="description">Amount of line 34 you want refunded to you.</p>
 					<p class="lineno">35a</p>
-					<p class="value" id="f1040-XX-35a">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-35a" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value-lno-value">
 					<p class="lineno">36</p>
 					<p class="description">Amount of line 34 you want applied to your 2026 estimated tax</p>
 					<p class="lineno">36</p>
-					<p class="value" id="f1040-XX-36">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-36" size="10" placeholder="0" />
 					<p class="notused"></p>
 					<p class="notused"></p>
 				</div>
@@ -388,13 +388,13 @@ const HTML_FORM = `
 					<p class="lineno">37</p>
 					<p class="description">Subtract line 33 from line 24. This is the amount you owe</p>
 					<p class="lineno">37</p>
-					<p class="value" id="f1040-XX-37">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-37" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value-lno-value">
 					<p class="lineno">38</p>
 					<p class="description">Estimated tax penalty</p>
 					<p class="lineno">38</p>
-					<p class="value" id="f1040-XX-38">0</p>
+					<input class="output-field" readonly type="text" id="f1040-XX-38" size="10" placeholder="0" />
 					<p class="notused"></p>
 					<p class="notused"></p>
 				</div>
@@ -404,6 +404,157 @@ const HTML_FORM = `
 `;
 
 export class F1040 extends TaxForm {
+	static getInputHTML(uid) {
+		if (!uid) {
+			throw new Error(`F1040.getInputHTML(): UID is undefined.`);
+		}
+
+		let html = HTML_FORM.replace(/XX/g, uid)
+							.replace(/readonly/g, "")
+							.replace(/output-color/g, "")
+							.replace(/output-field/g, "input-field");
+
+		return [ `f1040-${uid}-details`, html ];
+	}
+
+	static getUserInput(uid) {
+		//
+		// Create a new instance and initialize it with information from the web page.
+		//
+		if (!uid) {
+			throw new Error(`F1040.getUserInput(): UID is undefined.`);
+		}
+
+		const element = document.getElementById(`f1040-${uid}-details`);
+		if (!element) {
+			throw new Error(`F1040.getUserInput(): Element not found: f1040-${uid}-details`);
+		}
+
+		let inputs = {};
+		
+		inputs["01a"]		= HTML.getUserInput(`f1040-${uid}-01a`, "");
+		inputs["01b"]		= HTML.getUserInput(`f1040-${uid}-01b`, "");
+		inputs["01c"]		= HTML.getUserInput(`f1040-${uid}-01c`, "");
+		inputs["01d"]		= HTML.getUserInput(`f1040-${uid}-01d`, "");
+		inputs["01e"]		= HTML.getUserInput(`f1040-${uid}-01e`, "");
+		inputs["01f"]		= HTML.getUserInput(`f1040-${uid}-01f`, "");
+		inputs["01g"]		= HTML.getUserInput(`f1040-${uid}-01g`, "");
+		inputs["01h"]		= HTML.getUserInput(`f1040-${uid}-01h`, "");
+		inputs["01i"]		= HTML.getUserInput(`f1040-${uid}-01i`, "");
+		inputs["01z"]		= HTML.getUserInput(`f1040-${uid}-01z`, "");
+		inputs["02a"]		= HTML.getUserInput(`f1040-${uid}-02a`, "");
+		inputs["02b"]		= HTML.getUserInput(`f1040-${uid}-02b`, "");
+		inputs["03a"]		= HTML.getUserInput(`f1040-${uid}-03a`, "");
+		inputs["03b"]		= HTML.getUserInput(`f1040-${uid}-03b`, "");
+		inputs["04a"]		= HTML.getUserInput(`f1040-${uid}-04a`, "");
+		inputs["04b"]		= HTML.getUserInput(`f1040-${uid}-04b`, "");
+		inputs["05a"]		= HTML.getUserInput(`f1040-${uid}-05a`, "");
+		inputs["05b"]		= HTML.getUserInput(`f1040-${uid}-05b`, "");
+		inputs["06a"]		= HTML.getUserInput(`f1040-${uid}-06a`, "");
+		inputs["06b"]		= HTML.getUserInput(`f1040-${uid}-06b`, "");
+		inputs["07a"]		= HTML.getUserInput(`f1040-${uid}-07a`, "");
+		inputs["08"]		= HTML.getUserInput(`f1040-${uid}-08`,  "");
+		inputs["09"]		= HTML.getUserInput(`f1040-${uid}-09`,  "");
+		inputs["10"]		= HTML.getUserInput(`f1040-${uid}-10`,  "");
+		inputs["11a"]		= HTML.getUserInput(`f1040-${uid}-11a`, "");
+		inputs["11b"]		= HTML.getUserInput(`f1040-${uid}-11b`, "");
+		inputs["12e"]		= HTML.getUserInput(`f1040-${uid}-12e`, "");
+		inputs["13a"]		= HTML.getUserInput(`f1040-${uid}-13a`, "");
+		inputs["13b"]		= HTML.getUserInput(`f1040-${uid}-13b`, "");
+		inputs["14"]		= HTML.getUserInput(`f1040-${uid}-14`,  "");
+		inputs["15"]		= HTML.getUserInput(`f1040-${uid}-15`,  "");
+		inputs["16"]		= HTML.getUserInput(`f1040-${uid}-16`,  "");
+		inputs["17"]		= HTML.getUserInput(`f1040-${uid}-17`,  "");
+		inputs["18"]		= HTML.getUserInput(`f1040-${uid}-18`,  "");
+		inputs["19"]		= HTML.getUserInput(`f1040-${uid}-19`,  "");
+		inputs["20"]		= HTML.getUserInput(`f1040-${uid}-20`,  "");
+		inputs["21"]		= HTML.getUserInput(`f1040-${uid}-21`,  "");
+		inputs["22"]		= HTML.getUserInput(`f1040-${uid}-22`,  "");
+		inputs["23"]		= HTML.getUserInput(`f1040-${uid}-23`,  "");
+		inputs["24"]		= HTML.getUserInput(`f1040-${uid}-24`,  "");
+		inputs["25a"]		= HTML.getUserInput(`f1040-${uid}-25a`, "");
+		inputs["25b"]		= HTML.getUserInput(`f1040-${uid}-25b`, "");
+		inputs["25c"]		= HTML.getUserInput(`f1040-${uid}-25c`, "");
+		inputs["25d"]		= HTML.getUserInput(`f1040-${uid}-25d`, "");
+		inputs["26"]		= HTML.getUserInput(`f1040-${uid}-26`,  "");
+		inputs["27a"]		= HTML.getUserInput(`f1040-${uid}-27a`, "");
+		inputs["28"]		= HTML.getUserInput(`f1040-${uid}-28`,  "");
+		inputs["29"]		= HTML.getUserInput(`f1040-${uid}-29`,  "");
+		inputs["30"]		= HTML.getUserInput(`f1040-${uid}-30`,  "");
+		inputs["31"]		= HTML.getUserInput(`f1040-${uid}-31`,  "");
+		inputs["32"]		= HTML.getUserInput(`f1040-${uid}-32`,  "");
+		inputs["33"]		= HTML.getUserInput(`f1040-${uid}-33`,  "");
+		inputs["34"]		= HTML.getUserInput(`f1040-${uid}-34`,  "");
+		inputs["35a"]		= HTML.getUserInput(`f1040-${uid}-35a`, "");
+		inputs["36"]		= HTML.getUserInput(`f1040-${uid}-36`,  "");
+		inputs["37"]		= HTML.getUserInput(`f1040-${uid}-37`,  "");
+		inputs["38"]		= HTML.getUserInput(`f1040-${uid}-38`,  "");
+		
+		if (!Objects.isUsed(inputs)) {
+			return;
+		}
+
+		const f1040 = TaxFormObj.createForm("F1040");
+
+		f1040.lines["01a"].user_value	= inputs["01a"]
+		f1040.lines["01b"].user_value	= inputs["01b"]
+		f1040.lines["01c"].user_value	= inputs["01c"]
+		f1040.lines["01d"].user_value	= inputs["01d"]
+		f1040.lines["01e"].user_value	= inputs["01e"]
+		f1040.lines["01f"].user_value	= inputs["01f"]
+		f1040.lines["01g"].user_value	= inputs["01g"]
+		f1040.lines["01h"].user_value	= inputs["01h"]
+		f1040.lines["01i"].user_value	= inputs["01i"]
+		f1040.lines["01z"].user_value	= inputs["01z"]
+		f1040.lines["02a"].user_value	= inputs["02a"]
+		f1040.lines["02b"].user_value	= inputs["02b"]
+		f1040.lines["03a"].user_value	= inputs["03a"]
+		f1040.lines["03b"].user_value	= inputs["03b"]
+		f1040.lines["04a"].user_value	= inputs["04a"]
+		f1040.lines["04b"].user_value	= inputs["04b"]
+		f1040.lines["05a"].user_value	= inputs["05a"]
+		f1040.lines["05b"].user_value	= inputs["05b"]
+		f1040.lines["06a"].user_value	= inputs["06a"]
+		f1040.lines["06b"].user_value	= inputs["06b"]
+		f1040.lines["07a"].user_value	= inputs["07a"]
+		f1040.lines["08" ].user_value	= inputs["08"]
+		f1040.lines["09" ].user_value	= inputs["09"]
+		f1040.lines["10" ].user_value	= inputs["10"]
+		f1040.lines["11a"].user_value	= inputs["11a"]
+		f1040.lines["11b"].user_value	= inputs["11b"]
+		f1040.lines["12e"].user_value	= inputs["12e"]
+		f1040.lines["13a"].user_value	= inputs["13a"]
+		f1040.lines["13b"].user_value	= inputs["13b"]
+		f1040.lines["14" ].user_value	= inputs["14"]
+		f1040.lines["15" ].user_value	= inputs["15"]
+		f1040.lines["16" ].user_value	= inputs["16"]
+		f1040.lines["17" ].user_value	= inputs["17"]
+		f1040.lines["18" ].user_value	= inputs["18"]
+		f1040.lines["19" ].user_value	= inputs["19"]
+		f1040.lines["20" ].user_value	= inputs["20"]
+		f1040.lines["21" ].user_value	= inputs["21"]
+		f1040.lines["22" ].user_value	= inputs["22"]
+		f1040.lines["23" ].user_value	= inputs["23"]
+		f1040.lines["24" ].user_value	= inputs["24"]
+		f1040.lines["25a"].user_value	= inputs["25a"]
+		f1040.lines["25b"].user_value	= inputs["25b"]
+		f1040.lines["25c"].user_value	= inputs["25c"]
+		f1040.lines["25d"].user_value	= inputs["25d"]
+		f1040.lines["26" ].user_value	= inputs["26"]
+		f1040.lines["27a"].user_value	= inputs["27a"]
+		f1040.lines["28" ].user_value	= inputs["28"]
+		f1040.lines["29" ].user_value	= inputs["29"]
+		f1040.lines["30" ].user_value	= inputs["30"]
+		f1040.lines["31" ].user_value	= inputs["31"]
+		f1040.lines["32" ].user_value	= inputs["32"]
+		f1040.lines["33" ].user_value	= inputs["33"]
+		f1040.lines["34" ].user_value	= inputs["34"]
+		f1040.lines["35a"].user_value	= inputs["35a"]
+		f1040.lines["36" ].user_value	= inputs["36"]
+		f1040.lines["37" ].user_value	= inputs["37"]
+		f1040.lines["38" ].user_value	= inputs["38"]
+	}
+
 	constructor(formname) {
 		Debug.enter("F1040.Constructor()");
 		super(formname);
@@ -574,43 +725,11 @@ export class F1040 extends TaxForm {
 		Debug.exit("F1040.calculate()");
 	}
 
-	earnedIncome() {
-			/*
-			return 1040[1z] + 1040S1[3, 6, 8r, 8t, 8u] - 1040S1[15]
-			*/
-	}
-
-	getOutputHTML(index) {
-		if (!index) {
-			throw new Error(`f1040.getOutputHTML(): Index is undefined.`);
+	getOutputHTML(uid) {
+		if (!uid) {
+			throw new Error(`${this.formname}.getOutputHTML(): UID is undefined.`);
 		}
 
-		return HTML_FORM.replace(/XX/g, index);
-	}
-
-	putInformation(index) {
-		//
-		// Copy the 1040 information to the output form.
-		//
-		if (!index) {
-			throw new Error(`f1040.putInformation(): Index is undefined.`);
-		}
-
-		const element = document.getElementById(`f1040-${index}-details`);
-		if (!element) {
-			throw new Error(`f1040.putInformation(): Element not found: f1040-${index}-details`);
-		}
-
-		for (const lineno of Object.keys(this.lines)) {
-			HTML.putUserOutput(`f1040-${index}-${lineno}`, this.line(lineno));
-		}
-
-		HTML.openDetails(`f1040-${index}-details`);
-	}
-
-	unearnedIncome() {
-			/*
-			return 1040[9] + 1040S1[24j] - (1040[1z] + 1040S1[3,6,8a,8d,8u,18])
-			*/
+		return [ `f1040-${uid}-details`, HTML_FORM.replace(/XX/g, uid) ];
 	}
 }

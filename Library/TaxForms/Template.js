@@ -7,32 +7,32 @@ import { TaxTable }		from "../Classes/TaxTable.js";
 import { Taxpayer }		from "../Classes/Taxpayer.js";
 
 const HTML_FORM = `
-		<details class="taxform-details" id="template-details">
-			<summary class="taxform-title">Taxform Template</summary>
+		<details class="taxform-details" id="template-XX-details">
+			<summary class="taxform-title">Template - Template Title</summary>
 			<div class="taxform-container">
 				<div>&nbsp;</div>
 				<div class="taxform-lno-desc-lno-value">
 					<p class="lineno">01a</p>
 					<p class="description">Xxxxxxxxxxxxxxxxxxxxxx</p>
 					<p class="lineno">01a</p>
-					<p class="value" id="01a">0</p>
+					<input class="output-field" readonly type="text" id="template-XX-01a" size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value-lno-value">
-					<p class="lineno">01a</p>
+					<p class="lineno">02a</p>
 					<p class="description">Xxxxxxxxxxxxxxxxxxxxxx</p>
-					<p class="lineno">01a</p>
-					<p class="value" id="01a">0</p>
+					<p class="lineno">02a</p>
+					<input class="output-field" readonly type="text" id="template-XX-02a" size="10" placeholder="0" />
 					<p class="notused"></p>
 					<p class="notused"></p>
 				</div>
 				<div class="taxform-lno-desc-lno-value-label-lno-value">
-					<p class="lineno">01a</p>
+					<p class="lineno">03a</p>
 					<p class="description">Xxxxxxxxxxxxxxxxxxxxxx</p>
-					<p class="lineno">01a</p>
-					<p class="value" id="01a">0</p>
+					<p class="lineno">03a</p>
+					<input class="output-field" readonly type="text" id="template-XX-032a" size="10" placeholder="0" />
 					<p class="label">Xxxxxxxxxxxxxxxxxxxxxx</p>
-					<p class="lineno">01b</p>
-					<p class="value" id="01b">0</p>
+					<p class="lineno">03b</p>
+					<input class="output-field" readonly type="text" id="template-XX-03b" size="10" placeholder="0" />
 				</div>
 				<div>&nbsp;</div>
 			</div>
@@ -43,6 +43,50 @@ export class Template extends TaxForm {
 	static getInputHTML() {
 		return [ "template-details", HTML_FORM ];
 	}
+	static getInputHTML(uid) {
+		if (!uid) {
+			throw new Error(`Template.getInputHTML(): UID is undefined.`);
+		}
+
+		let html = HTML_FORM.replace(/XX/g, uid)
+							.replace(/readonly/g, "")
+							.replace(/output-color/g, "")
+							.replace(/output-field/g, "input-field");
+
+		return [ `template-${uid}-details`, html ];
+	}
+
+	static getUserInput(uid) {
+		//
+		// Create a new template instance and initialize it with information from the template web page.
+		//
+		if (!uid) {
+			throw new Error(`Template.getUserInput(): UID is undefined.`);
+		}
+
+		const element = document.getElementById(`template-${uid}-details`);
+		if (!element) {
+			throw new Error(`Template.getUserInput(): Element not found: template-${uid}-details`);
+		}
+
+		let inputs = {};
+
+		inputs["01"]		= HTML.getUserInput(`template-${uid}-01`, "");
+		inputs["02"]		= HTML.getUserInput(`template-${uid}-02`, "");
+		inputs["03a"]		= HTML.getUserInput(`template-${uid}-03a`, "");
+		inputs["03b"]		= HTML.getUserInput(`template-${uid}-03b`, "");
+		
+		if (!Objects.isUsed(inputs)) {
+			return;
+		}
+
+		const template = TaxFormObj.createForm("Template");
+
+		template.lines["01"  ].user_value	= inputs["01"];
+		template.lines["02"  ].user_value	= inputs["02"];
+		template.lines["03a" ].user_value	= inputs["03a"];
+		template.lines["03b" ].user_value	= inputs["03b"];
+	}
 
 	constructor(formname) {
 		Debug.enter("Template.Constructor()");
@@ -50,63 +94,8 @@ export class Template extends TaxForm {
 
 		this.lines["01"]	= new Line("");
 		this.lines["02"]	= new Line("");
-		this.lines["03"]	= new Line("");
-		this.lines["04"]	= new Line("");
-		this.lines["05"]	= new Line("");
-		this.lines["06"]	= new Line("");
-		this.lines["07"]	= new Line("");
-		this.lines["08"]	= new Line("");
-		this.lines["09"]	= new Line("");
-		this.lines["10"]	= new Line("");
-		this.lines["11"]	= new Line("");
-		this.lines["12"]	= new Line("");
-		this.lines["13"]	= new Line("");
-		this.lines["14"]	= new Line("");
-		this.lines["15"]	= new Line("");
-		this.lines["16"]	= new Line("");
-		this.lines["17"]	= new Line("");
-		this.lines["18"]	= new Line("");
-		this.lines["19"]	= new Line("");
-		this.lines["20"]	= new Line("");
-		this.lines["21"]	= new Line("");
-		this.lines["22"]	= new Line("");
-		this.lines["23"]	= new Line("");
-		this.lines["24"]	= new Line("");
-		this.lines["25"]	= new Line("");
-		this.lines["26"]	= new Line("");
-		this.lines["27"]	= new Line("");
-		this.lines["28"]	= new Line("");
-		this.lines["29"]	= new Line("");
-		this.lines["30"]	= new Line("");
-		this.lines["31"]	= new Line("");
-		this.lines["32"]	= new Line("");
-		this.lines["33"]	= new Line("");
-		this.lines["34"]	= new Line("");
-		this.lines["35"]	= new Line("");
-		this.lines["36"]	= new Line("");
-		this.lines["37"]	= new Line("");
-		this.lines["38"]	= new Line("");
-		this.lines["39"]	= new Line("");
-		this.lines["40a"]	= new Line("");
-		this.lines["40b"]	= new Line("");
-		this.lines["40c"]	= new Line("");
-		this.lines["40d"]	= new Line("");
-		this.lines["40e"]	= new Line("");
-		this.lines["40f"]	= new Line("");
-		this.lines["40g"]	= new Line("");
-		this.lines["40h"]	= new Line("");
-		this.lines["40i"]	= new Line("");
-		this.lines["40j"]	= new Line("");
-		this.lines["40k"]	= new Line("");
-		this.lines["40l"]	= new Line("");
-		this.lines["40m"]	= new Line("");
-		this.lines["40n"]	= new Line("");
-		this.lines["40o"]	= new Line("");
-		this.lines["40p"]	= new Line("");
-		this.lines["40q"]	= new Line("");
-		this.lines["40r"]	= new Line("");
-		this.lines["40s"]	= new Line("");
-		this.lines["named_return"]	= new Line("Named Return");
+		this.lines["03a"]	= new Line("");
+		this.lines["03b"]	= new Line("");
 
 		Debug.exit("Template.Constructor()");
 	}
@@ -123,16 +112,17 @@ export class Template extends TaxForm {
 
 		this.lines["01"].value	= 0;	//
 		this.lines["02"].value	= 0;	//
-		this.lines["03"].value	= 0;	//
-		this.lines["04"].value	= 0;	//
-		this.lines["05"].value	= 0;	//
-		this.lines["06"].value	= 0;	//
-		this.lines["07"].value	= 0;	//
-		this.lines["08"].value	= 0;	//
-		this.lines["09"].value	= 0;	//
-		this.lines["10"].value	= 0;	//
+		this.lines["03a"].value	= 0;	//
+		this.lines["03b"].value	= 0;	//
 
-		this.lines["named_return"].value = this.line(10);
 		Debug.exit("Template.calculate()");
+	}
+
+	getOutputHTML(uid) {
+		if (!uid) {
+			throw new Error(`${this.formname}.getOutputHTML(): UID is undefined.`);
+		}
+
+		return [ `template-${uid}-details`, HTML_FORM.replace(/XX/g, uid) ];
 	}
 }

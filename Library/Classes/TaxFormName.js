@@ -97,6 +97,8 @@ const forms_map = {
 	"F6251":				[ F6251,		false,	true,	true,	false	],
 	"F7206":				[ F7206,		false,	true,	true,	false	],
 	"W2":					[ W2,			true,	false,	false,	false	],
+	
+	"Template":				[ Template,		true,	true,	false,	false	],
 
 	// Worksheets
 	"IncTax":				[ IncTax,		false,	true,	true,	true	],
@@ -132,78 +134,76 @@ const print_order = [
 	"F540CA",
 ];
 
-
-// If there can be multiple instances of a form, it needs an ID to distinguish it.
-let next_form_uid = {};
-
 export class TaxFormName {
-	static createOnDemand(form_name) {
+	static createOnDemand(formname) {
 		// When getValue() or getTextValue() is called, the default is to return 0 or "" if the
 		// form has not been created. However, some forms get input from other forms and need to
 		// be created and calculated before the value is returned. This array lists those forms
-		if (forms_map[form_name]) {
-			return forms_map[form_name][ON_DEMAND];
+		if (forms_map[formname]) {
+			return forms_map[formname][ON_DEMAND];
 		} else {
 			return false;
 		}
 	}
 
-	static createInputPage(form_name) {
+	static createInputPage(formname) {
 		let html;
 		let form_id;
 		let uid;
 
-		switch (form_name) {
+		switch (formname) {
 			case "":
 				break;
 
+			case "F1040":
+				uid = TaxFormWeb.getUID(formname);
+				[ form_id, html ] = F1040.getInputHTML(uid);
+				TaxFormWeb.addInputForm(form_id, html);
+				break;
+
 			case "F1040SC":
-				uid = TaxFormName.getUID(form_name);
+				uid = TaxFormWeb.getUID(formname);
 				[ form_id, html ] = F1040SC.getInputHTML(uid);
 				TaxFormWeb.addInputForm(form_id, html);
 				break;
 
 			case "W2":
-				uid = TaxFormName.getUID(form_name);
+				uid = TaxFormWeb.getUID(formname);
 				[ form_id, html ] = W2.getInputHTML(uid);
 				TaxFormWeb.addInputForm(form_id, html);
 				break;
 
 
 			case "Template":
-				uid = TaxFormName.getUID(form_name);
+				uid = TaxFormWeb.getUID(formname);
 				[ form_id, html ] = Template.getInputHTML(uid);
 				TaxFormWeb.addInputForm(form_id, html);
 				break;
 		}
 	}
 
-	static getClass(form_name) {
-		if (forms_map[form_name]) {
-			return forms_map[form_name][CLASS_NAME];
+	static getClass(formname) {
+		if (forms_map[formname]) {
+			return forms_map[formname][CLASS_NAME];
 		} else {
 			return undefined;
 		}
 	}
 
-	static getUID(form_name) {
-		let form_uid = next_form_uid[form_name];
-
-		if (form_uid) {
-			next_form_uid[form_name]++;
-		} else {
-			form_uid = 1;
-			next_form_uid[form_name] = 2;
+	static getInputHTML(formname, uid) {
+		switch (formname) {
+			case "F1040":		return F1040.getInputHTML(uid);
+			case "F1040SC":		return F1040SC.getInputHTML(uid);
+			case "W2":			return W2.getInputHTML(uid);
+			case "Template":	return Template.getInputHTML(uid);
 		}
-
-		return form_uid;
 	}
 
-	static getUserInput(form_name, uid) {
+	static getUserInput(formname, uid) {
 		let html;
 		let form_id;
 
-		switch (form_name) {
+		switch (formname) {
 			case "":
 				break;
 
@@ -213,49 +213,38 @@ export class TaxFormName {
 		}
 	}
 
-	static isSingleton(form_name) {
-		if (forms_map[form_name]) {
-			return forms_map[form_name][SINGLETON];
+	static isSingleton(formname) {
+		if (forms_map[formname]) {
+			return forms_map[formname][SINGLETON];
 		} else {
 			return true;
 		}
 	}
 
-	static isInput(form_name) {
-		if (forms_map[form_name]) {
-			return forms_map[form_name][INPUT];
+	static isInput(formname) {
+		if (forms_map[formname]) {
+			return forms_map[formname][INPUT];
 		} else {
 			return false;
 		}
 	}
 
-	static isOutput(form_name) {
-		if (forms_map[form_name]) {
-			return forms_map[form_name][OUTPUT];
+	static isOutput(formname) {
+		if (forms_map[formname]) {
+			return forms_map[formname][OUTPUT];
 		} else {
 			return false;
 		}
 	}
 
 	static listAllForms(){
-		// Return array with the names of aformll suported tax forms and worksheets. The debug module
-		// uses this as a list of keywords.
+		// Return array with the names of the suported tax forms and worksheets.
+		/// The debug module uses this as a list of keywords.
 		return Object.keys(forms_map);
 	}
 
-	static listOutputForms() {
-		let form_names = [];
-
-		for(const form_name of Object.keys(forms_map)) {
-			if (forms_map[form_name][OUTPUT]) {
-				form_names.push(form_name);
-			}
-		}
-
-		return form_names;
-	}
-
 	static printOrder() {
+		// Used by TaxFormObj.formsInPrintOrder().
 		return print_order;
 	}
 }

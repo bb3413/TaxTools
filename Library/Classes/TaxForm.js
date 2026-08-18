@@ -3,11 +3,12 @@
 // This is a template for all tax forms and worksheets.
 //
 import { Debug }		from "../Classes/Debug.js";
+import { HTML }			from "../Classes/HTML.js";
 import { HTMLBuild }	from "../Classes/HTMLBuild.js";
 
 export class TaxForm {
-	constructor(form_name) {
-		this.name			= form_name;		// Same as class name.
+	constructor(formname) {
+		this.formname		= formname;
 		this.lines			= {};
 		this.calculated		= false;		// True => need to call calculate().
 	}
@@ -55,6 +56,21 @@ export class TaxForm {
 		return Math.max(...values);
 	}
 
+	putInformation(uid) {
+		//
+		// Copy the information from the instance to the output HTML.
+		//
+		let formname = this.formname.toLowerCase();
+		
+		if (!uid) {
+			throw new Error(`${formname}.putInformation(): UID is undefined.`);
+		}
+
+		for (const lineno of Object.keys(this.lines)) {
+			HTML.putUserOutput(`${formname}-${uid}-${lineno}`, this.line(lineno));
+		}
+	}
+
 	round(index) {
 		return Math.round(this.lines[index].value);
 	}
@@ -70,7 +86,7 @@ export class TaxForm {
 	toHTML() {
 		const doc = new HTMLBuild();
 		doc.startElement("details", "taxform-details");		// Start of details
-			doc.addElement("summary", "taxform-title", this.name);
+			doc.addElement("summary", "taxform-title", this.formname);
 			doc.startElement("div", "taxform-container");	// Start of taxform-contianer
 				doc.addElement("div", "", "&nbsp;");		// Blank line
 				for (const lineno of Object.keys(this.lines).sort()) {
@@ -96,7 +112,7 @@ export class TaxForm {
 		let str		= [];
 		let title	= [];
 
-		title.push(`Form: ${this.name}`);
+		title.push(`Form: ${this.formname}`);
 
 		const linenos = Object.keys(this.lines).sort();
 		for (const lineno of linenos) {

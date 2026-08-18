@@ -114,20 +114,21 @@
 			<h2>Tax Information Input Forms</h2>
 			<select id="add-form-button" class="trigger" tooltipid="#add-form-button-tt">
 				<option value="" hidden disabled selected>Add Form</option>
-				<option value="W-2">		W-2</option>
-				<option value="SSA-1099">	SSA-1099</option>
+				<option value="W2">			W-2</option>
+				<option value="SSA1099">	SSA-1099</option>
+				<option value="F1040SC">	Schedule C</option>
 			</select>
 		</div>
 
 		<!-- Display area for input tax forms. -->
-		<div id="insert-input-forms-here"></div>
-		<?php include "../Library/Classes/Taxpayer.html"; ?>
+		<div id="input-forms-container">
+			<?php include "../Library/Classes/Taxpayer.html"; ?>
+		</div>
 
-		<!-- Display area for output tax forms. -->
 		<p>&nbsp;</p>
-		<div id="tax-return-container">
+		<!-- Display area for output tax forms. -->
+		<div id="output-forms-container">
 			<h2>Tax Return</h2>
-			<div id="insert-output-forms-here"></div>
 		</div>
 
 		<!-- Display area for error messages. -->

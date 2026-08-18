@@ -163,65 +163,65 @@ const HTML_FORM = `
 `;
 
 export class W2 extends TaxForm {
-	static getInputHTML(index) {
-		if (!index) {
-			throw new Error("W2.getInputHTML: Index is undefined.");
+	static getInputHTML(uid) {
+		if (!uid) {
+			throw new Error(`W2.getInputHTML(): UID is undefined.`);
 		}
 
-		return [ `w2-${index}-details`, HTML_FORM.replace(/XX/g, index) ];
+		return [ `w2-${uid}-details`, HTML_FORM.replace(/XX/g, uid) ];
 	}
 
-	static getUserInput(index) {
+	static getUserInput(uid) {
 		//
 		// Create a new W-2 form and initialize it with information from the Web page.
 		//
-		if (!index) {
-			throw new Error("W2.getUserInput: Index is undefined.");
+		if (!uid) {
+			throw new Error(`W2.getUserInput(): UID is undefined.`);
 		}
 
-		const element = document.getElementById(`w2-${index}-details`);
+		const element = document.getElementById(`w2-${uid}-details`);
 		if (!element) {
-			throw new Error(`W2.getUserInput: Element not found: w2-${index}-details`);
+			throw new Error(`W2.getUserInput(): Element not found: w2-${uid}-details`);
 		}
 
 		let inputs = {};
 
-		inputs["01"]		= HTML.getUserInput(`w2-${index}-01`, "");
-		inputs["02"]		= HTML.getUserInput(`w2-${index}-02`, "");
-		inputs["03"]		= HTML.getUserInput(`w2-${index}-03`, "");
-		inputs["04"]		= HTML.getUserInput(`w2-${index}-04`, "");
-		inputs["05"]		= HTML.getUserInput(`w2-${index}-05`, "");
-		inputs["06"]		= HTML.getUserInput(`w2-${index}-06`, "");
-		inputs["07"]		= HTML.getUserInput(`w2-${index}-07`, "");
-		inputs["08"]		= HTML.getUserInput(`w2-${index}-08`, "");
-		inputs["09"]		= HTML.getUserInput(`w2-${index}-09`, "");
-		inputs["10"]		= HTML.getUserInput(`w2-${index}-10`, "");
-		inputs["11"]		= HTML.getUserInput(`w2-${index}-11`, "");
-		inputs["12a1"]		= HTML.getUserInput(`w2-${index}-12a1`, "");
-		inputs["12a2"]		= HTML.getUserInput(`w2-${index}-12a2`, "");
-		inputs["12b1"]		= HTML.getUserInput(`w2-${index}-12b1`, "");
-		inputs["12b2"]		= HTML.getUserInput(`w2-${index}-12b2`, "");
-		inputs["12c1"]		= HTML.getUserInput(`w2-${index}-12c1`, "");
-		inputs["12c2"]		= HTML.getUserInput(`w2-${index}-12c2`, "");
-		inputs["12d1"]		= HTML.getUserInput(`w2-${index}-12d1`, "");
-		inputs["12d2"]		= HTML.getUserInput(`w2-${index}-12d2`, "");
-		inputs["13a"]		= HTML.getUserInput(`w2-${index}-13a`, "");
-		inputs["13b"]		= HTML.getUserInput(`w2-${index}-13b`, "");
-		inputs["13c"]		= HTML.getUserInput(`w2-${index}-13c`, "");
-		inputs["14a1"]		= HTML.getUserInput(`w2-${index}-14a1`, "text");
-		inputs["14a2"]		= HTML.getUserInput(`w2-${index}-14a2`, "");
-		inputs["14b1"]		= HTML.getUserInput(`w2-${index}-14b1`, "text");
-		inputs["14b2"]		= HTML.getUserInput(`w2-${index}-14b2`, "");
-		inputs["14c1"]		= HTML.getUserInput(`w2-${index}-14c1`, "text");
-		inputs["14c2"]		= HTML.getUserInput(`w2-${index}-14c2`, "");
-		inputs["14d1"]		= HTML.getUserInput(`w2-${index}-14d1`, "text");
-		inputs["14d2"]		= HTML.getUserInput(`w2-${index}-14d2`, "");
-		inputs["15"]		= HTML.getUserInput(`w2-${index}-15`, "text");
-		inputs["16"]		= HTML.getUserInput(`w2-${index}-16`, "");
-		inputs["17"]		= HTML.getUserInput(`w2-${index}-17`, "");
-		inputs["18"]		= HTML.getUserInput(`w2-${index}-18`, "");
-		inputs["19"]		= HTML.getUserInput(`w2-${index}-19`, "");
-		inputs["20"]		= HTML.getUserInput(`w2-${index}-20`, "text");
+		inputs["01"]		= HTML.getUserInput(`w2-${uid}-01`, "");
+		inputs["02"]		= HTML.getUserInput(`w2-${uid}-02`, "");
+		inputs["03"]		= HTML.getUserInput(`w2-${uid}-03`, "");
+		inputs["04"]		= HTML.getUserInput(`w2-${uid}-04`, "");
+		inputs["05"]		= HTML.getUserInput(`w2-${uid}-05`, "");
+		inputs["06"]		= HTML.getUserInput(`w2-${uid}-06`, "");
+		inputs["07"]		= HTML.getUserInput(`w2-${uid}-07`, "");
+		inputs["08"]		= HTML.getUserInput(`w2-${uid}-08`, "");
+		inputs["09"]		= HTML.getUserInput(`w2-${uid}-09`, "");
+		inputs["10"]		= HTML.getUserInput(`w2-${uid}-10`, "");
+		inputs["11"]		= HTML.getUserInput(`w2-${uid}-11`, "");
+		inputs["12a1"]		= HTML.getUserInput(`w2-${uid}-12a1`, "");
+		inputs["12a2"]		= HTML.getUserInput(`w2-${uid}-12a2`, "");
+		inputs["12b1"]		= HTML.getUserInput(`w2-${uid}-12b1`, "");
+		inputs["12b2"]		= HTML.getUserInput(`w2-${uid}-12b2`, "");
+		inputs["12c1"]		= HTML.getUserInput(`w2-${uid}-12c1`, "");
+		inputs["12c2"]		= HTML.getUserInput(`w2-${uid}-12c2`, "");
+		inputs["12d1"]		= HTML.getUserInput(`w2-${uid}-12d1`, "");
+		inputs["12d2"]		= HTML.getUserInput(`w2-${uid}-12d2`, "");
+		inputs["13a"]		= HTML.getUserInput(`w2-${uid}-13a`, "");
+		inputs["13b"]		= HTML.getUserInput(`w2-${uid}-13b`, "");
+		inputs["13c"]		= HTML.getUserInput(`w2-${uid}-13c`, "");
+		inputs["14a1"]		= HTML.getUserInput(`w2-${uid}-14a1`, "text");
+		inputs["14a2"]		= HTML.getUserInput(`w2-${uid}-14a2`, "");
+		inputs["14b1"]		= HTML.getUserInput(`w2-${uid}-14b1`, "text");
+		inputs["14b2"]		= HTML.getUserInput(`w2-${uid}-14b2`, "");
+		inputs["14c1"]		= HTML.getUserInput(`w2-${uid}-14c1`, "text");
+		inputs["14c2"]		= HTML.getUserInput(`w2-${uid}-14c2`, "");
+		inputs["14d1"]		= HTML.getUserInput(`w2-${uid}-14d1`, "text");
+		inputs["14d2"]		= HTML.getUserInput(`w2-${uid}-14d2`, "");
+		inputs["15"]		= HTML.getUserInput(`w2-${uid}-15`, "text");
+		inputs["16"]		= HTML.getUserInput(`w2-${uid}-16`, "");
+		inputs["17"]		= HTML.getUserInput(`w2-${uid}-17`, "");
+		inputs["18"]		= HTML.getUserInput(`w2-${uid}-18`, "");
+		inputs["19"]		= HTML.getUserInput(`w2-${uid}-19`, "");
+		inputs["20"]		= HTML.getUserInput(`w2-${uid}-20`, "text");
 		
 		if (!Objects.isUsed(inputs)) {
 			return;
@@ -319,15 +319,8 @@ export class W2 extends TaxForm {
 		}
 
 		Debug.enter("W2.calculate()");
-		this.calculated = true;
-		const tt = TaxTable.getTaxTable();
-		const tp = Taxpayer.getTaxpayer();
 
-		this.lines["13a"].value	= false,	// Statutory Employee
-		this.lines["13b"].value	= false,	// Retirement Plan
-		this.lines["13c"].value	= false,	// Third-party Sick Pay
-		this.lines["15"].value	= "",		// State, ID
-		this.lines["20"].value	= ""		// Locality Name
+		this.calculated = true;
 
 		Debug.exit("W2.calculate()");
 	}

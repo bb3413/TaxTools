@@ -240,68 +240,69 @@ deduction</p>
 `;
 
 export class F1040SC extends TaxForm {
-	static getInputHTML(index) {
-		if (!index) {
-			throw new Error("F1040SC.getInputHTML: Index is undefined.");
+	static getInputHTML(uid) {
+		if (!uid) {
+			throw new Error("F1040SC.getInputHTML: UID is undefined.");
 		}
 
-		let html = HTML_FORM.replace(/XX/g, index)
+		let html = HTML_FORM.replace(/XX/g, uid)
 							.replace(/readonly/g, "")
+							.replace(/output-color/g, "")
 							.replace(/output-field/g, "input-field");
 
-		return [ `f1040sc-${index}-details`, html ];
+		return [ `f1040sc-${uid}-details`, html ];
 	}
 
-	static getUserInput(index) {
+	static getUserInput(uid) {
 		//
 		// Create a new Schedule C and initialize it with information from the Web page.
 		//
-		if (!index) {
-			throw new Error("F1040SC.getUserInput: Index is undefined.");
+		if (!uid) {
+			throw new Error("F1040SC.getUserInput: UID is undefined.");
 		}
 
-		const element = document.getElementById(`f1040sc-${index}-details`);
+		const element = document.getElementById(`f1040sc-${uid}-details`);
 		if (!element) {
-			throw new Error(`F1040SC.getUserInput: Element not found: f1040sc-${index}-details`);
+			throw new Error(`F1040SC.getUserInput: Element not found: f1040sc-${uid}-details`);
 		}
 
 		let inputs = {};
 
-		inputs["01"]		= HTML.getUserInput(`f1040sc-${index}-01`, "");
-		inputs["02"]		= HTML.getUserInput(`f1040sc-${index}-02`, "");
-		inputs["03"]		= HTML.getUserInput(`f1040sc-${index}-03`, "");
-		inputs["04"]		= HTML.getUserInput(`f1040sc-${index}-04`, "");
-		inputs["05"]		= HTML.getUserInput(`f1040sc-${index}-05`, "");
-		inputs["06"]		= HTML.getUserInput(`f1040sc-${index}-06`, "");
-		inputs["07"]		= HTML.getUserInput(`f1040sc-${index}-07`, "");
-		inputs["08"]		= HTML.getUserInput(`f1040sc-${index}-08`, "");
-		inputs["09"]		= HTML.getUserInput(`f1040sc-${index}-09`, "");
-		inputs["10"]		= HTML.getUserInput(`f1040sc-${index}-10`, "");
-		inputs["11"]		= HTML.getUserInput(`f1040sc-${index}-11`, "");
-		inputs["12"]		= HTML.getUserInput(`f1040sc-${index}-12`, "");
-		inputs["13"]		= HTML.getUserInput(`f1040sc-${index}-13`, "");
-		inputs["14"]		= HTML.getUserInput(`f1040sc-${index}-14`, "");
-		inputs["15"]		= HTML.getUserInput(`f1040sc-${index}-15`, "");
-		inputs["16a"]		= HTML.getUserInput(`f1040sc-${index}-16a`, "");
-		inputs["16b"]		= HTML.getUserInput(`f1040sc-${index}-16b`, "");
-		inputs["17"]		= HTML.getUserInput(`f1040sc-${index}-17`, "");
-		inputs["18"]		= HTML.getUserInput(`f1040sc-${index}-18`, "");
-		inputs["19"]		= HTML.getUserInput(`f1040sc-${index}-19`, "");
-		inputs["20a"]		= HTML.getUserInput(`f1040sc-${index}-20a`, "");
-		inputs["20b"]		= HTML.getUserInput(`f1040sc-${index}-20b`, "");
-		inputs["21"]		= HTML.getUserInput(`f1040sc-${index}-21`, "");
-		inputs["22"]		= HTML.getUserInput(`f1040sc-${index}-22`, "");
-		inputs["23"]		= HTML.getUserInput(`f1040sc-${index}-23`, "");
-		inputs["24a"]		= HTML.getUserInput(`f1040sc-${index}-24a`, "");
-		inputs["24b"]		= HTML.getUserInput(`f1040sc-${index}-24b`, "");
-		inputs["25"]		= HTML.getUserInput(`f1040sc-${index}-25`, "");
-		inputs["26"]		= HTML.getUserInput(`f1040sc-${index}-26`, "");
-		inputs["27a"]		= HTML.getUserInput(`f1040sc-${index}-27a`, "");
-		inputs["27b"]		= HTML.getUserInput(`f1040sc-${index}-27b`, "");
-		inputs["28"]		= HTML.getUserInput(`f1040sc-${index}-28`, "");
-		inputs["29"]		= HTML.getUserInput(`f1040sc-${index}-29`, "");
-		inputs["30"]		= HTML.getUserInput(`f1040sc-${index}-30`, "");
-		inputs["31"]		= HTML.getUserInput(`f1040sc-${index}-31`, "");
+		inputs["01"]		= HTML.getUserInput(`f1040sc-${uid}-01`, "");
+		inputs["02"]		= HTML.getUserInput(`f1040sc-${uid}-02`, "");
+		inputs["03"]		= HTML.getUserInput(`f1040sc-${uid}-03`, "");
+		inputs["04"]		= HTML.getUserInput(`f1040sc-${uid}-04`, "");
+		inputs["05"]		= HTML.getUserInput(`f1040sc-${uid}-05`, "");
+		inputs["06"]		= HTML.getUserInput(`f1040sc-${uid}-06`, "");
+		inputs["07"]		= HTML.getUserInput(`f1040sc-${uid}-07`, "");
+		inputs["08"]		= HTML.getUserInput(`f1040sc-${uid}-08`, "");
+		inputs["09"]		= HTML.getUserInput(`f1040sc-${uid}-09`, "");
+		inputs["10"]		= HTML.getUserInput(`f1040sc-${uid}-10`, "");
+		inputs["11"]		= HTML.getUserInput(`f1040sc-${uid}-11`, "");
+		inputs["12"]		= HTML.getUserInput(`f1040sc-${uid}-12`, "");
+		inputs["13"]		= HTML.getUserInput(`f1040sc-${uid}-13`, "");
+		inputs["14"]		= HTML.getUserInput(`f1040sc-${uid}-14`, "");
+		inputs["15"]		= HTML.getUserInput(`f1040sc-${uid}-15`, "");
+		inputs["16a"]		= HTML.getUserInput(`f1040sc-${uid}-16a`, "");
+		inputs["16b"]		= HTML.getUserInput(`f1040sc-${uid}-16b`, "");
+		inputs["17"]		= HTML.getUserInput(`f1040sc-${uid}-17`, "");
+		inputs["18"]		= HTML.getUserInput(`f1040sc-${uid}-18`, "");
+		inputs["19"]		= HTML.getUserInput(`f1040sc-${uid}-19`, "");
+		inputs["20a"]		= HTML.getUserInput(`f1040sc-${uid}-20a`, "");
+		inputs["20b"]		= HTML.getUserInput(`f1040sc-${uid}-20b`, "");
+		inputs["21"]		= HTML.getUserInput(`f1040sc-${uid}-21`, "");
+		inputs["22"]		= HTML.getUserInput(`f1040sc-${uid}-22`, "");
+		inputs["23"]		= HTML.getUserInput(`f1040sc-${uid}-23`, "");
+		inputs["24a"]		= HTML.getUserInput(`f1040sc-${uid}-24a`, "");
+		inputs["24b"]		= HTML.getUserInput(`f1040sc-${uid}-24b`, "");
+		inputs["25"]		= HTML.getUserInput(`f1040sc-${uid}-25`, "");
+		inputs["26"]		= HTML.getUserInput(`f1040sc-${uid}-26`, "");
+		inputs["27a"]		= HTML.getUserInput(`f1040sc-${uid}-27a`, "");
+		inputs["27b"]		= HTML.getUserInput(`f1040sc-${uid}-27b`, "");
+		inputs["28"]		= HTML.getUserInput(`f1040sc-${uid}-28`, "");
+		inputs["29"]		= HTML.getUserInput(`f1040sc-${uid}-29`, "");
+		inputs["30"]		= HTML.getUserInput(`f1040sc-${uid}-30`, "");
+		inputs["31"]		= HTML.getUserInput(`f1040sc-${uid}-31`, "");
 		
 		if (!Objects.isUsed(inputs)) {
 			return;
@@ -448,31 +449,11 @@ export class F1040SC extends TaxForm {
 		Debug.exit("F1040SC.calculate()");
 	}
 
-	getOutputHTML(index) {
-		if (!index) {
-			throw new Error(`f1040sc.getOutputHTML: Index is undefined.`);
+	getOutputHTML(uid) {
+		if (!uid) {
+			throw new Error(`${this.formname}.getOutputHTML(): UID is undefined.`);
 		}
 
-		return HTML_FORM.replace(/XX/g, index);
-	}
-
-	putInformation(index) {
-		//
-		// Copy the schedule C information to the output form.
-		//
-		if (!index) {
-			throw new Error(`f1040sc.putInformation(): Index is undefined.`);
-		}
-
-		const element = document.getElementById(`f1040-${index}-details`);
-		if (!element) {
-			throw new Error(`f1040sc.putInformation(): Element not found: f1040sc-${index}-details`);
-		}
-
-		for (const lineno of Object.keys(this.lines)) {
-			HTML.putUserOutput(`f1040sc-${index}-${lineno}`, this.line(lineno));
-		}
-
-		HTML.openDetails(`f1040sc-${index}-details`);
+		return [ `f1040sc-${uid}-details`, HTML_FORM.replace(/XX/g, uid) ];
 	}
 }

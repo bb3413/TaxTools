@@ -8,45 +8,48 @@ import { W2 }			from "../Library/TaxForms/W2.js";
 import { F1040 }		from "../Library/TaxForms/F1040.js";
 import { Template }		from "../Library/TaxForms/Template.js";
 
-function addForm(form_name) {
-	let form_id;
-	let html;
-	let uid;	// Unique ID
-
-	const output_form_area = document.getElementById("insert-output-forms-here");
-
+function addForm(formname) {
 	try {
-		switch (form_name) {
-			case "W2":
-				TaxFormName.createInputPage(form_name);
-				break;
-		
-			case "F1040":
-				let f1040	= TaxFormObj.createForm("F1040");
-				uid			= TaxFormName.getUID(form_name);
-				html		= f1040.getOutputHTML(uid);
-				output_form_area.insertAdjacentHTML("beforeend", html);
-				break;
-		
-			case "F1040SC":
-				// Display as input form.
-				TaxFormName.createInputPage(form_name);
-
-				// Display as output form.
-				let f1040sc	= TaxFormObj.createForm("F1040SC");
-				uid			= TaxFormName.getUID(form_name);
-				html		= f1040sc.getOutputHTML(uid);
-				output_form_area.insertAdjacentHTML("beforeend", html);
-				break;
-				
-			case "Template":
-				TaxFormName.createInputPage(form_name);
-				break;
+		if (formname === "") {
+			return;
 		}
+
+		// Add input forms.
+		addInputForm(formname);
+
+		// Add output forms.
+		switch (formname) {
+			case "W2":	break;
+			default:
+				addOutputForm(formname);
+		}
+
 	} catch (err) {
 		HTML.putElementValue("error-message-output", err);
 		document.getElementById("error-message-output").scrollIntoView({behavior: 'smooth', block: 'start'});
 	}
+}
+
+function addInputForm(formname) {
+	let form_id;
+	let html;
+	let uid;	// Unique ID
+
+	uid = TaxFormWeb.getUID(formname);
+	[ form_id, html ] = TaxFormName.getInputHTML(formname, uid);
+	TaxFormWeb.addInputForm(form_id, html);
+}
+
+function addOutputForm(formname) {
+	let form_id;
+	let html;
+	let uid;	// Unique ID
+	let form;
+
+	uid		= TaxFormWeb.getUID(formname);
+	form	= TaxFormObj.createForm(formname);
+	[ form_id, html ] = form.getOutputHTML(uid);
+	TaxFormWeb.addOutputForm(form_id, html);
 }
 
 function changeHandler(event) {

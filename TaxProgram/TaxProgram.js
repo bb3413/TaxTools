@@ -18,20 +18,43 @@ function addForm(event) {
 	//
 	// This function is called when the user clicks on the "Add Form" button.
 	//
-	let form_id	= "";
-	let html	= "";
 	
-	const form_name = HTML.getElementValue("add-form-button");	// Get selected form name.
+	const formname = HTML.getElementValue("add-form-button");	// Get selected form name.
 	HTML.putElementValue("add-form-button", "");				// Change selection back to the "Add Form" entry.
 
-	switch (form_name) {
-		case "":
-			break;
-
-		case "W-2":
-			TaxFormName.createInputPage("W2");
-			break;
+	if (formname === "") {
+			return;
 	}
+
+	addInputForm(formname);
+}
+
+function addInputForm(formname) {
+	let form_id;
+	let html;
+	let uid;	// Unique ID
+
+	uid = TaxFormWeb.getUID(formname);
+	[ form_id, html ] = TaxFormName.getInputHTML(formname, uid);
+	TaxFormWeb.addInputForm(form_id, html);
+}
+
+function addOutputForm(form) {
+	let form_id;
+	let html;
+	let uid;	// Unique ID
+
+	if (typeof form.getOutputHTML !== 'function') {
+		console.log(`${form.formname}.getOutputHTML does not exist; cannot add output form.`);
+		return;
+	}
+
+	uid = TaxFormWeb.getUID(form.formname);
+	[ form_id, html ] = form.getOutputHTML(uid);
+	TaxFormWeb.addOutputForm(form_id, html);
+	form.putInformation(uid);
+
+	return form_id;
 }
 
 function calculateHandler(event) {
@@ -40,6 +63,9 @@ function calculateHandler(event) {
 	// the tax return to be generated.
 	//
 	//try {
+		// Remove information from previous calculation.
+		resetCalculation();
+		
 		TaxTable.getTaxTable(HTML.getUserInput("tax-year"));	// Initialize tax tables
 		Taxpayer.initializeTaxpayer();							// Create and initialize taxpayer
 		createTaxForms();										// Create tax forms from user input
@@ -55,19 +81,13 @@ function calculateHandler(event) {
 
 function changeHandler(event) {
 	//
-	// This function is called when any of the input fields are changed. It will reset the
-	// information from a previous calculation and it may need to change what is shown on the
-	// web page if the filing status changed.
+	// This function is called when any of the input fields are changed. It will reset
+	// any information that may be affected.
 	//
-
-	// Reset debugging and error information.
-	Debug.reset();
-	Debug.set_strict();
 	HTML.putElementValue("error-message-output", "");	// Clear error message.
-	HTML.hideElement("tax-return-container");
 
-	TaxFormObj.dataChanged();				// Reset forms so they will be recalculated.
-	TaxFormWeb.removeOutputForms();			// Remove forms from previous calculation.
+	// Reset information from previous calculation.
+	resetCalculation();
 
 	// See if filing status changed.
 	const filing_status = HTML.getUserInput("filing-status", "text").toUpperCase();
@@ -84,10 +104,10 @@ function createTaxForms() {
 	// copy the information from the tax forms on the web page to objects instances of the
 	// tax form.
 	//
-	for (let form_name of TaxFormWeb.getInputForms()) {
-		let [ class_name, index ] = TaxFormWeb.parseFormName(form_name);
+	for (let taxform_id of TaxFormWeb.getInputForms()) {
+		let [ formname, uid ] = TaxFormWeb.parseFormName(taxform_id);
 		// window[class_name].getUserInput(index);
-		TaxFormName.getUserInput("W2", index);
+		TaxFormName.getUserInput(formname, uid);
 	}
 }
 
@@ -100,20 +120,9 @@ function putOutputs() {
 	HTML.closeAllDetails();
 
 	// Create the tax return web pages.
-	let html = "";
-	const tax_return_area = document.getElementById("insert-output-forms-here");
-	for(const form_name of TaxFormName.listOutputForms()) {
-		for(const form of TaxFormObj.getAllForms(form_name)) {
-			if (form.isUsed()) {
-				if (typeof form.getOutputHTML === "function") {
-					html = form.getOutputHTML();
-					tax_return_area.insertAdjacentHTML("beforeend", html);
-					form.putInformation();
-				} else {
-					html = form.toHTML();
-					tax_return_area.insertAdjacentHTML("beforeend", html);
-				}
-			}
+	for(const form of TaxFormObj.formsInPrintOrder()) {
+		if (form.isUsed()) {
+			addOutputForm(form);
 		}
 	}
 
@@ -121,9 +130,20 @@ function putOutputs() {
 	Taxpayer.getTaxpayer().putTaxpayerInformation();
 
 	// Show the tax return forms.
-	HTML.openDetails("f1040-details");
-	HTML.showElement("tax-return-container");
-	document.getElementById("tax-return-container").scrollIntoView({behavior: 'smooth', block: 'start'});
+	HTML.openDetails("f1040-1-details");
+	HTML.showElement("output-forms-container");
+	document.getElementById("output-forms-container").scrollIntoView({behavior: 'smooth', block: 'start'});
+}
+
+function resetCalculation() {
+	Debug.reset();
+	Debug.set_strict();
+
+	TaxFormObj.deleteAllForms();
+
+	// Remove the output web form from the previous calculation.
+	TaxFormWeb.removeOutputForms();			// Remove form web pages.
+	HTML.hideElement("output-forms-container");
 }
 
 function restoreDataHandler(data) {

@@ -284,29 +284,29 @@ export class Taxpayer {
 		//
 		// Put the taxpayer information on the output form 1040.
 		//
-		HTML.putUserOutput("f1040-filing-status",		printFilingStatus(this.filing_status), "text");
-		HTML.putUserOutput("f1040-taxpayers-name",		this.taxpayers_name, "text");
-		HTML.putUserOutput("f1040-street-address",		this.street_address, "text");
+		HTML.putUserOutput("f1040-1-filing-status", printFilingStatus(this.filing_status), "text");
+		HTML.putUserOutput("f1040-1-taxpayers-name", this.taxpayers_name, "text");
+		HTML.putUserOutput("f1040-1-street-address", this.street_address, "text");
 		if (this.city) {
-			HTML.putUserOutput("f1040-city-state-zip",	`${this.city}, CA ${this.zip_code}`, "text");
+			HTML.putUserOutput("f1040-1-city-state-zip", `${this.city}, CA ${this.zip_code}`, "text");
 		} else {
-			HTML.putUserOutput("f1040-city-state-zip",	"", "text");
+			HTML.putUserOutput("f1040-1-city-state-zip","", "text");
 		}
 
 		if (this.taxpayers_birthday) {
-			HTML.putUserOutput("f1040-taxpayers-birthday",
+			HTML.putUserOutput("f1040-1-taxpayers-birthday",
 				`${this.taxpayers_birthday} (Age ${this.taxpayers_age})`, "text");
 		} else {
-			HTML.putUserOutput("f1040-taxpayers-birthday", "", "text");
+			HTML.putUserOutput("f1040-1-taxpayers-birthday", "", "text");
 		}
 		if (this.spouses_birthday) {
-			HTML.putUserOutput("f1040-spouses-birthday",
+			HTML.putUserOutput("f1040-1-spouses-birthday",
 				`${this.spouses_birthday} (Age ${this.spouses_age})`, "text");
 		} else {
-			HTML.putUserOutput("f1040-spouses-birthday", "", "text");
+			HTML.putUserOutput("f1040-1-spouses-birthday", "", "text");
 		}
-		HTML.putUserOutput("f1040-taxpayer-is-blind",	this.is_taxpayer_blind ? "X" : "", "text");
-		HTML.putUserOutput("f1040-spouse-is-blind",		this.is_spouse_blind ? "X" : "", "text");
+		HTML.putUserOutput("f1040-1-taxpayer-is-blind",	this.is_taxpayer_blind ? "X" : "", "text");
+		HTML.putUserOutput("f1040-1-spouse-is-blind", this.is_spouse_blind ? "X" : "", "text");
 	}
 
 	toPrint() {

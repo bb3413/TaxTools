@@ -133,7 +133,7 @@ export class Debug {
 		}
 
 		for (const form of TaxFormObj.getAllForms()) {
-			if (debug_all || debug_used_keywords.includes(form.name)) {
+			if (debug_all || debug_used_keywords.includes(form.formname)) {
 				output += form.toString();
 			}
 		}
