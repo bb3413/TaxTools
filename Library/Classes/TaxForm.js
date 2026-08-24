@@ -83,24 +83,29 @@ export class TaxForm {
 		console.log(this.toString());
 	}
 
-	toHTML() {
+	toHTML(uid = "99") {
 		const doc = new HTMLBuild();
-		doc.startElement("details", "taxform-details");		// Start of details
+		doc.startElement("details", "taxform-details", "", `id="${this.formname}-${uid}-details"`);		// Start of details
 			doc.addElement("summary", "taxform-title", this.formname);
 			doc.startElement("div", "taxform-container");	// Start of taxform-contianer
 				doc.addElement("div", "", "&nbsp;");		// Blank line
 				for (const lineno of Object.keys(this.lines).sort()) {
+					let attributes;
+					let id;
 					let line = this.lines[lineno];
+
 					doc.startElement("div", "taxform-lno-desc-value");	// Start of line
-						doc.addElement("p", "lineno",		lineno);
-						doc.addElement("p", "description",	line.label);
-						doc.addElement("p", "value",		line.value);
+						doc.addElement("p", "lineno", lineno);
+						doc.addElement("p", "description", line.label);
+						id=`${this.formname}-${uid}-${lineno}`;
+						attributes=`readonly type="text" id="${id}" size="10" placeholder="0"`;
+						doc.addVoidElement("input", "output-field",	line.value, attributes);
 					doc.stopElement("div");					// End of line
 				}
 				doc.addElement("div", "", "&nbsp;");		// Blank line
 			doc.stopElement("div");							// End of taxform-contianer
 		doc.stopElement("details");							// End of details
-		console.log(doc.toString());
+
 		return doc.toString();
 	}
 
