@@ -56,12 +56,30 @@ export class HTMLBuild {
 	//
 	// Methods
 	//
-	addElement(element, css_class, str) {
-		let css_str = "";
+	addElement(element, css_class, str, attributes="") {
+		// Add a container element. Container elements wrap their value between start and end tags.
 		if (css_class) {
-			css_str = `class="${css_class}"`
+			attributes += attributes ? " " : "";
+			attributes += `class="${css_class}"`
 		}
-		const line = `${this.indent}<${element} ${css_str}>${str}</${element}>`;
+
+		const line = `${this.indent}<${element} ${attributes}>${str}</${element}>`;
+		this.htmldoc.push(line);
+	}
+
+	addVoidElement(element, css_class, str="", attributes="") {
+		// Void elements do not have closing tags, so they specify their value in an attribute.
+		if (css_class) {
+			attributes += attributes ? " " : "";
+			attributes += `class="${css_class}"`
+		}
+
+		if (str || !attributes.match(/placeholder/i)) {
+			attributes += attributes ? " " : "";
+			attributes += `value="${str}"`
+		}
+
+		const line = `${this.indent}<${element} ${attributes} />`;
 		this.htmldoc.push(line);
 	}
 
@@ -100,12 +118,12 @@ export class HTMLBuild {
 		this.htmldoc.push(line);
 	}
 
-	startElement(element, css_class="", str="") {
-		let css_str = "";
+	startElement(element, css_class="", str="", attributes="") {
 		if (css_class) {
-			css_str = `class="${css_class}"`
+			attributes += attributes ? " " : "";
+			attributes += `class="${css_class}"`
 		}
-		const line = `${this.indent}<${element} ${css_str}>${str}`;
+		const line = `${this.indent}<${element} ${attributes}>${str}`;
 		this.htmldoc.push(line);
 
 		this._indent_level += 1;
