@@ -39,9 +39,10 @@ import { F540 }			from "../TaxForms/F540.js";			// California Income Tax
 import { F540CA }		from "../TaxForms/F540CA.js";		// California Adjustments
 import { F6251 }		from "../TaxForms/F6251.js";		// AMT worksheet
 import { F7206 }		from "../TaxForms/F7206.js";		// Self-employment Health Insurance Deduction
+import { SSA1099 }		from "../TaxForms/SSA1099.js";
 import { W2 }			from "../TaxForms/W2.js";
 
-import { Template }		from "../TaxForms/Template.js";
+// import { Template }		from "../TaxForms/Template.js";
 
 // Worksheets
 import { IncTax }		from "../Worksheets/IncTax.js";
@@ -81,7 +82,7 @@ const forms_map = {
 //	"F1099B":				[ F1099B,		true,	false,	false,	false	],
 //	"F1099C":				[ F1099C,		true,	false,	false,	false	],
 //	"F1099DIV":				[ F1099DIV,		true,	false,	false,	false	],
-	"F1099G":				[ F1099G,		true,	false,	false,	false	],
+//	"F1099G":				[ F1099G,		true,	false,	false,	false	],
 //	"F1099INT":				[ F1099INT,		true,	false,	false,	false	],
 //	"F1099K":				[ F1099K,		true,	false,	false,	false	],
 //	"F1099LTC":				[ F1099LTC,		true,	false,	false,	false	],
@@ -96,9 +97,10 @@ const forms_map = {
 	"F540CA":				[ F540CA,		false,	true,	true,	true	],
 	"F6251":				[ F6251,		false,	true,	true,	false	],
 	"F7206":				[ F7206,		false,	true,	true,	false	],
+	"SSA1099":				[ SSA1099,		true,	false,	false,	false	],
 	"W2":					[ W2,			true,	false,	false,	false	],
 	
-	"Template":				[ Template,		true,	true,	false,	false	],
+//	"Template":				[ Template,		true,	true,	false,	false	],
 
 	// Worksheets
 	"IncTax":				[ IncTax,		false,	true,	true,	true	],
@@ -146,42 +148,6 @@ export class TaxFormName {
 		}
 	}
 
-	static createInputPage(formname) {
-		let html;
-		let form_id;
-		let uid;
-
-		switch (formname) {
-			case "":
-				break;
-
-			case "F1040":
-				uid = TaxFormWeb.getUID(formname);
-				[ form_id, html ] = F1040.getInputHTML(uid);
-				TaxFormWeb.addInputForm(form_id, html);
-				break;
-
-			case "F1040SC":
-				uid = TaxFormWeb.getUID(formname);
-				[ form_id, html ] = F1040SC.getInputHTML(uid);
-				TaxFormWeb.addInputForm(form_id, html);
-				break;
-
-			case "W2":
-				uid = TaxFormWeb.getUID(formname);
-				[ form_id, html ] = W2.getInputHTML(uid);
-				TaxFormWeb.addInputForm(form_id, html);
-				break;
-
-
-			case "Template":
-				uid = TaxFormWeb.getUID(formname);
-				[ form_id, html ] = Template.getInputHTML(uid);
-				TaxFormWeb.addInputForm(form_id, html);
-				break;
-		}
-	}
-
 	static getClass(formname) {
 		if (forms_map[formname]) {
 			return forms_map[formname][CLASS_NAME];
@@ -191,25 +157,24 @@ export class TaxFormName {
 	}
 
 	static getInputHTML(formname, uid) {
+		// This method allows you to call the static method getInputHTML() by name.
 		switch (formname) {
-			case "F1040":		return F1040.getInputHTML(uid);
 			case "F1040SC":		return F1040SC.getInputHTML(uid);
+			case "SSA1099":		return SSA1099.getInputHTML(uid);
 			case "W2":			return W2.getInputHTML(uid);
 			case "Template":	return Template.getInputHTML(uid);
+			default:			throw new Error(`TaxFormName.getInputHTML(): unplemented form: ${formname}`);
 		}
 	}
 
 	static getUserInput(formname, uid) {
-		let html;
-		let form_id;
-
+		// This method allows you to call the static method getUserInput() by name.
 		switch (formname) {
-			case "":
-				break;
-
-			case "W2":
-				W2.getUserInput(uid);
-				break;
+			case "F1040SC":		return F1040SC.getUserInput(uid);
+			case "SSA1099":		return SSA1099.getUserInput(uid);
+			case "W2":			return W2.getUserInput(uid);
+			case "Template":	return Template.getUserInput(uid);
+			default:			throw new Error(`TaxFormName.getUserInput(): unplemented form: ${formname}`);
 		}
 	}
 
@@ -221,7 +186,7 @@ export class TaxFormName {
 		}
 	}
 
-	static isInput(formname) {
+	static isInputForm(formname) {
 		if (forms_map[formname]) {
 			return forms_map[formname][INPUT];
 		} else {
@@ -229,7 +194,7 @@ export class TaxFormName {
 		}
 	}
 
-	static isOutput(formname) {
+	static isOutputForm(formname) {
 		if (forms_map[formname]) {
 			return forms_map[formname][OUTPUT];
 		} else {
