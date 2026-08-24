@@ -12,7 +12,7 @@ import { SSTax }		from "../Worksheets/SSTax.js";
 
 const HTML_FORM = `
 		<details class="taxform-details" id="f1040-XX-details">
-			<summary class="taxform-title">1040 - Individual Income Tax Return</summary>
+			<summary class="taxform-summary">1040 - Individual Income Tax Return</summary>
 			<div class="taxform-container">
 				<div>&nbsp;</div>
 				<div class="taxform-desc-string">

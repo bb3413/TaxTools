@@ -7,8 +7,8 @@ import { TaxForm }		from "../Classes/TaxForm.js";
 import { TaxFormObj }	from "../Classes/TaxFormObj.js";
 
 const HTML_FORM = `
-		<details class="taxform-container" id="ssa1099-XX-details">
-			<summary class="taxform-title">SSA-1099 - Social Security Benefit Statement</summary>
+		<details class="taxform-details" id="ssa1099-XX-details">
+			<summary class="taxform-summary">SSA-1099 - Social Security Benefit Statement</summary>
 			<div class="ssa1099-container">
 				<div class="ssa1099-box span-four">
 					<p class="ssa1099-box-description">Box 1 &nbsp;&nbsp; Name</p>

@@ -61,7 +61,7 @@ fi
 
 echo '<html lang="en">'
 echo '	<details class="tax-form-container">'
-echo '		<summary class="taxform-title">'$FORM_TITLE'</summary>'
+echo '		<summary class="taxform-summary">'$FORM_TITLE'</summary>'
 echo '		<div>'
 
 cat $FIELD_FILE |

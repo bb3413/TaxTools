@@ -86,7 +86,7 @@ export class TaxForm {
 	toHTML(uid = "99") {
 		const doc = new HTMLBuild();
 		doc.startElement("details", "taxform-details", "", `id="${this.formname}-${uid}-details"`);		// Start of details
-			doc.addElement("summary", "taxform-title", this.formname);
+			doc.addElement("summary", "taxform-summary", this.formname);
 			doc.startElement("div", "taxform-container");	// Start of taxform-contianer
 				doc.addElement("div", "", "&nbsp;");		// Blank line
 				for (const lineno of Object.keys(this.lines).sort()) {

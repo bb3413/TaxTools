@@ -8,7 +8,7 @@ import { Taxpayer }		from "../Classes/Taxpayer.js";
 
 const HTML_FORM = `
 		<details class="taxform-details" id="f1040sc-XX-details">
-			<summary class="taxform-title">Schedule C - Profit and Loss From Business</summary>
+			<summary class="taxform-summary">Schedule C - Profit and Loss From Business</summary>
 			<div class="taxform-container">
 				<div>&nbsp;</div>
 				<div class="taxform-section-container">

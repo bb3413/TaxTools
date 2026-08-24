@@ -8,7 +8,7 @@ import { Taxpayer }		from "../Classes/Taxpayer.js";
 
 const HTML_FORM = `
 		<details class="taxform-details" id="template-XX-details">
-			<summary class="taxform-title">Template - Template Title</summary>
+			<summary class="taxform-summary">Template - Template Title</summary>
 			<div class="taxform-container">
 				<div>&nbsp;</div>
 				<div class="taxform-lno-desc-lno-value">

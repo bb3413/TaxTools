@@ -11,7 +11,7 @@ import { Taxpayer }		from "../Classes/Taxpayer.js";
 
 const HTML_FORM = `
 		<details class="taxform-details" id="w2-XX-details">
-			<summary class="taxform-title">W-2 - Wage and Tax Statement</summary>
+			<summary class="taxform-summary">W-2 - Wage and Tax Statement</summary>
 			<div class="taxform-container">
 				<div>&nbsp;</div>
 				<div class="taxform-lno-desc-value trigger" tooltipid="#w2-XX-01-tt">
