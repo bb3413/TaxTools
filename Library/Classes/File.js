@@ -1,15 +1,20 @@
 
 export class File {
-	static saveToFile(data, filename) {
-		// This function will convert the data to a JSON string and save it to the file in
-		// the user's Download folder.
+	static saveToFile(data, filename, json = true) {
+		// This function will convert the data to a JSON string (if json is true) and
+		// save it to the file in the user's Download folder.
 
 		// The "blob" is something like a file that you will be able to reference with a URL.
 		// The URL is a tempory URL pointing to the blob. Create an anchor HTML element that
 		// reference the URL. Add the anchor to the HTML document. Fake a click on the anchor,
 		// which will start the download, then remove the anchor and URL.
-		const jasonString	= JSON.stringify(data, null, 2);
-		const blob			= new Blob([jasonString], {type: "text/plain"});
+		let dataString;
+		if (json)  {
+			dataString = JSON.stringify(data, null, 2);
+		} else {
+			dataString = data;
+		}
+		const blob			= new Blob([dataString], {type: "text/plain"});
 		const url			= URL.createObjectURL(blob);
 		const a				= document.createElement("a");
 		a.href				= url;
