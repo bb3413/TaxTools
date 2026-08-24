@@ -7,7 +7,7 @@ import { HTML }			from "../Classes/HTML.js";
 
 // These arrays contain the container IDs, in order, for the tax forms that
 // have been added to the web page.
-let input_forms			= ["taxpayer-details"];		// Already entered in PHP file.
+let input_forms			= [];
 let output_forms		= [];
 
 // The web pages need unique IDs to include in their element IDs to avoid name
@@ -59,10 +59,6 @@ export class TaxFormWeb {
 		// Insert the tax form.
 		const element = document.getElementById(element_id);
 		element.insertAdjacentHTML(where, taxform);
-
-		// Open the form and scroll the window to it.
-		HTML.openDetails(taxform_id)
-		document.getElementById(taxform_id).scrollIntoView({behavior: 'smooth', block: 'start'});
 	}
 
 	static addOutputForm(taxform_id, taxform) {
