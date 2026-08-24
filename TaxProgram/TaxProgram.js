@@ -8,9 +8,7 @@ import { TaxFormName }		from "../Library/Classes/TaxFormName.js";
 import { TaxFormObj }		from "../Library/Classes/TaxFormObj.js";
 import { Taxpayer }			from "../Library/Classes/Taxpayer.js";
 import { TaxTable }			from "../Library/Classes/TaxTable.js";
-
 import { F1040 }			from "../Library/TaxForms/F1040.js";
-import { W2 }				from "../Library/TaxForms/W2.js";
 
 import { TAX_PROGRAM_SAVE_FILE } from "../Library/TaxTools/TaxTools.js";
 
@@ -20,7 +18,8 @@ function addForm(event) {
 	//
 	
 	const formname = HTML.getElementValue("add-form-button");	// Get selected form name.
-	HTML.putElementValue("add-form-button", "");				// Change selection back to the "Add Form" entry.
+	HTML.putElementValue("add-form-button", "");			addInputForm
+	// Change selection back to the "Add Form" entry.
 
 	if (formname === "") {
 			return;
@@ -30,17 +29,21 @@ function addForm(event) {
 }
 
 function addInputForm(formname) {
-	let form_id;
+	let taxform_id;
 	let html;
 	let uid;	// Unique ID
 
 	uid = TaxFormWeb.getUID(formname);
-	[ form_id, html ] = TaxFormName.getInputHTML(formname, uid);
-	TaxFormWeb.addInputForm(form_id, html);
+	[ taxform_id, html ] = TaxFormName.getInputHTML(formname, uid);
+	TaxFormWeb.addInputForm(taxform_id, html);
+
+	// Open the form and scroll the window to it.
+	HTML.openDetails(taxform_id);
+	document.getElementById(taxform_id).scrollIntoView({behavior: 'smooth', block: 'start'});
 }
 
 function addOutputForm(form) {
-	let form_id;
+	let taxform_id;
 	let html;
 	let uid;	// Unique ID
 
@@ -50,11 +53,11 @@ function addOutputForm(form) {
 	}
 
 	uid = TaxFormWeb.getUID(form.formname);
-	[ form_id, html ] = form.getOutputHTML(uid);
-	TaxFormWeb.addOutputForm(form_id, html);
+	[ taxform_id, html ] = form.getOutputHTML(uid);
+	TaxFormWeb.addOutputForm(taxform_id, html);
 	form.putInformation(uid);
 
-	return form_id;
+	return taxform_id;
 }
 
 function calculateHandler(event) {
@@ -62,7 +65,7 @@ function calculateHandler(event) {
 	// This function is called when the Calculate button is pressed. It causes
 	// the tax return to be generated.
 	//
-	//try {
+	try {
 		// Remove information from previous calculation.
 		resetCalculation();
 		
@@ -73,10 +76,11 @@ function calculateHandler(event) {
 		f1040.calculate();
 		putOutputs();
 		Debug.turnOn();
-	//} catch (err) {
-		//HTML.putElementValue("error-message-output", err);
-		//document.getElementById("error-message-output").scrollIntoView();
-	//}
+	} catch (error) {
+		HTML.putElementValue("error-message-output", error);
+		console.log("Stack trace:", error.stack);
+		document.getElementById("error-message-output").scrollIntoView();
+	}
 }
 
 function changeHandler(event) {

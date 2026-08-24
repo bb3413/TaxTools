@@ -17,6 +17,7 @@
 	--light-text-color:			MediumBlue;
 	--input-color:				#d9fddd;	/* #9FC; */
 	--output-color:				#DEF;
+	--notused-color:			lightgray;
 	--border-color:				var(--text-color);
 	--shadow-color:				#AAAAAA;	/* Gray */
 	--tooltip-bg-color:			Beige;
@@ -176,6 +177,7 @@ input:-webkit-autofill:focus {
 .noborder		{ border:				none !important; }
 .input-color	{ background-color:		var(--input-color); }
 .output-color	{ background-color:		var(--output-color); }
+.notused-color	{ background-color:		var(--notused-color); }
 .right			{ text-align:			right; }
 .left			{ text-align:			left; }
 .span-two		{ grid-column:			span 2; }

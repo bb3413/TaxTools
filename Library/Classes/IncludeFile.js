@@ -62,8 +62,8 @@ async function loadIncludes(container = document, depth = 0) {
 
 			// Recursively call to search the new file.
 			await loadIncludes(el, depth + 1);
-		} catch (err) {
-			console.error(`Failed to load ${filename}:`, err);
+		} catch (error) {
+			console.error(`Failed to load ${filename}:`, error);
 			// Put an error message where the file should have been included.
 			el.innerHTML = `<span style="color:red">Error loading ${filename}</span>`;
 		}

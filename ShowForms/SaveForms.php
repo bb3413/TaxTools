@@ -10,9 +10,27 @@
 	<script type="module" src="../Library/TaxTools/TaxTools.js"></script>
 	<script type="module" src="../Library/Tooltips/Tooltips.js"></script>
 	<script type="module" src="../Version/Version.js"></script>
-
-	<script type="module" src="ShowForms.js"></script>
-	<title>Show Tax Forms</title>
+	<style>
+		.button-container {
+			display:				flex;
+			/* justify-content:		flex-end;	/* Align the div block to the right. */
+			justify-content:		center;		/* Align the div block to the center. */
+			align-items:			flex-end;	/* Align buttons on bottom edge. */
+			gap:					5px;		/* Optional: adds space between buttons */
+			margin-bottom:			3px;
+		}
+		.save-button {
+			font-size:				18px;
+			font-weight:			700;
+			padding-top:			5px;
+			padding-bottom:			5px;
+			padding-left:			10px;
+			padding-right:			10px;
+			border-radius:			5px;
+		}
+	</style>
+	<script type="module" src="SaveForms.js"></script>
+	<title>Save Tax Forms</title>
 </head>
 
 <body>
@@ -20,17 +38,10 @@
 		<p class="version-number">Version: <a href="../Version/Version.html">
 			<span id="TaxToolsVersion"></span></a></p>
 
-		<h1 class="title" id="title">Show Tax Forms</h1>
-
-		<h2>Input Tax Forms</h2>
-		<!-- Display area for input tax forms. -->
-		<div id="input-forms-container">
-			<?php include "../Library/Classes/Taxpayer.html"; ?>
-		</div>
-
-		<h2>Output Tax Forms</h2>
-		<!-- Display area for output tax forms. -->
-		<div id="output-forms-container">
+		<h1 class="title" id="title">Save Tax Forms</h1>
+		<div class="button-container">
+			<input type="button" id="save-button" class="save-button"
+				value="Save Tax Returns" />
 		</div>
 
 		<!-- Display area for error messages. -->

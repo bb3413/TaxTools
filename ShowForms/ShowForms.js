@@ -3,63 +3,60 @@ import { HTML }			from "../Library/Classes/HTML.js";
 import { TaxFormName }	from "../Library/Classes/TaxFormName.js";
 import { TaxFormObj }	from "../Library/Classes/TaxFormObj.js";
 import { TaxFormWeb }	from "../Library/Classes/TaxFormWeb.js";
-	
-import { W2 }			from "../Library/TaxForms/W2.js";
-import { F1040 }		from "../Library/TaxForms/F1040.js";
 import { Template }		from "../Library/TaxForms/Template.js";
 
-function addForm(formname) {
+function addInputForm(formname) {
+	let uid = TaxFormWeb.getUID(formname);
+	let [ taxform_id, html ] = TaxFormName.getInputHTML(formname, uid);
+	TaxFormWeb.addInputForm(taxform_id, html);
+}
+
+function addOutputForm(formname) {
+	let taxform_id;
+	let taxform_html;
+
+	let uid		= TaxFormWeb.getUID(formname);
+	let form	= TaxFormObj.createForm(formname);
+
+	if (typeof form.getOutputHTML === "function") {
+		[ taxform_id, taxform_html ] = form.getOutputHTML(uid);
+	} else {
+		uid				= "XX";
+		taxform_id		= `${formname}-${uid}-details`;
+		taxform_html	= form.toHTML(uid);
+		
+	}
+
+	TaxFormWeb.addOutputForm(taxform_id, taxform_html);
+}
+
+function showHandler(event) {
 	try {
-		if (formname === "") {
-			return;
-		}
+		let [ taxform_id, taxform_html ] = Template.getInputHTML("XX");
+		let element = document.getElementById("input-forms-container");
+		element.insertAdjacentHTML("beforebegin", taxform_html);
+		
+		let taxform = new Template("Template");
+		[ taxform_id, taxform_html ] = taxform.getOutputHTML("XX");
+		element = document.getElementById("output-forms-container");
+		element.insertAdjacentHTML("beforebegin", taxform_html);
 
-		// Add input forms.
-		addInputForm(formname);
+		for (const formname of TaxFormName.listAllForms()) {
+			if (TaxFormName.isInputForm(formname)) {
+				addInputForm(formname);
+			}
 
-		// Add output forms.
-		switch (formname) {
-			case "W2":	break;
-			default:
+			if (TaxFormName.isOutputForm(formname)) {
 				addOutputForm(formname);
+			}
 		}
-
-	} catch (err) {
-		HTML.putElementValue("error-message-output", err);
+	} catch (error) {
+		HTML.putElementValue("error-message-output", error);
+   		console.log("Stack trace:", error.stack);
 		document.getElementById("error-message-output").scrollIntoView({behavior: 'smooth', block: 'start'});
 	}
 }
 
-function addInputForm(formname) {
-	let form_id;
-	let html;
-	let uid;	// Unique ID
-
-	uid = TaxFormWeb.getUID(formname);
-	[ form_id, html ] = TaxFormName.getInputHTML(formname, uid);
-	TaxFormWeb.addInputForm(form_id, html);
-}
-
-function addOutputForm(formname) {
-	let form_id;
-	let html;
-	let uid;	// Unique ID
-	let form;
-
-	uid		= TaxFormWeb.getUID(formname);
-	form	= TaxFormObj.createForm(formname);
-	[ form_id, html ] = form.getOutputHTML(uid);
-	TaxFormWeb.addOutputForm(form_id, html);
-}
-
-function changeHandler(event) {
-}
-
 document.addEventListener("DOMContentLoaded", () => {
-	// HTML.addListener("tool-container", "change", changeHandler);
-	addForm("W2");
-	addForm("F1040");
-	addForm("F1040SC");
-	addForm("Template");
-	HTML.closeAllDetails();
+	showHandler();
 });

@@ -27,8 +27,9 @@ async function buttonHandler(event) {
 			// Alert.slowAlert("Unable to lookup sales tax.");
 			throw new Error("Unable to lookup sales tax.");
 		}
-	} catch (err) {
-		HTML.putElementValue("error-message-output", err);
+	} catch (error) {
+		HTML.putElementValue("error-message-output", error);
+		console.log("Stack trace:", error.stack);
 		document.getElementById("error-message-output").scrollIntoView({behavior: 'smooth', block: 'start'});
 	}
 }

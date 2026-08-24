@@ -173,7 +173,7 @@ export class W2 extends TaxForm {
 
 	static getUserInput(uid) {
 		//
-		// Create a new W-2 form and initialize it with information from the Web page.
+		// Create a new W2 form and initialize it with information from the Web page.
 		//
 		if (!uid) {
 			throw new Error(`W2.getUserInput(): UID is undefined.`);

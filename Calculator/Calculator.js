@@ -54,7 +54,7 @@ function calculateResult() {
 		// Precision handling: convert to 12 sig figs then back to string
 		currentInput = Number(parseFloat(result.toPrecision(12)).toString()).toString();
 		updateDisplay(currentInput.length);
-	} catch (e) {
+	} catch (error) {
 		display.value = "Error";
 		currentInput = "";
 	}

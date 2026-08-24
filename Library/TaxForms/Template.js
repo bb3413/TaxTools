@@ -40,9 +40,6 @@ const HTML_FORM = `
 `;
 
 export class Template extends TaxForm {
-	static getInputHTML() {
-		return [ "template-details", HTML_FORM ];
-	}
 	static getInputHTML(uid) {
 		if (!uid) {
 			throw new Error(`Template.getInputHTML(): UID is undefined.`);

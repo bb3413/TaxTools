@@ -41,7 +41,7 @@ const HTML_FORM = `
 				</div>
 
 				<div>&nbsp;</div>
-				<div class="taxform-1040-checkboxes">
+				<div class="f1040-checkboxes">
 					<p class="right">Taxayer Is Blind</p>
 					<input class="checkbox output-color" readonly type="checkbox" id="f1040-XX-taxpayer-is-blind" size="10" placeholder="0" />
 					<p class="right">Spouse Is Blind</p>

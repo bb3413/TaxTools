@@ -3,7 +3,7 @@ import { Dates }		from "../Library/Classes/Dates.js";
 import { Debug }		from "../Library/Classes/Debug.js";
 import { File }			from "../Library/Classes/File.js";
 import { HTML }			from "../Library/Classes/HTML.js";
-import { TaxFormObj }		from "../Library/Classes/TaxFormObj.js";
+import { TaxFormObj }	from "../Library/Classes/TaxFormObj.js";
 import { Taxpayer }		from "../Library/Classes/Taxpayer.js";
 import { TaxTable }		from "../Library/Classes/TaxTable.js";
 
@@ -31,8 +31,9 @@ function changeHandler(event) {
 		TaxFormObj.getForm("F540").calculate();							// Calculate the tax forms
 		putOutputs(taxpayer);										// Put results on web page
 		Debug.turnOn();												// Put debug info on web page if enabled
-	} catch (err) {
-		HTML.putElementValue("error-message-output", err);
+	} catch (error) {
+		HTML.putElementValue("error-message-output", error);
+		console.log("Stack trace:", error.stack);
 		document.getElementById("error-message-output").scrollIntoView({behavior: 'smooth', block: 'start'});
 	}
 }

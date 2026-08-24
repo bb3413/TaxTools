@@ -24,8 +24,9 @@ function ageHandler(event) {
 		} else if (end) {
 			calculateStartDate(end, age);
 		}
-	} catch (err) {
-		HTML.putElementValue("error-message-output", err);
+	} catch (error) {
+		HTML.putElementValue("error-message-output", error);
+		console.log("Stack trace:", error.stack);
 		document.getElementById("error-message-output").scrollIntoView({behavior: 'smooth', block: 'start'});
 	}
 }
@@ -84,8 +85,9 @@ function endHandler(event) {
 		} else if (age) {
 			calculateStartDate(end, age);
 		}
-	} catch (err) {
-		HTML.putElementValue("error-message-output", err);
+	} catch (error) {
+		HTML.putElementValue("error-message-output", error);
+		console.log("Stack trace:", error.stack);
 		document.getElementById("error-message-output").scrollIntoView();
 	}
 }
@@ -107,8 +109,9 @@ function startHandler(event) {
 		} else if (age) {
 			calculateEndDate(start, age);
 		}
-	} catch (err) {
-		HTML.putElementValue("error-message-output", err);
+	} catch (error) {
+		HTML.putElementValue("error-message-output", error);
+		console.log("Stack trace:", error.stack);
 		document.getElementById("error-message-output").scrollIntoView();
 	}
 }
