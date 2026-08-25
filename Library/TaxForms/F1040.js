@@ -409,7 +409,7 @@ export class F1040 extends TaxForm {
 			throw new Error(`F1040.getInputHTML(): UID is undefined.`);
 		}
 
-		let html = HTML_FORM.replace(/XX/g, uid)
+		const html = HTML_FORM.replace(/XX/g, uid)
 							.replace(/readonly/g, "")
 							.replace(/output-color/g, "")
 							.replace(/output-field/g, "input-field");

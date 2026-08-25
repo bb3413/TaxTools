@@ -5,6 +5,7 @@ import { Line }			from "../Classes/Line.js";
 import { Objects }		from "../Classes/Objects.js";
 import { TaxForm }		from "../Classes/TaxForm.js";
 import { TaxFormObj }	from "../Classes/TaxFormObj.js";
+import { TaxTable }		from "../Classes/TaxTable.js";
 
 const HTML_FORM = `
 		<details class="taxform-details" id="f1099r-XX-details">
@@ -164,7 +165,11 @@ export class F1099R extends TaxForm {
 			throw new Error(`F1099R.getInputHTML(): UID is undefined.`);
 		}
 
-		return [ `f1099r-${uid}-details`, HTML_FORM.replace(/XX/g, uid) ];
+		const tax_year	= TaxTable.getTaxYear();
+		const html		= HTML_FORM.replace(/XX/g, uid)
+									.replace(/202X/g, tax_year);
+
+		return [ `f1099r-${uid}-details`, html ];
 	}
 
 	static getUserInput(uid) {
