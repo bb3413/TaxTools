@@ -18,7 +18,7 @@
 <body>
 	<div class="tool-container">
 		<p class="version-number">Version: <a href="../Version/Version.html">
-			<span id="TaxToolsVersion"></span></a></p>
+			<span id="tax-tools-version"></span></a></p>
 
 		<h1 class="title">Age Calculator</h1>
 

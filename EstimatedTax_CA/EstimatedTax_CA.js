@@ -347,7 +347,7 @@ function saveUserData(event) {
 	const FILENAME = "EstimatedTax_CA.txt";
 
 	const data = {
-		version:		HTML.getUserInput("TaxToolsVersion", "text"),
+		version:		HTML.getUserInput("tax-tools-version", "text"),
 		todays_date:	new Date().toLocaleDateString(),
 		input_data:		inputs,
 	};

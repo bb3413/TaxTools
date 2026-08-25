@@ -7,7 +7,7 @@
  * can be displayed in HTML code using a section of code similar to this:
  *
  *		<p class="version-number">Version: <a href="../Version/Version.html">
- *			<span id="TaxToolsVersion"></span></a></p>
+ *			<span id="tax-tools-version"></span></a></p>
  *
  * In addition to inserting the version number in the paragraph, this code makes the version
  * number a clickable link so that when it is clicked, the version log is displayed.
@@ -17,11 +17,11 @@ const tax_tools_version		= "2025.15.013@";
 
 function Initialize() {
 	// Find the version number by its ID.
-	 const TaxToolsVersion = document.getElementById("TaxToolsVersion");
+	 const version_element = document.getElementById("tax-tools-version");
 
 	// If it exist on the current page, update the version text.
-	if (TaxToolsVersion) {
-		TaxToolsVersion.textContent = tax_tools_version;
+	if (version_element) {
+		version_element.textContent = tax_tools_version;
 	}
 }
 

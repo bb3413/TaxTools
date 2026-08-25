@@ -54,8 +54,8 @@
 					spellcheck="false" tooltipid="#TaxpayersNameTT" />
 
 				<p class="label-field right">Version</p>
-				<p class="trigger output-field" tooltipid="#TaxToolsVersionTT">
-					<a href="../Version/Version.html"><span id="TaxToolsVersion"></span></a></p>
+				<p class="trigger output-field" tooltipid="#tax-tools-version-tt">
+					<a href="../Version/Version.html"><span id="tax-tools-version"></span></a></p>
 
 				<p class="label-field right">Filing Status</p>
 				<select class="trigger input-field left" id="FilingStatus" tooltipid="#FilingStatusTT">

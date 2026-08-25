@@ -195,7 +195,7 @@ function saveUserData(event) {
 
 	const data = {
 		"tool_name":	HTML.getUserInput("title", "text"),
-		"version":		HTML.getUserInput("TaxToolsVersion", "text"),
+		"version":		HTML.getUserInput("tax-tools-version", "text"),
 		"todays_date":	new Date().toLocaleDateString(),
 		"taxpayer":		taxpayer,
 		"taxforms":		taxforms,

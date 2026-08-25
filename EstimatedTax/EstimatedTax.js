@@ -419,7 +419,7 @@ function saveUserData(event) {
 	// This function is called when the user wants to save the input fields to a file.
 	//
 	const data = {
-		version:		HTML.getUserInput("TaxToolsVersion", "text"),
+		version:		HTML.getUserInput("tax-tools-version", "text"),
 		todays_date:	new Date().toLocaleDateString(),
 		input_data:		inputs,
 	};

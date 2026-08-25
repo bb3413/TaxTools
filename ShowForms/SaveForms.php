@@ -36,7 +36,7 @@
 <body>
 	<div class="tool-container" id="tool-container">
 		<p class="version-number">Version: <a href="../Version/Version.html">
-			<span id="TaxToolsVersion"></span></a></p>
+			<span id="tax-tools-version"></span></a></p>
 
 		<h1 class="title" id="title">Save Tax Forms</h1>
 		<div class="button-container">
