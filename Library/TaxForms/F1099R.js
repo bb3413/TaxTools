@@ -29,32 +29,32 @@ const HTML_FORM = `
 			
 				<div class="f1099-main-grid">
 					<div class="f1099-col-left">
-						<div class="f1099-box f1099-box-large">
+						<div class="f1099-box f1099-box-large input-color">
 							<span class="f1099-box-label">PAYER&apos;S name, street address, city or town,
 								state or province, country, and ZIP or foreign postal code</span>
-							<div class="f1099-box-value"></div>
+							<input class="f1099-box-value input-color" type="text" id="f1099r-XX-name" size="20" />
 						</div>
 			
 						<div class="f1099-flex-row">
-							<div class="f1099-box">
+							<div class="f1099-box input-color">
 								<span class="f1099-box-label">PAYER&apos;S TIN</span>
-								<div class="f1099-box-value"></div>
+								<input class="f1099-box-value input-color" type="text" id="f1099r-XX-ein" size="20" />
 							</div>
-							<div class="f1099-box">
+							<div class="f1099-box input-color">
 								<span class="f1099-box-label">RECIPIENT&apos;S TIN</span>
-								<div class="f1099-box-value"></div>
+								<input class="f1099-box-value input-color" type="text" id="f1099r-XX-ssn" size="20" />
 							</div>
 						</div>
 			
-						<div class="f1099-box f1099-box-large">
+						<div class="f1099-box f1099-box-large input-color">
 							<span class="f1099-box-label">RECIPIENT&apos;S name, street address, city or
 								town, state, and ZIP code</span>
-							<div class="f1099-box-value"></div>
+							<input class="f1099-box-value input-color" type="text" id="f1099r-XX-address" size="20" />
 						</div>
 			
-						<div class="f1099-box" style="border-bottom: none;">
+						<div class="f1099-box input-color" style="border-bottom: none;">
 							<span class="f1099-box-label">Account number (see instructions)</span>
-							<div class="f1099-box-value"></div>
+							<input class="f1099-box-value input-color" type="text" id="f1099r-XX-account" size="20" />
 						</div>
 					</div>
 			
@@ -80,14 +80,14 @@ const HTML_FORM = `
 							</div>
 							<div class="f1099-box input-color">
 								<span class="f1099-box-label">Total distribution</span>
-								<div class="f1099-box-value"><input type="checkbox" disabled/></div>
+								<div class="f1099-box-value"><input type="checkbox"/></div>
 							</div>
 						</div>
 			
 						<div class="f1099-flex-row">
-							<div class="f1099-box">
+							<div class="f1099-box input-color">
 								<span class="f1099-box-label">3 Capital gain (included in box 2a)</span>
-								<div class="f1099-box-value"></div>
+								<input class="f1099-box-value input-color" type="text" id="f1099r-XX-3" size="20" />
 							</div>
 							<div class="f1099-box input-color">
 								<span class="f1099-box-label">4 Federal income tax withheld</span>
@@ -100,9 +100,9 @@ const HTML_FORM = `
 								<span class="f1099-box-label">5 Employee contrib./Designated Roth</span>
 								<input class="f1099-box-value input-color" type="text" id="f1099r-XX-05" size="20" />
 							</div>
-							<div class="f1099-box">
+							<div class="f1099-box input-color">
 								<span class="f1099-box-label">6 Net unrealized appreciation</span>
-								<div class="f1099-box-value"></div>
+								<input class="f1099-box-value input-color" type="text" id="f1099r-XX-06" size="20" />
 							</div>
 						</div>
 			
@@ -135,9 +135,9 @@ const HTML_FORM = `
 								<span class="f1099-box-label">14 State tax withheld</span>
 								<input class="f1099-box-value input-color" type="text" id="f1099r-XX-14" size="20" />
 							</div>
-							<div class="f1099-box">
+							<div class="f1099-box input-color">
 								<span class="f1099-box-label">15 State/Payer&apos;s state no.</span>
-								<div class="f1099-box-value"></div>
+								<input class="f1099-box-value input-color" type="text" id="f1099r-XX-15" size="20" />
 							</div>
 						</div>
 					</div>
@@ -172,17 +172,24 @@ export class F1099R extends TaxForm {
 
 		let inputs = {};
 
-		inputs["01"]		= HTML.getUserInput(`f1099r-${uid}-01`,  "");
-		inputs["02a"]		= HTML.getUserInput(`f1099r-${uid}-02a`, "");
-		inputs["02b"]		= HTML.getUserInput(`f1099r-${uid}-02b`, "");
-		inputs["03"]		= HTML.getUserInput(`f1099r-${uid}-03`,  "");
-		inputs["04"]		= HTML.getUserInput(`f1099r-${uid}-04`,  "");
-		inputs["05"]		= HTML.getUserInput(`f1099r-${uid}-05`,  "");
-		inputs["06"]		= HTML.getUserInput(`f1099r-${uid}-06`,  "");
-		inputs["07a"]		= HTML.getUserInput(`f1099r-${uid}-07a`, "");
-		inputs["07b"]		= HTML.getUserInput(`f1099r-${uid}-07b`, "");
-		inputs["09b"]		= HTML.getUserInput(`f1099r-${uid}-09b`, "");
-		inputs["14"]		= HTML.getUserInput(`f1099r-${uid}-14`,  "");
+		inputs["name"]		= HTML.getUserInput(`f1099r-${uid}-name`,		"text");
+		inputs["ein"]		= HTML.getUserInput(`f1099r-${uid}-ein`,		"text");
+		inputs["ssn"]		= HTML.getUserInput(`f1099r-${uid}-ssn`,		"text");
+		inputs["address"]	= HTML.getUserInput(`f1099r-${uid}-address`,	"text");
+		inputs["account"]	= HTML.getUserInput(`f1099r-${uid}-account`,	"text");
+		inputs["01"]		= HTML.getUserInput(`f1099r-${uid}-01`,			"");
+		inputs["02a"]		= HTML.getUserInput(`f1099r-${uid}-02a`,		"");
+		inputs["02b"]		= HTML.getUserInput(`f1099r-${uid}-02b`,		"");
+		inputs["03"]		= HTML.getUserInput(`f1099r-${uid}-03`,			"");
+		inputs["04"]		= HTML.getUserInput(`f1099r-${uid}-04`,			"");
+		inputs["05"]		= HTML.getUserInput(`f1099r-${uid}-05`,			"");
+		inputs["06"]		= HTML.getUserInput(`f1099r-${uid}-06`,			"");
+		inputs["07a"]		= HTML.getUserInput(`f1099r-${uid}-07a`,		"text");
+		inputs["07b"]		= HTML.getUserInput(`f1099r-${uid}-07b`,		"");
+		inputs["09b"]		= HTML.getUserInput(`f1099r-${uid}-09b`,		"");
+		inputs["14"]		= HTML.getUserInput(`f1099r-${uid}-14`,			"");
+		inputs["15"]		= HTML.getUserInput(`f1099r-${uid}-15`,			"text");
+
 		if (!Objects.isUsed(inputs)) {
 			return;
 		}
@@ -200,6 +207,7 @@ export class F1099R extends TaxForm {
 		f1099r.lines["07b" ].user_value	= inputs["07b"];
 		f1099r.lines["09b" ].user_value	= inputs["09b"];
 		f1099r.lines["14"  ].user_value	= inputs["14"];
+		f1099r.lines["15"  ].user_value	= inputs["15"];
 	}
 
 	constructor(formname) {
@@ -219,6 +227,7 @@ export class F1099R extends TaxForm {
 		this.lines["07b"]	= new Line("IRA/SEP/SIMPLE");
 		this.lines["09b"]	= new Line("Total employee contributions");
 		this.lines["14"]	= new Line("State tax withheld");
+		this.lines["14"]	= new Line("State/Payer's state no.");
 
 		Debug.exit("F1099R.Constructor()");
 	}

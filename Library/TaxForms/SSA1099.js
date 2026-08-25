@@ -11,22 +11,22 @@ const HTML_FORM = `
 			<summary class="taxform-summary">SSA-1099 - Social Security Benefit Statement</summary>
 			<div>&nbsp;</div>
 			<div class="ssa1099-container">
-				<div class="ssa1099-box span-four">
+				<div class="ssa1099-box span-four input-color">
 					<p class="ssa1099-box-description">Box 1 &nbsp;&nbsp; Name</p>
-					<p></p>
+					<input class="ssa1099-box-value right input-color" type="text" id="ssa1099-XX-01" size="10" />
 				</div>
-				<div class="ssa1099-box span-two">
+				<div class="ssa1099-box span-two input-color">
 					<p class="ssa1099-box-description">Box 2 &nbsp;&nbsp; Social Security Number</p>
-					<p></p>
+					<input class="ssa1099-box-value right input-color" type="text" id="ssa1099-XX-02" size="10" />
 				</div>
 
-				<div class="ssa1099-box span-two">
+				<div class="ssa1099-box span-two input-color">
 					<p class="ssa1099-box-description">Box 3 &nbsp;&nbsp; Benefts Paid</p>
-					<p></p>
+					<input class="ssa1099-box-value right input-color" type="text" id="ssa1099-XX-03" size="10" placeholder="0" />
 				</div>
-				<div class="ssa1099-box span-two">
+				<div class="ssa1099-box span-two input-color">
 					<p class="ssa1099-box-description">Box 4 &nbsp;&nbsp; Benefits Repaid to SSA</p>
-					<p></p>
+					<input class="ssa1099-box-value right input-color" type="text" id="ssa1099-XX-04" size="10" placeholder="0" />
 				</div>
 				<div class="ssa1099-box span-two input-color">
 					<p class="ssa1099-box-description">Box 5 &nbsp;&nbsp; Net Benefits</p>
@@ -79,8 +79,11 @@ export class SSA1099 extends TaxForm {
 
 		let inputs = {};
 
+		inputs["01"]		= HTML.getUserInput(`ssa1099-${uid}-01`, "");
+		inputs["02"]		= HTML.getUserInput(`ssa1099-${uid}-02`, "");
 		inputs["03a"]		= HTML.getUserInput(`ssa1099-${uid}-03a`, "");
 		inputs["03b"]		= HTML.getUserInput(`ssa1099-${uid}-03b`, "");
+		inputs["04"]		= HTML.getUserInput(`ssa1099-${uid}-04`, "");
 		inputs["05"]		= HTML.getUserInput(`ssa1099-${uid}-05`, "");
 		inputs["06"]		= HTML.getUserInput(`ssa1099-${uid}-06`, "");
 		
@@ -90,8 +93,11 @@ export class SSA1099 extends TaxForm {
 
 		const ssa1099 = TaxFormObj.createForm("SSA1099");
 
+		ssa1099.lines["01"  ].user_value	= inputs["01"];
+		ssa1099.lines["02"  ].user_value	= inputs["02"];
 		ssa1099.lines["03a" ].user_value	= inputs["03a"];
 		ssa1099.lines["03b" ].user_value	= inputs["03b"];
+		ssa1099.lines["04"  ].user_value	= inputs["04"];
 		ssa1099.lines["05"  ].user_value	= inputs["05"];
 		ssa1099.lines["06"  ].user_value	= inputs["06"];
 	}
