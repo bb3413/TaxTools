@@ -192,7 +192,9 @@
 	border:					none;
 }
 
-/* Styles specifically for the 1099 style of forms. */
+/*
+ * Styles specifically for the 1099 style of forms.
+ */
 .f1099-taxform-container {
 	box-sizing:				border-box;	/* Exclude padding abd borders when calculating size. */
 	font-family:			Arial, Helvetica, sans-serif;
@@ -202,6 +204,10 @@
 	color:					var(--taxform-text-color);
 	border:					2px solid var(--taxform-border-color);
 	padding:				2px;
+}
+
+.f1099-taxform-container input {
+	background:				inherit;
 }
 
 .f1099-header-row {
