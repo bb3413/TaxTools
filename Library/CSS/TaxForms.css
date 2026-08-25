@@ -192,22 +192,114 @@
 	border:					none;
 }
 
-.f1099-container {
-	display:				grid;
-	grid-template-columns:	repeat(6, 120px);
+/* Styles specifically for the 1099 style of forms. */
+.f1099-taxform-container {
+	box-sizing:				border-box;	/* Exclude padding abd borders when calculating size. */
+	font-family:			Arial, Helvetica, sans-serif;
+	width:					700px;
+	margin:					0 auto;		/* Center in parent container. */
+	background:				var(--taxform-background-color);
+	color:					var(--taxform-text-color);
+	border:					2px solid var(--taxform-border-color);
+	padding:				2px;
 }
-.f1099-box {
-	border:					1px solid black;
-	height:					50px;
-	padding:				3px;
+
+.f1099-header-row {
+	display:				flex;
+	border-bottom:			2px solid var(--taxform-border-color);
+	/* background-color:	#f0f0f0; */
 }
-.f1099-box-description {
-	margin-top:				0;
+
+.f1099-header-left {
+	flex:					1;
+	padding:				5px;
+	font-size:				10px;
+	border-right:			1px solid var(--taxform-border-color);
+}
+
+.f1099-header-center {
+	width:					180px;
+	text-align:				center;
+	padding:				5px;
+	border-right:			1px solid var(--taxform-border-color);
+}
+
+.f1099-header-center h1 {
+	margin:					0;
+	font-size:				20px;
+}
+
+.f1099-header-center h2 {
+	margin:					0;
+	font-size:				14px;
+}
+
+.f1099-header-right {
+	width:					220px;
+	padding:				5px;
 	font-size:				10px;
 }
+
+.f1099-header-right strong {
+	font-size:				12px;
+	display:				block;
+}
+
+.f1099-main-grid {
+	display:				flex;
+}
+
+.f1099-col-left {
+	width:					50%;
+	border-right:			2px solid var(--taxform-border-color);
+}
+
+.f1099-col-right {
+	width:					50%;
+}
+
+.f1099-box {
+	border-bottom:			1px solid var(--taxform-border-color);
+	padding:				3px 5px;
+	min-height:				42px;
+	position:				relative;
+}
+
+.f1099-box-label {
+	font-size:				8px;
+	font-weight:			bold;
+	text-transform:			uppercase;
+	display:				block;
+	margin-bottom:			2px;
+}
+
 .f1099-box-value {
+	font-size:				12px;
+	font-weight:			bold;
 	width:					98%;
-	height:					30px;
-	margin-bottom:			3px;
 	border:					none;
+}
+
+.f1099-flex-row {
+	display:				flex;
+}
+
+.f1099-flex-row .f1099-box {
+	flex:					1;	/* Grow and shrink with other items in the flex container. */
+	border-right:			1px solid var(--taxform-border-color);
+}
+
+.f1099-flex-row .f1099-box:last-child {
+	border-right:			none;
+}
+
+.f1099-box-large {
+	min-height:				90px;
+}
+
+.f1099-footer-note {
+	font-size:				12px;
+	padding:				4px;
+	padding-left:			8px;
+	color:					var(--taxform-text-color);
 }

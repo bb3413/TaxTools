@@ -31,7 +31,7 @@ import { F1099G }		from "../TaxForms/F1099G.js";
 //import { F1099MISC }	from "../TaxForms/F1099MISC.js";
 //import { F1099NEC }	from "../TaxForms/F1099NEC.js";
 //import { F1099OID }	from "../TaxForms/F1099OID.js";
-//import { F1099R }		from "../TaxForms/F1099R.js";
+import { F1099R }		from "../TaxForms/F1099R.js";
 //import { F1099S }		from "../TaxForms/F1099S.js";
 //import { F1120S }		from "../TaxForms/F1120S.js";
 //import { F2441 }		from "../TaxForms/F2441.js";
@@ -89,7 +89,7 @@ const forms_map = {
 //	"F1099MISC":			[ F1099MISC,	true,	false,	false,	false	],
 //	"F1099NEC":				[ F1099NEC,		true,	false,	false,	false	],
 //	"F1099OID":				[ F1099OID,		true,	false,	false,	false	],
-//	"F1099R":				[ F1099R,		true,	false,	false,	false	],
+	"F1099R":				[ F1099R,		true,	false,	false,	false	],
 //	"F1099S":				[ F1099S,		true,	false,	false,	false	],
 //	"F1120S":				[ F1120S,		true,	false,	false,	false	],
 //	"F2441":				[ F2441,		false,	true,	true,	false	],
@@ -160,6 +160,7 @@ export class TaxFormName {
 		// This method allows you to call the static method getInputHTML() by name.
 		switch (formname) {
 			case "F1040SC":		return F1040SC.getInputHTML(uid);
+			case "F1099R":		return F1099R.getInputHTML(uid);
 			case "SSA1099":		return SSA1099.getInputHTML(uid);
 			case "W2":			return W2.getInputHTML(uid);
 			case "Template":	return Template.getInputHTML(uid);
@@ -171,6 +172,7 @@ export class TaxFormName {
 		// This method allows you to call the static method getUserInput() by name.
 		switch (formname) {
 			case "F1040SC":		return F1040SC.getUserInput(uid);
+			case "F1099R":		return F1099R.getUserInput(uid);
 			case "SSA1099":		return SSA1099.getUserInput(uid);
 			case "W2":			return W2.getUserInput(uid);
 			case "Template":	return Template.getUserInput(uid);

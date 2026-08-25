@@ -10,139 +10,143 @@
 
 <body>
 	<div class="tool-container" id="ToolContainer">
-		<details class="taxform-details" id="f1040sc-XX-details">
-			<summary class="taxform-summary">1099-R - Distributions From Pensions, Annuities, Retirement or Profit-Sharing Plans, IRAs, Insurance Contracts, etc.</summary>
-			<div class="taxform-container">
-
-			<!--div class="form-container"-->
-				<div class="header-row">
-					<div class="header-left">
-						<input type="checkbox" /> CORRECTED (if checked)
+		<details class="taxform-details" id="f1040r-XX-details">
+			<summary class="taxform-summary">1099-R - Distributions from Pensions, Annuities,
+				Retirement Plans, etc.</summary>
+			<div>&nbsp;</div>
+			<div class="f1099-taxform-container">
+				<div class="f1099-header-row">
+					<div class="f1099-header-left">
+						<input type="checkbox" disabled /> CORRECTED (if checked)
 					</div>
-					<div class="header-center">
+					<div class="f1099-header-center">
 						<h2>OMB No. 1545-0119</h2>
-						<h1>2026</h1>
+						<h1><span id="tax-year">202X</span></h1>
 						<div>Form <strong>1099-R</strong></div>
 					</div>
-					<div class="header-right">
-						<strong>Distributions From Pensions, Annuities, Retirement or Profit-Sharing Plans, IRAs, Insurance Contracts, etc.</strong>
-						Copy B / For Recipient's Records
+					<div class="f1099-header-right">
+						<strong>Distributions From Pensions, Annuities, Retirement or Profit-Sharing
+							Plans, IRAs, Insurance Contracts, etc.</strong>
 					</div>
 				</div>
 			
-				<div class="main-grid">
-					<div class="col-left">
-						<div class="box box-large">
-							<span class="box-label">PAYER'S name, street address, city or town, state or province, country, and ZIP or foreign postal code</span>
-							<div class="box-value">
-								ACME FINANCIAL SERVICES TRUST<br />
-								100 FINANCIAL PLAZA<br />
-								NEW YORK, NY 10001
+				<div class="f1099-main-grid">
+					<div class="f1099-col-left">
+						<div class="f1099-box f1099-box-large">
+							<span class="f1099-box-label">PAYER'S name, street address, city or town,
+								state or province, country, and ZIP or foreign postal code</span>
+							<div class="f1099-box-value"></div>
+						</div>
+			
+						<div class="f1099-flex-row">
+							<div class="f1099-box">
+								<span class="f1099-box-label">PAYER'S TIN</span>
+								<div class="f1099-box-value"></div>
+							</div>
+							<div class="f1099-box">
+								<span class="f1099-box-label">RECIPIENT'S TIN</span>
+								<div class="f1099-box-value"></div>
 							</div>
 						</div>
 			
-						<div class="flex-row">
-							<div class="box">
-								<span class="box-label">PAYER'S TIN</span>
-								<div class="box-value">12-3456789</div>
-							</div>
-							<div class="box">
-								<span class="box-label">RECIPIENT'S TIN</span>
-								<div class="box-value">XXX-XX-1234</div>
-							</div>
+						<div class="f1099-box f1099-box-large">
+							<span class="f1099-box-label">RECIPIENT'S name, street address, city or
+								town, state, and ZIP code</span>
+							<div class="f1099-box-value"></div>
 						</div>
 			
-						<div class="box box-large">
-							<span class="box-label">RECIPIENT'S name, street address, city or town, state, and ZIP code</span>
-							<div class="box-value">
-								JANE DOE<br />
-								742 EVERGREEN TERRACE<br />
-								SPRINGFIELD, OR 97477
-							</div>
-						</div>
-			
-						<div class="box" style="border-bottom: none;">
-							<span class="box-label">Account number (see instructions)</span>
-							<div class="box-value">ACT-998877</div>
+						<div class="f1099-box" style="border-bottom: none;">
+							<span class="f1099-box-label">Account number (see instructions)</span>
+							<div class="f1099-box-value"></div>
 						</div>
 					</div>
 			
-					<div class="col-right">
-						<div class="flex-row">
-							<div class="box">
-								<span class="box-label">1 Gross distribution</span>
-								<div class="box-value">$50,000.00</div>
+					<div class="f1099-col-right">
+						<div class="f1099-flex-row">
+							<div class="f1099-box input-color">
+								<span class="f1099-box-label">1 Gross distribution</span>
+								<input class="f1099-box-value input-color" type="text" id="f1099r-XX-01" size="20" />
 							</div>
 						</div>
 			
-						<div class="flex-row">
-							<div class="box">
-								<span class="box-label">2a Taxable amount</span>
-								<div class="box-value">$50,000.00</div>
+						<div class="f1099-flex-row">
+							<div class="f1099-box input-color">
+								<span class="f1099-box-label">2a Taxable amount</span>
+								<input class="f1099-box-value input-color" type="text" id="f1099r-XX-02a" size="20" />
 							</div>
 						</div>
 			
-						<div class="flex-row">
-							<div class="box">
-								<span class="box-label">2b Taxable amount not determined</span>
-								<div class="box-value"><input type="checkbox" /></div>
+						<div class="f1099-flex-row">
+							<div class="f1099-box input-color">
+								<span class="f1099-box-label">2b Taxable amount not determined</span>
+								<div class="f1099-box-value"><input type="checkbox" id="f1099r-XX-02b" /></div>
 							</div>
-							<div class="box">
-								<span class="box-label">Total distribution</span>
-								<div class="box-value"><input type="checkbox" checked /></div>
-							</div>
-						</div>
-			
-						<div class="flex-row">
-							<div class="box">
-								<span class="box-label">3 Capital gain (included in box 2a)</span>
-								<div class="box-value">$0.00</div>
-							</div>
-							<div class="box">
-								<span class="box-label">4 Federal income tax withheld</span>
-								<div class="box-value">$10,000.00</div>
+							<div class="f1099-box input-color">
+								<span class="f1099-box-label">Total distribution</span>
+								<div class="f1099-box-value"><input type="checkbox" /></div>
 							</div>
 						</div>
 			
-						<div class="flex-row">
-							<div class="box">
-								<span class="box-label">5 Employee contrib./Designated Roth</span>
-								<div class="box-value">$0.00</div>
+						<div class="f1099-flex-row">
+							<div class="f1099-box input-color">
+								<span class="f1099-box-label">3 Capital gain (included in box 2a)</span>
+								<input class="f1099-box-value input-color" type="text" id="f1099r-XX-03" size="20" />
 							</div>
-							<div class="box">
-								<span class="box-label">6 Net unrealized appreciation</span>
-								<div class="box-value">$0.00</div>
-							</div>
-						</div>
-			
-						<div class="flex-row">
-							<div class="box">
-								<span class="box-label">7 Distribution code(s)</span>
-								<div class="box-value">7</div>
-							</div>
-							<div class="box">
-								<span class="box-label">IRA/SEP/SIMPLE</span>
-								<div class="box-value"><input type="checkbox" /></div>
+							<div class="f1099-box input-color">
+								<span class="f1099-box-label">4 Federal income tax withheld</span>
+								<input class="f1099-box-value input-color" type="text" id="f1099r-XX-04" size="20" />
 							</div>
 						</div>
 			
-						<div class="flex-row" style="border-bottom: none;">
-							<div class="box">
-								<span class="box-label">14 State tax withheld</span>
-								<div class="box-value">$2,500.00</div>
+						<div class="f1099-flex-row">
+							<div class="f1099-box input-color">
+								<span class="f1099-box-label">5 Employee contrib./Designated Roth</span>
+								<input class="f1099-box-value input-color" type="text" id="f1099r-XX-05" size="20" />
 							</div>
-							<div class="box">
-								<span class="box-label">15 State/Payer's state no.</span>
-								<div class="box-value">OR / 98765</div>
+							<div class="f1099-box input-color">
+								<span class="f1099-box-label">6 Net unrealized appreciation</span>
+								<input class="f1099-box-value input-color" type="text" id="f1099r-XX-06" size="20" />
+							</div>
+						</div>
+			
+						<div class="f1099-flex-row">
+							<div class="f1099-box input-color">
+								<span class="f1099-box-label">7a Distribution code(s)</span>
+								<input class="f1099-box-value input-color" type="text" id="f1099r-XX-07a" size="20" />
+							</div>
+							<div class="f1099-box input-color">
+								<span class="f1099-box-label">7b IRA/SEP/SIMPLE</span>
+								<div class="f1099-box-value"><input type="checkbox" id="f1099r-XX-07b" /></div>
+							</div>
+						</div>
+
+									
+						<div class="f1099-flex-row">
+							<div class="f1099-box">
+								<span class="f1099-box-label"></span>
+								<div class="f1099-box-value"></div>
+							</div>
+							<div class="f1099-box input-color">
+								<span class="f1099-box-label">9b Total employee contributions</span>
+								<div class="f1099-box-value"></div>
+								<input class="f1099-box-value input-color" type="text" id="f1099r-XX-09b" size="20" />
+							</div>
+						</div>
+
+						<div class="f1099-flex-row">
+							<div class="f1099-box input-color">
+								<span class="f1099-box-label">14 State tax withheld</span>
+								<input class="f1099-box-value input-color" type="text" id="f1099r-XX-14" size="20" />
+							</div>
+							<div class="f1099-box">
+								<span class="f1099-box-label">15 State/Payer's state no.</span>
+								<div class="f1099-box-value"></div>
 							</div>
 						</div>
 					</div>
-				</div>
-			
-				<div class="footer-note">
-					Department of the Treasury - Internal Revenue Service
 				</div>
 			</div>
+			<div class="f1099-footer-note">Form <strong>1099-R</strong></div>
 			<div>&nbsp;</div>
 		</details>
 	</div>
