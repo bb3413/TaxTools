@@ -196,6 +196,11 @@ export class F1099R extends TaxForm {
 
 		const f1099r = TaxFormObj.createForm("F1099R");
 
+		f1099r.lines["name"		].user_value	= inputs["name"];
+		f1099r.lines["ein"		].user_value	= inputs["ein"];
+		f1099r.lines["ssn"		].user_value	= inputs["ssn"];
+		f1099r.lines["address"  ].user_value	= inputs["address"];
+		f1099r.lines["account"  ].user_value	= inputs["account"];
 		f1099r.lines["01"  ].user_value	= inputs["01"];
 		f1099r.lines["02a" ].user_value	= inputs["02a"];
 		f1099r.lines["02b" ].user_value	= inputs["02b"];
@@ -216,6 +221,11 @@ export class F1099R extends TaxForm {
 
 		this.isSingleton = false;
 
+		this.lines["name"]		= new Line("Taxpayer's name");
+		this.lines["ein"]		= new Line("Payee EIN");
+		this.lines["ssn"]		= new Line("Taxpayr's SSN");
+		this.lines["address"]	= new Line("Taxpayer's address");
+		this.lines["account"]	= new Line("Account number");
 		this.lines["01"]	= new Line("Gross distribution");
 		this.lines["02a"]	= new Line("Taxable amount");
 		this.lines["02b"]	= new Line("Taxable amount not determined");
