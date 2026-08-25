@@ -2,6 +2,7 @@
 import { Dates }	from "../Classes/Dates.js";
 import { HTML }		from "../Classes/HTML.js";
 import { Str }		from "../Classes/Str.js";
+import { TaxTable }	from "../Classes/TaxTable.js";
 
 let taxpayer = undefined;		// Global variable.
 
@@ -45,7 +46,6 @@ export class Taxpayer {
 
 		const taxpayer = new Taxpayer();
 
-		taxpayer.tax_year						= getUserInput("tax-year");
 		taxpayer.filing_status					= getUserInput("filing-status",		"text").toUpperCase();
 
 		taxpayer.taxpayers_name					= getUserInput("taxpayers-name",	"text");
@@ -105,7 +105,6 @@ export class Taxpayer {
 	constructor() {
 		taxpayer = this;
 
-		this._tax_year							= Dates.getTaxYear();
 		this._filing_status						= "Single";
 
 		this._taxpayers_name					= "";
@@ -158,7 +157,6 @@ export class Taxpayer {
 	//
 	// ---------------- Getter Methods ----------------
 	//
-	get tax_year(){						return this._tax_year};
 	get filing_status() {				return this._filing_status};
 
 	get taxpayers_name() {				return this._taxpayers_name};
@@ -207,7 +205,6 @@ export class Taxpayer {
 	//
 	// ---------------- Setter Methods ----------------
 	//
-	set tax_year(year) {					this._tax_year						= year }
 	set filing_status(fs) {					this._filing_status					= fs }
 
 	set taxpayers_name(name) {				this._taxpayers_name				= name }
@@ -252,7 +249,7 @@ export class Taxpayer {
 	set taxpayers_birthday(birthday) {
 		if (birthday === null || birthday === undefined) { return; }
 		this._taxpayers_birthday		= birthday;
-		this._taxpayers_age				= Math.max(0, Dates.getEndOfYearAge(birthday, this._tax_year));
+		this._taxpayers_age				= Math.max(0, Dates.getEndOfYearAge(birthday, TaxTable.getTaxYear()));
 	}
 
 	set taxpayers_age(age) {
@@ -266,7 +263,7 @@ export class Taxpayer {
 	set spouses_birthday(birthday) {
 		if (birthday === null || birthday === undefined) { return; }
 		this._spouses_birthday			= birthday;
-		this._spouses_age				= Math.max(0, Dates.getEndOfYearAge(birthday, this._tax_year));
+		this._spouses_age				= Math.max(0, Dates.getEndOfYearAge(birthday, TaxTable.getTaxYear()));
 	}
 
 	set spouses_age(age) {
@@ -312,7 +309,6 @@ export class Taxpayer {
 	toPrint() {
 		let lines = [];
 
-		printLine(lines, "Tax Year",			this.tax_year);
 		printLine(lines, "Filing Status",		this.filing_status);
 		lines.push("");
 		

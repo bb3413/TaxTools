@@ -57,7 +57,7 @@ function getInputs() {
 	const inputs = {};
 
 	// Input fields
-	inputs.tax_year							= HTML.getUserInput("TaxYear");
+	inputs.tax_year							= HTML.getUserInput("tax-year");
 	inputs.filing_status					= HTML.getUserInput("FilingStatus",			"text").toUpperCase();
 	inputs.taxpayers_birthday				= HTML.getUserInput("TaxpayersBirthday",	"text");
 	inputs.spouses_birthday					= HTML.getUserInput("SpousesBirthday",		"text");
@@ -158,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	//
 
 	// Listen for changes to the input data.
-	HTML.addListener("TaxYear",						"change", changeHandler);
+	HTML.addListener("tax-year",						"change", changeHandler);
 	HTML.addListener("FilingStatus",				"change", changeHandler);
 	HTML.addListener("TaxpayersBirthday",			"change", changeHandler);
 	HTML.addListener("SpousesBirthday",				"change", changeHandler);

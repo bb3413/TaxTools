@@ -1,4 +1,5 @@
 
+import { Dates }			from "../Classes/Dates.js";
 import { TaxTable_2024 }	from "../Classes/TaxTable_2024.js";
 import { TaxTable_2025 }	from "../Classes/TaxTable_2025.js";
 import { TaxTable_2026 }	from "../Classes/TaxTable_2026.js";
@@ -33,5 +34,10 @@ export class TaxTable {
 		}
 
 		return tax_table;
+	}
+
+	static getTaxYear() {
+		// This is implemented as both a staticand instance method.
+		return tax_table_year || Dates.getTaxYear();
 	}
 }

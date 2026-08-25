@@ -33,7 +33,7 @@
 		<h2>Taxpayer Information</h2>
 		<div class="table-3">
 			<p>Tax Year</p>
-			<select class="trigger input-field" id="TaxYear" tooltipid="#TaxYearTT">
+			<select class="trigger input-field" id="tax-year" tooltipid="#tax-year-tt">
 				<option value="2026">2026</option>
 				<option value="2025">2025</option>
 				<option value="2024">2024</option>

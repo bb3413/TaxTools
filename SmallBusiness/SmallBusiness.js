@@ -3,7 +3,6 @@ import { Dates }		from "../Library/Classes/Dates.js";
 import { Debug }		from "../Library/Classes/Debug.js";
 import { HTML }			from "../Library/Classes/HTML.js";
 import { TaxFormObj }	from "../Library/Classes/TaxFormObj.js";
-import { Taxpayer }		from "../Library/Classes/Taxpayer.js";
 import { TaxTable }		from "../Library/Classes/TaxTable.js";
 
 function changeHandler(event) {
@@ -16,25 +15,17 @@ function changeHandler(event) {
 		HTML.putElementValue("error-message-output", "");
 		Debug.reset();
 		TaxFormObj.reset();
-		Taxpayer.reset();
 
-		const inputs	= getInputs();								// Get inputs from the web page
-		const tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
-		const taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
-		mapInputValues(inputs);										// Map input values to tax forms
-		putOutputs(inputs);											// Put results on web page
-		Debug.turnOn();												// Put debug info on web page if enabled
+		const inputs = getInputs();								// Get inputs from the web page
+		TaxTable.getTaxTable(inputs.tax_year);					// Initialize tax tables; ignore return value.
+		mapInputValues(inputs);									// Map input values to tax forms
+		putOutputs(inputs);										// Put results on web page
+		Debug.turnOn();											// Put debug info on web page if enabled
 	} catch (error) {
 		HTML.putElementValue("error-message-output", error);
 		console.log("Stack trace:", error.stack);
 		document.getElementById("error-message-output").scrollIntoView({behavior: 'smooth', block: 'start'});
 	}
-}
-
-function createTaxpayer(inputs) {
-	const taxpayer		= new Taxpayer();
-	taxpayer.tax_year	= inputs.tax_year;
-	return taxpayer;
 }
 
 function getInputs() {

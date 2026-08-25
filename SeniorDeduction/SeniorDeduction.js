@@ -54,7 +54,6 @@ function changeTaxpayersAge(event) {
 function createTaxpayer(inputs) {
 	const taxpayer					= new Taxpayer();
 
-	taxpayer.tax_year				= inputs.tax_year;
 	taxpayer.filing_status			= inputs.filing_status;
 	taxpayer.taxpayers_birthday		= inputs.taxpayers_birthday;
 	taxpayer.taxpayers_age			= inputs.taxpayers_age;
@@ -71,7 +70,7 @@ function getInputs() {
 	//
 	const inputs = {};
 
-	inputs.tax_year					= HTML.getUserInput("TaxYear");
+	inputs.tax_year					= HTML.getUserInput("tax-year");
 	inputs.filing_status			= HTML.getUserInput("FilingStatus",		"text").toUpperCase();
 	inputs.adjusted_gross_income	= HTML.getUserInput("AdjustedGrossIncome");
 	inputs.taxpayers_birthday		= HTML.getUserInput("TaxpayersBirthday","text");
@@ -123,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	//
 	// Wait for the DOM to be fully loaded before trying to access any elements.
 	//
-	HTML.addListener("TaxYear",				"change", changeHandler);
+	HTML.addListener("tax-year",				"change", changeHandler);
 	HTML.addListener("FilingStatus",		"change", changeHandler);
 	HTML.addListener("AdjustedGrossIncome",	"change", changeHandler);
 	HTML.addListener("TaxpayersBirthday",	"change", changeHandler);
@@ -134,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	output_color	= HTML.getCSSGlobalVariable("--output-color");
 	input_color		= HTML.getCSSGlobalVariable("--input-color");
 
-	HTML.putUserOutput("TaxYear", Dates.getTaxYear(), "text");		// Default tax year.
+	HTML.putUserOutput("tax-year", Dates.getTaxYear(), "text");		// Default tax year.
 	HTML.hideElement("SpouseContainer");
 	HTML.hideElement("debug-container");
 });

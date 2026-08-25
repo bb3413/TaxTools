@@ -55,7 +55,7 @@
 			<p class="span-three">&nbsp;</p>
 
 			<p>Tax Year</p>
-			<select class="trigger input-field left" id="TaxYear" tooltipid="#TaxYearTT">
+			<select class="trigger input-field left" id="tax-year" tooltipid="#tax-year-tt">
 				<option value="2026">2026</option>
 				<option value="2025">2025</option>
 				<option value="2024">2024</option>

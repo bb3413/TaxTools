@@ -66,7 +66,7 @@ function getInputs() {
 	//
 	const inputs = {};
 
-	inputs.tax_year					= HTML.getUserInput("TaxYear");
+	inputs.tax_year					= HTML.getUserInput("tax-year");
 	inputs.family_size				= HTML.getUserInput("FamilySize");
 	inputs.extra_sales_tax			= HTML.getUserInput("ExtraSalesTax");
 
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	//
 	// Wait for the DOM to be fully loaded before trying to access any elements.
 	//
-	HTML.addListener("TaxYear",					"change", changeHandler);
+	HTML.addListener("tax-year",					"change", changeHandler);
 	HTML.addListener("StreetAddress",			"change", changeAddressHandler);
 	HTML.addListener("City",					"change", changeAddressHandler);
 	HTML.addListener("ZipCode",					"change", changeAddressHandler);

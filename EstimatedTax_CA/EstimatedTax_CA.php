@@ -19,7 +19,7 @@
 	<div class="tool-container">
 		<h1 class="title" id="Title">California Estimated Tax Calculator</h1>
 		<h2 class="title">for the Tax Year
-			<select id="TaxYear" class="trigger" tooltipid="#TaxYearTT">
+			<select id="tax-year" class="trigger" tooltipid="#tax-year-tt">
 				<option value="2026">2026</option>
 				<option value="2025">2025</option>
 				<option value="2024">2024</option>

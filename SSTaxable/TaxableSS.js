@@ -135,7 +135,6 @@ function changeHandler(event) {
 
 function createTaxpayer(inputs) {
 	const taxpayer				= new Taxpayer();
-	taxpayer.tax_year			= inputs.tax_year;
 	taxpayer.lived_with_spouse	= inputs.lived_with_spouse
 	return taxpayer;
 }

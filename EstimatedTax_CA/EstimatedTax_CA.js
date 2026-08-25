@@ -24,11 +24,12 @@ function changeHandler(event) {
 		TaxFormObj.reset();
 		Taxpayer.reset();
 
-		inputs			= getInputs();								// Get inputs from the web page
-		const tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
-		const taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
+		
+		TaxTable.getTaxTable(HTML.getUserInput("tax-year"));		// Initialize tax tables.
+		inputs = getInputs();										// Get inputs from the web page
+		const taxpayer = createTaxpayer(inputs);					// Initialize taxpayer
 		mapInputValues(inputs);										// Map input values to tax forms
-		TaxFormObj.getForm("F540").calculate();							// Calculate the tax forms
+		TaxFormObj.getForm("F540").calculate();						// Calculate the tax forms
 		putOutputs(taxpayer);										// Put results on web page
 		Debug.turnOn();												// Put debug info on web page if enabled
 	} catch (error) {
@@ -41,7 +42,6 @@ function changeHandler(event) {
 function createTaxpayer(inputs) {
 	const taxpayer					= new Taxpayer();
 
-	taxpayer.tax_year				= inputs.tax_year;
 	taxpayer.taxpayers_name			= inputs.taxpayers_name;
 	taxpayer.filing_status			= inputs.filing_status;
 	taxpayer.taxpayers_birthday		= inputs.taxpayers_birthday;
@@ -60,8 +60,6 @@ function getInputs() {
 	// on each value.
 	//
 	const inputs = {};
-
-	inputs.tax_year								= HTML.getUserInput("TaxYear");
 
 	// Taxpayer information
 	inputs.taxpayers_name						= HTML.getUserInput("TaxpayersName",	"text");
@@ -141,7 +139,7 @@ function mapInputValues(inputs) {
 	const f540		= TaxFormObj.createForm("F540");
 	const f540CA	= TaxFormObj.createForm("F540CA");
 
-	f540.lines["013"].user_value	= inputs.federal_agi);
+	f540.lines["013"].user_value	= inputs.federal_agi;
 
 	// Subtractions
 	f540CA.lines["A-02bB"].user_value	= inputs.us_treasury_obligations;
@@ -247,12 +245,11 @@ function restoreDataHandler(data) {
 
 	// There are currently 2 formats in use; select which one this is.
 	if (data.input_data) {
+		HTML.putElementValue("tax-year", data.tax_year);
 		inputs = data.input_data;
 	} else {
 		inputs = data;
 	}
-
-	HTML.putElementValue("TaxYear",							inputs.tax_year);
 
 	// Taxpayer information
 	HTML.putElementValue("TaxpayersName",					inputs.taxpayers_name);
@@ -349,6 +346,7 @@ function saveUserData(event) {
 	const data = {
 		version:		HTML.getUserInput("tax-tools-version", "text"),
 		todays_date:	new Date().toLocaleDateString(),
+		tax_year:		HTML.getUserInput("tax-year", "text"),
 		input_data:		inputs,
 	};
 
@@ -364,7 +362,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	//
 
 	// Listen for changes to the input data.
-	HTML.addListener("TaxYear",							"change", changeHandler);
+	HTML.addListener("tax-year",							"change", changeHandler);
 	HTML.addListener("SaveButton",						"click",  saveUserData);
 	HTML.addListener("InputFile",						"change", restoreUserData);
 
@@ -443,7 +441,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		preventScroll: true
 	});
 
-	HTML.putUserOutput("TaxYear", Dates.getTaxYear(), "text");		// Default tax year.
+	HTML.putUserOutput("tax-year", Dates.getTaxYear(), "text");		// Default tax year.
 	HTML.hideElement("debug-container");
 });
 

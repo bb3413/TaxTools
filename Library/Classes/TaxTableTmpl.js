@@ -167,6 +167,11 @@ export class TaxTableTmpl {
 		return this.values[name][getValuesCol(filing_status)]
 	}
 
+	getTaxYear() {
+		// This is implemented as both a staticand instance method.
+		return this.tax_year;
+	}
+
 	get_AMT_Exemption(filing_status, amt_income) {
 		let exemption	= this.getTaxValue("AMT_Exemption", filing_status);
 		let phase_out	= this.getTaxValue("AMT_ExemptionPhaseOut", filing_status);

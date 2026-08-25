@@ -42,7 +42,7 @@
 
 		<div class="table">
 			<p>Tax Year</p>
-			<input class="input-field" type="text" id="TaxYear" value="0000" />
+			<input class="input-field" type="text" id="tax-year" value="0000" />
 
 		   	<p>Retirement Account Balance</p>
 			<input class="input-field" type="text" autofocus id="IRATotal" placeholder="0" />

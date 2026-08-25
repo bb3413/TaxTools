@@ -21,6 +21,8 @@ export class TaxTable_2024 extends TaxTableTmpl {
 	//	TYxx_ca_income_tax_table	California income tax brackets
 	//
 
+	tax_year = 2024;
+
 	//
 	// This table contains constant tax values.
 	//
