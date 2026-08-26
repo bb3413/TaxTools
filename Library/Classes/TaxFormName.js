@@ -23,7 +23,7 @@ import { F1040SSE }		from "../TaxForms/F1040SSE.js";	// Self-employment Tax
 //import { F1098T }		from "../TaxForms/F1098T.js";
 //import { F1099B }		from "../TaxForms/F1099B.js";
 //import { F1099C }		from "../TaxForms/F1099C.js";
-//import { F1099DIV }	from "../TaxForms/F1099DIV.js";
+import { F1099DIV }		from "../TaxForms/F1099DIV.js";
 import { F1099G }		from "../TaxForms/F1099G.js";
 import { F1099INT }		from "../TaxForms/F1099INT.js";
 //import { F1099K }		from "../TaxForms/F1099K.js";
@@ -81,7 +81,7 @@ const forms_map = {
 //	"F1098T":				[ F1098T,		true,	false,	false,	false	],
 //	"F1099B":				[ F1099B,		true,	false,	false,	false	],
 //	"F1099C":				[ F1099C,		true,	false,	false,	false	],
-//	"F1099DIV":				[ F1099DIV,		true,	false,	false,	false	],
+	"F1099DIV":				[ F1099DIV,		true,	false,	false,	false	],
 //	"F1099G":				[ F1099G,		true,	false,	false,	false	],
 	"F1099INT":				[ F1099INT,		true,	false,	false,	false	],
 //	"F1099K":				[ F1099K,		true,	false,	false,	false	],
@@ -160,6 +160,7 @@ export class TaxFormName {
 		// This method allows you to call the static method getInputHTML() by name.
 		switch (formname) {
 			case "F1040SC":		return F1040SC.getInputHTML(uid);
+			case "F1099DIV":	return F1099DIV.getInputHTML(uid);
 			case "F1099INT":	return F1099INT.getInputHTML(uid);
 			case "F1099R":		return F1099R.getInputHTML(uid);
 			case "SSA1099":		return SSA1099.getInputHTML(uid);
@@ -173,6 +174,7 @@ export class TaxFormName {
 		// This method allows you to call the static method getUserInput() by name.
 		switch (formname) {
 			case "F1040SC":		return F1040SC.getUserInput(uid);
+			case "F1099DIV":	return F1099DIV.getUserInput(uid);
 			case "F1099INT":	return F1099INT.getUserInput(uid);
 			case "F1099R":		return F1099R.getUserInput(uid);
 			case "SSA1099":		return SSA1099.getUserInput(uid);

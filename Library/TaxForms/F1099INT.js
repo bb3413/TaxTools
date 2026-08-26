@@ -30,8 +30,8 @@ const HTML_FORM = `
 					<div class="f1099-col-left">
 						<div class="f1099-box f1099-box-large">
 							<span class="f1099-box-label">PAYER&apos;S name, street address, city or town,
-								state or province, country, and ZIP or foreign postal code, and telephone no.</span>
-							<input class="f1099-box-value" type="text" id="f1099int-XX-payer-name" size="20" />
+								state or province, country, ZIP or foreign postal code, and telephone no.</span>
+							<input class="f1099-box-value" type="text" id="f1099int-XX-payer-name" />
 						</div>
 
 						<div class="f1099-flex-row">
@@ -123,7 +123,7 @@ const HTML_FORM = `
 						</div>
 					</div>
 				</div>		<!-- Main grid -->
-			</div>	<!-- form-container -->
+			</div>	<!-- taxform-container -->
 			<div class="f1099-footer-note">Form <strong>1099-INT</strong></div>
 			<div>&nbsp;</div>
 		</details>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="../../Library/CSS/TaxTools.css" />
+	<link rel="stylesheet" href="../../Library/CSS/TaxForms.css" />
+	<title>Form 1099-DIV</title>
+</head>
+
+<body>
+	<div class="tool-container" id="ToolContainer">
+		<details class="taxform-details" id="f1099div-XX-details" open>
+			<summary class="taxform-summary">1099-DIV - Dividend Income</summary>
+			<div>&nbsp;</div>
+			<div class="f1099-taxform-container">
+				<div class="f1099-header-row">
+					<div class="f1099-header-left">
+						<input type="checkbox" disabled /> VOID &nbsp;&nbsp;&nbsp; <input type="checkbox" /> CORRECTED
+					</div>
+					<div class="f1099-header-center">
+						<h2>OMB No. 1545-0110</h2>
+						<h1><span id="tax-year">202X</span></h1>
+						<div>Form <strong>1099-DIV</strong></div>
+					</div>
+					<div class="f1099-header-right">
+						<strong>Dividends and Distributions</strong>
+					</div>
+				</div>
+			
+				<div class="f1099-main-grid">
+					<div class="f1099-col-left">
+						<div class="f1099-box f1099-box-large">
+							<span class="f1099-box-label">PAYER&apos;S name, street address, city or town,
+								state or province, country, ZIP or foreign postal code, and telephone no.</span>
+							<input class="f1099-box-value" type="text" id="f1099div-XX-payer-name" />
+						</div>
+			
+						<div class="f1099-flex-row">
+							<div class="f1099-box">
+								<span class="f1099-box-label">PAYER&apos;S TIN</span>
+								<input class="f1099-box-value" type="text" id="f1099div-XX-ein"
+									placeholder="12-3456789" />
+							</div>
+							<div class="f1099-box">
+								<span class="f1099-box-label">RECIPIENT&apos;S TIN</span>
+								<input class="f1099-box-value" type="text" id="f1099div-XX-ssn"
+									placeholder="xxx-xx-xxxx" />
+							</div>
+						</div>
+			
+						<div class="f1099-box f1099-box-large">
+							<span class="f1099-box-label">RECIPIENT&apos;S name, street address, city or town,
+								state or province, country, and ZIP code</span>
+							<input class="f1099-box-value" type="text" id="f1099div-XX-taxpayer-name" />
+						</div>
+			
+						<div class="f1099-box">
+							<span class="f1099-box-label">Account number (see instructions)</span>
+							<input class="f1099-box-value" type="text" id="f1099div-XX-account" />
+						</div>
+					</div>
+			
+					<div class="f1099-col-right">
+						<div class="f1099-flex-row">
+							<div class="f1099-box input-color">
+								<span class="f1099-box-label">1a Total ordinary dividends</span>
+								<input class="f1099-box-value" type="text" id="f1099div-XX-01a" placeholder="$0.00" />
+							</div>
+							<div class="f1099-box input-color">
+								<span class="f1099-box-label">1b Qualified dividends</span>
+								<input class="f1099-box-value" type="text" id="f1099div-XX-01b" placeholder="$0.00" />
+							</div>
+						</div>
+			
+						<div class="f1099-flex-row">
+							<div class="f1099-box">
+								<span class="f1099-box-label">2a Total capital gain distr.</span>
+								<input class="f1099-box-value" type="text" id="f1099div-XX-02a" placeholder="$0.00" />
+							</div>
+							<div class="f1099-box">
+								<span class="f1099-box-label">2b Unrecap. Sec. 1250 gain</span>
+								<input class="f1099-box-value" type="text" id="f1099div-XX-02b" placeholder="$0.00" />
+							</div>
+						</div>
+			
+						<div class="f1099-flex-row">
+							<div class="f1099-box">
+								<span class="f1099-box-label">3 Nondividend distributions</span>
+								<input class="f1099-box-value" type="text" id="f1099div-XX-03" placeholder="$0.00" />
+							</div>
+							<div class="f1099-box input-color">
+								<span class="f1099-box-label">4 Federal income tax withheld</span>
+								<input class="f1099-box-value" type="text" id="f1099div-XX-04" placeholder="$0.00" />
+							</div>
+						</div>
+			
+						<div class="f1099-flex-row">
+							<div class="f1099-box input-color">
+								<span class="f1099-box-label">5 Section 199A dividends</span>
+								<input class="f1099-box-value" type="text" id="f1099div-XX-05" placeholder="$0.00" />
+							</div>
+							<div class="f1099-box input-color">
+								<span class="f1099-box-label">6 Investment expenses</span>
+								<input class="f1099-box-value" type="text" id="f1099div-XX-06" placeholder="$0.00" />
+							</div>
+						</div>
+			
+						<div class="f1099-flex-row">
+							<div class="f1099-box input-color">
+								<span class="f1099-box-label">7 Foreign tax paid</span>
+								<input class="f1099-box-value" type="text" id="f1099div-XX-07" placeholder="$0.00" />
+							</div>
+							<div class="f1099-box">
+								<span class="f1099-box-label">8 Foreign country or U.S. possession</span>
+								<input class="f1099-box-value" type="text" id="f1099div-XX-08" placeholder="$0.00" />
+							</div>
+						</div>
+			
+						<div class="f1099-flex-row">
+							<div class="f1099-box">
+								<span class="f1099-box-label">12 Section 1202 gain</span>
+								<input class="f1099-box-value" type="text" id="f1099div-XX-12" placeholder="$0.00" />
+							</div>
+							<div class="f1099-box">
+								<span class="f1099-box-label">13 Exempt-interest dividends</span>
+								<input class="f1099-box-value" type="text" id="f1099div-XX-13" placeholder="$0.00" />
+							</div>
+						</div>
+			
+						<div class="f1099-flex-row" style="border-bottom: none;">
+							<div class="f1099-box input-color">
+								<span class="f1099-box-label">14 State tax withheld</span>
+								<input class="f1099-box-value" type="text" id="f1099div-XX-14" placeholder="$0.00" />
+							</div>
+							<div class="f1099-box">
+								<span class="f1099-box-label">15 State/Payer&apos;s state no.</span>
+								<input class="f1099-box-value" type="text" id="f1099div-XX-15" />
+							</div>
+						</div>
+					</div>
+				</div>		<!-- Main grid -->
+			</div>		<!-- taxform-container -->
+			<div class="f1099-footer-note">Form <strong>1099-DIV</strong></div>
+			<div>&nbsp;</div>
+		</details>
+	</div>		<!-- tool-container -->
+</body>
+</html>
