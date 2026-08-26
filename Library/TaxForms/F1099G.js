@@ -10,6 +10,8 @@ export class F1099G extends TaxForm {
 	constructor(formname) {
 		Debug.enter("F1099G.Constructor()");
 		super(formname);
+		this.title = `1099-G - Government Payments`;
+		this.isSingleton = false;
 
 		this.lines["01"]	= new Line("Unemployment Compensation");
 		this.lines["02"]	= new Line("State or Local Refund");

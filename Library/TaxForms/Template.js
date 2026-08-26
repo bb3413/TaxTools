@@ -88,6 +88,7 @@ export class Template extends TaxForm {
 	constructor(formname) {
 		Debug.enter("Template.Constructor()");
 		super(formname);
+		this.title = `Template - Template Title`;
 
 		this.lines["01"]	= new Line("");
 		this.lines["02"]	= new Line("");

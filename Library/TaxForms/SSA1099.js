@@ -147,7 +147,7 @@ export class SSA1099 extends TaxForm {
 	constructor(formname) {
 		Debug.enter("SSA1099.Constructor()");
 		super(formname);
-
+		this.title = `SSA-1099 - Social Security Benefit Statement`;
 		this.isSingleton = false;
 
 		this.lines["01"]	= new Line("Name");

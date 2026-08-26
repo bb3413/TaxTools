@@ -11,6 +11,7 @@ export class F540CA extends TaxForm {
 	constructor(formname) {
 		Debug.enter("F540CA.Constructor()");
 		super(formname);
+		this.title = `CA (540) - California Adjustments — Residents`;
 
 		// Part I Income Adjustment Schedule - Section A
 		// Income

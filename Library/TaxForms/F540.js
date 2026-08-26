@@ -11,6 +11,7 @@ export class F540 extends TaxForm {
 	constructor(formname) {
 		Debug.enter("F540.Constructor()");
 		super(formname);
+		this.title = `540 - California Resident Income Tax Return`;
 
 		// Filing Status
 		this.lines["001"]	= new Line("Single");

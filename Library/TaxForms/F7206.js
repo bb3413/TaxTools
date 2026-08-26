@@ -15,7 +15,7 @@ export class F7206 extends TaxForm {
 	constructor(formname) {
 		Debug.enter("F7206.Constructor()");
 		super(formname);
-
+		this.title = `7206 - Self-Employed Health Insurance Deduction`;
 		this.isSingleton = false;
 
 		this.lines["01"]	= new Line("Health Insurance");

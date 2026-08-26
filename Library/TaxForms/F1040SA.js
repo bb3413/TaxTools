@@ -10,6 +10,7 @@ export class F1040SA extends TaxForm {
 	constructor(formname) {
 		Debug.enter("F1040SA.Constructor()");
 		super(formname);
+		this.title = `Schdeule A - Itemized Deductions`;
 
 		this.lines["01"]	= new Line("Medical Expenses");
 		this.lines["02"]	= new Line("AGI");

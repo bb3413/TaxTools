@@ -232,7 +232,7 @@ export class F1099R extends TaxForm {
 	constructor(formname) {
 		Debug.enter("F1099R.Constructor()");
 		super(formname);
-
+		this.title = `1099-R - Distributions from Pensions, Annuities, Retirement Plans, etc.`;
 		this.isSingleton = false;
 
 		this.lines["name"]		= new Line("Taxpayer's name");

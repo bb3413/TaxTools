@@ -9,6 +9,7 @@ export class F1040S3 extends TaxForm {
 	constructor(formname) {
 		Debug.enter("F1040S3.Constructor()");
 		super(formname);
+		this.title = `Schedule 3 - Additional Credits and Payments`;
 
 		// Non-refundable Credits
 		this.lines["01"]	= new Line("Foreign Tax Credit");

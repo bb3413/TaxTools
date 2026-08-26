@@ -9,6 +9,7 @@ import { HTMLBuild }	from "../Classes/HTMLBuild.js";
 export class TaxForm {
 	constructor(formname) {
 		this.formname		= formname;
+		this.title			= formname;
 		this.lines			= {};
 		this.calculated		= false;		// True => need to call calculate().
 	}
@@ -86,7 +87,7 @@ export class TaxForm {
 	toHTML(uid = "99") {
 		const doc = new HTMLBuild();
 		doc.startElement("details", "taxform-details", "", `id="${this.formname}-${uid}-details"`);		// Start of details
-			doc.addElement("summary", "taxform-summary", this.formname);
+			doc.addElement("summary", "taxform-summary", this.title);
 			doc.startElement("div", "taxform-container");	// Start of taxform-contianer
 				doc.addElement("div", "", "&nbsp;");		// Blank line
 				for (const lineno of Object.keys(this.lines).sort()) {

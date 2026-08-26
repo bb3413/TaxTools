@@ -8,6 +8,7 @@ export class F1040S1 extends TaxForm {
 	constructor(formname) {
 		Debug.enter("F1040S1.Constructor()");
 		super(formname);
+		this.title = `Schedule 1 - Additional Income and Adjustments to Income`;
 
 		// Additions to Income
 		this.lines["01"]	= new Line("Taxable Refund");

@@ -558,7 +558,8 @@ export class F1040 extends TaxForm {
 	constructor(formname) {
 		Debug.enter("F1040.Constructor()");
 		super(formname);
-
+		this.title = `1040 - Individual Income Tax Return`;
+		
 		this.lines["01a"]	= new Line("Wages");
 		this.lines["01b"]	= new Line("Household Wages");
 		this.lines["01c"]	= new Line("Tip Income");

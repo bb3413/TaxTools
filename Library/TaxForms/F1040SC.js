@@ -350,6 +350,7 @@ export class F1040SC extends TaxForm {
 	constructor(formname) {
 		Debug.enter("F1040SC.Constructor()");
 		super(formname);
+		this.title = `Schedule C - Profit or Loss From Business`;
 
 		// Income
 		this.lines["01"]	= new Line("Gross Receipts or Sales");

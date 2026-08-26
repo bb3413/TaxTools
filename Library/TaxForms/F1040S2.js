@@ -8,6 +8,7 @@ export class F1040S2 extends TaxForm {
 	constructor(formname) {
 		Debug.enter("F1040S2.Constructor()");
 		super(formname);
+		this.title = `Schedule 2 - Additional Taxes`;
 
 		// Tax
 		this.lines["01a"]	= new Line("Repayment of Advanced PTC");

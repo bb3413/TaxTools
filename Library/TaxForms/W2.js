@@ -270,7 +270,7 @@ export class W2 extends TaxForm {
 	constructor(formname) {
 		Debug.enter("W2.Constructor()");
 		super(formname);
-
+		this.title = `W-2 - Wage and Tax Statement`;
 		this.isSingleton = false;
 
 		this.lines["01"]	= new Line("Wages");

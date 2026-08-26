@@ -23,6 +23,7 @@ export class F1040S1A extends TaxForm {
 	constructor(formname) {
 		Debug.enter("F1040S1A.Constructor()");
 		super(formname);
+		this.title = `Schedule 1A - Additional Deductions`;
 
 		// No Tax on Tips
 		this.lines["01"]	= new Line("Adjusted Gross Income");

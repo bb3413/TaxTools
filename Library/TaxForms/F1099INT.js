@@ -61,36 +61,36 @@ const HTML_FORM = `
 
 					<div class="f1099-col-right">
 						<div class="f1099-flex-row">
-							<div class="f1099-box">
+							<div class="f1099-box input-color">
 								<span class="f1099-box-label">1 Interest income</span>
 								<input class="f1099-box-value" type="text" id="f1099int-XX-01" placeholder="$0.00" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
-							<div class="f1099-box">
+							<div class="f1099-box input-color">
 								<span class="f1099-box-label">2 Early withdrawal penalty</span>
 								<input class="f1099-box-value" type="text" id="f1099int-XX-02" placeholder="$0.00" />
 							</div>
-							<div class="f1099-box">
+							<div class="f1099-box input-color">
 								<span class="f1099-box-label">3 Interest on U.S. Savings Bonds</span>
 								<input class="f1099-box-value" type="text" id="f1099int-XX-03" placeholder="$0.00" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
-							<div class="f1099-box">
+							<div class="f1099-box input-color">
 								<span class="f1099-box-label">4 Federal income tax withheld</span>
 								<input class="f1099-box-value" type="text" id="f1099int-XX-04" placeholder="$0.00" />
 							</div>
-							<div class="f1099-box">
+							<div class="f1099-box input-color">
 								<span class="f1099-box-label">5 Investment expenses</span>
 								<input class="f1099-box-value" type="text" id="f1099int-XX-05" placeholder="$0.00" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
-							<div class="f1099-box">
+							<div class="f1099-box input-color">
 								<span class="f1099-box-label">8 Tax-exempt interest</span>
 								<input class="f1099-box-value" type="text" id="f1099int-XX-08" placeholder="$0.00" />
 							</div>
@@ -112,7 +112,7 @@ const HTML_FORM = `
 						</div>
 
 						<div class="f1099-flex-row">
-							<div class="f1099-box">
+							<div class="f1099-box input-color">
 								<span class="f1099-box-label">15 State tax withheld</span>
 								<input class="f1099-box-value" type="text" id="f1099int-XX-12" placeholder="$0.00" />
 							</div>
@@ -201,7 +201,7 @@ export class F1099INT extends TaxForm {
 	constructor(formname) {
 		Debug.enter("f1099int.Constructor()");
 		super(formname);
-
+		this.title = `1099-INT - Interest Income`;
 		this.isSingleton = false;
 
 		this.lines["payer_name"]	= new Line("Taxpayer's name");
