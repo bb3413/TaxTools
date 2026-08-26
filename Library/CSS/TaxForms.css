@@ -21,7 +21,7 @@
 .taxform-section-container {
 	display:				grid;
 	grid-template-columns:	50px 1fr;
-	border:					1px solid black;
+	border:					1px solid var(--taxform-border-color);
 	font-size:				14px;
 	font-weight:			bold;
 }
@@ -116,25 +116,25 @@
  * Fields types
  */
 .lineno {
-	border:					1px solid black;
+	border:					1px solid var(--taxform-border-color);;
 	padding-left:			3px;
 	padding-right:			3px;
 }
 
 .description {
-	border:					1px solid black;
+	border:					1px solid var(--taxform-border-color);;
 	padding-left:			3px;
 	padding-right:			3px;
 }
 
 .label {
-	border:					1px solid black;
+	border:					1px solid var(--taxform-border-color);;
 	padding-left:			3px;
 	padding-right:			3px;
 }
 
 .text-value {
-	border:					1px solid black;
+	border:					1px solid var(--taxform-border-color);;
 	padding-left:			3px;
 	padding-right:			3px;
 	text-align:				left;
@@ -142,7 +142,7 @@
 }
 
 .value {
-	border:					1px solid black;
+	border:					1px solid var(--taxform-border-color);;
 	padding-left:			3px;
 	padding-right:			3px;
 	text-align:				right;
@@ -150,14 +150,14 @@
 }
 
 .notused {
-	border:					1px solid black;
+	border:					1px solid var(--taxform-border-color);;
 	background:				lightgray;
 	padding-left:			3px;
 	padding-right:			3px;
 }
 
 .fake-checkbox {
-	border:					1px solid black;
+	border:					1px solid var(--taxform-border-color);;
 	background:				var(--output-color);
 	text-align:				center;
 }
@@ -177,7 +177,7 @@
 	grid-template-columns:	repeat(6, 120px);
 }
 .ssa1099-box {
-	border:					1px solid black;
+	border:					1px solid var(--taxform-border-color);;
 	height:					50px;
 	padding:				3px;
 }
@@ -217,7 +217,7 @@
 }
 
 .f1099-header-left {
-	flex:					1;
+	flex:					1;	/* Grow and shrink with other items in the flex container. */
 	padding:				5px;
 	font-size:				10px;
 	border-right:			1px solid var(--taxform-border-color);

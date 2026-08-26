@@ -3,9 +3,11 @@
 <head>
 	<meta charset="utf-8" />
 	<link rel="stylesheet" href="../Library/CSS/HTML.css" />
-	<link rel="stylesheet" href="../Library/CSS/TaxForms.css" />
 	<link rel="stylesheet" href="../Library/CSS/TaxTools.css" />
 	<link rel="stylesheet" href="../Library/CSS/Tooltips.css" />
+	<link rel="stylesheet" href="../Library/CSS/TaxForms.css" />
+	<link rel="stylesheet" href="../Library/CSS/F1099.css" />
+	<link rel="stylesheet" href="../Library/CSS/SSA1099.css" />
 
 	<script type="module" src="../Library/TaxTools/TaxTools.js"></script>
 	<script type="module" src="../Library/Tooltips/Tooltips.js"></script>

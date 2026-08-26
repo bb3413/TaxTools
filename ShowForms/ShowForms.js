@@ -42,6 +42,7 @@ function showHandler(event) {
 		element.insertAdjacentHTML("beforebegin", taxform_html);
 
 		for (const formname of TaxFormName.listAllForms()) {
+			console.log(`Showing ${formname}`);
 			if (TaxFormName.isInputForm(formname)) {
 				addInputForm(formname);
 			}
