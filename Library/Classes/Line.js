@@ -32,7 +32,7 @@ export class Line {
 	set user_value(new_value) {
 		// This method is called when the value is supplied by the user; not calculated
 		// by the program (see also set value()).
-		
+
 		if (new_value === "") {
 			// If the user did not enter a value or cleared it, use the default for the line,
 			// which will allows the form's steps to calculate the value. If the user

@@ -72,7 +72,7 @@ export class Template extends TaxForm {
 		inputs["02"]		= HTML.getUserInput(`template-${uid}-02`, "");
 		inputs["03a"]		= HTML.getUserInput(`template-${uid}-03a`, "");
 		inputs["03b"]		= HTML.getUserInput(`template-${uid}-03b`, "");
-		
+
 		if (!Objects.isUsed(inputs)) {
 			return;
 		}

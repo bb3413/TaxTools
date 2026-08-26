@@ -431,7 +431,7 @@ export class F1040 extends TaxForm {
 		}
 
 		let inputs = {};
-		
+
 		inputs["01a"]		= HTML.getUserInput(`f1040-${uid}-01a`, "");
 		inputs["01b"]		= HTML.getUserInput(`f1040-${uid}-01b`, "");
 		inputs["01c"]		= HTML.getUserInput(`f1040-${uid}-01c`, "");
@@ -489,7 +489,7 @@ export class F1040 extends TaxForm {
 		inputs["36"]		= HTML.getUserInput(`f1040-${uid}-36`,  "");
 		inputs["37"]		= HTML.getUserInput(`f1040-${uid}-37`,  "");
 		inputs["38"]		= HTML.getUserInput(`f1040-${uid}-38`,  "");
-		
+
 		if (!Objects.isUsed(inputs)) {
 			return;
 		}
@@ -616,7 +616,7 @@ export class F1040 extends TaxForm {
 		this.lines["36"]	= new Line("Apply To Next Years Tax");
 		this.lines["37"]	= new Line("Amount Owed");
 		this.lines["38"]	= new Line("Estimated Tax Penalty");
-	
+
 		Debug.exit("F1040.Constructor()");
 	}
 

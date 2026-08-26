@@ -222,7 +222,7 @@ export class W2 extends TaxForm {
 		inputs["18"]		= HTML.getUserInput(`w2-${uid}-18`, "");
 		inputs["19"]		= HTML.getUserInput(`w2-${uid}-19`, "");
 		inputs["20"]		= HTML.getUserInput(`w2-${uid}-20`, "text");
-		
+
 		if (!Objects.isUsed(inputs)) {
 			return;
 		}

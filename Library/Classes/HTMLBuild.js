@@ -19,7 +19,7 @@
 		htmldoc.remove();
 	}
 */
-						
+
 export class HTMLBuild {
 	constructor() {
 		this._htmldoc		= [];

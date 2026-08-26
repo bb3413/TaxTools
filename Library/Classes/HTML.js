@@ -34,7 +34,7 @@ export class HTML {
 
 		element.classList.remove('hidden');
 	}
-	
+
 	static hideElement(element_id) {
 		const element = document.getElementById(element_id);
 		if (!Debug.verify(element, "hideElement: Element not found: " + element_id)) return;
@@ -167,7 +167,7 @@ export class HTML {
 	static addListener(element_id, event, handler) {
 		const element = document.getElementById(element_id);
 		if (!Debug.verify(element, "addListener: Element not found: " + element_id)) return;
-		
+
 		element.addEventListener(event, handler);
 	}
 

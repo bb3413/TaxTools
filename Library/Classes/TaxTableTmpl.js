@@ -3,7 +3,7 @@ import { Num }		from "../Classes/Num.js";
 import { Str }		from "../Classes/Str.js";
 
 // Values columns
-const SINGLE	= 0;		
+const SINGLE	= 0;
 const HOH		= 1;
 const MFJ		= 2;
 const QSS		= 3;

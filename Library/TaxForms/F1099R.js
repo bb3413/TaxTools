@@ -27,98 +27,98 @@ const HTML_FORM = `
 							Plans, IRAs, Insurance Contracts, etc.</strong>
 					</div>
 				</div>
-			
+
 				<div class="f1099-main-grid">
 					<div class="f1099-col-left">
 						<div class="f1099-box f1099-box-large">
 							<span class="f1099-box-label">PAYER&apos;S name, street address, city or town,
 								state or province, country, and ZIP or foreign postal code</span>
-							<input class="f1099-box-value" type="text" id="f1099r-XX-name" size="20" />
+							<input class="f1099-box-value" type="text" id="f1099r-XX-name" />
 						</div>
-			
+
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
 								<span class="f1099-box-label">PAYER&apos;S TIN</span>
-								<input class="f1099-box-value" type="text" id="f1099r-XX-ein" size="20"
+								<input class="f1099-box-value" type="text" id="f1099r-XX-ein"
 									placeholder="12-3456789" />
 							</div>
 							<div class="f1099-box">
 								<span class="f1099-box-label">RECIPIENT&apos;S TIN</span>
-								<input class="f1099-box-value" type="text" id="f1099r-XX-ssn" size="20"
+								<input class="f1099-box-value" type="text" id="f1099r-XX-ssn"
 									placeholder="xxx-xx-xxxx" />
 							</div>
 						</div>
-			
+
 						<div class="f1099-box f1099-box-large">
 							<span class="f1099-box-label">RECIPIENT&apos;S name, street address, city or
 								town, state, and ZIP code</span>
-							<input class="f1099-box-value" type="text" id="f1099r-XX-address" size="20" />
+							<input class="f1099-box-value" type="text" id="f1099r-XX-address" />
 						</div>
-			
+
 						<div class="f1099-box" style="border-bottom: none;">
 							<span class="f1099-box-label">Account number (see instructions)</span>
-							<input class="f1099-box-value" type="text" id="f1099r-XX-account" size="20" />
+							<input class="f1099-box-value" type="text" id="f1099r-XX-account" />
 						</div>
 					</div>
-			
+
 					<div class="f1099-col-right">
 						<div class="f1099-flex-row">
 							<div class="f1099-box input-color">
 								<span class="f1099-box-label">1 Gross distribution</span>
-								<input class="f1099-box-value" type="text" id="f1099r-XX-01" size="20"
+								<input class="f1099-box-value" type="text" id="f1099r-XX-01"
 									placeholder="$0.00" />
 							</div>
 						</div>
-			
+
 						<div class="f1099-flex-row">
 							<div class="f1099-box input-color">
 								<span class="f1099-box-label">2a Taxable amount</span>
-								<input class="f1099-box-value" type="text" id="f1099r-XX-02a" size="20"
+								<input class="f1099-box-value" type="text" id="f1099r-XX-02a"
 									placeholder="$0.00" />
 							</div>
 						</div>
-			
+
 						<div class="f1099-flex-row">
 							<div class="f1099-box input-color">
 								<span class="f1099-box-label">2b Taxable amount not determined</span>
 								<div class="f1099-box-value"><input type="checkbox" id="f1099r-XX-02b" /></div>
 							</div>
-							<div class="f1099-box input-color">
+							<div class="f1099-box">
 								<span class="f1099-box-label">Total distribution</span>
 								<div class="f1099-box-value"><input type="checkbox"/></div>
 							</div>
 						</div>
-			
+
 						<div class="f1099-flex-row">
-							<div class="f1099-box input-color">
+							<div class="f1099-box">
 								<span class="f1099-box-label">3 Capital gain (included in box 2a)</span>
-								<input class="f1099-box-value" type="text" id="f1099r-XX-3" size="20"
+								<input class="f1099-box-value" type="text" id="f1099r-XX-3"
 									placeholder="$0.00" />
 							</div>
 							<div class="f1099-box input-color">
 								<span class="f1099-box-label">4 Federal income tax withheld</span>
-								<input class="f1099-box-value" type="text" id="f1099r-XX-04" size="20"
+								<input class="f1099-box-value" type="text" id="f1099r-XX-04"
 									placeholder="$0.00" />
 							</div>
 						</div>
-			
+
 						<div class="f1099-flex-row">
-							<div class="f1099-box input-color">
+							<div class="f1099-box">
 								<span class="f1099-box-label">5 Employee contrib./Designated Roth</span>
-								<input class="f1099-box-value" type="text" id="f1099r-XX-05" size="20"
+								<input class="f1099-box-value" type="text" id="f1099r-XX-05"
 									placeholder="$0.00" />
 							</div>
-							<div class="f1099-box input-color">
+							<div class="f1099-box">
 								<span class="f1099-box-label">6 Net unrealized appreciation</span>
-								<input class="f1099-box-value" type="text" id="f1099r-XX-06" size="20"
+								<input class="f1099-box-value" type="text" id="f1099r-XX-06"
 									placeholder="$0.00" />
 							</div>
 						</div>
-			
+
 						<div class="f1099-flex-row">
 							<div class="f1099-box input-color">
 								<span class="f1099-box-label">7a Distribution code(s)</span>
-								<input class="f1099-box-value" type="text" id="f1099r-XX-07a" size="20" />
+								<input class="f1099-box-value" type="text" id="f1099r-XX-07a" />
 							</div>
 							<div class="f1099-box input-color">
 								<span class="f1099-box-label">7b IRA/SEP/SIMPLE</span>
@@ -126,7 +126,6 @@ const HTML_FORM = `
 							</div>
 						</div>
 
-									
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
 								<span class="f1099-box-label"></span>
@@ -135,7 +134,7 @@ const HTML_FORM = `
 							<div class="f1099-box input-color">
 								<span class="f1099-box-label">9b Total employee contributions</span>
 								<div class="f1099-box-value"></div>
-								<input class="f1099-box-value" type="text" id="f1099r-XX-09b" size="20"
+								<input class="f1099-box-value" type="text" id="f1099r-XX-09b"
 									placeholder="$0.00" />
 							</div>
 						</div>
@@ -143,12 +142,12 @@ const HTML_FORM = `
 						<div class="f1099-flex-row">
 							<div class="f1099-box input-color">
 								<span class="f1099-box-label">14 State tax withheld</span>
-								<input class="f1099-box-value" type="text" id="f1099r-XX-14" size="20"
+								<input class="f1099-box-value" type="text" id="f1099r-XX-14"
 									placeholder="$0.00" />
 							</div>
-							<div class="f1099-box input-color">
+							<div class="f1099-box">
 								<span class="f1099-box-label">15 State/Payer&apos;s state no.</span>
-								<input class="f1099-box-value" type="text" id="f1099r-XX-15" size="20" />
+								<input class="f1099-box-value" type="text" id="f1099r-XX-15" />
 							</div>
 						</div>
 					</div>

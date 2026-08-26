@@ -219,7 +219,7 @@ export class TaxFormObj {
 				TaxFormObj.getValue("F1040",   "01z") -		// Wages
 				TaxFormObj.getValue("F1040S1", "03" ) -		// Business income
 				TaxFormObj.getValue("F1040S1", "06" ) -		// Farm income
-				TaxFormObj.getValue("F1040S1", "08a") -		// Net operating loss 
+				TaxFormObj.getValue("F1040S1", "08a") -		// Net operating loss
 				TaxFormObj.getValue("F1040S1", "08d") -		// Foreign earned income exclusion from Form 2555
 				TaxFormObj.getValue("F1040S1", "08u") -		// Wages earned while incarcerated
 				TaxFormObj.getValue("F1040S1", "18" ) );	// Penalty on early withdrawal of savings

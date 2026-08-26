@@ -61,7 +61,7 @@ export class TaxForm {
 		// Copy the information from the instance to the output HTML.
 		//
 		let formname = this.formname.toLowerCase();
-		
+
 		if (!uid) {
 			throw new Error(`${formname}.putInformation(): UID is undefined.`);
 		}

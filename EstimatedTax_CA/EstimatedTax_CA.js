@@ -24,7 +24,7 @@ function changeHandler(event) {
 		TaxFormObj.reset();
 		Taxpayer.reset();
 
-		
+
 		TaxTable.getTaxTable(HTML.getUserInput("tax-year"));		// Initialize tax tables.
 		inputs = getInputs();										// Get inputs from the web page
 		const taxpayer = createTaxpayer(inputs);					// Initialize taxpayer

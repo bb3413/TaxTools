@@ -24,7 +24,7 @@ function addOutputForm(formname) {
 		uid				= "XX";
 		taxform_id		= `${formname}-${uid}-details`;
 		taxform_html	= form.toHTML(uid);
-		
+
 	}
 
 	TaxFormWeb.addOutputForm(taxform_id, taxform_html);
@@ -35,7 +35,7 @@ function showHandler(event) {
 		let [ taxform_id, taxform_html ] = Template.getInputHTML("XX");
 		let element = document.getElementById("input-forms-container");
 		element.insertAdjacentHTML("beforebegin", taxform_html);
-		
+
 		let taxform = new Template("Template");
 		[ taxform_id, taxform_html ] = taxform.getOutputHTML("XX");
 		element = document.getElementById("output-forms-container");

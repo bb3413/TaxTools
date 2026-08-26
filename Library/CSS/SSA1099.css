@@ -1,0 +1,63 @@
+
+/*
+ * Styles specifically for the SSA-1099 form.
+ */
+
+.ssa-header-left {
+	padding-left:			10px;
+	margin-top:				0;
+	padding-top:			0;
+}
+
+.ssa-header-left h1 {
+	font-size:				40px;
+	font-weight:			bold;
+	margin:					0 auto;
+	padding-top:			5px;
+}
+
+.ssa-header-right {
+	flex:					1;
+	padding:				5px;
+	font-size:				12px;
+	font-weight:			bold;
+	text-transform:			uppercase;
+}
+
+.ssa-row-1 {
+	display:				grid;
+	grid-template-columns:	2fr 1fr;
+}
+
+.ssa-row-2 {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+}
+
+.ssa-border-right {
+	border-right:			1px solid var(--taxform-border-color);
+}
+
+.ssa-outside-header {
+	font-size:				18px;
+	font-weight:			bold;
+	padding:				4px;
+	padding-left:			8px;
+	color:					var(--taxform-text-color);
+	text-transform:			uppercase;
+	text-align:				center;
+}
+
+.ssa-subheading {
+	font-size:				12px;
+	font-weight:			bold;
+	text-transform:			uppercase;
+	text-align:				center;
+	margin-top:				0;
+}
+
+.ssa-label-group {
+	display:			flex;
+	align-items:		center;		/* Aligns label text vertically with the input */
+	gap:				8px;		/* Adds space between the label and the input */
+}

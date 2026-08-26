@@ -303,7 +303,7 @@ export class F1040SC extends TaxForm {
 		inputs["29"]		= HTML.getUserInput(`f1040sc-${uid}-29`, "");
 		inputs["30"]		= HTML.getUserInput(`f1040sc-${uid}-30`, "");
 		inputs["31"]		= HTML.getUserInput(`f1040sc-${uid}-31`, "");
-		
+
 		if (!Objects.isUsed(inputs)) {
 			return;
 		}

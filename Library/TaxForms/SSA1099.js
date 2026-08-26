@@ -64,7 +64,7 @@ const HTML_FORM = `
 							</div>
 						</div>
 					</div>
-			
+
 					<div class="f1099-col-right">
 						<div class="f1099-box f1099-box-large">
 							<h2 class="ssa-subheading">Description of Amount in Box 4</h2>
@@ -82,7 +82,7 @@ const HTML_FORM = `
 								<input class="f1099-box-value" type="text" id="f1099r-XX-07" />
 							</div>
 						</div>
-						
+
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
 								<span class="f1099-box-label">Box 8. Claim Number</span>
@@ -93,7 +93,7 @@ const HTML_FORM = `
 				</div>		<!-- f1099-main-grid -->
 			</div>		<!-- f1099-taxform-container -->
 			<div class="f1099-footer-note">Form <strong>SSA-1099</strong></div>
-			<div>&nbsp;</div> 
+			<div>&nbsp;</div>
 		</details>
 `;
 
@@ -128,7 +128,7 @@ export class SSA1099 extends TaxForm {
 		inputs["04"]		= HTML.getUserInput(`ssa1099-${uid}-04`, "");
 		inputs["05"]		= HTML.getUserInput(`ssa1099-${uid}-05`, "");
 		inputs["06"]		= HTML.getUserInput(`ssa1099-${uid}-06`, "");
-		
+
 		if (!Objects.isUsed(inputs)) {
 			return;
 		}

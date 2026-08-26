@@ -40,7 +40,7 @@
 		your income tax and display the relevant tax forms. Click <a href="TaxProgram-Help.html">
 		this link</a> for more help with this tool.</p>
 
-		<p>You can use the Save and Restore buttons to save the information you have entered and 
+		<p>You can use the Save and Restore buttons to save the information you have entered and
 		restore it again later.</p>
 
 		<div class="button-container flex-right">

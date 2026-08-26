@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Form 1099-INT</title>
+	<style>
+		* {
+			box-sizing: border-box;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		body {
+			background-color: #f5f5f5;
+			padding: 20px;
+			margin: 0;
+		}
+
+		.form-container {
+			width: 800px;
+			margin: 0 auto;
+			background: #fff;
+			border: 2px solid #000;
+			padding: 2px;
+		}
+
+		/* Header Section */
+		.header-row {
+			display: flex;
+			border-bottom: 2px solid #000;
+			background-color: #f0f0f0;
+		}
+
+		.header-left {
+			flex: 1;
+			padding: 5px;
+			font-size: 10px;
+			border-right: 1px solid #000;
+		}
+
+		.header-center {
+			width: 180px;
+			text-align: center;
+			padding: 5px;
+			border-right: 1px solid #000;
+		}
+
+		.header-center h1 {
+			margin: 0;
+			font-size: 20px;
+		}
+
+		.header-center h2 {
+			margin: 0;
+			font-size: 14px;
+		}
+
+		.header-right {
+			width: 220px;
+			padding: 5px;
+			font-size: 10px;
+		}
+
+		.header-right strong {
+			font-size: 12px;
+			display: block;
+		}
+
+		/* Main Grid Structure */
+		.main-grid {
+			display: flex;
+		}
+
+		.col-left {
+			width: 50%;
+			border-right: 2px solid #000;
+		}
+
+		.col-right {
+			width: 50%;
+		}
+
+		/* Box Formatting */
+		.box {
+			border-bottom: 1px solid #000;
+			padding: 3px 5px;
+			min-height: 42px;
+			position: relative;
+		}
+
+		.box-label {
+			font-size: 8px;
+			font-weight: bold;
+			text-transform: uppercase;
+			display: block;
+			margin-bottom: 2px;
+		}
+
+		.box-value {
+			font-size: 12px;
+			font-weight: bold;
+		}
+
+		.flex-row {
+			display: flex;
+		}
+
+		.flex-row .box {
+			flex: 1;
+			border-right: 1px solid #000;
+		}
+
+		.flex-row .box:last-child {
+			border-right: none;
+		}
+
+		.box-large {
+			min-height: 90px;
+		}
+
+		/* Footer */
+		.footer-note {
+			font-size: 8px;
+			text-align: center;
+			padding: 4px;
+			background-color: #f0f0f0;
+			border-top: 1px solid #000;
+		}
+
+		@media print {
+			body { background: none; padding: 0; }
+			.form-container { border: 2px solid #000; width: 100%; }
+		}
+	</style>
+</head>
+<body>
+
+<div class="form-container">
+	<!-- Header Section -->
+	<div class="header-row">
+		<div class="header-left">
+			<input type="checkbox" /> VOID &nbsp;&nbsp;&nbsp; <input type="checkbox" /> CORRECTED
+		</div>
+		<div class="header-center">
+			<h2>OMB No. 1545-0112</h2>
+			<h1>2026</h1>
+			<div>Form <strong>1099-INT</strong></div>
+		</div>
+		<div class="header-right">
+			<strong>Interest Income</strong>
+			Copy B / For Recipient's Records
+		</div>
+	</div>
+
+	<!-- Main Content Grid -->
+	<div class="main-grid">
+		<!-- Left Column: Contact & Identification Info -->
+		<div class="col-left">
+			<div class="box box-large">
+				<span class="box-label">PAYER'S name, street address, city or town, state or province, country, ZIP or foreign postal code, and telephone no.</span>
+				<div class="box-value">
+					FIRST NATIONAL BANK<br />
+					500 FINANCIAL WAY<br />
+					SAN JOSE, CA 95113<br />
+					(800) 555-0199
+				</div>
+			</div>
+
+			<div class="flex-row">
+				<div class="box">
+					<span class="box-label">PAYER'S TIN</span>
+					<div class="box-value">94-1234567</div>
+				</div>
+				<div class="box">
+					<span class="box-label">RECIPIENT'S TIN</span>
+					<div class="box-value">XXX-XX-1234</div>
+				</div>
+			</div>
+
+			<div class="box box-large">
+				<span class="box-label">RECIPIENT'S name, street address, city or town, state or province, country, and ZIP code</span>
+				<div class="box-value">
+					JANE DOE<br />
+					742 EVERGREEN TERRACE<br />
+					SPRINGFIELD, OR 97477
+				</div>
+			</div>
+
+			<div class="box" style="border-bottom: none;">
+				<span class="box-label">Account number (see instructions)</span>
+				<div class="box-value">SAV-8839201</div>
+			</div>
+		</div>
+
+		<!-- Right Column: Numbered Financial Boxes -->
+		<div class="col-right">
+			<div class="flex-row">
+				<div class="box">
+					<span class="box-label">1 Interest income</span>
+					<div class="box-value">$1,450.00</div>
+				</div>
+			</div>
+
+			<div class="flex-row">
+				<div class="box">
+					<span class="box-label">2 Early withdrawal penalty</span>
+					<div class="box-value">$0.00</div>
+				</div>
+				<div class="box">
+					<span class="box-label">3 Interest on U.S. Savings Bonds</span>
+					<div class="box-value">$0.00</div>
+				</div>
+			</div>
+
+			<div class="flex-row">
+				<div class="box">
+					<span class="box-label">4 Federal income tax withheld</span>
+					<div class="box-value">$0.00</div>
+				</div>
+				<div class="box">
+					<span class="box-label">5 Investment expenses</span>
+					<div class="box-value">$0.00</div>
+				</div>
+			</div>
+
+			<div class="flex-row">
+				<div class="box">
+					<span class="box-label">8 Tax-exempt interest</span>
+					<div class="box-value">$0.00</div>
+				</div>
+				<div class="box">
+					<span class="box-label">9 Specified private activity bond interest</span>
+					<div class="box-value">$0.00</div>
+				</div>
+			</div>
+
+			<div class="flex-row">
+				<div class="box">
+					<span class="box-label">10 Market discount</span>
+					<div class="box-value">$0.00</div>
+				</div>
+				<div class="box">
+					<span class="box-label">11 Bond premium</span>
+					<div class="box-value">$0.00</div>
+				</div>
+			</div>
+
+			<div class="flex-row" style="border-bottom: none;">
+				<div class="box">
+					<span class="box-label">15 State tax withheld</span>
+					<div class="box-value">$0.00</div>
+				</div>
+				<div class="box">
+					<span class="box-label">16 State/Payer's state no.</span>
+					<div class="box-value">CA / 123-456</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="footer-note">
+		Department of the Treasury - Internal Revenue Service &nbsp;|&nbsp; CAT No. 14410K
+	</div>
+</div>
+
+</body>
+</html>

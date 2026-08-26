@@ -16,7 +16,7 @@ function getUserInput(element_id, default_value) {
 	}
 }
 
-function printFilingStatus(filing_status) { 
+function printFilingStatus(filing_status) {
 	switch (filing_status) {
 		case "SINGLE":	return "Single";
 		case "HOH":		return "HoH";
@@ -311,7 +311,7 @@ export class Taxpayer {
 
 		printLine(lines, "Filing Status",		this.filing_status);
 		lines.push("");
-		
+
 		printLine(lines, "Taxpayer's Name",		this.taxpayers_name);
 		printLine(lines, "Street Address",		this.street_address);
 		printLine(lines, "City, State, Zip",	`${this.city}, CA ${this.zip_code}`);

@@ -16,7 +16,7 @@ function addForm(event) {
 	//
 	// This function is called when the user clicks on the "Add Form" button.
 	//
-	
+
 	const formname = HTML.getElementValue("add-form-button");	// Get selected form name.
 	HTML.putElementValue("add-form-button", "");			addInputForm
 	// Change selection back to the "Add Form" entry.
@@ -68,7 +68,7 @@ function calculateHandler(event) {
 	try {
 		// Remove information from previous calculation.
 		resetCalculation();
-		
+
 		TaxTable.getTaxTable(HTML.getUserInput("tax-year"));	// Initialize tax tables
 		Taxpayer.initializeTaxpayer();							// Create and initialize taxpayer
 		createTaxForms();										// Create tax forms from user input
