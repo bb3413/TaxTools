@@ -22,17 +22,17 @@ import { F1040SSE }		from "../TaxForms/F1040SSE.js";	// Self-employment Tax
 //import { F1098E }		from "../TaxForms/F1098E.js";
 //import { F1098T }		from "../TaxForms/F1098T.js";
 //import { F1099B }		from "../TaxForms/F1099B.js";
-//import { F1099C }		from "../TaxForms/F1099C.js";
+import { F1099C }		from "../TaxForms/F1099C.js";
 import { F1099DIV }		from "../TaxForms/F1099DIV.js";
 import { F1099G }		from "../TaxForms/F1099G.js";
 import { F1099INT }		from "../TaxForms/F1099INT.js";
-//import { F1099K }		from "../TaxForms/F1099K.js";
+import { F1099K }		from "../TaxForms/F1099K.js";
 //import { F1099LTC }	from "../TaxForms/F1099LTC.js";
-//import { F1099MISC }	from "../TaxForms/F1099MISC.js";
-//import { F1099NEC }	from "../TaxForms/F1099NEC.js";
-//import { F1099OID }	from "../TaxForms/F1099OID.js";
+import { F1099MISC }	from "../TaxForms/F1099MISC.js";
+import { F1099NEC }		from "../TaxForms/F1099NEC.js";
+import { F1099OID }	from "../TaxForms/F1099OID.js";
 import { F1099R }		from "../TaxForms/F1099R.js";
-//import { F1099S }		from "../TaxForms/F1099S.js";
+import { F1099S }		from "../TaxForms/F1099S.js";
 //import { F1120S }		from "../TaxForms/F1120S.js";
 //import { F2441 }		from "../TaxForms/F2441.js";
 import { F540 }			from "../TaxForms/F540.js";			// California Income Tax
@@ -80,17 +80,19 @@ const forms_map = {
 //	"F1098E":				[ F1098E,		true,	false,	false,	false	],
 //	"F1098T":				[ F1098T,		true,	false,	false,	false	],
 //	"F1099B":				[ F1099B,		true,	false,	false,	false	],
-//	"F1099C":				[ F1099C,		true,	false,	false,	false	],
+	"F1099C":				[ F1099C,		true,	false,	false,	false	],
 	"F1099DIV":				[ F1099DIV,		true,	false,	false,	false	],
-//	"F1099G":				[ F1099G,		true,	false,	false,	false	],
+	"F1099G":				[ F1099G,		true,	false,	false,	false	],
 	"F1099INT":				[ F1099INT,		true,	false,	false,	false	],
-//	"F1099K":				[ F1099K,		true,	false,	false,	false	],
+
+	// Name					Class			Input	Output	Single	Create on Demand
+	"F1099K":				[ F1099K,		true,	false,	false,	false	],
 //	"F1099LTC":				[ F1099LTC,		true,	false,	false,	false	],
-//	"F1099MISC":			[ F1099MISC,	true,	false,	false,	false	],
-//	"F1099NEC":				[ F1099NEC,		true,	false,	false,	false	],
-//	"F1099OID":				[ F1099OID,		true,	false,	false,	false	],
+	"F1099MISC":			[ F1099MISC,	true,	false,	false,	false	],
+	"F1099NEC":				[ F1099NEC,		true,	false,	false,	false	],
+	"F1099OID":				[ F1099OID,		true,	false,	false,	false	],
 	"F1099R":				[ F1099R,		true,	false,	false,	false	],
-//	"F1099S":				[ F1099S,		true,	false,	false,	false	],
+	"F1099S":				[ F1099S,		true,	false,	false,	false	],
 //	"F1120S":				[ F1120S,		true,	false,	false,	false	],
 //	"F2441":				[ F2441,		false,	true,	true,	false	],
 	"F540":					[ F540,			false,	true,	true,	true	],
@@ -103,6 +105,7 @@ const forms_map = {
 //	"Template":				[ Template,		true,	true,	false,	false	],
 
 	// Worksheets
+	// Name					Class			Input	Output	Single	Create on Demand
 	"IncTax":				[ IncTax,		false,	true,	true,	true	],
 	"Refund":				[ Refund,		false,	true,	true,	true	],
 	"SalesTax":				[ SalesTax,		false,	true,	true,	true	],
@@ -160,9 +163,16 @@ export class TaxFormName {
 		// This method allows you to call the static method getInputHTML() by name.
 		switch (formname) {
 			case "F1040SC":		return F1040SC.getInputHTML(uid);
+			case "F1099C":		return F1099C.getInputHTML(uid);
 			case "F1099DIV":	return F1099DIV.getInputHTML(uid);
+			case "F1099G":		return F1099G.getInputHTML(uid);
 			case "F1099INT":	return F1099INT.getInputHTML(uid);
+			case "F1099K":		return F1099K.getInputHTML(uid);
+			case "F1099MISC":	return F1099MISC.getInputHTML(uid);
+			case "F1099NEC":	return F1099NEC.getInputHTML(uid);
+			case "F1099OID":	return F1099OID.getInputHTML(uid);
 			case "F1099R":		return F1099R.getInputHTML(uid);
+			case "F1099S":		return F1099S.getInputHTML(uid);
 			case "SSA1099":		return SSA1099.getInputHTML(uid);
 			case "W2":			return W2.getInputHTML(uid);
 			case "Template":	return Template.getInputHTML(uid);
@@ -174,9 +184,16 @@ export class TaxFormName {
 		// This method allows you to call the static method getUserInput() by name.
 		switch (formname) {
 			case "F1040SC":		return F1040SC.getUserInput(uid);
+			case "F1099C":		return F1099C.getUserInput(uid);
 			case "F1099DIV":	return F1099DIV.getUserInput(uid);
+			case "F1099G":		return F1099G.getUserInput(uid);
 			case "F1099INT":	return F1099INT.getUserInput(uid);
+			case "F1099K":		return F1099K.getUserInput(uid);
+			case "F1099MISC":	return F1099MISC.getUserInput(uid);
+			case "F1099NEC":	return F1099NEC.getUserInput(uid);
+			case "F1099OID":	return F1099OID.getUserInput(uid);
 			case "F1099R":		return F1099R.getUserInput(uid);
+			case "F1099S":		return F1099S.getUserInput(uid);
 			case "SSA1099":		return SSA1099.getUserInput(uid);
 			case "W2":			return W2.getUserInput(uid);
 			case "Template":	return Template.getUserInput(uid);

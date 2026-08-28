@@ -13,14 +13,15 @@ const HTML_FORM = `
 				Retirement Plans, etc.</summary>
 			<div>&nbsp;</div>
 			<div class="f1099-taxform-container">
+				<!-- Header Section -->
 				<div class="f1099-header-row">
-					<div class="f1099-header-left">
-						<input type="checkbox" disabled /> CORRECTED (if checked)
+					<div class="f1099-header-left"> 
+						<label><input type="checkbox" disabled id="corrected" /> CORRECTED</label>
 					</div>
 					<div class="f1099-header-center">
-						<h2>OMB No. 1545-0119</h2>
+						<div>OMB No. 1545-0119</div>
 						<h1><span id="tax-year">202X</span></h1>
-						<div>Form <strong>1099-R</strong></div>
+						<h2>Form 1099-R</h2>
 					</div>
 					<div class="f1099-header-right">
 						<strong>Distributions From Pensions, Annuities, Retirement or Profit-Sharing
@@ -28,131 +29,132 @@ const HTML_FORM = `
 					</div>
 				</div>
 
+				<!-- Main Content Grid -->
 				<div class="f1099-main-grid">
+					<!-- Left Column: Payer & Recipient Info Inputs -->
 					<div class="f1099-col-left">
 						<div class="f1099-box f1099-box-large">
 							<span class="f1099-box-label">PAYER&apos;S name, street address, city or town,
 								state or province, country, and ZIP or foreign postal code</span>
-							<input class="f1099-box-value" type="text" id="f1099r-XX-name" />
+							<textarea id="f1099r-XX-payer" placeholder="Payer Name&#10;Street Address&#10;City, State, ZIP&#10;Phone Number"></textarea>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
 								<span class="f1099-box-label">PAYER&apos;S TIN</span>
-								<input class="f1099-box-value" type="text" id="f1099r-XX-ein"
-									placeholder="12-3456789" />
+								<input type="text" id="f1099r-XX-ein" placeholder="12-3456789" />
 							</div>
 							<div class="f1099-box">
-								<span class="f1099-box-label">RECIPIENT&apos;S TIN</span>
-								<input class="f1099-box-value" type="text" id="f1099r-XX-ssn"
-									placeholder="xxx-xx-xxxx" />
+								<span class="f1099-box-label">TAXPAYER&apos;S TIN</span>
+								<input type="text" id="f1099r-XX-ssn" placeholder="123-45-6789" />
 							</div>
 						</div>
 
 						<div class="f1099-box f1099-box-large">
-							<span class="f1099-box-label">RECIPIENT&apos;S name, street address, city or
-								town, state, and ZIP code</span>
-							<input class="f1099-box-value" type="text" id="f1099r-XX-address" />
+							<span class="f1099-box-label">TAXPAYER&apos;S name, street address, city or town,
+								state, and ZIP code</span>
+							<textarea id="f1099r-XX-taxpayer"
+								placeholder="Taxpayer&apos;s Name&#10;Street Address&#10;City, State, ZIP"></textarea>
 						</div>
 
 						<div class="f1099-box" style="border-bottom: none;">
 							<span class="f1099-box-label">Account number (see instructions)</span>
-							<input class="f1099-box-value" type="text" id="f1099r-XX-account" />
+							<input type="text" id="f1099r-XX-account" placeholder="Optional Account #" />
 						</div>
 					</div>
 
+					<!-- Right Column: Numbered Input Boxes -->
 					<div class="f1099-col-right">
 						<div class="f1099-flex-row">
 							<div class="f1099-box input-color">
 								<span class="f1099-box-label">1 Gross distribution</span>
-								<input class="f1099-box-value" type="text" id="f1099r-XX-01"
-									placeholder="$0.00" />
+								<input type="text" id="f1099r-XX-01" placeholder="0" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box input-color">
 								<span class="f1099-box-label">2a Taxable amount</span>
-								<input class="f1099-box-value" type="text" id="f1099r-XX-02a"
-									placeholder="$0.00" />
+								<input type="text" id="f1099r-XX-02a" placeholder="0" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box input-color">
 								<span class="f1099-box-label">2b Taxable amount not determined</span>
-								<div class="f1099-box-value"><input type="checkbox" id="f1099r-XX-02b" /></div>
+								<div><input type="checkbox" id="f1099r-XX-02b" /></div>
 							</div>
 							<div class="f1099-box">
 								<span class="f1099-box-label">Total distribution</span>
-								<div class="f1099-box-value"><input type="checkbox"/></div>
+								<div><input type="checkbox"/></div>
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
 								<span class="f1099-box-label">3 Capital gain (included in box 2a)</span>
-								<input class="f1099-box-value" type="text" id="f1099r-XX-3"
-									placeholder="$0.00" />
+								<input type="text" id="f1099r-XX-3" placeholder="0" />
 							</div>
 							<div class="f1099-box input-color">
 								<span class="f1099-box-label">4 Federal income tax withheld</span>
-								<input class="f1099-box-value" type="text" id="f1099r-XX-04"
-									placeholder="$0.00" />
+								<input type="text" id="f1099r-XX-04" placeholder="0" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
 								<span class="f1099-box-label">5 Employee contrib./Designated Roth</span>
-								<input class="f1099-box-value" type="text" id="f1099r-XX-05"
-									placeholder="$0.00" />
+								<input type="text" id="f1099r-XX-05" placeholder="0" />
 							</div>
 							<div class="f1099-box">
 								<span class="f1099-box-label">6 Net unrealized appreciation</span>
-								<input class="f1099-box-value" type="text" id="f1099r-XX-06"
-									placeholder="$0.00" />
+								<input type="text" id="f1099r-XX-06" placeholder="0" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box input-color">
 								<span class="f1099-box-label">7a Distribution code(s)</span>
-								<input class="f1099-box-value" type="text" id="f1099r-XX-07a" />
+								<input type="text" id="f1099r-XX-07a" />
 							</div>
 							<div class="f1099-box input-color">
 								<span class="f1099-box-label">7b IRA/SEP/SIMPLE</span>
-								<div class="f1099-box-value"><input type="checkbox" id="f1099r-XX-07b" /></div>
+								<div><input type="checkbox" id="f1099r-XX-07b" /></div>
+							</div>
+							<div class="f1099-box">
+								<span class="f1099-box-label">7c Trump account</span>
+								<div><input type="checkbox" id="f1099r-XX-07c" /></div>
+							</div>
+							<div class="f1099-box">
+								<span class="f1099-box-label">7d Earnings on excess contribution</span>
+								<div><input type="text" id="f1099r-XX-07d" placeholder="0" /></div>
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
 								<span class="f1099-box-label"></span>
-								<div class="f1099-box-value"></div>
+								<div></div>
 							</div>
 							<div class="f1099-box input-color">
 								<span class="f1099-box-label">9b Total employee contributions</span>
-								<div class="f1099-box-value"></div>
-								<input class="f1099-box-value" type="text" id="f1099r-XX-09b"
-									placeholder="$0.00" />
+								<input type="text" id="f1099r-XX-09b" placeholder="0" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
-							<div class="f1099-box input-color">
+							<div class="f1099-box input-color" style="border-bottom: none;">
 								<span class="f1099-box-label">14 State tax withheld</span>
-								<input class="f1099-box-value" type="text" id="f1099r-XX-14"
-									placeholder="$0.00" />
+								<input type="text" id="f1099r-XX-14" placeholder="0" />
 							</div>
-							<div class="f1099-box">
-								<span class="f1099-box-label">15 State/Payer&apos;s state no.</span>
-								<input class="f1099-box-value" type="text" id="f1099r-XX-15" />
+							<div class="f1099-box" style="border-bottom: none;">
+								<span class="f1099-box-label">15 State/state no.</span>
+								<input type="text" id="f1099r-XX-15" placeholder="State / ID" />
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
+				</div>		<!-- Main grid -->
+			</div>		<!-- f1099-taxform-container -->
 			<div class="f1099-footer-note">Form <strong>1099-R</strong></div>
 			<div>&nbsp;</div>
 		</details>
@@ -186,23 +188,25 @@ export class F1099R extends TaxForm {
 
 		let inputs = {};
 
-		inputs["name"]		= HTML.getUserInput(`f1099r-${uid}-name`,		"text");
+		inputs["payer"]		= HTML.getUserInput(`f1099r-${uid}-payer`,		"text");
 		inputs["ein"]		= HTML.getUserInput(`f1099r-${uid}-ein`,		"text");
 		inputs["ssn"]		= HTML.getUserInput(`f1099r-${uid}-ssn`,		"text");
-		inputs["address"]	= HTML.getUserInput(`f1099r-${uid}-address`,	"text");
+		inputs["taxpayer"]	= HTML.getUserInput(`f1099r-${uid}-taxpayer`,	"text");
 		inputs["account"]	= HTML.getUserInput(`f1099r-${uid}-account`,	"text");
-		inputs["01"]		= HTML.getUserInput(`f1099r-${uid}-01`,			"");
+		inputs["01"	]		= HTML.getUserInput(`f1099r-${uid}-01`,			"");
 		inputs["02a"]		= HTML.getUserInput(`f1099r-${uid}-02a`,		"");
 		inputs["02b"]		= HTML.getUserInput(`f1099r-${uid}-02b`,		"");
-		inputs["03"]		= HTML.getUserInput(`f1099r-${uid}-03`,			"");
-		inputs["04"]		= HTML.getUserInput(`f1099r-${uid}-04`,			"");
-		inputs["05"]		= HTML.getUserInput(`f1099r-${uid}-05`,			"");
-		inputs["06"]		= HTML.getUserInput(`f1099r-${uid}-06`,			"");
+		inputs["03"	]		= HTML.getUserInput(`f1099r-${uid}-03`,			"");
+		inputs["04"	]		= HTML.getUserInput(`f1099r-${uid}-04`,			"");
+		inputs["05"	]		= HTML.getUserInput(`f1099r-${uid}-05`,			"");
+		inputs["06"	]		= HTML.getUserInput(`f1099r-${uid}-06`,			"");
 		inputs["07a"]		= HTML.getUserInput(`f1099r-${uid}-07a`,		"text");
 		inputs["07b"]		= HTML.getUserInput(`f1099r-${uid}-07b`,		"");
+		inputs["07c"]		= HTML.getUserInput(`f1099r-${uid}-07c`,		"");
+		inputs["07d"]		= HTML.getUserInput(`f1099r-${uid}-07d`,		"");
 		inputs["09b"]		= HTML.getUserInput(`f1099r-${uid}-09b`,		"");
-		inputs["14"]		= HTML.getUserInput(`f1099r-${uid}-14`,			"");
-		inputs["15"]		= HTML.getUserInput(`f1099r-${uid}-15`,			"text");
+		inputs["14"	]		= HTML.getUserInput(`f1099r-${uid}-14`,			"");
+		inputs["15"	]		= HTML.getUserInput(`f1099r-${uid}-15`,			"text");
 
 		if (!Objects.isUsed(inputs)) {
 			return;
@@ -210,23 +214,25 @@ export class F1099R extends TaxForm {
 
 		const f1099r = TaxFormObj.createForm("F1099R");
 
-		f1099r.lines["name"		].user_value	= inputs["name"];
+		f1099r.lines["payer"	].user_value	= inputs["payer"];
 		f1099r.lines["ein"		].user_value	= inputs["ein"];
 		f1099r.lines["ssn"		].user_value	= inputs["ssn"];
-		f1099r.lines["address"  ].user_value	= inputs["address"];
-		f1099r.lines["account"  ].user_value	= inputs["account"];
-		f1099r.lines["01"  ].user_value	= inputs["01"];
-		f1099r.lines["02a" ].user_value	= inputs["02a"];
-		f1099r.lines["02b" ].user_value	= inputs["02b"];
-		f1099r.lines["03"  ].user_value	= inputs["03"];
-		f1099r.lines["04"  ].user_value	= inputs["04"];
-		f1099r.lines["05"  ].user_value	= inputs["05"];
-		f1099r.lines["06"  ].user_value	= inputs["06"];
-		f1099r.lines["07a" ].user_value	= inputs["07a"];
-		f1099r.lines["07b" ].user_value	= inputs["07b"];
-		f1099r.lines["09b" ].user_value	= inputs["09b"];
-		f1099r.lines["14"  ].user_value	= inputs["14"];
-		f1099r.lines["15"  ].user_value	= inputs["15"];
+		f1099r.lines["taxpayer"	].user_value	= inputs["taxpayer"];
+		f1099r.lines["account"	].user_value	= inputs["account"];
+		f1099r.lines["01"		].user_value	= inputs["01"];
+		f1099r.lines["02a"		].user_value	= inputs["02a"];
+		f1099r.lines["02b"		].user_value	= inputs["02b"];
+		f1099r.lines["03"		].user_value	= inputs["03"];
+		f1099r.lines["04"		].user_value	= inputs["04"];
+		f1099r.lines["05"		].user_value	= inputs["05"];
+		f1099r.lines["06"		].user_value	= inputs["06"];
+		f1099r.lines["07a"		].user_value	= inputs["07a"];
+		f1099r.lines["07b"		].user_value	= inputs["07b"];
+		f1099r.lines["07c"		].user_value	= inputs["07c"];
+		f1099r.lines["07d"		].user_value	= inputs["07d"];
+		f1099r.lines["09b"		].user_value	= inputs["09b"];
+		f1099r.lines["14"		].user_value	= inputs["14"];
+		f1099r.lines["15"		].user_value	= inputs["15"];
 	}
 
 	constructor(formname) {
@@ -235,23 +241,25 @@ export class F1099R extends TaxForm {
 		this.title = `1099-R - Distributions from Pensions, Annuities, Retirement Plans, etc.`;
 		this.isSingleton = false;
 
-		this.lines["name"]		= new Line("Taxpayer's name");
-		this.lines["ein"]		= new Line("Payee EIN");
+		this.lines["payer"]		= new Line("Payer information");
+		this.lines["ein"]		= new Line("Payer EIN");
 		this.lines["ssn"]		= new Line("Taxpayr's SSN");
-		this.lines["address"]	= new Line("Taxpayer's address");
+		this.lines["taxpayer"]	= new Line("Taxpayer's address");
 		this.lines["account"]	= new Line("Account number");
-		this.lines["01"]	= new Line("Gross distribution");
-		this.lines["02a"]	= new Line("Taxable amount");
-		this.lines["02b"]	= new Line("Taxable amount not determined");
-		this.lines["03"]	= new Line("Capital gain (included in box 2a)");
-		this.lines["04"]	= new Line("Federal income tax withheld");
-		this.lines["05"]	= new Line("Employee contrib./Designated Roth");
-		this.lines["06"]	= new Line("Net unrealized appreciation");
-		this.lines["07a"]	= new Line("Distribution code(s)");
-		this.lines["07b"]	= new Line("IRA/SEP/SIMPLE");
-		this.lines["09b"]	= new Line("Total employee contributions");
-		this.lines["14"]	= new Line("State tax withheld");
-		this.lines["14"]	= new Line("State/Payer's state no.");
+		this.lines["01"]		= new Line("Gross distribution");
+		this.lines["02a"]		= new Line("Taxable amount");
+		this.lines["02b"]		= new Line("Taxable amount not determined");
+		this.lines["03"]		= new Line("Capital gain (included in box 2a)");
+		this.lines["04"]		= new Line("Federal income tax withheld");
+		this.lines["05"]		= new Line("Employee contrib./Designated Roth");
+		this.lines["06"]		= new Line("Net unrealized appreciation");
+		this.lines["07a"]		= new Line("Distribution code(s)");
+		this.lines["07b"]		= new Line("IRA/SEP/SIMPLE");
+		this.lines["07b"]		= new Line("Trunp account");
+		this.lines["07b"]		= new Line("Earnings on excess contribution");
+		this.lines["09b"]		= new Line("Total employee contributions");
+		this.lines["14"]		= new Line("State tax withheld");
+		this.lines["15"]		= new Line("State/state no.");
 
 		Debug.exit("F1099R.Constructor()");
 	}

@@ -11,20 +11,19 @@
 	 *			background-color: var(--background-color);
 	 */
 	--background-color:			LightCyan;
-	--tool-background-color:	White;
+	--tool-background-color:	White;		/* FFFFFF */
 	--text-color:				Navy;
 	--error-text-color:			Red;
 	--light-text-color:			MediumBlue;
 	--input-color:				#d9fddd;	/* Light green, #9FC; */
 	--output-color:				#DEF;		/* Light blue */
-	--notused-color:			lightgray;
 	--border-color:				var(--text-color);
+	--border-light:				#CCC;		/* Light gray */
 	--shadow-color:				#AAAAAA;	/* Gray */
 	--tooltip-bg-color:			Beige;
 	--taxform-background-color:	White;
-	--taxform-text-color:		Black;
+	--taxform-text-color:		Black;		/* 000000 */
 	--taxform-border-color:		Black;
-	--taxform-unused-color:		LightGray;
 
 	/* Testing
 	--background-color:		white;

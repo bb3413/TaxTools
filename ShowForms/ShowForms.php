@@ -7,7 +7,6 @@
 	<link rel="stylesheet" href="../Library/CSS/Tooltips.css" />
 	<link rel="stylesheet" href="../Library/CSS/TaxForms.css" />
 	<link rel="stylesheet" href="../Library/CSS/F1099.css" />
-	<link rel="stylesheet" href="../Library/CSS/SSA1099.css" />
 
 	<script type="module" src="../Library/TaxTools/TaxTools.js"></script>
 	<script type="module" src="../Library/Tooltips/Tooltips.js"></script>
@@ -23,6 +22,7 @@
 			<span id="tax-tools-version"></span></a></p>
 
 		<h1 class="title" id="title">Show Tax Forms</h1>
+		<p>This tools shows the tax forms that are currently implemented in the tax tools.</p>
 
 		<h2>Input Tax Forms</h2>
 		<!-- Display area for input tax forms. -->
