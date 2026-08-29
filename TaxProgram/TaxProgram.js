@@ -18,8 +18,7 @@ function addForm(event) {
 	//
 
 	const formname = HTML.getElementValue("add-form-button");	// Get selected form name.
-	HTML.putElementValue("add-form-button", "");			addInputForm
-	// Change selection back to the "Add Form" entry.
+	HTML.putElementValue("add-form-button", "");				// Reset to "Add Form".
 
 	if (formname === "") {
 			return;
@@ -48,7 +47,8 @@ function addOutputForm(form) {
 	let uid;	// Unique ID
 
 	if (typeof form.getOutputHTML !== 'function') {
-		console.log(`${form.formname}.getOutputHTML does not exist; cannot add output form.`);
+		console.log(
+			`${form.formname}.getOutputHTML does not exist; cannot add output form.`);
 		return;
 	}
 
@@ -71,7 +71,7 @@ function calculateHandler(event) {
 
 		TaxTable.getTaxTable(HTML.getUserInput("tax-year"));	// Initialize tax tables
 		Taxpayer.initializeTaxpayer();							// Initialize taxpayer
-		createTaxForms();										// Create tax forms from input
+		createTaxForms();										// Create tax forms
 		const f1040 = TaxFormObj.getForm("F1040") || TaxFormObj.createForm("F1040");
 		f1040.calculate();
 		putOutputs();

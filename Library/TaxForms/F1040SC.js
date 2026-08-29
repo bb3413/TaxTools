@@ -307,7 +307,8 @@ export class F1040SC extends TaxForm {
 
 		const element = document.getElementById(`f1040sc-${uid}-details`);
 		if (!element) {
-			throw new Error(`F1040SC.getUserInput: Element not found: f1040sc-${uid}-details`);
+			throw new Error(
+				`F1040SC.getUserInput: Element not found: f1040sc-${uid}-details`);
 		}
 
 		let inputs = {};

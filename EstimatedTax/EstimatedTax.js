@@ -413,40 +413,64 @@ function restoreDataHandler(data) {
 	}
 
 	// Taxpayer Information
-	HTML.putElementValue("TaxpayersName",					inputs.taxpayers_name);
-	HTML.putElementValue("FilingStatus",					inputs.filing_status);
-	HTML.putElementValue("TaxpayersBirthday",				inputs.taxpayers_birthday);
-	HTML.putElementValue("SpousesBirthday",					inputs.spouses_birthday);
+	HTML.putElementValue("TaxpayersName",
+						 inputs.taxpayers_name);
+	HTML.putElementValue("FilingStatus",
+						 inputs.filing_status);
+	HTML.putElementValue("TaxpayersBirthday",
+						 inputs.taxpayers_birthday);
+	HTML.putElementValue("SpousesBirthday",
+						 inputs.spouses_birthday);
 
 	// Income
-	HTML.putElementValue("TaxExemptInterest",				inputs.tax_exempt_interest);
-	HTML.putElementValue("Wages",							inputs.wages);
-	HTML.putElementValue("TaxableInterest",					inputs.taxable_interest);
-	HTML.putElementValue("QualifiedDividends",				inputs.qualified_dividends);
-	HTML.putElementValue("OrdinaryDividends",				inputs.ordinary_dividends);
-	HTML.putElementValue("RetirementAccounts",				inputs.retirement_accounts);
-	HTML.putElementValue("SocialSecurity",					inputs.social_security);
-	HTML.putElementValue("CapitalGains",					inputs.capital_gains);
-	HTML.putElementValue("SelfEmploymentIncome",			inputs.self_employment_income);
-	HTML.putElementValue("OtherIncome",						inputs.other_income);
+	HTML.putElementValue("TaxExemptInterest",
+						 inputs.tax_exempt_interest);
+	HTML.putElementValue("Wages",
+						 inputs.wages);
+	HTML.putElementValue("TaxableInterest",
+						 inputs.taxable_interest);
+	HTML.putElementValue("QualifiedDividends",
+						 inputs.qualified_dividends);
+	HTML.putElementValue("OrdinaryDividends",
+						 inputs.ordinary_dividends);
+	HTML.putElementValue("RetirementAccounts",
+						 inputs.retirement_accounts);
+	HTML.putElementValue("SocialSecurity",
+						 inputs.social_security);
+	HTML.putElementValue("CapitalGains",
+						 inputs.capital_gains);
+	HTML.putElementValue("SelfEmploymentIncome",
+						 inputs.self_employment_income);
+	HTML.putElementValue("OtherIncome",
+						 inputs.other_income);
 
 	// Other Taxes
-	HTML.putElementValue("SelfEmploymentTax",				inputs.self_employment_tax);
-	HTML.putElementValue("EarlyWithdrawalTax",				inputs.early_withdrawal_tax);
-	HTML.putElementValue("OtherTaxes",						inputs.other_taxes);
+	HTML.putElementValue("SelfEmploymentTax",
+						 inputs.self_employment_tax);
+	HTML.putElementValue("EarlyWithdrawalTax",
+						 inputs.early_withdrawal_tax);
+	HTML.putElementValue("OtherTaxes",
+						 inputs.other_taxes);
 
 	// Adjustments
-	HTML.putElementValue("EducatorExpenses",				inputs.educator_expenses);
-	HTML.putElementValue("HealthSavingsAccount",			inputs.health_savings_account);
+	HTML.putElementValue("EducatorExpenses",
+						 inputs.educator_expenses);
+	HTML.putElementValue("HealthSavingsAccount",
+						 inputs.health_savings_account);
 	HTML.putElementValue("SelfEmploymentTaxAdjustment",
 						 inputs.self_employment_tax_adjustment);
 	HTML.putElementValue("SelfEmployedHealthInsurance",
 						 inputs.self_employed_health_insurance);
-	HTML.putElementValue("EarlyWithdrawalPenalty",			inputs.early_withdrawal_penalty);
-	HTML.putElementValue("AlimonyPaid",						inputs.alimony_paid);
-	HTML.putElementValue("IRAContributions",				inputs.ira_contributions);
-	HTML.putElementValue("StudentLoanInterest",				inputs.student_loan_interest);
-	HTML.putElementValue("OtherAdjustments",				inputs.other_adjustments);
+	HTML.putElementValue("EarlyWithdrawalPenalty",
+						 inputs.early_withdrawal_penalty);
+	HTML.putElementValue("AlimonyPaid",
+						 inputs.alimony_paid);
+	HTML.putElementValue("IRAContributions",
+						 inputs.ira_contributions);
+	HTML.putElementValue("StudentLoanInterest",
+						 inputs.student_loan_interest);
+	HTML.putElementValue("OtherAdjustments",
+						 inputs.other_adjustments);
 
 	// Deductions (non-itemized)
 	HTML.putElementValue("QualifiedBusinessIncomeDeduction",
@@ -461,34 +485,57 @@ function restoreDataHandler(data) {
 						 inputs.senior_deduction);
 
 	// Deductions (itemized)
-	HTML.putElementValue("MedicalInsurance",				inputs.medical_insurance);
-	HTML.putElementValue("DoctorVisits",					inputs.doctor_visits);
-	HTML.putElementValue("PrescriptionDrugs",				inputs.prescription_drugs);
-	HTML.putElementValue("MedicalAids",						inputs.medical_aids);
-	HTML.putElementValue("LTCTaxpayer",						inputs.ltc_taxpayer);
-	HTML.putElementValue("LTCSpouse",						inputs.ltc_spouse);
-	HTML.putElementValue("MedicalMiles",					inputs.medical_miles);
-	HTML.putElementValue("OtherMedicalExpenses",			inputs.other_medical_expenses);
-	HTML.putElementValue("StateIncomeTax",					inputs.state_income_tax);
-	HTML.putElementValue("SalesTax",						inputs.sales_tax);
-	HTML.putElementValue("RealEstatePropertyTax",			inputs.real_estate_property_tax);
-	HTML.putElementValue("PersonalPropertyTax",				inputs.personal_property_tax);
-	HTML.putElementValue("MortgageInterest",				inputs.mortgage_interest);
-	HTML.putElementValue("CashGiftsToCharity",				inputs.cash_gifts_to_charity);
-	HTML.putElementValue("NoncashGiftsToCharity",			inputs.noncash_gifts_to_charity);
+	HTML.putElementValue("MedicalInsurance",
+						 inputs.medical_insurance);
+	HTML.putElementValue("DoctorVisits",
+						 inputs.doctor_visits);
+	HTML.putElementValue("PrescriptionDrugs",
+						 inputs.prescription_drugs);
+	HTML.putElementValue("MedicalAids",	
+						 inputs.medical_aids);
+	HTML.putElementValue("LTCTaxpayer",
+						 inputs.ltc_taxpayer);
+	HTML.putElementValue("LTCSpouse",
+						 inputs.ltc_spouse);
+	HTML.putElementValue("MedicalMiles",
+						 inputs.medical_miles);
+	HTML.putElementValue("OtherMedicalExpenses",
+						 inputs.other_medical_expenses);
+	HTML.putElementValue("StateIncomeTax",
+						 inputs.state_income_tax);
+	HTML.putElementValue("SalesTax",
+						 inputs.sales_tax);
+	HTML.putElementValue("RealEstatePropertyTax",
+						 inputs.real_estate_property_tax);
+	HTML.putElementValue("PersonalPropertyTax",
+						 inputs.personal_property_tax);
+	HTML.putElementValue("MortgageInterest",
+						 inputs.mortgage_interest);
+	HTML.putElementValue("CashGiftsToCharity",
+						 inputs.cash_gifts_to_charity);
+	HTML.putElementValue("NoncashGiftsToCharity",
+						 inputs.noncash_gifts_to_charity);
 	HTML.putElementValue("QualifiedCharitableDistribution",
 						 inputs.qualified_charitable_distribution);
 
 	// Non-redundable Credits
 	HTML.putElementValue("AmericanOppCreditNoRefund",
 						 inputs.american_opp_credit_no_refund);
-	HTML.putElementValue("ChildCareCredit",					inputs.child_care_credit);
-	HTML.putElementValue("ChildTaxCredit",					inputs.child_tax_credit);
-	HTML.putElementValue("ForeignTaxCredit",				inputs.foreign_tax_credit);
-	HTML.putElementValue("LifetimeLearningCredit",			inputs.lifetime_learning_credit);
-	HTML.putElementValue("ResidentialEnergyCredit",			inputs.residential_energy_credit);
-	HTML.putElementValue("RetirementSavingsCredit",			inputs.retirement_savings_credit);
-	HTML.putElementValue("OtherNonrefundableCredits",		inputs.other_nonrefundable_credits);
+	HTML.putElementValue("ChildCareCredit",
+						 inputs.child_care_credit);
+	HTML.putElementValue("ChildTaxCredit",
+						 inputs.child_tax_credit);
+	HTML.putElementValue("ForeignTaxCredit",
+						 inputs.foreign_tax_credit);
+	HTML.putElementValue("LifetimeLearningCredit",
+						 inputs.lifetime_learning_credit);
+	HTML.putElementValue("ResidentialEnergyCredit",
+						 
+						 inputs.residential_energy_credit);
+	HTML.putElementValue("RetirementSavingsCredit",
+						 inputs.retirement_savings_credit);
+	HTML.putElementValue("OtherNonrefundableCredits",
+						 inputs.other_nonrefundable_credits);
 
 	// Refundable Credits
 	HTML.putElementValue("AmericanOppCreditRefundable",
@@ -503,8 +550,10 @@ function restoreDataHandler(data) {
 						 inputs.other_refundable_credits);
 
 	// Payments
-	HTML.putElementValue("Withholding",						inputs.withholding);
-	HTML.putElementValue("EstimatedTaxPaid",				inputs.estimated_tax_paid);
+	HTML.putElementValue("Withholding",
+						 inputs.withholding);
+	HTML.putElementValue("EstimatedTaxPaid",
+						 inputs.estimated_tax_paid);
 
 	changeHandler();
 }

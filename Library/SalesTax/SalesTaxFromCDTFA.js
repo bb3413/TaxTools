@@ -10,7 +10,8 @@ async function fetchSalesTaxRate(address, city, zip) {
 
 	// Accessing the cdtfa.ca.gov server from the client results in a security error. The
 	// proxy script runs on our server and accesses the cdtfa.ca.gov server for us.
-	const url = SALES_TAX_PROXY + `?address=${cleanAddress}&city=${cleanCity}&zip=${cleanZip}`;
+	const url = SALES_TAX_PROXY +
+		`?address=${cleanAddress}&city=${cleanCity}&zip=${cleanZip}`;
 
 	try {
 		const response = await fetch(url);

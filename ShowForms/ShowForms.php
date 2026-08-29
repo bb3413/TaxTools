@@ -22,7 +22,8 @@
 			<span id="tax-tools-version"></span></a></p>
 
 		<h1 class="title" id="title">Show Tax Forms</h1>
-		<p>This tools shows the tax forms that are currently implemented in the tax tools.</p>
+		<p>This tools shows the tax forms that are currently implemented in the tax
+		tools.</p>
 
 		<h2>Input Tax Forms</h2>
 		<!-- Display area for input tax forms. -->

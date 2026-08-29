@@ -46,10 +46,10 @@ function changeHandler(event) {
 		HTML.putElementValue("error-message-output", "");
 		Debug.reset();
 
-		const inputs	= getInputs();							// Get inputs from the web page
+		const inputs	= getInputs();						// Get inputs from the web page
 		const outputs	= calculateRMD(inputs);
-		putOutputs(outputs);									// Put results on web page
-		Debug.turnOn();											// Put debug info on web page
+		putOutputs(outputs);								// Put results on web page
+		Debug.turnOn();										// Put debug info on web page
 	} catch (error) {
 		HTML.putElementValue("error-message-output", error);
 		console.log("Stack trace:", error.stack);

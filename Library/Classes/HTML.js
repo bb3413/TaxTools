@@ -87,15 +87,18 @@ export class HTML {
 	static putUserOutput(element_id, value, type = "number") {
 		if (type === "dollars") {
 			// Add commas and prepend with dollar sign.
-			HTML.putElementValue(element_id, "$" + Num.format(value===undefined ? 0 : value));
+			HTML.putElementValue(element_id,
+				"$" + Num.format(value===undefined ? 0 : value));
 
 		} else if (type === "number") {
 			// Add commas.
-			HTML.putElementValue(element_id, Num.format(value===undefined ? 0 : value));
+			HTML.putElementValue(element_id,
+				Num.format(value===undefined ? 0 : value));
 
 		} else {	// tpye === "text"
 			// Put the value as is.
-			HTML.putElementValue(element_id, value===undefined ? "" : value);
+			HTML.putElementValue(element_id,
+				value===undefined ? "" : value);
 		}
 	}
 

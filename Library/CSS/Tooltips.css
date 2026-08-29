@@ -7,7 +7,7 @@
 	z-index: 1000;
 	transition: opacity 0.2s ease-in-out, transform 0.2s ease-out;
 	transform: translateY(5px);		/* Small slide effect */
-	pointer-events: none;			/* Prevents tooltip from flickering if the mouse hits it */
+	pointer-events: none;			/* Prevents tooltip from flickering if mouse hits it */
 
 	width:				400px;
 	padding:			8px;
@@ -40,8 +40,8 @@
 
 .tooltip a {
 	/* Since you cannot move the cursor over a tooltip, the user cannot click on a link in a
-	 * tooltip. Therefore, make them look like the surrounding text so the user doesn"t try to
-	 * click on them.
+	 * tooltip. Therefore, make them look like the surrounding text so the user doesn"t try
+	 * to click on them.
 	 */
 	color:				inherit;
 	text-decoration:	none;		/* No underline */

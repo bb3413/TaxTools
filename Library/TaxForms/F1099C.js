@@ -117,7 +117,8 @@ const HTML_FORM = `
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box" style="border-bottom: none;">
-								<span class="f1099-box-label">6  Identifiable event code</span>
+								<span class="f1099-box-label">6  Identifiable event
+									code</span>
 								<input type="text" id="f1099c-XX-06" />
 							</div>
 							<div class="f1099-box" style="border-bottom: none;">
@@ -158,7 +159,8 @@ export class F1099C extends TaxForm {
 
 		const element = document.getElementById(`f1099c-${uid}-details`);
 		if (!element) {
-			throw new Error(`F1099C.getUserInput(): Element not found: f1099c-${uid}-details`);
+			throw new Error(
+				`F1099C.getUserInput(): Element not found: f1099c-${uid}-details`);
 		}
 
 		let inputs = {};

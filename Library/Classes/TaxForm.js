@@ -100,7 +100,8 @@ export class TaxForm {
 						doc.addElement("p", "lineno", lineno);
 						doc.addElement("p", "description", line.label);
 						id=`${this.formname}-${uid}-${lineno}`;
-						attributes=`readonly type="text" id="${id}" size="10" placeholder="0"`;
+						attributes = `readonly type="text" id="${id}" ` +
+							'size="10" placeholder="0"';
 						doc.addVoidElement("input", "output-field",	line.value, attributes);
 					doc.stopElement("div");					// End of line
 				}

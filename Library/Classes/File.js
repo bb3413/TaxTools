@@ -6,8 +6,8 @@ export class File {
 
 		// The "blob" is something like a file that you will be able to reference with a URL.
 		// The URL is a tempory URL pointing to the blob. Create an anchor HTML element that
-		// reference the URL. Add the anchor to the HTML document. Fake a click on the anchor,
-		// which will start the download, then remove the anchor and URL.
+		// reference the URL. Add the anchor to the HTML document. Fake a click on the
+		// anchor, which will start the download, then remove the anchor and URL.
 		let dataString;
 		if (json)  {
 			dataString = JSON.stringify(data, null, 2);

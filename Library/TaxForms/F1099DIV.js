@@ -94,7 +94,8 @@ const HTML_FORM = `
 									placeholder="0" />
 							</div>
 							<div class="f1099-box">
-								<span class="f1099-box-label">2b Unrecap. Sec. 1250 gain</span>
+								<span class="f1099-box-label">2b Unrecap. Sec. 1250
+									gain</span>
 								<input type="text" id="f1099div-XX-02b"
 									placeholder="0" />
 							</div>

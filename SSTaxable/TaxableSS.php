@@ -27,7 +27,8 @@
 
 		<div class="table-3x">
 			<p class="description-field-right">Filing Status</p>
-			<select class="trigger input-field" id="FilingStatus" tooltipid="#FilingStatusTT">
+			<select class="trigger input-field" id="FilingStatus"
+					tooltipid="#FilingStatusTT">
 				<option value="Single">Single</option>
 				<option value="HoH">HoH</option>
 				<option value="MFJ">MFJ</option>
@@ -114,9 +115,9 @@
 		</div>
 
 		<h3>Adjustments Fields</h3>
-		<p>Rather than entering total adjustments in the Adjustments field above, you can enter
-		individual adjustment values here. The sum of the fields entered here will replace the
-		Adjustments field above.</p>
+		<p>Rather than entering total adjustments in the Adjustments field above, you can
+		enter individual adjustment values here. The sum of the fields entered here will
+		replace the Adjustments field above.</p>
 
 		<div class="table-2x">
 			<p class="description-field">Educator Expenses</p>

@@ -72,7 +72,7 @@ function getInputs() {
 	const inputs = {};
 
 	inputs.tax_year					= HTML.getUserInput("tax-year");
-	inputs.filing_status			= HTML.getUserInput("FilingStatus", "text").toUpperCase();
+	inputs.filing_status			= HTML.getUserInput("FilingStatus","text").toUpperCase();
 	inputs.adjusted_gross_income	= HTML.getUserInput("AdjustedGrossIncome");
 	inputs.taxpayers_birthday		= HTML.getUserInput("TaxpayersBirthday", "text");
 	inputs.taxpayers_age			= 0;
@@ -81,8 +81,8 @@ function getInputs() {
 	}
 	inputs.spouses_birthday			= HTML.getUserInput("SpousesBirthday", "text");
 	inputs.spouses_age				= 0;
-		if (Str.empty(inputs.spouses_birthday)) {
-		inputs.spouses_age		= HTML.getUserInput("SpousesAge");
+	if (Str.empty(inputs.spouses_birthday)) {
+		inputs.spouses_age			= HTML.getUserInput("SpousesAge");
 	}
 
 	return inputs;

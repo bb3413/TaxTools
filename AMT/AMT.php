@@ -42,7 +42,8 @@
 			</select>
 
 			<p>Filing Status</p>
-			<select class="trigger input-field" id="FilingStatus" tooltipid="#FilingStatusTT">
+			<select class="trigger input-field" id="FilingStatus"
+					tooltipid="#FilingStatusTT">
 				<option value="Single">Single</option>
 				<option value="HoH">HoH</option>
 				<option value="MFJ">MFJ</option>

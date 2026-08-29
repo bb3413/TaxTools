@@ -47,7 +47,8 @@ export class Str {
 		let currentChunk = "";
 
 		for (const word of words) {
-			// If a single word is somehow longer than the maxLength, we have to force-break it
+			// If a single word is somehow longer than the maxLength, we have to
+			// force-break it.
 			if (word.trim().length > maxLength) {
 				if (currentChunk) chunks.push(currentChunk.trim());
 

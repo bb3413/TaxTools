@@ -35,10 +35,10 @@
 		Publication 590B, Distributions from Individual Retirement Arrangements).</p>
 
 		<p>This tool calculates the Required Minimum Distribution (RMD) for the owner of
-		retirement account. NOTE: If your spouse is more than 10 years younger than you and is
-		the sole beneficiary of your retirement account, do not use this tool; there is a more
-		beneficial calculation you can use that stretches out the distributions over a longer
-		period of time.</p>
+		retirement account. NOTE: If your spouse is more than 10 years younger than you and
+		is the sole beneficiary of your retirement account, do not use this tool; there is a
+		more beneficial calculation you can use that stretches out the distributions over a
+		longer period of time.</p>
 
 		<div class="table">
 			<p>Tax Year</p>
@@ -89,9 +89,9 @@
 
 			<p>This is the age of the taxpayer at the end of the year the RMD is taken
 			(i.e., the end of the tax year). The intent of the RMD is for the taxpayer to
-			withdraw all the funds from the retirement account during the taxpayer's lifetime;
-			therefore, the taxpayer's age is needed to determine the number of years over
-			which the RMDs should be taken.</p>
+			withdraw all the funds from the retirement account during the taxpayer's
+			lifetime; therefore, the taxpayer's age is needed to determine the number of
+			years over which the RMDs should be taken.</p>
 		</div>
 
 		<!-- Display area for error messages. -->

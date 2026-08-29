@@ -19,10 +19,10 @@ export class Refund extends TaxForm {
 		super(formname);
 
 		// Inputs
-		this.lines["sched_a_5d"]		= new Line("Previous Tax Year, State and Local Taxes");
-		this.lines["sched_a_5e"]		= new Line("Previous Tax Year, Limited by SALT Cap");
-		this.lines["itemized_deductions"] = new Line("Previous Tax Year, Itemized Deductions");
-		this.lines["refund"]			= new Line("State Tax Refund");
+		this.lines["sched_a_5d"] = new Line("Prev Tax Year, State and Local Taxes");
+		this.lines["sched_a_5e"] = new Line("Prev Tax Year, Limited by SALT Cap");
+		this.lines["itemized_deductions"] = new Line("Prev Tax Year, Itemized Deductions");
+		this.lines["refund"] = new Line("State Tax Refund");
 
 		// Worksheet Lines
 		this.lines["01"]	= new Line("Refund");
@@ -53,9 +53,9 @@ export class Refund extends TaxForm {
 		const tp = Taxpayer.getTaxpayer();
 
 		// Inputs
-		this.lines["sched_a_5d"].value			= 0;	// Previous Year, State and Local Taxes
-		this.lines["sched_a_5e"].value			= 0;	// Previous Year, Limited by SALT Cap
-		this.lines["itemized_deductions"].value	= 0;	// Previous Year, Itemized Deductions
+		this.lines["sched_a_5d"].value			= 0;	// Prev Year, State and Local Taxes
+		this.lines["sched_a_5e"].value			= 0;	// Prev Year, Limited by SALT Cap
+		this.lines["itemized_deductions"].value	= 0;	// Prev Year, Itemized Deductions
 		this.lines["refund"].value				= Math.min(	// State Tax Refund
 													TaxFormObj.getValue("F1099G", "02"),
 													this.line("sched_a_5d"));
@@ -82,8 +82,8 @@ export class Refund extends TaxForm {
 					"remainder of the refund is taxable.";
 			} else {
 				this.lines["explanation"].value	= "All of refund is less than the amount " +
-					"of state and local taxes that are over the SALT cap. The refund is not " +
-					"taxable.";
+					"of state and local taxes that are over the SALT cap. The refund is " +
+					"not taxable.";
 				return;
 			}
 		} else {

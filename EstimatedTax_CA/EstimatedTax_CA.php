@@ -32,10 +32,10 @@
 		provide and accurate estimate of the federal AGI and some of the values that were
 		used to calculate it.</p>
 
-		<p>The blue fields are computed from the information you provide. The green fields are
-		where you enter information. The first column shows where the information can be found
-		in the tax return. Click <a href="EstimatedTax_CA-Help.html">this link</a> for more
-		help with this tool.</p>
+		<p>The blue fields are computed from the information you provide. The green fields
+		are where you enter information. The first column shows where the information can be
+		found in the tax return. Click <a href="EstimatedTax_CA-Help.html">this link</a> for
+		more help with this tool.</p>
 
 		<div class="save-restore-container">
 			<!-- Save Button -->
@@ -56,7 +56,8 @@
 
 				<p class="label-field right">Version</p>
 				<p class="trigger output-field" tooltipid="#tax-tools-version-tt">
-					<a href="../Version/Version.html"><span id="tax-tools-version"></span></a>
+					<a href="../Version/Version.html">
+						<span id="tax-tools-version"></span></a>
 				</p>
 
 				<p class="label-field right">Filing Status</p>

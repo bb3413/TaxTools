@@ -123,8 +123,8 @@ const HTML_FORM = `
 								</div>
 							</div>
 							<div class="f1099-box">
-								<span class="f1099-box-label">8 Substitute payments in lieu of
-									dividends or interest</span>
+								<span class="f1099-box-label">8 Substitute payments in
+									lieu of dividends or interest</span>
 								<input type="text" id="f1099misc-XX-08"
 									placeholder="0" />
 							</div>
@@ -132,7 +132,8 @@ const HTML_FORM = `
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
-								<span class="f1099-box-label">9 Crop insurance proceeds</span>
+								<span class="f1099-box-label">9 Crop insurance
+									proceeds</span>
 								<input type="text" id="f1099misc-XX-09"
 									placeholder="0" />
 							</div>
@@ -152,7 +153,8 @@ const HTML_FORM = `
 									placeholder="0" />
 							</div>
 							<div class="f1099-box">
-								<span class="f1099-box-label">12 Section 409A deferrals</span>
+								<span class="f1099-box-label">12 Section 409A
+									deferrals</span>
 								<input type="text" id="f1099misc-XX-12"
 									placeholder="0" />
 							</div>

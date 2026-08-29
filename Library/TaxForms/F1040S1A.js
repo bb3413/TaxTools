@@ -113,35 +113,37 @@ export class F1040S1A extends TaxForm {
 		this.lines["04b"].value	= TaxFormObj.getValue("F4137", "01");	// Qualified Tips
 		this.lines["04c"].value	= 0;									// Qualified Tips
 		this.lines["05"].value	= 0;									// Qualified Tips
-		this.lines["06"].value	= this.add("04c","05");					// Total Qualified Tips
+		this.lines["06"].value	= this.add("04c","05");					// Total Tips
 		this.lines["07"].value	= Math.min(this.line("06"), max_deduction);	// Limit
-		this.lines["08"].value	= this.line("03");						// AGI + Foreign Income
+		this.lines["08"].value	= this.line("03");						// AGI + Foreign Inc
 		this.lines["09"].value	= start_of_phase_out;
 		this.lines["10"].value	= this.subtract("08", "09");			// Amount Over Limit
 		if (this.line("10") <= 0) {
 			this.lines["13"].value = this.line("07");					// Tip Deduction
 		} else {
-			this.lines["11"].value	= roundDown(this.line("10") / 1000);// Calculate Phase Out
-			this.lines["12"].value	= this.line("11") * 100;			// Calculate Phase Out
+			this.lines["11"].value	= roundDown(this.line("10") / 1000);// Calc Phase Out
+			this.lines["12"].value	= this.line("11") * 100;			// Calc Phase Out
 			this.lines["13"].value	= Math.max(0, this.subtract("07", "12"));// Tip Deduction
 		}
 
 		// No Tax on Overtime
-		max_deduction		= tt.getTaxValue("MaxOvertimeDeduction",		tp.filing_status);
-		start_of_phase_out	= tt.getTaxValue("OvertimeDeductionPhaseOut",	tp.filing_status);
+		max_deduction =
+			tt.getTaxValue("MaxOvertimeDeduction",		tp.filing_status);
+		start_of_phase_out =
+			tt.getTaxValue("OvertimeDeductionPhaseOut",	tp.filing_status);
 
 		this.lines["14a"].value	= 0;									// Overtime Pay
 		this.lines["14b"].value	= 0;									// Overtime Pay
 		this.lines["14c"].value	= this.add("14a","14b");				// Total Overtime
 		this.lines["15"].value	= Math.min(this.line("14c"), max_deduction);// Limit
-		this.lines["16"].value	= this.line("03");						// AGI + Foreign Income
+		this.lines["16"].value	= this.line("03");						// AGI + Foreign Inc
 		this.lines["17"].value	= start_of_phase_out;
 		this.lines["18"].value	= this.subtract("16", "17");			// Over Phase Out
 		if (this.line("18") <= 0) {
 			this.lines["21"].value = this.line("15");					// Overtime Deduction
 		} else {
-			this.lines["19"].value	= roundDown(this.line("18") / 1000);// Calculate Phase Out
-			this.lines["20"].value	= this.line("19") * 100;			// Calculate Phase Out
+			this.lines["19"].value	= roundDown(this.line("18") / 1000);// Calc Phase Out
+			this.lines["20"].value	= this.line("19") * 100;			// Calc Phase Out
 			this.lines["21"].value	= Math.max(0, this.subtract("15", "20"));// Deduction
 		}
 
@@ -149,10 +151,10 @@ export class F1040S1A extends TaxForm {
 		max_deduction =
 			tt.getTaxValue("MaxCarLoanInterestDeduction", tp.filing_status);
 		start_of_phase_out =
-			tt.getTaxValue("CarLoanInterestDeductionPhaseOut", tp.filing_status);
+			tt.getTaxValue("CarLoanInterestPhaseOut", tp.filing_status);
 
-		this.lines["22a"].value	= 0;								// Interest on Car Loan #1
-		this.lines["22b"].value	= 0;								// Interest on Car Loan #2
+		this.lines["22a"].value	= 0;								// Car Loan #1 Interest
+		this.lines["22b"].value	= 0;								// Car Loan #2 Interest
 		this.lines["23"].value	= this.add("22a","22b");			// Total Interest
 		this.lines["24"].value	= Math.min(this.line("23"), max_deduction);	// Limit
 		this.lines["25"].value	= this.line("03");					// AGI + Foreign Income
@@ -161,8 +163,8 @@ export class F1040S1A extends TaxForm {
 		if (this.line("27") <= 0) {
 			this.lines["30"].value = this.line("24");				// Car Loan Deduction
 		} else {
-			this.lines["28"].value	= roundUp(this.line("27") / 1000);	// Calculate Phase Out
-			this.lines["29"].value	= this.line("28") * 200;			// Calculate Phase Out
+			this.lines["28"].value	= roundUp(this.line("27") / 1000);	// Calc Phase Out
+			this.lines["29"].value	= this.line("28") * 200;			// Calc Phase Out
 			this.lines["30"].value	= Math.max(0, this.subtract("24", "29"));// Car Deduction
 		}
 
@@ -176,8 +178,8 @@ export class F1040S1A extends TaxForm {
 		if (this.line("33") <= 0) {
 			this.lines["35"].value	= max_deduction;				// Amount of Deduction
 		} else {
-			this.lines["34"].value	= Math.round(this.line("33") * 0.06);// Calculate Phase Out
-			this.lines["35"].value	= Math.max(0, max_deduction - this.line("34"));// Deduction
+			this.lines["34"].value	= Math.round(this.line("33") * 0.06);// Calc Phase Out
+			this.lines["35"].value	= Math.max(0, max_deduction - this.line("34"));
 		}
 		this.lines["36a"].value	= 0;
 		if (tp.taxpayer_has_ssn && tp.taxpayers_age >= 65) {

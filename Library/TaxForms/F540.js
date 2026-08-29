@@ -166,8 +166,10 @@ export class F540 extends TaxForm {
 		this.calculated = true;
 		const tt = TaxTable.getTaxTable();
 		const tp = Taxpayer.getTaxpayer();
-		const personal_exemption	= tt.getTaxValue("CA_PersonalExemption", tp.filing_status);
-		const dependent_exemption	= tt.getTaxValue("CA_DependentExemption", tp.filing_status);
+		const personal_exemption =
+			tt.getTaxValue("CA_PersonalExemption", tp.filing_status);
+		const dependent_exemption =
+			tt.getTaxValue("CA_DependentExemption", tp.filing_status);
 
 		// Filing Status
 		this.lines["001"].value	= false;	// SINGLE
@@ -248,8 +250,8 @@ export class F540 extends TaxForm {
 			this.lines["032"].value = this.line("011");					// Exemptions
 		}
 
-		this.lines["033"].value	= Math.max(0, this.subtract("031", "032"));	// Tax - Exemptions
-		this.lines["034"].value	= 0;									// Tax from Form 5870A
+		this.lines["033"].value	= Math.max(0, this.subtract("031", "032"));// Tax - Exempts
+		this.lines["034"].value	= 0;									// From Form 5870A
 		this.lines["035"].value	= this.add("033", "034");				// Total Tax
 		this.lines["036"].value	= 0;									// Reserved
 		this.lines["037"].value	= 0;									// Reserved

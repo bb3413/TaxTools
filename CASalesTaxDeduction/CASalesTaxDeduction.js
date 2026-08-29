@@ -40,13 +40,14 @@ function changeHandler(event) {
 		TaxTable.getTaxTable(inputs.tax_year);		// Initialize tax tables
 		createTaxpayer(inputs);						// Initialize taxpayer
 		mapInputValues(inputs);						// Map input values to tax forms
-		TaxFormObj.getForm("SalesTax").calculate(total_sales_tax);	// Calculate the tax forms
+		TaxFormObj.getForm("SalesTax").calculate(total_sales_tax);	// Calculate the tax
 		putOutputs();								// Put results on web page
 		Debug.turnOn();								// Put debug info on web page if enabled
 	} catch (error) {
 		HTML.putElementValue("error-message-output", error);
 		console.log("Stack trace:", error.stack);
-		document.getElementById("error-message-output").scrollIntoView({behavior: 'smooth', block: 'start'});
+		document.getElementById("error-message-output")
+			.scrollIntoView({behavior: 'smooth', block: 'start'});
 	}
 }
 

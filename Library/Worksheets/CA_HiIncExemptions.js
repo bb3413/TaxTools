@@ -43,8 +43,10 @@ export class CA_HiIncExemptions extends TaxForm {
 		this.calculated = true;
 		const tt = TaxTable.getTaxTable();
 		const tp = Taxpayer.getTaxpayer();
-		const personal_exemption	= tt.getTaxValue("CA_PersonalExemption", tp.filing_status);
-		const dependent_exemption	= tt.getTaxValue("CA_DependentExemption", tp.filing_status);
+		const personal_exemption =
+			tt.getTaxValue("CA_PersonalExemption", tp.filing_status);
+		const dependent_exemption =
+			tt.getTaxValue("CA_DependentExemption", tp.filing_status);
 
 		this.lines["0a"].value	= TaxFormObj.getValue("F540", "13");	// Federal AGI
 		this.lines["0b"].value	= tt.getTaxValue("CA_HiIncPhaseout", tp.filing_status);
@@ -56,18 +58,18 @@ export class CA_HiIncExemptions extends TaxForm {
 		}
 		this.lines["0d"].value	= Math.round(this.line("d"));
 		this.lines["0e"].value	= this.line("0d") * 6;
-		this.lines["0f"].value	= (TaxFormObj.getValue("F540", "07") +	// Number of Exemptions
+		this.lines["0f"].value	= (TaxFormObj.getValue("F540", "07") +	// Num of Exemptions
 									TaxFormObj.getValue("F540", "08") +
 									TaxFormObj.getValue("F540", "09")) / personal_exemption;
 		this.lines["0g"].value	= this.line("0e") * this.line("0f");
-		this.lines["0h"].value	= TaxFormObj.getValue("F540", "07") +	// Amount of Exemptions
+		this.lines["0h"].value	= TaxFormObj.getValue("F540", "07") +	// Amt of Exemptions
 									TaxFormObj.getValue("F540", "08") +
 									TaxFormObj.getValue("F540", "09");
 		this.lines["0i"].value	= Math.max(0, this.subtract("0h", "0g"));
 		// Number of Personal Exemptions
 		this.lines["0j"].value	= TaxFormObj.getValue("F540", "10") / dependent_exemption;
 		this.lines["0k"].value	= this.line("0e") * this.line("0j");
-		this.lines["0l"].value	= TaxFormObj.getValue("F540", "10"); 	// Amount of Exemptions
+		this.lines["0l"].value	= TaxFormObj.getValue("F540", "10"); 	// Amt of Exemptions
 		this.lines["0m"].value	= Math.max(0, this.subtract("0l", "0k"));
 		this.lines["0n"].value	= this.add("0i", "0m");
 

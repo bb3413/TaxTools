@@ -55,9 +55,9 @@ export class IncTax extends TaxForm {
 		const tp = Taxpayer.getTaxpayer();
 
 		this.lines["01"].value	= TaxFormObj.getValue("F1040",	"15");	// Taxable Income
-		this.lines["02"].value	= TaxFormObj.getValue("F1040",	"03a");	// Qualified Dividends
+		this.lines["02"].value	= TaxFormObj.getValue("F1040",	"03a");	// Qual Dividends
 		this.lines["03"].value	= TaxFormObj.getValue("F1040",	"07");	// Capital Gains
-		this.lines["04"].value	= this.add("02", "03");					// Total Capital Gains
+		this.lines["04"].value	= this.add("02", "03");					// Tot Capital Gains
 		this.lines["05"].value	= Math.max(0, this.subtract("01", "04"));// Total Ord Income
 		this.lines["06"].value	= tt.get_CapGains_15_Start(tp.filing_status);
 		this.lines["07"].value	= this.min("01", "06");
@@ -75,9 +75,11 @@ export class IncTax extends TaxForm {
 		this.lines["19"].value	= this.add("09", "17");
 		this.lines["20"].value	= Math.max(0, this.subtract("10", "19"));
 		this.lines["21"].value	= this.line("20") * 0.20;					// 20%
-		this.lines["22"].value	= tt.getIncomeTaxFromTable(tp.filing_status, this.line("05"));
+		this.lines["22"].value	= tt.getIncomeTaxFromTable(
+										tp.filing_status, this.line("05"));
 		this.lines["23"].value	= this.add("18", "21", "22");
-		this.lines["24"].value	= tt.getIncomeTaxFromTable(tp.filing_status, this.line("01"));
+		this.lines["24"].value	= tt.getIncomeTaxFromTable(
+										tp.filing_status, this.line("01"));
 		this.lines["25"].value	= Math.round(this.min("23", "24"));			// Income Tax
 
 		Debug.exit("IncTax.calculate()");

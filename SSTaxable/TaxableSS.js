@@ -149,7 +149,7 @@ function getInputs() {
 
 	inputs.tax_year					= Dates.getTaxYear();
 
-	inputs.filing_status			= HTML.getUserInput("FilingStatus", "text").toUpperCase();
+	inputs.filing_status			= HTML.getUserInput("FilingStatus","text").toUpperCase();
 	inputs.lived_with_spouse		= HTML.getUserInput("LivedWithSpouse");
 	inputs.social_security			= HTML.getUserInput("SocialSecurity");
 	inputs.income					= HTML.getUserInput("Income");
@@ -201,15 +201,24 @@ document.addEventListener("DOMContentLoaded", () => {
 	HTML.addListener("OtherIncome",					"change", changeIncomeComponentHandler);
 
 	// Adjustments
-	HTML.addListener("EducatorExpenses",			"change", changeAdjustmentComponentHandler);
-	HTML.addListener("HealthSavingsAccount",		"change", changeAdjustmentComponentHandler);
-	HTML.addListener("SelfEmploymentTaxAdjustment",	"change", changeAdjustmentComponentHandler);
-	HTML.addListener("SelfEmployedHealthInsurance",	"change", changeAdjustmentComponentHandler);
-	HTML.addListener("EarlyWithdrawalPenalty",		"change", changeAdjustmentComponentHandler);
-	HTML.addListener("AlimonyPaid",					"change", changeAdjustmentComponentHandler);
-	HTML.addListener("IRAContributions",			"change", changeAdjustmentComponentHandler);
-	HTML.addListener("StudentLoanInterest",			"change", changeAdjustmentComponentHandler);
-	HTML.addListener("OtherAdjustments",			"change", changeAdjustmentComponentHandler);
+	HTML.addListener("EducatorExpenses",
+					 "change", changeAdjustmentComponentHandler);
+	HTML.addListener("HealthSavingsAccount",
+					 "change", changeAdjustmentComponentHandler);
+	HTML.addListener("SelfEmploymentTaxAdjustment",
+					 "change", changeAdjustmentComponentHandler);
+	HTML.addListener("SelfEmployedHealthInsurance",
+					 "change", changeAdjustmentComponentHandler);
+	HTML.addListener("EarlyWithdrawalPenalty",
+					 "change", changeAdjustmentComponentHandler);
+	HTML.addListener("AlimonyPaid",
+					 "change", changeAdjustmentComponentHandler);
+	HTML.addListener("IRAContributions",
+					 "change", changeAdjustmentComponentHandler);
+	HTML.addListener("StudentLoanInterest",
+					 "change", changeAdjustmentComponentHandler);
+	HTML.addListener("OtherAdjustments",
+					 "change", changeAdjustmentComponentHandler);
 
 	output_color	= HTML.getCSSGlobalVariable("--output-color");
 	input_color		= HTML.getCSSGlobalVariable("--input-color");

@@ -34,6 +34,8 @@
 		<div class="version-block">
 			<p>Development Version 2025.15.000@</p>
 			<ul>
+				<li>8/29/2026 - 017 - Reduced line length in source code so it will fit
+				on a printed page (using VS-Code) without wrapping around.</li>
 				<li>8/27/2026 - 016 - Added forms 1099-C, 1099-G, 1099-MISC, 1099-OID, and
 				1099-S.</li>
 				<li>8/26/2026 - 015 - Added forms 1099-DIV and 1099-NEC.</li>
@@ -43,8 +45,8 @@
 				local copies. Added bookmarks to tax tools page. Added TaxFormName module to
 				manage tax form names.</li>
 				<li>8/06/2026 - 012 - Add ShowForms tool. Add support for dynamically adding
-				HTML code to a web page. Increased spacing around tool tips. Restructured code
-				for tax forms.</li>
+				HTML code to a web page. Increased spacing around tool tips. Restructured
+				code for tax forms.</li>
 				<li>8/04/2026 - 011 - Change user_value to "set user_value". Added
 				Debug.verify() for optional strict error checking</li>
 				<li>8/02/2026 - 010 - Switching to kebab naming in HTML.</li>
@@ -58,18 +60,20 @@
 				Added templates for most of the common forms.</li>
 				<li>7/21/2026 - 004 - Merged the oo-dev branch into the develop branch. The
 				current development branch is the rewritten version of the tools.</li>
-				<li><p>7/11/2026 - 003 - This is a major rewrite of the tax tools. It converts
-				the implementation to use an object-oriented design based on IRS forms. Enough
-				of this version is working to convince me that this is the correct path going
-				forward, but it will remain in a separate Git branch (oo-dev) until I have all
-				the tools working again.</p>
+				<li><p>7/11/2026 - 003 - This is a major rewrite of the tax tools. It
+				converts the implementation to use an object-oriented design based on IRS
+				forms. Enough of this version is working to convince me that this is the
+				correct path going forward, but it will remain in a separate Git branch
+				(oo-dev) until I have all the tools working again.</p>
+
 				<p>The point of this change is the tools will provide correct tax calculatons
 				while providng the ability to override specific fields. This solves the
 				problem of when should the program calculate a value and when should the user
 				enter the value. It now calculates everthing that it knows how to calculate
-				based on the information from the user. The user can override any field in the
-				tax return and any information that is not overridden will be calculated by
-				the tool.</p>
+				based on the information from the user. The user can override any field in
+				the tax return and any information that is not overridden will be calculated
+				by the tool.</p>
+
 				<p>The tools can also be seemlessly improved by adding new forms and
 				worksheets and enhancing the calculations for the existing ones. Currently,
 				only the forms and worksheets needed by the current tools are implemented. In
@@ -99,8 +103,10 @@
 				<li>6/01/2026 - 004 - Clean up whitespace. Fix today's date in California
 				Estimated Tax
 				Calculator.</li>
-				<li>6/01/2026 - 003 - Cosmetic changes. Change access to sales tax proxy.</li>
-				<li>6/01/2026 - 002 - Change appearance of Small Business Tax Calculator.</li>
+				<li>6/01/2026 - 003 - Cosmetic changes. Change access to sales tax
+				proxy.</li>
+				<li>6/01/2026 - 002 - Change appearance of Small Business Tax
+				Calculator.</li>
 				<li>6/01/2026 - 001 - Fix senior deduction calculation with spouse's age
 				when MFJ.</li>
 				<li>5/26/2026 - 000 - New development version: 2025.13.000</li>
@@ -112,7 +118,8 @@
 			<ul>
 				<li>5/25/2026 - 002 - Use PHP to include common CSS and JavaScript files.
 				Use a common function in HTML.js to show and hide elements.</li>
-				<li>5/22/2026 - 001 - Change == to ===, and reorganize Library directory.</li>
+				<li>5/22/2026 - 001 - Change == to ===, and reorganize Library
+				directory.</li>
 				<li>5/21/2026 - 000 - New development version: 2025.11.000</li>
 			</ul>
 		</div>
@@ -169,8 +176,8 @@
 				<li>3/10/2026 Added function entry and exit tracing.</li>
 				<li>3/07/2026 Created the Enhanced Deduction for Seniors Calculator</li>
 				<li>3/07/2026 Finished the AMT calculator.</li>
-				<li>2/26/2026 Improved the input processing consistency for the math calculator
-				and also enabled cut and paste.</li>
+				<li>2/26/2026 Improved the input processing consistency for the math
+				calculator and also enabled cut and paste.</li>
 				<li>2/26/2026 Improved the consistency in the way the tools are
 				implemented.</li>
 				<li>2/26/2026 Allow debug keywords to be entered from any input field.</li>
@@ -182,11 +189,11 @@
 			<p>Version 1.5.007, Released 2/22/2026</p>
 			<ul>
 				<li>2/22/2026 Implemented new version of Tooltips.</li>
-				<li>2/22/2026 Removed all dependencies on PHP. Replaced PHP include capability
-				with loadIncludefiles() JavaScript function.</li>
+				<li>2/22/2026 Removed all dependencies on PHP. Replaced PHP include
+				capability with loadIncludefiles() JavaScript function.</li>
 				<li>2/17/2026 Enhancing the implementation of debugging code.</li>
-				<li>2/17/2026 Changed the Simple Math Calculator to allow decimal numbers less
-				than one without a leading zero.</li>
+				<li>2/17/2026 Changed the Simple Math Calculator to allow decimal numbers
+				less than one without a leading zero.</li>
 				<li>Added MFS support to Social Security - Taxable Benefits Calculator.</li>
 				<li>Added the evalExpression() library function, to evaluate a string that
 				contains a simple mathematical expression. Created the Simple Math Calculator
@@ -196,7 +203,8 @@
 				<li>Created Library folder and moved files from CSS and Scripts to that
 				folder. Created Version folder. Created Debug.js and Debug.css files.</li>
 				<li>Remove getDate() to avoid name conflict.</li>
-				<li>Added getDateObject(), isBefore(), and isValidDate() to util-Dates.js.</li>
+				<li>Added getDateObject(), isBefore(), and isValidDate() to
+				util-Dates.js.</li>
 				<li>Added "get" prefix to ThisYear(), LastYear(), TaxYear(), and Today() to
 				make them more unique.</li>
 				<li>Ignore spouse's age unless filing status is MFJ.</li>
@@ -218,8 +226,8 @@
 				<li>You cannot click on a link in a tooltip so make them look like the
 				surrounding text.</li>
 				<li>Improved the consistency of the look-and-feel of the tools.</li>
-				<li>Change the estimated payment calculation to include the estimated payments
-				that were paid.</li>
+				<li>Change the estimated payment calculation to include the estimated
+				payments that were paid.</li>
 			</ul>
 		</div>
 
@@ -229,11 +237,14 @@
 				<li>Fixed font-size of version-number class.</li>
 				<li>Developed the State Tax Refund Calculator. This included several
 				side-effects to the shared code and made a few changes to other tools that
-				were discovered during the development (i.e., there were lots of changes).</li>
-				<li>Made changes to version.html. Moved "Issues" section to version.html.</li>
+				were discovered during the development (i.e., there were lots of
+				changes).</li>
+				<li>Made changes to version.html. Moved "Issues" section to
+				version.html.</li>
 				<li>Made changes to TaxTables.js to make sure tax year is a number, added
 				isValidTaxYear(), added TT_StandardDeduction(), added support for blindness,
-				and added a default value for the age parameter of TT_StdDeductionExtra().</li>
+				and added a default value for the age parameter of
+				TT_StdDeductionExtra().</li>
 			</ul>
 		</div>
 

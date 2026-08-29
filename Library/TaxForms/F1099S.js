@@ -155,8 +155,9 @@ const HTML_FORM = `
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box style="border-bottom: none;"">
-								<span class="f1099-box-label">8c Number of digital asset
-									units received, or to be received, as consideration</span>
+								<span class="f1099-box-label">8c Number of digital
+									asset units received, or to be received, as
+									consideration</span>
 								<input type="text" id="f1099s-XX-08c" />
 							</div>
 							<div class="f1099-box style="border-bottom: none;"">
@@ -196,7 +197,8 @@ export class F1099S extends TaxForm {
 
 		const element = document.getElementById(`f1099s-${uid}-details`);
 		if (!element) {
-			throw new Error(`F1099S.getUserInput(): Element not found: f1099s-${uid}-details`);
+			throw new Error(
+				`F1099S.getUserInput(): Element not found: f1099s-${uid}-details`);
 		}
 
 		let inputs = {};

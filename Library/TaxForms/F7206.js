@@ -57,11 +57,13 @@ export class F7206 extends TaxForm {
 		this.lines["07x"].value	= this.line("07") * this.line("06");	// SE Tax * Profit
 		this.lines["08"].value	= this.subtract("04", "07x");			// Profit - SE Tax
 		this.lines["09"].value	= TaxFormObj.getValue("F1040S1", "16");	// Retirement Contrib
-		this.lines["10"].value	= this.subtract("08", "09");			// Profit - Retirement
+		this.lines["10"].value	= this.subtract("08", "09");			// Profit - Retire
 		this.lines["11"].value	= TaxFormObj.getValue("W2", "05");		// Medicare Wages
 		this.lines["12"].value	= TaxFormObj.getValue("F2555", "45");
-		this.lines["13"].value	= Math.max(this.line("10"), this.line("11")) - this.line("12");
-		this.lines["14"].value	= Math.min(this.line("03"), this.line("13"));	// SEHI
+		this.lines["13"].value	= Math.max(this.line("10"),
+											this.line("11")) - this.line("12");
+		this.lines["14"].value	= Math.min(this.line("03"),
+											this.line("13"));	// SEHI
 
 		Debug.exit("F7206.calculate()");
 	}

@@ -22,18 +22,19 @@
 
 		<h1 class="title">Enhanced Deduction for Seniors Calculator</h1>
 
-		<p>This tool calculates the Enhanced Deduction for Seniors. Seniors aged 65 and older
-		can claim a deduction of up to $6,000 if they are single or $12,000 if they are married
-		filing jointly. This deduction begins to phase out when AGI is over $75,000 for single
-		taxpayers and $150,000 if married. This deduction is in addition to the existing
-		standard deduction or itemized debuctions.</p>
+		<p>This tool calculates the Enhanced Deduction for Seniors. Seniors aged 65 and
+		older can claim a deduction of up to $6,000 if they are single or $12,000 if they
+		are married filing jointly. This deduction begins to phase out when AGI is over
+		$75,000 for single taxpayers and $150,000 if married. This deduction is in addition
+		to the existing standard deduction or itemized debuctions.</p>
 
 		<div class="table">
 			<p>Tax Year</p>
 			<input class="input-field" type="text" id="tax-year" value="0000" />
 
 			<p class="label-field">Filing Status</p>
-			<select class="trigger input-field" id="FilingStatus" tooltipid="#FilingStatusTT">
+			<select class="trigger input-field" id="FilingStatus"
+					tooltipid="#FilingStatusTT">
 				<option value="Single">Single</option>
 				<option value="HoH">HoH</option>
 				<option value="MFJ">MFJ</option>

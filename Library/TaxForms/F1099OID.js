@@ -80,7 +80,8 @@ const HTML_FORM = `
 									placeholder="0" />
 							</div>
 							<div class="f1099-box">
-								<span class="f1099-box-label">2 Other periodic interest</span>
+								<span class="f1099-box-label">2 Other periodic
+									interest</span>
 								<input type="text" id="f1099oid-XX-02"
 									placeholder="0" />
 							</div>
@@ -88,7 +89,8 @@ const HTML_FORM = `
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
-								<span class="f1099-box-label">3 Early withdrawal penalty</span>
+								<span class="f1099-box-label">3 Early withdrawal
+									penalty</span>
 								<input type="text" id="f1099oid-XX-03"
 									placeholder="0" />
 							</div>
@@ -122,8 +124,8 @@ const HTML_FORM = `
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
-								<span class="f1099-box-label">8 Original issue discount on U.S.
-									Treasury obligations</span>
+								<span class="f1099-box-label">8 Original issue discount
+									on U.S. Treasury obligations</span>
 								<input type="text" id="f1099oid-XX-08"
 									placeholder="0" />
 							</div>

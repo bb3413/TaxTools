@@ -62,11 +62,11 @@ export class F1040SA extends TaxForm {
 		this.lines["05e"].value	= Math.min(this.line("05d"),		// SALT after Limit
 										   tt.getTaxValue("MaxSALT", tp.filing_status));
 		this.lines["06"].value	= 0;								// Other Taxes
-		this.lines["07"].value	= this.add("05e","06");				// Deduction for Taxes Paid
+		this.lines["07"].value	= this.add("05e","06");				// Deduction for Taxes
 		this.lines["08a"].value	= 0;								// Mortgage Interest
 		this.lines["08b"].value	= 0;								// Mortgage Interest
 		this.lines["08c"].value	= 0;								// Mortgage Points
-		this.lines["08d"].value	= 0;								// Reserved For Future Use
+		this.lines["08d"].value	= 0;								// Reserved
 		this.lines["08e"].value	= this.add("08a","08b","08c");		// Mortgage Deduction
 		this.lines["09"].value	= 0;								// Investment Interest
 		this.lines["10"].value	= this.add("08e","09");				// Interest Deduction

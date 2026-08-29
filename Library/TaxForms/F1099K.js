@@ -246,7 +246,8 @@ export class F1099K extends TaxForm {
 
 		const element = document.getElementById(`f1099k-${uid}-details`);
 		if (!element) {
-			throw new Error(`F1099K.getUserInput(): Element not found: f1099k-${uid}-details`);
+			throw new Error(
+				`F1099K.getUserInput(): Element not found: f1099k-${uid}-details`);
 		}
 
 		let inputs = {};

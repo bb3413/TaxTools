@@ -187,7 +187,8 @@
 
 			<p class="loction-field">Sched C, line 17</p>
 			<p class="label-field">Legal and Professional Services</p>
-			<input class="trigger input-field" type="text" id="ProfessionalServices" size="10"
+			<input class="trigger input-field" type="text" id="ProfessionalServices"
+				size="10" 
 			   	placeholder="0" tooltipid="#ProfessionalServicesTT" />
 
 			<p class="loction-field">Sched C, line 18</p>

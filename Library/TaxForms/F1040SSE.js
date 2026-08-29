@@ -63,12 +63,12 @@ export class F1040SSE extends TaxForm {
 			this.lines["05b"].value	= 0;
 		}
 		this.lines["06"].value		= this.add("04c", "05b");
-		this.lines["07"].value		= 176100;						// Wages subject to SS tax
+		this.lines["07"].value		= 176100;						// SS tax on wages
 		this.lines["08a"].value		= TaxFormObj.getValue("W2", "03") +
 										TaxFormObj.getValue("W2", "07");
-		this.lines["08b"].value		= 0;							// Tips subject to SS tax
-		this.lines["08c"].value		= 0;							// Wages subject to SS tax
-		this.lines["08d"].value		= this.add("08a", "08b", "08c");// Wages subject to SS tax
+		this.lines["08b"].value		= 0;							// SS tax on tips
+		this.lines["08c"].value		= 0;							// SS tax on wages
+		this.lines["08d"].value		= this.add("08a", "08b", "08c");// SS tax on wages
 		this.lines["09"].value		= this.subtract("07", "08d");
 		this.lines["10"].value		= 0;
 		if (this.line("09") <= 0) {
@@ -77,7 +77,7 @@ export class F1040SSE extends TaxForm {
 			this.lines["10"].value	= Math.round(this.min("06", "09") * 0.124);	// SS tax
 		}
 		this.lines["11"].value		= Math.round(this.min("06") * 0.029);// Medicatre tax
-		this.lines["12"].value		= Math.round(this.add("10", "11"));	// SS+Medicare = SE Tax
+		this.lines["12"].value		= Math.round(this.add("10", "11"));	// SS+Med = SE Tax
 		this.lines["13"].value		= Math.round(this.line("12") / 2);	// SE Tax Deduction
 
 		Debug.exit("F1040SSE.calculate()");

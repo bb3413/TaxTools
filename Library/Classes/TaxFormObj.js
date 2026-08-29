@@ -57,7 +57,7 @@ export class TaxFormObj {
 				TaxFormObj.getValue("F1040S1", "06" ) +		// Farm income
 				TaxFormObj.getValue("F1040S1", "08r") +		// Scholarship
 				TaxFormObj.getValue("F1040S1", "08t") +		// Pension
-				TaxFormObj.getValue("F1040S1", "08u") -		// Wages earned while incarcerated
+				TaxFormObj.getValue("F1040S1", "08u") -		// Wages while incarcerated
 				TaxFormObj.getValue("F1040S1", "015");		// Deductible part of SE tax
 	}
 
@@ -217,13 +217,13 @@ export class TaxFormObj {
 	static unearnedIncome() {
 		return Math.max(0,
 				TaxFormObj.getValue("F1040",   "09" ) +		// Total income
-				TaxFormObj.getValue("F1040S1", "24j") -		// Housing deduction from form 2555
+				TaxFormObj.getValue("F1040S1", "24j") -		// Housing deduction
 				TaxFormObj.getValue("F1040",   "01z") -		// Wages
 				TaxFormObj.getValue("F1040S1", "03" ) -		// Business income
 				TaxFormObj.getValue("F1040S1", "06" ) -		// Farm income
 				TaxFormObj.getValue("F1040S1", "08a") -		// Net operating loss
-				TaxFormObj.getValue("F1040S1", "08d") -		// Foreign earned income exclusion
-				TaxFormObj.getValue("F1040S1", "08u") -		// Wages earned while incarcerated
+				TaxFormObj.getValue("F1040S1", "08d") -		// Foreign income exclusion
+				TaxFormObj.getValue("F1040S1", "08u") -		// Wages while incarcerated
 				TaxFormObj.getValue("F1040S1", "18" ) );	// Penalty on early withdrawal
 	}
 }

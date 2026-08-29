@@ -91,7 +91,7 @@ export class F1040S2 extends TaxForm {
 		this.lines["08"].value	= 0;	// Aditonal Tax on IRAs
 		this.lines["09"].value	= 0;	// Household Employment Tax
 		this.lines["10"].value	= 0;	// Reserved for Future Use
-		this.lines["11"].value	= TaxFormObj.getValue("F8959", "18");	// Additional Medicare
+		this.lines["11"].value	= TaxFormObj.getValue("F8959", "18");	// Medicare
 		this.lines["12"].value	= TaxFormObj.getValue("F8960", "17");	// Investment Tax
 		this.lines["13"].value	= 0;	// Uncollected SS Tax on Tips
 		this.lines["14"].value	= 0;	// Interest on Tax Due

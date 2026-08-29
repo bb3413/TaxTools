@@ -727,20 +727,20 @@ export class F1040 extends TaxForm {
 		this.lines["01e"].value	= TaxFormObj.getValue("F2441", "26");	// Dep Care Benefits
 		this.lines["01f"].value	= TaxFormObj.getValue("F8839", "31");	// Adoption Benefits
 		this.lines["01g"].value	= TaxFormObj.getValue("F8919", "06");	// Wages from f8919
-		this.lines["01h"].value	= 0;									// Other Earned Income
-		this.lines["01i"].value	= 0;									// Nontaxed Combat Pay
+		this.lines["01h"].value	= 0;									// Other Earned Inc
+		this.lines["01i"].value	= 0;									// Nontaxed Combat
 		this.lines["01z"].value	= this.add("01a","01b","01c","01d","01e","01f","01g","01h");
 		this.lines["02a"].value	= TaxFormObj.getValue("F1099INT",	"08");	// Tax-exempt int
-		this.lines["02b"].value	= TaxFormObj.getValue("F1099INT",	"01");	// Taxable Interest
+		this.lines["02b"].value	= TaxFormObj.getValue("F1099INT",	"01");	// Taxable Int
 		this.lines["03a"].value	= TaxFormObj.getValue("F1099DIV",	"01b");	// Qualified Divs
 		this.lines["03b"].value	= TaxFormObj.getValue("F1099DIV",	"01a");	// Ordinary Divs
 		this.lines["04a"].value	= TaxFormObj.getValue("F1099R",		"01");	// IRA Dist
-		this.lines["04b"].value	= TaxFormObj.getValue("F1099R",		"02a") +	// Taxable IRA
+		this.lines["04b"].value	= TaxFormObj.getValue("F1099R",		"02a") +// Taxable IRA
 									TaxFormObj.getValue("F8606",	"15c") +
 									TaxFormObj.getValue("F8606",	"18") +
 									TaxFormObj.getValue("F8606",	"25c");
 		this.lines["05a"].value	= TaxFormObj.getValue("F1099R",		"01");	// Pensions
-		this.lines["05b"].value	= TaxFormObj.getValue("F1099R",		"02a");	// Taxable Pensions
+		this.lines["05b"].value	= TaxFormObj.getValue("F1099R",		"02a");	// Pensions
 		this.lines["06a"].value	= TaxFormObj.getValue("FSSA1099",	"05");	// SS Benefits
 		this.lines["06b"].value = 0;  // DELAY INITIALIZATION UNTIL LATER
 
@@ -771,7 +771,8 @@ export class F1040 extends TaxForm {
 		this.lines["12e"].value	= Math.max(standard_deduction, itemized_deductions);
 /*
 		if (this.line("11a") -
-			TaxFormObj.getValue("F1040S1", "13") - this.line("12e") < 3rd tax bracket limit) {
+			TaxFormObj.getValue(
+				"F1040S1", "13") - this.line("12e") < 3rd tax bracket limit) {
 			this.lines["13a"].value = TaxFormObj.getValue("F8995", "15");
 		} else {
 			this.lines["13a"].value = TaxFormObj.getValue("F8995a", "19");
@@ -785,12 +786,12 @@ export class F1040 extends TaxForm {
 		this.lines["17"].value	= TaxFormObj.getValue("F1040S2", "03");	// Additional Tax
 		this.lines["18"].value	= this.add("16", "17");					// Total Tax
 		this.lines["19"].value	= TaxFormObj.getValue("F8812", "14");	// Child Tax Credit
-		this.lines["20"].value	= TaxFormObj.getValue("F1040S3", "08");	// Non-refundable Creds
+		this.lines["20"].value	= TaxFormObj.getValue("F1040S3", "08");	// Non-refund Creds
 		this.lines["21"].value	= this.add("19", "20");
 		this.lines["22"].value	= Math.max(0, this.subtract("18", "21"));// Tax - NR Credits
 		this.lines["23"].value	= TaxFormObj.getValue("F1040S2", "21");	// Other Taxes
 		this.lines["24"].value	= this.add("22", "23");					// Total Tax
-		this.lines["25a"].value	= TaxFormObj.getValue("W2", "02");		// Witholding from W-2s
+		this.lines["25a"].value	= TaxFormObj.getValue("W2", "02");		// W2 Witholding
 		this.lines["25b"].value	= TaxFormObj.getValue("F1099INT", "04") +
 									TaxFormObj.getValue("F1099DIV", "04") +
 									TaxFormObj.getValue("F1099R", "04") +
@@ -811,7 +812,7 @@ export class F1040 extends TaxForm {
 			this.lines["36"].value	= 0;								// Apply to next year
 		} else {
 			this.lines["37"].value	= this.subtract("24", "33");		// Amount Owed
-			this.lines["38"].value	= TaxFormObj.getValue("Penalty", "xx");	// Est Tax Penalty
+			this.lines["38"].value	= TaxFormObj.getValue("Penalty", "xx");	// EstTax Penalty
 		}
 		Debug.exit("F1040.calculate()");
 	}

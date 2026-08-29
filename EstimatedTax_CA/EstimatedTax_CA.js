@@ -305,36 +305,58 @@ function restoreDataHandler(data) {
 	}
 
 	// Taxpayer information
-	HTML.putElementValue("TaxpayersName",					inputs.taxpayers_name);
-	HTML.putElementValue("FilingStatus",					inputs.filing_status);
-	HTML.putElementValue("TaxpayersBirthday",				inputs.taxpayers_birthday);
-	HTML.putElementValue("SpousesBirthday",					inputs.spouses_birthday);
+	HTML.putElementValue("TaxpayersName",
+						 inputs.taxpayers_name);
+	HTML.putElementValue("FilingStatus",
+						 inputs.filing_status);
+	HTML.putElementValue("TaxpayersBirthday",
+						 inputs.taxpayers_birthday);
+	HTML.putElementValue("SpousesBirthday",
+						 inputs.spouses_birthday);
 
 	// Input Data
-	HTML.putElementValue("FederalAGI",						inputs.federal_agi);
-	HTML.putElementValue("NumberOfDependents",				inputs.number_of_dependents);
+	HTML.putElementValue("FederalAGI",
+						 inputs.federal_agi);
+	HTML.putElementValue("NumberOfDependents",
+						 inputs.number_of_dependents);
 
 	// Subtractions
-	HTML.putElementValue("USTreasuryObligations",			inputs.us_treasury_obligations);
-	HTML.putElementValue("MilitaryRetirementIncome",		inputs.military_retirement_income);
-	HTML.putElementValue("TaxableSocialSecurity",			inputs.taxable_social_security);
-	HTML.putElementValue("StateTaxRefund",					inputs.state_tax_refund	);
-	HTML.putElementValue("UnemploymentIncome",				inputs.unemployment_income);
-	HTML.putElementValue("CaliforniaLotteryWinnings",		inputs.california_lottery_winnings);
+	HTML.putElementValue("USTreasuryObligations",
+						 inputs.us_treasury_obligations);
+	HTML.putElementValue("MilitaryRetirementIncome",
+						 inputs.military_retirement_income);
+	HTML.putElementValue("TaxableSocialSecurity",
+						 inputs.taxable_social_security);
+	HTML.putElementValue("StateTaxRefund",
+						 inputs.state_tax_refund	);
+	HTML.putElementValue("UnemploymentIncome",
+						 inputs.unemployment_income);
+	HTML.putElementValue("CaliforniaLotteryWinnings",
+						 inputs.california_lottery_winnings);
 	HTML.putElementValue("NonqualifiedHSADistributions",
 						 inputs.nonqualified_hsa_distributions);
-	HTML.putElementValue("AlimonyPaid",						inputs.alimony_paid);
-	HTML.putElementValue("OtherSubtractions",				inputs.other_subtractions);
+	HTML.putElementValue("AlimonyPaid",
+						 inputs.alimony_paid);
+	HTML.putElementValue("OtherSubtractions",
+						 inputs.other_subtractions);
 
 	// Additions
-	HTML.putElementValue("HSAEmployerContributions",		inputs.hsa_employer_contributions);
-	HTML.putElementValue("AlimonyReceived",					inputs.alimony_received);
-	HTML.putElementValue("HomeLoanDebtCancellation",		inputs.home_loan_debt_cancellation);
-	HTML.putElementValue("EmployerPaidStudentLoanPayments",	inputs.employer_paid_student_loan_payments);
-	HTML.putElementValue("EducatorExpenses",				inputs.educator_expenses);
-	HTML.putElementValue("HSAContributions",				inputs.hsa_contributions);
-	HTML.putElementValue("IRAContributions",				inputs.ira_contributions);
-	HTML.putElementValue("OtherAdditions",					inputs.other_additions);
+	HTML.putElementValue("HSAEmployerContributions",
+						 inputs.hsa_employer_contributions);
+	HTML.putElementValue("AlimonyReceived",
+						 inputs.alimony_received);
+	HTML.putElementValue("HomeLoanDebtCancellation",
+						 inputs.home_loan_debt_cancellation);
+	HTML.putElementValue("EmployerPaidStudentLoanPayments",
+						 inputs.employer_paid_student_loan_payments);
+	HTML.putElementValue("EducatorExpenses",
+						 inputs.educator_expenses);
+	HTML.putElementValue("HSAContributions",
+						 inputs.hsa_contributions);
+	HTML.putElementValue("IRAContributions",
+						 inputs.ira_contributions);
+	HTML.putElementValue("OtherAdditions",
+						 inputs.other_additions);
 
 	// Itemized Deductions
 	HTML.putElementValue("FederalItemizedDeductions",
@@ -347,10 +369,14 @@ function restoreDataHandler(data) {
 						 inputs.salt_limit_excess);
 	HTML.putElementValue("HomeMortgageInterestLimit",
 						 inputs.home_mortgage_interest_limit);
-	HTML.putElementValue("TaxPreparationFee",				inputs.tax_preparation_fee);
-	HTML.putElementValue("SafeDepositBox",					inputs.safe_deposit_box);
-	HTML.putElementValue("InvestmentFee",					inputs.investment_fee);
-	HTML.putElementValue("OtherDeductions",					inputs.other_deductions);
+	HTML.putElementValue("TaxPreparationFee",
+						 inputs.tax_preparation_fee);
+	HTML.putElementValue("SafeDepositBox",
+						 inputs.safe_deposit_box);
+	HTML.putElementValue("InvestmentFee",
+						 inputs.investment_fee);
+	HTML.putElementValue("OtherDeductions",
+						 inputs.other_deductions);
 
 	// Other Taxes, Interest, and Penalties
 
@@ -366,23 +392,34 @@ function restoreDataHandler(data) {
 						 inputs.miscellaneous_taxes);
 
 	// Non-refundable Credits
-	HTML.putElementValue("ChildCareCredit",					inputs.child_care_credit);
-	HTML.putElementValue("RentersCredit",					inputs.renters_credit);
-	HTML.putElementValue("OtherNonrefundableCredits",		inputs.other_nonrefundable_credits);
+	HTML.putElementValue("ChildCareCredit",
+						 inputs.child_care_credit);
+	HTML.putElementValue("RentersCredit",
+						 inputs.renters_credit);
+	HTML.putElementValue("OtherNonrefundableCredits",
+						 inputs.other_nonrefundable_credits);
 
 	// Refundable Credits
-	HTML.putElementValue("EITC",							inputs.eitc);
-	HTML.putElementValue("YoungChildTaxCredit",				inputs.young_child_tax_credit);
-	HTML.putElementValue("FosterYouthTaxCredit",			inputs.foster_youth_tax_credit);
-	HTML.putElementValue("FosterYouthTaxCredit",			inputs.other_refundable_credits);
+	HTML.putElementValue("EITC",
+						 inputs.eitc);
+	HTML.putElementValue("YoungChildTaxCredit",
+						 inputs.young_child_tax_credit);
+	HTML.putElementValue("FosterYouthTaxCredit",
+						 inputs.foster_youth_tax_credit);
+	HTML.putElementValue("FosterYouthTaxCredit",
+						 inputs.other_refundable_credits);
 
 	// Payments
-	HTML.putElementValue("Withholding",						inputs.withholding);
-	HTML.putElementValue("EstimatedPayments",				inputs.estimated_payments);
-	HTML.putElementValue("OtherPayments",					inputs.other_payments);
+	HTML.putElementValue("Withholding",
+						 inputs.withholding);
+	HTML.putElementValue("EstimatedPayments",
+						 inputs.estimated_payments);
+	HTML.putElementValue("OtherPayments",
+						 inputs.other_payments);
 
 	// Contributions
-	HTML.putElementValue("Contributions",					inputs.contributions);
+	HTML.putElementValue("Contributions",
+						 inputs.contributions);
 
 	changeHandler();
 }

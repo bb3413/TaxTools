@@ -83,7 +83,7 @@ export class SSTax extends TaxForm {
 		}
 
 		// Start of worksheet
-		this.lines["01"].value	= ss_income;						// Sum all SSA-1099, box 5
+		this.lines["01"].value	= ss_income;						// Sum all SSA-1099, bx 5
 		this.lines["02"].value	= Math.round(this.line("01") / 2);	// Half of total SS
 		this.lines["03"].value	= income_wo_ss;						// Income w/o SS
 		this.lines["04"].value	= tax_exempt_int;					// Tax Exempt Interest
@@ -104,7 +104,7 @@ export class SSTax extends TaxForm {
 				return 0;
 			}
 			this.lines["10"].value	= Math.max(0, this.subtract("08","09"));// Amount over
-			this.lines["11"].value	= tt.get_SS_50_Range(filing_status);	// Length of range
+			this.lines["11"].value	= tt.get_SS_50_Range(filing_status);	// Len of range
 			this.lines["12"].value	= Math.max(0, this.subtract("10","11"));// Amt over range
 			this.lines["13"].value	= this.min("10","11");			// Amount within range
 			this.lines["14"].value	= this.line("13") * 0.50;		// 50% of amt in range

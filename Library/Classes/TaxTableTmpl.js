@@ -17,7 +17,8 @@ function getValuesCol(filing_status) {
 		case "MFJ":		col = 2; break;
 		case "QSS":		col = 3; break;
 		case "MFS":		col = 4; break;
-		default:		throw new Error("TT.getValueCol: Invalid filing_status: " + filing_status);
+		default:
+			throw new Error("TT.getValueCol: Invalid filing_status: " + filing_status);
 	}
 	return col;
 }

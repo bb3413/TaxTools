@@ -186,7 +186,8 @@ export class F1099G extends TaxForm {
 
 		const element = document.getElementById(`f1099g-${uid}-details`);
 		if (!element) {
-			throw new Error(`F1099G.getUserInput(): Element not found: f1099g-${uid}-details`);
+			throw new Error(
+				`F1099G.getUserInput(): Element not found: f1099g-${uid}-details`);
 		}
 
 		let inputs = {};
@@ -246,7 +247,7 @@ export class F1099G extends TaxForm {
 		this.lines["taxpayer"]	= new Line("Taxpayer's address");
 		this.lines["account"]	= new Line("Account number");
 		this.lines["01"]		= new Line("Unemployment compensation");
-		this.lines["02"]		= new Line("State or local tax refunds, credits, or offsets");
+		this.lines["02"]		= new Line("State tax refunds, credits, or offsets");
 		this.lines["03"]		= new Line("Box 2 amount is for tax year");
 		this.lines["04"]		= new Line("Federal income tax withheld");
 		this.lines["05"]		= new Line("RTAA payments");

@@ -53,7 +53,8 @@ export class HTMLBuild {
 	}
 
 	addVoidElement(element, css_class, str="", attributes="") {
-		// Void elements do not have closing tags, so they specify their value in an attribute.
+		// Void elements do not have closing tags, so they specify their value in an
+		// attribute.
 		if (css_class) {
 			attributes += attributes ? " " : "";
 			attributes += `class="${css_class}"`

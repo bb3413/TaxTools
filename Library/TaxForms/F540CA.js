@@ -127,7 +127,7 @@ export class F540CA extends TaxForm {
 		this.lines["B-08cC"]	= new Line("Add to Cancellation of Debt");
 
 		this.lines["B-08dA"]	= new Line("Foreign Earned Income Exclusion");
-		this.lines["B-08dB"]	= new Line("Subtract from Foreign Earned Income Exclusion");
+		this.lines["B-08dB"]	= new Line("Subtract from Foreign Earned Inc Exclusion");
 		this.lines["B-08dC"]	= new Line("Add to Foreign Earned Income Exclusion");
 
 		this.lines["B-08eA"]	= new Line("Income from form 8853");
@@ -191,7 +191,7 @@ export class F540CA extends TaxForm {
 		this.lines["B-08sC"]	= new Line("Add to Non-taxable Medicaid Waiver Payment");
 
 		this.lines["B-08tA"]	= new Line("Pension from Non-qualified Plan");
-		this.lines["B-08tB"]	= new Line("Subtract from Pension from Non-qualified Plan");
+		this.lines["B-08tB"]	= new Line("Subtract from Pension from Non-qual Plan");
 		this.lines["B-08tC"]	= new Line("Add to Pension from Non-qualified Plan");
 
 		this.lines["B-08uA"]	= new Line("Wages While Incarcerated");
@@ -232,7 +232,7 @@ export class F540CA extends TaxForm {
 		this.lines["C-11C"]		= new Line("Add to Educator Expense");
 
 		this.lines["C-12A"]		= new Line("Business Expense from Form 2106");
-		this.lines["C-12B"]		= new Line("Subtract from Business Expense from Form 2106");
+		this.lines["C-12B"]		= new Line("Sub from Business Expense from Form 2106");
 		this.lines["C-12C"]		= new Line("Add to Business Expense from Form 2106");
 
 		this.lines["C-13A"]		= new Line("HSA Deduction");
@@ -268,7 +268,7 @@ export class F540CA extends TaxForm {
 		this.lines["C-20C"]		= new Line("Add to IRA Deduction");
 
 		this.lines["C-21A"]		= new Line("Student Loan Interest Deduction");
-		this.lines["C-21B"]		= new Line("Subtract from Student Loan Interest Deduction");
+		this.lines["C-21B"]		= new Line("Subtract from Student Loan Int Deduction");
 		this.lines["C-21C"]		= new Line("Add to Student Loan Interest Deduction");
 
 		this.lines["C-22A"]		= new Line("Reserved for Future Use");
@@ -296,7 +296,7 @@ export class F540CA extends TaxForm {
 		this.lines["C-24dC"]	= new Line("Add to Reforestation Expenses");
 
 		this.lines["C-24eA"]	= new Line("Repayment of Unemployment Expenses");
-		this.lines["C-24eB"]	= new Line("Subtract from Repayment of Unemployment Expense");
+		this.lines["C-24eB"]	= new Line("Subtract from Repayment of Unemploy Expense");
 		this.lines["C-24eC"]	= new Line("Add to Repayment of Unemployment Expenses");
 
 		this.lines["C-24fA"]	= new Line("Contribution to 501(c) Pension");
@@ -317,10 +317,10 @@ export class F540CA extends TaxForm {
 
 		this.lines["C-24jA"]	= new Line("Foreign Earned Income Housing Deduction");
 		this.lines["C-24jB"]	= new Line("Subtract from Foreign Earned Income Housing");
-		this.lines["C-24jC"]	= new Line("Add to Foreign Earned Income Housing Deduction");
+		this.lines["C-24jC"]	= new Line("Add to Foreign Earned Inc Housing Deduction");
 
 		this.lines["C-24kA"]	= new Line("Excess Deduction from Form 1041");
-		this.lines["C-24kB"]	= new Line("Subtract from Excess Deduction from Form 1041");
+		this.lines["C-24kB"]	= new Line("Sub from Excess Deduction from Form 1041");
 		this.lines["C-24kC"]	= new Line("Add to Excess Deduction from Form 1041");
 
 		this.lines["C-24zA"]	= new Line("Other Adjustments");
@@ -392,7 +392,7 @@ export class F540CA extends TaxForm {
 		this.lines["D-08aC"]	= new Line("Add to Mortgage Interest");
 
 		this.lines["D-08bA"]	= new Line("Mortgage Interest Not from 1098");
-		this.lines["D-08bB"]	= new Line("Subtract from Mortgage Interest Not from 1098");
+		this.lines["D-08bB"]	= new Line("Subtract from Mortgage Int Not from 1098");
 		this.lines["D-08bC"]	= new Line("Add to Mortgage Interest Not from 1098");
 
 		this.lines["D-08cA"]	= new Line("Mortgage Points Not from 1098");
@@ -912,7 +912,7 @@ export class F540CA extends TaxForm {
 		// Total Other Adjustments
 		this.lines["C-25A"].value =
 			this.add("C-24aA","C-24bA","C-24cA","C-24dA","C-24eA","C-24fA",
-											   "C-24gA","C-24hA","C-24iA","C-24jA","C-24kA","C-24zA");
+						"C-24gA","C-24hA","C-24iA","C-24jA","C-24kA","C-24zA");
 		this.lines["C-25B"].value =
 			this.add("C-24aB","C-24bB","C-24cB","C-24dB","C-24eB","C-24fB",
 						"C-24gB","C-24hB","C-24iB","C-24jB","C-24kB","C-24zB");
@@ -933,7 +933,7 @@ export class F540CA extends TaxForm {
 
 		// Income - Adjustments
 		this.lines["C-27A"].value	= this.subtract("B-10A","C-26A");	// (A) Federal AGI
-		this.lines["C-27B"].value	= this.subtract("B-10B","C-26B");	// Subtract from AGI
+		this.lines["C-27B"].value	= this.subtract("B-10B","C-26B");	// Sub from AGI
 		this.lines["C-27C"].value	= this.subtract("B-10C","C-26C");	// Add to AGI
 		if (this.line("C-27A") !== TaxFormObj.getValue("F1040", "11b")) {
 			Debug.warn("F540CA: AGI does not match.");
@@ -1081,23 +1081,23 @@ export class F540CA extends TaxForm {
 										this.line("D-17C");
 
 		// Job Expenses and Miscellaneous Deductions
-		this.lines["D-19"].value	= 0;								// Employee Expenses
-		this.lines["D-20"].value	= 0;								// Tax prep fees
-		this.lines["D-21"].value	= 0;								// Investment Expenses
-		this.lines["D-22"].value	= this.add("D-19","D-20","D-21");	// Misc Deductions
+		this.lines["D-19"].value	= 0;								// Employee Exp
+		this.lines["D-20"].value	= 0;								// Tax prep fee
+		this.lines["D-21"].value	= 0;								// Invest Expense
+		this.lines["D-22"].value	= this.add("D-19","D-20","D-21");	// Misc Deduction
 		this.lines["D-23"].value	= TaxFormObj.getValue("F1040", "11b");	// Federal AGI
 		this.lines["D-24"].value	= Math.max(0, Math.round(this.line("D-23") * 0.02));
-		this.lines["D-25"].value	= this.subtract("D-22","D-24");		// Misc Deductions
+		this.lines["D-25"].value	= this.subtract("D-22","D-24");		// Misc Deduction
 		if (this.line("D-24") > this.line("D-22")) {
 			this.lines["D-25"].value = 0;
 		}
 		this.lines["D-26"].value	= this.add("D-18","D-25");			// Itemized + Misc
-		this.lines["D-27"].value	= 0;								// Other Adjustments
-		this.lines["D-28"].value	= this.add("D-26","D-27");			// Total Deductions
+		this.lines["D-27"].value	= 0;								// Other Adjs
+		this.lines["D-28"].value	= this.add("D-26","D-27");			// Total Deduction
 
 		if (TaxFormObj.getValue("F1040", "11b") <= 
 			tt.getTaxValue("CA_HiIncPhaseout", tp.filing_status)) {
-			this.lines["D-29"].value = this.line("D-28");				// Itemized Deductions
+			this.lines["D-29"].value = this.line("D-28");			// Itemized Deduction
 		} else {
 			this.lines["D-29"].value =
 				new CA_HiIncDeductions("CA_HiIncDeductions").line("deductions");

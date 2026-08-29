@@ -127,9 +127,9 @@ export class F6251 extends TaxForm {
 		this.lines["02d"].value	= 0;					// Depletion
 		this.lines["02e"].value	= 0;					// Net Operating Loss Deduction
 		this.lines["02f"].value	= (0);	// Subtract			Net Operating Loss Deduction
-		this.lines["02g"].value	= 0;					// Interest from Private Activity bonds
+		this.lines["02g"].value	= 0;					// Int from Private Activity bonds
 		this.lines["02h"].value	= 0;					// Qualified Small Business Stock
-		this.lines["02i"].value	= 0;					// Exercise of Incentive Stock Options
+		this.lines["02i"].value	= 0;					// Exercise of Incentive Stock Opt
 		this.lines["02j"].value	= 0;					// Estates and Trusts
 		this.lines["02k"].value	= 0;					// Disposition of Property
 		this.lines["02l"].value	= 0;					// Post-1986 Depreciation
@@ -152,7 +152,7 @@ export class F6251 extends TaxForm {
 		//
 		// Calculate part I and III before II becuase par II references values from
 		//the other parts.
-		this.lines["12"].value	= this.line("06");					// AMT Inc - AMT Exemption
+		this.lines["12"].value	= this.line("06");					// AMT Inc - AMT Exempt
 		this.lines["13"].value	= capital_gains + qualified_dividends;
 		this.lines["14"].value	= 0;								// Leave blank for now.
 		this.lines["15"].value	= this.add("13", "14");
@@ -188,7 +188,7 @@ export class F6251 extends TaxForm {
 
 		// Form 6251, Part II - Alternative Minimum Tax
 		this.lines["05"].value	= tt.get_AMT_Exemption(tp.filing_status, this.line("04"));
-		this.lines["06"].value	= this.subtract("04", "05");			// AMT Inc - AMT Exemp
+		this.lines["06"].value	= this.subtract("04", "05");			// AMTInc - AMT Exemp
 		if (this.line("06") > 0) {
 			if ((capital_gains > 0) || (qualified_dividends > 0)) {
 				this.lines["07"].value = this.line("40");

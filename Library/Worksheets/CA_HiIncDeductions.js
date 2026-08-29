@@ -40,11 +40,11 @@ export class CA_HiIncDeductions extends TaxForm {
 		const tt = TaxTable.getTaxTable();
 		const tp = Taxpayer.getTaxpayer();
 
-		this.lines["01"].value	= TaxFormObj.getValue("F540CA", "D-28");	// Total Deductions
-		this.lines["02"].value	= TaxFormObj.getValue("F1040SA", "04") +	// Medical Expenses
+		this.lines["01"].value	= TaxFormObj.getValue("F540CA", "D-28");	// Deductions
+		this.lines["02"].value	= TaxFormObj.getValue("F1040SA", "04") +	// Medical Exp
 									TaxFormObj.getValue("F1040SA", "09") +	// Interest
 									TaxFormObj.getValue("F1040SA", "15");	// Casualy/Theft
-		this.lines["03"].value	= this.subtract("01", "02");			// Deductions - line 2
+		this.lines["03"].value	= this.subtract("01", "02");
 		if (this.line("03") <= 0) {
 			this.lines["Deductions"].value	= this.line("01");
 		} else {

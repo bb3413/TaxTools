@@ -149,10 +149,11 @@ body {
 	transform:				rotate(45deg);
 }
 
-/* If fields are autofilled by the browser, the browser automatically changes the background
- * color of the field to a blue tint. The following code uses a large, solid box-shadow inside
- * the input box to cover up the browser's blue tint with the tool's input color. This should
- * work in Chrome, Edge, Safari, and Firefox.
+/*
+ *	If fields are autofilled by the browser, the browser automatically changes the background
+ *	color of the field to a blue tint. The following code uses a large, solid box-shadow
+ *	inside the input box to cover up the browser's blue tint with the tool's input color.
+ *	This should work in Chrome, Edge, Safari, and Firefox.
  */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,

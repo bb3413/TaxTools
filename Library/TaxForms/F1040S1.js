@@ -98,7 +98,7 @@ export class F1040S1 extends TaxForm {
 		this.lines["07"].value	= 0;									// Other Income
 		this.lines["08a"].value	= 0;  // Subtract						// Net Operating Loss
 		this.lines["08b"].value	= 0;									// Gambling
-		this.lines["08c"].value	= 0;									// Cancellation of Debt
+		this.lines["08c"].value	= 0;									// Cancelled Debt
 		// Foreign Earned Income Exclusion (Subtract)
 		this.lines["08d"].value	= -(TaxFormObj.getValue("F2555", "xx"));	
 		this.lines["08e"].value	= TaxFormObj.getValue("F8853", "xx");	// Income from 8853
@@ -113,7 +113,7 @@ export class F1040S1 extends TaxForm {
 		this.lines["08m"].value	= 0;									// USOC Prize
 		this.lines["08n"].value	= 0;									// Section 951(a)
 		this.lines["08o"].value	= 0;									// Section 951A(a)
-		this.lines["08p"].value	= 0;									// Excess Business Loss
+		this.lines["08p"].value	= 0;									// Business Loss
 		this.lines["08q"].value	= 0;									// Taxable ABLE
 		this.lines["08r"].value	= 0;									// Scholarship
 		// Non-taxable Medicaid Waiver Payment (Subtract)
@@ -147,7 +147,7 @@ export class F1040S1 extends TaxForm {
 		this.lines["20"].value	= 0;									// IRA Deduction
 		this.lines["21"].value	= 0;									// Student Loan
 		this.lines["22"].value	= 0;									// Reserved
-		this.lines["23"].value	= 0;									// Archer MSA Deduction
+		this.lines["23"].value	= 0;									// Archer MSA
 		this.lines["24a"].value	= 0;									// Jury Duty Pay
 		this.lines["24b"].value	= 0;									// Rental Expense
 		this.lines["24c"].value	= 0;									// Non-taxable USOC

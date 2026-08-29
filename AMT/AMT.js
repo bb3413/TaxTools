@@ -58,12 +58,12 @@ function getInputs() {
 	const inputs = {};
 
 	// Input fields
-	inputs.tax_year					= HTML.getUserInput("tax-year");
-	inputs.filing_status			= HTML.getUserInput("FilingStatus", "text").toUpperCase();
-	inputs.taxpayers_birthday		= HTML.getUserInput("TaxpayersBirthday", "text");
-	inputs.spouses_birthday			= HTML.getUserInput("SpousesBirthday", "text");
-	inputs.is_taxpayer_blind		= HTML.getUserInput("TaxpayerIsBlind");
-	inputs.is_spouse_blind			= HTML.getUserInput("SpouseIsBlind");
+	inputs.tax_year				= HTML.getUserInput("tax-year");
+	inputs.filing_status		= HTML.getUserInput("FilingStatus", "text").toUpperCase();
+	inputs.taxpayers_birthday	= HTML.getUserInput("TaxpayersBirthday", "text");
+	inputs.spouses_birthday		= HTML.getUserInput("SpousesBirthday", "text");
+	inputs.is_taxpayer_blind	= HTML.getUserInput("TaxpayerIsBlind");
+	inputs.is_spouse_blind		= HTML.getUserInput("SpouseIsBlind");
 
 	// Input fields
 	inputs.agi								= HTML.getUserInput("AGI");
@@ -81,8 +81,10 @@ function getInputs() {
 	inputs.depletion						= HTML.getUserInput("Depletion");
 	inputs.net_operating_loss				= HTML.getUserInput("NetOperatingLoss");
 	inputs.alternate_net_operating_loss		= HTML.getUserInput("AlternateNetOperatingLoss");
-	inputs.private_activity_bonds_interest	= HTML.getUserInput("PrivateActivityBondsInterest");
-	inputs.qualified_small_business_stock	= HTML.getUserInput("QualifiedSmallBusinessStock");
+	inputs.private_activity_bonds_interest =
+		HTML.getUserInput("PrivateActivityBondsInterest");
+	inputs.qualified_small_business_stock =
+		HTML.getUserInput("QualifiedSmallBusinessStock");
 	inputs.incentive_stock_options			= HTML.getUserInput("IncentiveStockOptions");
 	inputs.estates_and_trusts				= HTML.getUserInput("EstatesAndTrusts");
 	inputs.disposition_of_property			= HTML.getUserInput("DispositionOfProperty");
@@ -99,6 +101,7 @@ function getInputs() {
 
 	return inputs;
 }
+
 function mapInputValues(inputs) {
 	const f1040		= TaxFormObj.createForm("F1040");
 	const f1040S1	= TaxFormObj.createForm("F1040S1");

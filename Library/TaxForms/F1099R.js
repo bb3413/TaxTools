@@ -209,7 +209,8 @@ export class F1099R extends TaxForm {
 
 		const element = document.getElementById(`f1099r-${uid}-details`);
 		if (!element) {
-			throw new Error(`F1099R.getUserInput(): Element not found: f1099r-${uid}-details`);
+			throw new Error(
+				`F1099R.getUserInput(): Element not found: f1099r-${uid}-details`);
 		}
 
 		let inputs = {};
@@ -264,7 +265,8 @@ export class F1099R extends TaxForm {
 	constructor(formname) {
 		Debug.enter("F1099R.Constructor()");
 		super(formname);
-		this.title = `1099-R - Distributions from Pensions, Annuities, Retirement Plans, etc.`;
+		this.title =
+			`1099-R - Distributions from Pensions, Annuities, Retirement Plans, etc.`;
 		this.isSingleton = false;
 
 		this.lines["payer"]		= new Line("Payer information");
