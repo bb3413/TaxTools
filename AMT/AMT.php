@@ -15,20 +15,22 @@
 
 		<h1 class="title">Alternative Minimum Tax Calculator</h1>
 
-		<p>The Alternative Minimum Tax (AMT) is a separate tax calculation that is intended to prevent
-		high-income taxpayers from not paying their fair share of taxes through an excess use of deductions
-		and credits. Taxpayers with an AGI greater than the AMT exemption are required to calculate
-		their income tax using both the standard income tax calculation and the AMT calculation and pay
-		the higher amount.</p>
+		<p>The Alternative Minimum Tax (AMT) is a separate tax calculation that is intended
+		to prevent high-income taxpayers from not paying their fair share of taxes through
+		an excess use of deductions and credits. Taxpayers with an AGI greater than the AMT
+		exemption are required to calculate their income tax using both the standard income
+		tax calculation and the AMT calculation and pay the higher amount.</p>
 
-		<p>The AMT is calculated by starting with the adjusted gross income (AGI) from form 1040, line
-		11b, then adding back certain deductions and adding some additional income. This amount is the AMT
-		Income. Then, an AMT Exemption amount is determined based on the AMT Income. The AMT Income
-		minus the AMT Exemption is taxed at 26% or 28%, which is the amount of the AMT.</p>
+		<p>The AMT is calculated by starting with the adjusted gross income (AGI) from form
+		1040, line 11b, then adding back certain deductions and adding some additional
+		income. This amount is the AMT Income. Then, an AMT Exemption amount is determined
+		based on the AMT Income. The AMT Income minus the AMT Exemption is taxed at 26% or
+		28%, which is the amount of the AMT.</p>
 
-		<p>To calculate the AMT using this tool, enter information from the federal tax return in the green
-		fields. The amount of the AMT, if any, will be in the blue field at the bottom. Click
-		<a href="AMT-Help.html"> this link</a> for more help with this tool.</p>
+		<p>To calculate the AMT using this tool, enter information from the federal tax
+		return in the green fields. The amount of the AMT, if any, will be in the blue field
+		at the bottom. Click <a href="AMT-Help.html"> this link</a> for more help with this
+		tool.</p>
 
 		<h2>Taxpayer Information</h2>
 		<div class="table-3">
@@ -197,13 +199,16 @@
 		<h2>Alternative Mimimum Tax</h2>
 		<div class="table-2">
 			<p>AMT Income</p>
-			<p class="trigger output-field" id="AMTIncome" tooltipid="#AMTIncomeTT">0</p>
+			<p class="trigger output-field" id="AMTIncome"
+				tooltipid="#AMTIncomeTT">0</p>
 
 			<p>AMT Exemption</p>
-			<p class="trigger output-field" id="AMTExemption" tooltipid="#AMTExemptionTT">0</p>
+			<p class="trigger output-field" id="AMTExemption"
+				tooltipid="#AMTExemptionTT">0</p>
 
 			<p>Alternative Minimum Tax (AMT)</p>
-			<p class="trigger output-field" id="AMT" tooltipid="#AMTTT">0</p>
+			<p class="trigger output-field" id="AMT"
+				tooltipid="#AMTTT">0</p>
 		</div>
 
 		<!-- Display area for error messages. -->

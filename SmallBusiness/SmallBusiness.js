@@ -16,15 +16,16 @@ function changeHandler(event) {
 		Debug.reset();
 		TaxFormObj.reset();
 
-		const inputs = getInputs();								// Get inputs from the web page
-		TaxTable.getTaxTable(inputs.tax_year);					// Initialize tax tables; ignore return value.
-		mapInputValues(inputs);									// Map input values to tax forms
-		putOutputs(inputs);										// Put results on web page
-		Debug.turnOn();											// Put debug info on web page if enabled
+		const inputs = getInputs();							// Get inputs from the web page
+		TaxTable.getTaxTable(inputs.tax_year);				// Initialize tax tables
+		mapInputValues(inputs);								// Map input values to tax forms
+		putOutputs(inputs);									// Put results on web page
+		Debug.turnOn();										// Put debug info on web page
 	} catch (error) {
 		HTML.putElementValue("error-message-output", error);
 		console.log("Stack trace:", error.stack);
-		document.getElementById("error-message-output").scrollIntoView({behavior: 'smooth', block: 'start'});
+		document.getElementById("error-message-output")
+			.scrollIntoView({behavior: 'smooth', block: 'start'});
 	}
 }
 
@@ -74,7 +75,7 @@ function getInputs() {
 function mapInputValues(inputs) {
 	const tt		= TaxTable.getTaxTable();
 	const f1040SC	= TaxFormObj.createForm("F1040SC");
-	const f7206		= TaxFormObj.createForm("F7206");	// Self-employment Health Insurance Deduction
+	const f7206		= TaxFormObj.createForm("F7206");	// SE Health Insurance Deduction
 
 	// Income
 	f1040SC.lines["01"].user_value	= inputs.sales;
@@ -132,11 +133,15 @@ function putOutputs(inputs) {
 	HTML.putUserOutput("QBI_Deduction",					qbi_deduction);
 	HTML.putUserOutput("SelfEmploymentTaxAdjustment",	Math.round(se_tax / 2));
 
-	HTML.putUserOutput("NetProfitAfterSEHI",			Math.max(0, net_profit - sehi_adjustment));
-	HTML.putUserOutput("SEHI_Adjustment",				sehi_adjustment);
-	HTML.putUserOutput("MedicalDeduction",				Math.max(0, inputs.medical_insurance - sehi_adjustment));
+	HTML.putUserOutput("NetProfitAfterSEHI",
+		Math.max(0, net_profit - sehi_adjustment));
+	HTML.putUserOutput("SEHI_Adjustment",
+		sehi_adjustment);
+	HTML.putUserOutput("MedicalDeduction",
+		Math.max(0, inputs.medical_insurance - sehi_adjustment));
 
-	HTML.putUserOutput("TotalExpenses",					TaxFormObj.getValue("F1040SC", "28"));
+	HTML.putUserOutput("TotalExpenses",
+		TaxFormObj.getValue("F1040SC", "28"));
 }
 
 document.addEventListener("DOMContentLoaded", () => {

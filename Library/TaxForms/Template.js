@@ -15,13 +15,15 @@ const HTML_FORM = `
 					<p class="lineno">01a</p>
 					<p class="description">Xxxxxxxxxxxxxxxxxxxxxx</p>
 					<p class="lineno">01a</p>
-					<input class="output-field" readonly type="text" id="template-XX-01a" size="10" placeholder="0" />
+					<input class="output-field" readonly type="text" id="template-XX-01a"
+						size="10" placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-lno-value-lno-value">
 					<p class="lineno">02a</p>
 					<p class="description">Xxxxxxxxxxxxxxxxxxxxxx</p>
 					<p class="lineno">02a</p>
-					<input class="output-field" readonly type="text" id="template-XX-02a" size="10" placeholder="0" />
+					<input class="output-field" readonly type="text" id="template-XX-02a"
+						size="10" placeholder="0" />
 					<p class="notused"></p>
 					<p class="notused"></p>
 				</div>
@@ -29,10 +31,12 @@ const HTML_FORM = `
 					<p class="lineno">03a</p>
 					<p class="description">Xxxxxxxxxxxxxxxxxxxxxx</p>
 					<p class="lineno">03a</p>
-					<input class="output-field" readonly type="text" id="template-XX-032a" size="10" placeholder="0" />
+					<input class="output-field" readonly type="text" id="template-XX-032a"
+						size="10" placeholder="0" />
 					<p class="label">Xxxxxxxxxxxxxxxxxxxxxx</p>
 					<p class="lineno">03b</p>
-					<input class="output-field" readonly type="text" id="template-XX-03b" size="10" placeholder="0" />
+					<input class="output-field" readonly type="text" id="template-XX-03b"
+						size="10" placeholder="0" />
 				</div>
 				<div>&nbsp;</div>
 			</div>
@@ -55,7 +59,8 @@ export class Template extends TaxForm {
 
 	static getUserInput(uid) {
 		//
-		// Create a new template instance and initialize it with information from the template web page.
+		// Create a new template instance and initialize it with information from the
+		// template web page.
 		//
 		if (!uid) {
 			throw new Error(`Template.getUserInput(): UID is undefined.`);
@@ -63,7 +68,8 @@ export class Template extends TaxForm {
 
 		const element = document.getElementById(`template-${uid}-details`);
 		if (!element) {
-			throw new Error(`Template.getUserInput(): Element not found: template-${uid}-details`);
+			throw new Error(
+				`Template.getUserInput(): Element not found: template-${uid}-details`);
 		}
 
 		let inputs = {};

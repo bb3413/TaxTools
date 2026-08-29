@@ -21,7 +21,8 @@ function addForm(formname, form) {
 	}
 
 	if ((form_list.length > 0) && TaxFormName.isSingleton(formname)) {
-		throw new Error(`TaxFormObj.addForm(): Singleton form ${formname} already exists; cannot add.`)
+		throw new Error(
+			`TaxFormObj.addForm(): Singleton form ${formname} already exists; cannot add.`);
 		return;
 	}
 
@@ -57,7 +58,7 @@ export class TaxFormObj {
 				TaxFormObj.getValue("F1040S1", "08r") +		// Scholarship
 				TaxFormObj.getValue("F1040S1", "08t") +		// Pension
 				TaxFormObj.getValue("F1040S1", "08u") -		// Wages earned while incarcerated
-				TaxFormObj.getValue("F1040S1", "015");		// Deductible part of self-employment tax
+				TaxFormObj.getValue("F1040S1", "015");		// Deductible part of SE tax
 	}
 
 	static formsInPrintOrder() {
@@ -104,7 +105,8 @@ export class TaxFormObj {
 		let form_list = instances[formname];
 		if (form_list) {
 			if (form_list.length > 1) {
-				throw new Error(`TaxFormObj.getForm(): More than one instance of form ${formname}.`);
+				throw new Error(
+					`TaxFormObj.getForm(): More than one instance of form ${formname}.`);
 			} else {
 				instance = form_list[0];
 			}
@@ -220,8 +222,8 @@ export class TaxFormObj {
 				TaxFormObj.getValue("F1040S1", "03" ) -		// Business income
 				TaxFormObj.getValue("F1040S1", "06" ) -		// Farm income
 				TaxFormObj.getValue("F1040S1", "08a") -		// Net operating loss
-				TaxFormObj.getValue("F1040S1", "08d") -		// Foreign earned income exclusion from Form 2555
+				TaxFormObj.getValue("F1040S1", "08d") -		// Foreign earned income exclusion
 				TaxFormObj.getValue("F1040S1", "08u") -		// Wages earned while incarcerated
-				TaxFormObj.getValue("F1040S1", "18" ) );	// Penalty on early withdrawal of savings
+				TaxFormObj.getValue("F1040S1", "18" ) );	// Penalty on early withdrawal
 	}
 }

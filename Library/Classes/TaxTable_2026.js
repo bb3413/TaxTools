@@ -27,66 +27,66 @@ export class TaxTable_2026 extends TaxTableTmpl {
 	// This table contains constant tax values.
 	//
 	values = {
-		// 	Name								SINGLE			HOH			MFJ			QSS			MFS
-		"BusinessMileage":						[ 0.725,		0.725,		0.725,		0.725,		0.725		],
-		"CharityMileage":						[ 0.14,			0.14,		0.14,		0.14,		0.14		],
-		"MedicalMileage":						[ 0.205,		0.205,		0.205,		0.205,		0.21		],
+		// 	Name							SINGLE			HOH			MFJ			QSS			MFS
+		"BusinessMileage":					[ 0.725,		0.725,		0.725,		0.725,		0.725		],
+		"CharityMileage":					[ 0.14,			0.14,		0.14,		0.14,		0.14		],
+		"MedicalMileage":					[ 0.205,		0.205,		0.205,		0.205,		0.21		],
 
-		"MaxCapitalLoss":						[ -3000,		-3000,		-3000,		-3000,		-1500		],
-		"MaxEducatorExpenses":					[ 300,			300,		600,		300,		300			],	// TY25
-		"MaxTaxedSS":							[ 176100,		176100,		176100,		176100,		176100		],	// TY25
-		"MaxSALT":								[ 40000,		40000,		40000,		40000,		20000		],	// TY25
-		"MaxStudentLoanInterest":				[ 2500,			2500,		2500,		2500,		0			],	// TY25
+		"MaxCapitalLoss":					[ -3000,		-3000,		-3000,		-3000,		-1500		],
+		"MaxEducatorExpenses":				[ 300,			300,		600,		300,		300			],	// TY25
+		"MaxTaxedSS":						[ 176100,		176100,		176100,		176100,		176100		],	// TY25
+		"MaxSALT":							[ 40000,		40000,		40000,		40000,		20000		],	// TY25
+		"MaxStudentLoanInterest":			[ 2500,			2500,		2500,		2500,		0			],	// TY25
 
-		// OBBA deductions						SINGLE			HOH			MFJ			QSS			MFS
-		"MaxCarLoanInterestDeduction":			[ 10000,		10000,		10000,		10000,		10000		],	// TY25
-		"CarLoanInterestDeductionPhaseOut":		[ 100000,		100000,		200000,		100000,		100000		],	// TY25
-		"MaxOvertimeDeduction":					[ 12500,		12500,		25000,		12500,		0			],	// TY25
-		"OvertimeDeductionPhaseOut":			[ 150000,		150000,		300000,		150000,		150000		],	// TY25
-		"MaxTipsDeduction":						[ 25000,		25000,		25000,		25000,		0			],	// TY25
-		"TipsDeductionPhaseOut":				[ 150000,		150000,		300000,		150000,		150000		],	// TY25
-		"MaxSeniorDeduction":					[ 6000,			6000,		6000,		6000,		0			],	// TY25
-		"SeniorDeductionPhaseOut":				[ 75000,		75000,		150000,		75000,		75000		],	// TY25
+		// OBBA deductions					SINGLE			HOH			MFJ			QSS			MFS
+		"MaxCarLoanInterestDeduction":		[ 10000,		10000,		10000,		10000,		10000		],	// TY25
+		"CarLoanInterestDeductionPhaseOut":	[ 100000,		100000,		200000,		100000,		100000		],	// TY25
+		"MaxOvertimeDeduction":				[ 12500,		12500,		25000,		12500,		0			],	// TY25
+		"OvertimeDeductionPhaseOut":		[ 150000,		150000,		300000,		150000,		150000		],	// TY25
+		"MaxTipsDeduction":					[ 25000,		25000,		25000,		25000,		0			],	// TY25
+		"TipsDeductionPhaseOut":			[ 150000,		150000,		300000,		150000,		150000		],	// TY25
+		"MaxSeniorDeduction":				[ 6000,			6000,		6000,		6000,		0			],	// TY25
+		"SeniorDeductionPhaseOut":			[ 75000,		75000,		150000,		75000,		75000		],	// TY25
 
-		// Non-refundable credits				SINGLE			HOH			MFJ			QSS			MFS
-		"MaxAmericanOppCreditNoRefund":			[ MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	0			],
-		"MaxChildAndDependentCareCredit":		[ MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	0			],
-		"MaxChildTaxCredit":					[ MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR	],
-		"MaxForeignTaxCredit":					[ 300,			300,		600,		300,		300			],	// TY25
-		"MaxLifetimeLearningCredit":			[ 2000,			2000,		2000,		2000,		0			],	// TY25
-		"MaxResidentialEnergyCredit":			[ MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR	],
-		"MaxRetirementSavingsCredit":			[ 1000,			1000,		2000,		1000,		1000		],	// TY25
+		// Non-refundable credits			SINGLE			HOH			MFJ			QSS			MFS
+		"MaxAmericanOppCreditNoRefund":		[ MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	0			],
+		"MaxChildAndDependentCareCredit":	[ MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	0			],
+		"MaxChildTaxCredit":				[ MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR	],
+		"MaxForeignTaxCredit":				[ 300,			300,		600,		300,		300			],	// TY25
+		"MaxLifetimeLearningCredit":		[ 2000,			2000,		2000,		2000,		0			],	// TY25
+		"MaxResidentialEnergyCredit":		[ MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR	],
+		"MaxRetirementSavingsCredit":		[ 1000,			1000,		2000,		1000,		1000		],	// TY25
 
-		// Refundable credits					SINGLE			HOH			MFJ			QSS			MFS
-		"MaxAmericanOppCreditRefundable":		[ MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	0			],
-		"MaxCreditForOtherDependents":			[ MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR	],
-		"MaxEarnedIncomeCredit":				[ 61555,		61555,		68675,		61555,		0			],	// TY25
-		"MaxPremiumTaxCredit":					[ MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	0			],
+		// Refundable credits				SINGLE			HOH			MFJ			QSS			MFS
+		"MaxAmericanOppCreditRefundable":	[ MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	0			],
+		"MaxCreditForOtherDependents":		[ MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR	],
+		"MaxEarnedIncomeCredit":			[ 61555,		61555,		68675,		61555,		0			],	// TY25
+		"MaxPremiumTaxCredit":				[ MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	MAX_DOLLAR,	0			],
 
-		// AMT									SINGLE			HOH			MFJ			QSS			MFS
-		"AMT_Exemption":						[ 90100,		90100,		140200,		140200,		70100		],
-		"AMT_ExemptionPhaseOut":				[ 500000,		500000,		1000000,	1000000,	500000		],
+		// AMT								SINGLE			HOH			MFJ			QSS			MFS
+		"AMT_Exemption":					[ 90100,		90100,		140200,		140200,		70100		],
+		"AMT_ExemptionPhaseOut":			[ 500000,		500000,		1000000,	1000000,	500000		],
 
-		// Capital gains ranges					SINGLE			HOH			MFJ			QSS			MFS
-		"CG_15PercentRangeStart":				[ 49450,		66200,		98900,		98900,		49450		],
-		"CG_20PercentRangeStart":				[ 545500,		579600,		613700,		613700,		306850		],
+		// Capital gains ranges				SINGLE			HOH			MFJ			QSS			MFS
+		"CG_15PercentRangeStart":			[ 49450,		66200,		98900,		98900,		49450		],
+		"CG_20PercentRangeStart":			[ 545500,		579600,		613700,		613700,		306850		],
 
-		// Social Security 50% taxable range	SINGLE			HOH			MFJ			QSS			MFS
-		"SS_50PercentRangeStart":				[ 25000,		25000,		32000,		25000,		25000		],	// TY25
-		"SS_50PercentRangeEnd":					[ 34000,		34000,		44000,		34000,		34000		],	// TY25
-		"SS_50PercentRangeLength":				[ 9000,			9000,		12000,		9000,		9000		],	// TY25
+		// Social Security 50% range		SINGLE			HOH			MFJ			QSS			MFS
+		"SS_50PercentRangeStart":			[ 25000,		25000,		32000,		25000,		25000		],	// TY25
+		"SS_50PercentRangeEnd":				[ 34000,		34000,		44000,		34000,		34000		],	// TY25
+		"SS_50PercentRangeLength":			[ 9000,			9000,		12000,		9000,		9000		],	// TY25
 
-		// Standard deduction and extra for 65 or blind
-		"StandardDeduction":					[ 16100,		24150,		32200,		32200,		16100		],
-		"StandardDeductionExtra":				[ 2050,			2050,		1650,		1650,		1650		],
+		// Standard deduction
+		"StandardDeduction":				[ 16100,		24150,		32200,		32200,		16100		],
+		"StandardDeductionExtra":			[ 2050,			2050,		1650,		1650,		1650		],
 
-		// California constants					SINGLE			HOH			MFJ			QSS			MFS
-		"CA_PersonalExemption":					[ 153,			153,		153,		153,		153			],	// TY25
-		"CA_DependentExemption":				[ 475,			475,		475,		475,		475			],	// TY25
-		"CA_StandardDeduction":					[ 5706,			11412,		11412,		11412,		5706		],	// TY25
-		"CA_BaseSalesTax":						[ 7.25,			7.25,		7.25,		7.25,		7.25		],	// TY25
-		"CA_RentersCredit":						[ 60,			120,		120,		120,		60			],	// TY25
-		"CA_HiIncPhaseout":						[ 252203,		378310,		504411,		504411,		252203		],	// TY25
+		// California constants				SINGLE			HOH			MFJ			QSS			MFS
+		"CA_PersonalExemption":				[ 153,			153,		153,		153,		153			],	// TY25
+		"CA_DependentExemption":			[ 475,			475,		475,		475,		475			],	// TY25
+		"CA_StandardDeduction":				[ 5706,			11412,		11412,		11412,		5706		],	// TY25
+		"CA_BaseSalesTax":					[ 7.25,			7.25,		7.25,		7.25,		7.25		],	// TY25
+		"CA_RentersCredit":					[ 60,			120,		120,		120,		60			],	// TY25
+		"CA_HiIncPhaseout":					[ 252203,		378310,		504411,		504411,		252203		],	// TY25
 	};
 
 	//

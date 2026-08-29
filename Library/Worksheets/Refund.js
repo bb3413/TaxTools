@@ -20,7 +20,7 @@ export class Refund extends TaxForm {
 
 		// Inputs
 		this.lines["sched_a_5d"]		= new Line("Previous Tax Year, State and Local Taxes");
-		this.lines["sched_a_5e"]		= new Line("Previous Tax Year, Amount Limited by SALT Cap");
+		this.lines["sched_a_5e"]		= new Line("Previous Tax Year, Limited by SALT Cap");
 		this.lines["itemized_deductions"] = new Line("Previous Tax Year, Itemized Deductions");
 		this.lines["refund"]			= new Line("State Tax Refund");
 
@@ -53,9 +53,9 @@ export class Refund extends TaxForm {
 		const tp = Taxpayer.getTaxpayer();
 
 		// Inputs
-		this.lines["sched_a_5d"].value			= 0;	// Previous Tax Year, State and Local Taxes
-		this.lines["sched_a_5e"].value			= 0;	// Previous Tax Year, Amount Limited by SALT Cap
-		this.lines["itemized_deductions"].value	= 0;	// Previous Tax Year, Itemized Deductions
+		this.lines["sched_a_5d"].value			= 0;	// Previous Year, State and Local Taxes
+		this.lines["sched_a_5e"].value			= 0;	// Previous Year, Limited by SALT Cap
+		this.lines["itemized_deductions"].value	= 0;	// Previous Year, Itemized Deductions
 		this.lines["refund"].value				= Math.min(	// State Tax Refund
 													TaxFormObj.getValue("F1099G", "02"),
 													this.line("sched_a_5d"));
@@ -63,30 +63,34 @@ export class Refund extends TaxForm {
 		this.lines["taxable_amount"].value		= 0;
 		this.lines["explanation"].value			= 0;
 
-		// When filing MFS, if one spouse itemizes then the other spouse is required to itemize as well. Since
-		// it is only necessary to determine if a tax refund is taxable if the taxpayer itemized, we can assume
-		// that if the filing status is MFS, the taxpayer is required to itemize.
+		// When filing MFS, if one spouse itemizes then the other spouse is required to
+		// itemize as well. Since it is only necessary to determine if a tax refund is
+		// taxable if the taxpayer itemized, we can assume that if the filing status is MFS,
+		// the taxpayer is required to itemize.
 		let spouse_itemized = true;
 
-		this.lines["01"].value = this.line("refund");				// Income tax refund from 1099-G
-		if (this.line("sched_a_5d") > this.line("sched_a_5e")) {	// Total taxes > Taxes limited by SALT cap
-			// SALT taxes were limited by SALT cap.
-			this.lines["02"].value = this.subtract("sched_a_5d", "sched_a_5e");	// Amount of taxes limited by SALT cap
+		this.lines["01"].value = this.line("refund");				// Refund from 1099-G
+		if (this.line("sched_a_5d") > this.line("sched_a_5e")) {	// Taxes > SALT cap
+			// Amount of taxes limited by SALT cap
+			this.lines["02"].value = this.subtract("sched_a_5d", "sched_a_5e");
 
 			if (this.line("01") > this.line("02")) {
-				this.lines["03"].value	= this.subtract("01", "02");	// Amount of refund not covered by excess SALT.
-				this.lines["explanation"].value	= "Part of refund is less than the amount of the state and " +
-						"local taxes that are over the SALT cap. The remainder of the refund is taxable.";
+				// Amount of refund not covered by excess SALT.
+				this.lines["03"].value	= this.subtract("01", "02");
+				this.lines["explanation"].value	= "Part of refund is less than the amount " +
+					"of the state and local taxes that are over the SALT cap. The " +
+					"remainder of the refund is taxable.";
 			} else {
-				this.lines["explanation"].value	= "All of refund is less than the amount of state and " +
-						" local taxes that are over the SALT cap. The refund is not taxable.";
+				this.lines["explanation"].value	= "All of refund is less than the amount " +
+					"of state and local taxes that are over the SALT cap. The refund is not " +
+					"taxable.";
 				return;
 			}
 		} else {
 			// SALT taxes were not limited by SALT cap.
 			this.lines["03"].value	= this.line("01");
-			this.lines["explanation"].value	= "The state and local taxes are not limited by the SALT " +
-						"cap. The refund is taxable.";
+			this.lines["explanation"].value	= "The state and local taxes are not limited " +
+				"by the SALT cap. The refund is taxable.";
 		}
 
 		this.lines["04"].value = this.line("itemized_deductions");
@@ -99,19 +103,22 @@ export class Refund extends TaxForm {
 											tp.taxpayers_age, tp.spouses_age,
 											tp.is_taxpayer_blind, tp.is_spouse_blind);
 			if (this.line("07") < this.line("04")) {
-				this.lines["08"].value	= this.subtract("04", "07");	// Itemized deductions - standard deduction
+				// Itemized deductions - standard deduction
+				this.lines["08"].value	= this.subtract("04", "07");
 			} else {
-				this.lines["explanation"].value	= "Itemized deductions were less than the standard " +
-						"deduction. The taxpayer could have used the standard deduction.";
+				this.lines["explanation"].value	= "Itemized deductions were less than " +
+						"the standard deduction. The taxpayer could have used the " +
+						"standard deduction.";
 				return;
 			}
 		}
 
-		if (this.line("08") < this.line("03")) {	// Itemized deductions - standard deduction < taxable part of refund?
+		// Itemized deductions - standard deduction < taxable part of refund?
+		if (this.line("08") < this.line("03")) {	
 			this.lines["09"].value = this.line("08");
-			this.lines["explanation"].value	= "Taxable part of refund was greater than the difference " +
-						"between itemized and standard deductions, so taxable amount is limited to " +
-						"that difference.";
+			this.lines["explanation"].value	= "Taxable part of refund was greater than " +
+						"the difference between itemized and standard deductions, so " +
+						"taxable amount is limited to that difference.";
 		} else {
 			this.lines["09"].value = this.line("03");
 			// Line =_3 explanation was set above.

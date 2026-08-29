@@ -46,37 +46,38 @@ export class F1040SSE extends TaxForm {
 		Debug.enter("F1040SSE.calculate()");
 		this.calculated = true;
 
-		this.lines["01a"].value		= 0;							// Ignore - for use with farm income
-		this.lines["01b"].value		= 0;							// Ignore - for use with farm income
-		this.lines["02"].value		= TaxFormObj.getValue("F1040SC", "31");	// Net profit from business
-		this.lines["03"].value		= this.add("01a", "01b", "02");	// Total self-imployment income
-		this.lines["04a"].value		= Math.round((this.line("03") > 0) ? this.line("03") * 0.9235 : this.line("03"));	// 92.35%
+		this.lines["01a"].value		= 0;							// Farm income
+		this.lines["01b"].value		= 0;							// Farm income
+		this.lines["02"].value		= TaxFormObj.getValue("F1040SC", "31");	// Net profit
+		this.lines["03"].value		= this.add("01a", "01b", "02");	// Total income
+		this.lines["04a"].value		= 
+			Math.round((this.line("03") > 0) ? this.line("03") * 0.9235 : this.line("03"));
 		this.lines["04b"].value		= 0;							// Ignore
 		this.lines["04c"].value		= this.add("04a", "04b");
 		if (this.line("04c") < 400) {
-			return;													// No self-employment tax due
+			return;													// No SE tax
 		}
-		this.lines["05a"].value		= 0;							// Ignore - church employee income
+		this.lines["05a"].value		= 0;							// Church employee income
 		this.lines["05b"].value		= Math.round(this.line("05a") * .9235);	// 92.35%
 		if (this.line("05b") < 100) {
 			this.lines["05b"].value	= 0;
 		}
 		this.lines["06"].value		= this.add("04c", "05b");
-		this.lines["07"].value		= 176100;						// Maximum amount of wages subject to SS tax
+		this.lines["07"].value		= 176100;						// Wages subject to SS tax
 		this.lines["08a"].value		= TaxFormObj.getValue("W2", "03") +
-										TaxFormObj.getValue("W2", "07");	// Boxes 3 and 7 on W-2
-		this.lines["08b"].value		= 0;							// Unreported tips subject to ss tax
-		this.lines["08c"].value		= 0;							// Wages subject to ss tax
-		this.lines["08d"].value		= this.add("08a", "08b", "08c");// Wages outside business subject to SS tax
+										TaxFormObj.getValue("W2", "07");
+		this.lines["08b"].value		= 0;							// Tips subject to SS tax
+		this.lines["08c"].value		= 0;							// Wages subject to SS tax
+		this.lines["08d"].value		= this.add("08a", "08b", "08c");// Wages subject to SS tax
 		this.lines["09"].value		= this.subtract("07", "08d");
 		this.lines["10"].value		= 0;
 		if (this.line("09") <= 0) {
 			this.lines["10"].value	= 0;
 		} else {
-			this.lines["10"].value	= Math.round(this.min("06", "09") * 0.124);	// 12.4% Social Security tax
+			this.lines["10"].value	= Math.round(this.min("06", "09") * 0.124);	// SS tax
 		}
-		this.lines["11"].value		= Math.round(this.min("06") * 0.029);// 2.9% Medicatre tax
-		this.lines["12"].value		= Math.round(this.add("10", "11"));	// Social Security + Medicare = SE Tax
+		this.lines["11"].value		= Math.round(this.min("06") * 0.029);// Medicatre tax
+		this.lines["12"].value		= Math.round(this.add("10", "11"));	// SS+Medicare = SE Tax
 		this.lines["13"].value		= Math.round(this.line("12") / 2);	// SE Tax Deduction
 
 		Debug.exit("F1040SSE.calculate()");

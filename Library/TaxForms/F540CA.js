@@ -187,7 +187,7 @@ export class F540CA extends TaxForm {
 		this.lines["B-08rC"]	= new Line("Add to Scholarship Not on W-2");
 
 		this.lines["B-08sA"]	= new Line("Non-taxable Medicaid Waiver Payment");
-		this.lines["B-08sB"]	= new Line("Subtract from Non-taxable Medicaid Waiver Payment");
+		this.lines["B-08sB"]	= new Line("Subtract from Non-taxable MWP");
 		this.lines["B-08sC"]	= new Line("Add to Non-taxable Medicaid Waiver Payment");
 
 		this.lines["B-08tA"]	= new Line("Pension from Non-qualified Plan");
@@ -296,7 +296,7 @@ export class F540CA extends TaxForm {
 		this.lines["C-24dC"]	= new Line("Add to Reforestation Expenses");
 
 		this.lines["C-24eA"]	= new Line("Repayment of Unemployment Expenses");
-		this.lines["C-24eB"]	= new Line("Subtract from Repayment of Unemployment Expenses");
+		this.lines["C-24eB"]	= new Line("Subtract from Repayment of Unemployment Expense");
 		this.lines["C-24eC"]	= new Line("Add to Repayment of Unemployment Expenses");
 
 		this.lines["C-24fA"]	= new Line("Contribution to 501(c) Pension");
@@ -316,7 +316,7 @@ export class F540CA extends TaxForm {
 		this.lines["C-24iC"]	= new Line("Add to Attorney Fees");
 
 		this.lines["C-24jA"]	= new Line("Foreign Earned Income Housing Deduction");
-		this.lines["C-24jB"]	= new Line("Subtract from Foreign Earned Income Housing Deduction");
+		this.lines["C-24jB"]	= new Line("Subtract from Foreign Earned Income Housing");
 		this.lines["C-24jC"]	= new Line("Add to Foreign Earned Income Housing Deduction");
 
 		this.lines["C-24kA"]	= new Line("Excess Deduction from Form 1041");
@@ -514,7 +514,7 @@ export class F540CA extends TaxForm {
 		// Other Earned Income
 		this.lines["A-01hA"].value	= TaxFormObj.getValue("F1040", "01h");
 		this.lines["A-01hB"].value	= 0;
-		this.lines["A-01hC"].value	= TaxFormObj.getValue("W2", "12W");	// Employer HSA contributions.
+		this.lines["A-01hC"].value	= TaxFormObj.getValue("W2", "12W");	// Employer HSA
 
 		//  Nontaxable Combat Pay
 		this.lines["A-01iA"].value	= 0;	// DO NOT ENTER
@@ -522,11 +522,14 @@ export class F540CA extends TaxForm {
 		this.lines["A-01iC"].value	= 0;
 
 		// Total Earned Income
-		this.lines["A-01zA"].value	= this.add("A-01aA","A-01bA","A-01cA","A-01dA","A-01eA","A-01fA",
+		this.lines["A-01zA"].value	= this.add("A-01aA","A-01bA","A-01cA",
+											   "A-01dA","A-01eA","A-01fA",
 											   "A-01gA","A-01hA","A-01iA");
-		this.lines["A-01zB"].value	= this.add("A-01aB","A-01bB","A-01cB","A-01dB","A-01eB","A-01fB",
+		this.lines["A-01zB"].value	= this.add("A-01aB","A-01bB","A-01cB",
+											   "A-01dB","A-01eB","A-01fB",
 											   "A-01gB","A-01hB","A-01iB");
-		this.lines["A-01zC"].value	= this.add("A-01aC","A-01bC","A-01cC","A-01dC","A-01eC","A-01fC",
+		this.lines["A-01zC"].value	= this.add("A-01aC","A-01bC","A-01cC",
+											   "A-01dC","A-01eC","A-01fC",
 											   "A-01gC","A-01hC","A-01iC");
 
 		// Tax-exempt Interest
@@ -534,7 +537,7 @@ export class F540CA extends TaxForm {
 
 		// Taxable Interest
 		this.lines["A-02bA"].value	= TaxFormObj.getValue("F1040", "02b");
-		this.lines["A-02bB"].value	= TaxFormObj.getValue("F1099INT", "03");	// Interest on US treasury obligations
+		this.lines["A-02bB"].value	= TaxFormObj.getValue("F1099INT", "03");// US interest
 		this.lines["A-02bC"].value	= 0;
 
 		// Qualified Dividends
@@ -579,7 +582,8 @@ export class F540CA extends TaxForm {
 
 		// Taxable Refund
 		this.lines["B-01A"].value	= TaxFormObj.getValue("F1040S1", "01");
-		this.lines["B-01B"].value	= TaxFormObj.getValue("F1040S1", "01");	// Assume it is a CA tax refund.
+		// Assume it is a CA tax refund.
+		this.lines["B-01B"].value	= TaxFormObj.getValue("F1040S1", "01");
 		this.lines["B-01C"].value	= 0;	// DO NOT ENTER
 
 		// Alimony Received
@@ -615,7 +619,7 @@ export class F540CA extends TaxForm {
 		// Net Operating Loss
 		this.lines["B-08aA"].value	= -(TaxFormObj.getValue("F1040S1", "08a"));
 		this.lines["B-08aB"].value	= 0;	// DO NOT ENTER
-		this.lines["B-08aC"].value	= this.line("B-08aA");	// Value from column A as positive number
+		this.lines["B-08aC"].value	= this.line("B-08aA");	// Value from column A
 
 		// Gambling
 		this.lines["B-08bA"].value	= TaxFormObj.getValue("F1040S1", "08b");
@@ -728,20 +732,23 @@ export class F540CA extends TaxForm {
 		this.lines["B-08zC"].value	= 0;
 
 		// Total Other Income (8a-8z)"
-		this.lines["B-09aA"].value	= this.add("B-08aA","B-08bA","B-08cA","B-08dA","B-08eA","B-08fA",
-											   "B-08gA","B-08hA","B-08iA","B-08jA","B-08kA","B-08lA",
-											   "B-08mA","B-08nA","B-08oA","B-08pA","B-08qA","B-08rA",
-											   "B-08sA","B-08tA","B-08uA","B-08vA","B-08zA");
+		this.lines["B-09aA"].value =
+			this.add("B-08aA","B-08bA","B-08cA","B-08dA","B-08eA","B-08fA",
+						"B-08gA","B-08hA","B-08iA","B-08jA","B-08kA","B-08lA",
+						"B-08mA","B-08nA","B-08oA","B-08pA","B-08qA","B-08rA",
+						"B-08sA","B-08tA","B-08uA","B-08vA","B-08zA");
 		// Subtract from Other Income (8a-8z)"
-		this.lines["B-09aB"].value	= this.add("B-08aB","B-08bB","B-08cB","B-08dB","B-08eB","B-08fB",
-											   "B-08gB","B-08hB","B-08iB","B-08jB","B-08kB","B-08lB",
-											   "B-08mB","B-08nB","B-08oB","B-08pB","B-08qB","B-08rB",
-											   "B-08sB","B-08tB","B-08uB","B-08vB","B-08zB");
+		this.lines["B-09aB"].value =
+			this.add("B-08aB","B-08bB","B-08cB","B-08dB","B-08eB","B-08fB",
+						"B-08gB","B-08hB","B-08iB","B-08jB","B-08kB","B-08lB",
+						"B-08mB","B-08nB","B-08oB","B-08pB","B-08qB","B-08rB",
+						"B-08sB","B-08tB","B-08uB","B-08vB","B-08zB");
 		// Add to Other Income (8a-8z)"
-		this.lines["B-09aC"].value	= this.add("B-08aC","B-08bC","B-08cC","B-08dC","B-08eC","B-08fC",
-											   "B-08gC","B-08hC","B-08iC","B-08jC","B-08kC","B-08lC",
-											   "B-08mC","B-08nC","B-08oC","B-08pC","B-08qC","B-08rC",
-											   "B-08sC","B-08tC","B-08uC","B-08vC","B-08zC");
+		this.lines["B-09aC"].value =
+			this.add("B-08aC","B-08bC","B-08cC","B-08dC","B-08eC","B-08fC",
+						"B-08gC","B-08hC","B-08iC","B-08jC","B-08kC","B-08lC",
+						"B-08mC","B-08nC","B-08oC","B-08pC","B-08qC","B-08rC",
+						"B-08sC","B-08tC","B-08uC","B-08vC","B-08zC");
 
 		// Disaster Loss
 		this.lines["B-09b1A"].value	= 0;	// DO NOT ENTER
@@ -759,18 +766,21 @@ export class F540CA extends TaxForm {
 		this.lines["B-09b3C"].value	= 0;	// DO NOT ENTER
 
 		// Total Income
-		this.lines["B-10A"].value	= this.add("A-01zA","A-02bA","A-03bA","A-04bA","A-05bA","A-06bA","A-07aA",
-											   "B-01A", "B-02aA","B-03A", "B-04A", "B-05A", "B-06A", "B-07A",
-											   "B-09aA","B-09b1A","B-09b2A","B-09b3A");
+		this.lines["B-10A"].value =
+			this.add("A-01zA","A-02bA","A-03bA","A-04bA","A-05bA","A-06bA","A-07aA",
+						"B-01A", "B-02aA","B-03A", "B-04A", "B-05A", "B-06A", "B-07A",
+						"B-09aA","B-09b1A","B-09b2A","B-09b3A");
 		// Subtract from Total Income
-		this.lines["B-10B"].value	= this.add("A-01zB","A-02bB","A-03bB","A-04bB","A-05bB","A-06bB","A-07aB",
-											   "B-01B", "B-02aB","B-03B", "B-04B", "B-05B", "B-06B", "B-07B",
-											   "B-09aB","B-09b1B","B-09b2B","B-09b3B",
-											   "B-09b1B","B-09b2B","B-09b3B");
+		this.lines["B-10B"].value =
+			this.add("A-01zB","A-02bB","A-03bB","A-04bB","A-05bB","A-06bB","A-07aB",
+						"B-01B", "B-02aB","B-03B", "B-04B", "B-05B", "B-06B", "B-07B",
+						"B-09aB","B-09b1B","B-09b2B","B-09b3B",
+						"B-09b1B","B-09b2B","B-09b3B");
 		// Add to Total Income
-		this.lines["B-10C"].value	= this.add("A-01zC","A-02bC","A-03bC","A-04bC","A-05bC","A-06bC","A-07aC",
-											   "B-01C", "B-02aC","B-03C", "B-04C", "B-05C", "B-06C", "B-07C",
-											   "B-09aC","B-09b1C","B-09b2C","B-09b3C");
+		this.lines["B-10C"].value =
+			this.add("A-01zC","A-02bC","A-03bC","A-04bC","A-05bC","A-06bC","A-07aC",
+						"B-01C", "B-02aC","B-03C", "B-04C", "B-05C", "B-06C", "B-07C",
+						"B-09aC","B-09b1C","B-09b2C","B-09b3C");
 
 		// Form 1040S1 Adjustments to Income
 
@@ -900,25 +910,31 @@ export class F540CA extends TaxForm {
 		this.lines["C-24zC"].value	= 0;
 
 		// Total Other Adjustments
-		this.lines["C-25A"].value	= this.add("C-24aA","C-24bA","C-24cA","C-24dA","C-24eA","C-24fA",
+		this.lines["C-25A"].value =
+			this.add("C-24aA","C-24bA","C-24cA","C-24dA","C-24eA","C-24fA",
 											   "C-24gA","C-24hA","C-24iA","C-24jA","C-24kA","C-24zA");
-		this.lines["C-25B"].value	= this.add("C-24aB","C-24bB","C-24cB","C-24dB","C-24eB","C-24fB",
-											   "C-24gB","C-24hB","C-24iB","C-24jB","C-24kB","C-24zB");
-		this.lines["C-25C"].value	= this.add("C-24aC","C-24bC","C-24cC","C-24dC","C-24eC","C-24fC",
-											   "C-24gC","C-24hC","C-24iC","C-24jC","C-24kC","C-24zC");
+		this.lines["C-25B"].value =
+			this.add("C-24aB","C-24bB","C-24cB","C-24dB","C-24eB","C-24fB",
+						"C-24gB","C-24hB","C-24iB","C-24jB","C-24kB","C-24zB");
+		this.lines["C-25C"].value =
+			this.add("C-24aC","C-24bC","C-24cC","C-24dC","C-24eC","C-24fC",
+						"C-24gC","C-24hC","C-24iC","C-24jC","C-24kC","C-24zC");
 
 		// (Total Adjustments
-		this.lines["C-26A"].value	= this.add("C-11A","C-12A","C-13A","C-14A","C-15A","C-16A","C-17A",
-											   "C-18A","C-19aA","C-20A","C-21A","C-22A","C-23A","C-25A");
-		this.lines["C-26B"].value	= this.add("C-11B","C-12B","C-13B","C-14B","C-15B","C-16B","C-17B",
-											   "C-18B","C-19aB","C-20B","C-21B","C-22B","C-23B","C-25B");
-		this.lines["C-26C"].value	= this.add("C-11C","C-12C","C-13C","C-14C","C-15C","C-16C","C-17C",
-											   "C-18C","C-19aC","C-20C","C-21C","C-22C","C-23C","C-25C");
+		this.lines["C-26A"].value =
+			this.add("C-11A","C-12A","C-13A","C-14A","C-15A","C-16A","C-17A",
+						"C-18A","C-19aA","C-20A","C-21A","C-22A","C-23A","C-25A");
+		this.lines["C-26B"].value =
+			this.add("C-11B","C-12B","C-13B","C-14B","C-15B","C-16B","C-17B",
+						"C-18B","C-19aB","C-20B","C-21B","C-22B","C-23B","C-25B");
+		this.lines["C-26C"].value =
+			this.add("C-11C","C-12C","C-13C","C-14C","C-15C","C-16C","C-17C",
+						"C-18C","C-19aC","C-20C","C-21C","C-22C","C-23C","C-25C");
 
 		// Income - Adjustments
-		this.lines["C-27A"].value	= this.subtract("B-10A","C-26A");		// (A) Federal AGI
-		this.lines["C-27B"].value	= this.subtract("B-10B","C-26B");		// Subtract from Federal AGI
-		this.lines["C-27C"].value	= this.subtract("B-10C","C-26C");		// Add to Fecderal AGI
+		this.lines["C-27A"].value	= this.subtract("B-10A","C-26A");	// (A) Federal AGI
+		this.lines["C-27B"].value	= this.subtract("B-10B","C-26B");	// Subtract from AGI
+		this.lines["C-27C"].value	= this.subtract("B-10C","C-26C");	// Add to AGI
 		if (this.line("C-27A") !== TaxFormObj.getValue("F1040", "11b")) {
 			Debug.warn("F540CA: AGI does not match.");
 		}
@@ -949,7 +965,8 @@ export class F540CA extends TaxForm {
 		// Taxes You Paid
 		// State and Local Income Tax
 		this.lines["D-05aA"].value	= TaxFormObj.getValue("F1040SA", "05a");
-		this.lines["D-05aB"].value	= TaxFormObj.getValue("F1040SA", "05a") - TaxFormObj.getValue("SalesTax", "08");
+		this.lines["D-05aB"].value	= TaxFormObj.getValue("F1040SA", "05a") -
+										TaxFormObj.getValue("SalesTax", "08");
 		this.lines["D-05aC"].value	= 0;	// DO NOT ENTER
 
 		// Real Estate Tax
@@ -1051,35 +1068,43 @@ export class F540CA extends TaxForm {
 		this.lines["D-16C"].value	= 0;
 
 		// Itemized Deductions
-		this.lines["D-17A"].value	= this.add("D-04A","D-07A","D-10A","D-14A","D-15A","D-16A");
-		this.lines["D-17B"].value	= this.add("D-04B","D-07B","D-10B","D-14B","D-15B","D-16B");
-		this.lines["D-17C"].value	= this.add("D-04C","D-07C","D-10C","D-14C","D-15C","D-16C");
+		this.lines["D-17A"].value	= this.add("D-04A","D-07A","D-10A",
+											   "D-14A","D-15A","D-16A");
+		this.lines["D-17B"].value	= this.add("D-04B","D-07B","D-10B",
+											   "D-14B","D-15B","D-16B");
+		this.lines["D-17C"].value	= this.add("D-04C","D-07C","D-10C",
+											   "D-14C","D-15C","D-16C");
 
 		// CA Itemized Deductions
-		this.lines["D-18"].value	= this.line("D-17A") - this.line("D-17B") + this.line("D-17C");
+		this.lines["D-18"].value	= this.line("D-17A") -
+										this.line("D-17B") +
+										this.line("D-17C");
 
 		// Job Expenses and Miscellaneous Deductions
-		this.lines["D-19"].value	= 0;									// Unreimbursed Employee Expenses
-		this.lines["D-20"].value	= 0;									// Tax Preparation fees
-		this.lines["D-21"].value	= 0;									// Investment Expenses
-		this.lines["D-22"].value	= this.add("D-19","D-20","D-21");		// Total Miscellaneous Deductions
-		this.lines["D-23"].value	= TaxFormObj.getValue("F1040", "11b");		// Federal AGI
-		this.lines["D-24"].value	= Math.max(0, Math.round(this.line("D-23") * 0.02));	// 2% of AGI
-		this.lines["D-25"].value	= this.subtract("D-22","D-24");			// Miscellaneous Deductions
+		this.lines["D-19"].value	= 0;								// Employee Expenses
+		this.lines["D-20"].value	= 0;								// Tax prep fees
+		this.lines["D-21"].value	= 0;								// Investment Expenses
+		this.lines["D-22"].value	= this.add("D-19","D-20","D-21");	// Misc Deductions
+		this.lines["D-23"].value	= TaxFormObj.getValue("F1040", "11b");	// Federal AGI
+		this.lines["D-24"].value	= Math.max(0, Math.round(this.line("D-23") * 0.02));
+		this.lines["D-25"].value	= this.subtract("D-22","D-24");		// Misc Deductions
 		if (this.line("D-24") > this.line("D-22")) {
 			this.lines["D-25"].value = 0;
 		}
-		this.lines["D-26"].value	= this.add("D-18","D-25");				// Itemized Deductions + Misc Deductions
-		this.lines["D-27"].value	= 0;									// Other Adjustments
-		this.lines["D-28"].value	= this.add("D-26","D-27");				// Total Deductions
+		this.lines["D-26"].value	= this.add("D-18","D-25");			// Itemized + Misc
+		this.lines["D-27"].value	= 0;								// Other Adjustments
+		this.lines["D-28"].value	= this.add("D-26","D-27");			// Total Deductions
 
-		if (TaxFormObj.getValue("F1040", "11b") <= tt.getTaxValue("CA_HiIncPhaseout", tp.filing_status)) {
-			this.lines["D-29"].value = this.line("D-28");					// Itemized Deductions
+		if (TaxFormObj.getValue("F1040", "11b") <= 
+			tt.getTaxValue("CA_HiIncPhaseout", tp.filing_status)) {
+			this.lines["D-29"].value = this.line("D-28");				// Itemized Deductions
 		} else {
-			this.lines["D-29"].value = new CA_HiIncDeductions("CA_HiIncDeductions").line("deductions");
+			this.lines["D-29"].value =
+				new CA_HiIncDeductions("CA_HiIncDeductions").line("deductions");
 		}
-		this.lines["D-30"].value	= Math.max(this.line("D-29"),			// Deductions
-										tt.getTaxValue("CA_StandardDeduction", tp.filing_status));
+		this.lines["D-30"].value =
+			Math.max(this.line("D-29"),
+						tt.getTaxValue("CA_StandardDeduction", tp.filing_status));
 
 		Debug.exit("F540CA.calculate()");
 	}

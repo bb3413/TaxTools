@@ -101,92 +101,94 @@ export class F1040S1A extends TaxForm {
 		max_deduction		= tt.getTaxValue("MaxTipsDeduction",		tp.filing_status);
 		start_of_phase_out	= tt.getTaxValue("TipsDeductionPhaseOut",	tp.filing_status);
 
-		this.lines["01"].value	= TaxFormObj.getValue("F1040", "11b");			// Adjusted Gross Income
-		this.lines["02a"].value	= 0;										// Income from Puerto Rico
-		this.lines["02b"].value	= TaxFormObj.getValue("F2555", "45");			// Foreign Earned Income Housing Exclusion
-		this.lines["02c"].value	= TaxFormObj.getValue("F2555", "50");			// Foreign Earned Invome Housing Deduction
-		this.lines["02d"].value	= TaxFormObj.getValue("F4563", "15");			// Samoa Income Exclusion
-		this.lines["02e"].value	= this.add("02a","02b","02c","02d");		// Total Foreign Income
-		this.lines["03"].value	= this.add("01","02e");						// AGI + Foreign Income
-		this.lines["04a"].value	= TaxFormObj.getValue("W2", "05") +				// Qualified Tips
+		this.lines["01"].value	= TaxFormObj.getValue("F1040", "11b");	// AGI
+		this.lines["02a"].value	= 0;									// Puerto Rico Inc
+		this.lines["02b"].value	= TaxFormObj.getValue("F2555", "45");	// Foreign Housing
+		this.lines["02c"].value	= TaxFormObj.getValue("F2555", "50");	// Foreign Housing
+		this.lines["02d"].value	= TaxFormObj.getValue("F4563", "15");	// Samoa Income
+		this.lines["02e"].value	= this.add("02a","02b","02c","02d");	// Total Foreign Inc
+		this.lines["03"].value	= this.add("01","02e");					// AGI + Foreign Inc
+		this.lines["04a"].value	= TaxFormObj.getValue("W2", "05") +		// Qualified Tips
 									TaxFormObj.getValue("W2", "07");
-		this.lines["04b"].value	= TaxFormObj.getValue("F4137", "01");			// Qualified Tips from Form 4137
-		this.lines["04c"].value	= 0;										// Qualified Tips Allowed
-		this.lines["05"].value	= 0;										// Qualified Tips from Business
-		this.lines["06"].value	= this.add("04c","05");						// Total Qualified Tips
-		this.lines["07"].value	= Math.min(this.line("06"), max_deduction);	// Limit to Maximum Allowed
-		this.lines["08"].value	= this.line("03");							// AGI + Foreign Income
+		this.lines["04b"].value	= TaxFormObj.getValue("F4137", "01");	// Qualified Tips
+		this.lines["04c"].value	= 0;									// Qualified Tips
+		this.lines["05"].value	= 0;									// Qualified Tips
+		this.lines["06"].value	= this.add("04c","05");					// Total Qualified Tips
+		this.lines["07"].value	= Math.min(this.line("06"), max_deduction);	// Limit
+		this.lines["08"].value	= this.line("03");						// AGI + Foreign Income
 		this.lines["09"].value	= start_of_phase_out;
-		this.lines["10"].value	= this.subtract("08", "09");				// Amount Over Phase Out
+		this.lines["10"].value	= this.subtract("08", "09");			// Amount Over Limit
 		if (this.line("10") <= 0) {
-			this.lines["13"].value = this.line("07");						// Qualified Tip Deduction
+			this.lines["13"].value = this.line("07");					// Tip Deduction
 		} else {
-			this.lines["11"].value	= roundDown(this.line("10") / 1000);	// Calculate Phase Out
-			this.lines["12"].value	= this.line("11") * 100;				// Calculate Phase Out
-			this.lines["13"].value	= Math.max(0, this.subtract("07", "12"));	// Qualified Tip Deduction
+			this.lines["11"].value	= roundDown(this.line("10") / 1000);// Calculate Phase Out
+			this.lines["12"].value	= this.line("11") * 100;			// Calculate Phase Out
+			this.lines["13"].value	= Math.max(0, this.subtract("07", "12"));// Tip Deduction
 		}
 
 		// No Tax on Overtime
 		max_deduction		= tt.getTaxValue("MaxOvertimeDeduction",		tp.filing_status);
 		start_of_phase_out	= tt.getTaxValue("OvertimeDeductionPhaseOut",	tp.filing_status);
 
-		this.lines["14a"].value	= 0;										// Qualified Overtime Pay
-		this.lines["14b"].value	= 0;										// Qualified Overtime Pay from Business
-		this.lines["14c"].value	= this.add("14a","14b");					// Total Overtime Pay
-		this.lines["15"].value	= Math.min(this.line("14c"), max_deduction);	// Limit to Maximum Allowed
-		this.lines["16"].value	= this.line("03");							// AGI + Foreign Income
+		this.lines["14a"].value	= 0;									// Overtime Pay
+		this.lines["14b"].value	= 0;									// Overtime Pay
+		this.lines["14c"].value	= this.add("14a","14b");				// Total Overtime
+		this.lines["15"].value	= Math.min(this.line("14c"), max_deduction);// Limit
+		this.lines["16"].value	= this.line("03");						// AGI + Foreign Income
 		this.lines["17"].value	= start_of_phase_out;
-		this.lines["18"].value	= this.subtract("16", "17");				// Amount Over Phase Out
+		this.lines["18"].value	= this.subtract("16", "17");			// Over Phase Out
 		if (this.line("18") <= 0) {
-			this.lines["21"].value = this.line("15");						// Qualified Overtime Deduction
+			this.lines["21"].value = this.line("15");					// Overtime Deduction
 		} else {
-			this.lines["19"].value	= roundDown(this.line("18") / 1000);	// Calculate Phase Out
-			this.lines["20"].value	= this.line("19") * 100;				// Calculate Phase Out
-			this.lines["21"].value	= Math.max(0, this.subtract("15", "20"));	// Qualified Overtime Deduction
+			this.lines["19"].value	= roundDown(this.line("18") / 1000);// Calculate Phase Out
+			this.lines["20"].value	= this.line("19") * 100;			// Calculate Phase Out
+			this.lines["21"].value	= Math.max(0, this.subtract("15", "20"));// Deduction
 		}
 
 		// No Tax on Car Loan Interest
-		max_deduction		= tt.getTaxValue("MaxCarLoanInterestDeduction",			tp.filing_status);
-		start_of_phase_out	= tt.getTaxValue("CarLoanInterestDeductionPhaseOut",	tp.filing_status);
+		max_deduction =
+			tt.getTaxValue("MaxCarLoanInterestDeduction", tp.filing_status);
+		start_of_phase_out =
+			tt.getTaxValue("CarLoanInterestDeductionPhaseOut", tp.filing_status);
 
-		this.lines["22a"].value	= 0;										// Interest on Car Loan #1
-		this.lines["22b"].value	= 0;										// Interest on Car Loan #2
-		this.lines["23"].value	= this.add("22a","22b");					// Total Interest
-		this.lines["24"].value	= Math.min(this.line("23"), max_deduction);	// Limit to Maximum Allowed
-		this.lines["25"].value	= this.line("03");							// AGI + Foreign Income
+		this.lines["22a"].value	= 0;								// Interest on Car Loan #1
+		this.lines["22b"].value	= 0;								// Interest on Car Loan #2
+		this.lines["23"].value	= this.add("22a","22b");			// Total Interest
+		this.lines["24"].value	= Math.min(this.line("23"), max_deduction);	// Limit
+		this.lines["25"].value	= this.line("03");					// AGI + Foreign Income
 		this.lines["26"].value	= start_of_phase_out;
-		this.lines["27"].value	= this.subtract("25", "26");				// Amount Over Phase Out
+		this.lines["27"].value	= this.subtract("25", "26");		// Amount Over Phase Out
 		if (this.line("27") <= 0) {
-			this.lines["30"].value = this.line("24");						// Qualified Car Loan Deduction
+			this.lines["30"].value = this.line("24");				// Car Loan Deduction
 		} else {
-			this.lines["28"].value	= roundUp(this.line("27") / 1000);		// Calculate Phase Out
-			this.lines["29"].value	= this.line("28") * 200;				// Calculate Phase Out
-			this.lines["30"].value	= Math.max(0, this.subtract("24", "29"));	// Qualified Car Loan Deduction
+			this.lines["28"].value	= roundUp(this.line("27") / 1000);	// Calculate Phase Out
+			this.lines["29"].value	= this.line("28") * 200;			// Calculate Phase Out
+			this.lines["30"].value	= Math.max(0, this.subtract("24", "29"));// Car Deduction
 		}
 
 		// Enhanced Deduction for Seniors
 		max_deduction		= tt.getTaxValue("MaxSeniorDeduction",		tp.filing_status);
 		start_of_phase_out	= tt.getTaxValue("SeniorDeductionPhaseOut",	tp.filing_status);
 
-		this.lines["31"].value	= this.line("03");							// AGI + Foreign Income
+		this.lines["31"].value	= this.line("03");					// AGI + Foreign Income
 		this.lines["32"].value	= start_of_phase_out;
-		this.lines["33"].value	= this.subtract("31", "32");				// Amount Over Phase Out
+		this.lines["33"].value	= this.subtract("31", "32");		// Amount Over Phase Out
 		if (this.line("33") <= 0) {
-			this.lines["35"].value	= max_deduction;						// Amount of Deduction
+			this.lines["35"].value	= max_deduction;				// Amount of Deduction
 		} else {
-			this.lines["34"].value	= Math.round(this.line("33") * 0.06);	// Calculate Phase Out
-			this.lines["35"].value	= Math.max(0, max_deduction - this.line("34"));	// Amount of Deduction
+			this.lines["34"].value	= Math.round(this.line("33") * 0.06);// Calculate Phase Out
+			this.lines["35"].value	= Math.max(0, max_deduction - this.line("34"));// Deduction
 		}
 		this.lines["36a"].value	= 0;
 		if (tp.taxpayer_has_ssn && tp.taxpayers_age >= 65) {
-			this.lines["36a"].value	= this.line("35");						// Senior deduction for Taxpayer
+			this.lines["36a"].value	= this.line("35");				// Senior deduction
 		}
 		this.lines["36b"].value	= 0;
 		if ((tp.filing_status === "MFJ") && tp.taxpayer_has_ssn && tp.spouses_age >= 65) {
-			this.lines["36b"].value	= this.line("35");						// Senior deduction for Spouse
+			this.lines["36b"].value	= this.line("35");				// Senior deduction
 		}
-		this.lines["37"].value	= this.add("36a","36b");					// Senior Deduction
-		this.lines["38"].value	= this.add("13","21","30","37");			// Total Additional Deductions
+		this.lines["37"].value	= this.add("36a","36b");			// Senior Deduction
+		this.lines["38"].value	= this.add("13","21","30","37");	// Additional Deductions
 
 		Debug.exit("F1040S1A.calculate()");
 	}

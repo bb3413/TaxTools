@@ -16,8 +16,8 @@ export class Dates {
 
 		// Has the anniversery of the start day happended this year yet?
 		startday_end_year.setFullYear(end_year);
-		if (Dates.isBefore(endday, startday_end_year)) {	// Birthday has not occurred this year.
-			age -= 1;
+		if (Dates.isBefore(endday, startday_end_year)) {
+			age -= 1;	// Birthday has not occurred this year.
 		}
 
 		return age;

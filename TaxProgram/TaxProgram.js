@@ -70,8 +70,8 @@ function calculateHandler(event) {
 		resetCalculation();
 
 		TaxTable.getTaxTable(HTML.getUserInput("tax-year"));	// Initialize tax tables
-		Taxpayer.initializeTaxpayer();							// Create and initialize taxpayer
-		createTaxForms();										// Create tax forms from user input
+		Taxpayer.initializeTaxpayer();							// Initialize taxpayer
+		createTaxForms();										// Create tax forms from input
 		const f1040 = TaxFormObj.getForm("F1040") || TaxFormObj.createForm("F1040");
 		f1040.calculate();
 		putOutputs();
@@ -79,7 +79,8 @@ function calculateHandler(event) {
 	} catch (error) {
 		HTML.putElementValue("error-message-output", error);
 		console.log("Stack trace:", error.stack);
-		document.getElementById("error-message-output").scrollIntoView();
+		document.getElementById("error-message-output")
+			.scrollIntoView({behavior: 'smooth', block: 'start'});
 	}
 }
 
@@ -136,7 +137,8 @@ function putOutputs() {
 	// Show the tax return forms.
 	HTML.openDetails("f1040-1-details");
 	HTML.showElement("output-forms-container");
-	document.getElementById("output-forms-container").scrollIntoView({behavior: 'smooth', block: 'start'});
+	document.getElementById("output-forms-container")
+		.scrollIntoView({behavior: 'smooth', block: 'start'});
 }
 
 function resetCalculation() {

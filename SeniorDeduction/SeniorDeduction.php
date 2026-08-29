@@ -42,21 +42,26 @@
 			</select>
 
 		   	<p>Adjusted Gross Income (AGI)</p>
-			<input class="input-field" type="text" autofocus id="AdjustedGrossIncome" placeholder="0" />
+			<input class="input-field" type="text" autofocus id="AdjustedGrossIncome"
+				placeeholder="0" />
 
 			<p>Taxpayer's Birthday</p>
-			<input class="input-field" type="text" id="TaxpayersBirthday" placeholder="mm/dd/yyyy" />
+			<input class="input-field" type="text" id="TaxpayersBirthday"
+				placeeholder="mm/dd/yyyy" />
 
 			<p>Taxpayer's Age</p>
-			<input class="input-field" type="text" id="TaxpayersAge" placeholder="0" />
+			<input class="input-field" type="text" id="TaxpayersAge"
+				placeeholder="0" />
 		</div>
 
 		<div  class="table" id="SpouseContainer">
 		   	<p>Spouse's Birthday</p>
-			<input class="input-field" type="text" id="SpousesBirthday" placeholder="mm/dd/yyyy" />
+			<input class="input-field" type="text" id="SpousesBirthday"
+				placeeholder="mm/dd/yyyy" />
 
 		   	<p>Spouse's Age</p>
-		   	<input class="input-field" type="text" id="SpousesAge" placeholder="0" />
+		   	<input class="input-field" type="text" id="SpousesAge"
+				placeeholder="0" />
 		</div>
 
 		<div class="table">
@@ -71,38 +76,48 @@
 		<h2>Description of Input Fields</h2>
 		<div class="help-fields">
 			<h4>Tax Year</h4>
-			<p>This is the tax year for which the Enhanced Deduction for Seniors is calculated. This is
-			not really necessary since the deduction is the same for every year that it is allowed.</p>
+			<p>This is the tax year for which the Enhanced Deduction for Seniors is
+			calculated. This is not really necessary since the deduction is the same for
+			every year that it is allowed.</p>
 
 			<h4>Filing Status</h4>
-			<p>This is your filing status. If the filing status is married filking jointly (MFJ), then
+			<p>This is your filing status. If the filing status is married filking jointly
+			(MFJ), then
 			the spouse, if over 65, will also be elegible for the senior deduction.</p>
 
 			<h4>Adjusted Gross Income (AGI)</h4>
-			<p>Adjusted gross income is taxable income minus adjustments. It is on the federal tax form
-			1040, line 11b.</p>
+			<p>Adjusted gross income is taxable income minus adjustments. It is on the
+			federal tax form 1040, line 11b.</p>
 
 			<h4>Taxpayer's Birthday</h4>
-			<p>You can enter either the taxpayer's birthday here or you can enter the taxpayer's age
-			in the following field. The birthday, if entered, is used to determine the taxpayer's
-			age, which will be computed and automatically entered in the following field.</p>
+			<p>You can enter either the taxpayer's birthday here or you can enter the
+			taxpayer's age in the following field. The birthday, if entered, is used to
+			determine the taxpayer's age, which will be computed and automatically entered
+			in the following field.</p>
 
 			<h4>Taxpayer's Age</h4>
-			<p>This is the age of the taxpayer at the end of the tax year. You can enter either the taxpayer's
-			birthday in the previous field or you can enter the taxpayer's age here. If you enter the
-			taxpayer's age, the taxpayer's birthday in the previous field will be erased.</p>
+			<p>This is the age of the taxpayer at the end of the tax year. You can enter
+			either the taxpayer's birthday in the previous field or you can enter the
+			taxpayer's age here. If you enter the taxpayer's age, the taxpayer's birthday in
+			the previous field will be erased.</p>
 
 			<h4>Spouse's Birthday</h4>
-			<p>You can enter either the spouse's birthday here or you can enter the spouse's age
-			in the following field. The birthday, if entered, is used to determine the spouse's
-			age, which will be computed and automatically entered in the following field.</p>
-			<p>This field is only shown if the filing status is MFJ (married filing jointly).</p>
+			<p>You can enter either the spouse's birthday here or you can enter the spouse's
+			age in the following field. The birthday, if entered, is used to determine the
+			spouse's age, which will be computed and automatically entered in the following
+			field.</p>
+
+			<p>This field is only shown if the filing status is MFJ (married filing
+			jointly).</p>
 
 			<h4>Spouse's Age</h4>
-			<p>This is the age of the spouse at the end of the tax year. You can enter either the spouse's
-			birthday in the previous field or you can enter the spouse's age here. If you enter the
-			spouse's age, the spouse's birthday in the previous field will be erased.</p>
-			<p>This field is only shown if the filing status is MFJ (married filing jointly).</p>
+			<p>This is the age of the spouse at the end of the tax year. You can enter either
+			the spouse's birthday in the previous field or you can enter the spouse's age
+			here. If you enter the spouse's age, the spouse's birthday in the previous field
+			will be erased.</p>
+
+			<p>This field is only shown if the filing status is MFJ (married filing
+			jointly).</p>
 		</div>
 
 		<!-- Display area for error messages. -->

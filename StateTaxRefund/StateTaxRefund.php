@@ -22,17 +22,19 @@
 
 		<h1 class="title">State Income Tax Refund Calculator</h1>
 
-		<p>A state income tax refund is only taxable to the extent that the taxpayer benefited from
-		claiming the state income tax as a deduction on the previous year's tax return. This tool
-		calculates the amount of the tax refund that is taxable on this year's federal tax return.</p>
+		<p>A state income tax refund is only taxable to the extent that the taxpayer
+		benefited from claiming the state income tax as a deduction on the previous year's
+		tax return. This tool calculates the amount of the tax refund that is taxable on this
+		year's federal tax return.</p>
 
 		<p>The blue fields are computed from the information you provide. The green fields are
-		where you enter information. Click <a href="StateTaxRefund-Help.html">this link</a> for more
-		help with this tool.</p>
+		where you enter information. Click <a href="StateTaxRefund-Help.html">this link</a>
+		for more help with this tool.</p>
 
 		<div class="table-1">
 			<p>Previous Tax Year</p>
-			<select class="trigger input-field" id="PreviousTaxYear" tooltipid="#PreviousTaxYearTT">
+			<select class="trigger input-field" id="PreviousTaxYear"
+				tooltipid="#PreviousTaxYearTT">
 				<option value="2026">2026</option>
 				<option value="2025">2025</option>
 				<option value="2024">2024</option>

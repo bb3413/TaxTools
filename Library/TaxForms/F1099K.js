@@ -9,13 +9,15 @@ import { TaxTable }		from "../Classes/TaxTable.js";
 
 const HTML_FORM = `
 		<details class="taxform-details" id="f1099k-XX-details">
-			<summary class="taxform-summary">1099-K - Payment Card and Third Party Network Transactions</summary>
+			<summary class="taxform-summary">1099-K - Payment Card and Third
+				Party Network Transactions</summary>
 			<div>&nbsp;</div>
 			<div class="f1099-taxform-container">
 				<!-- Header Section -->
 				<div class="f1099-header-row">
 					<div class="f1099-header-left">
-						<label><input type="checkbox" disabled id="corrected" /> CORRECTED</label>
+						<label><input type="checkbox" disabled
+							id="corrected" /> CORRECTED</label>
 					</div>
 					<div class="f1099-header-center">
 						<div>OMB No. 1545-2205</div>
@@ -32,32 +34,40 @@ const HTML_FORM = `
 					<!-- Left Column: Payer & Recipient Info Inputs -->
 					<div class="f1099-col-left">
 						<div class="f1099-box f1099-box-large">
-							<span class="f1099-box-label">PAYER&apos;S name, street address, city or town,
-								state or province, country, ZIP or foreign postal code, and telephone no.</span>
-							<textarea id="f1099k-XX-payer" placeholder="Payer Name&#10;Street Address&#10;City, State, ZIP&#10;Phone Number"></textarea>
+							<span class="f1099-box-label">PAYER&apos;S name, street
+								address, city or town, state or province, country,
+								ZIP or foreign postal code, and telephone no.</span>
+							<textarea id="f1099k-XX-payer"
+								placeholder="Payer Name&#10;Street Address&#10;City, State, ZIP&#10;Phone Number">
+							</textarea>
 						</div>
 			
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
 								<span class="f1099-box-label">PAYER&apos;S TIN</span>
-								<input type="text" id="f1099k-XX-ein" placeholder="12-3456789" />
+								<input type="text" id="f1099k-XX-ein"
+									placeholder="12-3456789" />
 							</div>
 							<div class="f1099-box">
 								<span class="f1099-box-label">TAXPAYER&apos;S TIN</span>
-								<input type="text" id="f1099k-XX-ssn" placeholder="123-45-6789" />
+								<input type="text" id="f1099k-XX-ssn"
+									placeholder="123-45-6789" />
 							</div>
 						</div>
 			
 						<div class="f1099-box f1099-box-large">
-							<span class="f1099-box-label">TAXPAYER&apos;S name, street address, city or town,
-								state, and ZIP code</span>
+							<span class="f1099-box-label">TAXPAYER&apos;S name, street
+								address, city or town, state, and ZIP code</span>
 							<textarea id="f1099k-XX-taxpayer"
-								placeholder="Taxpayer&apos;s Name&#10;Street Address&#10;City, State, ZIP"></textarea>
+								placeholder="Taxpayer&apos;s Name&#10;Street Address&#10;City, State, ZIP">
+							</textarea>
 						</div>
 
 						<div class="f1099-box" style="border-bottom: none;">
-							<span class="f1099-box-label">Account number (see instructions)</span>
-							<input type="text" id="f1099k-XX-account" placeholder="Optional Account #" />
+							<span class="f1099-box-label">Account number (see
+								instructions)</span>
+							<input type="text" id="f1099k-XX-account"
+								placeholder="Optional Account #" />
 						</div>
 					</div>
 			
@@ -65,19 +75,24 @@ const HTML_FORM = `
 					<div class="f1099-col-right">
 						<div class="f1099-flex-row">
 							<div class="f1099-box input-color">
-								<span class="f1099-box-label">1a Gross amount of payment card/third party network transactions </span>
-								<input type="text" id="f1099k-XX-01a" placeholder="0" />
+								<span class="f1099-box-label">1a Gross amount of payment
+									card/third party network transactions</span>
+								<input type="text" id="f1099k-XX-01a"
+									placeholder="0" />
 							</div>
 							<div class="f1099-box">
-								<span class="f1099-box-label">1b Card Not Present transactions </span>
-								<input type="text" id="f1099k-XX-01b" placeholder="0" />
+								<span class="f1099-box-label">1b Card Not Present
+									transactions</span>
+								<input type="text" id="f1099k-XX-01b"
+									placeholder="0" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box input-color">
 								<span class="f1099-box-label">1c Cash tips</span>
-								<input type="text" id="f1099k-XX-01c" placeholder="0" />
+								<input type="text" id="f1099k-XX-01c"
+									placeholder="0" />
 							</div>
 							<div class="f1099-box">
 								<span class="f1099-box-label">1d TTOC</span>
@@ -91,15 +106,19 @@ const HTML_FORM = `
 								<input type="text" id="f1099k-XX-02" />
 							</div>
 							<div class="f1099-box">
-								<span class="f1099-box-label">3 Number of payment transactions</span>
-								<input type="text" id="f1099k-XX-03" placeholder="0" />
+								<span class="f1099-box-label">3 Number of payment
+									transactions</span>
+								<input type="text" id="f1099k-XX-03"
+									placeholder="0" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box input-color">
-								<span class="f1099-box-label">4 Federal income tax withheld</span>
-								<input type="text" id="f1099k-XX-04" placeholder="0" />
+								<span class="f1099-box-label">4 Federal income tax
+									withheld</span>
+								<input type="text" id="f1099k-XX-04"
+									placeholder="0" />
 							</div>
 							<div class="f1099-box">
 							</div>
@@ -108,77 +127,92 @@ const HTML_FORM = `
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
 								<span class="f1099-box-label">5a January</span>
-								<input type="text" id="f1099k-XX-05a" placeholder="0" />
+								<input type="text" id="f1099k-XX-05a"
+									placeholder="0" />
 							</div>
 							<div class="f1099-box">
 								<span class="f1099-box-label">5b February</span>
-								<input type="text" id="f1099k-XX-05b" placeholder="0" />
+								<input type="text" id="f1099k-XX-05b"
+									placeholder="0" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
 								<span class="f1099-box-label">5c March</span>
-								<input type="text" id="f1099k-XX-05c" placeholder="0" />
+								<input type="text" id="f1099k-XX-05c"
+									placeholder="0" />
 							</div>
 							<div class="f1099-box">
 								<span class="f1099-box-label">5d April</span>
-								<input type="text" id="f1099k-XX-05d" placeholder="0" />
+								<input type="text" id="f1099k-XX-05d"
+									placeholder="0" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
 								<span class="f1099-box-label">5e May</span>
-								<input type="text" id="f1099k-XX-05e" placeholder="0" />
+								<input type="text" id="f1099k-XX-05e"
+									placeholder="0" />
 							</div>
 							<div class="f1099-box">
 								<span class="f1099-box-label">5f June</span>
-								<input type="text" id="f1099k-XX-05f" placeholder="0" />
+								<input type="text" id="f1099k-XX-05f"
+									placeholder="0" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
 								<span class="f1099-box-label">5g July</span>
-								<input type="text" id="f1099k-XX-05g" placeholder="0" />
+								<input type="text" id="f1099k-XX-05g"
+									placeholder="0" />
 							</div>
 							<div class="f1099-box">
 								<span class="f1099-box-label">5h August</span>
-								<input type="text" id="f1099k-XX-05h" placeholder="0" />
+								<input type="text" id="f1099k-XX-05h"
+									placeholder="0" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
 								<span class="f1099-box-label">5i September</span>
-								<input type="text" id="f1099k-XX-05i" placeholder="0" />
+								<input type="text" id="f1099k-XX-05i"
+									placeholder="0" />
 							</div>
 							<div class="f1099-box">
 								<span class="f1099-box-label">5j October</span>
-								<input type="text" id="f1099k-XX-05j" placeholder="0" />
+								<input type="text" id="f1099k-XX-05j"
+									placeholder="0" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
 								<span class="f1099-box-label">5k November</span>
-								<input type="text" id="f1099k-XX-05k" placeholder="0" />
+								<input type="text" id="f1099k-XX-05k"
+									placeholder="0" />
 							</div>
 							<div class="f1099-box">
 								<span class="f1099-box-label">5l December</span>
-								<input type="text" id="f1099k-XX-05l" placeholder="0" />
+								<input type="text" id="f1099k-XX-05l"
+									placeholder="0" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box input-color" style="border-bottom: none;">
-								<span class="f1099-box-label">6 State income tax withheld</span>
-								<input type="text" id="f1099k-XX-06" placeholder="0" />
+								<span class="f1099-box-label">6 State income tax
+									withheld</span>
+								<input type="text" id="f1099k-XX-06"
+									placeholder="0" />
 							</div>
 							<div class="f1099-box" style="border-bottom: none;">
 								<span class="f1099-box-label">7/8 State/state no.</span>
-								<input type="text" id="f1099k-XX-07" placeholder="State / ID" />
+								<input type="text" id="f1099k-XX-07"
+									placeholder="State / ID" />
 							</div>
 						</div>
 					</div>

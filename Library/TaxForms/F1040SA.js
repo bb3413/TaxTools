@@ -54,18 +54,18 @@ export class F1040SA extends TaxForm {
 		this.lines["01"].value	= 0;								// Medical Expenses
 		this.lines["02"].value	= TaxFormObj.getValue("F1040", "11b");	// AGI
 		this.lines["03"].value	= Math.round(this.line("02") * 0.075);	// 7.5% or AGI
-		this.lines["04"].value	= Math.max(0, this.subtract("01", "03"));	// Medical Deduction
-		this.lines["05a"].value	= 0;								// State and Local Income Tax
+		this.lines["04"].value	= Math.max(0, this.subtract("01", "03"));// Medical Deduction
+		this.lines["05a"].value	= 0;								// State inc tax
 		this.lines["05b"].value	= 0;								// Real Estate Tax
 		this.lines["05c"].value	= 0;								// Personal Property Tax
-		this.lines["05d"].value	= this.add("05a","05b","05c");		// Total State and Local Taxes
+		this.lines["05d"].value	= this.add("05a","05b","05c");		// SALT
 		this.lines["05e"].value	= Math.min(this.line("05d"),		// SALT after Limit
 										   tt.getTaxValue("MaxSALT", tp.filing_status));
 		this.lines["06"].value	= 0;								// Other Taxes
 		this.lines["07"].value	= this.add("05e","06");				// Deduction for Taxes Paid
 		this.lines["08a"].value	= 0;								// Mortgage Interest
-		this.lines["08b"].value	= 0;								// Mortgage Interest Not from 1098
-		this.lines["08c"].value	= 0;								// Mortgage Points Not from 1098
+		this.lines["08b"].value	= 0;								// Mortgage Interest
+		this.lines["08c"].value	= 0;								// Mortgage Points
 		this.lines["08d"].value	= 0;								// Reserved For Future Use
 		this.lines["08e"].value	= this.add("08a","08b","08c");		// Mortgage Deduction
 		this.lines["09"].value	= 0;								// Investment Interest
@@ -74,9 +74,10 @@ export class F1040SA extends TaxForm {
 		this.lines["12"].value	= 0;								// Non-cash Donatons
 		this.lines["13"].value	= 0;								// Carry-over Donations
 		this.lines["14"].value	= this.add("11","12","13");			// Donation Deduction
-		this.lines["15"].value	= 0;								// Casualty and Theft Deduction
+		this.lines["15"].value	= 0;								// Casualty and Theft
 		this.lines["16"].value	= 0;								// Other Deduction
-		this.lines["17"].value	= this.add("04","07","10","14","15","16");	// Itemized Deductions
+		this.lines["17"].value	= this.add("04","07","10","14",
+										   "15","16");				// Itemized Deductions
 
 		Debug.exit("F1040SA.calculate()");
 	}

@@ -54,7 +54,7 @@ export class SalesTax extends TaxForm {
 			TaxFormObj.getValue("F1040",	"04a") +	// retirement accounts
 			TaxFormObj.getValue("F1040",	"06a") +	// social security
 			TaxFormObj.getValue("F1040",	"07a") +	// capital gains
-			TaxFormObj.getValue("F1040",	"08");		// self employment income + other income
+			TaxFormObj.getValue("F1040",	"08");		// SE income + other income
 
 		const base_sales_tax	= tt.getTaxValue("CA_BaseSalesTax");
 		let local_sales_tax		= 0;
@@ -71,7 +71,8 @@ export class SalesTax extends TaxForm {
 			if (this.line("02") === 0) {
 				this.lines["04"].value	= base_sales_tax;
 				const num = this.line("03") / this.line("04");
-				this.lines["05"].value	= Math.round(num * 1000) / 1000;	// Round to 3 decimal places.
+				// Round to 3 decimal places.
+				this.lines["05"].value	= Math.round(num * 1000) / 1000;
 				this.lines["06"].value	= Math.round(this.line("01") * this.line("05"));
 			} else {
 				this.lines["06"].value = this.line("02") * this.line("03");

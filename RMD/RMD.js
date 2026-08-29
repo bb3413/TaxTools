@@ -12,7 +12,8 @@ function calculateRMD(inputs) {
 	const outputs	= {};
 
 	if (inputs.taxpayers_birthday !== "") {
-		outputs.taxpayers_age = Dates.getEndOfYearAge(inputs.taxpayers_birthday, inputs.tax_year);
+		outputs.taxpayers_age =
+			Dates.getEndOfYearAge(inputs.taxpayers_birthday, inputs.tax_year);
 		HTML.changeBackgroundColor("TaxpayersAge", output_color);
 	} else {
 		outputs.taxpayers_age = inputs.taxpayers_age;
@@ -48,11 +49,12 @@ function changeHandler(event) {
 		const inputs	= getInputs();							// Get inputs from the web page
 		const outputs	= calculateRMD(inputs);
 		putOutputs(outputs);									// Put results on web page
-		Debug.turnOn();											// Put debug info on web page if enabled
+		Debug.turnOn();											// Put debug info on web page
 	} catch (error) {
 		HTML.putElementValue("error-message-output", error);
 		console.log("Stack trace:", error.stack);
-		document.getElementById("error-message-output").scrollIntoView({behavior: 'smooth', block: 'start'});
+		document.getElementById("error-message-output")
+			.scrollIntoView({behavior: 'smooth', block: 'start'});
 	}
 }
 

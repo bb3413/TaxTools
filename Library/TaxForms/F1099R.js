@@ -16,7 +16,8 @@ const HTML_FORM = `
 				<!-- Header Section -->
 				<div class="f1099-header-row">
 					<div class="f1099-header-left"> 
-						<label><input type="checkbox" disabled id="corrected" /> CORRECTED</label>
+						<label><input type="checkbox" disabled
+							id="corrected" /> CORRECTED</label>
 					</div>
 					<div class="f1099-header-center">
 						<div>OMB No. 1545-0119</div>
@@ -24,8 +25,8 @@ const HTML_FORM = `
 						<h2>Form 1099-R</h2>
 					</div>
 					<div class="f1099-header-right">
-						<strong>Distributions From Pensions, Annuities, Retirement or Profit-Sharing
-							Plans, IRAs, Insurance Contracts, etc.</strong>
+						<strong>Distributions From Pensions, Annuities, Retirement or
+						Profit-Sharing Plans, IRAs, Insurance Contracts, etc.</strong>
 					</div>
 				</div>
 
@@ -34,32 +35,40 @@ const HTML_FORM = `
 					<!-- Left Column: Payer & Recipient Info Inputs -->
 					<div class="f1099-col-left">
 						<div class="f1099-box f1099-box-large">
-							<span class="f1099-box-label">PAYER&apos;S name, street address, city or town,
-								state or province, country, and ZIP or foreign postal code</span>
-							<textarea id="f1099r-XX-payer" placeholder="Payer Name&#10;Street Address&#10;City, State, ZIP&#10;Phone Number"></textarea>
+							<span class="f1099-box-label">PAYER&apos;S name, street
+								address, city or town, state or province, country, and
+								ZIP or foreign postal code</span>
+							<textarea id="f1099r-XX-payer"
+								placeholder="Payer Name&#10;Street Address&#10;City, State, ZIP&#10;Phone Number">
+							</textarea>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
 								<span class="f1099-box-label">PAYER&apos;S TIN</span>
-								<input type="text" id="f1099r-XX-ein" placeholder="12-3456789" />
+								<input type="text" id="f1099r-XX-ein"
+									placeholder="12-3456789" />
 							</div>
 							<div class="f1099-box">
 								<span class="f1099-box-label">TAXPAYER&apos;S TIN</span>
-								<input type="text" id="f1099r-XX-ssn" placeholder="123-45-6789" />
+								<input type="text" id="f1099r-XX-ssn"
+									placeholder="123-45-6789" />
 							</div>
 						</div>
 
 						<div class="f1099-box f1099-box-large">
-							<span class="f1099-box-label">TAXPAYER&apos;S name, street address, city or town,
-								state, and ZIP code</span>
+							<span class="f1099-box-label">TAXPAYER&apos;S name, street
+								address, city or town, state, and ZIP code</span>
 							<textarea id="f1099r-XX-taxpayer"
-								placeholder="Taxpayer&apos;s Name&#10;Street Address&#10;City, State, ZIP"></textarea>
+								placeholder="Taxpayer&apos;s Name&#10;Street Address&#10;City, State, ZIP">
+							</textarea>
 						</div>
 
 						<div class="f1099-box" style="border-bottom: none;">
-							<span class="f1099-box-label">Account number (see instructions)</span>
-							<input type="text" id="f1099r-XX-account" placeholder="Optional Account #" />
+							<span class="f1099-box-label">Account number (see
+								instructions)</span>
+							<input type="text" id="f1099r-XX-account"
+								placeholder="Optional Account #" />
 						</div>
 					</div>
 
@@ -68,20 +77,23 @@ const HTML_FORM = `
 						<div class="f1099-flex-row">
 							<div class="f1099-box input-color">
 								<span class="f1099-box-label">1 Gross distribution</span>
-								<input type="text" id="f1099r-XX-01" placeholder="0" />
+								<input type="text" id="f1099r-XX-01"
+									placeholder="0" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box input-color">
 								<span class="f1099-box-label">2a Taxable amount</span>
-								<input type="text" id="f1099r-XX-02a" placeholder="0" />
+								<input type="text" id="f1099r-XX-02a"
+									placeholder="0" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box input-color">
-								<span class="f1099-box-label">2b Taxable amount not determined</span>
+								<span class="f1099-box-label">2b Taxable amount not
+									determined</span>
 								<div><input type="checkbox" id="f1099r-XX-02b" /></div>
 							</div>
 							<div class="f1099-box">
@@ -92,23 +104,31 @@ const HTML_FORM = `
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
-								<span class="f1099-box-label">3 Capital gain (included in box 2a)</span>
-								<input type="text" id="f1099r-XX-3" placeholder="0" />
+								<span class="f1099-box-label">3 Capital gain (included
+									in box 2a)</span>
+								<input type="text" id="f1099r-XX-3"
+									placeholder="0" />
 							</div>
 							<div class="f1099-box input-color">
-								<span class="f1099-box-label">4 Federal income tax withheld</span>
-								<input type="text" id="f1099r-XX-04" placeholder="0" />
+								<span class="f1099-box-label">4 Federal income tax
+									withheld</span>
+								<input type="text" id="f1099r-XX-04"
+									placeholder="0" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
-								<span class="f1099-box-label">5 Employee contrib./Designated Roth</span>
-								<input type="text" id="f1099r-XX-05" placeholder="0" />
+								<span class="f1099-box-label">5 Employee contrib. / 
+									Designated Roth</span>
+								<input type="text" id="f1099r-XX-05"
+									placeholder="0" />
 							</div>
 							<div class="f1099-box">
-								<span class="f1099-box-label">6 Net unrealized appreciation</span>
-								<input type="text" id="f1099r-XX-06" placeholder="0" />
+								<span class="f1099-box-label">6 Net unrealized
+									appreciation</span>
+								<input type="text" id="f1099r-XX-06"
+									placeholder="0" />
 							</div>
 						</div>
 
@@ -126,8 +146,10 @@ const HTML_FORM = `
 								<div><input type="checkbox" id="f1099r-XX-07c" /></div>
 							</div>
 							<div class="f1099-box">
-								<span class="f1099-box-label">7d Earnings on excess contribution</span>
-								<div><input type="text" id="f1099r-XX-07d" placeholder="0" /></div>
+								<span class="f1099-box-label">7d Earnings on excess
+									contribution</span>
+								<div><input type="text" id="f1099r-XX-07d"
+									placeholder="0" /></div>
 							</div>
 						</div>
 
@@ -137,19 +159,23 @@ const HTML_FORM = `
 								<div></div>
 							</div>
 							<div class="f1099-box input-color">
-								<span class="f1099-box-label">9b Total employee contributions</span>
-								<input type="text" id="f1099r-XX-09b" placeholder="0" />
+								<span class="f1099-box-label">9b Total employee
+									contributions</span>
+								<input type="text" id="f1099r-XX-09b"
+									placeholder="0" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box input-color" style="border-bottom: none;">
 								<span class="f1099-box-label">14 State tax withheld</span>
-								<input type="text" id="f1099r-XX-14" placeholder="0" />
+								<input type="text" id="f1099r-XX-14"
+									placeholder="0" />
 							</div>
 							<div class="f1099-box" style="border-bottom: none;">
 								<span class="f1099-box-label">15 State/state no.</span>
-								<input type="text" id="f1099r-XX-15" placeholder="State / ID" />
+								<input type="text" id="f1099r-XX-15"
+									placeholder="State / ID" />
 							</div>
 						</div>
 					</div>

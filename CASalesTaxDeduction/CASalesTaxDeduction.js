@@ -36,13 +36,13 @@ function changeHandler(event) {
 		TaxFormObj.reset();
 		Taxpayer.reset();
 
-		const inputs	= getInputs();								// Get inputs from the web page
-		const tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
-		const taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
-		mapInputValues(inputs);										// Map input values to tax forms
-		TaxFormObj.getForm("SalesTax").calculate(total_sales_tax);		// Calculate the tax forms
-		putOutputs();												// Put results on web page
-		Debug.turnOn();												// Put debug info on web page if enabled
+		const inputs	= getInputs();				// Get inputs from the web page
+		TaxTable.getTaxTable(inputs.tax_year);		// Initialize tax tables
+		createTaxpayer(inputs);						// Initialize taxpayer
+		mapInputValues(inputs);						// Map input values to tax forms
+		TaxFormObj.getForm("SalesTax").calculate(total_sales_tax);	// Calculate the tax forms
+		putOutputs();								// Put results on web page
+		Debug.turnOn();								// Put debug info on web page if enabled
 	} catch (error) {
 		HTML.putElementValue("error-message-output", error);
 		console.log("Stack trace:", error.stack);
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	//
 	// Wait for the DOM to be fully loaded before trying to access any elements.
 	//
-	HTML.addListener("tax-year",					"change", changeHandler);
+	HTML.addListener("tax-year",				"change", changeHandler);
 	HTML.addListener("StreetAddress",			"change", changeAddressHandler);
 	HTML.addListener("City",					"change", changeAddressHandler);
 	HTML.addListener("ZipCode",					"change", changeAddressHandler);

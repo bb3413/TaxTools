@@ -38,7 +38,7 @@ import { F1099S }		from "../TaxForms/F1099S.js";
 import { F540 }			from "../TaxForms/F540.js";			// California Income Tax
 import { F540CA }		from "../TaxForms/F540CA.js";		// California Adjustments
 import { F6251 }		from "../TaxForms/F6251.js";		// AMT worksheet
-import { F7206 }		from "../TaxForms/F7206.js";		// Self-employment Health Insurance Deduction
+import { F7206 }		from "../TaxForms/F7206.js";		// Self-employment Health Ins
 import { SSA1099 }		from "../TaxForms/SSA1099.js";
 import { W2 }			from "../TaxForms/W2.js";
 
@@ -141,9 +141,10 @@ const print_order = [
 
 export class TaxFormName {
 	static createOnDemand(formname) {
-		// When getValue() or getTextValue() is called, the default is to return 0 or "" if the
-		// form has not been created. However, some forms get input from other forms and need to
-		// be created and calculated before the value is returned. This array lists those forms
+		// When getValue() or getTextValue() is called, the default is to return 0 or "" if
+		// the form has not been created. However, some forms get input from other forms and
+		// need to be created and calculated before the value is returned. This array lists
+		// those forms
 		if (forms_map[formname]) {
 			return forms_map[formname][ON_DEMAND];
 		} else {
@@ -176,7 +177,8 @@ export class TaxFormName {
 			case "SSA1099":		return SSA1099.getInputHTML(uid);
 			case "W2":			return W2.getInputHTML(uid);
 			case "Template":	return Template.getInputHTML(uid);
-			default:			throw new Error(`TaxFormName.getInputHTML(): unplemented form: ${formname}`);
+			default:
+				throw new Error(`TaxFormName.getInputHTML(): unplemented form: ${formname}`);
 		}
 	}
 
@@ -197,7 +199,8 @@ export class TaxFormName {
 			case "SSA1099":		return SSA1099.getUserInput(uid);
 			case "W2":			return W2.getUserInput(uid);
 			case "Template":	return Template.getUserInput(uid);
-			default:			throw new Error(`TaxFormName.getUserInput(): unplemented form: ${formname}`);
+			default:
+				throw new Error(`TaxFormName.getUserInput(): unplemented form: ${formname}`);
 		}
 	}
 

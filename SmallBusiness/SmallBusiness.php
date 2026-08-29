@@ -29,9 +29,9 @@
 
 		<div class="tax-calculation-box">
 			<h3 class="tight">Tax Formula for Small Business</h3>
-			<p class="tight">The net profit for a small business is calculated on Schedule C as shown in the
-			formula below. This, in turn, shows the infomation that is needed to calculate the taxes for the
-			small business.</p>
+			<p class="tight">The net profit for a small business is calculated on Schedule C
+			as shown in the formula below. This, in turn, shows the infomation that is needed
+			to calculate the taxes for the small business.</p>
 
 			<div class="tax-formula-container">
 				<p>&nbsp;</p>
@@ -50,23 +50,28 @@
 			<div class="table-3x">
 				<p class="loction-field">Sched C, line 5</p>
 			   	<p class="label-field">Gross Profit</p>
-				<p class="trigger output-field" id="GrossProfit" tooltipid="#GrossProfitTT">0</p>
+				<p class="trigger output-field" id="GrossProfit"
+					tooltipid="#GrossProfitTT">0</p>
 
 				<p class="loction-field">Sched C, line 7</p>
 			   	<p class="label-field">Gross Income</p>
-				<p class="trigger output-field" id="GrossIncome" tooltipid="#GrossIncomeTT">0</p>
+				<p class="trigger output-field" id="GrossIncome"
+					tooltipid="#GrossIncomeTT">0</p>
 
 				<p class="loction-field">1040 S1, line 3</p>
 			   	<p class="label-field">Net Profit</p>
-				<p class="trigger output-field" id="NetProfit" tooltipid="#NetProfitTT">0</p>
+				<p class="trigger output-field" id="NetProfit"
+					tooltipid="#NetProfitTT">0</p>
 
 				<p class="loction-field">1040 S2, line 4</p>
 				<p class="label-field">Self-employment Tax</p>
-				<p class="trigger output-field" id="SelfEmploymentTax" tooltipid="#SelfEmploymentTaxTT">0</p>
+				<p class="trigger output-field" id="SelfEmploymentTax"
+					tooltipid="#SelfEmploymentTaxTT">0</p>
 
 				<p class="loction-field">1040, line 13a</p>
 				<p class="label-field">Qualified Business Income Deduction</p>
-				<p class="trigger output-field" id="QBI_Deduction" tooltipid="#QBI_DeductionTT">0</p>
+				<p class="trigger output-field" id="QBI_Deduction"
+					tooltipid="#QBI_DeductionTT">0</p>
 
 				<p class="loction-field">1040 S1, line 15</p>
 				<p class="label-field">Self-employment Tax Adjustment</p>
@@ -79,15 +84,18 @@
 
 				<p class="loction-field">Not Used</p>
 				<p class="label-field">Net profit after SEHI</p>
-				<p class="trigger output-field" id="NetProfitAfterSEHI" tooltipid="#NetProfitAfterSEHI_TT">0</p>
+				<p class="trigger output-field" id="NetProfitAfterSEHI"
+					tooltipid="#NetProfitAfterSEHI_TT">0</p>
 
 				<p class="loction-field">1040 S1, line 17</p>
 				<p class="label-field">Self-employed Health Insurance Adjustment</p>
-				<p class="trigger output-field" id="SEHI_Adjustment" tooltipid="#SEHI_AdjustmentTT">0</p>
+				<p class="trigger output-field" id="SEHI_Adjustment"
+					tooltipid="#SEHI_AdjustmentTT">0</p>
 
 				<p class="loction-field">Sched A, line 1</p>
 				<p class="label-field">Medical Insurance Itemized Deduction</p>
-				<p class="trigger output-field" id="MedicalDeduction" tooltipid="#MedicalDeductionTT">0</p>
+				<p class="trigger output-field" id="MedicalDeduction"
+					tooltipid="#MedicalDeductionTT">0</p>
 			</div>
 		</div>
 
@@ -163,7 +171,8 @@
 
 			<p class="loction-field">Sched C, line 14</p>
 			<p class="label-field">Employee Benefit Programs</p>
-			<input class="trigger input-field" type="text" id="EmployeeBenefitPrograms" size="10"
+			<input class="trigger input-field" type="text" id="EmployeeBenefitPrograms"
+				size="10"
 			   	placeholder="0" tooltipid="#EmployeeBenefitProgramsTT" />
 
 			<p class="loction-field">Sched C, line 15</p>
@@ -233,7 +242,8 @@
 
 			<p class="loction-field">Sched C, line 28</p>
 			<p class="label-field">Total Expenses</p>
-			<p class="trigger output-field" id="TotalExpenses" tooltipid="#TotalExpensesTT">0</p>
+			<p class="trigger output-field" id="TotalExpenses"
+				tooltipid="#TotalExpensesTT">0</p>
 		</div>
 
 		<!-- Display area for error messages. -->

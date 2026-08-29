@@ -15,7 +15,8 @@ const HTML_FORM = `
 				<!-- Header Section -->
 				<div class="f1099-header-row">
 					<div class="f1099-header-left">
-						<label><input type="checkbox" disabled id="corrected" /> CORRECTED</label>
+						<label><input type="checkbox" disabled
+							id="corrected" /> CORRECTED</label>
 					</div>
 					<div class="f1099-header-center">
 						<div>OMB No. 1545-0117</div>
@@ -32,32 +33,40 @@ const HTML_FORM = `
 					<!-- Left Column: Payer & Recipient Info Inputs -->
 					<div class="f1099-col-left">
 						<div class="f1099-box f1099-box-large">
-							<span class="f1099-box-label">PAYER&apos;S name, street address, city or town,
-								state or province, country, ZIP or foreign postal code, and telephone no.</span>
-							<textarea id="f1099oid-XX-payer" placeholder="Payer Name&#10;Street Address&#10;City, State, ZIP&#10;Phone Number"></textarea>
+							<span class="f1099-box-label">PAYER&apos;S name, street
+								address, city or town, state or province, country,
+								ZIP or foreign postal code, and telephone no.</span>
+							<textarea id="f1099oid-XX-payer"
+								placeholder="Payer Name&#10;Street Address&#10;City, State, ZIP&#10;Phone Number">
+							</textarea>
 						</div>
 			
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
 								<span class="f1099-box-label">PAYER&apos;S TIN</span>
-								<input type="text" id="f1099oid-XX-ein" placeholder="12-3456789" />
+								<input type="text" id="f1099oid-XX-ein"
+									placeholder="12-3456789" />
 							</div>
 							<div class="f1099-box">
 								<span class="f1099-box-label">TAXPAYER&apos;S TIN</span>
-								<input type="text" id="f1099oid-XX-ssn" placeholder="123-45-6789" />
+								<input type="text" id="f1099oid-XX-ssn"
+									placeholder="123-45-6789" />
 							</div>
 						</div>
 			
 						<div class="f1099-box f1099-box-large">
-							<span class="f1099-box-label">TAXPAYER&apos;S name, street address, city or town,
-								state, and ZIP code</span>
+							<span class="f1099-box-label">TAXPAYER&apos;S name, street
+								address, city or town, state, and ZIP code</span>
 							<textarea id="f1099oid-XX-taxpayer"
-								placeholder="Taxpayer&apos;s Name&#10;Street Address&#10;City, State, ZIP"></textarea>
+								placeholder="Taxpayer&apos;s Name&#10;Street Address&#10;City, State, ZIP">
+							</textarea>
 						</div>
 
 						<div class="f1099-box" style="border-bottom: none;">
-							<span class="f1099-box-label">Account number (see instructions)</span>
-							<input type="text" id="f1099oid-XX-account" placeholder="Optional Account #" />
+							<span class="f1099-box-label">Account number (see
+								instructions)</span>
+							<input type="text" id="f1099oid-XX-account"
+								placeholder="Optional Account #" />
 						</div>
 					</div>
 			
@@ -65,34 +74,42 @@ const HTML_FORM = `
 					<div class="f1099-col-right">
 						<div class="f1099-flex-row">
 							<div class="f1099-box input-color">
-								<span class="f1099-box-label">1 Original issue discount for the year</span>
-								<input type="text" id="f1099oid-XX-01" placeholder="0" />
+								<span class="f1099-box-label">1 Original issue discount for
+									the year</span>
+								<input type="text" id="f1099oid-XX-01"
+									placeholder="0" />
 							</div>
 							<div class="f1099-box">
 								<span class="f1099-box-label">2 Other periodic interest</span>
-								<input type="text" id="f1099oid-XX-02" placeholder="0" />
+								<input type="text" id="f1099oid-XX-02"
+									placeholder="0" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
 								<span class="f1099-box-label">3 Early withdrawal penalty</span>
-								<input type="text" id="f1099oid-XX-03" placeholder="0" />
+								<input type="text" id="f1099oid-XX-03"
+									placeholder="0" />
 							</div>
 							<div class="f1099-box input-color">
-								<span class="f1099-box-label">4 Federal income tax withheld</span>
-								<input type="text" id="f1099oid-XX-04" placeholder="0" />
+								<span class="f1099-box-label">4 Federal income tax
+									withheld</span>
+								<input type="text" id="f1099oid-XX-04"
+									placeholder="0" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
 								<span class="f1099-box-label">5 Market discount</span>
-								<input type="text" id="f1099oid-XX-05" placeholder="0" />
+								<input type="text" id="f1099oid-XX-05"
+									placeholder="0" />
 							</div>
 							<div class="f1099-box">
 								<span class="f1099-box-label">6  Acquisition premium</span>
-								<input type="text" id="f1099oid-XX-06" placeholder="0" />
+								<input type="text" id="f1099oid-XX-06"
+									placeholder="0" />
 							</div>
 						</div>
 			
@@ -107,33 +124,39 @@ const HTML_FORM = `
 							<div class="f1099-box">
 								<span class="f1099-box-label">8 Original issue discount on U.S.
 									Treasury obligations</span>
-								<input type="text" id="f1099oid-XX-08" placeholder="0" />
+								<input type="text" id="f1099oid-XX-08"
+									placeholder="0" />
 							</div>
 							<div class="f1099-box input-color">
 								<span class="f1099-box-label">9  Investment expenses</span>
-								<input type="text" id="f1099oid-XX-09" placeholder="0" />
+								<input type="text" id="f1099oid-XX-09"
+									placeholder="0" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
 								<span class="f1099-box-label">10 Bond premium</span>
-								<input type="text" id="f1099oid-XX-10" placeholder="0" />
+								<input type="text" id="f1099oid-XX-10"
+									placeholder="0" />
 							</div>
 							<div class="f1099-box">
 								<span class="f1099-box-label">11 Tax-exempt OID</span>
-								<input type="text" id="f1099oid-XX-11" placeholder="0" />
+								<input type="text" id="f1099oid-XX-11"
+									placeholder="0" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box" style="border-bottom: none;">
 								<span class="f1099-box-label">12/13 State/state no.</span>
-								<input type="text" id="f1099oid-XX-12" placeholder="State / ID" />
+								<input type="text" id="f1099oid-XX-12"
+									placeholder="State / ID" />
 							</div>
 							<div class="f1099-box input-color" style="border-bottom: none;">
 								<span class="f1099-box-label">14 State tax withheld</span>
-								<input type="text" id="f1099oid-XX-14" placeholder="0" />
+								<input type="text" id="f1099oid-XX-14"
+									placeholder="0" />
 							</div>
 
 						</div>
@@ -168,7 +191,8 @@ export class F1099OID extends TaxForm {
 
 		const element = document.getElementById(`f1099oid-${uid}-details`);
 		if (!element) {
-			throw new Error(`F1099OID.getUserInput(): Element not found: f1099oid-${uid}-details`);
+			throw new Error(
+				`F1099OID.getUserInput(): Element not found: f1099oid-${uid}-details`);
 		}
 
 		let inputs = {};
@@ -236,7 +260,7 @@ export class F1099OID extends TaxForm {
 		this.lines["05"]		= new Line("Market discount");
 		this.lines["06"]		= new Line("Acquisition premium");
 		this.lines["07"]		= new Line("Description");
-		this.lines["08"]		= new Line("Original issue discount on U.S. Treasury obligations");
+		this.lines["08"]		= new Line("OID on U.S. Treasury obligations");
 		this.lines["09"]		= new Line("Investment expenses");
 		this.lines["10"]		= new Line("Bond premium");
 		this.lines["11"]		= new Line("Tax-exempt OID");	

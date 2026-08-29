@@ -24,11 +24,11 @@
 
 		<p>This tool calculates the amount of Social Security that is taxable when the
 		taxpayer receives a lump sum (retroactive) payment. There are two methods for
-		calculating the taxable amount of a lump sum payment. The payment can either be left as
-		part of the Social Security payments for the current year, or if the payment is for benefits
-		in a previous year, you may be able to reduce the taxable amount by determining how
-		much of the payment would have been taxable if you had received it in the year it was
-		intended.</p>
+		calculating the taxable amount of a lump sum payment. The payment can either be left
+		as part of the Social Security payments for the current year, or if the payment is for
+		benefits in a previous year, you may be able to reduce the taxable amount by
+		determining how much of the payment would have been taxable if you had received it in
+		the year it was intended.</p>
 
 		<p>Click <a href="LumpSumSS-Help.html">this link</a> for more help with this tool.</p>
 
@@ -36,7 +36,8 @@
 			<h2>Social Security Current Year</h2>
 			<div class="table-3x">
 				<p class="description-field-right">Filing Status</p>
-				<select class="trigger input-field" id="FilingStatus-0" tooltipid="#FilingStatus-0-TT">
+				<select class="trigger input-field" id="FilingStatus-0"
+					tooltipid="#FilingStatus-0-TT">
 					<option value="Single">Single</option>
 					<option value="HoH">HoH</option>
 					<option value="MFJ">MFJ</option>
@@ -46,23 +47,31 @@
 				<p>&nbsp;</p>
 
 				<p>Social Security</p>
-				<input class="trigger input-field" type="text" autofocus id="SocialSecurity-0"
-					placeholder="0" tooltipid="#SocialSecurity-0-TT" size="10" />
+				<input class="trigger input-field" type="text" autofocus
+					id="SocialSecurity-0"
+					placeholder="0" tooltipid="#SocialSecurity-0-TT"
+					size="10" />
 				<p>&nbsp;</p>
 
 				<p class="description-field">Income</p>
-				<input class="trigger input-field" type="text" id="Income-0"
-					placeholder="0" tooltipid="#Income-0-TT" size="10" />
+				<input class="trigger input-field" type="text"
+					id="Income-0"
+					placeholder="0" tooltipid="#Income-0-TT"
+					size="10" />
 				<p>&nbsp;</p>
 
 				<p>Tax-Exempt Interest</p>
-				<input class="trigger input-field" type="text" id="TaxExemptInterest-0"
-					placeholder="0" tooltipid="#TaxExemptInterest-0-TT" size="10" />
+				<input class="trigger input-field" type="text"
+					id="TaxExemptInterest-0"
+					placeholder="0" tooltipid="#TaxExemptInterest-0-TT" 
+					ize="10" />
 				<p>&nbsp;</p>
 
 				<p>Adjustments</p>
-				<input class="trigger input-field" type="text" id="Adjustments-0"
-					placeholder="0" tooltipid="#Adjustments-0-TT" size="10" />
+				<input class="trigger input-field" type="text"
+					id="Adjustments-0"
+					placeholder="0" tooltipid="#Adjustments-0-TT"
+					size="10" />
 				<p>&nbsp;</p>
 
 				<p>Taxable Social Security (if taxed in current year)</p>
@@ -81,7 +90,8 @@
 			<h2>Lump Sum Payment #1</h2>
 			<div class="table-3x">
 				<p class="description-field-right">Filing Status from Previous Year</p>
-				<select class="trigger input-field" id="FilingStatus-1" tooltipid="#FilingStatus-1-TT">
+				<select class="trigger input-field" id="FilingStatus-1"
+					tooltipid="#FilingStatus-1-TT">
 					<option value="Single">Single</option>
 					<option value="HoH">HoH</option>
 					<option value="MFJ">MFJ</option>
@@ -91,28 +101,38 @@
 				<p>&nbsp;</p>
 
 				<p>Lump Sum Payment Amount (SSA-1099, box 3)</p>
-				<input class="trigger input-field" type="text" id="LumpSum-1"
-					placeholder="0" tooltipid="#LumpSum-1-TT" size="10" />
+				<input class="trigger input-field" type="text"
+					id="LumpSum-1"
+					placeholder="0" tooltipid="#LumpSum-1-TT"
+					size="10" />
 				<p>&nbsp;</p>
 
 				<p>AGI from Previous Year (1040, line 11)</p>
-				<input class="trigger input-field" type="text" id="AGI-1"
-					placeholder="0" tooltipid="#AGI-1-TT" size="10" />
+				<input class="trigger input-field" type="text"
+					id="AGI-1"
+					placeholder="0" tooltipid="#AGI-1-TT"
+					size="10" />
 				<p>&nbsp;</p>
 
 				<p>Tax-Exempt Interest from Pevious Year (1040, line 2a)</p>
-				<input class="trigger input-field" type="text" id="TaxExemptInterest-1"
-					placeholder="0" tooltipid="#TaxExemptInterest-1-TT" size="10" />
+				<input class="trigger input-field" type="text"
+					id="TaxExemptInterest-1"
+					placeholder="0" tooltipid="#TaxExemptInterest-1-TT"
+					size="10" />
 				<p>&nbsp;</p>
 
 				<p>Total Social Security from Pevious Year (1040, line 6a)</p>
-				<input class="trigger input-field" type="text" id="SocialSecurityReceivedReported-1"
-			 		placeholder="0" tooltipid="#SocialSecurityReceivedReported-1-TT" size="10" />
+				<input class="trigger input-field" type="text"
+					id="SocialSecurityReceivedReported-1"
+			 		placeholder="0" tooltipid="#SocialSecurityReceivedReported-1-TT"
+					size="10" />
 				<p>&nbsp;</p>
 
 				<p>Taxable Social Security from Previous Year (1040, line 6b)</p>
-				<input class="trigger input-field" type="text" id="SocialSecurityTaxableReported-1"
-					placeholder="0" tooltipid="#SocialSecurityTaxableReported-1-TT" size="10" />
+				<input class="trigger input-field" type="text"
+					id="SocialSecurityTaxableReported-1"
+					placeholder="0" tooltipid="#SocialSecurityTaxableReported-1-TT"
+					size="10" />
 				<p>&nbsp;</p>
 
 				<p>Taxable Social Security</p>
@@ -125,7 +145,8 @@
 			<h2>Lump Sum Payment #2</h2>
 			<div class="table-3x">
 				<p class="description-field-right">Filing Status from Previous Year</p>
-				<select class="trigger input-field" id="FilingStatus-2" tooltipid="#FilingStatus-1-TT">
+				<select class="trigger input-field" id="FilingStatus-2"
+					tooltipid="#FilingStatus-1-TT">
 					<option value="Single">Single</option>
 					<option value="HoH">HoH</option>
 					<option value="MFJ">MFJ</option>
@@ -135,28 +156,38 @@
 				<p>&nbsp;</p>
 
 				<p>Lump Sum Payment Amount (SSA-1099, box 3)</p>
-				<input class="trigger input-field" type="text" id="LumpSum-2"
-					placeholder="0" tooltipid="#LumpSum-1-TT" size="10" />
+				<input class="trigger input-field" type="text"
+					id="LumpSum-2"
+					placeholder="0" tooltipid="#LumpSum-1-TT"
+					size="10" />
 				<p>&nbsp;</p>
 
 				<p>AGI from Previous Year (1040, line 11)</p>
-				<input class="trigger input-field" type="text" id="AGI-2"
-					placeholder="0" tooltipid="#AGI-1-TT" size="10" />
+				<input class="trigger input-field" type="text"
+					id="AGI-2"
+					placeholder="0" tooltipid="#AGI-1-TT"
+					size="10" />
 				<p>&nbsp;</p>
 
 				<p>Tax-Exempt Interest from Pevious Year (1040, line 2a)</p>
-				<input class="trigger input-field" type="text" id="TaxExemptInterest-2"
-					placeholder="0" tooltipid="#TaxExemptInterest-1-TT" size="10" />
+				<input class="trigger input-field" type="text"
+					id="TaxExemptInterest-2"
+					placeholder="0" tooltipid="#TaxExemptInterest-1-TT"
+					size="10" />
 				<p>&nbsp;</p>
 
 				<p>Total Social Security from Pevious Year (1040, line 6a)</p>
-				<input class="trigger input-field" type="text" id="SocialSecurityReceivedReported-2"
-					placeholder="0" tooltipid="#SocialSecurityReceivedReported-1-TT" size="10" />
+				<input class="trigger input-field" type="text"
+					id="SocialSecurityReceivedReported-2"
+					placeholder="0" tooltipid="#SocialSecurityReceivedReported-1-TT"
+					size="10" />
 				<p>&nbsp;</p>
 
 				<p> Taxable Social Security from Previous Year (1040, line 6b)</p>
-				<input class="trigger input-field" type="text" id="SocialSecurityTaxableReported-2"
-					placeholder="0" tooltipid="#SocialSecurityTaxableReported-1-TT" size="10" />
+				<input class="trigger input-field" type="text"
+					id="SocialSecurityTaxableReported-2"
+					placeholder="0" tooltipid="#SocialSecurityTaxableReported-1-TT"
+					size="10" />
 				<p>&nbsp;</p>
 
 				<p>Taxable Social Security</p>

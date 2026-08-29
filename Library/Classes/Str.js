@@ -101,7 +101,8 @@ export class Str {
 		name = name
 				// Insert space before capital letter when preceded by lowercase/number
 				.replace(/([a-z0-9]+)([A-Z])/g, '$1 $2')
-				// Insert space between acronym and starting word (e.g., "HTTPResponse" -> "HTTP Response")
+				// Insert space between acronym and starting word (e.g., 
+				// "HTTPResponse" -> "HTTP Response")
 				.replace(/([A-Z]+)([A-Z][a-z])/g, '$1 $2')
 				// Insert space between letter followed by number
 				.replace(/([A-Za-z]+)([0-9])/g, '$1 $2')
@@ -119,7 +120,8 @@ export class Str {
 		return name
 				// Insert underbar before capital letter when preceded by lowercase/number
 				.replace(/([a-z0-9]+)([A-Z])/g, '$1_$2')
-				// Insert underbar between acronym and starting word (e.g., "HTTPResponse" -> "HTTP Response")
+				// Insert underbar between acronym and starting word (e.g.,
+				// "HTTPResponse" -> "HTTP Response")
 				.replace(/([A-Z]+)([A-Za-z])/g, '$1_$2')
 				// Insert underbar between letter followed by number
 				.replace(/([A-Za-z]+)([0-9])/g, '$1_$2')

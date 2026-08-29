@@ -9,9 +9,11 @@ import { TaxTable }		from "../Classes/TaxTable.js";
 
 const HTML_FORM = `
 		<details class="taxform-details" id="ssa1099-XX-details">
-			<summary class="taxform-summary">SSA-1099 - Social Security Benefit Statement</summary>
+			<summary class="taxform-summary">SSA-1099 - Social Security Benefit
+				Statement</summary>
 			<div>&nbsp;</div>
-			<div class="ssa-outside-header">Form SSA-1099 - Social Security Benefit Statement</div>
+			<div class="ssa-outside-header">Form SSA-1099 - Social Security
+				Benefit Statement</div>
 			<div class="f1099-taxform-container">
 				<!-- Header Section -->
 				<div class="f1099-header-row">
@@ -20,7 +22,8 @@ const HTML_FORM = `
 					</div>
 					<div class="ssa-header-right">
 						<ul>
-							<li>Part of your Social Security benefits shown in box 5 may be taxable income.</li>
+							<li>Part of your Social Security benefits shown in box 5 may
+								be taxable income.</li>
 							<li>See the reverse for more infrmation.</li>
 						</ul>
 					</div>
@@ -29,26 +32,34 @@ const HTML_FORM = `
 				<div class="ssa-row-1">
 					<div class="f1099-box ssa-border-right">
 						<span class="f1099-box-label">Box 1. Name</span>
-						<input type="text" id="ssa-XX-01" placeholder="Beneficiary&apos;s name" />
+						<input type="text" id="ssa-XX-01"
+							placeholder="Beneficiary&apos;s name" />
 					</div>
 					<div class="f1099-box">
-						<span class="f1099-box-label">Box 2. Beneficiary&apos;s Social Security Number</span>
-						<input type="text" id="ssa-XX-02" placeholder="123-45-6789" />
+						<span class="f1099-box-label">Box 2. Beneficiary&apos;s Social
+							Security Number</span>
+						<input type="text" id="ssa-XX-02"
+							placeholder="123-45-6789" />
 					</div>
 				</div>
 
 				<div class="ssa-row-2">
 					<div class="f1099-box ssa-border-right">
 						<span class="f1099-box-label">Box 3. Benefits Paid in 202X</span>
-						<input type="text" id="ssa-XX-03" placeholder="0" />
+						<input type="text" id="ssa-XX-03"
+							placeholder="0" />
 					</div>
 					<div class="f1099-box ssa-border-right">
-						<span class="f1099-box-label">Box 4. Benefits Repaid to SSA in 202X</span>
-						<input type="text" id="ssa-XX-04" placeholder="0" />
+						<span class="f1099-box-label">Box 4. Benefits Repaid to SSA in
+							202X</span>
+						<input type="text" id="ssa-XX-04"
+							placeholder="0" />
 					</div>
 					<div class="f1099-box input-color">
-						<span class="f1099-box-label">Box 5. Net Benefits for 202X (Box 3 minus Box 4)</span>
-						<input type="text" id="ssa-XX-05" placeholder="0" />
+						<span class="f1099-box-label">Box 5. Net Benefits for 202X (Box 3
+							minus Box 4)</span>
+						<input type="text" id="ssa-XX-05"
+							placeholder="0" />
 					</div>
 				</div>
 
@@ -60,11 +71,13 @@ const HTML_FORM = `
 							<h2 class="ssa-subheading">Description of Amount in Box 3</h2>
 							<div class="ssa-label-group input-color">
 								<label for="ssa-XX-03a">Medicare Part B:</label>
-								<input type="text" id="ssa-XX-03a" name="ssa-XX-03a" placeholder="0" />
+								<input type="text" id="ssa-XX-03a" name="ssa-XX-03a"
+									placeholder="0" />
 							</div>
 							<div class="ssa-label-group input-color">
 								<label for="ssa-XX-03b">Medicare Part D:</label>
-								<input type="text" id="ssa-XX-03b" name="ssa-XX-03b" placeholder="0" />
+								<input type="text" id="ssa-XX-03b" name="ssa-XX-03b"
+									placeholder="0" />
 							</div>
 						</div>
 					</div>
@@ -76,22 +89,26 @@ const HTML_FORM = `
 						</div>
 						<div class="f1099-flex-row">
 							<div class="f1099-box input-color">
-								<span class="f1099-box-label">Box 6. Voluntary Federal Income Tax Withheld</span>
-								<input type="text" id="ssa-XX-06" placeholder="0" />
+								<span class="f1099-box-label">Box 6. Voluntary Federal
+									Income Tax Withheld</span>
+								<input type="text" id="ssa-XX-06"
+									placeholder="0" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
 								<span class="f1099-box-label">Box 7. Address</span>
-								<input type="text" id="ssa-XX-07" placeholder="Beneficiary&apos;s address"/>
+								<input type="text" id="ssa-XX-07"
+									placeholder="Beneficiary&apos;s address"/>
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box" style="border-bottom: none;">
 								<span class="f1099-box-label">Box 8. Claim Number</span>
-								<input type="text" id="ssa-XX-08" placeholder="Optional Account #" />
+								<input type="text" id="ssa-XX-08"
+									placeholder="Optional Account #" />
 							</div>
 						</div>
 					</div>		<!-- f1099-col-right -->
@@ -121,7 +138,8 @@ export class SSA1099 extends TaxForm {
 
 		const element = document.getElementById(`ssa1099-${uid}-details`);
 		if (!element) {
-			throw new Error(`SSA1099.getUserInput(): Element not found: ssa1099-${uid}-details`);
+			throw new Error(
+				`SSA1099.getUserInput(): Element not found: ssa1099-${uid}-details`);
 		}
 
 		let inputs = {};

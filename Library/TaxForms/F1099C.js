@@ -15,7 +15,8 @@ const HTML_FORM = `
 				<!-- Header Section -->
 				<div class="f1099-header-row">
 					<div class="f1099-header-left">
-						<label><input type="checkbox" disabled id="corrected" /> CORRECTED</label>
+						<label><input type="checkbox" disabled
+							id="corrected" /> CORRECTED</label>
 					</div>
 					<div class="f1099-header-center">
 						<div>OMB No. 1545-1424</div>
@@ -32,8 +33,9 @@ const HTML_FORM = `
 					<!-- Left Column: Payer & Recipient Info Inputs -->
 					<div class="f1099-col-left">
 						<div class="f1099-box f1099-box-large">
-							<span class="f1099-box-label">PAYER&apos;S name, street address, city or town,
-								state or province, country, ZIP or foreign postal code, and telephone no.</span>
+							<span class="f1099-box-label">PAYER&apos;S name, street 
+								address, city or town, state or province, country,
+								ZIP or foreign postal code, and telephone no.</span>
 							<textarea id="f1099c-XX-payer"
 								placeholder="Payer Name&#10;Street Address&#10;City, State, ZIP&#10;Phone Number">
 							</textarea>
@@ -42,25 +44,29 @@ const HTML_FORM = `
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
 								<span class="f1099-box-label">PAYER&apos;S TIN</span>
-								<input type="text" id="f1099c-XX-ein" placeholder="12-3456789" />
+								<input type="text" id="f1099c-XX-ein"
+									placeholder="12-3456789" />
 							</div>
 							<div class="f1099-box">
 								<span class="f1099-box-label">TAXPAYER&apos;S TIN</span>
-								<input type="text" id="f1099c-XX-ssn" placeholder="123-45-6789" />
+								<input type="text" id="f1099c-XX-ssn"
+									placeholder="123-45-6789" />
 							</div>
 						</div>
 			
 						<div class="f1099-box f1099-box-large">
-							<span class="f1099-box-label">TAXPAYER&apos;S name, street address, city or town,
-								state, and ZIP code</span>
+							<span class="f1099-box-label">TAXPAYER&apos;S name, street
+								address, city or town, state, and ZIP code</span>
 							<textarea id="f1099c-XX-taxpayer"
 								placeholder="Taxpayer&apos;s Name&#10;Street Address&#10;City, State, ZIP">
 							</textarea>
 						</div>
 
 						<div class="f1099-box" style="border-bottom: none;">
-							<span class="f1099-box-label">Account number (see instructions)</span>
-							<input type="text" id="f1099c-XX-account" placeholder="Optional Account #" />
+							<span class="f1099-box-label">Account number (see
+								instructions)</span>
+							<input type="text" id="f1099c-XX-account"
+								placeholder="Optional Account #" />
 						</div>
 					</div>
 			
@@ -68,19 +74,25 @@ const HTML_FORM = `
 					<div class="f1099-col-right">
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
-								<span class="f1099-box-label">1 Date of identifiable event</span>
-								<input type="text" id="f1099c-XX-01" placeholder="MM/DD/YYYY" />
+								<span class="f1099-box-label">1 Date of identifiable
+									event</span>
+								<input type="text" id="f1099c-XX-01"
+									placeholder="MM/DD/YYYY" />
 							</div>
 							<div class="f1099-box input-color">
-								<span class="f1099-box-label">2 Amount of debt discharged</span>
-								<input type="text" id="f1099c-XX-02" placeholder="0" />
+								<span class="f1099-box-label">2 Amount of debt
+									discharged</span>
+								<input type="text" id="f1099c-XX-02"
+									placeholder="0" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
-								<span class="f1099-box-label">3 Interest, if included in box 2</span>
-								<input type="text" id="f1099c-XX-03" placeholder="0" />
+								<span class="f1099-box-label">3 Interest, if included
+									in box 2</span>
+								<input type="text" id="f1099c-XX-03"
+									placeholder="0" />
 							</div>
 							<div class="f1099-box">
 							</div>
@@ -95,8 +107,8 @@ const HTML_FORM = `
 			
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
-								<span class="f1099-box-label">5 If checked, the debtor was personally
-									liable for repayment of the debt</span>
+								<span class="f1099-box-label">5 If checked, the debtor
+									was personally liable for repayment of the debt</span>
 								<div class="f1099-checkbox-center">
 									<input type="checkbox" id="f1099c-XX-05" />
 								</div>
@@ -109,8 +121,10 @@ const HTML_FORM = `
 								<input type="text" id="f1099c-XX-06" />
 							</div>
 							<div class="f1099-box" style="border-bottom: none;">
-								<span class="f1099-box-label">7 Fair market value of property</span>
-								<input type="text" id="f1099c-XX-07" placeholder="0" />
+								<span class="f1099-box-label">7 Fair market value of
+									property</span>
+								<input type="text" id="f1099c-XX-07"
+									placeholder="0" />
 							</div>
 						</div>
 					</div>
@@ -197,7 +211,7 @@ export class F1099C extends TaxForm {
 		this.lines["02"]		= new Line("Amount of debt discharged");
 		this.lines["03"]		= new Line("Interest, if included in box 2");
 		this.lines["04"]		= new Line("Debt description");
-		this.lines["05"]		= new Line("If checked, the debtor was personally liable for repayment of the debt");
+		this.lines["05"]		= new Line("Debtor was personally liable for debt");
 		this.lines["06"]		= new Line("Identifiable event code");
 		this.lines["07"]		= new Line("Fair market value of property");
 

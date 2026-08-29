@@ -126,7 +126,7 @@ export class F6251 extends TaxForm {
 		this.lines["02c"].value	= 0;					// Investment Interest Expense
 		this.lines["02d"].value	= 0;					// Depletion
 		this.lines["02e"].value	= 0;					// Net Operating Loss Deduction
-		this.lines["02f"].value	= (0);	// Subtract			Alternative Tax Net Operating Loss Deduction
+		this.lines["02f"].value	= (0);	// Subtract			Net Operating Loss Deduction
 		this.lines["02g"].value	= 0;					// Interest from Private Activity bonds
 		this.lines["02h"].value	= 0;					// Qualified Small Business Stock
 		this.lines["02i"].value	= 0;					// Exercise of Incentive Stock Options
@@ -145,15 +145,16 @@ export class F6251 extends TaxForm {
 		this.lines["04"].value	= this.add("01b","02a",	// AMT Income
 										   "02c","02d","02e","02g","02h","02i",
 										   "02j","02k","02l","02m","02n","02o",
-										   "02p","02q","02r","02t","03") - this.add("02b","02f","02s");
+										   "02p","02q","02r","02t","03") -
+												this.add("02b","02f","02s");
 
 		// Form 6251, Part III
 		//
 		// Calculate part I and III before II becuase par II references values from
 		//the other parts.
-		this.lines["12"].value	= this.line("06");							// AMT Income - AMT Exemption
+		this.lines["12"].value	= this.line("06");					// AMT Inc - AMT Exemption
 		this.lines["13"].value	= capital_gains + qualified_dividends;
-		this.lines["14"].value	= 0;										// Leave blank for now.
+		this.lines["14"].value	= 0;								// Leave blank for now.
 		this.lines["15"].value	= this.add("13", "14");
 		this.lines["16"].value	= this.min("12", "15");
 		this.lines["17"].value	= this.subtract("12", "16");
@@ -187,14 +188,14 @@ export class F6251 extends TaxForm {
 
 		// Form 6251, Part II - Alternative Minimum Tax
 		this.lines["05"].value	= tt.get_AMT_Exemption(tp.filing_status, this.line("04"));
-		this.lines["06"].value	= this.subtract("04", "05");			// AMT Income - AMT Exemption
+		this.lines["06"].value	= this.subtract("04", "05");			// AMT Inc - AMT Exemp
 		if (this.line("06") > 0) {
 			if ((capital_gains > 0) || (qualified_dividends > 0)) {
 				this.lines["07"].value = this.line("40");
 			} else {
 				this.lines["07"].value = tt.get_AMT_Tax(tp.filing_status, this.line("06"));
 			}
-			this.lines["08"].value	= 0;								// AMT foreign tax credit
+			this.lines["08"].value	= 0;								// Foreign tax credit
 			this.lines["09"].value	= this.subtract("07", "08");		// AMT
 		} else {	// AMT income is < AMT exemption, therefore AMT = 0
 			this.lines["06"].value	= 0;
@@ -202,7 +203,7 @@ export class F6251 extends TaxForm {
 			this.lines["09"].value	= 0;								// AMT
 			this.lines["11"].value	= 0;
 		}
-		this.lines["10"].value	= income_tax;							// 1040, line 16, normal income tax
+		this.lines["10"].value	= income_tax;	// 1040, line 16, normal income tax
 		this.lines["11"].value	= Math.max(0, this.subtract("09", "10"));	// AMT
 
 		Debug.exit("F6251.calculate()");

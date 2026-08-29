@@ -18,21 +18,22 @@ function changeHandler(event) {
 		TaxFormObj.reset();
 		Taxpayer.reset();
 
-		const inputs = getInputs();									// Get inputs from the web page
+		const inputs = getInputs();				// Get inputs from the web page
 		if (inputs.filing_status === "MFJ") {
 			HTML.showElement("SpouseContainer");
 		} else {
 			HTML.hideElement("SpouseContainer");
 		}
-		const tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
-		const taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
-		mapInputValues(inputs);										// Map input values to tax forms
-		putOutputs();												// Put results on web page
-		Debug.turnOn();												// Put debug info on web page if enabled
+		TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables
+		createTaxpayer(inputs);					// Initialize taxpayer
+		mapInputValues(inputs);					// Map input values to tax forms
+		putOutputs();							// Put results on web page
+		Debug.turnOn();							// Put debug info on web page if enabled
 	} catch (error) {
 		HTML.putElementValue("error-message-output", error);
 		console.log("Stack trace:", error.stack);
-		document.getElementById("error-message-output").scrollIntoView({behavior: 'smooth', block: 'start'});
+		document.getElementById("error-message-output")
+			.scrollIntoView({behavior: 'smooth', block: 'start'});
 	}
 }
 
@@ -57,12 +58,12 @@ function getInputs() {
 	const inputs = {};
 
 	// Input fields
-	inputs.tax_year							= HTML.getUserInput("tax-year");
-	inputs.filing_status					= HTML.getUserInput("FilingStatus",			"text").toUpperCase();
-	inputs.taxpayers_birthday				= HTML.getUserInput("TaxpayersBirthday",	"text");
-	inputs.spouses_birthday					= HTML.getUserInput("SpousesBirthday",		"text");
-	inputs.is_taxpayer_blind				= HTML.getUserInput("TaxpayerIsBlind");
-	inputs.is_spouse_blind					= HTML.getUserInput("SpouseIsBlind");
+	inputs.tax_year					= HTML.getUserInput("tax-year");
+	inputs.filing_status			= HTML.getUserInput("FilingStatus", "text").toUpperCase();
+	inputs.taxpayers_birthday		= HTML.getUserInput("TaxpayersBirthday", "text");
+	inputs.spouses_birthday			= HTML.getUserInput("SpousesBirthday", "text");
+	inputs.is_taxpayer_blind		= HTML.getUserInput("TaxpayerIsBlind");
+	inputs.is_spouse_blind			= HTML.getUserInput("SpouseIsBlind");
 
 	// Input fields
 	inputs.agi								= HTML.getUserInput("AGI");
@@ -158,7 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	//
 
 	// Listen for changes to the input data.
-	HTML.addListener("tax-year",						"change", changeHandler);
+	HTML.addListener("tax-year",					"change", changeHandler);
 	HTML.addListener("FilingStatus",				"change", changeHandler);
 	HTML.addListener("TaxpayersBirthday",			"change", changeHandler);
 	HTML.addListener("SpousesBirthday",				"change", changeHandler);

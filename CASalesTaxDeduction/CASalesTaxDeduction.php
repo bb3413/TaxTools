@@ -22,13 +22,14 @@
 
 		<h1 class="title">California Sales Tax Deduction Calculator</h1>
 
-		<p>This tool calculates the amount of the sales tax deduction you are allowed. On Schedule A,
-		Itemized Deductions, you have a choice of taking a deduction for the state and local taxes you
-		paid (for example, state income tax withheld from wages) or an estimate of the total sales tax
-		you paid throughout the year, whichever is greater.</p>
+		<p>This tool calculates the amount of the sales tax deduction you are allowed. On
+		Schedule A, Itemized Deductions, you have a choice of taking a deduction for the
+		state and local taxes you paid (for example, state income tax withheld from wages) or
+		an estimate of the total sales tax you paid throughout the year, whichever is
+		greater.</p>
 
-		<p>The amount of the sales tax deduction you are allowed is estimated based on the following
-		four values.</p>
+		<p>The amount of the sales tax deduction you are allowed is estimated based on the
+		following four values.</p>
 		<ul>
 			<li>Where you live</li>
 			<li>Amount of spendable income</li>
@@ -36,10 +37,10 @@
 			<li>Sales tax paid on large purchases</li>
 		</ul>
 
-		<p>Where you live determines the sales tax rate that you pay. Some states do not have any
-		sales tax, while others have as much as 10%. In addition, many counties and cities add an
-		additional amount to the sales tax. Note: this tool can only calculate the sales tax
-		deduction for taxpayers living in California.</p>
+		<p>Where you live determines the sales tax rate that you pay. Some states do not have
+		any sales tax, while others have as much as 10%. In addition, many counties and cities
+		add an additional amount to the sales tax. Note: this tool can only calculate the
+		sales tax deduction for taxpayers living in California.</p>
 
 		<p>Your spendable income is based on your total income, not just your taxable income.
 		The more spendable income you have, the more you are likely to spend. Therefore, the
@@ -63,7 +64,8 @@
 			<p>&nbsp;</p>
 
 	   		<p>Street Address</p>
-			<input class="input-field left span-two" type="text" autofocus id="StreetAddress" />
+			<input class="input-field left span-two" type="text" autofocus
+				id="StreetAddress" />
 
 			<p>City</p>
 			<input class="input-field left span-two" type="text" id="City" />

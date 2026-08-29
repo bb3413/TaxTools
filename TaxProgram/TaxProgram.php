@@ -36,11 +36,11 @@
 		that resemble the forms you receive to report your tax information.
 		This is where you input your information. When you are finished entering
 		your tax information, press the Calculate button and the tool will calculate
-		your income tax and display the relevant tax forms. Click <a href="TaxProgram-Help.html">
-		this link</a> for more help with this tool.</p>
+		your income tax and display the relevant tax forms. Click
+		<a href="TaxProgram-Help.html"> this link</a> for more help with this tool.</p>
 
-		<p>You can use the Save and Restore buttons to save the information you have entered and
-		restore it again later.</p>
+		<p>You can use the Save and Restore buttons to save the information you have entered
+		and restore it again later.</p>
 
 		<div class="button-container flex-right">
 			<!-- Save Button -->
@@ -55,7 +55,8 @@
 
 		<div class="taxpayer-info-short-line">
 			<p>Filing Status</p>
-			<select class="trigger input-field left" id="filing-status" tooltipid="#filing-status-tt">
+			<select class="trigger input-field left" id="filing-status"
+				tooltipid="#filing-status-tt">
 				<option value="Single">Single</option>
 				<option value="HoH">HoH</option>
 				<option value="MFJ">MFJ</option>
@@ -82,7 +83,8 @@
 		</div>
 		<div class="taxpayer-info-short-line">
 			<p>Taxpayer's Birthday</p>
-			<input class="trigger input-field left" type="text" id="taxpayers-birthday" size="36"
+			<input class="trigger input-field left" type="text"
+				id="taxpayers-birthday" size="36"
 				placeholder="mm/dd/yyyy" tooltipid="#taxpayers-birthday-tt" />
 		</div>
 		<div class="taxpayer-info-short-line">
@@ -94,7 +96,8 @@
 		<div id="spouse-container">
 			<div class="taxpayer-info-short-line">
 				<p>Spouse's Birthday</p>
-				<input class="trigger input-field left" type="text" id="spouses-birthday" size="36"
+				<input class="trigger input-field left" type="text"
+					id="spouses-birthday" size="36"
 					placeholder="mm/dd/yyyy" tooltipid="#spouses-birthday-tt" />
 			</div>
 			<div class="taxpayer-info-short-line">
@@ -106,7 +109,8 @@
 
 		<div class="button-container">
 			<!-- Calculate Button -->
-			<input type="button" id="calculate-button" class="trigger button calculate-button"
+			<input type="button" id="calculate-button"
+				class="trigger button calculate-button"
 				value="Calculate Tax Return" tooltipid="#calculate-button-tt" />
 		</div>
 

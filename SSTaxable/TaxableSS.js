@@ -16,10 +16,10 @@ function calculateTax(inputs) {
 	outputs.taxable_ss = ss_tax.calculate(
 		inputs.filing_status,
 		inputs.social_security,			// Total SS received from 1040, line 6a
-		inputs.income,					// Income without taxable SS; 1040, line 9 - 1040, line 6b
+		inputs.income,					// Income without taxable SS
 		inputs.tax_exempt_interest,		// Tax exempt interest from 1040, line 2a
 		0,								// Student loan interest from 1040S1, line 21
-		inputs.adjustments,				// Adjustments from 1040, line 10 w/o student loan interest.
+		inputs.adjustments,				// Adjustments from 1040
 		inputs.lived_with_spouse);		// Lived with spouse
 
 	return outputs;
@@ -120,16 +120,17 @@ function changeHandler(event) {
 		TaxFormObj.reset();
 		Taxpayer.reset();
 
-		const inputs	= getInputs();								// Get inputs from the web page
-		const tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
-		const taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
+		const inputs	= getInputs();					// Get inputs from the web page
+		TaxTable.getTaxTable(inputs.tax_year);			// Initialize tax tables
+		createTaxpayer(inputs);							// Initialize taxpayer
 		const outputs	= calculateTax(inputs);
-		putOutputs(inputs, outputs);								// Put results on web page
-		Debug.turnOn();												// Put debug info on web page if enabled
+		putOutputs(inputs, outputs);					// Put results on web page
+		Debug.turnOn();									// Put debug info on web page
 	} catch (error) {
 		HTML.putElementValue("error-message-output", error);
 		console.log("Stack trace:", error.stack);
-		document.getElementById("error-message-output").scrollIntoView({behavior: 'smooth', block: 'start'});
+		document.getElementById("error-message-output")
+			.scrollIntoView({behavior: 'smooth', block: 'start'});
 	}
 }
 
@@ -171,7 +172,9 @@ function putOutputs(inputs, outputs) {
 		HTML.hideElement("LivedWithSpouseContainer");
 	}
 
-	taxable_percent = (inputs.social_security === 0) ? 0 : Math.round(outputs.taxable_ss / inputs.social_security * 100);
+	taxable_percent =
+		(inputs.social_security === 0) ?
+			0 : Math.round(outputs.taxable_ss / inputs.social_security * 100);
 	HTML.putUserOutput("TaxableSocialSecurity",	outputs.taxable_ss);
 	HTML.putUserOutput("TaxablePercent",		taxable_percent + "%", "text");
 }

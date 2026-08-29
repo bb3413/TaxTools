@@ -1,9 +1,9 @@
 
 export class Eval {
 	//
-	// This function evaluates a string that contains a simple mathematical expression. It uses
-	// the Shunting-yard algorithm to convert the string into Reverse Polish Notation (RPN) before
-	// evaluating it.
+	// This function evaluates a string that contains a simple mathematical expression. It
+	// uses the Shunting-yard algorithm to convert the string into Reverse Polish Notation
+	// (RPN) before evaluating it.
 	//
 	// This function supports:
 	//		Dedimal numbers
@@ -21,8 +21,8 @@ export class Eval {
 		const tokens = input.replace(/\s/g, "").match(/\d*\.?\d+|[+\-*/()]/g);
 		if (!tokens) return 0;
 
-	  	// Operators object; assign precedence and whether it is left or right associative (e.g., it
-		// evaluates --5 from right to left.
+	  	// Operators object; assign precedence and whether it is left or right associative
+		// (e.g., it evaluates --5 from right to left.
 		const ops = {
 			"+": { prec: 1, assoc: "L", exec: (a, b) => a + b },
 			"-": { prec: 1, assoc: "L", exec: (a, b) => a - b },
@@ -42,18 +42,21 @@ export class Eval {
 			} else if (token === "(") {
 				stack.push(token);
 			} else if (token === ")") {
-				while (stack.length && stack[stack.length - 1] !== "(") queue.push(stack.pop());
+				while (stack.length &&
+					   stack[stack.length - 1] !== "(") queue.push(stack.pop());
 				stack.pop();
 			} else {
 				// Unary minus detection
 				let type = token;
-				if (token === "-" && (i === 0 || (isNaN(tokens[i - 1]) && tokens[i - 1] !== ")"))) {
+				if (token === "-" &&
+					(i === 0 || (isNaN(tokens[i - 1]) && tokens[i - 1] !== ")"))) {
 					type = "u-";
 				}
 
 				while (stack.length && stack[stack.length - 1] !== "(") {
 					const top = stack[stack.length - 1];
-					if (ops[type].prec < ops[top].prec || (ops[type].prec === ops[top].prec && ops[type].assoc === "L")) {
+					if (ops[type].prec < ops[top].prec ||
+						(ops[type].prec === ops[top].prec && ops[type].assoc === "L")) {
 						queue.push(stack.pop());
 					} else break;
 				}

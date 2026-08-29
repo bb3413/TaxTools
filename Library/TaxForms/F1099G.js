@@ -15,7 +15,8 @@ const HTML_FORM = `
 				<!-- Header Section -->
 				<div class="f1099-header-row">
 					<div class="f1099-header-left">
-						<label><input type="checkbox" disabled id="corrected" /> CORRECTED</label>
+						<label><input type="checkbox" disabled
+							id="corrected" /> CORRECTED</label>
 					</div>
 					<div class="f1099-header-center">
 						<div>OMB No. 1545-0120</div>
@@ -32,32 +33,40 @@ const HTML_FORM = `
 					<!-- Left Column: Payer & Recipient Info Inputs -->
 					<div class="f1099-col-left">
 						<div class="f1099-box f1099-box-large">
-							<span class="f1099-box-label">PAYER&apos;S name, street address, city or town,
-								state or province, country, ZIP or foreign postal code, and telephone no.</span>
-							<textarea id="f1099g-XX-payer" placeholder="Payer Name&#10;Street Address&#10;City, State, ZIP&#10;Phone Number"></textarea>
+							<span class="f1099-box-label">PAYER&apos;S name, street
+								address, city or town, state or province, country,
+								ZIP or foreign postal code, and telephone no.</span>
+							<textarea id="f1099g-XX-payer"
+								placeholder="Payer Name&#10;Street Address&#10;City, State, ZIP&#10;Phone Number">
+							</textarea>
 						</div>
 			
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
 								<span class="f1099-box-label">PAYER&apos;S TIN</span>
-								<input type="text" id="f1099g-XX-ein" placeholder="12-3456789" />
+								<input type="text" id="f1099g-XX-ein"
+									placeholder="12-3456789" />
 							</div>
 							<div class="f1099-box">
 								<span class="f1099-box-label">TAXPAYER&apos;S TIN</span>
-								<input type="text" id="f1099g-XX-ssn" placeholder="123-45-6789" />
+								<input type="text" id="f1099g-XX-ssn"
+									placeholder="123-45-6789" />
 							</div>
 						</div>
 			
 						<div class="f1099-box f1099-box-large">
-							<span class="f1099-box-label">TAXPAYER&apos;S name, street address, city or town,
-								state, and ZIP code</span>
+							<span class="f1099-box-label">TAXPAYER&apos;S name, street
+								address, city or town, state, and ZIP code</span>
 							<textarea id="f1099g-XX-taxpayer"
-								placeholder="Taxpayer&apos;s Name&#10;Street Address&#10;City, State, ZIP"></textarea>
+								placeholder="Taxpayer&apos;s Name&#10;Street Address&#10;City, State, ZIP">
+							</textarea>
 						</div>
 
 						<div class="f1099-box" style="border-bottom: none;">
-							<span class="f1099-box-label">Account number (see instructions)</span>
-							<input type="text" id="f1099g-XX-account" placeholder="Optional Account #" />
+							<span class="f1099-box-label">Account number (see
+								instructions)</span>
+							<input type="text" id="f1099g-XX-account"
+								placeholder="Optional Account #" />
 						</div>
 					</div>
 			
@@ -65,45 +74,55 @@ const HTML_FORM = `
 					<div class="f1099-col-right">
 						<div class="f1099-flex-row">
 							<div class="f1099-box input-color">
-								<span class="f1099-box-label">1 Unemployment compensation</span>
-								<input type="text" id="f1099g-XX-01" placeholder="0" />
+								<span class="f1099-box-label">1 Unemployment
+									compensation</span>
+								<input type="text" id="f1099g-XX-01"
+									placeholder="0" />
 							</div>
 							<div class="f1099-box input-color">
-								<span class="f1099-box-label">2 State or local income tax refunds,
-									credits, or offsets</span>
-								<input type="text" id="f1099g-XX-02" placeholder="0" />
+								<span class="f1099-box-label">2 State or local income tax
+									refunds, credits, or offsets</span>
+								<input type="text" id="f1099g-XX-02"
+									placeholder="0" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
-								<span class="f1099-box-label">3 Box 2 amount is for tax year</span>
-								<input type="text" id="f1099g-XX-03" placeholder="0" />
+								<span class="f1099-box-label">3 Box 2 amount is for
+									tax year</span>
+								<input type="text" id="f1099g-XX-03"
+									placeholder="0" />
 							</div>
 							<div class="f1099-box input-color">
-								<span class="f1099-box-label">4  Federal income tax withheld</span>
-								<input type="text" id="f1099g-XX-04" placeholder="0" />
+								<span class="f1099-box-label">4  Federal income tax
+									withheld</span>
+								<input type="text" id="f1099g-XX-04"
+									placeholder="0" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
 								<span class="f1099-box-label">5 RTAA payments</span>
-								<input type="text" id="f1099g-XX-05" placeholder="0" />
+								<input type="text" id="f1099g-XX-05"
+									placeholder="0" />
 							</div>
 							<div class="f1099-box">
 								<span class="f1099-box-label">6 Taxable grants</span>
-								<input type="text" id="f1099g-XX-06" placeholder="0" />
+								<input type="text" id="f1099g-XX-06"
+									placeholder="0" />
 							</div>
 						</div>
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
 								<span class="f1099-box-label">7 Agriculture payments</span>
-								<input type="text" id="f1099g-XX-07" placeholder="0" />
+								<input type="text" id="f1099g-XX-07"
+									placeholder="0" />
 							</div>
 							<div class="f1099-box">
-								<span class="f1099-box-label">8 Check if box 2 is trade or business
-									income</span>
+								<span class="f1099-box-label">8 Check if box 2 is trade
+									or business income</span>
 								<div class="f1099-checkbox-center">
 									<input type="checkbox" id="f1099g-XX-08" />
 								</div>
@@ -113,22 +132,27 @@ const HTML_FORM = `
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
 								<span class="f1099-box-label">9 Market gain</span>
-								<input type="text" id="f1099g-XX-09" placeholder="0" />
+								<input type="text" id="f1099g-XX-09"
+									placeholder="0" />
 							</div>
 							<div class="f1099-box">
 								<span class="f1099-box-label">10 Family leave benefits</span>
-								<input type="text" id="f1099g-XX-10" placeholder="0" />
+								<input type="text" id="f1099g-XX-10"
+									placeholder="0" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box" style="border-bottom: none;">
 								<span class="f1099-box-label">11 State/state no.</span>
-								<input type="text" id="f1099g-XX-11" placeholder="State / ID" />
+								<input type="text" id="f1099g-XX-11"
+									placeholder="State / ID" />
 							</div>
 							<div class="f1099-box input-color" style="border-bottom: none;">
-								<span class="f1099-box-label">12 State income tax withheld</span>
-								<input type="text" id="f1099g-XX-12" placeholder="0" />
+								<span class="f1099-box-label">12 State income tax
+									withheld</span>
+								<input type="text" id="f1099g-XX-12"
+									placeholder="0" />
 							</div>
 						</div>
 					</div>
@@ -222,7 +246,7 @@ export class F1099G extends TaxForm {
 		this.lines["taxpayer"]	= new Line("Taxpayer's address");
 		this.lines["account"]	= new Line("Account number");
 		this.lines["01"]		= new Line("Unemployment compensation");
-		this.lines["02"]		= new Line("State or local income tax refunds, credits, or offsets");
+		this.lines["02"]		= new Line("State or local tax refunds, credits, or offsets");
 		this.lines["03"]		= new Line("Box 2 amount is for tax year");
 		this.lines["04"]		= new Line("Federal income tax withheld");
 		this.lines["05"]		= new Line("RTAA payments");

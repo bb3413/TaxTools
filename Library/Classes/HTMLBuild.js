@@ -4,22 +4,6 @@
 // it into the current web page (DOM).
 //
 
-/* Example
-
-	const doc = new HTMLBuild();
-	doc.startElement("div");
-	doc.addElement("p", "", "This is the first dynamically added line.");
-	doc.addElement("p", "", "This is the second dynamically added line.");
-	doc.stopElement("div");
-	doc.putAfter("TaxReturnContainer");
-
-	// Remove the document.
-	const htmldoc = HTMLBuild.getDoc();
-	if (htmldoc) {
-		htmldoc.remove();
-	}
-*/
-
 export class HTMLBuild {
 	constructor() {
 		this._htmldoc		= [];
@@ -57,7 +41,8 @@ export class HTMLBuild {
 	// Methods
 	//
 	addElement(element, css_class, str, attributes="") {
-		// Add a container element. Container elements wrap their value between start and end tags.
+		// Add a container element. Container elements wrap their value between start
+		// and end tags.
 		if (css_class) {
 			attributes += attributes ? " " : "";
 			attributes += `class="${css_class}"`

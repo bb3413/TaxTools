@@ -22,10 +22,10 @@
 
 		<h1 class="title">Age Calculator</h1>
 
-		<p>This tool is primarily intended to calculate a person's age, but is can be used to determine
-		the number of years between any two dates. Or, you can enter one of the dates and the age and the
-		tool will determine the other date. Basically, you can enter any two fields, and the tool
-		will determine the other one.</p>
+		<p>This tool is primarily intended to calculate a person's age, but is can be used
+		to determine the number of years between any two dates. Or, you can enter one of the
+		dates and the age and the tool will determine the other date. Basically, you can
+		enter any two fields, and the tool will determine the other one.</p>
 
 		<p>&nbsp;</p>
 		<div class="table">

@@ -115,8 +115,10 @@ export class TaxTableTmpl {
 		let senior_deduction		= 0;
 		let deduction				= 0
 		let excess					= 0;
-		const max_senior_deduction	= this.getTaxValue("MaxSeniorDeduction", filing_status);
-		const phase_out_start		= this.getTaxValue("SeniorDeductionPhaseOut", filing_status);
+		const max_senior_deduction =
+			this.getTaxValue("MaxSeniorDeduction", filing_status);
+		const phase_out_start =
+			this.getTaxValue("SeniorDeductionPhaseOut", filing_status);
 
 		excess = Math.max(0, agi - phase_out_start);
 		deduction = Math.round(Math.max(0, max_senior_deduction - (excess * 0.06)));

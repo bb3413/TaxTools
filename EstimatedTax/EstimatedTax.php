@@ -43,7 +43,8 @@
 
 			<!-- Restore Button -->
 			<input type="file" id="InputFile" accept=".txt" style="display: none;" />
-			<label for="InputFile" class="trigger button restore-button" tooltipid="#RestoreButtonTT">Restore</label>
+			<label for="InputFile" class="trigger button restore-button"
+				tooltipid="#RestoreButtonTT">Restore</label>
 		</div>
 
 		<div class="taxpayer-info-box">
@@ -54,10 +55,12 @@
 
 				<p class="label-field right">Version</p>
 				<p class="trigger output-field right" tooltipid="#tax-tools-version-tt">
-					<a href="../Version/Version.html"><span id="tax-tools-version"></span></a></p>
+					<a href="../Version/Version.html"><span id="tax-tools-version"></span></a>
+				</p>
 
 				<p class="label-field right">Filing Status</p>
-				<select class="trigger input-field left" id="FilingStatus" tooltipid="#FilingStatusTT">
+				<select class="trigger input-field left" id="FilingStatus"
+					tooltipid="#FilingStatusTT">
 					<option value="Single">Single</option>
 					<option value="HoH">HoH</option>
 					<option value="MFJ">MFJ</option>
@@ -66,28 +69,33 @@
 				</select>
 
 				<p class="label-field right">Today's Date</p>
-				<p class="trigger output-field right" id="TodaysDate" tooltipid="#TodaysDateTT">0</p>
+				<p class="trigger output-field right" id="TodaysDate"
+					tooltipid="#TodaysDateTT">0</p>
 
 				<p class="label-field right">Taxpayer's Birthday</p>
-				<input class="trigger input-field left" type="text" id="TaxpayersBirthday" size="36"
+				<input class="trigger input-field left" type="text"
+					id="TaxpayersBirthday" size="36"
 					placeholder="mm/dd/yyyy" tooltipid="#TaxpayersBirthdayTT" />
 
 				<p class="label-field right">Taxpayer's Age</p>
-				<p class="trigger output-field" id="TaxpayersAge" tooltipid="#TaxpayersAgeTT">0</p>
+				<p class="trigger output-field" id="TaxpayersAge"
+					tooltipid="#TaxpayersAgeTT">0</p>
 
 				<p class="label-field right">Spouse's Birthday</p>
-				<input class="trigger input-field left" type="text" id="SpousesBirthday" size="36"
+				<input class="trigger input-field left" type="text"
+					id="SpousesBirthday" size="36"
 					placeholder="mm/dd/yyyy" tooltipid="#SpousesBirthdayTT" />
 
 				<p class="label-field right">Spouse's Age</p>
-				<p class="trigger output-field" id="SpousesAge" tooltipid="#SpousesAgeTT">0</p>
+				<p class="trigger output-field" id="SpousesAge"
+					tooltipid="#SpousesAgeTT">0</p>
 			</div>
 
 			<h3>Tax Formula</h3>
-			<p>The tax formula below describes, at a high level, how the tax is calculated. The value of
-			each item in the tax formula is shown in the Estimated Tax Calculation. You can see a brief
-			description of any of the items by moving the mouse over the calculated value in the
-			Estimated Tax Calculation.</p>
+			<p>The tax formula below describes, at a high level, how the tax is calculated.
+			The value of each item in the tax formula is shown in the Estimated Tax
+			Calculation. You can see a brief description of any of the items by moving the
+			mouse over the calculated value in the Estimated Tax Calculation.</p>
 
 			<div class="tax-formula-container">
 				<p>Total Income</p>
@@ -202,70 +210,80 @@
 		<div class="data-line">
 			<p>1040, line 1z</p>
 			<p>Wages</p>
-			<input class="trigger input-field" type="text" tooltipid="#WagesTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#WagesTT"
 				id="Wages" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>1040, line 2a</p>
 			<p>Tax-exempt Interest</p>
-			<input class="trigger input-field" type="text" tooltipid="#TaxExemptInterestTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#TaxExemptInterestTT"
 				id="TaxExemptInterest" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>1040, line 2b</p>
 			<p>Taxable Interest</p>
-			<input class="trigger input-field" type="text" tooltipid="#TaxableInterestTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#TaxableInterestTT"
 				id="TaxableInterest" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>1040, line 3a</p>
 			<p>Qualified Dividends</p>
-			<input class="trigger input-field" type="text" tooltipid="#QualifiedDividendsTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#QualifiedDividendsTT"
 				id="QualifiedDividends" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>1040, line 3b</p>
 			<p>Ordinary Dividends</p>
-			<input class="trigger input-field" type="text" tooltipid="#OrdinaryDividendsTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#OrdinaryDividendsTT"
 				id="OrdinaryDividends" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>1040, line 4b-5b</p>
 			<p>Retirement Accounts, Pensions, Annuities (taxable amount only)</p>
-			<input class="trigger input-field" type="text" tooltipid="#RetirementAccountsTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#RetirementAccountsTT"
 				id="RetirementAccounts" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>1040, line 6a</p>
 			<p>Social Security (total amount received: SSA-1099, box 5)</p>
-			<input class="trigger input-field" type="text" tooltipid="#SocialSecurityTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#SocialSecurityTT"
 				id="SocialSecurity" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>1040, line 7a</p>
 			<p>Capital Gains</p>
-			<input class="trigger input-field" type="text" tooltipid="#CapitalGainsTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#CapitalGainsTT"
 				id="CapitalGains" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>1040, line 8</p>
 			<p>Self-employment Income</p>
-			<input class="trigger input-field" type="text" tooltipid="#SelfEmploymentIncomeTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#SelfEmploymentIncomeTT"
 				id="SelfEmploymentIncome" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>1040, line 8</p>
 			<p>Other Income</p>
-			<input class="trigger input-field" type="text" tooltipid="#OtherIncomeTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#OtherIncomeTT"
 				id="OtherIncome" placeholder="0" size="10" />
 		</div>
 
@@ -273,21 +291,24 @@
 		<div class="data-line">
 			<p>1040 S2, line 4</p>
 			<p>Self-employment Tax</p>
-			<input class="trigger input-field" type="text" tooltipid="#SelfEmploymentTaxTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#SelfEmploymentTaxTT"
 				id="SelfEmploymentTax" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>1040 S2, line 8</p>
 			<p>Early Withdrawal Tax</p>
-			<input class="trigger input-field" type="text" tooltipid="#EarlyWithdrawalTaxTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#EarlyWithdrawalTaxTT"
 				id="EarlyWithdrawalTax" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>1040, line 23</p>
 			<p>Other Taxes</p>
-			<input class="trigger input-field" type="text" tooltipid="#OtherTaxesTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#OtherTaxesTT"
 				id="OtherTaxes" placeholder="0" size="10" />
 		</div>
 
@@ -295,63 +316,72 @@
 		<div class="data-line">
 			<p>1040 S1, line 11</p>
 			<p>Educator Expenses</p>
-			<input class="trigger input-field" type="text" tooltipid="#EducatorExpensesTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#EducatorExpensesTT"
 				id="EducatorExpenses" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>1040 S1, line 13</p>
 			<p>Health Savings Account Contributions</p>
-			<input class="trigger input-field" type="text" tooltipid="#HealthSavingsAccountTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#HealthSavingsAccountTT"
 				id="HealthSavingsAccount" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>1040 S1, line 15</p>
 			<p>Self-employment Tax Adjustment</p>
-			<input class="trigger input-field" type="text" tooltipid="#SelfEmploymentTaxAdjustmentTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#SelfEmploymentTaxAdjustmentTT"
 				id="SelfEmploymentTaxAdjustment" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>1040 S1, line 17</p>
 			<p>Self-employed Health Insurance</p>
-			<input class="trigger input-field" type="text" tooltipid="#SelfEmployedHealthInsuranceTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#SelfEmployedHealthInsuranceTT"
 				id="SelfEmployedHealthInsurance" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>1040 S1, line 18</p>
 			<p>Early Withdrawal Penalty</p>
-			<input class="trigger input-field" type="text" tooltipid="#EarlyWithdrawalPenaltyTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#EarlyWithdrawalPenaltyTT"
 				id="EarlyWithdrawalPenalty" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>1040 S1, line 19</p>
 			<p>Alimony Paid</p>
-			<input class="trigger input-field" type="text" tooltipid="#AlimonyPaidTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#AlimonyPaidTT"
 				id="AlimonyPaid" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>1040 S1, line 20</p>
 			<p>IRA Contributions</p>
-			<input class="trigger input-field" type="text" tooltipid="#IRAContributionsTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#IRAContributionsTT"
 				id="IRAContributions" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>1040 S1, line 21</p>
 			<p>Student Loan Interest</p>
-			<input class="trigger input-field" type="text" tooltipid="#StudentLoanInterestTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#StudentLoanInterestTT"
 				id="StudentLoanInterest" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>1040 S1, line 25</p>
 			<p>Other Adjustments</p>
-			<input class="trigger input-field" type="text" tooltipid="#OtherAdjustmentsTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#OtherAdjustmentsTT"
 				id="OtherAdjustments" placeholder="0" size="10" />
 		</div>
 
@@ -359,35 +389,40 @@
 		<div class="data-line">
 			<p>1040, line 13a</p>
 			<p>Qualified Business Income Deduction</p>
-			<input class="trigger input-field" type="text" tooltipid="#QualifiedBusinessIncomeDeductionTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#QualifiedBusinessIncomeDeductionTT"
 				id="QualifiedBusinessIncomeDeduction" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>1040 S1-A, line 13</p>
 			<p>Qualified Tips Deduction</p>
-			<input class="trigger input-field" type="text" tooltipid="#QualifiedTipsDeductionTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#QualifiedTipsDeductionTT"
 				id="QualifiedTipsDeduction" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>1040 S1-A, line 21</p>
 			<p>Qualified Overtime Deduction</p>
-			<input class="trigger input-field" type="text" tooltipid="#QualifiedOvertimeDeductionTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#QualifiedOvertimeDeductionTT"
 				id="QualifiedOvertimeDeduction" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>1040 S1-A, line 30</p>
 			<p>Car Loan Interest Deduction</p>
-			<input class="trigger input-field" type="text" tooltipid="#CarLoanInterestDeductionTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#CarLoanInterestDeductionTT"
 				id="CarLoanInterestDeduction" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>1040 S1-A, line 37</p>
 			<p>Enhanced Deduction for Seniors</p>
-			<input class="trigger input-field" type="text" tooltipid="#SeniorDeductionTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#SeniorDeductionTT"
 				id="SeniorDeduction" placeholder="0" size="10" />
 		</div>
 
@@ -395,112 +430,128 @@
 		<div class="data-line">
 			<p>Schedule A, line 1</p>
 			<p>Medical Insurance</p>
-			<input class="trigger input-field" type="text" tooltipid="#MedicalInsuranceTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#MedicalInsuranceTT"
 				id="MedicalInsurance" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>Schedule A, line 1</p>
 			<p>Doctor Visits</p>
-			<input class="trigger input-field" type="text" tooltipid="#DoctorVisitsTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#DoctorVisitsTT"
 				id="DoctorVisits" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>Schedule A, line 1</p>
 			<p>Prescription Medication</p>
-			<input class="trigger input-field" type="text" tooltipid="#PrescriptionDrugsTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#PrescriptionDrugsTT"
 				id="PrescriptionDrugs" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>Schedule A, line 1</p>
 			<p>Medical Aids</p>
-			<input class="trigger input-field" type="text" tooltipid="#MedicalAidsTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#MedicalAidsTT"
 				id="MedicalAids" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>Schedule A, line 1</p>
 			<p>Long Term Care Insurance (taxpayer)</p>
-			<input class="trigger input-field" type="text" tooltipid="#LTCTaxpayerTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#LTCTaxpayerTT"
 				id="LTCTaxpayer" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>Schedule A, line 1</p>
 			<p>Long Term Care Insurance (spouse)</p>
-			<input class="trigger input-field" type="text" tooltipid="#LTCSpouseTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#LTCSpouseTT"
 				id="LTCSpouse" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>Schedule A, line 1</p>
 			<p>Medical Miles</p>
-			<input class="trigger input-field" type="text" tooltipid="#MedicalMilesTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#MedicalMilesTT"
 				id="MedicalMiles" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>Schedule A, line 1</p>
 			<p>Other Medical Expenses</p>
-			<input class="trigger input-field" type="text" tooltipid="#OtherMedicalExpensesTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#OtherMedicalExpensesTT"
 				id="OtherMedicalExpenses" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>Schedule A, line 5a</p>
 			<p>State Income Tax</p>
-			<input class="trigger input-field" type="text" tooltipid="#StateIncomeTaxTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#StateIncomeTaxTT"
 				id="StateIncomeTax" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>Schedule A, line 5a</p>
 			<p>Sales Tax</p>
-			<input class="trigger input-field" type="text" tooltipid="#SalesTaxTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#SalesTaxTT"
 				id="SalesTax" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>Schedule A, line 5b</p>
 			<p>Real Estate Property Tax</p>
-			<input class="trigger input-field" type="text" tooltipid="#RealEstatePropertyTaxTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#RealEstatePropertyTaxTT"
 				id="RealEstatePropertyTax" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>Schedule A, line 5c</p>
 			<p>Personal Property Tax</p>
-			<input class="trigger input-field" type="text" tooltipid="#PersonalPropertyTaxTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#PersonalPropertyTaxTT"
 				id="PersonalPropertyTax" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>Schedule A, line 10</p>
 			<p>Mortgage Interest</p>
-			<input class="trigger input-field" type="text" tooltipid="#MortgageInterestTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#MortgageInterestTT"
 				id="MortgageInterest" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>Schedule A, line 11</p>
 			<p>Cash Gifts to Charity</p>
-			<input class="trigger input-field" type="text" tooltipid="#CashGiftsToCharityTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#CashGiftsToCharityTT"
 				id="CashGiftsToCharity" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>1040 S1-A, line 10</p>
 			<p>Non-cash Gifts to Charity</p>
-			<input class="trigger input-field" type="text" tooltipid="#NoncashGiftsToCharityTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#NoncashGiftsToCharityTT"
 				id="NoncashGiftsToCharity" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p></p>
 			<p>Qualified Charitable Distribution</p>
-			<input class="trigger input-field" type="text" tooltipid="#QualifiedCharitableDistributionTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#QualifiedCharitableDistributionTT"
 				id="QualifiedCharitableDistribution" placeholder="0" size="10" />
 		</div>
 
@@ -508,42 +559,48 @@
 		<div class="data-line">
 			<p>Schedule 3, line 3</p>
 			<p>Americal Opportunity Credit (non-refundable part)</p>
-			<input class="trigger input-field" type="text" tooltipid="#AmericanOppCreditNoRefundTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#AmericanOppCreditNoRefundTT"
 				id="AmericanOppCreditNoRefund" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>Schedule 3, line 2</p>
 			<p>Child and Dependent Care Credit</p>
-			<input class="trigger input-field" type="text" tooltipid="#ChildCareCreditTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#ChildCareCreditTT"
 				id="ChildCareCredit" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>1040, line 19</p>
 			<p>Child Tax Credit</p>
-			<input class="trigger input-field" type="text" tooltipid="#ChildTaxCreditTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#ChildTaxCreditTT"
 				id="ChildTaxCredit" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>Schedule 3, line 1</p>
 			<p>Foreign Tax Credit</p>
-			<input class="trigger input-field" type="text" tooltipid="#ForeignTaxCreditTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#ForeignTaxCreditTT"
 				id="ForeignTaxCredit" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>Schedule 3, line 3</p>
 			<p>Lifetime Learning Credit</p>
-			<input class="trigger input-field" type="text" tooltipid="#LifetimeLearningCreditTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#LifetimeLearningCreditTT"
 				id="LifetimeLearningCredit" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>Schedule 3, line 5</p>
 			<p>Residential Energy Credit</p>
-			<input class="trigger input-field" type="text" tooltipid="#ResidentialEnergyCreditTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#ResidentialEnergyCreditTT"
 				id="ResidentialEnergyCredit"
 				placeholder="0" size="10" />
 		</div>
@@ -551,14 +608,16 @@
 		<div class="data-line">
 			<p>Schedule 3, line 4</p>
 			<p>Retirement Savings Contribution Credit</p>
-			<input class="trigger input-field" type="text" tooltipid="#RetirementSavingsCreditTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#RetirementSavingsCreditTT"
 				id="RetirementSavingsCredit" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>Schedule 3, line 6</p>
 			<p>Other Non-refundable Credits</p>
-			<input class="trigger input-field" type="text" tooltipid="#OtherNonrefundableCreditsTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#OtherNonrefundableCreditsTT"
 				id="OtherNonrefundableCredits" placeholder="0" size="10" />
 		</div>
 
@@ -566,35 +625,40 @@
 		<div class="data-line">
 			<p>Schedule 3, line 3</p>
 			<p>Americal Opportunity Credit (refundable part)</p>
-			<input class="trigger input-field" type="text" tooltipid="#AmericanOppCreditRefundableTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#AmericanOppCreditRefundableTT"
 				id="AmericanOppCreditRefundable" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>1040, line 19</p>
 			<p>Credit for Other Dependents</p>
-			<input class="trigger input-field" type="text" tooltipid="#CreditForOtherDependentsTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#CreditForOtherDependentsTT"
 				id="CreditForOtherDependents" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>1040, line 27</p>
 			<p>Earned Income Credit</p>
-			<input class="trigger input-field" type="text" tooltipid="#EarnedIncomeCreditTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#EarnedIncomeCreditTT"
 				id="EarnedIncomeCredit" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>Schedule 3, line 9</p>
 			<p>Premium Tax Credit</p>
-			<input class="trigger input-field" type="text" tooltipid="#PremiumTaxCreditTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#PremiumTaxCreditTT"
 				id="PremiumTaxCredit" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>Schedule 3, line 13</p>
 			<p>Other Refundable Credits</p>
-			<input class="trigger input-field" type="text" tooltipid="#OtherRefundableCreditsTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#OtherRefundableCreditsTT"
 				id="OtherRefundableCredits" placeholder="0" size="10" />
 		</div>
 
@@ -602,14 +666,16 @@
 		<div class="data-line">
 			<p>1040, line 25d</p>
 			<p>Withholding</p>
-			<input class="trigger input-field" type="text" tooltipid="#WithholdingTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#WithholdingTT"
 				id="Withholding" placeholder="0" size="10" />
 		</div>
 
 		<div class="data-line">
 			<p>1040, line 26</p>
 			<p>Estimated Taxes Paid</p>
-			<input class="trigger input-field" type="text" tooltipid="#EstimatedTaxPaidTT"
+			<input class="trigger input-field" type="text"
+				tooltipid="#EstimatedTaxPaidTT"
 				id="EstimatedTaxPaid" placeholder="0" size="10" />
 		</div>
 

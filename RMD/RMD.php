@@ -45,13 +45,16 @@
 			<input class="input-field" type="text" id="tax-year" value="0000" />
 
 		   	<p>Retirement Account Balance</p>
-			<input class="input-field" type="text" autofocus id="IRATotal" placeholder="0" />
+			<input class="input-field" type="text" autofocus id="IRATotal"
+				placeholder="0" />
 
 			<p>Taxpayer's Birthday</p>
-			<input class="input-field" type="text" id="TaxpayersBirthday" placeholder="mm/dd/yyyy" />
+			<input class="input-field" type="text" id="TaxpayersBirthday"
+				placeeholder="mm/dd/yyyy" />
 
 			<p>Taxpayer's Age</p>
-			<input class="input-field" type="text" id="TaxpayersAge" placeholder="0" />
+			<input class="input-field" type="text" id="TaxpayersAge"
+				placeeholder="0" />
 
 			<p>&nbsp;</p>
 			<p>&nbsp;</p>
@@ -63,28 +66,32 @@
 		<h2>Description of Input Fields</h2>
 		<div class="help-fields">
 			<h4>Tax Year</h4>
-			<p>This is the tax year that the RMD is taken. It defaults to the current tax year.
-			This is only used to compute the age of the taxpayer at the end of the tax year.</p>
+			<p>This is the tax year that the RMD is taken. It defaults to the current tax
+			year. This is only used to compute the age of the taxpayer at the end of the tax
+			year.</p>
 
 			<h4>Retirement Account Balance</h4>
-			<p>This is the value of your retirement account on the last day of the previous tax year.
-			Since you do not need to withdraw your RMD from each retirement account separately, you
-			can enter the total value of all your retirement accounts to find your total RMD.</p>
+			<p>This is the value of your retirement account on the last day of the previous
+			tax year. Since you do not need to withdraw your RMD from each retirement account
+			separately, you can enter the total value of all your retirement accounts to find
+			your total RMD.</p>
 
 			<h4>Taxpayer's Birthday</h4>
-			<p>You can enter either the taxpayer's birthday here or you can enter the taxpayer's age
-			in the following field. The birthday, if entered, is used to determine the taxpayer's
-			age, which will be computed and automatically entered in the following field.</p>
+			<p>You can enter either the taxpayer's birthday here or you can enter the
+			taxpayer's age in the following field. The birthday, if entered, is used to
+			determine the taxpayer's age, which will be computed and automatically entered
+			in the following field.</p>
 
 			<h4>Taxpayer's Age</h4>
-			<p>You can enter either the taxpayer's birthday in the previous field or you can enter
-			the taxpayer's age here. If you enter the taxpayer's age, the taxpayer's birthday in the
-			previous field will be erased.</p>
+			<p>You can enter either the taxpayer's birthday in the previous field or you can
+			enter the taxpayer's age here. If you enter the taxpayer's age, the taxpayer's
+			birthday in the previous field will be erased.</p>
 
-			<p>This is the age of the taxpayer at the end of the year the RMD is taken (i.e., the end
-			of the tax year). The intent of the RMD is for the taxpayer to withdraw all the funds
-			from the retirement account during the taxpayer's lifetime; therefore, the taxpayer's age
-			is needed to determine the number of years over which the RMDs should be taken.</p>
+			<p>This is the age of the taxpayer at the end of the year the RMD is taken
+			(i.e., the end of the tax year). The intent of the RMD is for the taxpayer to
+			withdraw all the funds from the retirement account during the taxpayer's lifetime;
+			therefore, the taxpayer's age is needed to determine the number of years over
+			which the RMDs should be taken.</p>
 		</div>
 
 		<!-- Display area for error messages. -->

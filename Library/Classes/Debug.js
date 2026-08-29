@@ -25,7 +25,8 @@ function keywordList() {
 }
 
 function hideField(name) {
-	// The debug field is an HTML area that display additional information when debugging is enabled.
+	// The debug field is an HTML area that display additional information when debugging 
+	// is enabled.
 	const debug_field = document.getElementById(name);
 	if (debug_field) {
 		// Only hide if element exists; non-existant element is not an error.
@@ -34,7 +35,8 @@ function hideField(name) {
 }
 
 function showField(name) {
-	// The debug field is an HTML area that display additional information when debugging is enabled.
+	// The debug field is an HTML area that display additional information when debugging
+	// is enabled.
 	const debug_field = document.getElementById(name);
 	if (debug_field) {
 		// Only show if element exists; non-existant element is not an error.
@@ -56,10 +58,11 @@ export class Debug {
 
 	static getKeywords(input_string) {
 		//
-		// This function parses the input string to extract debugging keywords and return whatever
-		// is left. The keywords are not case-sensitive and they may appear in any order within the
-		// input string. You can use commas or whitespace to separate the keywords and the value.
-		// The final string will have all commas and unnecessary whitespace removed.
+		// This function parses the input string to extract debugging keywords and return
+		// whatever is left. The keywords are not case-sensitive and they may appear in any
+		// order within the input string. You can use commas or whitespace to separate the
+		// keywords and the value. The final string will have all commas and unnecessary
+		// whitespace removed.
 		//
 		for (const keyword of keywordList()) {
 			let regex = new RegExp(`\\b${keyword}\\b`, 'ig');
@@ -73,10 +76,14 @@ export class Debug {
 			debug_all = true;
 		}
 
-		input_string = input_string.replace(/,\s*,/g, ",")			// Replace double commas with one comma
-									.replace(/\s*/, " ")			// Replace whitespae with a single space
-									.trim()							// Remove leading and trailing whitespace
-									.replace(/^,\s*|\s*,$/g, "");	// Remove leading and trailing commas
+		// Replace double commas with one comma
+		// Replace whitespae with a single space
+		// Remove leading and trailing whitespace
+		// Remove leading and trailing commas
+		input_string = input_string.replace(/,\s*,/g, ",")
+									.replace(/\s*/, " ")
+									.trim()
+									.replace(/^,\s*|\s*,$/g, "");
 		return input_string;
 	}
 
@@ -183,8 +190,8 @@ export class Debug {
 	// Debug tracing functions.
 	//
 	// For files that want to use these functions, but may not alway have this file included,
-	// put the following lines at the top of the file. It check whether the functions are defined
-	// and, if not, defines them to be a dummy function that does nothing.
+	// put the following lines at the top of the file. It check whether the functions are
+	// defined and, if not, defines them to be a dummy function that does nothing.
 	//
 	//		globalThis.dbgEnter ??= () => {};
 	//		globalThis.dbgExit  ??= () => {};

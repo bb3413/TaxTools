@@ -48,8 +48,8 @@ export class Line {
 
 	set value(new_value) {
 		// This method is called when the value is calculated by the program, not suplied by
-		// the user (see also "set user_value"). It prevents the calculation from changing a value
-		// supplied by the user.
+		// the user (see also "set user_value"). It prevents the calculation from changing a
+		// value supplied by the user.
 		if (this.isUserSuppliedValue()) {
 			// Ignore new value.
 			return;

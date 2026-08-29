@@ -34,7 +34,7 @@ export class HTML {
 
 		element.classList.remove('hidden');
 	}
-
+	
 	static hideElement(element_id) {
 		const element = document.getElementById(element_id);
 		if (!Debug.verify(element, "hideElement: Element not found: " + element_id)) return;
@@ -45,14 +45,16 @@ export class HTML {
 	//---- Change background/foreground color  ----------------------------------
 	static changeBackgroundColor(element_id, color) {
 		const element = document.getElementById(element_id);
-		if (!Debug.verify(element, "changeBackgroundColor: Element not found: " + element_id)) return;
+		if (!Debug.verify(element,
+			"changeBackgroundColor: Element not found: " + element_id)) return;
 
 		element.style.background = color;
 	}
 
 	static changeTextColor(element_id, color) {
 		const element = document.getElementById(element_id);
-		if (!Debug.verify(element, "changeTextColor: Element not found: " + element_id)) return;
+		if (!Debug.verify(element,
+			"changeTextColor: Element not found: " + element_id)) return;
 
 		element.style.color = color;
 	}
@@ -110,7 +112,8 @@ export class HTML {
 	//
 	static getElementValue(element_id) {
 		const element = document.getElementById(element_id);
-		if (!Debug.verify(element, "getElementValue: Element not found: " + element_id)) return;
+		if (!Debug.verify(element,
+			"getElementValue: Element not found: " + element_id)) return;
 
 		if (element.type === "checkbox" || element.type === "radio") {
 			return element.checked;
@@ -133,7 +136,8 @@ export class HTML {
 
 	static putElementValue(element_id, value) {
 		const element = document.getElementById(element_id);
-		if (!Debug.verify(element, "putElementValue: Element not found: " + element_id)) return;
+		if (!Debug.verify(element,
+			"putElementValue: Element not found: " + element_id)) return;
 
 		if (String(element.placeholder) === String(value)) {
 			value = "";
@@ -167,7 +171,7 @@ export class HTML {
 	static addListener(element_id, event, handler) {
 		const element = document.getElementById(element_id);
 		if (!Debug.verify(element, "addListener: Element not found: " + element_id)) return;
-
+		
 		element.addEventListener(event, handler);
 	}
 

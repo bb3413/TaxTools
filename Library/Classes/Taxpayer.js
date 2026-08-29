@@ -46,51 +46,89 @@ export class Taxpayer {
 
 		const taxpayer = new Taxpayer();
 
-		taxpayer.filing_status					= getUserInput("filing-status",		"text").toUpperCase();
+		taxpayer.filing_status =
+			getUserInput("filing-status", "text").toUpperCase();
 
-		taxpayer.taxpayers_name					= getUserInput("taxpayers-name",	"text");
-		taxpayer.street_address					= getUserInput("street-address",	"text");
-		taxpayer.city							= getUserInput("city",				"text");
-		taxpayer.zip_code						= getUserInput("zip-code",			"text");
+		taxpayer.taxpayers_name =
+			getUserInput("taxpayers-name", "text");
+		taxpayer.street_address =
+			getUserInput("street-address", "text");
+		taxpayer.city =
+			getUserInput("city", "text");
+		taxpayer.zip_code =
+			getUserInput("zip-code", "text");
 
 		// Taxpayer
-		taxpayer.taxpayers_birthday				= getUserInput("taxpayers-birthday", "text");
-		taxpayer.is_taxpayer_blind				= getUserInput("is-taxpayer-blind", "");
-		taxpayer.is_taxpayer_citizen			= getUserInput("is-taxpayer-citizen", "");
-		taxpayer.taxpayer_has_ssn				= getUserInput("taxpayer-has-ssn", "");
-		taxpayer.lived_with_spouse				= getUserInput("lived-with-spouse", "");
-		taxpayer.can_be_dependent				= getUserInput("can-be-dependent", "");
-		taxpayer.rents_home						= getUserInput("rents-home", "");
-		taxpayer.taxpayer_educator_expenses		= getUserInput("tp-taxpayer-educator-expenses", "");
-		taxpayer.taxpayer_ltc_premiums			= getUserInput("tp-taxpayer-ltc-premiums", "");
+		taxpayer.taxpayers_birthday =
+			getUserInput("taxpayers-birthday", "text");
+		taxpayer.is_taxpayer_blind =
+			getUserInput("is-taxpayer-blind", "");
+		taxpayer.is_taxpayer_citizen =
+			getUserInput("is-taxpayer-citizen", "");
+		taxpayer.taxpayer_has_ssn =
+			getUserInput("taxpayer-has-ssn", "");
+		taxpayer.lived_with_spouse =
+			getUserInput("lived-with-spouse", "");
+		taxpayer.can_be_dependent =
+			getUserInput("can-be-dependent", "");
+		taxpayer.rents_home =
+			getUserInput("rents-home", "");
+		taxpayer.taxpayer_educator_expenses =
+			getUserInput("tp-taxpayer-educator-expenses", "");
+		taxpayer.taxpayer_ltc_premiums =
+			getUserInput("tp-taxpayer-ltc-premiums", "");
 
 		// Spouse
-		taxpayer.spouses_birthday				= getUserInput("spouses-birthday", "text");
-		taxpayer.is_spouse_blind				= getUserInput("is-spouse-blind", "");
-		taxpayer.is_spouse_citizen				= getUserInput("is-spouse-citizen", "");
-		taxpayer.spouse_has_ssn					= getUserInput("spouse-has-ssn", "");
-		taxpayer.spouse_educator_expenses		= getUserInput("tp-spouse-educator-expenses", "");
-		taxpayer.spouse_ltc_premiums			= getUserInput("tp-spouse-ltc-premiums", "");
+		taxpayer.spouses_birthday =
+			getUserInput("spouses-birthday", "text");
+		taxpayer.is_spouse_blind =
+			getUserInput("is-spouse-blind", "");
+		taxpayer.is_spouse_citizen =
+			getUserInput("is-spouse-citizen", "");
+		taxpayer.spouse_has_ssn =
+			getUserInput("spouse-has-ssn", "");
+		taxpayer.spouse_educator_expenses =
+			getUserInput("tp-spouse-educator-expenses", "");
+		taxpayer.spouse_ltc_premiums =
+			getUserInput("tp-spouse-ltc-premiums", "");
 
 		// Taxpayer and spouse
-		taxpayer.number_of_dependents			= getUserInput("tp-number-of-dependents", "");
-		taxpayer.alimony_paid					= getUserInput("tp-alimony-paid", "");
-		taxpayer.alimony_received				= getUserInput("tp-alimony-received", "");
-		taxpayer.divorce_date					= getUserInput("tp-divorce-date", "text");
-		taxpayer.federal_estimated_payments		= getUserInput("tp-federal-estimated-payments", "");
-		taxpayer.state_estimated_payments		= getUserInput("tp-state-estimated-payments", "");
-		taxpayer.medical_insurance_premiums		= getUserInput("tp-medical-insurance-premiums", "");
-		taxpayer.medicare_repremiums			= getUserInput("tp-medicare-premiums", "");
-		taxpayer.other_medical_expenses			= getUserInput("tp-other-medical-expenses", "");
-		taxpayer.medical_miles					= getUserInput("tp-medical-miles", "");
-		taxpayer.property_tax					= getUserInput("tp-property-tax", "");
-		taxpayer.personal_property_tax			= getUserInput("tp-personal-property-tax", "");
-		taxpayer.extra_sales_tax				= getUserInput("tp-extra-sales-tax", "");
-		taxpayer.cash_gift_to_charity			= getUserInput("tp-cash-gift-to-charity", "");
-		taxpayer.noncash_gift_to_charity		= getUserInput("tp-noncash-gift-to-charity", "");
-		taxpayer.tax_preparation_fees			= getUserInput("tp-tax-preparation-fees", "");
-		taxpayer.investment_expenses			= getUserInput("tp-investment-expenses", "");
-		taxpayer.unreimbursed_employee_expenses	= getUserInput("tp-unreimbursed-employee-expenses", "");
+		taxpayer.number_of_dependents =
+			getUserInput("tp-number-of-dependents", "");
+		taxpayer.alimony_paid =
+			getUserInput("tp-alimony-paid", "");
+		taxpayer.alimony_received =
+			getUserInput("tp-alimony-received", "");
+		taxpayer.divorce_date =
+			getUserInput("tp-divorce-date", "text");
+		taxpayer.federal_estimated_payments =
+			getUserInput("tp-federal-estimated-payments", "");
+		taxpayer.state_estimated_payments =
+			getUserInput("tp-state-estimated-payments", "");
+		taxpayer.medical_insurance_premiums =
+			getUserInput("tp-medical-insurance-premiums", "");
+		taxpayer.medicare_repremiums =
+			getUserInput("tp-medicare-premiums", "");
+		taxpayer.other_medical_expenses =
+			getUserInput("tp-other-medical-expenses", "");
+		taxpayer.medical_miles =
+			getUserInput("tp-medical-miles", "");
+		taxpayer.property_tax =
+			getUserInput("tp-property-tax", "");
+		taxpayer.personal_property_tax =
+			getUserInput("tp-personal-property-tax", "");
+		taxpayer.extra_sales_tax =
+			getUserInput("tp-extra-sales-tax", "");
+		taxpayer.cash_gift_to_charity =
+			getUserInput("tp-cash-gift-to-charity", "");
+		taxpayer.noncash_gift_to_charity =
+			getUserInput("tp-noncash-gift-to-charity", "");
+		taxpayer.tax_preparation_fees =
+			getUserInput("tp-tax-preparation-fees", "");
+		taxpayer.investment_expenses =
+			getUserInput("tp-investment-expenses", "");
+		taxpayer.unreimbursed_employee_expenses	=
+			getUserInput("tp-unreimbursed-employee-expenses", "");
 
 		return taxpayer;
 	}
@@ -108,9 +146,9 @@ export class Taxpayer {
 		this._filing_status						= "Single";
 
 		this._taxpayers_name					= "";
-		this._street_address					= "";		// Needed for sales tax deduction calculation
-		this._city								= "";		// Needed for sales tax deduction calculation
-		this._zip_code							= "";		// Needed for sales tax deduction calculation
+		this._street_address					= "";		// Needed for sales tax calc
+		this._city								= "";		// Needed for sales tax calc
+		this._zip_code							= "";		// Needed for sales tax calc
 
 		// Taxpayer
 		this._taxpayers_birthday				= "";
@@ -119,7 +157,7 @@ export class Taxpayer {
 		this._is_taxpayer_citizen				= true;
 		this._taxpayer_has_ssn					= true;		// Not an ITIN
 		this._lived_with_spouse					= true;		// Needed when filing MFS
-		this._can_be_dependent					= false;	// Someone can clain taxpayer or spouse as a dependent
+		this._can_be_dependent					= false;	// Can be clained as dependent
 		this._rents_home						= false;	// For CA renter's credit
 		this._taxpayer_educator_expenses		= 0;
 		this._taxpayer_ltc_premiums				= 0;
@@ -248,8 +286,9 @@ export class Taxpayer {
 
 	set taxpayers_birthday(birthday) {
 		if (birthday === null || birthday === undefined) { return; }
-		this._taxpayers_birthday		= birthday;
-		this._taxpayers_age				= Math.max(0, Dates.getEndOfYearAge(birthday, TaxTable.getTaxYear()));
+		this._taxpayers_birthday = birthday;
+		this._taxpayers_age =
+			Math.max(0, Dates.getEndOfYearAge(birthday, TaxTable.getTaxYear()));
 	}
 
 	set taxpayers_age(age) {
@@ -262,8 +301,9 @@ export class Taxpayer {
 
 	set spouses_birthday(birthday) {
 		if (birthday === null || birthday === undefined) { return; }
-		this._spouses_birthday			= birthday;
-		this._spouses_age				= Math.max(0, Dates.getEndOfYearAge(birthday, TaxTable.getTaxYear()));
+		this._spouses_birthday = birthday;
+		this._spouses_age =
+			Math.max(0, Dates.getEndOfYearAge(birthday, TaxTable.getTaxYear()));
 	}
 
 	set spouses_age(age) {
@@ -281,11 +321,15 @@ export class Taxpayer {
 		//
 		// Put the taxpayer information on the output form 1040.
 		//
-		HTML.putUserOutput("f1040-1-filing-status", printFilingStatus(this.filing_status), "text");
-		HTML.putUserOutput("f1040-1-taxpayers-name", this.taxpayers_name, "text");
-		HTML.putUserOutput("f1040-1-street-address", this.street_address, "text");
+		HTML.putUserOutput("f1040-1-filing-status",
+			printFilingStatus(this.filing_status), "text");
+		HTML.putUserOutput("f1040-1-taxpayers-name",
+			this.taxpayers_name, "text");
+		HTML.putUserOutput("f1040-1-street-address",
+			this.street_address, "text");
 		if (this.city) {
-			HTML.putUserOutput("f1040-1-city-state-zip", `${this.city}, CA ${this.zip_code}`, "text");
+			HTML.putUserOutput("f1040-1-city-state-zip",
+				`${this.city}, CA ${this.zip_code}`, "text");
 		} else {
 			HTML.putUserOutput("f1040-1-city-state-zip","", "text");
 		}
@@ -302,8 +346,10 @@ export class Taxpayer {
 		} else {
 			HTML.putUserOutput("f1040-1-spouses-birthday", "", "text");
 		}
-		HTML.putUserOutput("f1040-1-taxpayer-is-blind",	this.is_taxpayer_blind ? "X" : "", "text");
-		HTML.putUserOutput("f1040-1-spouse-is-blind", this.is_spouse_blind ? "X" : "", "text");
+		HTML.putUserOutput("f1040-1-taxpayer-is-blind",
+			this.is_taxpayer_blind ? "X" : "", "text");
+		HTML.putUserOutput("f1040-1-spouse-is-blind",
+			this.is_spouse_blind ? "X" : "", "text");
 	}
 
 	toPrint() {
@@ -315,11 +361,13 @@ export class Taxpayer {
 		printLine(lines, "Taxpayer's Name",		this.taxpayers_name);
 		printLine(lines, "Street Address",		this.street_address);
 		printLine(lines, "City, State, Zip",	`${this.city}, CA ${this.zip_code}`);
-		printLine(lines, "Taxpayer's Birthday",	`${this.taxpayers_birthday}, Age: ${this.taxpayers_age}`);
+		printLine(lines, "Taxpayer's Birthday",
+			`${this.taxpayers_birthday}, Age: ${this.taxpayers_age}`);
 		printLine(lines, "Taxpayer Is Blind",	this.is_taxpayer_blind);
 
 		if (this.filing_status === "MFJ") {
-			printLine(lines, "Spouse's Birthday",	`${this.spouses_birthday}, Age: ${this.spouses_age}`);
+			printLine(lines, "Spouse's Birthday",
+				`${this.spouses_birthday}, Age: ${this.spouses_age}`);
 			printLine(lines, "Spouse Is Blind",	this.is_spouse_blind);
 		}
 		lines.push("");

@@ -3,7 +3,7 @@
  * Styles specifically for the 1099 style of forms.
  */
 .f1099-taxform-container {
-	box-sizing:				border-box;	/* Exclude padding and borders when calculating size. */
+	box-sizing:				border-box;	/* Exclude padding/borders when calculating size. */
 	font-family:			Arial, Helvetica, sans-serif;
 	width:					700px;
 	margin:					0 auto;		/* Center in parent container. */

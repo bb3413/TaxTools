@@ -15,7 +15,8 @@ const HTML_FORM = `
 				<!-- Header Section -->
 				<div class="f1099-header-row">
 					<div class="f1099-header-left">
-						<label><input type="checkbox" disabled id="corrected" /> CORRECTED</label>
+						<label><input type="checkbox" disabled
+							id="corrected" /> CORRECTED</label>
 					</div>
 					<div class="f1099-header-center">
 						<div>OMB No. 1545-0115</div>
@@ -32,32 +33,40 @@ const HTML_FORM = `
 					<!-- Left Column: Payer & Recipient Info Inputs -->
 					<div class="f1099-col-left">
 						<div class="f1099-box f1099-box-large">
-							<span class="f1099-box-label">PAYER&apos;S name, street address, city or town,
-								state or province, country, ZIP or foreign postal code, and telephone no.</span>
-							<textarea id="f1099misc-XX-payer" placeholder="Payer Name&#10;Street Address&#10;City, State, ZIP&#10;Phone Number"></textarea>
+							<span class="f1099-box-label">PAYER&apos;S name, street
+								address, city or town, state or province, country,
+									ZIP or foreign postal code, and telephone no.</span>
+							<textarea id="f1099misc-XX-payer"
+								placeholder="Payer Name&#10;Street Address&#10;City, State, ZIP&#10;Phone Number">
+							</textarea>
 						</div>
 			
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
 								<span class="f1099-box-label">PAYER&apos;S TIN</span>
-								<input type="text" id="f1099misc-XX-ein" placeholder="12-3456789" />
+								<input type="text" id="f1099misc-XX-ein"
+									placeholder="12-3456789" />
 							</div>
 							<div class="f1099-box">
 								<span class="f1099-box-label">TAXPAYER&apos;S TIN</span>
-								<input type="text" id="f1099misc-XX-ssn" placeholder="123-45-6789" />
+								<input type="text" id="f1099misc-XX-ssn"
+									placeholder="123-45-6789" />
 							</div>
 						</div>
 			
 						<div class="f1099-box f1099-box-large">
-							<span class="f1099-box-label">TAXPAYER&apos;S name, street address, city or town,
-								state, and ZIP code</span>
+							<span class="f1099-box-label">TAXPAYER&apos;S name, street
+								address, city or town, state, and ZIP code</span>
 							<textarea id="f1099misc-XX-taxpayer"
-								placeholder="Taxpayer&apos;s Name&#10;Street Address&#10;City, State, ZIP"></textarea>
+								placeholder="Taxpayer&apos;s Name&#10;Street Address&#10;City, State, ZIP">
+							</textarea>
 						</div>
 
 						<div class="f1099-box" style="border-bottom: none;">
-							<span class="f1099-box-label">Account number (see instructions)</span>
-							<input type="text" id="f1099misc-XX-account" placeholder="Optional Account #" />
+							<span class="f1099-box-label">Account number (see
+								instructions)</span>
+							<input type="text" id="f1099misc-XX-account"
+								placeholder="Optional Account #" />
 						</div>
 					</div>
 			
@@ -66,40 +75,49 @@ const HTML_FORM = `
 						<div class="f1099-flex-row">
 							<div class="f1099-box input-color">
 								<span class="f1099-box-label">1 Rents</span>
-								<input type="text" id="f1099misc-XX-01" placeholder="0" />
+								<input type="text" id="f1099misc-XX-01"
+									placeholder="0" />
 							</div>
 							<div class="f1099-box input-color">
 								<span class="f1099-box-label">2 Royalties</span>
-								<input type="text" id="f1099misc-XX-02" placeholder="0" />
+								<input type="text" id="f1099misc-XX-02"
+									placeholder="0" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box input-color">
 								<span class="f1099-box-label">3 Other income</span>
-								<input type="text" id="f1099misc-XX-03" placeholder="0" />
+								<input type="text" id="f1099misc-XX-03"
+									placeholder="0" />
 							</div>
 							<div class="f1099-box input-color">
-								<span class="f1099-box-label">4 Federal income tax withheld</span>
-								<input type="text" id="f1099misc-XX-04" placeholder="0" />
+								<span class="f1099-box-label">4 Federal income tax
+									withheld</span>
+								<input type="text" id="f1099misc-XX-04"
+									placeholder="0" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
 								<span class="f1099-box-label">5 Fishing boat proceeds</span>
-								<input type="text" id="f1099misc-XX-05" placeholder="0" />
+								<input type="text" id="f1099misc-XX-05"
+									placeholder="0" />
 							</div>
 							<div class="f1099-box">
-								<span class="f1099-box-label">6 Medical and health care payments</span>
-								<input type="text" id="f1099misc-XX-06" placeholder="0" />
+								<span class="f1099-box-label">6 Medical and health care
+									payments</span>
+								<input type="text" id="f1099misc-XX-06"
+									placeholder="0" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
-								<span class="f1099-box-label">7 Payer made direct sales totaling $5,000
-									or more of consumer products to recipient for resale</span>
+								<span class="f1099-box-label">7 Payer made direct sales
+									totaling $5,000 or more of consumer products to recipient
+									forresale</span>
 								<div class="f1099-checkbox-center">
 									<input type="checkbox" id="f1099misc-XX-07" />
 								</div>
@@ -107,36 +125,44 @@ const HTML_FORM = `
 							<div class="f1099-box">
 								<span class="f1099-box-label">8 Substitute payments in lieu of
 									dividends or interest</span>
-								<input type="text" id="f1099misc-XX-08" placeholder="0" />
+								<input type="text" id="f1099misc-XX-08"
+									placeholder="0" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
 								<span class="f1099-box-label">9 Crop insurance proceeds</span>
-								<input type="text" id="f1099misc-XX-09" placeholder="0" />
+								<input type="text" id="f1099misc-XX-09"
+									placeholder="0" />
 							</div>
 							<div class="f1099-box">
-								<span class="f1099-box-label">10 Gross proceeds paid to an attorney</span>
-								<input type="text" id="f1099misc-XX-10" placeholder="0" />
+								<span class="f1099-box-label">10 Gross proceeds paid to an
+									attorney</span>
+								<input type="text" id="f1099misc-XX-10"
+									placeholder="0" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
-								<span class="f1099-box-label">11 Fish purchased for resale</span>
-								<input type="text" id="f1099misc-XX-11" placeholder="0" />
+								<span class="f1099-box-label">11 Fish purchased for
+									resale</span>
+								<input type="text" id="f1099misc-XX-11"
+									placeholder="0" />
 							</div>
 							<div class="f1099-box">
 								<span class="f1099-box-label">12 Section 409A deferrals</span>
-								<input type="text" id="f1099misc-XX-12" placeholder="0" />
+								<input type="text" id="f1099misc-XX-12"
+									placeholder="0" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box input-color">
 								<span class="f1099-box-label">13a Cash tips</span>
-								<input type="text" id="f1099misc-XX-13a" placeholder="0" />
+								<input type="text" id="f1099misc-XX-13a"
+									placeholder="0" />
 							</div>
 							<div class="f1099-box">
 								<span class="f1099-box-label">13b TTOC</span>
@@ -147,22 +173,27 @@ const HTML_FORM = `
 						<div class="f1099-flex-row">
 							<div class="f1099-box input-color">
 								<span class="f1099-box-label">14 Overtime compensation</span>
-								<input type="text" id="f1099misc-XX-14" placeholder="0" />
+								<input type="text" id="f1099misc-XX-14"
+									placeholder="0" />
 							</div>
 							<div class="f1099-box">
-								<span class="f1099-box-label">15 Nonqualified deferred compensation</span>
-								<input type="text" id="f1099misc-XX-015" placeholder="0" />
+								<span class="f1099-box-label">15 Nonqualified deferred
+									compensation</span>
+								<input type="text" id="f1099misc-XX-015"
+									placeholder="0" />
 							</div>
 						</div>
 
 						<div class="f1099-flex-row">
 							<div class="f1099-box input-color" style="border-bottom: none;">
 								<span class="f1099-box-label">16 State tax withheld</span>
-								<input type="text" id="f1099misc-XX-16" placeholder="0" />
+								<input type="text" id="f1099misc-XX-16"
+									placeholder="0" />
 							</div>
 							<div class="f1099-box" style="border-bottom: none;">
 								<span class="f1099-box-label">17 State/state no.</span>
-								<input type="text" id="f1099misc-XX-17" placeholder="State / ID" />
+								<input type="text" id="f1099misc-XX-17"
+									placeholder="State / ID" />
 							</div>
 						</div>
 					</div>
@@ -196,7 +227,8 @@ export class F1099MISC extends TaxForm {
 
 		const element = document.getElementById(`f1099misc-${uid}-details`);
 		if (!element) {
-			throw new Error(`F1099MISC.getUserInput(): Element not found: f1099misc-${uid}-details`);
+			throw new Error(
+				`F1099MISC.getUserInput(): Element not found: f1099misc-${uid}-details`);
 		}
 
 		let inputs = {};
@@ -262,8 +294,8 @@ export class F1099MISC extends TaxForm {
 		this.lines["04"]		= new Line("Federal income tax withheld");
 		this.lines["05"]		= new Line("Fishing boat proceeds");
 		this.lines["06"]		= new Line("Medical and health care payments");
-		this.lines["07"]		= new Line("Payer made direct sales totaling $5,000 or more of consumer products to recipient for resale");
-		this.lines["08"]		= new Line("Substitute payments in lieu of dividends or interest");
+		this.lines["07"]		= new Line("Payer sold $5,000 of consumer products");
+		this.lines["08"]		= new Line("Substitute payments for dividends or interest");
 		this.lines["09"]		= new Line("Crop insurance proceeds");
 		this.lines["10"]		= new Line("Gross proceeds paid to an attorney");
 		this.lines["11"]		= new Line("Fish purchased for resale");

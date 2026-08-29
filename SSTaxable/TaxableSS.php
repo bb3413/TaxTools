@@ -75,8 +75,9 @@
 		</div>
 
 		<h3>Income Fields</h3>
-		<p>Rather than entering taxable income in the Income field above, you can enter individual
-		income values here. The sum of the fields entered here will replace the Income field above.</p>
+		<p>Rather than entering taxable income in the Income field above, you can enter
+		individual income values here. The sum of the fields entered here will replace the
+		Income field above.</p>
 
 		<div class="table-2x">
 			<p class="description-field">Wages</p>

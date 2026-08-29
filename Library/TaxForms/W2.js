@@ -17,81 +17,100 @@ const HTML_FORM = `
 				<div class="taxform-lno-desc-value trigger" tooltipid="#w2-XX-01-tt">
 					<p>Box 1</p>
 					<p>Wages, tips, other compensation</p>
-					<input class="input-field" type="text" id="w2-XX-01" size="10" placeholder="0" />
+					<input class="input-field" type="text" id="w2-XX-01" size="10"
+						placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-value trigger" tooltipid="#w2-XX-02-tt">
 					<p>Box 2</p>
 					<p>Federal income tax withheld</p>
-					<input class="input-field" type="text" id="w2-XX-02" size="10" placeholder="0" />
+					<input class="input-field" type="text" id="w2-XX-02" size="10"
+						placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-value trigger" tooltipid="#w2-XX-03-tt">
 					<p>Box 3</p>
 					<p>Social security wages</p>
-					<input class="input-field" type="text" id="w2-XX-03" size="10" placeholder="0" />
+					<input class="input-field" type="text" id="w2-XX-03" size="10"
+						placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-value trigger" tooltipid="#w2-XX-04-tt">
 					<p>Box 4</p>
 					<p>Social security tax withheld</p>
-					<input class="input-field" type="text" id="w2-XX-04" size="10" placeholder="0" />
+					<input class="input-field" type="text" id="w2-XX-04" size="10"
+						placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-value trigger" tooltipid="#w2-XX-05-tt">
 					<p>Box 5</p>
 					<p>Medicare wages and tips</p>
-					<input class="input-field" type="text" id="w2-XX-05" size="10" placeholder="0" />
+					<input class="input-field" type="text" id="w2-XX-05" size="10"
+						placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-value trigger" tooltipid="#w2-XX-06-tt">
 					<p>Box 6</p>
 					<p>Medicare tax withheld</p>
-					<input class="input-field" type="text" id="w2-XX-06" size="10" placeholder="0" />
+					<input class="input-field" type="text" id="w2-XX-06" size="10"
+						placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-value trigger" tooltipid="#w2-XX-07-tt">
 					<p>Box 7</p>
 					<p>Social security tips</p>
-					<input class="input-field" type="text" id="w2-XX-07" size="10" placeholder="0" />
+					<input class="input-field" type="text" id="w2-XX-07" size="10"
+						placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-value trigger" tooltipid="#w2-XX-08-tt">
 					<p>Box 8</p>
 					<p>Allocated tips</p>
-					<input class="input-field" type="text" id="w2-XX-08" size="10" placeholder="0" />
+					<input class="input-field" type="text" id="w2-XX-08" size="10"
+						placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-value trigger" tooltipid="#w2-XX-09-tt">
 					<p>Box 9</p>
 					<p>Not used</p>
-					<input class="input-field" type="text" id="w2-XX-09" size="10" placeholder="" />
+					<input class="input-field" type="text" id="w2-XX-09" size="10"
+						placeholder="" />
 				</div>
 				<div class="taxform-lno-desc-value trigger" tooltipid="#w2-XX-10-tt">
 					<p>Box 10</p>
 					<p>Dependent care benefits</p>
-					<input class="input-field" type="text" id="w2-XX-10" size="10" placeholder="0" />
+					<input class="input-field" type="text" id="w2-XX-10" size="10"
+						placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-value trigger" tooltipid="#w2-XX-11-tt">
 					<p>Box 11</p>
 					<p>Nonqualified plans</p>
-					<input class="input-field" type="text" id="w2-XX-11" size="10" placeholder="0" />
+					<input class="input-field" type="text" id="w2-XX-11" size="10"
+						placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-code-value trigger" tooltipid="#w2-XX-12a1-tt">
 					<p>Box 12a</p>
 					<p>Option</p>
-					<input class="input-field" type="text" id="w2-XX-12a1" size="10" placeholder="Code" />
-					<input class="input-field" type="text" id="w2-XX-12a2" size="10" placeholder="0" />
+					<input class="input-field" type="text" id="w2-XX-12a1" size="10"
+						placeholder="Code" />
+					<input class="input-field" type="text" id="w2-XX-12a2" size="10"
+						placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-code-value trigger" tooltipid="#w2-XX-12b1-tt">
 					<p>Box 12b</p>
 					<p>Option</p>
-					<input class="input-field" type="text" id="w2-XX-12b1" size="10" placeholder="Code" />
-					<input class="input-field" type="text" id="w2-XX-12b2" size="10" placeholder="0" />
+					<input class="input-field" type="text" id="w2-XX-12b1" size="10"
+						placeholder="Code" />
+					<input class="input-field" type="text" id="w2-XX-12b2" size="10"
+						placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-code-value trigger" tooltipid="#w2-XX-12c1-tt">
 					<p>Box 12c</p>
 					<p>Option</p>
-					<input class="input-field" type="text" id="w2-XX-12c1" size="10" placeholder="Code" />
-					<input class="input-field" type="text" id="w2-XX-12c2" size="10" placeholder="0" />
+					<input class="input-field" type="text" id="w2-XX-12c1" size="10"
+						placeholder="Code" />
+					<input class="input-field" type="text" id="w2-XX-12c2" size="10"
+						placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-code-value trigger" tooltipid="#w2-XX-12d1-tt">
 					<p>Box 12d</p>
 					<p>Option</p>
-					<input class="input-field" type="text" id="w2-XX-12d1" size="10" placeholder="Code" />
-					<input class="input-field" type="text" id="w2-XX-12d2" size="10" placeholder="0" />
+					<input class="input-field" type="text" id="w2-XX-12d1" size="10"
+						placeholder="Code" />
+					<input class="input-field" type="text" id="w2-XX-12d2" size="10"
+						placeholder="0" />
 				</div>
 				<div class="taxform-lno-4-checkboxes trigger" tooltipid="#w2-XX-13-tt">
 					<div>Box 13</div>
@@ -106,56 +125,70 @@ const HTML_FORM = `
 				<div class="taxform-lno-desc-code-value trigger" tooltipid="#w2-XX-14a-tt">
 					<p>Box 14a</p>
 					<p>Other</p>
-					<input class="input-field" type="text" id="w2-XX-14a1" size="10" placeholder="Code" />
-					<input class="input-field" type="text" id="w2-XX-14a2" size="10" placeholder="0" />
+					<input class="input-field" type="text" id="w2-XX-14a1" size="10"
+						placeholder="Code" />
+					<input class="input-field" type="text" id="w2-XX-14a2" size="10"
+						placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-code-value trigger" tooltipid="#w2-XX-14b-tt">
 					<p>Box 14b</p>
 					<p>Other</p>
-					<input class="input-field" type="text" id="w2-XX-14b1" size="10" placeholder="Code" />
-					<input class="input-field" type="text" id="w2-XX-14b2" size="10" placeholder="0" />
+					<input class="input-field" type="text" id="w2-XX-14b1" size="10"
+						placeholder="Code" />
+					<input class="input-field" type="text" id="w2-XX-14b2" size="10"
+						placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-code-value trigger" tooltipid="#w2-XX-14c-tt">
 					<p>Box 14c</p>
 					<p>Other</p>
-					<input class="input-field" type="text" id="w2-XX-14c1" size="10" placeholder="Code" />
-					<input class="input-field" type="text" id="w2-XX-14c2" size="10" placeholder="0" />
+					<input class="input-field" type="text" id="w2-XX-14c1" size="10"
+						placeholder="Code" />
+					<input class="input-field" type="text" id="w2-XX-14c2" size="10"
+						placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-code-value trigger" tooltipid="#w2-XX-14d-tt">
 					<p>Box 14d</p>
 					<p>Other</p>
-					<input class="input-field" type="text" id="w2-XX-14d1" size="10" placeholder="Code" />
-					<input class="input-field" type="text" id="w2-XX-14d2" size="10" placeholder="0" />
+					<input class="input-field" type="text" id="w2-XX-14d1" size="10"
+						placeholder="Code" />
+					<input class="input-field" type="text" id="w2-XX-14d2" size="10"
+						placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-value trigger" tooltipid="#w2-XX-15-tt">
 					<p>Box 15</p>
 					<p>State Employer&apos;s state ID number</p>
-					<input class="input-field" type="text" id="w2-XX-15" size="10" placeholder="" />
+					<input class="input-field" type="text" id="w2-XX-15" size="10"
+						placeholder="" />
 				</div>
 				<div class="taxform-lno-desc-value trigger" tooltipid="#w2-XX-16-tt">
 					<p>Box 16</p>
 					<p>State wages, tips, etc.</p>
-					<input class="input-field" type="text" id="w2-XX-16" size="10" placeholder="0" />
+					<input class="input-field" type="text" id="w2-XX-16" size="10"
+						placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-value trigger" tooltipid="#w2-XX-17-tt">
 					<p>Box 17</p>
 					<p>State income tax</p>
-					<input class="input-field" type="text" id="w2-XX-17" size="10" placeholder="0" />
+					<input class="input-field" type="text" id="w2-XX-17" size="10"
+						placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-value trigger" tooltipid="#w2-XX-18-tt">
 					<p>Box 18</p>
 					<p>Local wages, tips, etc.</p>
-					<input class="input-field" type="text" id="w2-XX-18" size="10" placeholder="0" />
+					<input class="input-field" type="text" id="w2-XX-18" size="10"
+						placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-value trigger" tooltipid="#w2-XX-19-tt">
 					<p>Box 19</p>
 					<p>Local income tax</p>
-					<input class="input-field" type="text" id="w2-XX-19" size="10" placeholder="0" />
+					<input class="input-field" type="text" id="w2-XX-19" size="10"
+						placeholder="0" />
 				</div>
 				<div class="taxform-lno-desc-value trigger" tooltipid="#w2-XX-20-tt">
 					<p>Box 20</p>
 					<p>Locality name</p>
-					<input class="input-field" type="text" id="w2-XX-20" size="10" placeholder="" />
+					<input class="input-field" type="text" id="w2-XX-20" size="10"
+						placeholder="" />
 				</div>
 				<div>&nbsp;</div>
 			</div>

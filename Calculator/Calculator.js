@@ -105,12 +105,14 @@ function solve(input) {
 			stack.pop();
 		} else {
 			let type = token;
-			if (token === "-" && (i === 0 || (isNaN(tokens[i - 1]) && tokens[i - 1] !== ")"))) {
+			if (token === "-" &&
+				(i === 0 || (isNaN(tokens[i - 1]) && tokens[i - 1] !== ")"))) {
 				type = "u-";
 			}
 			while (stack.length && stack[stack.length - 1] !== "(") {
 				const top = stack[stack.length - 1];
-				if (ops[type].prec < ops[top].prec || (ops[type].prec === ops[top].prec && ops[type].assoc === "L")) {
+				if (ops[type].prec < ops[top].prec ||
+					(ops[type].prec === ops[top].prec && ops[type].assoc === "L")) {
 					queue.push(stack.pop());
 				} else break;
 			}

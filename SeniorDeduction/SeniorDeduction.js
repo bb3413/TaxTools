@@ -21,17 +21,18 @@ function changeHandler(event) {
 		TaxFormObj.reset();
 		Taxpayer.reset();
 
-		const inputs	= getInputs();								// Get inputs from the web page
-		const tax_table	= TaxTable.getTaxTable(inputs.tax_year);	// Initialize tax tables; ignore return value.
-		const taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
-		mapInputValues(inputs);										// Map input values to tax forms
-		TaxFormObj.getForm("F1040S1A").calculate();						// Calculate the tax forms
-		putOutputs(taxpayer);										// Put results on web page
-		Debug.turnOn();												// Put debug info on web page if enabled
+		const inputs	= getInputs();					// Get inputs from the web page
+		TaxTable.getTaxTable(inputs.tax_year);			// Initialize tax tables
+		createTaxpayer(inputs);							// Initialize taxpayer
+		mapInputValues(inputs);							// Map input values to tax forms
+		TaxFormObj.getForm("F1040S1A").calculate();		// Calculate the tax forms
+		putOutputs(taxpayer);							// Put results on web page
+		Debug.turnOn();									// Put debug info on web page
 	} catch (error) {
 		HTML.putElementValue("error-message-output", error);
 		console.log("Stack trace:", error.stack);
-		document.getElementById("error-message-output").scrollIntoView({behavior: 'smooth', block: 'start'});
+		document.getElementById("error-message-output")
+			.scrollIntoView({behavior: 'smooth', block: 'start'});
 	}
 }
 
@@ -71,14 +72,14 @@ function getInputs() {
 	const inputs = {};
 
 	inputs.tax_year					= HTML.getUserInput("tax-year");
-	inputs.filing_status			= HTML.getUserInput("FilingStatus",		"text").toUpperCase();
+	inputs.filing_status			= HTML.getUserInput("FilingStatus", "text").toUpperCase();
 	inputs.adjusted_gross_income	= HTML.getUserInput("AdjustedGrossIncome");
-	inputs.taxpayers_birthday		= HTML.getUserInput("TaxpayersBirthday","text");
+	inputs.taxpayers_birthday		= HTML.getUserInput("TaxpayersBirthday", "text");
 	inputs.taxpayers_age			= 0;
 	if (Str.empty(inputs.taxpayers_birthday)) {
 		inputs.taxpayers_age		= HTML.getUserInput("TaxpayersAge");
 	}
-	inputs.spouses_birthday			= HTML.getUserInput("SpousesBirthday",	"text");
+	inputs.spouses_birthday			= HTML.getUserInput("SpousesBirthday", "text");
 	inputs.spouses_age				= 0;
 		if (Str.empty(inputs.spouses_birthday)) {
 		inputs.spouses_age		= HTML.getUserInput("SpousesAge");

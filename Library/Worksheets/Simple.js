@@ -93,17 +93,17 @@ export class Simple extends TaxForm {
 			spouses_age_at_atart = Dates.getAge(tp.spouses_birthday, annuity_start_date);
 		}
 
-		this.lines["01"].value	= this.annuity_start_date;		// Gross Distribution (1099-R, box 1)
-		this.lines["02"].value	= this.total_contributions;		// Total Contributions (1099-R, box 9b)
-		this.lines["03"].value	= getAgeFactor();				// Age Factor
-		this.lines["04"].value	= this.line("03") / 2;			//
-		this.lines["05"].value	= this.line("04") * getMonthsPaid();	//
-		this.lines["06"].value	= getAmountRecovered();			//
-		this.lines["07"].value	= this.subtract("02", "06");	//
-		this.lines["08"].value	= this.min("05", "07");			//
-		this.lines["09"].value	= Math.max(0, this.subtract("01", "08"));	// Taxable Amount
+		this.lines["01"].value	= this.annuity_start_date;	// Gross Dist (1099-R, box 1)
+		this.lines["02"].value	= this.total_contributions;	// Total Contrib (1099-R, box 9b)
+		this.lines["03"].value	= getAgeFactor();			// Age Factor
+		this.lines["04"].value	= this.line("03") / 2;
+		this.lines["05"].value	= this.line("04") * getMonthsPaid();
+		this.lines["06"].value	= getAmountRecovered();
+		this.lines["07"].value	= this.subtract("02", "06");
+		this.lines["08"].value	= this.min("05", "07");
+		this.lines["09"].value	= Math.max(0, this.subtract("01", "08"));// Taxable Amount
 		this.lines["10"].value	= this.add("06","08");			// Amount Recovered
-		this.lines["11"].value	= this.subtract("02", "10");	// Remaining Cost to Be Recovered
+		this.lines["11"].value	= this.subtract("02", "10");	// Remaining to Be Recovered
 
 		Debug.exit("Simple.calculate()");
  		return this.lines["09"].value;

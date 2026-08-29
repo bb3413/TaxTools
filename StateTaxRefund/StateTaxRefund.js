@@ -18,16 +18,19 @@ function calculateTaxableAmount(inputs) {
 
 	} else if (inputs.prev_state_income_tax === 0) {
 		outputs.taxable_amount		= 0;
-		outputs.explanation			= "State income tax is $0; state income tax was not used as a deduction.";
+		outputs.explanation			= "State income tax is $0; state income tax was " +
+										"not used as a deduction.";
 
 	} else if (inputs.sales_tax_used) {
 		outputs.taxable_amount		= 0;
-		outputs.explanation			= "State income tax was not used as a deduction; sales tax was used instead.";
+		outputs.explanation			= "State income tax was not used as a deduction; " +
+										"sales tax was used instead.";
 
 	} else if (inputs.sales_tax >= inputs.state_income_tax) {
 		outputs.taxable_amount		= 0;
-		outputs.explanation			= "Sales tax is greater that state income tax; sales tax could have " +
-										"used instead of state income tax for the same or better result.";
+		outputs.explanation			= "Sales tax is greater that state income tax; sales "+
+										"tax could have used instead of state income tax " +
+										"for the same or better result.";
 	} else {
 		outputs.taxable_amount	= TaxFormObj.getValue("Refund",	"taxable_amount");
 		outputs.explanation		= TaxFormObj.getTextValue("Refund",	"explanation");
@@ -48,17 +51,18 @@ function changeHandler(event) {
 		TaxFormObj.reset();
 		Taxpayer.reset();
 
-		const inputs	= getInputs();								// Get inputs from the web page
-		const tax_table	= TaxTable.getTaxTable(inputs.previous_tax_year);	// Initialize tax tables; ignore return value.
-		const taxpayer	= createTaxpayer(inputs);					// Initialize taxpayer; ignore return value.
-		mapInputValues(inputs);										// Map input values to tax forms
+		const inputs	= getInputs();							// Get inputs from the web page
+		TaxTable.getTaxTable(inputs.previous_tax_year);			// Initialize tax tables
+		const taxpayer	= createTaxpayer(inputs);				// Initialize taxpayer
+		mapInputValues(inputs);									// Map input values to forms
 		const outputs = calculateTaxableAmount(inputs);
-		putOutputs(outputs);										// Put results on web page
-		Debug.turnOn();												// Put debug info on web page if enabled
+		putOutputs(outputs);									// Put results on web page
+		Debug.turnOn();											// Put debug info on web page
 	} catch (error) {
 		HTML.putElementValue("error-message-output", error);
 		console.log("Stack trace:", error.stack);
-		document.getElementById("error-message-output").scrollIntoView({behavior: 'smooth', block: 'start'});
+		document.getElementById("error-message-output")
+			.scrollIntoView({behavior: 'smooth', block: 'start'});
 	}
 }
 
@@ -83,11 +87,13 @@ function getInputs() {
 	const inputs = {};
 
 	// Input fields
-	inputs.previous_tax_year				= HTML.getUserInput("PreviousTaxYear");
-	inputs.filing_status					= HTML.getUserInput("FilingStatus",		"text").toUpperCase();
-	inputs.taxpayers_birthday				= HTML.getUserInput("TaxpayersBirthday","text");
+	inputs.previous_tax_year =
+		HTML.getUserInput("PreviousTaxYear");
+	inputs.filing_status =
+		HTML.getUserInput("FilingStatus", "text").toUpperCase();
+	inputs.taxpayers_birthday				= HTML.getUserInput("TaxpayersBirthday", "text");
 	inputs.is_taxpayer_blind				= HTML.getUserInput("TaxpayerIsBlind");
-	inputs.spouses_birthday					= HTML.getUserInput("SpousesBirthday",	"text");
+	inputs.spouses_birthday					= HTML.getUserInput("SpousesBirthday", "text");
 	inputs.is_spouse_blind					= HTML.getUserInput("SpouseIsBlind");
 	inputs.state_tax_refund					= HTML.getUserInput("StateTaxRefund");
 
@@ -150,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	HTML.addListener("PersonalPropertyTaxes",	"change", changeHandler);
 	HTML.addListener("ItemizedDeductions",		"change", changeHandler);
 
-	HTML.putUserOutput("PreviousTaxYear", Dates.getTaxYear() - 1, "text");	// Default tax year.
+	HTML.putUserOutput("PreviousTaxYear", Dates.getTaxYear() - 1, "text");
 	HTML.hideElement("SpouseContainer");
 	HTML.hideElement("debug-container");
 });
