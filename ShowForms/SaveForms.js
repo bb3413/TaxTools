@@ -3,16 +3,19 @@ import { File }			from "../Library/Classes/File.js";
 import { HTML }			from "../Library/Classes/HTML.js";
 import { TaxFormName }	from "../Library/Classes/TaxFormName.js";
 import { TaxFormObj }	from "../Library/Classes/TaxFormObj.js";
-import { TaxFormWeb }	from "../Library/Classes/TaxFormWeb.js";
 
 const header = `
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<link rel="stylesheet" href="https://www.bruceblinn.com/6-OtherStuff/Taxes/TaxToolsDev/Library/CSS/TaxTools.css" />
-	<link rel="stylesheet" href="https://www.bruceblinn.com/6-OtherStuff/Taxes/TaxToolsDev/Library/CSS/TaxForms.css" />
-	<title>Tax Form Template</title>
+	<link rel="stylesheet" href=
+		"https://www.bruceblinn.com/6-OtherStuff/Taxes/TaxToolsDev/Library/CSS/TaxTools.css" />
+	<link rel="stylesheet" href=
+		"https://www.bruceblinn.com/6-OtherStuff/Taxes/TaxToolsDev/Library/CSS/TaxForms.css" />
+	<link rel="stylesheet" href=
+		"https://www.bruceblinn.com/6-OtherStuff/Taxes/TaxToolsDev/Library/CSS/F1099.css" />
+	<title>Save Tax Forms</title>
 </head>
 
 <body>
@@ -27,21 +30,35 @@ const trailer = `
 </html>
 `;
 
-function saveHandler(event) {
+async function saveHandler(event) {
 	try {
 		for (const formname of TaxFormName.listAllForms()) {
 			let html;
 			let form_id;
+			let page;
 
-			let form = TaxFormObj.getForm(formname) || TaxFormObj.createForm(formname);
-			if (typeof form.getOutputHTML === "function") {
-				[ form_id, html ] = form.getOutputHTML("XX");
-			} else {
-				html = form.toHTML("XX");
+			try {
+				// See if there is an input version of the form.
+				[ form_id, html ] = TaxFormName.getInputHTML(formname, "XX");
+				page = header + html.replace(/<details /g, "<details open ") + trailer;
+				await File.saveToFile(page, `${formname}.html`, false);
+			} catch {
+				// Ignore the error.
 			}
 
-			let page = header + html.replace(/^/gm, "\t\t") + trailer;
-			File.saveToFile(page, `${formname}.html`, false);
+			// Find or create an object for the form.
+			let form = TaxFormObj.getForm(formname) || TaxFormObj.createForm(formname);
+			if (typeof form.getOutputHTML === "function") {
+				// This is the output version of the form.
+				[ form_id, html ] = form.getOutputHTML("XX");
+				page = header + html.replace(/<details /g, "<details open ") + trailer;
+				await File.saveToFile(page, `${formname}.html`, false);
+			} else {
+				// There is no output version; create one dynamically.
+				// html = form.toHTML("XX");
+				// page = header + html.replace(/<details /g, "<details open ") + trailer;
+				// await File.saveToFile(page, `${formname}.html`, false);
+			}
 		}
 	} catch (error) {
 		HTML.putElementValue("error-message-output", error);

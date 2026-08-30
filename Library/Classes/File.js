@@ -1,19 +1,20 @@
 
 export class File {
-	static saveToFile(data, filename, json = true) {
+	static async saveToFile(data, filename, json = true) {
 		// This function will convert the data to a JSON string (if json is true) and
 		// save it to the file in the user's Download folder.
+		
+		// NOTE: This method is declared asynchronous, but the caller only needs to wait for
+		// it to return if they are saving several files in a loop. Browsers limit concurrent
+		// automated downloads for security reasons. To avoid being throttled, this method is
+		// an asynchronous method with a built in delay of 300ms so the caller can wait for
+		// it to finish before it starts the next download.
 
 		// The "blob" is something like a file that you will be able to reference with a URL.
 		// The URL is a tempory URL pointing to the blob. Create an anchor HTML element that
 		// reference the URL. Add the anchor to the HTML document. Fake a click on the
 		// anchor, which will start the download, then remove the anchor and URL.
-		let dataString;
-		if (json)  {
-			dataString = JSON.stringify(data, null, 2);
-		} else {
-			dataString = data;
-		}
+		const dataString	= json ? JSON.stringify(data, null, 2) : data;
 		const blob			= new Blob([dataString], {type: "text/plain"});
 		const url			= URL.createObjectURL(blob);
 		const a				= document.createElement("a");
@@ -22,8 +23,15 @@ export class File {
 
 		document.body.appendChild(a);
 		a.click();
-		document.body.removeChild(a);
-		URL.revokeObjectURL(url);
+
+		// Add a delay before calling revokeObjectURL() to prevent canceling the download
+		// before the browser finishes processing the blob.
+		setTimeout(() => {
+			document.body.removeChild(a);
+			URL.revokeObjectURL(url);
+		}, 1000);
+
+		return new Promise((resolve) => setTimeout(resolve, 300));
 	}
 
 	static restoreFromFile(filename, restoreDataHandler) {
