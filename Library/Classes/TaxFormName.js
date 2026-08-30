@@ -42,8 +42,6 @@ import { F7206 }		from "../TaxForms/F7206.js";		// Self-employment Health Ins
 import { SSA1099 }		from "../TaxForms/SSA1099.js";
 import { W2 }			from "../TaxForms/W2.js";
 
-// import { Template }		from "../TaxForms/Template.js";
-
 // Worksheets
 import { IncTax }		from "../Worksheets/IncTax.js";
 import { SalesTax }		from "../Worksheets/SalesTax.js";
@@ -101,8 +99,6 @@ const forms_map = {
 	"F7206":				[ F7206,		false,	true,	true,	false	],
 	"SSA1099":				[ SSA1099,		true,	false,	false,	false	],
 	"W2":					[ W2,			true,	false,	false,	false	],
-
-//	"Template":				[ Template,		true,	true,	false,	false	],
 
 	// Worksheets
 	// Name					Class			Input	Output	Single	Create on Demand
@@ -176,7 +172,6 @@ export class TaxFormName {
 			case "F1099S":		return F1099S.getInputHTML(uid);
 			case "SSA1099":		return SSA1099.getInputHTML(uid);
 			case "W2":			return W2.getInputHTML(uid);
-			case "Template":	return Template.getInputHTML(uid);
 			default:
 				throw new Error(`TaxFormName.getInputHTML(): unplemented form: ${formname}`);
 		}
@@ -198,7 +193,6 @@ export class TaxFormName {
 			case "F1099S":		return F1099S.getUserInput(uid);
 			case "SSA1099":		return SSA1099.getUserInput(uid);
 			case "W2":			return W2.getUserInput(uid);
-			case "Template":	return Template.getUserInput(uid);
 			default:
 				throw new Error(`TaxFormName.getUserInput(): unplemented form: ${formname}`);
 		}

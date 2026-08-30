@@ -30,34 +30,45 @@ const trailer = `
 </html>
 `;
 
+async function saveInputForm(formname) {
+	let html;
+	let form_id;
+	let page;
+
+	[ form_id, html ] = TaxFormName.getInputHTML(formname, "XX");
+	page = header + html.replace(/<details /g, "<details open ") + trailer;
+	await File.saveToFile(page, `${formname}.html`, false);
+}
+
+async function saveOutputForm(formname) {
+	let html;
+	let form_id;
+	let page;
+
+	// Find or create an object for the form.
+	let form = TaxFormObj.getForm(formname) || TaxFormObj.createForm(formname);
+	if (typeof form.getOutputHTML === "function") {
+		// This is the output version of the form.
+		[ form_id, html ] = form.getOutputHTML("XX");
+		page = header + html.replace(/<details /g, "<details open ") + trailer;
+		await File.saveToFile(page, `${formname}.html`, false);
+	} else {
+		// There is no output version; create one dynamically.
+		html = form.toHTML("XX");
+		page = header + html.replace(/<details /g, "<details open ") + trailer;
+		await File.saveToFile(page, `${formname}.html`, false);
+	}
+}
+
 async function saveHandler(event) {
 	try {
 		for (const formname of TaxFormName.listAllForms()) {
-			let html;
-			let form_id;
-			let page;
-
-			try {
-				// See if there is an input version of the form.
-				[ form_id, html ] = TaxFormName.getInputHTML(formname, "XX");
-				page = header + html.replace(/<details /g, "<details open ") + trailer;
-				await File.saveToFile(page, `${formname}.html`, false);
-			} catch {
-				// Ignore the error.
+			if (TaxFormName.isInputForm(formname)) {
+				await saveInputForm(formname);
 			}
 
-			// Find or create an object for the form.
-			let form = TaxFormObj.getForm(formname) || TaxFormObj.createForm(formname);
-			if (typeof form.getOutputHTML === "function") {
-				// This is the output version of the form.
-				[ form_id, html ] = form.getOutputHTML("XX");
-				page = header + html.replace(/<details /g, "<details open ") + trailer;
-				await File.saveToFile(page, `${formname}.html`, false);
-			} else {
-				// There is no output version; create one dynamically.
-				// html = form.toHTML("XX");
-				// page = header + html.replace(/<details /g, "<details open ") + trailer;
-				// await File.saveToFile(page, `${formname}.html`, false);
+			if (TaxFormName.isOutputForm(formname)) {
+				await saveOutputForm(formname);
 			}
 		}
 	} catch (error) {

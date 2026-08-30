@@ -3,7 +3,6 @@ import { HTML }			from "../Library/Classes/HTML.js";
 import { TaxFormName }	from "../Library/Classes/TaxFormName.js";
 import { TaxFormObj }	from "../Library/Classes/TaxFormObj.js";
 import { TaxFormWeb }	from "../Library/Classes/TaxFormWeb.js";
-import { Template }		from "../Library/TaxForms/Template.js";
 
 function addInputForm(formname) {
 	let uid = TaxFormWeb.getUID(formname);
@@ -32,15 +31,6 @@ function addOutputForm(formname) {
 
 function showHandler(event) {
 	try {
-		let [ taxform_id, taxform_html ] = Template.getInputHTML("XX");
-		let element = document.getElementById("input-forms-container");
-		element.insertAdjacentHTML("beforebegin", taxform_html);
-
-		let taxform = new Template("Template");
-		[ taxform_id, taxform_html ] = taxform.getOutputHTML("XX");
-		element = document.getElementById("output-forms-container");
-		element.insertAdjacentHTML("beforebegin", taxform_html);
-
 		for (const formname of TaxFormName.listAllForms()) {
 			console.log(`Showing ${formname}`);
 			if (TaxFormName.isInputForm(formname)) {
