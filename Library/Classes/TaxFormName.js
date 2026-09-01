@@ -136,6 +136,28 @@ const print_order = [
 ];
 
 export class TaxFormName {
+	
+	static createForm(formname, uid) {
+		// This method allows you to call the static method createForm() by formname.
+		switch (formname) {
+			case "F1040SC":		return F1040SC.createForm(uid);
+			case "F1099C":		return F1099C.createForm(uid);
+			case "F1099DIV":	return F1099DIV.createForm(uid);
+			case "F1099G":		return F1099G.createForm(uid);
+			case "F1099INT":	return F1099INT.createForm(uid);
+			case "F1099K":		return F1099K.createForm(uid);
+			case "F1099MISC":	return F1099MISC.createForm(uid);
+			case "F1099NEC":	return F1099NEC.createForm(uid);
+			case "F1099OID":	return F1099OID.createForm(uid);
+			case "F1099R":		return F1099R.createForm(uid);
+			case "F1099S":		return F1099S.createForm(uid);
+			case "SSA1099":		return SSA1099.createForm(uid);
+			case "W2":			return W2.createForm(uid);
+			default:
+				throw new Error(`TaxFormName.createForm(): unplemented form: ${formname}`);
+		}
+	}
+
 	static createOnDemand(formname) {
 		// When getValue() or getTextValue() is called, the default is to return 0 or "" if
 		// the form has not been created. However, some forms get input from other forms and
@@ -157,7 +179,7 @@ export class TaxFormName {
 	}
 
 	static getInputHTML(formname, uid) {
-		// This method allows you to call the static method getInputHTML() by name.
+		// This method allows you to call the static method getInputHTML() by formname.
 		switch (formname) {
 			case "F1040SC":		return F1040SC.getInputHTML(uid);
 			case "F1099C":		return F1099C.getInputHTML(uid);
@@ -178,7 +200,7 @@ export class TaxFormName {
 	}
 
 	static getUserInput(formname, uid) {
-		// This method allows you to call the static method getUserInput() by name.
+		// This method allows you to call the static method getUserInput() by formname.
 		switch (formname) {
 			case "F1040SC":		return F1040SC.getUserInput(uid);
 			case "F1099C":		return F1099C.getUserInput(uid);

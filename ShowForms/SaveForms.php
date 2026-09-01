@@ -5,7 +5,6 @@
 	<link rel="stylesheet" href="../Library/CSS/TaxTools.css" />
 	<link rel="stylesheet" href="../Library/CSS/Tooltips.css" />
 	<link rel="stylesheet" href="../Library/CSS/HTML.css" />
-
 	<link rel="stylesheet" href="../Library/CSS/TaxForms.css" />
 	<link rel="stylesheet" href="../Library/CSS/F1099.css" />
 

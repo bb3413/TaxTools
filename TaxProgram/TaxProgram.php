@@ -5,7 +5,6 @@
 	<link rel="stylesheet" href="../Library/CSS/TaxTools.css" />
 	<link rel="stylesheet" href="../Library/CSS/Tooltips.css" />
 	<link rel="stylesheet" href="../Library/CSS/HTML.css" />
-
 	<link rel="stylesheet" href="../Library/CSS/TaxForms.css" />
 	<link rel="stylesheet" href="../Library/CSS/F1099.css" />
 
@@ -122,6 +121,16 @@
 				<option value="" hidden disabled selected>Add Form</option>
 				<option value="W2">			W-2</option>
 				<option value="SSA1099">	SSA-1099</option>
+				<option value="F1099C">		1099-C</option>
+				<option value="F1099DIV">	1099-DIV</option>
+				<option value="F1099G">		1099-G</option>
+				<option value="F1099INT">	1099-INT</option>
+				<option value="F1099K">		1099-K</option>
+				<option value="F1099MISC">	1099-MISC</option>
+				<option value="F1099NEC">	1099-NEC</option>
+				<option value="F1099OID">	1099-OID</option>
+				<option value="F1099R">		1099-R</option>
+				<option value="F1099S">		1099-S</option>
 				<option value="F1040SC">	Schedule C</option>
 			</select>
 		</div>

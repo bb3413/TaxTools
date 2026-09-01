@@ -150,32 +150,6 @@ export class TaxFormObj {
 		return str;
 	}
 
-	static getUserSuppliedValues() {
-		// Return array of: formName, formIndex, lineNumber, value
-		// This method is used to save the current state to a file. It only saves the user
-		// supplied values; the rest are calculated and do no need to be saved,
-		let user_values = [];
-
-		// For each type of form.
-		for (const formname of Object.keys(instances)) {
-			let form_list = instances[formname];
-			// For each instance of a particilar form.
-			for (let index = 0; index < form_list.length; index++) {
-				let form = form_list[index];
-				// For each line on the form, see if the value was supplied by the user or
-				// calculated by the form.
-				for (const lineno of Object.keys(form.lines)) {
-					if (form.lines[lineno].isUserSuppliedValue()) {
-						let info = [ formname, index, lineno, form.lines[lineno].value ];
-						user_values.push(info);
-					}
-				}
-			}
-		}
-
-		return user_values;
-	}
-
 	static getValue(formname, ...lineno) {
 		// This method will get a value from a tax form. If the form does not exist, it wlll
 		// try to create it. If it has not been calculated, it will be calculated. If the

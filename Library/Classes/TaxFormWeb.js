@@ -2,7 +2,6 @@
 //
 // This module manages the tax forms that are displayed on the web page.
 //
-import { TaxFormName }	from "../Classes/TaxFormName.js";
 import { HTML }			from "../Classes/HTML.js";
 
 // These arrays contain the container IDs, in order, for the tax forms that

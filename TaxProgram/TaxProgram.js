@@ -1,14 +1,15 @@
 
-import { Dates }			from "../Library/Classes/Dates.js";
-import { Debug }			from "../Library/Classes/Debug.js";
-import { File }				from "../Library/Classes/File.js";
-import { HTML }				from "../Library/Classes/HTML.js";
-import { TaxFormWeb }		from "../Library/Classes/TaxFormWeb.js";
-import { TaxFormName }		from "../Library/Classes/TaxFormName.js";
-import { TaxFormObj }		from "../Library/Classes/TaxFormObj.js";
-import { Taxpayer }			from "../Library/Classes/Taxpayer.js";
-import { TaxTable }			from "../Library/Classes/TaxTable.js";
-import { F1040 }			from "../Library/TaxForms/F1040.js";
+import { Dates }		from "../Library/Classes/Dates.js";
+import { Debug }		from "../Library/Classes/Debug.js";
+import { File }			from "../Library/Classes/File.js";
+import { HTML }			from "../Library/Classes/HTML.js";
+import { Objects }		from "../Library/Classes/Objects.js";
+import { TaxFormWeb }	from "../Library/Classes/TaxFormWeb.js";
+import { TaxFormName }	from "../Library/Classes/TaxFormName.js";
+import { TaxFormObj }	from "../Library/Classes/TaxFormObj.js";
+import { Taxpayer }		from "../Library/Classes/Taxpayer.js";
+import { TaxTable }		from "../Library/Classes/TaxTable.js";
+import { F1040 }		from "../Library/TaxForms/F1040.js";
 
 import { TAX_PROGRAM_SAVE_FILE } from "../Library/TaxTools/TaxTools.js";
 
@@ -111,8 +112,7 @@ function createTaxForms() {
 	//
 	for (let taxform_id of TaxFormWeb.getInputForms()) {
 		let [ formname, uid ] = TaxFormWeb.parseFormName(taxform_id);
-		// window[class_name].getUserInput(index);
-		TaxFormName.getUserInput(formname, uid);
+		TaxFormName.createForm(formname, uid);
 	}
 }
 
@@ -147,7 +147,7 @@ function resetCalculation() {
 
 	TaxFormObj.deleteAllForms();
 
-	// Remove the output web form from the previous calculation.
+	// Remove the output web form froms the previous calculation.
 	TaxFormWeb.removeOutputForms();			// Remove form web pages.
 	HTML.hideElement("output-forms-container");
 }
@@ -188,19 +188,62 @@ function restoreUserData(event) {
 	File.restoreFromFile(filename, restoreDataHandler);
 }
 
+function saveUserSuppliedInputValues() {
+	// Return array of: formName: [ formIndex, lineNumber, value ]
+	// This method is used to save the current state to a file. It only saves the
+	// values on the input form web pages, and it only saves the fields where the
+	// user entered a value.
+	let user_values = [];
+
+	// For each form.
+	for (let taxform_id of TaxFormWeb.getInputForms()) {
+		let [ formname, uid ] = TaxFormWeb.parseFormName(taxform_id);
+		let inputs = Objects.removeUnused(TaxFormName.getUserInput(formname, uid));
+		user_values.push( [ formname, inputs ] );
+	}
+
+	return user_values;
+}
+
+function saveUserSuppliedOutputValues() {
+	// Return array of: formName: [ formIndex, { lineNumber: value } }
+	// This method is used to save the current state to a file. It only saves the
+	// values in the tax form objects, and it only saves the fields where the user
+	// entered a value.
+	let user_values = [];
+
+	// For each form.
+	for (const form of TaxFormObj.getAllForms()) {
+		// For each line on the form, save the value if it was supplied by the user.
+		let outputs = {};
+		for (const lineno of Object.keys(form.lines)) {
+			if (form.lines[lineno].isUserSuppliedValue()) {
+				outputs[lineno] = form.lines[lineno].value;
+			}
+		}
+		if (Objects.isUsed(outputs)) {
+			user_values.push( [ form.formname, outputs ] );
+		}
+	}
+
+	return user_values;
+}
+
 function saveUserData(event) {
 	//
 	// This function is called when the user wants to save the input fields to a file.
 	//
-	const taxpayer = Taxpayer.getTaxpayer();
-	const taxforms = TaxFormObj.getUserSuppliedValues()
+	const taxpayer			= Objects.removeUnused(Taxpayer.getTaxpayer());
+	const input_taxforms	= saveUserSuppliedInputValues();
+	const output_taxforms	= saveUserSuppliedOutputValues();
 
 	const data = {
 		"tool_name":	HTML.getUserInput("title", "text"),
 		"version":		HTML.getUserInput("tax-tools-version", "text"),
 		"todays_date":	new Date().toLocaleDateString(),
 		"taxpayer":		taxpayer,
-		"taxforms":		taxforms,
+		"input_forms":	input_taxforms,
+		"output_forms":	output_taxforms,
 	};
 
 	File.saveToFile(data, TAX_PROGRAM_SAVE_FILE);

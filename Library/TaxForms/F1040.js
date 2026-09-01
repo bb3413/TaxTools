@@ -741,7 +741,7 @@ export class F1040 extends TaxForm {
 									TaxFormObj.getValue("F8606",	"25c");
 		this.lines["05a"].value	= TaxFormObj.getValue("F1099R",		"01");	// Pensions
 		this.lines["05b"].value	= TaxFormObj.getValue("F1099R",		"02a");	// Pensions
-		this.lines["06a"].value	= TaxFormObj.getValue("FSSA1099",	"05");	// SS Benefits
+		this.lines["06a"].value	= TaxFormObj.getValue("SSA1099",	"05");	// SS Benefits
 		this.lines["06b"].value = 0;  // DELAY INITIALIZATION UNTIL LATER
 
 		this.lines["07a"].value	= TaxFormObj.getValue("F1040SD",		"16") +	// Cap Gain
@@ -795,7 +795,7 @@ export class F1040 extends TaxForm {
 		this.lines["25b"].value	= TaxFormObj.getValue("F1099INT", "04") +
 									TaxFormObj.getValue("F1099DIV", "04") +
 									TaxFormObj.getValue("F1099R", "04") +
-									TaxFormObj.getValue("FSSA1099", "06");// 1099 Withholding
+									TaxFormObj.getValue("SSA1099", "06");// 1099 Withholding
 		this.lines["25c"].value	= TaxFormObj.getValue("F8959", "24");	// Other withholding
 		this.lines["25d"].value	= this.add("25a", "25b", "25c");		// Total Withholding
 		this.lines["26"].value	= 0;									// Estimated payments

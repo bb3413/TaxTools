@@ -6,9 +6,9 @@ import { TaxTable }	from "../Classes/TaxTable.js";
 
 let taxpayer = undefined;		// Global variable.
 
-function getUserInput(element_id, default_value) {
+function getUserInput(element_id, default_value = 0) {
 	// In some tools the element may not exist and HTML.getUserInput fails in strict
-	// mode if element does not eixt. This function ignores that error.
+	// mode if element does not exist. This function ignores that error.
 	if (document.getElementById(element_id)) {
 		return HTML.getUserInput(element_id, default_value);
 	} else {
@@ -62,73 +62,73 @@ export class Taxpayer {
 		taxpayer.taxpayers_birthday =
 			getUserInput("taxpayers-birthday", "text");
 		taxpayer.is_taxpayer_blind =
-			getUserInput("is-taxpayer-blind", "");
+			getUserInput("is-taxpayer-blind");
 		taxpayer.is_taxpayer_citizen =
-			getUserInput("is-taxpayer-citizen", "");
+			getUserInput("is-taxpayer-citizen");
 		taxpayer.taxpayer_has_ssn =
-			getUserInput("taxpayer-has-ssn", "");
+			getUserInput("taxpayer-has-ssn");
 		taxpayer.lived_with_spouse =
-			getUserInput("lived-with-spouse", "");
+			getUserInput("lived-with-spouse");
 		taxpayer.can_be_dependent =
-			getUserInput("can-be-dependent", "");
+			getUserInput("can-be-dependent");
 		taxpayer.rents_home =
-			getUserInput("rents-home", "");
+			getUserInput("rents-home");
 		taxpayer.taxpayer_educator_expenses =
-			getUserInput("tp-taxpayer-educator-expenses", "");
+			getUserInput("tp-taxpayer-educator-expenses");
 		taxpayer.taxpayer_ltc_premiums =
-			getUserInput("tp-taxpayer-ltc-premiums", "");
+			getUserInput("tp-taxpayer-ltc-premiums");
 
 		// Spouse
 		taxpayer.spouses_birthday =
 			getUserInput("spouses-birthday", "text");
 		taxpayer.is_spouse_blind =
-			getUserInput("is-spouse-blind", "");
+			getUserInput("is-spouse-blind");
 		taxpayer.is_spouse_citizen =
-			getUserInput("is-spouse-citizen", "");
+			getUserInput("is-spouse-citizen");
 		taxpayer.spouse_has_ssn =
-			getUserInput("spouse-has-ssn", "");
+			getUserInput("spouse-has-ssn");
 		taxpayer.spouse_educator_expenses =
-			getUserInput("tp-spouse-educator-expenses", "");
+			getUserInput("tp-spouse-educator-expenses");
 		taxpayer.spouse_ltc_premiums =
-			getUserInput("tp-spouse-ltc-premiums", "");
+			getUserInput("tp-spouse-ltc-premiums");
 
 		// Taxpayer and spouse
 		taxpayer.number_of_dependents =
-			getUserInput("tp-number-of-dependents", "");
+			getUserInput("tp-number-of-dependents");
 		taxpayer.alimony_paid =
-			getUserInput("tp-alimony-paid", "");
+			getUserInput("tp-alimony-paid");
 		taxpayer.alimony_received =
-			getUserInput("tp-alimony-received", "");
+			getUserInput("tp-alimony-received");
 		taxpayer.divorce_date =
 			getUserInput("tp-divorce-date", "text");
 		taxpayer.federal_estimated_payments =
-			getUserInput("tp-federal-estimated-payments", "");
+			getUserInput("tp-federal-estimated-payments");
 		taxpayer.state_estimated_payments =
-			getUserInput("tp-state-estimated-payments", "");
+			getUserInput("tp-state-estimated-payments");
 		taxpayer.medical_insurance_premiums =
-			getUserInput("tp-medical-insurance-premiums", "");
+			getUserInput("tp-medical-insurance-premiums");
 		taxpayer.medicare_repremiums =
-			getUserInput("tp-medicare-premiums", "");
+			getUserInput("tp-medicare-premiums");
 		taxpayer.other_medical_expenses =
-			getUserInput("tp-other-medical-expenses", "");
+			getUserInput("tp-other-medical-expenses");
 		taxpayer.medical_miles =
-			getUserInput("tp-medical-miles", "");
+			getUserInput("tp-medical-miles");
 		taxpayer.property_tax =
-			getUserInput("tp-property-tax", "");
+			getUserInput("tp-property-tax");
 		taxpayer.personal_property_tax =
-			getUserInput("tp-personal-property-tax", "");
+			getUserInput("tp-personal-property-tax");
 		taxpayer.extra_sales_tax =
-			getUserInput("tp-extra-sales-tax", "");
+			getUserInput("tp-extra-sales-tax");
 		taxpayer.cash_gift_to_charity =
-			getUserInput("tp-cash-gift-to-charity", "");
+			getUserInput("tp-cash-gift-to-charity");
 		taxpayer.noncash_gift_to_charity =
-			getUserInput("tp-noncash-gift-to-charity", "");
+			getUserInput("tp-noncash-gift-to-charity");
 		taxpayer.tax_preparation_fees =
-			getUserInput("tp-tax-preparation-fees", "");
+			getUserInput("tp-tax-preparation-fees");
 		taxpayer.investment_expenses =
-			getUserInput("tp-investment-expenses", "");
+			getUserInput("tp-investment-expenses");
 		taxpayer.unreimbursed_employee_expenses	=
-			getUserInput("tp-unreimbursed-employee-expenses", "");
+			getUserInput("tp-unreimbursed-employee-expenses");
 
 		return taxpayer;
 	}
@@ -146,9 +146,9 @@ export class Taxpayer {
 		this._filing_status						= "Single";
 
 		this._taxpayers_name					= "";
-		this._street_address					= "";		// Needed for sales tax calc
-		this._city								= "";		// Needed for sales tax calc
-		this._zip_code							= "";		// Needed for sales tax calc
+		this._street_address					= "";		// Needed for sales tax
+		this._city								= "";		// Needed for sales tax
+		this._zip_code							= "";		// Needed for sales tax
 
 		// Taxpayer
 		this._taxpayers_birthday				= "";

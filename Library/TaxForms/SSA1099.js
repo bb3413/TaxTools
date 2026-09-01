@@ -32,13 +32,13 @@ const HTML_FORM = `
 				<div class="ssa-row-1">
 					<div class="f1099-box ssa-border-right">
 						<span class="f1099-box-label">Box 1. Name</span>
-						<input type="text" id="ssa-XX-01"
+						<input type="text" id="ssa1099-XX-01"
 							placeholder="Beneficiary&apos;s name" />
 					</div>
 					<div class="f1099-box">
 						<span class="f1099-box-label">Box 2. Beneficiary&apos;s Social
 							Security Number</span>
-						<input type="text" id="ssa-XX-02"
+						<input type="text" id="ssa1099-XX-02"
 							placeholder="123-45-6789" />
 					</div>
 				</div>
@@ -46,19 +46,19 @@ const HTML_FORM = `
 				<div class="ssa-row-2">
 					<div class="f1099-box ssa-border-right">
 						<span class="f1099-box-label">Box 3. Benefits Paid in 202X</span>
-						<input type="text" id="ssa-XX-03"
+						<input type="text" id="ssa1099-XX-03"
 							placeholder="0" />
 					</div>
 					<div class="f1099-box ssa-border-right">
 						<span class="f1099-box-label">Box 4. Benefits Repaid to SSA in
 							202X</span>
-						<input type="text" id="ssa-XX-04"
+						<input type="text" id="ssa1099-XX-04"
 							placeholder="0" />
 					</div>
 					<div class="f1099-box input-color">
 						<span class="f1099-box-label">Box 5. Net Benefits for 202X (Box 3
 							minus Box 4)</span>
-						<input type="text" id="ssa-XX-05"
+						<input type="text" id="ssa1099-XX-05"
 							placeholder="0" />
 					</div>
 				</div>
@@ -71,12 +71,12 @@ const HTML_FORM = `
 							<h2 class="ssa-subheading">Description of Amount in Box 3</h2>
 							<div class="ssa-label-group input-color">
 								<label for="ssa-XX-03a">Medicare Part B:</label>
-								<input type="text" id="ssa-XX-03a" name="ssa-XX-03a"
+								<input type="text" id="ssa1099-XX-03a" name="ssa-XX-03a"
 									placeholder="0" />
 							</div>
 							<div class="ssa-label-group input-color">
 								<label for="ssa-XX-03b">Medicare Part D:</label>
-								<input type="text" id="ssa-XX-03b" name="ssa-XX-03b"
+								<input type="text" id="ssa1099-XX-03b" name="ssa-XX-03b"
 									placeholder="0" />
 							</div>
 						</div>
@@ -91,7 +91,7 @@ const HTML_FORM = `
 							<div class="f1099-box input-color">
 								<span class="f1099-box-label">Box 6. Voluntary Federal
 									Income Tax Withheld</span>
-								<input type="text" id="ssa-XX-06"
+								<input type="text" id="ssa1099-XX-06"
 									placeholder="0" />
 							</div>
 						</div>
@@ -99,7 +99,7 @@ const HTML_FORM = `
 						<div class="f1099-flex-row">
 							<div class="f1099-box">
 								<span class="f1099-box-label">Box 7. Address</span>
-								<input type="text" id="ssa-XX-07"
+								<input type="text" id="ssa1099-XX-07"
 									placeholder="Beneficiary&apos;s address"/>
 							</div>
 						</div>
@@ -107,7 +107,7 @@ const HTML_FORM = `
 						<div class="f1099-flex-row">
 							<div class="f1099-box" style="border-bottom: none;">
 								<span class="f1099-box-label">Box 8. Claim Number</span>
-								<input type="text" id="ssa-XX-08"
+								<input type="text" id="ssa1099-XX-08"
 									placeholder="Optional Account #" />
 							</div>
 						</div>
@@ -120,7 +120,30 @@ const HTML_FORM = `
 `;
 
 export class SSA1099 extends TaxForm {
+	static createForm(uid) {
+		//
+		// Create a new SSA1099 form and initialize it with information from the Web page.
+		// If the user hasn't entered any information, don't bother creating the form.
+		//
+		const inputs = SSA1099.getUserInput(uid);
+		if (!Objects.isUsed(inputs)) {
+			return;
+		}
+
+		const ssa1099 = TaxFormObj.createForm("SSA1099");
+
+		// console.log(inputs);
+		// console.log(Object.keys(inputs));
+		for (const key of Object.keys(inputs)) {
+			ssa1099.lines[key].user_value = inputs[key];
+		}
+	}
+
 	static getInputHTML(uid) {
+		//
+		// Get the HTML code to display the tax form for inputting values. Return an array
+		// with the element ID for the form's outer contaner and the HTML code.
+		//
 		if (!uid) {
 			throw new Error(`SSA1099.getInputHTML(): UID is undefined.`);
 		}
@@ -130,7 +153,8 @@ export class SSA1099 extends TaxForm {
 
 	static getUserInput(uid) {
 		//
-		// Create a new SSA1099 form and initialize it with information from the Web page.
+		// Read the fields of the form from the web and return an object with the
+		// information.
 		//
 		if (!uid) {
 			throw new Error(`SSA1099.getUserInput(): UID is undefined.`);
@@ -144,27 +168,20 @@ export class SSA1099 extends TaxForm {
 
 		let inputs = {};
 
-		inputs["01"]		= HTML.getUserInput(`ssa1099-${uid}-01`, "");
-		inputs["02"]		= HTML.getUserInput(`ssa1099-${uid}-02`, "");
-		inputs["03a"]		= HTML.getUserInput(`ssa1099-${uid}-03a`, "");
-		inputs["03b"]		= HTML.getUserInput(`ssa1099-${uid}-03b`, "");
-		inputs["04"]		= HTML.getUserInput(`ssa1099-${uid}-04`, "");
-		inputs["05"]		= HTML.getUserInput(`ssa1099-${uid}-05`, "");
-		inputs["06"]		= HTML.getUserInput(`ssa1099-${uid}-06`, "");
+		// Specify "" as the default value to getUserInput(). This allows the tool to
+		// distinguish between when the the user enters a zero and when it is the default
+		// value.	
+		inputs["01"]	= HTML.getUserInput(`ssa1099-${uid}-01`, "text");
+		inputs["02"]	= HTML.getUserInput(`ssa1099-${uid}-02`, "text");
+		inputs["03a"]	= HTML.getUserInput(`ssa1099-${uid}-03a`, "");
+		inputs["03b"]	= HTML.getUserInput(`ssa1099-${uid}-03b`, "");
+		inputs["04"]	= HTML.getUserInput(`ssa1099-${uid}-04`, "");
+		inputs["05"]	= HTML.getUserInput(`ssa1099-${uid}-05`, "");
+		inputs["06"]	= HTML.getUserInput(`ssa1099-${uid}-06`, "");
+		inputs["07"]	= HTML.getUserInput(`ssa1099-${uid}-07`, "text");
+		inputs["08"]	= HTML.getUserInput(`ssa1099-${uid}-08`, "text");
 
-		if (!Objects.isUsed(inputs)) {
-			return;
-		}
-
-		const ssa1099 = TaxFormObj.createForm("SSA1099");
-
-		ssa1099.lines["01"  ].user_value	= inputs["01"];
-		ssa1099.lines["02"  ].user_value	= inputs["02"];
-		ssa1099.lines["03a" ].user_value	= inputs["03a"];
-		ssa1099.lines["03b" ].user_value	= inputs["03b"];
-		ssa1099.lines["04"  ].user_value	= inputs["04"];
-		ssa1099.lines["05"  ].user_value	= inputs["05"];
-		ssa1099.lines["06"  ].user_value	= inputs["06"];
+		return inputs;
 	}
 
 	constructor(formname) {
@@ -180,6 +197,8 @@ export class SSA1099 extends TaxForm {
 		this.lines["04"]	= new Line("Benefits Repaid");
 		this.lines["05"]	= new Line("Net Benefits");
 		this.lines["06"]	= new Line("Federal Income Tax Withheld");
+		this.lines["07"]	= new Line("Address");
+		this.lines["08"]	= new Line("Claim Number");
 
 		Debug.exit("SSA1099.Constructor()");
 	}

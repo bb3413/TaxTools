@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TAXTools - Tax Analysis & eXperimentation Tools</title>
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --bg-slate: #0f172a;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #f8fafc;
+      color: var(--text-main);
+    }
+
+    /* HEADER BAR */
+    .app-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.85rem 2rem;
+      background-color: var(--bg-slate);
+      color: #ffffff;
+      border-bottom: 3px solid var(--primary);
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo-badge {
+      background: linear-gradient(135deg, #0284c7, #2563eb);
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 1.1rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      letter-spacing: 0.08em;
+    }
+
+    .logo-badge span {
+      color: #38bdf8; /* Highlight the X */
+    }
+
+    .brand-titles {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .app-title {
+      font-weight: 600;
+      font-size: 1.15rem;
+      line-height: 1.2;
+    }
+
+    .app-subtitle {
+      font-size: 0.75rem;
+      color: #94a3b8;
+    }
+
+    .header-actions .btn-about {
+      background: transparent;
+      border: 1px solid #475569;
+      color: #e2e8f0;
+      padding: 0.4rem 0.85rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.2s ease;
+    }
+
+    .header-actions .btn-about:hover {
+      background: #334155;
+      border-color: #94a3b8;
+    }
+
+    /* MAIN CONTAINER */
+    .dashboard-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    /* WELCOME / PHILOSOPHY BANNER (OPTION B) */
+    .philosophy-banner {
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      border-left: 4px solid var(--primary);
+      border-radius: 6px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .philosophy-banner p {
+      margin: 0;
+      font-size: 0.925rem;
+      color: #0369a1;
+    }
+
+    .philosophy-banner a {
+      color: var(--primary-dark);
+      font-weight: 600;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    /* TOOL GRID */
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .tool-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1.25rem;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+
+    .tool-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--primary);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    /* SPECIAL PHILOSOPHY CARD (OPTION C) */
+    .tool-card.featured-philosophy {
+      background: #faf5ff;
+      border-color: #e9d5ff;
+    }
+
+    .tool-card.featured-philosophy:hover {
+      border-color: #9333ea;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .tool-title {
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--text-main);
+    }
+
+    .tool-desc {
+      margin: 0;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* BADGES */
+    .badge {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.2rem 0.45rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+    }
+
+    .badge.federal { background: #e0f2fe; color: #0369a1; }
+    .badge.retirement { background: #fef3c7; color: #92400e; }
+    .badge.state { background: #dcfce7; color: #166534; }
+    .badge.general { background: #f1f5f9; color: #475569; }
+    .badge.about { background: #f3e8ff; color: #6b21a8; }
+  </style>
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="brand-group">
+      <div class="logo-badge">TA<span>X</span>Tools</div>
+      <div class="brand-titles">
+        <span class="app-title">TAXTools</span>
+        <span class="app-subtitle">Tax Analysis & eXperimentation Tools</span>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="btn-about" onclick="alert('Display philosophy document modal here.')">About & Philosophy</button>
+    </div>
+  </header>
+
+  <main class="dashboard-container">
+
+    <div class="philosophy-banner">
+      <p><strong>First time here?</strong> Learn how TAXTools uses precise logic engine modeling to simplify financial decision-making.</p>
+      <a onclick="alert('Open philosophy document.')">Read Philosophy &rarr;</a>
+    </div>
+
+    <div class="tool-grid">
+
+      <a href="#philosophy" class="tool-card featured-philosophy">
+        <div class="card-header">
+          <span class="tool-title">Project Philosophy</span>
+          <span class="badge about">Overview</span>
+        </div>
+        <p class="tool-desc">Read about the underlying design principles, precision goals, and calculation methodology of TAXTools.</p>
+      </a>
+
+      <a href="#estimated-tax-fed" class="tool-card">
+        <div class="card-header">
+          <span class="tool-title">Estimated Tax Calculator</span>
+          <span class="badge federal">Federal</span>
+        </div>
+        <p class="tool-desc">Calculate estimated quarterly federal tax payments and liability.</p>
+      </a>
+
+      <a href="#amt" class="tool-card">
+        <div class="card-header">
+          <span class="tool-title">AMT Calculator</span>
+          <span class="badge federal">Federal</span>
+        </div>
+        <p class="tool-desc">Determine Alternative Minimum Tax liability and exemption thresholds.</p>
+      </a>
+
+      <a href="#small-biz" class="tool-card">
+        <div class="card-header">
+          <span class="tool-title">Small Business Tax</span>
+          <span class="badge federal">Federal</span>
+        </div>
+        <p class="tool-desc">Estimate net business income, self-employment tax, and deductions.</p>
+      </a>
+
+      <a href="#ss-taxable" class="tool-card">
+        <div class="card-header">
+          <span class="tool-title">SS Taxable Benefit</span>
+          <span class="badge retirement">Retirement</span>
+        </div>
+        <p class="tool-desc">Find the taxable portion of Social Security income based on provisional income.</p>
+      </a>
+
+      <a href="#ss-lump-sum" class="tool-card">
+        <div class="card-header">
+          <span class="tool-title">SS Lump Sum</span>
+          <span class="badge retirement">Retirement</span>
+        </div>
+        <p class="tool-desc">Analyze the tax impact of retroactive lump-sum Social Security payments.</p>
+      </a>
+
+      <a href="#rmd" class="tool-card">
+        <div class="card-header">
+          <span class="tool-title">RMD Calculator</span>
+          <span class="badge retirement">Retirement</span>
+        </div>
+        <p class="tool-desc">Calculate Required Minimum Distributions from retirement accounts.</p>
+      </a>
+
+      <a href="#senior-deduction" class="tool-card">
+        <div class="card-header">
+          <span class="tool-title">Senior Deduction</span>
+          <span class="badge retirement">Retirement</span>
+        </div>
+        <p class="tool-desc">Determine eligibility and amounts for extra standard deductions for seniors.</p>
+      </a>
+
+      <a href="#ca-estimated" class="tool-card">
+        <div class="card-header">
+          <span class="tool-title">Estimated Tax (CA)</span>
+          <span class="badge state">California</span>
+        </div>
+        <p class="tool-desc">Compute California Franchise Tax Board estimated tax payments.</p>
+      </a>
+
+      <a href="#ca-sales-tax" class="tool-card">
+        <div class="card-header">
+          <span class="tool-title">CA Sales Tax</span>
+          <span class="badge state">California</span>
+        </div>
+        <p class="tool-desc">Look up and compute local sales tax rates across California districts.</p>
+      </a>
+
+      <a href="#ca-sales-deduction" class="tool-card">
+        <div class="card-header">
+          <span class="tool-title">CA Sales Tax Deduction</span>
+          <span class="badge state">California</span>
+        </div>
+        <p class="tool-desc">Calculate deductible sales tax for itemized deductions.</p>
+      </a>
+
+      <a href="#state-refund" class="tool-card">
+        <div class="card-header">
+          <span class="tool-title">State Income Tax Refund</span>
+          <span class="badge state">State</span>
+        </div>
+        <p class="tool-desc">Determine if your previous year's state refund is taxable federally.</p>
+      </a>
+
+      <a href="#age-calc" class="tool-card">
+        <div class="card-header">
+          <span class="tool-title">Age Calculator</span>
+          <span class="badge general">Utility</span>
+        </div>
+        <p class="tool-desc">Verify exact tax age milestones for RMDs, senior deductions, and IRAs.</p>
+      </a>
+
+      <a href="#simple-math" class="tool-card">
+        <div class="card-header">
+          <span class="tool-title">Simple Math</span>
+          <span class="badge general">Utility</span>
+        </div>
+        <p class="tool-desc">Perform quick, basic arithmetic calculations alongside your forms.</p>
+      </a>
+
+      <a href="#tax-program" class="tool-card">
+        <div class="card-header">
+          <span class="tool-title">Tax Program</span>
+          <span class="badge general">Utility</span>
+        </div>
+        <p class="tool-desc">Comprehensive return runner and overarching calculation engine.</p>
+      </a>
+
+    </div>
+  </main>
+
+</body>
+</html>

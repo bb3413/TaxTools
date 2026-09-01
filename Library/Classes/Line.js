@@ -34,8 +34,8 @@ export class Line {
 		// by the program (see also set value()).
 
 		if (new_value === "") {
-			// If the user did not enter a value or cleared it, use the default for the line,
-			// which will allows the form's steps to calculate the value. If the user
+			// If the user did not enter a value or cleared it, use the default for the
+			// line, which will allows the form's steps to calculate the value. If the user
 			// explicitly entered 0, use it.
 			this._user_supplied_value = false;
 			return;
