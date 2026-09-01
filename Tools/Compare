@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # NAME
-#	Compare - compare TaxTools and TaxToolsDev
+#	Compare - compare TAXTools and TAXToolsDev
 #
 # SYNOPSIS
 #	Compare 
@@ -17,7 +17,7 @@ if [ $# -ne 0 ]; then
 fi
 
 cd "$TAXTOOLS/.."
-DirCmp "TaxToolsNew" "TaxToolsDev"		|
+DirCmp "TAXToolsNew" "TAXToolsDev"		|
 	grep -v "~"							|
 	grep -v ".docx$"					|
 	grep -v ".swp$"						|

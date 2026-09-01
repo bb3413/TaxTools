@@ -7,7 +7,7 @@ import { TaxFormObj }	from "../Library/Classes/TaxFormObj.js";
 import { Taxpayer }		from "../Library/Classes/Taxpayer.js";
 import { TaxTable }		from "../Library/Classes/TaxTable.js";
 
-import { ESTIMATED_TAX_SAVE_FILE } from "../Library/TaxTools/TaxTools.js";
+import { ESTIMATED_TAX_SAVE_FILE } from "../Library/TAXTools/TAXTools.js";
 
 // This variable need to be global so it can be accssed by the save handler.
 let inputs = {};

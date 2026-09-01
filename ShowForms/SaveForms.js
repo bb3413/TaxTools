@@ -10,11 +10,11 @@ const header = `
 <head>
 	<meta charset="utf-8" />
 	<link rel="stylesheet" href=
-		"https://www.bruceblinn.com/6-OtherStuff/Taxes/TaxToolsDev/Library/CSS/TaxTools.css" />
+		"https://www.bruceblinn.com/6-OtherStuff/Taxes/TAXToolsDev/Library/CSS/TAXTools.css" />
 	<link rel="stylesheet" href=
-		"https://www.bruceblinn.com/6-OtherStuff/Taxes/TaxToolsDev/Library/CSS/TaxForms.css" />
+		"https://www.bruceblinn.com/6-OtherStuff/Taxes/TAXToolsDev/Library/CSS/TaxForms.css" />
 	<link rel="stylesheet" href=
-		"https://www.bruceblinn.com/6-OtherStuff/Taxes/TaxToolsDev/Library/CSS/F1099.css" />
+		"https://www.bruceblinn.com/6-OtherStuff/Taxes/TAXToolsDev/Library/CSS/F1099.css" />
 	<title>Save Tax Forms</title>
 </head>
 

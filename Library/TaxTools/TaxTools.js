@@ -1,5 +1,5 @@
 
-const TAXTOOLS_URL			= "https://www.bruceblinn.com/6-OtherStuff/Taxes/TaxTools/";
+const TAXTOOLS_URL			= "https://www.bruceblinn.com/6-OtherStuff/Taxes/TAXTools/";
 const SALES_TAX_PROXY		= TAXTOOLS_URL + "Library/SalesTax/CDTFA-Proxy.php";
 const MAX_DOLLAR			= 99999999;
 const MIN_DOLLAR			= -99999999;

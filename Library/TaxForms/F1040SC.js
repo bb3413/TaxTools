@@ -1,10 +1,11 @@
 
 import { Debug }		from "../Classes/Debug.js";
+import { HTML }			from "../Classes/HTML.js";
 import { Line }			from "../Classes/Line.js";
+import { Objects }		from "../Classes/Objects.js";
 import { TaxForm }		from "../Classes/TaxForm.js";
 import { TaxFormObj }	from "../Classes/TaxFormObj.js";
 import { TaxTable }		from "../Classes/TaxTable.js";
-import { Taxpayer }		from "../Classes/Taxpayer.js";
 
 const HTML_FORM = `
 		<details class="taxform-details" id="f1040sc-XX-details">
@@ -284,6 +285,25 @@ const HTML_FORM = `
 `;
 
 export class F1040SC extends TaxForm {
+	static createForm(uid) {
+		//
+		// Create a new form and initialize it with information from the Web page.
+		// If the user hasn't entered any information, don't bother creating the form.
+		//
+		const inputs = F1040SC.getUserInput(uid);
+		if (!Objects.isUsed(inputs)) {
+			return;
+		}
+
+		const newform = TaxFormObj.createForm("F1040SC");
+
+		for (const key of Object.keys(inputs)) {
+			newform.lines[key].user_value = inputs[key];
+		}
+
+		return newform;
+	}
+
 	static getInputHTML(uid) {
 		if (!uid) {
 			throw new Error("F1040SC.getInputHTML: UID is undefined.");
@@ -299,7 +319,8 @@ export class F1040SC extends TaxForm {
 
 	static getUserInput(uid) {
 		//
-		// Create a new Schedule C and initialize it with information from the Web page.
+		// Read the fields of the form from the web and return an object with the
+		// information.
 		//
 		if (!uid) {
 			throw new Error("F1040SC.getUserInput: UID is undefined.");
@@ -313,6 +334,9 @@ export class F1040SC extends TaxForm {
 
 		let inputs = {};
 
+		// Specify "" as the default value to getUserInput(). This allows the tool to
+		// distinguish between when the the user enters a zero and when it is the default
+		// value.	
 		inputs["01"]		= HTML.getUserInput(`f1040sc-${uid}-01`, "");
 		inputs["02"]		= HTML.getUserInput(`f1040sc-${uid}-02`, "");
 		inputs["03"]		= HTML.getUserInput(`f1040sc-${uid}-03`, "");
@@ -349,47 +373,7 @@ export class F1040SC extends TaxForm {
 		inputs["30"]		= HTML.getUserInput(`f1040sc-${uid}-30`, "");
 		inputs["31"]		= HTML.getUserInput(`f1040sc-${uid}-31`, "");
 
-		if (!Objects.isUsed(inputs)) {
-			return;
-		}
-
-		const f1040sc = TaxFormObj.createForm("F1040SC");
-
-		f1040sc.lines["01"  ].user_value	= inputs["01"];
-		f1040sc.lines["02"  ].user_value	= inputs["02"];
-		f1040sc.lines["03"  ].user_value	= inputs["03"];
-		f1040sc.lines["04"  ].user_value	= inputs["04"];
-		f1040sc.lines["05"  ].user_value	= inputs["05"];
-		f1040sc.lines["06"  ].user_value	= inputs["06"];
-		f1040sc.lines["07"  ].user_value	= inputs["07"];
-		f1040sc.lines["08"  ].user_value	= inputs["08"];
-		f1040sc.lines["09"  ].user_value	= inputs["09"];
-		f1040sc.lines["10"  ].user_value	= inputs["10"];
-		f1040sc.lines["11"  ].user_value	= inputs["11"];
-		f1040sc.lines["12"	].user_value	= inputs["12"];
-		f1040sc.lines["13"	].user_value	= inputs["13"];
-		f1040sc.lines["14"	].user_value	= inputs["14"];
-		f1040sc.lines["15"  ].user_value	= inputs["15"];
-		f1040sc.lines["16a"  ].user_value	= inputs["16a"];
-		f1040sc.lines["16b"  ].user_value	= inputs["16b"];
-		f1040sc.lines["17"  ].user_value	= inputs["16"];
-		f1040sc.lines["18"  ].user_value	= inputs["18"];
-		f1040sc.lines["19"  ].user_value	= inputs["19"];
-		f1040sc.lines["20a"  ].user_value	= inputs["20a"];
-		f1040sc.lines["20b"  ].user_value	= inputs["20b"];
-		f1040sc.lines["21"  ].user_value	= inputs["21"];
-		f1040sc.lines["22"  ].user_value	= inputs["22"];
-		f1040sc.lines["23"  ].user_value	= inputs["23"];
-		f1040sc.lines["24a"  ].user_value	= inputs["24a"];
-		f1040sc.lines["24b"  ].user_value	= inputs["24b"];
-		f1040sc.lines["25"  ].user_value	= inputs["25"];
-		f1040sc.lines["26"  ].user_value	= inputs["26"];
-		f1040sc.lines["27a"  ].user_value	= inputs["27a"];
-		f1040sc.lines["27b"  ].user_value	= inputs["27b"];
-		f1040sc.lines["28"  ].user_value	= inputs["28"];
-		f1040sc.lines["29"  ].user_value	= inputs["29"];
-		f1040sc.lines["30"  ].user_value	= inputs["30"];
-		f1040sc.lines["31"  ].user_value	= inputs["31"];
+		return inputs;
 	}
 
 	constructor(formname) {
@@ -448,7 +432,6 @@ export class F1040SC extends TaxForm {
 		Debug.enter("F1040SC.calculate()");
 		this.calculated = true;
 		const tt = TaxTable.getTaxTable();
-		const tp = Taxpayer.getTaxpayer();
 
 		// Income
 		this.lines["01"].value	= 0;				// Gross Receipts or Sales

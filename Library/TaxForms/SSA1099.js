@@ -122,7 +122,7 @@ const HTML_FORM = `
 export class SSA1099 extends TaxForm {
 	static createForm(uid) {
 		//
-		// Create a new SSA1099 form and initialize it with information from the Web page.
+		// Create a new form and initialize it with information from the Web page.
 		// If the user hasn't entered any information, don't bother creating the form.
 		//
 		const inputs = SSA1099.getUserInput(uid);
@@ -130,13 +130,13 @@ export class SSA1099 extends TaxForm {
 			return;
 		}
 
-		const ssa1099 = TaxFormObj.createForm("SSA1099");
+		const newform = TaxFormObj.createForm("SSA1099");
 
-		// console.log(inputs);
-		// console.log(Object.keys(inputs));
 		for (const key of Object.keys(inputs)) {
-			ssa1099.lines[key].user_value = inputs[key];
+			newform.lines[key].user_value = inputs[key];
 		}
+
+		return newform;
 	}
 
 	static getInputHTML(uid) {

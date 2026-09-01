@@ -11,7 +11,7 @@ import { Taxpayer }		from "../Library/Classes/Taxpayer.js";
 import { TaxTable }		from "../Library/Classes/TaxTable.js";
 import { F1040 }		from "../Library/TaxForms/F1040.js";
 
-import { TAX_PROGRAM_SAVE_FILE } from "../Library/TaxTools/TaxTools.js";
+import { TAX_PROGRAM_SAVE_FILE } from "../Library/TAXTools/TAXTools.js";
 
 function addForm(event) {
 	//

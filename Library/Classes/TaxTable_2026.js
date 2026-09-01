@@ -1,5 +1,5 @@
 
-import { MAX_DOLLAR, MIN_DOLLAR }	from "../TaxTools/TaxTools.js";
+import { MAX_DOLLAR, MIN_DOLLAR }	from "../TAXTools/TAXTools.js";
 import { TaxTableTmpl }				from "../Classes/TaxTableTmpl.js";
 
 export class TaxTable_2026 extends TaxTableTmpl {

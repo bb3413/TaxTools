@@ -137,6 +137,25 @@ const HTML_FORM = `
 `;
 
 export class F1099C extends TaxForm {
+	static createForm(uid) {
+		//
+		// Create a new form and initialize it with information from the Web page.
+		// If the user hasn't entered any information, don't bother creating the form.
+		//
+		const inputs = F1099C.getUserInput(uid);
+		if (!Objects.isUsed(inputs)) {
+			return;
+		}
+
+		const newform = TaxFormObj.createForm("F1099C");
+
+		for (const key of Object.keys(inputs)) {
+			newform.lines[key].user_value = inputs[key];
+		}
+
+		return newform;
+	}
+
 	static getInputHTML(uid) {
 		if (!uid) {
 			throw new Error(`F1099C.getInputHTML(): UID is undefined.`);
@@ -151,7 +170,8 @@ export class F1099C extends TaxForm {
 
 	static getUserInput(uid) {
 		//
-		// Create a new F1099C form and initialize it with information from the Web page.
+		// Read the fields of the form from the web and return an object with the
+		// information.
 		//
 		if (!uid) {
 			throw new Error(`F1099C.getUserInput(): UID is undefined.`);
@@ -165,6 +185,9 @@ export class F1099C extends TaxForm {
 
 		let inputs = {};
 
+		// Specify "" as the default value to getUserInput(). This allows the tool to
+		// distinguish between when the the user enters a zero and when it is the default
+		// value.	
 		inputs["payer"]		= HTML.getUserInput(`f1099c-${uid}-payer`,		"text");
 		inputs["ein"]		= HTML.getUserInput(`f1099c-${uid}-ein`,		"text");
 		inputs["ssn"]		= HTML.getUserInput(`f1099c-${uid}-ssn`,		"text");
@@ -178,24 +201,7 @@ export class F1099C extends TaxForm {
 		inputs["06"]		= HTML.getUserInput(`f1099c-${uid}-06`,			"text");
 		inputs["07"]		= HTML.getUserInput(`f1099c-${uid}-07`,			"");
 
-		if (!Objects.isUsed(inputs)) {
-			return;
-		}
-
-		const f1099c = TaxFormObj.createForm("F1099C");
-
-		f1099c.lines["payer"	].user_value	= inputs["payer"];
-		f1099c.lines["ein"		].user_value	= inputs["ein"];
-		f1099c.lines["ssn"		].user_value	= inputs["ssn"];
-		f1099c.lines["taxpayer"	].user_value	= inputs["taxpayer"];
-		f1099c.lines["account"	].user_value	= inputs["account"];
-		f1099c.lines["01"		].user_value	= inputs["01"];
-		f1099c.lines["02"		].user_value	= inputs["02"];
-		f1099c.lines["03"		].user_value	= inputs["03"];
-		f1099c.lines["04"		].user_value	= inputs["04"];
-		f1099c.lines["05"		].user_value	= inputs["05"];
-		f1099c.lines["06"		].user_value	= inputs["06"];
-		f1099c.lines["07"		].user_value	= inputs["07"];
+		return inputs;
 	}
 
 	constructor(formname) {

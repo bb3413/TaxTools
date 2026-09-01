@@ -1,5 +1,5 @@
 
-import { MAX_DOLLAR, MIN_DOLLAR }	from "../TaxTools/TaxTools.js";
+import { MAX_DOLLAR, MIN_DOLLAR }	from "../TAXTools/TAXTools.js";
 import { Debug }					from "../Classes/Debug.js";
 import { Num }						from "../Classes/Num.js";
 

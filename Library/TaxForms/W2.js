@@ -3,11 +3,9 @@ import { Debug }		from "../Classes/Debug.js";
 import { HTML }			from "../Classes/HTML.js";
 import { Line }			from "../Classes/Line.js";
 import { Objects }		from "../Classes/Objects.js";
-import { Str }			from "../Classes/Str.js";
 import { TaxForm }		from "../Classes/TaxForm.js";
 import { TaxFormObj }	from "../Classes/TaxFormObj.js";
 import { TaxTable }		from "../Classes/TaxTable.js";
-import { Taxpayer }		from "../Classes/Taxpayer.js";
 
 const HTML_FORM = `
 		<details class="taxform-details" id="w2-XX-details">
@@ -196,6 +194,25 @@ const HTML_FORM = `
 `;
 
 export class W2 extends TaxForm {
+	static createForm(uid) {
+		//
+		// Create a new form and initialize it with information from the Web page.
+		// If the user hasn't entered any information, don't bother creating the form.
+		//
+		const inputs = W2.getUserInput(uid);
+		if (!Objects.isUsed(inputs)) {
+			return;
+		}
+
+		const newform = TaxFormObj.createForm("W2");
+
+		for (const key of Object.keys(inputs)) {
+			newform.lines[key].user_value = inputs[key];
+		}
+
+		return newform;
+	}
+
 	static getInputHTML(uid) {
 		if (!uid) {
 			throw new Error(`W2.getInputHTML(): UID is undefined.`);
@@ -206,7 +223,8 @@ export class W2 extends TaxForm {
 
 	static getUserInput(uid) {
 		//
-		// Create a new W2 form and initialize it with information from the Web page.
+		// Read the fields of the form from the web and return an object with the
+		// information.
 		//
 		if (!uid) {
 			throw new Error(`W2.getUserInput(): UID is undefined.`);
@@ -219,6 +237,9 @@ export class W2 extends TaxForm {
 
 		let inputs = {};
 
+		// Specify "" as the default value to getUserInput(). This allows the tool to
+		// distinguish between when the the user enters a zero and when it is the default
+		// value.	
 		inputs["01"]		= HTML.getUserInput(`w2-${uid}-01`, "");
 		inputs["02"]		= HTML.getUserInput(`w2-${uid}-02`, "");
 		inputs["03"]		= HTML.getUserInput(`w2-${uid}-03`, "");
@@ -256,48 +277,7 @@ export class W2 extends TaxForm {
 		inputs["19"]		= HTML.getUserInput(`w2-${uid}-19`, "");
 		inputs["20"]		= HTML.getUserInput(`w2-${uid}-20`, "text");
 
-		if (!Objects.isUsed(inputs)) {
-			return;
-		}
-
-		const w2 = TaxFormObj.createForm("W2");
-
-		w2.lines["01"  ].user_value	= inputs["01"];
-		w2.lines["02"  ].user_value	= inputs["02"];
-		w2.lines["03"  ].user_value	= inputs["03"];
-		w2.lines["04"  ].user_value	= inputs["04"];
-		w2.lines["05"  ].user_value	= inputs["05"];
-		w2.lines["06"  ].user_value	= inputs["06"];
-		w2.lines["07"  ].user_value	= inputs["07"];
-		w2.lines["08"  ].user_value	= inputs["08"];
-		w2.lines["09"  ].user_value	= inputs["09"];
-		w2.lines["10"  ].user_value	= inputs["10"];
-		w2.lines["11"  ].user_value	= inputs["11"];
-		w2.lines["12a1"].user_value	= inputs["12a1"];
-		w2.lines["12a2"].user_value	= inputs["12a2"];
-		w2.lines["12b1"].user_value	= inputs["12b1"];
-		w2.lines["12b2"].user_value	= inputs["12b2"];
-		w2.lines["12c1"].user_value	= inputs["12c1"];
-		w2.lines["12c2"].user_value	= inputs["12c2"];
-		w2.lines["12d1"].user_value	= inputs["12d1"];
-		w2.lines["12d2"].user_value	= inputs["12d2"];
-		w2.lines["13a" ].user_value	= inputs["13a"];
-		w2.lines["13b" ].user_value	= inputs["13b"];
-		w2.lines["13c" ].user_value	= inputs["13c"];
-		w2.lines["14a1"].user_value	= inputs["14a1"];
-		w2.lines["14a2"].user_value	= inputs["14a2"];
-		w2.lines["14b1"].user_value	= inputs["14b1"];
-		w2.lines["14b2"].user_value	= inputs["14b2"];
-		w2.lines["14c1"].user_value	= inputs["14c1"];
-		w2.lines["14c2"].user_value	= inputs["14c2"];
-		w2.lines["14d1"].user_value	= inputs["14d1"];
-		w2.lines["14d2"].user_value	= inputs["14d2"];
-		w2.lines["15"  ].user_value	= inputs["15"];
-		w2.lines["16"  ].user_value	= inputs["16"];
-		w2.lines["17"  ].user_value	= inputs["16"];
-		w2.lines["18"  ].user_value	= inputs["18"];
-		w2.lines["19"  ].user_value	= inputs["19"];
-		w2.lines["20"  ].user_value	= inputs["20"];
+		return inputs;
 	}
 
 	constructor(formname) {
