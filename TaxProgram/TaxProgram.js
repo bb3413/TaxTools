@@ -40,6 +40,8 @@ function addInputForm(formname) {
 	// Open the form and scroll the window to it.
 	HTML.openDetails(taxform_id);
 	document.getElementById(taxform_id).scrollIntoView({behavior: 'smooth', block: 'start'});
+
+	return taxform_id;
 }
 
 function addOutputForm(form) {
@@ -71,7 +73,7 @@ function calculateHandler(event) {
 		resetCalculation();
 
 		TaxTable.getTaxTable(HTML.getUserInput("tax-year"));	// Initialize tax tables
-		Taxpayer.initializeTaxpayer();							// Initialize taxpayer
+		Taxpayer.getTaxpayer();									// Initialize taxpayer
 		createTaxForms();										// Create tax forms
 		const f1040 = TaxFormObj.getForm("F1040") || TaxFormObj.createForm("F1040");
 		f1040.calculate();
@@ -111,7 +113,7 @@ function createTaxForms() {
 	// tax form.
 	//
 	for (let taxform_id of TaxFormWeb.getInputForms()) {
-		let [ formname, uid ] = TaxFormWeb.parseFormName(taxform_id);
+		let [ formname, uid ] = TaxFormWeb.parseTaxformID(taxform_id);
 		TaxFormName.createForm(formname, uid);
 	}
 }
@@ -141,6 +143,18 @@ function putOutputs() {
 		.scrollIntoView({behavior: 'smooth', block: 'start'});
 }
 
+function resetAll() {
+	resetCalculation();						// Remove output calculations and web forms
+	Taxpayer.reset();
+	TaxFormWeb.removeInputForms();			// Remove input web forms.
+
+	HTML.putUserOutput("tax-year", Dates.getTaxYear(), "text");
+	HTML.putUserOutput("filing-status", "Single");
+	HTML.hideElement("spouse-container");
+	HTML.hideElement("debug-container");
+	HTML.putElementValue("error-message-output", "");
+}
+
 function resetCalculation() {
 	Debug.reset();
 	Debug.set_strict();
@@ -148,7 +162,7 @@ function resetCalculation() {
 	TaxFormObj.deleteAllForms();
 
 	// Remove the output web form froms the previous calculation.
-	TaxFormWeb.removeOutputForms();			// Remove form web pages.
+	TaxFormWeb.removeOutputForms();			// Remove output form web pages.
 	HTML.hideElement("output-forms-container");
 }
 
@@ -157,20 +171,40 @@ function restoreDataHandler(data) {
 	// This function is called when the user restores the input fields from a file.
 	// The data that was copied from the file is passed a parameter.
 	//
-	const tool = HTML.getUserInput("title", "text");
-	if (data.tool !== tool) {
-		throw new Error(`Restored data file is intended for the ${data.tool} tool.`);
-	}
-
-	// For each form.
-	for (const form of data.inputs) {
-		// Puts the fields read from a saved file back onto the web page.
-		for (let i = 1; i < form.length; i++) {
-			let line			= form[i];
-			let lineno			= line[0];
-			let element_name	= line[1];
-			HTML.putElementValue(element_name, value);
+	try {
+		const tool = HTML.getUserInput("title", "text");
+		if (data.tool_name !== tool) {
+			throw new Error(`Restored data file is intended for the ${data.tool} tool.`);
 		}
+
+		// Reset ewverything; do not save any previously input data.
+		resetAll();
+
+		// Restore the taxpayer information.
+		Taxpayer.restoreTaxpayer(data["taxpayer"]);
+
+		// Restore each input form.
+		for (const forminfo of data["input_forms"]) {
+			let formname	= forminfo[0];
+			let lines		= forminfo[1];
+
+			if (!TaxFormName.isInputForm(formname)) {
+				throw new Error(`restoreDataHandler(): ${formname} ` +
+					"in an output form, cannot restore.");
+			}
+
+			const taxform_id = addInputForm(formname);
+			let [ notused, uid ] = TaxFormWeb.parseTaxformID(taxform_id);
+			const element_id_prefix = `${formname.toLowerCase()}-${uid}-`;
+			for (const lineno of Object.keys(lines)) {
+				HTML.putElementValue(element_id_prefix + lineno, lines[lineno]);
+			}
+		}
+	} catch (error) {
+		HTML.putElementValue("error-message-output", error);
+		console.log("Stack trace:", error.stack);
+		document.getElementById("error-message-output")
+			.scrollIntoView({behavior: 'smooth', block: 'start'});
 	}
 }
 
@@ -197,8 +231,8 @@ function saveUserSuppliedInputValues() {
 
 	// For each form.
 	for (let taxform_id of TaxFormWeb.getInputForms()) {
-		let [ formname, uid ] = TaxFormWeb.parseFormName(taxform_id);
-		let inputs = Objects.removeUnused(TaxFormName.getUserInput(formname, uid));
+		let [ formname, uid ] = TaxFormWeb.parseTaxformID(taxform_id);
+		let inputs = Objects.removeUnused(TaxFormName.saveUserInput(formname, uid));
 		user_values.push( [ formname, inputs ] );
 	}
 
@@ -233,20 +267,27 @@ function saveUserData(event) {
 	//
 	// This function is called when the user wants to save the input fields to a file.
 	//
-	const taxpayer			= Objects.removeUnused(Taxpayer.getTaxpayer());
-	const input_taxforms	= saveUserSuppliedInputValues();
-	const output_taxforms	= saveUserSuppliedOutputValues();
+	try {
+		const input_taxforms	= saveUserSuppliedInputValues();
+		const output_taxforms	= saveUserSuppliedOutputValues();
 
-	const data = {
-		"tool_name":	HTML.getUserInput("title", "text"),
-		"version":		HTML.getUserInput("tax-tools-version", "text"),
-		"todays_date":	new Date().toLocaleDateString(),
-		"taxpayer":		taxpayer,
-		"input_forms":	input_taxforms,
-		"output_forms":	output_taxforms,
-	};
+		const data = {
+			"tool_name":	HTML.getUserInput("title", "text"),
+			"version":		HTML.getUserInput("tax-tools-version", "text"),
+			"todays_date":	new Date().toLocaleDateString(),
+			"tax_year":		HTML.getUserInput("tax-year", "text"),
+			"taxpayer":		Taxpayer.saveTaxpayer(),
+			"input_forms":	input_taxforms,
+			"output_forms":	output_taxforms,
+		};
 
-	File.saveToFile(data, TAX_PROGRAM_SAVE_FILE);
+		File.saveToFile(data, TAX_PROGRAM_SAVE_FILE);
+	} catch (error) {
+		HTML.putElementValue("error-message-output", error);
+		console.log("Stack trace:", error.stack);
+		document.getElementById("error-message-output")
+			.scrollIntoView({behavior: 'smooth', block: 'start'});
+	}
 }
 
 document.addEventListener("DOMContentLoaded", () => {

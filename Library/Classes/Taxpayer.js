@@ -4,6 +4,47 @@ import { HTML }		from "../Classes/HTML.js";
 import { Str }		from "../Classes/Str.js";
 import { TaxTable }	from "../Classes/TaxTable.js";
 
+const FIELD_NAMES = [
+	"filing-status",
+	"taxpayers-name",
+	"street-address",
+	"city",
+	"zip-code",
+	"taxpayers-birthday",
+	"is-taxpayer-blind",
+	"is-taxpayer-citizen",
+	"taxpayer-has-ssn",
+	"lived-with-spouse",
+	"can-be-dependent",
+	"rents-home",
+	"tp-taxpayer-educator-expenses",
+	"tp-taxpayer-ltc-premiums",
+	"spouses-birthday",
+	"is-spouse-blind",
+	"is-spouse-citizen",
+	"spouse-has-ssn",
+	"tp-spouse-educator-expenses",
+	"tp-spouse-ltc-premiums",
+	"tp-number-of-dependents",
+	"tp-alimony-paid",
+	"tp-alimony-received",
+	"tp-divorce-date",
+	"tp-federal-estimated-payments",
+	"tp-state-estimated-payments",
+	"tp-medical-insurance-premiums",
+	"tp-medicare-premiums",
+	"tp-other-medical-expenses",
+	"tp-medical-miles",
+	"tp-property-tax",
+	"tp-personal-property-tax",
+	"tp-extra-sales-tax",
+	"tp-cash-gift-to-charity",
+	"tp-noncash-gift-to-charity",
+	"tp-tax-preparation-fees",
+	"tp-investment-expenses",
+	"tp-unreimbursed-employee-expenses",
+];
+
 let taxpayer = undefined;		// Global variable.
 
 function getUserInput(element_id, default_value = 0) {
@@ -14,6 +55,46 @@ function getUserInput(element_id, default_value = 0) {
 	} else {
 		return default_value;
 	}
+}
+
+function putUserOutput(element_id, value, type = "number") {
+	// In some tools the element may not exist and HTML.pytUserOutput fails in strict
+	// mode if element does not exist. This function ignores that error.
+	if (document.getElementById(element_id)) {
+		HTML.putUserOutput(element_id, value, type);
+	}
+}
+
+function initializeTaxpayer() {
+	//
+	// Create a new taxpayer and initialize it with information from the Web page.
+	//
+	let inputs = {};
+
+	const taxpayer = new Taxpayer();
+
+	// Initialize the fields from the web page.
+	for (const field of Object.keys(taxpayer)) {
+		const field_name = field.replace(/^_/, "");
+		const element_id = Str.snakeToKebabCase(field_name);
+
+		let default_value;
+		switch (field_name) {
+			case "filing_status":		default_value = "text";		break;
+			case "taxpayers_name":		default_value = "text";		break;
+			case "street_address":		default_value = "text";		break;
+			case "city":				default_value = "text";		break;
+			case "zip_code":			default_value = "text";		break;
+			case "taxpayers_birthday":	default_value = "text";		break;
+			case "spouses_birthday":	default_value = "text";		break;
+			case "tp_divorce_date":		default_value = "text";		break;
+			default:					default_value = "";			break;
+		}
+
+		taxpayer[field_name] = getUserInput(element_id, default_value);
+	}
+
+	return taxpayer;
 }
 
 function printFilingStatus(filing_status) {
@@ -35,106 +116,64 @@ export class Taxpayer {
 	// ---------------- Static Methods ----------------
 	//
 	static getTaxpayer() {
+		if (!taxpayer) {
+			initializeTaxpayer();
+		}
+
 		return taxpayer;
 	}
 
-	static initializeTaxpayer() {
-		//
-		// Create a new taxpayer and initialize it with information from the Web page.
-		//
-		let inputs = {};
+	static restoreTaxpayer(taxpayer_data) {
+		if (!taxpayer) {
+			initializeTaxpayer();
+		}
 
-		const taxpayer = new Taxpayer();
-
-		taxpayer.filing_status =
-			getUserInput("filing-status", "text").toUpperCase();
-
-		taxpayer.taxpayers_name =
-			getUserInput("taxpayers-name", "text");
-		taxpayer.street_address =
-			getUserInput("street-address", "text");
-		taxpayer.city =
-			getUserInput("city", "text");
-		taxpayer.zip_code =
-			getUserInput("zip-code", "text");
-
-		// Taxpayer
-		taxpayer.taxpayers_birthday =
-			getUserInput("taxpayers-birthday", "text");
-		taxpayer.is_taxpayer_blind =
-			getUserInput("is-taxpayer-blind");
-		taxpayer.is_taxpayer_citizen =
-			getUserInput("is-taxpayer-citizen");
-		taxpayer.taxpayer_has_ssn =
-			getUserInput("taxpayer-has-ssn");
-		taxpayer.lived_with_spouse =
-			getUserInput("lived-with-spouse");
-		taxpayer.can_be_dependent =
-			getUserInput("can-be-dependent");
-		taxpayer.rents_home =
-			getUserInput("rents-home");
-		taxpayer.taxpayer_educator_expenses =
-			getUserInput("tp-taxpayer-educator-expenses");
-		taxpayer.taxpayer_ltc_premiums =
-			getUserInput("tp-taxpayer-ltc-premiums");
-
-		// Spouse
-		taxpayer.spouses_birthday =
-			getUserInput("spouses-birthday", "text");
-		taxpayer.is_spouse_blind =
-			getUserInput("is-spouse-blind");
-		taxpayer.is_spouse_citizen =
-			getUserInput("is-spouse-citizen");
-		taxpayer.spouse_has_ssn =
-			getUserInput("spouse-has-ssn");
-		taxpayer.spouse_educator_expenses =
-			getUserInput("tp-spouse-educator-expenses");
-		taxpayer.spouse_ltc_premiums =
-			getUserInput("tp-spouse-ltc-premiums");
-
-		// Taxpayer and spouse
-		taxpayer.number_of_dependents =
-			getUserInput("tp-number-of-dependents");
-		taxpayer.alimony_paid =
-			getUserInput("tp-alimony-paid");
-		taxpayer.alimony_received =
-			getUserInput("tp-alimony-received");
-		taxpayer.divorce_date =
-			getUserInput("tp-divorce-date", "text");
-		taxpayer.federal_estimated_payments =
-			getUserInput("tp-federal-estimated-payments");
-		taxpayer.state_estimated_payments =
-			getUserInput("tp-state-estimated-payments");
-		taxpayer.medical_insurance_premiums =
-			getUserInput("tp-medical-insurance-premiums");
-		taxpayer.medicare_repremiums =
-			getUserInput("tp-medicare-premiums");
-		taxpayer.other_medical_expenses =
-			getUserInput("tp-other-medical-expenses");
-		taxpayer.medical_miles =
-			getUserInput("tp-medical-miles");
-		taxpayer.property_tax =
-			getUserInput("tp-property-tax");
-		taxpayer.personal_property_tax =
-			getUserInput("tp-personal-property-tax");
-		taxpayer.extra_sales_tax =
-			getUserInput("tp-extra-sales-tax");
-		taxpayer.cash_gift_to_charity =
-			getUserInput("tp-cash-gift-to-charity");
-		taxpayer.noncash_gift_to_charity =
-			getUserInput("tp-noncash-gift-to-charity");
-		taxpayer.tax_preparation_fees =
-			getUserInput("tp-tax-preparation-fees");
-		taxpayer.investment_expenses =
-			getUserInput("tp-investment-expenses");
-		taxpayer.unreimbursed_employee_expenses	=
-			getUserInput("tp-unreimbursed-employee-expenses");
-
-		return taxpayer;
+		for (const field of Object.keys(taxpayer_data)) {
+			taxpayer[field] = taxpayer_data[field];
+		}
 	}
 
 	static reset() {
-		taxpayer = undefined;
+		// Clear the taxpayer fields on the web page.
+		if (taxpayer) {
+			for (const field of Object.keys(taxpayer)) {
+				const element_id = Str.snakeToKebabCase(field).replace(/^-/, "");
+				putUserOutput(element_id, "");
+			}
+
+			taxpayer = undefined;
+		}
+	}
+
+	static restoreTaxpayer(data) {
+		// Clean all the fields.
+		for (const field_id of FIELD_NAMES) {
+			if (document.getElementById(field_id)) {
+				HTML.putElementValue(field_id, "");
+			}
+		}
+
+		// Restore the fields that were saved.
+		for (const field_id of Object.keys(data)) {
+			if (document.getElementById(field_id)) {
+				HTML.putElementValue(field_id, data[field_id]);
+			}
+		}	
+	}
+
+	static saveTaxpayer() {
+		let inputs = {};
+
+		for (const field_id of FIELD_NAMES) {
+			if (document.getElementById(field_id)) {
+				let value = HTML.getElementValue(field_id);
+				if (value !== "") {
+					inputs[field_id] = value;
+				}
+			}
+		}
+
+		return inputs;
 	}
 
 	//
@@ -175,7 +214,7 @@ export class Taxpayer {
 		this._number_of_dependents				= 0;
 		this._alimony_paid						= 0;
 		this._alimony_received					= 0;
-		this._divorce_date						= 0;
+		this._divorce_date						= "";
 		this._federal_estimated_payments		= 0;
 		this._state_estimated_payments			= 0;
 		this._medical_insurance_premiums		= 0;
@@ -243,7 +282,7 @@ export class Taxpayer {
 	//
 	// ---------------- Setter Methods ----------------
 	//
-	set filing_status(fs) {					this._filing_status					= fs }
+	set filing_status(fs) {					this._filing_status		= fs.toUpperCase() }
 
 	set taxpayers_name(name) {				this._taxpayers_name				= name }
 	set street_address(str) {				this._street_address				= str }

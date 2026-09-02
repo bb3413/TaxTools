@@ -67,8 +67,12 @@ export class TaxFormWeb {
 		element.insertAdjacentHTML("beforeend", taxform);
 	}
 
-	static getInputForms() {
-		return input_forms;
+	static getInputForms(formname = "") {
+		if (formname === "") {
+			return input_forms;
+		} else {
+			return input_forms.filter(taxform_id => taxform_id.startsWith(formname + "-" ));
+		}
 	}
 
 	static getUID(formname) {
@@ -85,15 +89,24 @@ export class TaxFormWeb {
 		return form_uid;
 	}
 
-	static parseFormName(taxform_id) {
+	static parseTaxformID(taxform_id) {
 		const parts = taxform_id.split("-");
 		return [ parts[0].toUpperCase(), parts[1].replace(/-/g, "") ];
+	}
+
+	static removeInputForms() {
+		while (input_forms.length > 0) {
+			let taxform_id = input_forms.pop();
+			let [ formname, uid ] = TaxFormWeb.parseTaxformID(taxform_id);
+			next_form_uid[formname]--;
+			document.getElementById(taxform_id).remove();
+		}
 	}
 
 	static removeOutputForms() {
 		while (output_forms.length > 0) {
 			let taxform_id = output_forms.pop();
-			let [ formname, uid ] = TaxFormWeb.parseFormName(taxform_id);
+			let [ formname, uid ] = TaxFormWeb.parseTaxformID(taxform_id);
 			next_form_uid[formname]--;
 			document.getElementById(taxform_id).remove();
 		}

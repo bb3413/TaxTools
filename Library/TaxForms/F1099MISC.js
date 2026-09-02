@@ -263,13 +263,46 @@ export class F1099MISC extends TaxForm {
 		inputs["ssn"]		= HTML.getUserInput(`f1099misc-${uid}-ssn`,		"text");
 		inputs["taxpayer"]	= HTML.getUserInput(`f1099misc-${uid}-taxpayer`,"text");
 		inputs["account"]	= HTML.getUserInput(`f1099misc-${uid}-account`,	"text");
-		inputs["01"]		= HTML.getUserInput(`f1099misc-${uid}-01`,			"");
-		inputs["02"]		= HTML.getUserInput(`f1099misc-${uid}-02`,			"");
-		inputs["03"]		= HTML.getUserInput(`f1099misc-${uid}-03`,			"");
-		inputs["04"]		= HTML.getUserInput(`f1099misc-${uid}-04`,			"");
-		inputs["05"]		= HTML.getUserInput(`f1099misc-${uid}-05`,			"");
-		inputs["06"]		= HTML.getUserInput(`f1099misc-${uid}-06`,			"text");
-		inputs["07"]		= HTML.getUserInput(`f1099misc-${uid}-07`,			"");
+		inputs["01"]		= HTML.getUserInput(`f1099misc-${uid}-01`, "");
+		inputs["02"]		= HTML.getUserInput(`f1099misc-${uid}-02`, "");
+		inputs["03"]		= HTML.getUserInput(`f1099misc-${uid}-03`, "");
+		inputs["04"]		= HTML.getUserInput(`f1099misc-${uid}-04`, "");
+		inputs["05"]		= HTML.getUserInput(`f1099misc-${uid}-05`, "");
+		inputs["06"]		= HTML.getUserInput(`f1099misc-${uid}-06`, "text");
+		inputs["07"]		= HTML.getUserInput(`f1099misc-${uid}-07`, "");
+
+		return inputs;
+	}
+
+	static saveUserInput(uid) {
+		//
+		// Read the fields of the form from the web, but do not alter the information, for
+		// example by changing "" to 0 or removing commas.
+		//
+		if (!uid) {
+			throw new Error(`F1099MISC.getUserInput(): UID is undefined.`);
+		}
+
+		const element = document.getElementById(`f1099misc-${uid}-details`);
+		if (!element) {
+			throw new Error(
+				`F1099MISC.getUserInput(): Element not found: f1099misc-${uid}-details`);
+		}
+
+		let inputs = {};
+
+		inputs["payer"]		= HTML.getElementValue(`f1099misc-${uid}-payer`);
+		inputs["ein"]		= HTML.getElementValue(`f1099misc-${uid}-ein`);
+		inputs["ssn"]		= HTML.getElementValue(`f1099misc-${uid}-ssn`);
+		inputs["taxpayer"]	= HTML.getElementValue(`f1099misc-${uid}-taxpayer`,);
+		inputs["account"]	= HTML.getElementValue(`f1099misc-${uid}-account`);
+		inputs["01"]		= HTML.getElementValue(`f1099misc-${uid}-01`);
+		inputs["02"]		= HTML.getElementValue(`f1099misc-${uid}-02`);
+		inputs["03"]		= HTML.getElementValue(`f1099misc-${uid}-03`);
+		inputs["04"]		= HTML.getElementValue(`f1099misc-${uid}-04`);
+		inputs["05"]		= HTML.getElementValue(`f1099misc-${uid}-05`);
+		inputs["06"]		= HTML.getElementValue(`f1099misc-${uid}-06`);
+		inputs["07"]		= HTML.getElementValue(`f1099misc-${uid}-07`);
 
 		return inputs;
 	}

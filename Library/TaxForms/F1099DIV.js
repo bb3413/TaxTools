@@ -251,6 +251,46 @@ export class F1099DIV extends TaxForm {
 		return inputs;
 	}
 
+	static saveUserInput(uid) {
+		//
+		// Read the fields of the form from the web, but do not alter the information, for
+		// example by changing "" to 0 or removing commas.
+		//
+		if (!uid) {
+			throw new Error(`f1099div.getUserInput(): UID is undefined.`);
+		}
+
+		const element = document.getElementById(`f1099div-${uid}-details`);
+		if (!element) {
+			throw new Error(
+				`f1099div.getUserInput(): Element not found: f1099div-${uid}-details`);
+		}
+
+		let inputs = {};
+
+		inputs["payer"]		= HTML.getElementValue(`f1099div-${uid}-payer`);
+		inputs["ein"]		= HTML.getElementValue(`f1099div-${uid}-ein`);
+		inputs["ssn"]		= HTML.getElementValue(`f1099div-${uid}-ssn`);
+		inputs["taxpayer"]	= HTML.getElementValue(`f1099div-${uid}-taxpayer`);
+		inputs["account"]	= HTML.getElementValue(`f1099div-${uid}-account`);
+		inputs["01a"]		= HTML.getElementValue(`f1099div-${uid}-01a`);
+		inputs["01b"]		= HTML.getElementValue(`f1099div-${uid}-01b`);
+		inputs["02a"]		= HTML.getElementValue(`f1099div-${uid}-02a`);
+		inputs["02b"]		= HTML.getElementValue(`f1099div-${uid}-02b`);
+		inputs["03"	]		= HTML.getElementValue(`f1099div-${uid}-03`);
+		inputs["04"	]		= HTML.getElementValue(`f1099div-${uid}-04`);
+		inputs["05"	]		= HTML.getElementValue(`f1099div-${uid}-05`);
+		inputs["06"	]		= HTML.getElementValue(`f1099div-${uid}-06`);
+		inputs["07"	]		= HTML.getElementValue(`f1099div-${uid}-07`);
+		inputs["08"	]		= HTML.getElementValue(`f1099div-${uid}-08`);
+		inputs["12"	]		= HTML.getElementValue(`f1099div-${uid}-12`);
+		inputs["13"	]		= HTML.getElementValue(`f1099div-${uid}-13`);
+		inputs["14"	]		= HTML.getElementValue(`f1099div-${uid}-14`);
+		inputs["16"	]		= HTML.getElementValue(`f1099div-${uid}-16`);
+
+		return inputs;
+	}
+
 	constructor(formname) {
 		Debug.enter("f1099div.Constructor()");
 		super(formname);

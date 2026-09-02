@@ -184,6 +184,36 @@ export class SSA1099 extends TaxForm {
 		return inputs;
 	}
 
+	static saveUserInput(uid) {
+		//
+		// Read the fields of the form from the web, but do not alter the information, for
+		// example by changing "" to 0 or removing commas.
+		//
+		if (!uid) {
+			throw new Error(`SSA1099.getUserInput(): UID is undefined.`);
+		}
+
+		const element = document.getElementById(`ssa1099-${uid}-details`);
+		if (!element) {
+			throw new Error(
+				`SSA1099.getUserInput(): Element not found: ssa1099-${uid}-details`);
+		}
+
+		let inputs = {};
+
+		inputs["01"]	= HTML.getElementValue(`ssa1099-${uid}-01`);
+		inputs["02"]	= HTML.getElementValue(`ssa1099-${uid}-02`);
+		inputs["03a"]	= HTML.getElementValue(`ssa1099-${uid}-03a`);
+		inputs["03b"]	= HTML.getElementValue(`ssa1099-${uid}-03b`);
+		inputs["04"]	= HTML.getElementValue(`ssa1099-${uid}-04`);
+		inputs["05"]	= HTML.getElementValue(`ssa1099-${uid}-05`);
+		inputs["06"]	= HTML.getElementValue(`ssa1099-${uid}-06`);
+		inputs["07"]	= HTML.getElementValue(`ssa1099-${uid}-07`);
+		inputs["08"]	= HTML.getElementValue(`ssa1099-${uid}-08`);
+
+		return inputs;
+	}
+
 	constructor(formname) {
 		Debug.enter("SSA1099.Constructor()");
 		super(formname);
@@ -196,7 +226,7 @@ export class SSA1099 extends TaxForm {
 		this.lines["03b"]	= new Line("Medicare Part D");
 		this.lines["04"]	= new Line("Benefits Repaid");
 		this.lines["05"]	= new Line("Net Benefits");
-		this.lines["06"]	= new Line("Federal Income Tax Withheld");
+		this.lines["06"]	= new Line("Federal Income Tax	 Withheld");
 		this.lines["07"]	= new Line("Address");
 		this.lines["08"]	= new Line("Claim Number");
 

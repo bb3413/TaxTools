@@ -116,7 +116,7 @@
 
 		<p>&nbsp;</p>
 		<div class="input-form-header">
-			<h2>Tax Information Input Forms</h2>
+			<h2>Input Tax Forms</h2>
 			<select id="add-form-button" class="trigger" tooltipid="#add-form-button-tt">
 				<option value="" hidden disabled selected>Add Form</option>
 				<option value="W2">			W-2</option>
@@ -136,13 +136,13 @@
 		</div>
 
 		<!-- Display area for input tax forms. -->
-		<div id="input-forms-container">
+		<div class="input-forms-container" id="input-forms-container">
 			<?php include "../Library/Classes/Taxpayer.html"; ?>
 		</div>
 
 		<p>&nbsp;</p>
 		<!-- Display area for output tax forms. -->
-		<div id="output-forms-container">
+		<div class="output-forms-container" id="output-forms-container">
 			<h2>Tax Return</h2>
 		</div>
 

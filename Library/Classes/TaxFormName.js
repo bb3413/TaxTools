@@ -220,6 +220,28 @@ export class TaxFormName {
 		}
 	}
 
+	static saveUserInput(formname, uid) {
+		// This method allows you to call the static method getUserInput() by formname.
+		switch (formname) {
+			case "F1040SC":		return F1040SC.saveUserInput(uid);
+			case "F1099C":		return F1099C.saveUserInput(uid);
+			case "F1099DIV":	return F1099DIV.saveUserInput(uid);
+			case "F1099G":		return F1099G.saveUserInput(uid);
+			case "F1099INT":	return F1099INT.saveUserInput(uid);
+			case "F1099K":		return F1099K.saveUserInput(uid);
+			case "F1099MISC":	return F1099MISC.saveUserInput(uid);
+			case "F1099NEC":	return F1099NEC.saveUserInput(uid);
+			case "F1099OID":	return F1099OID.saveUserInput(uid);
+			case "F1099R":		return F1099R.saveUserInput(uid);
+			case "F1099S":		return F1099S.saveUserInput(uid);
+			case "SSA1099":		return SSA1099.saveUserInput(uid);
+			case "W2":			return W2.saveUserInput(uid);
+			default:
+				throw new Error(
+					`TaxFormName.saveUserInput(): unplemented form: ${formname}`);
+		}
+	}
+
 	static isSingleton(formname) {
 		if (forms_map[formname]) {
 			return forms_map[formname][SINGLETON];

@@ -75,10 +75,6 @@ h2 {
 	margin-bottom:			0;
 }
 
-.tax-return-output {
-	border:					1px solid var(--border-color);
-}
-
 .input-form-header {
 	display:				flex;
 	align-items:			flex-end;	/* Align buttons on bottom edge. */
@@ -92,12 +88,22 @@ h2 {
 	border-radius:			3px;
 /*	font-size:				18px; */
 /*	font-weight:			700; */
-	margin-bottom:			6px;
+	margin-bottom:			6px;	
 }
 
 .input-form-header select option {
 /*	font-size:				12px; */
 }
+
+/*
+.input-forms-container {
+	border:					1px solid var(--border-color);
+}
+
+.output-forms-container {
+	border:					1px solid var(--border-color);
+}
+*/
 
 .help-fields h3 {
 	display: 				none;
